@@ -1,0 +1,23 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+import os
+
+SConscript('../../Scripts/SCons/Shared.sconscript.py')
+Import('*')
+
+env = baseEnv.Clone()
+env['CCFLAGS'] += baseEnv['SHCCFLAGS'][1:]
+
+if compiler == 'GCC' or compiler == 'Clang':
+    env['CCFLAGS'] += ['-fno-strict-aliasing']
+
+target = 'AngelScript'
+if compiler.startswith('VisualStudio'):
+    target += compiler + {True: 'Debug', False: ''}[isDebugBuild]
+
+result = SConscript('Source/source/SConscript', variant_dir=baseVariantDir, exports='env target', duplicate=0)
+
+Install(os.path.join('Library', platform, architecture), result)

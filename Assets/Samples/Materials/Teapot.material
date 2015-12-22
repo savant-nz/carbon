@@ -1,0 +1,6 @@
+$diffuseMap                     Marble.png
+$glossMap                       MarbleGloss.png
+$normalMap                      FlatNormalMap.png
+
+$specularColor                  0.3 0.3 0.3
+$specularExponent               32.0

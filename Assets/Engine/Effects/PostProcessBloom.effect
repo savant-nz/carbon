@@ -1,0 +1,6 @@
+Description             "Post-process bloom"
+
+$brightThreshold        Float
+$blurScale              Float
+$bloomFactor            Float
+$exposure               Float

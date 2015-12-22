@@ -1,0 +1,11 @@
+Description             "Reflective mirror surface"
+
+VertexStream            Position[3]
+VertexStream            DiffuseTextureCoordinate[2]
+
+$diffuseMap             Texture2D WorldDiffuse
+$reflectanceMap         Texture2D WorldGloss
+
+$diffuseColor           Color Optional
+$reflectionColor        Color
+$fresnelExponent        Float

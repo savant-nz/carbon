@@ -1,0 +1,6 @@
+Description             "Effect for rendering fonts"
+
+VertexStream            Position[3]
+VertexStream            DiffuseTextureCoordinate[2]
+
+$diffuseColor           Color Optional

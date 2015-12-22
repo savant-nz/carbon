@@ -1,0 +1,263 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+# Carbon SDK NSIS installer script, used by SDK/Windows/WindowsSDKBuilder.rb.
+
+Unicode True
+
+<% unless fast_build %>
+    SetCompressor /solid lzma
+    SetCompressorDictSize 64
+<% end %>
+
+!include "FileFunc.nsh"
+!include "MUI2.nsh"
+
+!define PRODUCT_NAME "Carbon SDK"
+!define START_MENU_PATH "$SMPROGRAMS\${PRODUCT_NAME}"
+
+!define UNINSTALLER "$INSTDIR\Uninstall.exe"
+!define UNINSTALLER_REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
+
+Name "${PRODUCT_NAME} <%= sdk_version %>"
+OutFile "<%= NSIS.path sdk_filename %>"
+InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
+
+RequestExecutionLevel admin
+
+# Setup Modern UI
+!define MUI_ICON "Source\CarbonEngine\Carbon.ico"
+BrandingText " "
+
+# Installer pages
+!insertmacro MUI_PAGE_WELCOME
+Page custom PageUninstall PageLeaveUninstall
+!insertmacro MUI_PAGE_COMPONENTS
+!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
+
+# Uninstaller pages
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
+
+# Language setup
+!insertmacro MUI_LANGUAGE "English"
+!insertmacro MUI_RESERVEFILE_LANGDLL
+
+Section "Carbon Runtime Files" SectionRuntimeFiles
+    SectionIn RO
+
+    # Binaries
+    SetOutPath "$INSTDIR\Bin"
+    File "Build\Windows\x86\<%= compiler %>\Release\CarbonEngine.dll"
+    File "Build\Windows\x64\<%= compiler %>\Release\CarbonEngine64.dll"
+    File "Build\Windows\x86\<%= compiler %>\Release\WindowsSDKAssistant.exe"
+
+    # PhysX DLLs
+    File "Dependencies\PhysX-<%= CARBON_DEPENDENCIES[:PhysX] %>\Bin\Windows\x86\*.dll"
+    File "Dependencies\PhysX-<%= CARBON_DEPENDENCIES[:PhysX] %>\Bin\Windows\x64\*.dll"
+
+    # Licenses
+    SetOutPath "$INSTDIR\Licenses"
+    <% dependency_licenses do |license, dependency| %>
+        File "/oname=<%= "#{dependency}#{File.basename license}" %>" "<%= NSIS.path license %>"
+    <% end %>
+
+    # Create Start Menu entries
+    CreateDirectory "${START_MENU_PATH}"
+    CreateShortcut  "${START_MENU_PATH}\SDK Install Directory.lnk" "$INSTDIR"
+    CreateShortcut  "${START_MENU_PATH}\Uninstall.lnk" "${UNINSTALLER}"
+
+    # Create uninstaller executable
+    WriteUninstaller "${UNINSTALLER}"
+
+    # Put into Windows' list of installed programs
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "DisplayName" "${PRODUCT_NAME}"
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "DisplayVersion" "<%= sdk_version %>"
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "DisplayIcon" "$INSTDIR\Bin\WindowsSDKAssistant.exe"
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "Publisher" "Carbon"
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "InstallLocation" "$INSTDIR"
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "UninstallString" "$\"${UNINSTALLER}$\""
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "QuietUninstallString" "$\"${UNINSTALLER}$\" /S"
+    WriteRegDWORD HKLM "${UNINSTALLER_REGKEY}" "NoModify" 1
+    WriteRegDWORD HKLM "${UNINSTALLER_REGKEY}" "NoRepair" 1
+
+    # Use WindowsSDKAssistant.exe to add the Bin\ directory to the user's PATH environment variable so all the binaries are
+    # accessible. This also sets a few environment variables.
+    ExecWait "$INSTDIR\Bin\WindowsSDKAssistant.exe /environment"
+SectionEnd
+
+Section "Development Files" SectionDevelopmentFiles
+    SectionIn RO
+
+    # Debug binaries
+    SetOutPath "$INSTDIR\Bin"
+    File "Build\Windows\x86\<%= compiler %>\Debug\CarbonEngineDebug.dll"
+    File "Build\Windows\x64\<%= compiler %>\Debug\CarbonEngineDebug64.dll"
+
+    # PDBs to assist in debugging
+    File "Build\Windows\x86\<%= compiler %>\Release\CarbonEngine.pdb"
+    File "Build\Windows\x64\<%= compiler %>\Release\CarbonEngine64.pdb"
+    File "Build\Windows\x86\<%= compiler %>\Debug\CarbonEngineDebug.pdb"
+    File "Build\Windows\x64\<%= compiler %>\Debug\CarbonEngineDebug64.pdb"
+
+    # Headers
+    <% public_headers.each do |header, output_name| %>
+        SetOutPath "$INSTDIR\Include\<%= NSIS.path File.dirname(output_name) %>"
+        File "/oname=<%= File.basename header %>" "<%= NSIS.path header %>"
+    <% end %>
+
+    # Libraries
+    SetOutPath "$INSTDIR\Library"
+    File "Build\Windows\x86\<%= compiler %>\Release\CarbonEngine.lib"
+    File "Build\Windows\x86\<%= compiler %>\Debug\CarbonEngineDebug.lib"
+    File "Build\Windows\x64\<%= compiler %>\Release\CarbonEngine64.lib"
+    File "Build\Windows\x64\<%= compiler %>\Debug\CarbonEngineDebug64.lib"
+
+    # Documentation
+    SetOutPath "$INSTDIR\Documentation"
+    File /r "Documentation\APIReference\*.*"
+    CreateDirectory "${START_MENU_PATH}\Documentation"
+    CreateShortcut "${START_MENU_PATH}\Documentation\API Reference.lnk" "$INSTDIR\Documentation\index.html"
+
+    # Project templates
+    SetOutPath "$INSTDIR\ProjectTemplate"
+    File /r "SDK\ProjectTemplates\VisualStudio\CarbonApplication.ico"
+    File /r "SDK\ProjectTemplates\VisualStudio\CarbonApplication.vsdir"
+    File /r "SDK\ProjectTemplates\VisualStudio\CarbonApplication.vsz"
+    File /r "SDK\ProjectTemplates\VisualStudio\*.cpp"
+    File /r "SDK\ProjectTemplates\VisualStudio\*.h"
+    File /r "SDK\ProjectTemplates\VisualStudio\*.inf"
+    File /r "SDK\ProjectTemplates\VisualStudio\*.js"
+
+    # Install project templates
+    ExecWait "$INSTDIR\Bin\WindowsSDKAssistant.exe /projecttemplates"
+
+    # Scripts
+    <% public_scripts.each do |script, output_name| %>
+        SetOutPath "$INSTDIR\Scripts\<%= NSIS.path File.dirname(output_name) %>"
+        File "/oname=<%= File.basename script %>" "<%= NSIS.path script %>"
+    <% end %>
+SectionEnd
+
+Section "Exporter Plugins" SectionExporterPlugins
+    SetOutPath "$INSTDIR\Exporters"
+
+    # 32-bit plugins
+    File "Build\Windows\x86\<%= compiler %>\Release\CarbonExporterMax8.dle"
+    File "Build\Windows\x86\<%= compiler %>\Release\CarbonExporterMaya2009.mll"
+
+    # 64-bit plugins
+    File /oname=CarbonExporterMaya200964.mll "Build\Windows\x64\<%= compiler %>\Release\CarbonExporterMaya2009.mll"
+    File "Build\Windows\x64\<%= compiler %>\Release\CarbonExporterMaya2014.mll"
+
+    # Create exporter installer Start Menu item
+    CreateShortcut "${START_MENU_PATH}\Exporter Installer.lnk" "$INSTDIR\Bin\WindowsSDKAssistant.exe" "/exporterinstallerdialog"
+
+    # Install the exporters
+    ExecWait "$INSTDIR\Bin\WindowsSDKAssistant.exe /exporters"
+SectionEnd
+
+Section "Sample Applications" SectionSampleApplications
+    # Binaries
+    SetOutPath "$INSTDIR\Samples"
+    File "Build\Windows\x86\<%= compiler %>\Release\*Sample.exe"
+
+    # Sample data
+    SetOutPath "$INSTDIR\Samples\Assets"
+    File /r "Assets\Samples\*.*"
+
+    # Sample program source code
+    SetOutPath "$INSTDIR\Samples\Source"
+    File "SDK\Windows\CarbonSamples.sln"
+    <% sample_applications.each do |sample| %>
+        SetOutPath "$INSTDIR\Samples\Source\<%= sample %>"
+        File "Source\<%= sample %>\<%= sample %>.cpp"
+        File "Source\<%= sample %>\<%= sample %>.h"
+        File "SDK\Windows\<%= sample %>.vcxproj"
+    <% end %>
+
+    # Relax permissions on the the Samples directory so the code and data can be edited and will run correctly when opened in
+    # Visual Studio
+    nsExec::ExecToLog 'cacls "$INSTDIR\Samples" /E /T /C /G "BUILTIN\Users":F'
+
+    # Add Start Menu items
+    CreateDirectory "${START_MENU_PATH}\Samples"
+    <% sample_applications.each do |sample| %>
+        CreateShortcut "${START_MENU_PATH}\Samples\<%= sample %>.lnk" "$INSTDIR\Samples\<%= sample %>.exe"
+    <% end %>
+    CreateShortcut "${START_MENU_PATH}\Samples\Visual Studio Solution.lnk" "$INSTDIR\Samples\Source\CarbonSamples.sln"
+SectionEnd
+
+# This section tells Windows the final size of the installed SDK
+Section
+    ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
+    IntFmt $0 "0x%08X" $0
+    WriteRegDWORD HKLM "${UNINSTALLER_REGKEY}" "EstimatedSize" "$0"
+SectionEnd
+
+# Installer section descriptions
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+    !insertmacro MUI_DESCRIPTION_TEXT ${SectionRuntimeFiles} "Installs the core executables needed to run Carbon applications."
+    !insertmacro MUI_DESCRIPTION_TEXT ${SectionDevelopmentFiles} "Installs the headers, libraries, documentation, and project \
+                                                                  templates needed to write applications that use Carbon."
+    !insertmacro MUI_DESCRIPTION_TEXT ${SectionExporterPlugins} "Installs Carbon exporter plugins for 3D Studio Max 8, \
+                                                                 Maya 2009 (32 and 64-bit), and Maya 2014 if those programs \
+                                                                 are found on this computer."
+    !insertmacro MUI_DESCRIPTION_TEXT ${SectionSampleApplications} "Installs the sample applications with full source code."
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
+
+Section "Uninstall"
+    # Remove everything that's done with WindowsSDKAssistant.exe
+    IfSilent +3
+    ExecWait "$INSTDIR\Bin\WindowsSDKAssistant.exe /exporters /environment /projecttemplates /delete"
+    Goto +2
+    ExecWait "$INSTDIR\Bin\WindowsSDKAssistant.exe /exporters /environment /projecttemplates /delete /silent"
+
+    # Remove install directory
+    RmDir /r "$INSTDIR"
+
+    # Remove Start Menu entries
+    RmDir /r "${START_MENU_PATH}"
+    DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder\Start Menu\Programs\${PRODUCT_NAME}"
+
+    # Remove from Windows' list of installed programs
+    DeleteRegKey HKLM "${UNINSTALLER_REGKEY}"
+SectionEnd
+
+# Handling of the custom uninstall page in the installer
+Function PageUninstall
+    # Check if there is a version already installed on this system, if there isn't then skip showing the custom page
+    ReadRegStr $R0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayName"
+    ReadRegStr $R1 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayVersion"
+    IfErrors 0 +2
+    Abort
+
+    # Set header text
+    !insertmacro MUI_HEADER_TEXT "Already Installed" "Uninstall existing ${PRODUCT_NAME}"
+
+    # Create custom page to prompt about uninstallation
+    nsDialogs::Create /NOUNLOAD 1018
+    Pop $0
+    ${NSD_CreateLabel} 0 0 100% 10u "Setup found the following version of the ${PRODUCT_NAME} installed on your system:"
+    Pop $0
+    ${NSD_CreateLabel} 15u 20u 100% 10u "$R0 $R1"
+    Pop $0
+    ${NSD_CreateLabel} 0 40u 100% 100% "This version must be uninstalled first. Click Next to uninstall or Cancel to exit."
+    Pop $0
+
+    nsDialogs::Show
+FunctionEnd
+
+Function PageLeaveUninstall
+    # Run the uninstaller
+    ReadRegStr $R0 HKLM "${UNINSTALLER_REGKEY}" "UninstallString"
+    ReadRegStr $R1 HKLM "${UNINSTALLER_REGKEY}" "InstallLocation"
+    ExecWait '"$R0" /S _?=$R1'
+
+    # Delete the entire install directory
+    RmDir /r "$R1"
+FunctionEnd

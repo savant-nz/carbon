@@ -1,0 +1,36 @@
+// This simple Carbon application renders a spinning logo.
+
+#include "<%= header_name %>"
+
+bool <%= class_name %>::initialize()
+{
+    // Create a scene with a 2D camera
+    scene_.setName("Test");
+    scene_.create2DCamera(0.0f, 100.0f);
+
+    // Put a sprite with the logo on it in the center of the screen
+    sprite_ = scene_.addEntity<Sprite>("SpriteName", 50.0f, 50.0f);
+    sprite_->setSpriteTexture("CarbonLogo.png");
+    sprite_->alignToScreen(Sprite::ScreenMiddle);
+
+    return true;
+}
+
+void <%= class_name %>::frameUpdate()
+{
+    // Rotate the logo sprite
+    sprite_->rotateAroundCenter(platform().getSecondsPassed());
+}
+
+void <%= class_name %>::queueScenes()
+{
+    scene_.queueForRendering();
+}
+
+bool <%= class_name %>::onKeyDownEvent(const KeyDownEvent& e)
+{
+    return CARBON_APPLICATION_CLASS::onKeyDownEvent(e);
+}
+
+#define CARBON_ENTRY_POINT_CLASS <%= class_name %>
+#include "CarbonEngine/EntryPoint.h"

@@ -1,0 +1,51 @@
+*.pyc
+*~
+*.DS_Store
+
+# SCons
+.scons/
+.sconsign.dblite
+.sconsign.tmp
+
+# Sublime Text
+*.sublime-workspace
+
+# Visual Studio
+*.aps
+*.opensdf
+*.sdf
+*.suo
+*.vcxproj.user
+.vs/
+.vsbuild/
+ipch/
+
+# Xcode
+project.xcworkspace/
+xcuserdata/
+
+/Build/
+
+/Dependencies/AngelScript-*/Library/
+/Dependencies/Bullet-*/Library/
+/Dependencies/FreeImage-*/Library/
+/Dependencies/FreeType-*/Library/
+/Dependencies/OculusRift-*/Library/
+/Dependencies/OpenALSoft-*/Library/
+/Dependencies/OpenAssetImport-*/Library/
+/Dependencies/PhysX-*/Bin/Windows/x64/PhysX3Extensions*
+/Dependencies/PhysX-*/Bin/Windows/x86/PhysX3Extensions*
+/Dependencies/Vorbis-*/Library/
+/Dependencies/ZLib-*/Library/
+
+/Documentation/APIReference/
+
+/SDK/*.exe
+/SDK/*.pkg
+/SDK/ProjectTemplates/VisualStudio/Templates/1033/Application.cpp
+/SDK/ProjectTemplates/VisualStudio/Templates/1033/Application.h
+/SDK/Windows/*Sample.vcxproj
+
+/Source/Debug*/
+/Source/Release*/
+/Source/x64/

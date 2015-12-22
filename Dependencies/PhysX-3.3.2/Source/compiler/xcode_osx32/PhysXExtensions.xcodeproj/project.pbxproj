@@ -1,0 +1,743 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section of PhysXExtensions */
+		FFFF7f207bbe7f207bbe7f20 /* ExtBroadPhase.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD7f207bbe7f207bbe7f20 /* ExtBroadPhase.cpp */; };
+		FFFF7f807bbe7f807bbe7f80 /* ExtClothFabricCooker.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD7f807bbe7f807bbe7f80 /* ExtClothFabricCooker.cpp */; };
+		FFFF7fe07bbe7fe07bbe7fe0 /* ExtClothGeodesicTetherCooker.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD7fe07bbe7fe07bbe7fe0 /* ExtClothGeodesicTetherCooker.cpp */; };
+		FFFF80407bbe80407bbe8040 /* ExtClothMeshQuadifier.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD80407bbe80407bbe8040 /* ExtClothMeshQuadifier.cpp */; };
+		FFFF80a07bbe80a07bbe80a0 /* ExtClothSimpleTetherCooker.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD80a07bbe80a07bbe80a0 /* ExtClothSimpleTetherCooker.cpp */; };
+		FFFF81007bbe81007bbe8100 /* ExtCollection.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD81007bbe81007bbe8100 /* ExtCollection.cpp */; };
+		FFFF81607bbe81607bbe8160 /* ExtCpuWorkerThread.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD81607bbe81607bbe8160 /* ExtCpuWorkerThread.cpp */; };
+		FFFF81c07bbe81c07bbe81c0 /* ExtD6Joint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD81c07bbe81c07bbe81c0 /* ExtD6Joint.cpp */; };
+		FFFF82207bbe82207bbe8220 /* ExtD6JointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD82207bbe82207bbe8220 /* ExtD6JointSolverPrep.cpp */; };
+		FFFF82807bbe82807bbe8280 /* ExtDefaultBufferedProfiler.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD82807bbe82807bbe8280 /* ExtDefaultBufferedProfiler.cpp */; };
+		FFFF82e07bbe82e07bbe82e0 /* ExtDefaultCpuDispatcher.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD82e07bbe82e07bbe82e0 /* ExtDefaultCpuDispatcher.cpp */; };
+		FFFF83407bbe83407bbe8340 /* ExtDefaultErrorCallback.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD83407bbe83407bbe8340 /* ExtDefaultErrorCallback.cpp */; };
+		FFFF83a07bbe83a07bbe83a0 /* ExtDefaultSimulationFilterShader.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD83a07bbe83a07bbe83a0 /* ExtDefaultSimulationFilterShader.cpp */; };
+		FFFF84007bbe84007bbe8400 /* ExtDefaultStreams.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD84007bbe84007bbe8400 /* ExtDefaultStreams.cpp */; };
+		FFFF84607bbe84607bbe8460 /* ExtDistanceJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD84607bbe84607bbe8460 /* ExtDistanceJoint.cpp */; };
+		FFFF84c07bbe84c07bbe84c0 /* ExtDistanceJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD84c07bbe84c07bbe84c0 /* ExtDistanceJointSolverPrep.cpp */; };
+		FFFF85207bbe85207bbe8520 /* ExtExtensions.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD85207bbe85207bbe8520 /* ExtExtensions.cpp */; };
+		FFFF85807bbe85807bbe8580 /* ExtFixedJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD85807bbe85807bbe8580 /* ExtFixedJoint.cpp */; };
+		FFFF85e07bbe85e07bbe85e0 /* ExtFixedJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD85e07bbe85e07bbe85e0 /* ExtFixedJointSolverPrep.cpp */; };
+		FFFF86407bbe86407bbe8640 /* ExtJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD86407bbe86407bbe8640 /* ExtJoint.cpp */; };
+		FFFF86a07bbe86a07bbe86a0 /* ExtMetaData.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD86a07bbe86a07bbe86a0 /* ExtMetaData.cpp */; };
+		FFFF87007bbe87007bbe8700 /* ExtParticleExt.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD87007bbe87007bbe8700 /* ExtParticleExt.cpp */; };
+		FFFF87607bbe87607bbe8760 /* ExtPrismaticJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD87607bbe87607bbe8760 /* ExtPrismaticJoint.cpp */; };
+		FFFF87c07bbe87c07bbe87c0 /* ExtPrismaticJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD87c07bbe87c07bbe87c0 /* ExtPrismaticJointSolverPrep.cpp */; };
+		FFFF88207bbe88207bbe8820 /* ExtPvdClientImpl.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD88207bbe88207bbe8820 /* ExtPvdClientImpl.cpp */; };
+		FFFF88807bbe88807bbe8880 /* ExtPxStringTable.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD88807bbe88807bbe8880 /* ExtPxStringTable.cpp */; };
+		FFFF88e07bbe88e07bbe88e0 /* ExtRevoluteJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD88e07bbe88e07bbe88e0 /* ExtRevoluteJoint.cpp */; };
+		FFFF89407bbe89407bbe8940 /* ExtRevoluteJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD89407bbe89407bbe8940 /* ExtRevoluteJointSolverPrep.cpp */; };
+		FFFF89a07bbe89a07bbe89a0 /* ExtRigidBodyExt.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD89a07bbe89a07bbe89a0 /* ExtRigidBodyExt.cpp */; };
+		FFFF8a007bbe8a007bbe8a00 /* ExtSimpleFactory.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD8a007bbe8a007bbe8a00 /* ExtSimpleFactory.cpp */; };
+		FFFF8a607bbe8a607bbe8a60 /* ExtSmoothNormals.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD8a607bbe8a607bbe8a60 /* ExtSmoothNormals.cpp */; };
+		FFFF8ac07bbe8ac07bbe8ac0 /* ExtSphericalJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD8ac07bbe8ac07bbe8ac0 /* ExtSphericalJoint.cpp */; };
+		FFFF8b207bbe8b207bbe8b20 /* ExtSphericalJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD8b207bbe8b207bbe8b20 /* ExtSphericalJointSolverPrep.cpp */; };
+		FFFF8b807bbe8b807bbe8b80 /* ExtTriangleMeshExt.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD8b807bbe8b807bbe8b80 /* ExtTriangleMeshExt.cpp */; };
+		FFFF8be07bbe8be07bbe8be0 /* ExtVisualDebugger.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD8be07bbe8be07bbe8be0 /* ExtVisualDebugger.cpp */; };
+		FFFF4ec07bbe4ec07bbe4ec0 /* SnSerialUtils.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD4ec07bbe4ec07bbe4ec0 /* SnSerialUtils.cpp */; };
+		FFFF4f207bbe4f207bbe4f20 /* SnSerialization.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD4f207bbe4f207bbe4f20 /* SnSerialization.cpp */; };
+		FFFF4f807bbe4f807bbe4f80 /* SnSerializationRegistry.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD4f807bbe4f807bbe4f80 /* SnSerializationRegistry.cpp */; };
+		FFFF52e07bbe52e07bbe52e0 /* Binary/SnBinaryDeserialization.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD52e07bbe52e07bbe52e0 /* Binary/SnBinaryDeserialization.cpp */; };
+		FFFF53407bbe53407bbe5340 /* Binary/SnBinarySerialization.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD53407bbe53407bbe5340 /* Binary/SnBinarySerialization.cpp */; };
+		FFFF53a07bbe53a07bbe53a0 /* Binary/SnConvX.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD53a07bbe53a07bbe53a0 /* Binary/SnConvX.cpp */; };
+		FFFF54007bbe54007bbe5400 /* Binary/SnConvX_Align.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD54007bbe54007bbe5400 /* Binary/SnConvX_Align.cpp */; };
+		FFFF54607bbe54607bbe5460 /* Binary/SnConvX_Convert.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD54607bbe54607bbe5460 /* Binary/SnConvX_Convert.cpp */; };
+		FFFF54c07bbe54c07bbe54c0 /* Binary/SnConvX_Error.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD54c07bbe54c07bbe54c0 /* Binary/SnConvX_Error.cpp */; };
+		FFFF55207bbe55207bbe5520 /* Binary/SnConvX_MetaData.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD55207bbe55207bbe5520 /* Binary/SnConvX_MetaData.cpp */; };
+		FFFF55807bbe55807bbe5580 /* Binary/SnConvX_Output.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD55807bbe55807bbe5580 /* Binary/SnConvX_Output.cpp */; };
+		FFFF55e07bbe55e07bbe55e0 /* Binary/SnConvX_Union.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD55e07bbe55e07bbe55e0 /* Binary/SnConvX_Union.cpp */; };
+		FFFF56407bbe56407bbe5640 /* Binary/SnSerializationContext.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD56407bbe56407bbe5640 /* Binary/SnSerializationContext.cpp */; };
+		FFFF5e807bbe5e807bbe5e80 /* Xml/SnJointRepXSerializer.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD5e807bbe5e807bbe5e80 /* Xml/SnJointRepXSerializer.cpp */; };
+		FFFF5ee07bbe5ee07bbe5ee0 /* Xml/SnRepXCoreSerializer.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD5ee07bbe5ee07bbe5ee0 /* Xml/SnRepXCoreSerializer.cpp */; };
+		FFFF5f407bbe5f407bbe5f40 /* Xml/SnRepXUpgrader.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD5f407bbe5f407bbe5f40 /* Xml/SnRepXUpgrader.cpp */; };
+		FFFF5fa07bbe5fa07bbe5fa0 /* Xml/SnXmlSerialization.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD5fa07bbe5fa07bbe5fa0 /* Xml/SnXmlSerialization.cpp */; };
+		FFFF50807bbd50807bbd5080 /* extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp in metadata */= { isa = PBXBuildFile; fileRef = FFFD50807bbd50807bbd5080 /* extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp */; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileReference section */
+		FFFD2ec07c132ec07c132ec0 /* PhysXExtensions */ = {isa = PBXFileReference; explicitFileType = "archive.ar"; path = "PhysXExtensions"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFFD8e007bbe8e007bbe8e00 /* PxBinaryConverter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxBinaryConverter.h"; path = "../../../Include/extensions/PxBinaryConverter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD8e607bbe8e607bbe8e60 /* PxBroadPhaseExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxBroadPhaseExt.h"; path = "../../../Include/extensions/PxBroadPhaseExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFD8ec07bbe8ec07bbe8ec0 /* PxClothFabricCooker.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxClothFabricCooker.h"; path = "../../../Include/extensions/PxClothFabricCooker.h"; sourceTree = SOURCE_ROOT; };
+		FFFD8f207bbe8f207bbe8f20 /* PxClothMeshDesc.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxClothMeshDesc.h"; path = "../../../Include/extensions/PxClothMeshDesc.h"; sourceTree = SOURCE_ROOT; };
+		FFFD8f807bbe8f807bbe8f80 /* PxClothMeshQuadifier.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxClothMeshQuadifier.h"; path = "../../../Include/extensions/PxClothMeshQuadifier.h"; sourceTree = SOURCE_ROOT; };
+		FFFD8fe07bbe8fe07bbe8fe0 /* PxClothTetherCooker.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxClothTetherCooker.h"; path = "../../../Include/extensions/PxClothTetherCooker.h"; sourceTree = SOURCE_ROOT; };
+		FFFD90407bbe90407bbe9040 /* PxCollectionExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxCollectionExt.h"; path = "../../../Include/extensions/PxCollectionExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFD90a07bbe90a07bbe90a0 /* PxConstraintExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxConstraintExt.h"; path = "../../../Include/extensions/PxConstraintExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFD91007bbe91007bbe9100 /* PxD6Joint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxD6Joint.h"; path = "../../../Include/extensions/PxD6Joint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD91607bbe91607bbe9160 /* PxDefaultAllocator.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultAllocator.h"; path = "../../../Include/extensions/PxDefaultAllocator.h"; sourceTree = SOURCE_ROOT; };
+		FFFD91c07bbe91c07bbe91c0 /* PxDefaultBufferedProfiler.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultBufferedProfiler.h"; path = "../../../Include/extensions/PxDefaultBufferedProfiler.h"; sourceTree = SOURCE_ROOT; };
+		FFFD92207bbe92207bbe9220 /* PxDefaultCpuDispatcher.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultCpuDispatcher.h"; path = "../../../Include/extensions/PxDefaultCpuDispatcher.h"; sourceTree = SOURCE_ROOT; };
+		FFFD92807bbe92807bbe9280 /* PxDefaultErrorCallback.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultErrorCallback.h"; path = "../../../Include/extensions/PxDefaultErrorCallback.h"; sourceTree = SOURCE_ROOT; };
+		FFFD92e07bbe92e07bbe92e0 /* PxDefaultSimulationFilterShader.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultSimulationFilterShader.h"; path = "../../../Include/extensions/PxDefaultSimulationFilterShader.h"; sourceTree = SOURCE_ROOT; };
+		FFFD93407bbe93407bbe9340 /* PxDefaultStreams.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultStreams.h"; path = "../../../Include/extensions/PxDefaultStreams.h"; sourceTree = SOURCE_ROOT; };
+		FFFD93a07bbe93a07bbe93a0 /* PxDistanceJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDistanceJoint.h"; path = "../../../Include/extensions/PxDistanceJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD94007bbe94007bbe9400 /* PxExtensionsAPI.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxExtensionsAPI.h"; path = "../../../Include/extensions/PxExtensionsAPI.h"; sourceTree = SOURCE_ROOT; };
+		FFFD94607bbe94607bbe9460 /* PxFixedJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxFixedJoint.h"; path = "../../../Include/extensions/PxFixedJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD94c07bbe94c07bbe94c0 /* PxJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxJoint.h"; path = "../../../Include/extensions/PxJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD95207bbe95207bbe9520 /* PxJointLimit.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxJointLimit.h"; path = "../../../Include/extensions/PxJointLimit.h"; sourceTree = SOURCE_ROOT; };
+		FFFD95807bbe95807bbe9580 /* PxJointRepXSerializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxJointRepXSerializer.h"; path = "../../../Include/extensions/PxJointRepXSerializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFD95e07bbe95e07bbe95e0 /* PxParticleExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxParticleExt.h"; path = "../../../Include/extensions/PxParticleExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFD96407bbe96407bbe9640 /* PxPrismaticJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxPrismaticJoint.h"; path = "../../../Include/extensions/PxPrismaticJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD96a07bbe96a07bbe96a0 /* PxRepXSerializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxRepXSerializer.h"; path = "../../../Include/extensions/PxRepXSerializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFD97007bbe97007bbe9700 /* PxRepXSimpleType.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxRepXSimpleType.h"; path = "../../../Include/extensions/PxRepXSimpleType.h"; sourceTree = SOURCE_ROOT; };
+		FFFD97607bbe97607bbe9760 /* PxRevoluteJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxRevoluteJoint.h"; path = "../../../Include/extensions/PxRevoluteJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD97c07bbe97c07bbe97c0 /* PxRigidBodyExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxRigidBodyExt.h"; path = "../../../Include/extensions/PxRigidBodyExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFD98207bbe98207bbe9820 /* PxSerialization.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxSerialization.h"; path = "../../../Include/extensions/PxSerialization.h"; sourceTree = SOURCE_ROOT; };
+		FFFD98807bbe98807bbe9880 /* PxShapeExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxShapeExt.h"; path = "../../../Include/extensions/PxShapeExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFD98e07bbe98e07bbe98e0 /* PxSimpleFactory.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxSimpleFactory.h"; path = "../../../Include/extensions/PxSimpleFactory.h"; sourceTree = SOURCE_ROOT; };
+		FFFD99407bbe99407bbe9940 /* PxSmoothNormals.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxSmoothNormals.h"; path = "../../../Include/extensions/PxSmoothNormals.h"; sourceTree = SOURCE_ROOT; };
+		FFFD99a07bbe99a07bbe99a0 /* PxSphericalJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxSphericalJoint.h"; path = "../../../Include/extensions/PxSphericalJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD9a007bbe9a007bbe9a00 /* PxStringTableExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxStringTableExt.h"; path = "../../../Include/extensions/PxStringTableExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFD9a607bbe9a607bbe9a60 /* PxTriangleMeshExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxTriangleMeshExt.h"; path = "../../../Include/extensions/PxTriangleMeshExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFD9ac07bbe9ac07bbe9ac0 /* PxVisualDebuggerExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxVisualDebuggerExt.h"; path = "../../../Include/extensions/PxVisualDebuggerExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFD78007bbe78007bbe7800 /* ExtConstraintHelper.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtConstraintHelper.h"; path = "../../PhysXExtensions/src/ExtConstraintHelper.h"; sourceTree = SOURCE_ROOT; };
+		FFFD78607bbe78607bbe7860 /* ExtCpuWorkerThread.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtCpuWorkerThread.h"; path = "../../PhysXExtensions/src/ExtCpuWorkerThread.h"; sourceTree = SOURCE_ROOT; };
+		FFFD78c07bbe78c07bbe78c0 /* ExtD6Joint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtD6Joint.h"; path = "../../PhysXExtensions/src/ExtD6Joint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD79207bbe79207bbe7920 /* ExtDefaultBufferedProfiler.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultBufferedProfiler.h"; path = "../../PhysXExtensions/src/ExtDefaultBufferedProfiler.h"; sourceTree = SOURCE_ROOT; };
+		FFFD79807bbe79807bbe7980 /* ExtDefaultCpuDispatcher.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultCpuDispatcher.h"; path = "../../PhysXExtensions/src/ExtDefaultCpuDispatcher.h"; sourceTree = SOURCE_ROOT; };
+		FFFD79e07bbe79e07bbe79e0 /* ExtDistanceJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDistanceJoint.h"; path = "../../PhysXExtensions/src/ExtDistanceJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7a407bbe7a407bbe7a40 /* ExtFixedJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtFixedJoint.h"; path = "../../PhysXExtensions/src/ExtFixedJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7aa07bbe7aa07bbe7aa0 /* ExtInertiaTensor.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtInertiaTensor.h"; path = "../../PhysXExtensions/src/ExtInertiaTensor.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7b007bbe7b007bbe7b00 /* ExtJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtJoint.h"; path = "../../PhysXExtensions/src/ExtJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7b607bbe7b607bbe7b60 /* ExtJointMetaDataExtensions.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtJointMetaDataExtensions.h"; path = "../../PhysXExtensions/src/ExtJointMetaDataExtensions.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7bc07bbe7bc07bbe7bc0 /* ExtPlatform.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPlatform.h"; path = "../../PhysXExtensions/src/ExtPlatform.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7c207bbe7c207bbe7c20 /* ExtPrismaticJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPrismaticJoint.h"; path = "../../PhysXExtensions/src/ExtPrismaticJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7c807bbe7c807bbe7c80 /* ExtPvdClientImpl.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPvdClientImpl.h"; path = "../../PhysXExtensions/src/ExtPvdClientImpl.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7ce07bbe7ce07bbe7ce0 /* ExtRevoluteJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtRevoluteJoint.h"; path = "../../PhysXExtensions/src/ExtRevoluteJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7d407bbe7d407bbe7d40 /* ExtSerialization.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSerialization.h"; path = "../../PhysXExtensions/src/ExtSerialization.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7da07bbe7da07bbe7da0 /* ExtSharedQueueEntryPool.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSharedQueueEntryPool.h"; path = "../../PhysXExtensions/src/ExtSharedQueueEntryPool.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7e007bbe7e007bbe7e00 /* ExtSphericalJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSphericalJoint.h"; path = "../../PhysXExtensions/src/ExtSphericalJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7e607bbe7e607bbe7e60 /* ExtTaskQueueHelper.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtTaskQueueHelper.h"; path = "../../PhysXExtensions/src/ExtTaskQueueHelper.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7ec07bbe7ec07bbe7ec0 /* ExtVisualDebugger.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtVisualDebugger.h"; path = "../../PhysXExtensions/src/ExtVisualDebugger.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7f207bbe7f207bbe7f20 /* ExtBroadPhase.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtBroadPhase.cpp"; path = "../../PhysXExtensions/src/ExtBroadPhase.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD7f807bbe7f807bbe7f80 /* ExtClothFabricCooker.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtClothFabricCooker.cpp"; path = "../../PhysXExtensions/src/ExtClothFabricCooker.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD7fe07bbe7fe07bbe7fe0 /* ExtClothGeodesicTetherCooker.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtClothGeodesicTetherCooker.cpp"; path = "../../PhysXExtensions/src/ExtClothGeodesicTetherCooker.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD80407bbe80407bbe8040 /* ExtClothMeshQuadifier.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtClothMeshQuadifier.cpp"; path = "../../PhysXExtensions/src/ExtClothMeshQuadifier.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD80a07bbe80a07bbe80a0 /* ExtClothSimpleTetherCooker.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtClothSimpleTetherCooker.cpp"; path = "../../PhysXExtensions/src/ExtClothSimpleTetherCooker.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD81007bbe81007bbe8100 /* ExtCollection.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtCollection.cpp"; path = "../../PhysXExtensions/src/ExtCollection.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD81607bbe81607bbe8160 /* ExtCpuWorkerThread.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtCpuWorkerThread.cpp"; path = "../../PhysXExtensions/src/ExtCpuWorkerThread.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD81c07bbe81c07bbe81c0 /* ExtD6Joint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtD6Joint.cpp"; path = "../../PhysXExtensions/src/ExtD6Joint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD82207bbe82207bbe8220 /* ExtD6JointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtD6JointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtD6JointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD82807bbe82807bbe8280 /* ExtDefaultBufferedProfiler.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultBufferedProfiler.cpp"; path = "../../PhysXExtensions/src/ExtDefaultBufferedProfiler.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD82e07bbe82e07bbe82e0 /* ExtDefaultCpuDispatcher.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultCpuDispatcher.cpp"; path = "../../PhysXExtensions/src/ExtDefaultCpuDispatcher.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD83407bbe83407bbe8340 /* ExtDefaultErrorCallback.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultErrorCallback.cpp"; path = "../../PhysXExtensions/src/ExtDefaultErrorCallback.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD83a07bbe83a07bbe83a0 /* ExtDefaultSimulationFilterShader.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultSimulationFilterShader.cpp"; path = "../../PhysXExtensions/src/ExtDefaultSimulationFilterShader.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD84007bbe84007bbe8400 /* ExtDefaultStreams.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultStreams.cpp"; path = "../../PhysXExtensions/src/ExtDefaultStreams.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD84607bbe84607bbe8460 /* ExtDistanceJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDistanceJoint.cpp"; path = "../../PhysXExtensions/src/ExtDistanceJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD84c07bbe84c07bbe84c0 /* ExtDistanceJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDistanceJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtDistanceJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD85207bbe85207bbe8520 /* ExtExtensions.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtExtensions.cpp"; path = "../../PhysXExtensions/src/ExtExtensions.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD85807bbe85807bbe8580 /* ExtFixedJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtFixedJoint.cpp"; path = "../../PhysXExtensions/src/ExtFixedJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD85e07bbe85e07bbe85e0 /* ExtFixedJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtFixedJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtFixedJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD86407bbe86407bbe8640 /* ExtJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtJoint.cpp"; path = "../../PhysXExtensions/src/ExtJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD86a07bbe86a07bbe86a0 /* ExtMetaData.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtMetaData.cpp"; path = "../../PhysXExtensions/src/ExtMetaData.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD87007bbe87007bbe8700 /* ExtParticleExt.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtParticleExt.cpp"; path = "../../PhysXExtensions/src/ExtParticleExt.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD87607bbe87607bbe8760 /* ExtPrismaticJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPrismaticJoint.cpp"; path = "../../PhysXExtensions/src/ExtPrismaticJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD87c07bbe87c07bbe87c0 /* ExtPrismaticJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPrismaticJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtPrismaticJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD88207bbe88207bbe8820 /* ExtPvdClientImpl.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPvdClientImpl.cpp"; path = "../../PhysXExtensions/src/ExtPvdClientImpl.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD88807bbe88807bbe8880 /* ExtPxStringTable.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPxStringTable.cpp"; path = "../../PhysXExtensions/src/ExtPxStringTable.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD88e07bbe88e07bbe88e0 /* ExtRevoluteJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtRevoluteJoint.cpp"; path = "../../PhysXExtensions/src/ExtRevoluteJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD89407bbe89407bbe8940 /* ExtRevoluteJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtRevoluteJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtRevoluteJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD89a07bbe89a07bbe89a0 /* ExtRigidBodyExt.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtRigidBodyExt.cpp"; path = "../../PhysXExtensions/src/ExtRigidBodyExt.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD8a007bbe8a007bbe8a00 /* ExtSimpleFactory.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSimpleFactory.cpp"; path = "../../PhysXExtensions/src/ExtSimpleFactory.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD8a607bbe8a607bbe8a60 /* ExtSmoothNormals.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSmoothNormals.cpp"; path = "../../PhysXExtensions/src/ExtSmoothNormals.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD8ac07bbe8ac07bbe8ac0 /* ExtSphericalJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSphericalJoint.cpp"; path = "../../PhysXExtensions/src/ExtSphericalJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD8b207bbe8b207bbe8b20 /* ExtSphericalJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSphericalJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtSphericalJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD8b807bbe8b807bbe8b80 /* ExtTriangleMeshExt.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtTriangleMeshExt.cpp"; path = "../../PhysXExtensions/src/ExtTriangleMeshExt.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD8be07bbe8be07bbe8be0 /* ExtVisualDebugger.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtVisualDebugger.cpp"; path = "../../PhysXExtensions/src/ExtVisualDebugger.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD4e007bbe4e007bbe4e00 /* SnSerialUtils.h */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerialUtils.h"; path = "../../PhysXExtensions/src/serialization/SnSerialUtils.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4e607bbe4e607bbe4e60 /* SnSerializationRegistry.h */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerializationRegistry.h"; path = "../../PhysXExtensions/src/serialization/SnSerializationRegistry.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4ec07bbe4ec07bbe4ec0 /* SnSerialUtils.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerialUtils.cpp"; path = "../../PhysXExtensions/src/serialization/SnSerialUtils.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD4f207bbe4f207bbe4f20 /* SnSerialization.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerialization.cpp"; path = "../../PhysXExtensions/src/serialization/SnSerialization.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD4f807bbe4f807bbe4f80 /* SnSerializationRegistry.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerializationRegistry.cpp"; path = "../../PhysXExtensions/src/serialization/SnSerializationRegistry.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD4fe07bbe4fe07bbe4fe0 /* Binary/SnConvX.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX.h"; sourceTree = SOURCE_ROOT; };
+		FFFD50407bbe50407bbe5040 /* Binary/SnConvX_Align.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Align.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Align.h"; sourceTree = SOURCE_ROOT; };
+		FFFD50a07bbe50a07bbe50a0 /* Binary/SnConvX_Common.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Common.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Common.h"; sourceTree = SOURCE_ROOT; };
+		FFFD51007bbe51007bbe5100 /* Binary/SnConvX_Convert.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Convert.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Convert.h"; sourceTree = SOURCE_ROOT; };
+		FFFD51607bbe51607bbe5160 /* Binary/SnConvX_MetaData.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_MetaData.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_MetaData.h"; sourceTree = SOURCE_ROOT; };
+		FFFD51c07bbe51c07bbe51c0 /* Binary/SnConvX_Output.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Output.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Output.h"; sourceTree = SOURCE_ROOT; };
+		FFFD52207bbe52207bbe5220 /* Binary/SnConvX_Union.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Union.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Union.h"; sourceTree = SOURCE_ROOT; };
+		FFFD52807bbe52807bbe5280 /* Binary/SnSerializationContext.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnSerializationContext.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnSerializationContext.h"; sourceTree = SOURCE_ROOT; };
+		FFFD52e07bbe52e07bbe52e0 /* Binary/SnBinaryDeserialization.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnBinaryDeserialization.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnBinaryDeserialization.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD53407bbe53407bbe5340 /* Binary/SnBinarySerialization.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnBinarySerialization.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnBinarySerialization.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD53a07bbe53a07bbe53a0 /* Binary/SnConvX.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD54007bbe54007bbe5400 /* Binary/SnConvX_Align.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Align.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Align.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD54607bbe54607bbe5460 /* Binary/SnConvX_Convert.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Convert.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Convert.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD54c07bbe54c07bbe54c0 /* Binary/SnConvX_Error.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Error.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Error.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD55207bbe55207bbe5520 /* Binary/SnConvX_MetaData.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_MetaData.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_MetaData.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD55807bbe55807bbe5580 /* Binary/SnConvX_Output.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Output.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Output.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD55e07bbe55e07bbe55e0 /* Binary/SnConvX_Union.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Union.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Union.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD56407bbe56407bbe5640 /* Binary/SnSerializationContext.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnSerializationContext.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnSerializationContext.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD56a07bbe56a07bbe56a0 /* Xml/SnPxStreamOperators.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnPxStreamOperators.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnPxStreamOperators.h"; sourceTree = SOURCE_ROOT; };
+		FFFD57007bbe57007bbe5700 /* Xml/SnRepX1_0Defaults.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepX1_0Defaults.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepX1_0Defaults.h"; sourceTree = SOURCE_ROOT; };
+		FFFD57607bbe57607bbe5760 /* Xml/SnRepX3_1Defaults.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepX3_1Defaults.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepX3_1Defaults.h"; sourceTree = SOURCE_ROOT; };
+		FFFD57c07bbe57c07bbe57c0 /* Xml/SnRepX3_2Defaults.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepX3_2Defaults.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepX3_2Defaults.h"; sourceTree = SOURCE_ROOT; };
+		FFFD58207bbe58207bbe5820 /* Xml/SnRepXCollection.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXCollection.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXCollection.h"; sourceTree = SOURCE_ROOT; };
+		FFFD58807bbe58807bbe5880 /* Xml/SnRepXCoreSerializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXCoreSerializer.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXCoreSerializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFD58e07bbe58e07bbe58e0 /* Xml/SnRepXSerializerImpl.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXSerializerImpl.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXSerializerImpl.h"; sourceTree = SOURCE_ROOT; };
+		FFFD59407bbe59407bbe5940 /* Xml/SnRepXUpgrader.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXUpgrader.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXUpgrader.h"; sourceTree = SOURCE_ROOT; };
+		FFFD59a07bbe59a07bbe59a0 /* Xml/SnSimpleXmlWriter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnSimpleXmlWriter.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnSimpleXmlWriter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5a007bbe5a007bbe5a00 /* Xml/SnXmlDeserializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlDeserializer.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlDeserializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5a607bbe5a607bbe5a60 /* Xml/SnXmlImpl.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlImpl.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlImpl.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5ac07bbe5ac07bbe5ac0 /* Xml/SnXmlMemoryAllocator.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlMemoryAllocator.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlMemoryAllocator.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5b207bbe5b207bbe5b20 /* Xml/SnXmlMemoryPool.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlMemoryPool.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlMemoryPool.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5b807bbe5b807bbe5b80 /* Xml/SnXmlMemoryPoolStreams.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlMemoryPoolStreams.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlMemoryPoolStreams.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5be07bbe5be07bbe5be0 /* Xml/SnXmlReader.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlReader.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlReader.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5c407bbe5c407bbe5c40 /* Xml/SnXmlSerializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlSerializer.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlSerializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5ca07bbe5ca07bbe5ca0 /* Xml/SnXmlSimpleXmlWriter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlSimpleXmlWriter.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlSimpleXmlWriter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5d007bbe5d007bbe5d00 /* Xml/SnXmlStringToType.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlStringToType.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlStringToType.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5d607bbe5d607bbe5d60 /* Xml/SnXmlVisitorReader.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlVisitorReader.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlVisitorReader.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5dc07bbe5dc07bbe5dc0 /* Xml/SnXmlVisitorWriter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlVisitorWriter.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlVisitorWriter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5e207bbe5e207bbe5e20 /* Xml/SnXmlWriter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlWriter.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlWriter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD5e807bbe5e807bbe5e80 /* Xml/SnJointRepXSerializer.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnJointRepXSerializer.cpp"; path = "../../PhysXExtensions/src/serialization/Xml/SnJointRepXSerializer.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD5ee07bbe5ee07bbe5ee0 /* Xml/SnRepXCoreSerializer.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXCoreSerializer.cpp"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXCoreSerializer.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD5f407bbe5f407bbe5f40 /* Xml/SnRepXUpgrader.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXUpgrader.cpp"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXUpgrader.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD5fa07bbe5fa07bbe5fa0 /* Xml/SnXmlSerialization.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlSerialization.cpp"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlSerialization.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD4c007bbd4c007bbd4c00 /* core/include/PvdMetaDataDefineProperties.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PvdMetaDataDefineProperties.h"; path = "../../PhysXMetaData/core/include/PvdMetaDataDefineProperties.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4c607bbd4c607bbd4c60 /* core/include/PvdMetaDataExtensions.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PvdMetaDataExtensions.h"; path = "../../PhysXMetaData/core/include/PvdMetaDataExtensions.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4cc07bbd4cc07bbd4cc0 /* core/include/PvdMetaDataPropertyVisitor.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PvdMetaDataPropertyVisitor.h"; path = "../../PhysXMetaData/core/include/PvdMetaDataPropertyVisitor.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4d207bbd4d207bbd4d20 /* core/include/PxAutoGeneratedMetaDataObjectNames.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxAutoGeneratedMetaDataObjectNames.h"; path = "../../PhysXMetaData/core/include/PxAutoGeneratedMetaDataObjectNames.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4d807bbd4d807bbd4d80 /* core/include/PxAutoGeneratedMetaDataObjects.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxAutoGeneratedMetaDataObjects.h"; path = "../../PhysXMetaData/core/include/PxAutoGeneratedMetaDataObjects.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4de07bbd4de07bbd4de0 /* core/include/PxMetaDataCompare.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxMetaDataCompare.h"; path = "../../PhysXMetaData/core/include/PxMetaDataCompare.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4e407bbd4e407bbd4e40 /* core/include/PxMetaDataCppPrefix.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxMetaDataCppPrefix.h"; path = "../../PhysXMetaData/core/include/PxMetaDataCppPrefix.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4ea07bbd4ea07bbd4ea0 /* core/include/PxMetaDataObjects.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxMetaDataObjects.h"; path = "../../PhysXMetaData/core/include/PxMetaDataObjects.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4f007bbd4f007bbd4f00 /* core/include/RepXMetaDataPropertyVisitor.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/RepXMetaDataPropertyVisitor.h"; path = "../../PhysXMetaData/core/include/RepXMetaDataPropertyVisitor.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4f607bbd4f607bbd4f60 /* extensions/include/PxExtensionAutoGeneratedMetaDataObjectNames.h */= { isa = PBXFileReference; fileEncoding = 4; name = "extensions/include/PxExtensionAutoGeneratedMetaDataObjectNames.h"; path = "../../PhysXMetaData/extensions/include/PxExtensionAutoGeneratedMetaDataObjectNames.h"; sourceTree = SOURCE_ROOT; };
+		FFFD4fc07bbd4fc07bbd4fc0 /* extensions/include/PxExtensionAutoGeneratedMetaDataObjects.h */= { isa = PBXFileReference; fileEncoding = 4; name = "extensions/include/PxExtensionAutoGeneratedMetaDataObjects.h"; path = "../../PhysXMetaData/extensions/include/PxExtensionAutoGeneratedMetaDataObjects.h"; sourceTree = SOURCE_ROOT; };
+		FFFD50207bbd50207bbd5020 /* extensions/include/PxExtensionMetaDataObjects.h */= { isa = PBXFileReference; fileEncoding = 4; name = "extensions/include/PxExtensionMetaDataObjects.h"; path = "../../PhysXMetaData/extensions/include/PxExtensionMetaDataObjects.h"; sourceTree = SOURCE_ROOT; };
+		FFFD50807bbd50807bbd5080 /* extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp"; path = "../../PhysXMetaData/extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FFF22ec07c132ec07c132ec0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FFFC2ec07c132ec07c132ec0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FFF82ec07c132ec07c132ec0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFFF7f207bbe7f207bbe7f20,
+				FFFF7f807bbe7f807bbe7f80,
+				FFFF7fe07bbe7fe07bbe7fe0,
+				FFFF80407bbe80407bbe8040,
+				FFFF80a07bbe80a07bbe80a0,
+				FFFF81007bbe81007bbe8100,
+				FFFF81607bbe81607bbe8160,
+				FFFF81c07bbe81c07bbe81c0,
+				FFFF82207bbe82207bbe8220,
+				FFFF82807bbe82807bbe8280,
+				FFFF82e07bbe82e07bbe82e0,
+				FFFF83407bbe83407bbe8340,
+				FFFF83a07bbe83a07bbe83a0,
+				FFFF84007bbe84007bbe8400,
+				FFFF84607bbe84607bbe8460,
+				FFFF84c07bbe84c07bbe84c0,
+				FFFF85207bbe85207bbe8520,
+				FFFF85807bbe85807bbe8580,
+				FFFF85e07bbe85e07bbe85e0,
+				FFFF86407bbe86407bbe8640,
+				FFFF86a07bbe86a07bbe86a0,
+				FFFF87007bbe87007bbe8700,
+				FFFF87607bbe87607bbe8760,
+				FFFF87c07bbe87c07bbe87c0,
+				FFFF88207bbe88207bbe8820,
+				FFFF88807bbe88807bbe8880,
+				FFFF88e07bbe88e07bbe88e0,
+				FFFF89407bbe89407bbe8940,
+				FFFF89a07bbe89a07bbe89a0,
+				FFFF8a007bbe8a007bbe8a00,
+				FFFF8a607bbe8a607bbe8a60,
+				FFFF8ac07bbe8ac07bbe8ac0,
+				FFFF8b207bbe8b207bbe8b20,
+				FFFF8b807bbe8b807bbe8b80,
+				FFFF8be07bbe8be07bbe8be0,
+				FFFF4ec07bbe4ec07bbe4ec0,
+				FFFF4f207bbe4f207bbe4f20,
+				FFFF4f807bbe4f807bbe4f80,
+				FFFF52e07bbe52e07bbe52e0,
+				FFFF53407bbe53407bbe5340,
+				FFFF53a07bbe53a07bbe53a0,
+				FFFF54007bbe54007bbe5400,
+				FFFF54607bbe54607bbe5460,
+				FFFF54c07bbe54c07bbe54c0,
+				FFFF55207bbe55207bbe5520,
+				FFFF55807bbe55807bbe5580,
+				FFFF55e07bbe55e07bbe55e0,
+				FFFF56407bbe56407bbe5640,
+				FFFF5e807bbe5e807bbe5e80,
+				FFFF5ee07bbe5ee07bbe5ee0,
+				FFFF5f407bbe5f407bbe5f40,
+				FFFF5fa07bbe5fa07bbe5fa0,
+				FFFF50807bbd50807bbd5080,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+/* End PBXShellScriptBuildPhase section */
+/* Begin PBXTargetDependency section */
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		FFF52ec07c132ec07c132ec0 /* PBXContainerItemProxy */ = {
+			containerPortal = FFF9cb107c12cb107c12cb10 /* Project object */;
+			isa = PBXContainerItemProxy;
+			proxyType = 1;
+			remoteGlobalIDString = FFFA2ec07c132ec07c132ec0 /* PhysXExtensions */;
+			remoteInfo = "PhysXExtensions";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXGroup section */
+		FFFBcb587c12cb587c12cb58 /* PhysXExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				FFF0cb107c12cb107c12cb10 /* Source */,
+				FFEEcb107c12cb107c12cb10 /* Products */,
+			);
+			name = "PhysXExtensions";
+			sourceTree = "<group>";
+		};
+
+		FFF0cb107c12cb107c12cb10 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FFFB2ec07c132ec07c132ec0,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+
+		FFEEcb107c12cb107c12cb10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FFFD2ec07c132ec07c132ec0,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+
+		FFFB2ec07c132ec07c132ec0 /* PhysXExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				FFFBf4307c10f4307c10f430 /* include */,
+				FFFBf4547c10f4547c10f454 /* src */,
+				FFFBf4787c10f4787c10f478 /* serialization */,
+				FFFBf49c7c10f49c7c10f49c /* metadata */,
+			);
+			name = "PhysXExtensions";
+			sourceTree = "<group>";
+		};
+		FFFBf4307c10f4307c10f430 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				FFFD8e007bbe8e007bbe8e00 /* PxBinaryConverter.h */,
+				FFFD8e607bbe8e607bbe8e60 /* PxBroadPhaseExt.h */,
+				FFFD8ec07bbe8ec07bbe8ec0 /* PxClothFabricCooker.h */,
+				FFFD8f207bbe8f207bbe8f20 /* PxClothMeshDesc.h */,
+				FFFD8f807bbe8f807bbe8f80 /* PxClothMeshQuadifier.h */,
+				FFFD8fe07bbe8fe07bbe8fe0 /* PxClothTetherCooker.h */,
+				FFFD90407bbe90407bbe9040 /* PxCollectionExt.h */,
+				FFFD90a07bbe90a07bbe90a0 /* PxConstraintExt.h */,
+				FFFD91007bbe91007bbe9100 /* PxD6Joint.h */,
+				FFFD91607bbe91607bbe9160 /* PxDefaultAllocator.h */,
+				FFFD91c07bbe91c07bbe91c0 /* PxDefaultBufferedProfiler.h */,
+				FFFD92207bbe92207bbe9220 /* PxDefaultCpuDispatcher.h */,
+				FFFD92807bbe92807bbe9280 /* PxDefaultErrorCallback.h */,
+				FFFD92e07bbe92e07bbe92e0 /* PxDefaultSimulationFilterShader.h */,
+				FFFD93407bbe93407bbe9340 /* PxDefaultStreams.h */,
+				FFFD93a07bbe93a07bbe93a0 /* PxDistanceJoint.h */,
+				FFFD94007bbe94007bbe9400 /* PxExtensionsAPI.h */,
+				FFFD94607bbe94607bbe9460 /* PxFixedJoint.h */,
+				FFFD94c07bbe94c07bbe94c0 /* PxJoint.h */,
+				FFFD95207bbe95207bbe9520 /* PxJointLimit.h */,
+				FFFD95807bbe95807bbe9580 /* PxJointRepXSerializer.h */,
+				FFFD95e07bbe95e07bbe95e0 /* PxParticleExt.h */,
+				FFFD96407bbe96407bbe9640 /* PxPrismaticJoint.h */,
+				FFFD96a07bbe96a07bbe96a0 /* PxRepXSerializer.h */,
+				FFFD97007bbe97007bbe9700 /* PxRepXSimpleType.h */,
+				FFFD97607bbe97607bbe9760 /* PxRevoluteJoint.h */,
+				FFFD97c07bbe97c07bbe97c0 /* PxRigidBodyExt.h */,
+				FFFD98207bbe98207bbe9820 /* PxSerialization.h */,
+				FFFD98807bbe98807bbe9880 /* PxShapeExt.h */,
+				FFFD98e07bbe98e07bbe98e0 /* PxSimpleFactory.h */,
+				FFFD99407bbe99407bbe9940 /* PxSmoothNormals.h */,
+				FFFD99a07bbe99a07bbe99a0 /* PxSphericalJoint.h */,
+				FFFD9a007bbe9a007bbe9a00 /* PxStringTableExt.h */,
+				FFFD9a607bbe9a607bbe9a60 /* PxTriangleMeshExt.h */,
+				FFFD9ac07bbe9ac07bbe9ac0 /* PxVisualDebuggerExt.h */,
+			);
+			name = "include";
+			sourceTree = SOURCE_ROOT;
+		};
+		FFFBf4547c10f4547c10f454 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FFFD78007bbe78007bbe7800 /* ExtConstraintHelper.h */,
+				FFFD78607bbe78607bbe7860 /* ExtCpuWorkerThread.h */,
+				FFFD78c07bbe78c07bbe78c0 /* ExtD6Joint.h */,
+				FFFD79207bbe79207bbe7920 /* ExtDefaultBufferedProfiler.h */,
+				FFFD79807bbe79807bbe7980 /* ExtDefaultCpuDispatcher.h */,
+				FFFD79e07bbe79e07bbe79e0 /* ExtDistanceJoint.h */,
+				FFFD7a407bbe7a407bbe7a40 /* ExtFixedJoint.h */,
+				FFFD7aa07bbe7aa07bbe7aa0 /* ExtInertiaTensor.h */,
+				FFFD7b007bbe7b007bbe7b00 /* ExtJoint.h */,
+				FFFD7b607bbe7b607bbe7b60 /* ExtJointMetaDataExtensions.h */,
+				FFFD7bc07bbe7bc07bbe7bc0 /* ExtPlatform.h */,
+				FFFD7c207bbe7c207bbe7c20 /* ExtPrismaticJoint.h */,
+				FFFD7c807bbe7c807bbe7c80 /* ExtPvdClientImpl.h */,
+				FFFD7ce07bbe7ce07bbe7ce0 /* ExtRevoluteJoint.h */,
+				FFFD7d407bbe7d407bbe7d40 /* ExtSerialization.h */,
+				FFFD7da07bbe7da07bbe7da0 /* ExtSharedQueueEntryPool.h */,
+				FFFD7e007bbe7e007bbe7e00 /* ExtSphericalJoint.h */,
+				FFFD7e607bbe7e607bbe7e60 /* ExtTaskQueueHelper.h */,
+				FFFD7ec07bbe7ec07bbe7ec0 /* ExtVisualDebugger.h */,
+				FFFD7f207bbe7f207bbe7f20 /* ExtBroadPhase.cpp */,
+				FFFD7f807bbe7f807bbe7f80 /* ExtClothFabricCooker.cpp */,
+				FFFD7fe07bbe7fe07bbe7fe0 /* ExtClothGeodesicTetherCooker.cpp */,
+				FFFD80407bbe80407bbe8040 /* ExtClothMeshQuadifier.cpp */,
+				FFFD80a07bbe80a07bbe80a0 /* ExtClothSimpleTetherCooker.cpp */,
+				FFFD81007bbe81007bbe8100 /* ExtCollection.cpp */,
+				FFFD81607bbe81607bbe8160 /* ExtCpuWorkerThread.cpp */,
+				FFFD81c07bbe81c07bbe81c0 /* ExtD6Joint.cpp */,
+				FFFD82207bbe82207bbe8220 /* ExtD6JointSolverPrep.cpp */,
+				FFFD82807bbe82807bbe8280 /* ExtDefaultBufferedProfiler.cpp */,
+				FFFD82e07bbe82e07bbe82e0 /* ExtDefaultCpuDispatcher.cpp */,
+				FFFD83407bbe83407bbe8340 /* ExtDefaultErrorCallback.cpp */,
+				FFFD83a07bbe83a07bbe83a0 /* ExtDefaultSimulationFilterShader.cpp */,
+				FFFD84007bbe84007bbe8400 /* ExtDefaultStreams.cpp */,
+				FFFD84607bbe84607bbe8460 /* ExtDistanceJoint.cpp */,
+				FFFD84c07bbe84c07bbe84c0 /* ExtDistanceJointSolverPrep.cpp */,
+				FFFD85207bbe85207bbe8520 /* ExtExtensions.cpp */,
+				FFFD85807bbe85807bbe8580 /* ExtFixedJoint.cpp */,
+				FFFD85e07bbe85e07bbe85e0 /* ExtFixedJointSolverPrep.cpp */,
+				FFFD86407bbe86407bbe8640 /* ExtJoint.cpp */,
+				FFFD86a07bbe86a07bbe86a0 /* ExtMetaData.cpp */,
+				FFFD87007bbe87007bbe8700 /* ExtParticleExt.cpp */,
+				FFFD87607bbe87607bbe8760 /* ExtPrismaticJoint.cpp */,
+				FFFD87c07bbe87c07bbe87c0 /* ExtPrismaticJointSolverPrep.cpp */,
+				FFFD88207bbe88207bbe8820 /* ExtPvdClientImpl.cpp */,
+				FFFD88807bbe88807bbe8880 /* ExtPxStringTable.cpp */,
+				FFFD88e07bbe88e07bbe88e0 /* ExtRevoluteJoint.cpp */,
+				FFFD89407bbe89407bbe8940 /* ExtRevoluteJointSolverPrep.cpp */,
+				FFFD89a07bbe89a07bbe89a0 /* ExtRigidBodyExt.cpp */,
+				FFFD8a007bbe8a007bbe8a00 /* ExtSimpleFactory.cpp */,
+				FFFD8a607bbe8a607bbe8a60 /* ExtSmoothNormals.cpp */,
+				FFFD8ac07bbe8ac07bbe8ac0 /* ExtSphericalJoint.cpp */,
+				FFFD8b207bbe8b207bbe8b20 /* ExtSphericalJointSolverPrep.cpp */,
+				FFFD8b807bbe8b807bbe8b80 /* ExtTriangleMeshExt.cpp */,
+				FFFD8be07bbe8be07bbe8be0 /* ExtVisualDebugger.cpp */,
+			);
+			name = "src";
+			sourceTree = SOURCE_ROOT;
+		};
+		FFFBf4787c10f4787c10f478 /* serialization */ = {
+			isa = PBXGroup;
+			children = (
+				FFFD4e007bbe4e007bbe4e00 /* SnSerialUtils.h */,
+				FFFD4e607bbe4e607bbe4e60 /* SnSerializationRegistry.h */,
+				FFFD4ec07bbe4ec07bbe4ec0 /* SnSerialUtils.cpp */,
+				FFFD4f207bbe4f207bbe4f20 /* SnSerialization.cpp */,
+				FFFD4f807bbe4f807bbe4f80 /* SnSerializationRegistry.cpp */,
+				FFFD4fe07bbe4fe07bbe4fe0 /* Binary/SnConvX.h */,
+				FFFD50407bbe50407bbe5040 /* Binary/SnConvX_Align.h */,
+				FFFD50a07bbe50a07bbe50a0 /* Binary/SnConvX_Common.h */,
+				FFFD51007bbe51007bbe5100 /* Binary/SnConvX_Convert.h */,
+				FFFD51607bbe51607bbe5160 /* Binary/SnConvX_MetaData.h */,
+				FFFD51c07bbe51c07bbe51c0 /* Binary/SnConvX_Output.h */,
+				FFFD52207bbe52207bbe5220 /* Binary/SnConvX_Union.h */,
+				FFFD52807bbe52807bbe5280 /* Binary/SnSerializationContext.h */,
+				FFFD52e07bbe52e07bbe52e0 /* Binary/SnBinaryDeserialization.cpp */,
+				FFFD53407bbe53407bbe5340 /* Binary/SnBinarySerialization.cpp */,
+				FFFD53a07bbe53a07bbe53a0 /* Binary/SnConvX.cpp */,
+				FFFD54007bbe54007bbe5400 /* Binary/SnConvX_Align.cpp */,
+				FFFD54607bbe54607bbe5460 /* Binary/SnConvX_Convert.cpp */,
+				FFFD54c07bbe54c07bbe54c0 /* Binary/SnConvX_Error.cpp */,
+				FFFD55207bbe55207bbe5520 /* Binary/SnConvX_MetaData.cpp */,
+				FFFD55807bbe55807bbe5580 /* Binary/SnConvX_Output.cpp */,
+				FFFD55e07bbe55e07bbe55e0 /* Binary/SnConvX_Union.cpp */,
+				FFFD56407bbe56407bbe5640 /* Binary/SnSerializationContext.cpp */,
+				FFFD56a07bbe56a07bbe56a0 /* Xml/SnPxStreamOperators.h */,
+				FFFD57007bbe57007bbe5700 /* Xml/SnRepX1_0Defaults.h */,
+				FFFD57607bbe57607bbe5760 /* Xml/SnRepX3_1Defaults.h */,
+				FFFD57c07bbe57c07bbe57c0 /* Xml/SnRepX3_2Defaults.h */,
+				FFFD58207bbe58207bbe5820 /* Xml/SnRepXCollection.h */,
+				FFFD58807bbe58807bbe5880 /* Xml/SnRepXCoreSerializer.h */,
+				FFFD58e07bbe58e07bbe58e0 /* Xml/SnRepXSerializerImpl.h */,
+				FFFD59407bbe59407bbe5940 /* Xml/SnRepXUpgrader.h */,
+				FFFD59a07bbe59a07bbe59a0 /* Xml/SnSimpleXmlWriter.h */,
+				FFFD5a007bbe5a007bbe5a00 /* Xml/SnXmlDeserializer.h */,
+				FFFD5a607bbe5a607bbe5a60 /* Xml/SnXmlImpl.h */,
+				FFFD5ac07bbe5ac07bbe5ac0 /* Xml/SnXmlMemoryAllocator.h */,
+				FFFD5b207bbe5b207bbe5b20 /* Xml/SnXmlMemoryPool.h */,
+				FFFD5b807bbe5b807bbe5b80 /* Xml/SnXmlMemoryPoolStreams.h */,
+				FFFD5be07bbe5be07bbe5be0 /* Xml/SnXmlReader.h */,
+				FFFD5c407bbe5c407bbe5c40 /* Xml/SnXmlSerializer.h */,
+				FFFD5ca07bbe5ca07bbe5ca0 /* Xml/SnXmlSimpleXmlWriter.h */,
+				FFFD5d007bbe5d007bbe5d00 /* Xml/SnXmlStringToType.h */,
+				FFFD5d607bbe5d607bbe5d60 /* Xml/SnXmlVisitorReader.h */,
+				FFFD5dc07bbe5dc07bbe5dc0 /* Xml/SnXmlVisitorWriter.h */,
+				FFFD5e207bbe5e207bbe5e20 /* Xml/SnXmlWriter.h */,
+				FFFD5e807bbe5e807bbe5e80 /* Xml/SnJointRepXSerializer.cpp */,
+				FFFD5ee07bbe5ee07bbe5ee0 /* Xml/SnRepXCoreSerializer.cpp */,
+				FFFD5f407bbe5f407bbe5f40 /* Xml/SnRepXUpgrader.cpp */,
+				FFFD5fa07bbe5fa07bbe5fa0 /* Xml/SnXmlSerialization.cpp */,
+			);
+			name = "serialization";
+			sourceTree = SOURCE_ROOT;
+		};
+		FFFBf49c7c10f49c7c10f49c /* metadata */ = {
+			isa = PBXGroup;
+			children = (
+				FFFD4c007bbd4c007bbd4c00 /* core/include/PvdMetaDataDefineProperties.h */,
+				FFFD4c607bbd4c607bbd4c60 /* core/include/PvdMetaDataExtensions.h */,
+				FFFD4cc07bbd4cc07bbd4cc0 /* core/include/PvdMetaDataPropertyVisitor.h */,
+				FFFD4d207bbd4d207bbd4d20 /* core/include/PxAutoGeneratedMetaDataObjectNames.h */,
+				FFFD4d807bbd4d807bbd4d80 /* core/include/PxAutoGeneratedMetaDataObjects.h */,
+				FFFD4de07bbd4de07bbd4de0 /* core/include/PxMetaDataCompare.h */,
+				FFFD4e407bbd4e407bbd4e40 /* core/include/PxMetaDataCppPrefix.h */,
+				FFFD4ea07bbd4ea07bbd4ea0 /* core/include/PxMetaDataObjects.h */,
+				FFFD4f007bbd4f007bbd4f00 /* core/include/RepXMetaDataPropertyVisitor.h */,
+				FFFD4f607bbd4f607bbd4f60 /* extensions/include/PxExtensionAutoGeneratedMetaDataObjectNames.h */,
+				FFFD4fc07bbd4fc07bbd4fc0 /* extensions/include/PxExtensionAutoGeneratedMetaDataObjects.h */,
+				FFFD50207bbd50207bbd5020 /* extensions/include/PxExtensionMetaDataObjects.h */,
+				FFFD50807bbd50807bbd5080 /* extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp */,
+			);
+			name = "metadata";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FFFA2ec07c132ec07c132ec0 /* PhysXExtensions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFF62ec07c132ec07c132ec0 /* Build configuration list for PBXNativeTarget "PhysXExtensions" */;
+			buildPhases = (
+				FFF22ec07c132ec07c132ec0,
+				FFF82ec07c132ec07c132ec0,
+				FFFC2ec07c132ec07c132ec0,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PhysXExtensions";
+			productName = "PhysXExtensions";
+			productReference = FFFD2ec07c132ec07c132ec0 /* PhysXExtensions */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin XCConfigurationList section */
+		FFF62ec07c132ec07c132ec0 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFF79c007bbe9c007bbe9c00,
+				FFF7a2e47bbea2e47bbea2e4,
+				FFF7a9c87bbea9c87bbea9c8,
+				FFF7b0ac7bbeb0ac7bbeb0ac,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "debug";
+		};
+		FFF6cb107c12cb107c12cb10 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFF39c007bbe9c007bbe9c00 /* debug */,
+				FFF3a2e47bbea2e47bbea2e4 /* checked */,
+				FFF3a9c87bbea9c87bbea9c8 /* profile */,
+				FFF3b0ac7bbeb0ac7bbeb0ac /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "debug";
+		};
+/* End XCConfigurationList section */
+/* Begin XCBuildConfiguration section */
+		FFF79c007bbe9c007bbe9c00 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386"; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx32";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_BUILD_NUMBER=18915364", "PX_PHYSX_STATIC_LIB", "_DEBUG", "PX_DEBUG", "PX_CHECKED", "PX_SUPPORT_VISUAL_DEBUGGER", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-g3", "-gdwarf-2", "-O0", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/common", "../../../Include/geometry", "../../../Include/pvd", "../../../Include/cooking", "../../../Include/extensions", "../../../Include/vehicle", "../../../Include/pxtask", "../../../Include/cloth", "../../../Include", "../../Common/src", "../../GeomUtils/headers", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", "../../PhysXMetaData/core/include", "../../PhysXMetaData/extensions/include", "../../PhysXProfileSDK", "../../PhysXExtensions/src", "../../PhysXExtensions/src/serialization/Xml", "../../PhysXExtensions/src/serialization/Binary", "../../PvdRuntime/src", "../../PhysXVisualDebuggerSDK", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3ExtensionsDEBUG";
+			};
+			name = "debug";
+		};
+		FFF7a2e47bbea2e47bbea2e4 /* checked */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386"; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx32";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_BUILD_NUMBER=18915364", "PX_PHYSX_STATIC_LIB", "NDEBUG", "PX_CHECKED", "PX_SUPPORT_VISUAL_DEBUGGER", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-g3", "-gdwarf-2", "-O3", "-fno-strict-aliasing", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/common", "../../../Include/geometry", "../../../Include/pvd", "../../../Include/cooking", "../../../Include/extensions", "../../../Include/vehicle", "../../../Include/pxtask", "../../../Include/cloth", "../../../Include", "../../Common/src", "../../GeomUtils/headers", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", "../../PhysXMetaData/core/include", "../../PhysXMetaData/extensions/include", "../../PhysXProfileSDK", "../../PhysXExtensions/src", "../../PhysXExtensions/src/serialization/Xml", "../../PhysXExtensions/src/serialization/Binary", "../../PvdRuntime/src", "../../PhysXVisualDebuggerSDK", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3ExtensionsCHECKED";
+			};
+			name = "checked";
+		};
+		FFF7a9c87bbea9c87bbea9c8 /* profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386"; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx32";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_BUILD_NUMBER=18915364", "PX_PHYSX_STATIC_LIB", "NDEBUG", "PX_PROFILE", "PX_SUPPORT_VISUAL_DEBUGGER", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-O3", "-fno-strict-aliasing", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/common", "../../../Include/geometry", "../../../Include/pvd", "../../../Include/cooking", "../../../Include/extensions", "../../../Include/vehicle", "../../../Include/pxtask", "../../../Include/cloth", "../../../Include", "../../Common/src", "../../GeomUtils/headers", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", "../../PhysXMetaData/core/include", "../../PhysXMetaData/extensions/include", "../../PhysXProfileSDK", "../../PhysXExtensions/src", "../../PhysXExtensions/src/serialization/Xml", "../../PhysXExtensions/src/serialization/Binary", "../../PvdRuntime/src", "../../PhysXVisualDebuggerSDK", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3ExtensionsPROFILE";
+			};
+			name = "profile";
+		};
+		FFF7b0ac7bbeb0ac7bbeb0ac /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386"; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx32";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_BUILD_NUMBER=18915364", "PX_PHYSX_STATIC_LIB", "NDEBUG", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-O3", "-fno-strict-aliasing", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/common", "../../../Include/geometry", "../../../Include/pvd", "../../../Include/cooking", "../../../Include/extensions", "../../../Include/vehicle", "../../../Include/pxtask", "../../../Include/cloth", "../../../Include", "../../Common/src", "../../GeomUtils/headers", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", "../../PhysXMetaData/core/include", "../../PhysXMetaData/extensions/include", "../../PhysXProfileSDK", "../../PhysXExtensions/src", "../../PhysXExtensions/src/serialization/Xml", "../../PhysXExtensions/src/serialization/Binary", "../../PvdRuntime/src", "../../PhysXVisualDebuggerSDK", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3Extensions";
+			};
+			name = "release";
+		};
+		FFF39c007bbe9c007bbe9c00 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "debug";
+		};
+		FFF3a2e47bbea2e47bbea2e4 /* checked */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "checked";
+		};
+		FFF3a9c87bbea9c87bbea9c8 /* profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "profile";
+		};
+		FFF3b0ac7bbeb0ac7bbeb0ac /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "release";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin PBXProject section */
+		FFF9cb107c12cb107c12cb10 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = FFF6cb107c12cb107c12cb10 /* Build configuration list for PBXProject PhysXExtensions */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = FFFBcb587c12cb587c12cb58 /* PhysXExtensions */;
+			targets = (
+				FFFA2ec07c132ec07c132ec0,
+			);
+		};
+/* End PBXProject section */
+
+	};
+	rootObject = FFF9cb107c12cb107c12cb10 /* Project object */;
+}

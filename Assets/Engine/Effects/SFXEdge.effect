@@ -1,0 +1,13 @@
+Description             "Performs customizable edge detection based on the surface normal map and the vector to the eye"
+
+VertexStream            Position[3]
+VertexStream            DiffuseTextureCoordinate[2]
+VertexStream            Tangent[3]
+VertexStream            Bitangent[3]
+VertexStream            Normal[3]
+
+$diffuseMap             Texture2D WorldDiffuse
+$normalMap              Texture2D WorldNormal
+$edgeLookupMap          Texture2D WorldDiffuse
+
+$diffuseColor           Color Optional

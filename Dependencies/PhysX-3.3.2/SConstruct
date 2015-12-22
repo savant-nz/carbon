@@ -1,0 +1,27 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+import os
+
+SConscript('../../Scripts/SCons/Shared.sconscript.py')
+Import('*')
+
+targetSuffix = ''
+if buildType == 'Debug':
+    targetSuffix += 'DEBUG'
+targetSuffix += '_' + architecture
+
+env = baseEnv.Clone()
+env['CPPDEFINES'] += [{'PX_EXTENSIONS_API': 'extern \\\'C\\\' __declspec(dllexport)'}]
+env['CPPPATH'] += ['#/Include', '#/Include/common', '#/Include/extensions', '#/Include/Foundation', '#/Include/geometry',
+                   '#/Include/pxtask', '#/Source/Common/src', '#/Source/foundation/include']
+env['LIBPATH'] += [os.path.join('#/Library', platform, architecture)]
+env['LIBS'] += ['PhysX3Common' + targetSuffix]
+
+target = 'PhysX3Extensions' + targetSuffix
+
+result = SConscript('Source/SConscript', variant_dir=baseVariantDir, exports='env target', duplicate=0)
+
+Install(os.path.join('Bin', platform, architecture), result)

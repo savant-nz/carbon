@@ -1,0 +1,10 @@
+Description             "Internal effect used for deferred lighting"
+
+VertexStream            Position[3]
+VertexStream            DiffuseTextureCoordinate[2]
+VertexStream            Tangent[3]
+VertexStream            Bitangent[3]
+VertexStream            Normal[3]
+
+$normalMap              Texture2D WorldNormal
+$glossMap               Texture2D WorldGloss

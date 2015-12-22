@@ -1,0 +1,1150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug - Max 8 Exporter|Win32">
+      <Configuration>Debug - Max 8 Exporter</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug - Max 8 Exporter|x64">
+      <Configuration>Debug - Max 8 Exporter</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug - Maya 2009 Exporter|Win32">
+      <Configuration>Debug - Maya 2009 Exporter</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug - Maya 2009 Exporter|x64">
+      <Configuration>Debug - Maya 2009 Exporter</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug - Maya 2014 Exporter|Win32">
+      <Configuration>Debug - Maya 2014 Exporter</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug - Maya 2014 Exporter|x64">
+      <Configuration>Debug - Maya 2014 Exporter</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release - Max 8 Exporter|Win32">
+      <Configuration>Release - Max 8 Exporter</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release - Max 8 Exporter|x64">
+      <Configuration>Release - Max 8 Exporter</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release - Maya 2009 Exporter|Win32">
+      <Configuration>Release - Maya 2009 Exporter</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release - Maya 2009 Exporter|x64">
+      <Configuration>Release - Maya 2009 Exporter</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release - Maya 2014 Exporter|Win32">
+      <Configuration>Release - Maya 2014 Exporter</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release - Maya 2014 Exporter|x64">
+      <Configuration>Release - Maya 2014 Exporter</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6179E7E9-E1B7-44B1-ABEB-93D76D5D8A80}</ProjectGuid>
+    <RootNamespace>CarbonEngine</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CarbonEngineDebug</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CarbonEngineDebug64</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'">.dle</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'">.dle</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'">.dle</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'">.dle</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'">.mll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'">.mll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'">.mll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'">.mll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'">.mll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'">.mll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'">.mll</TargetExt>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'">.mll</TargetExt>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'">CarbonExporterMax8</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'">CarbonExporterMax8</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'">CarbonExporterMaya2009</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'">CarbonExporterMaya2009</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'">CarbonExporterMaya2014</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'">CarbonExporterMaya2014</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'">CarbonExporterMax8</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'">CarbonExporterMax8</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'">CarbonExporterMaya2009</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'">CarbonExporterMaya2009</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'">CarbonExporterMaya2014</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'">CarbonExporterMaya2014</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>CarbonEngine64</TargetName>
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'">
+    <IntDir>.vsbuild/$(Platform)/$(Configuration)/</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\AngelScript-2.30.2\Source\include;$(SolutionDir)..\Dependencies\Bullet-2.83\Source;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Source;$(SolutionDir)..\Dependencies\FreeType-2.6.1\Include;$(SolutionDir)..\Dependencies\OculusRift-0.8\Source\LibOVR\Include;$(SolutionDir)..\Dependencies\Ogg-1.3.2\Include;$(SolutionDir)..\Dependencies\OpenALSoft-1.16.0\Source\include;$(SolutionDir)..\Dependencies\OpenAssetImport-3.1.1\Source\include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Include;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OCULUSRIFT;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\AngelScript-2.30.2\Library\Windows\x86;$(SolutionDir)..\Dependencies\Bullet-2.83\Library\Windows\x86;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Library\Windows\x86;$(SolutionDir)..\Dependencies\FreeType-2.6.1\Library\Windows\x86;$(SolutionDir)..\Dependencies\OculusRift-0.8\Library\Windows\x86;$(SolutionDir)..\Dependencies\OpenALSoft-1.16.0\Library\Windows\x86;$(SolutionDir)..\Dependencies\OpenAssetImport-3.1.1\Library\Windows\x86;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x86;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Library\Windows\x86;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Library\Windows\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\AngelScript-2.30.2\Source\include;$(SolutionDir)..\Dependencies\Bullet-2.83\Source;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Source;$(SolutionDir)..\Dependencies\FreeType-2.6.1\Include;$(SolutionDir)..\Dependencies\OculusRift-0.8\Source\LibOVR\Include;$(SolutionDir)..\Dependencies\Ogg-1.3.2\Include;$(SolutionDir)..\Dependencies\OpenALSoft-1.16.0\Source\include;$(SolutionDir)..\Dependencies\OpenAssetImport-3.1.1\Source\include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Include;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OCULUSRIFT;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\AngelScript-2.30.2\Library\Windows\x64;$(SolutionDir)..\Dependencies\Bullet-2.83\Library\Windows\x64;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Library\Windows\x64;$(SolutionDir)..\Dependencies\FreeType-2.6.1\Library\Windows\x64;$(SolutionDir)..\Dependencies\OculusRift-0.8\Library\Windows\x64;$(SolutionDir)..\Dependencies\OpenALSoft-1.16.0\Library\Windows\x64;$(SolutionDir)..\Dependencies\OpenAssetImport-3.1.1\Library\Windows\x64;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x64;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Library\Windows\x64;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Library\Windows\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\AngelScript-2.30.2\Source\include;$(SolutionDir)..\Dependencies\Bullet-2.83\Source;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Source;$(SolutionDir)..\Dependencies\FreeType-2.6.1\Include;$(SolutionDir)..\Dependencies\OculusRift-0.8\Source\LibOVR\Include;$(SolutionDir)..\Dependencies\Ogg-1.3.2\Include;$(SolutionDir)..\Dependencies\OpenALSoft-1.16.0\Source\include;$(SolutionDir)..\Dependencies\OpenAssetImport-3.1.1\Source\include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Include;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OCULUSRIFT;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\AngelScript-2.30.2\Library\Windows\x86;$(SolutionDir)..\Dependencies\Bullet-2.83\Library\Windows\x86;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Library\Windows\x86;$(SolutionDir)..\Dependencies\FreeType-2.6.1\Library\Windows\x86;$(SolutionDir)..\Dependencies\OculusRift-0.8\Library\Windows\x86;$(SolutionDir)..\Dependencies\OpenALSoft-1.16.0\LIbrary\Windows\x86;$(SolutionDir)..\Dependencies\OpenAssetImport-3.1.1\Library\Windows\x86;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x86;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Library\Windows\x86;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Library\Windows\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\AngelScript-2.30.2\Source\include;$(SolutionDir)..\Dependencies\Bullet-2.83\Source;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Source;$(SolutionDir)..\Dependencies\FreeType-2.6.1\Include;$(SolutionDir)..\Dependencies\OculusRift-0.8\Source\LibOVR\Include;$(SolutionDir)..\Dependencies\Ogg-1.3.2\Include;$(SolutionDir)..\Dependencies\OpenALSoft-1.16.0\Source\include;$(SolutionDir)..\Dependencies\OpenAssetImport-3.1.1\Source\include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Include;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OCULUSRIFT;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\AngelScript-2.30.2\Library\Windows\x64;$(SolutionDir)..\Dependencies\Bullet-2.83\Library\Windows\x64;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Library\Windows\x64;$(SolutionDir)..\Dependencies\FreeType-2.6.1\Library\Windows\x64;$(SolutionDir)..\Dependencies\OculusRift-0.8\Library\Windows\x64;$(SolutionDir)..\Dependencies\OpenALSoft-1.16.0\LIbrary\Windows\x64;$(SolutionDir)..\Dependencies\OpenAssetImport-3.1.1\Library\Windows\x64;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x64;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Library\Windows\x64;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Library\Windows\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Max-8\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAX_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Max-8\Library\Windows\x86;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Max-8\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAX_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Max-8\Library;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Max-8\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAX_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Max-8\Library\Windows\x86;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Max-8\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAX_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Max-8\Library;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Maya-2009\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAYA_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Maya-2009\Library\Windows\x86;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Maya-2009\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAYA_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Maya-2009\Library\Windows\x64;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Maya-2014\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAYA_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Maya-2014\Library\Windows\x86;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Maya-2014\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAYA_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Maya-2014\Library\Windows\x64;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Maya-2009\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAYA_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Maya-2009\Library\Windows\x86;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Maya-2009\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAYA_EXPORTER;ARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Maya-2009\Library\Windows\x64;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Maya-2014\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAYA_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Maya-2014\Library\Windows\x86;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\Maya-2014\Include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_INCLUDE_MAYA_EXPORTER;CARBON_INCLUDE_PHYSX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Dependencies\Maya-2014\Library\Windows\x64;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Library\Windows\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>NotSet</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Common.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CarbonEngine/Common.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Core\BuildInfo.cpp" />
+    <ClCompile Include="Core\CoreEvents.cpp" />
+    <ClCompile Include="Core\EventDelegate.cpp" />
+    <ClCompile Include="Core\EventHandler.cpp" />
+    <ClCompile Include="Core\EventManager.cpp" />
+    <ClCompile Include="Core\FileSystem\FileReader.cpp" />
+    <ClCompile Include="Core\FileSystem\FileSystem.cpp" />
+    <ClCompile Include="Core\FileSystem\FileWriter.cpp" />
+    <ClCompile Include="Core\FileSystem\LocalDirectoryFileSystemVolume.cpp" />
+    <ClCompile Include="Core\FileSystem\SimpleFileSystemVolume.cpp" />
+    <ClCompile Include="Core\FileSystem\ZipFileSystemVolume.cpp" />
+    <ClCompile Include="Core\Logfile.cpp" />
+    <ClCompile Include="Core\Memory\BlockAllocator.cpp" />
+    <ClCompile Include="Core\Memory\BlockAllocatorSet.cpp" />
+    <ClCompile Include="Core\Memory\MemoryInterceptor.cpp" />
+    <ClCompile Include="Core\Memory\MemoryInterceptorBackend.cpp" />
+    <ClCompile Include="Core\Memory\MemoryLeakDetector.cpp" />
+    <ClCompile Include="Core\Memory\MemoryStatistics.cpp" />
+    <ClCompile Include="Core\Memory\MemoryValidator.cpp" />
+    <ClCompile Include="Core\Parameter.cpp" />
+    <ClCompile Include="Core\ParameterArray.cpp" />
+    <ClCompile Include="Core\Runnable.cpp" />
+    <ClCompile Include="Core\SettingsManager.cpp" />
+    <ClCompile Include="Core\SharedLibrary.cpp" />
+    <ClCompile Include="Core\StringBase.cpp" />
+    <ClCompile Include="Core\Threads\Thread.cpp" />
+    <ClCompile Include="Exporters\DialogBase.cpp" />
+    <ClCompile Include="Exporters\ExportInfo.cpp" />
+    <ClCompile Include="Exporters\ExportRunners.cpp" />
+    <ClCompile Include="Exporters\Max\MaxGeometryExporter.cpp" />
+    <ClCompile Include="Exporters\Max\MaxPlugin.cpp" />
+    <ClCompile Include="Exporters\Max\MaxSceneExporter.cpp" />
+    <ClCompile Include="Exporters\Max\MaxSkeletalAnimationExporter.cpp" />
+    <ClCompile Include="Exporters\Max\MaxSkeletalExporterBase.cpp" />
+    <ClCompile Include="Exporters\Max\MaxSkeletalMeshExporter.cpp" />
+    <ClCompile Include="Exporters\Max\MaxStaticMeshExporter.cpp" />
+    <ClCompile Include="Exporters\Maya\MayaGeometryHelper.cpp" />
+    <ClCompile Include="Exporters\Maya\MayaHelper.cpp" />
+    <ClCompile Include="Exporters\Maya\MayaPlugin.cpp" />
+    <ClCompile Include="Exporters\Maya\MayaSceneExporter.cpp" />
+    <ClCompile Include="Exporters\Maya\MayaSkeletalAnimationExporter.cpp" />
+    <ClCompile Include="Exporters\Maya\MayaSkeletalMeshExporter.cpp" />
+    <ClCompile Include="Exporters\Maya\MayaStaticMeshExporter.cpp" />
+    <ClCompile Include="Exporters\ProgressDialog.cpp" />
+    <ClCompile Include="Game\Pathfinding\AStarTraversal.cpp" />
+    <ClCompile Include="Game\Pathfinding\GridNavigationGraph.cpp" />
+    <ClCompile Include="Game\Pathfinding\HexagonalNavigationGraph.cpp" />
+    <ClCompile Include="Game\Pathfinding\NavigationEdge.cpp" />
+    <ClCompile Include="Game\Pathfinding\NavigationGraph.cpp" />
+    <ClCompile Include="Game\Pathfinding\NavigationNode.cpp" />
+    <ClCompile Include="Game\ScrollingLayer.cpp" />
+    <ClCompile Include="Game\SplashScreen.cpp" />
+    <ClCompile Include="Game\Sprite.cpp" />
+    <ClCompile Include="Geometry\Triangle.cpp" />
+    <ClCompile Include="Geometry\TriangleArray.cpp" />
+    <ClCompile Include="Geometry\TriangleArraySet.cpp" />
+    <ClCompile Include="Geometry\TriangleStripper.cpp" />
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="Graphics\GraphicsInterface.cpp" />
+    <ClCompile Include="Graphics\OpenGL11\OpenGL11.cpp" />
+    <ClCompile Include="Graphics\OpenGL11\OpenGL11DataBuffer.cpp" />
+    <ClCompile Include="Graphics\OpenGL11\OpenGL11Extensions.cpp" />
+    <ClCompile Include="Graphics\OpenGL11\OpenGL11RenderTarget.cpp" />
+    <ClCompile Include="Graphics\OpenGL11\OpenGL11Texture.cpp" />
+    <ClCompile Include="Graphics\OpenGL41\OpenGL41.cpp" />
+    <ClCompile Include="Graphics\OpenGL41\OpenGL41DataBuffer.cpp" />
+    <ClCompile Include="Graphics\OpenGL41\OpenGL41RenderTarget.cpp" />
+    <ClCompile Include="Graphics\OpenGL41\OpenGL41Texture.cpp" />
+    <ClCompile Include="Graphics\OpenGLES2\OpenGLES2.cpp" />
+    <ClCompile Include="Graphics\OpenGLES2\OpenGLES2DataBuffer.cpp" />
+    <ClCompile Include="Graphics\OpenGLES2\OpenGLES2Extensions.cpp" />
+    <ClCompile Include="Graphics\OpenGLES2\OpenGLES2RenderTarget.cpp" />
+    <ClCompile Include="Graphics\OpenGLES2\OpenGLES2Texture.cpp" />
+    <ClCompile Include="Graphics\ShaderProgram.cpp" />
+    <ClCompile Include="Graphics\States\StateCacher.cpp" />
+    <ClCompile Include="Graphics\States\States.cpp" />
+    <ClCompile Include="Graphics\States\StateTypes.cpp" />
+    <ClCompile Include="Image\DXT.cpp" />
+    <ClCompile Include="Image\Image.cpp" />
+    <ClCompile Include="Image\ImageConversions.cpp" />
+    <ClCompile Include="Image\ImageFormatRegistry.cpp" />
+    <ClCompile Include="Image\ImageTransforms.cpp" />
+    <ClCompile Include="Image\LightmapPacker.cpp" />
+    <ClCompile Include="Image\PVRTC.cpp" />
+    <ClCompile Include="Image\sRGB.cpp" />
+    <ClCompile Include="Math\AABB.cpp" />
+    <ClCompile Include="Math\Color.cpp" />
+    <ClCompile Include="Math\ConvexHull.cpp" />
+    <ClCompile Include="Math\HashFunctions.cpp" />
+    <ClCompile Include="Math\MathCommon.cpp" />
+    <ClCompile Include="Math\Matrix3.cpp" />
+    <ClCompile Include="Math\Matrix4.cpp" />
+    <ClCompile Include="Math\Noise.cpp" />
+    <ClCompile Include="Math\Plane.cpp" />
+    <ClCompile Include="Math\Quaternion.cpp" />
+    <ClCompile Include="Math\RandomNumberGenerator.cpp" />
+    <ClCompile Include="Math\Rect.cpp" />
+    <ClCompile Include="Math\Sphere.cpp" />
+    <ClCompile Include="Physics\Bullet\Bullet.cpp" />
+    <ClCompile Include="Physics\Bullet\KinematicCharacterController.cpp" />
+    <ClCompile Include="Physics\PhysicsInterface.cpp" />
+    <ClCompile Include="Physics\PhysX\PhysX.cpp" />
+    <ClCompile Include="Platform\Android\PlatformAndroid.cpp" />
+    <ClCompile Include="Platform\Console.cpp" />
+    <ClCompile Include="Platform\FrameTimers.cpp" />
+    <ClCompile Include="Platform\KeyConstant.cpp" />
+    <ClCompile Include="Platform\PeriodicTimer.cpp" />
+    <ClCompile Include="Platform\PlatformInterface.cpp" />
+    <ClCompile Include="Platform\ScopedTimer.cpp" />
+    <ClCompile Include="Platform\SDL\PlatformSDL.cpp" />
+    <ClCompile Include="Platform\SimpleTimer.cpp" />
+    <ClCompile Include="Platform\TextInput.cpp" />
+    <ClCompile Include="Platform\ThemeManager.cpp" />
+    <ClCompile Include="Platform\TimeValue.cpp" />
+    <ClCompile Include="Platform\Windows\OculusRift.cpp" />
+    <ClCompile Include="Platform\Windows\PlatformWindows.cpp" />
+    <ClCompile Include="Render\DataBufferManager.cpp" />
+    <ClCompile Include="Render\Effect.cpp" />
+    <ClCompile Include="Render\EffectManager.cpp" />
+    <ClCompile Include="Render\EffectQueueArray.cpp" />
+    <ClCompile Include="Render\Font.cpp" />
+    <ClCompile Include="Render\FontManager.cpp" />
+    <ClCompile Include="Render\GeometryChunk.cpp" />
+    <ClCompile Include="Render\Renderer.cpp" />
+    <ClCompile Include="Render\RendererDebugOverlays.cpp" />
+    <ClCompile Include="Render\RendererDeferredLighting.cpp" />
+    <ClCompile Include="Render\RendererDraw.cpp" />
+    <ClCompile Include="Render\RendererPostProcess.cpp" />
+    <ClCompile Include="Render\RenderQueueItemArray.cpp" />
+    <ClCompile Include="Render\RenderTarget.cpp" />
+    <ClCompile Include="Render\Shaders\AmbientOcclusionGLSL.cpp" />
+    <ClCompile Include="Render\Shaders\Blending.cpp" />
+    <ClCompile Include="Render\Shaders\DecalMappingGLSL.cpp" />
+    <ClCompile Include="Render\Shaders\ParallaxMappingGLSL.cpp" />
+    <ClCompile Include="Render\Shaders\Shader.cpp" />
+    <ClCompile Include="Render\Shaders\ShaderRegistry.cpp" />
+    <ClCompile Include="Render\Shaders\ShadowMappingGLSL.cpp" />
+    <ClCompile Include="Render\Shaders\SpecularGLSL.cpp" />
+    <ClCompile Include="Render\Texture\Texture.cpp" />
+    <ClCompile Include="Render\Texture\Texture2D.cpp" />
+    <ClCompile Include="Render\Texture\Texture3D.cpp" />
+    <ClCompile Include="Render\Texture\TextureCubemap.cpp" />
+    <ClCompile Include="Render\Texture\TextureManager.cpp" />
+    <ClCompile Include="Render\VertexStream.cpp" />
+    <ClCompile Include="Scene\ABTCompiler.cpp" />
+    <ClCompile Include="Scene\Camera.cpp" />
+    <ClCompile Include="Scene\ComplexEntity.cpp" />
+    <ClCompile Include="Scene\CullingNode.cpp" />
+    <ClCompile Include="Scene\Entity.cpp" />
+    <ClCompile Include="Scene\EntityController\EntityController.cpp" />
+    <ClCompile Include="Scene\EntityController\PlatformerEntityController.cpp" />
+    <ClCompile Include="Scene\EntityController\PlayerEntityController.cpp" />
+    <ClCompile Include="Scene\GeometryGather.cpp" />
+    <ClCompile Include="Scene\GUI\GUIButton.cpp" />
+    <ClCompile Include="Scene\GUI\GUICombobox.cpp" />
+    <ClCompile Include="Scene\GUI\GUIConsoleWindow.cpp" />
+    <ClCompile Include="Scene\GUI\GUIEditbox.cpp" />
+    <ClCompile Include="Scene\GUI\GUIEvents.cpp" />
+    <ClCompile Include="Scene\GUI\GUILabel.cpp" />
+    <ClCompile Include="Scene\GUI\GUIMousePointer.cpp" />
+    <ClCompile Include="Scene\GUI\GUIProgressBar.cpp" />
+    <ClCompile Include="Scene\GUI\GUISlider.cpp" />
+    <ClCompile Include="Scene\GUI\GUIWindow.cpp" />
+    <ClCompile Include="Scene\Light.cpp" />
+    <ClCompile Include="Scene\Material.cpp" />
+    <ClCompile Include="Scene\MaterialManager.cpp" />
+    <ClCompile Include="Scene\Mesh\Mesh.cpp" />
+    <ClCompile Include="Scene\Mesh\MeshFormatRegistry.cpp" />
+    <ClCompile Include="Scene\Mesh\MeshManager.cpp" />
+    <ClCompile Include="Scene\Region.cpp" />
+    <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="Scene\SkeletalAnimation.cpp" />
+    <ClCompile Include="Scene\SkeletalMesh.cpp" />
+    <ClCompile Include="Scene\SkyDome.cpp" />
+    <ClCompile Include="Scene\SoundEmitter.cpp" />
+    <ClCompile Include="Scene\Terrain.cpp" />
+    <ClCompile Include="Scripting\ScriptFunctions.cpp" />
+    <ClCompile Include="Scripting\ScriptManager.cpp" />
+    <ClCompile Include="Sound\OpenAL\OpenAL.cpp" />
+    <ClCompile Include="Sound\SoundFormatRegistry.cpp" />
+    <ClCompile Include="Sound\SoundInterface.cpp" />
+    <ClCompile Include="Sound\SoundShader.cpp" />
+    <ClCompile Include="Sound\SoundShaderManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="APIReference.h" />
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="Core\Memory\DefineGlobalOperatorNewDelete.h" />
+    <ClInclude Include="EngineAssets.h" />
+    <ClInclude Include="CarbonEngine.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="ConsoleCommands.h" />
+    <ClInclude Include="Core\BuildInfo.h" />
+    <ClInclude Include="Core\CoreEvents.h" />
+    <ClInclude Include="Core\Endian.h" />
+    <ClInclude Include="Core\Event.h" />
+    <ClInclude Include="Core\EventDelegate.h" />
+    <ClInclude Include="Core\EventHandler.h" />
+    <ClInclude Include="Core\EventManager.h" />
+    <ClInclude Include="Core\Exception.h" />
+    <ClInclude Include="Core\FileFormatRegistry.h" />
+    <ClInclude Include="Core\FileSystem\FileReader.h" />
+    <ClInclude Include="Core\FileSystem\FileSystem.h" />
+    <ClInclude Include="Core\FileSystem\FileSystemError.h" />
+    <ClInclude Include="Core\FileSystem\FileSystemVolume.h" />
+    <ClInclude Include="Core\FileSystem\FileWriter.h" />
+    <ClInclude Include="Core\FileSystem\LocalDirectoryFileSystemVolume.h" />
+    <ClInclude Include="Core\FileSystem\SimpleFileSystemVolume.h" />
+    <ClInclude Include="Core\FileSystem\ZipFileSystemVolume.h" />
+    <ClInclude Include="Core\InterfaceRegistry.h" />
+    <ClInclude Include="Core\Logfile.h" />
+    <ClInclude Include="Core\Memory\BlockAllocator.h" />
+    <ClInclude Include="Core\Memory\BlockAllocatorSet.h" />
+    <ClInclude Include="Core\Memory\MemoryInterceptor.h" />
+    <ClInclude Include="Core\Memory\MemoryLeakDetector.h" />
+    <ClInclude Include="Core\Memory\MemoryStatistics.h" />
+    <ClInclude Include="Core\Memory\MemoryValidator.h" />
+    <ClInclude Include="Core\Noncopyable.h" />
+    <ClInclude Include="Core\Parameter.h" />
+    <ClInclude Include="Core\ParameterArray.h" />
+    <ClInclude Include="Core\Runnable.h" />
+    <ClInclude Include="Core\SettingsManager.h" />
+    <ClInclude Include="Core\SharedLibrary.h" />
+    <ClInclude Include="Core\StringBase.h" />
+    <ClInclude Include="Core\SubclassRegistry.h" />
+    <ClInclude Include="Core\Threads\Mutex.h" />
+    <ClInclude Include="Core\Threads\Thread.h" />
+    <ClInclude Include="Core\UnorderedPointerSet.h" />
+    <ClInclude Include="Core\Vector.h" />
+    <ClInclude Include="Core\VersionInfo.h" />
+    <ClInclude Include="EntryPoint.h" />
+    <ClInclude Include="Exporters\DialogBase.h" />
+    <ClInclude Include="Exporters\ExporterStrings.h" />
+    <ClInclude Include="Exporters\ExportInfo.h" />
+    <ClInclude Include="Exporters\ExportRunners.h" />
+    <ClInclude Include="Exporters\Max\MaxGeometryExporter.h" />
+    <ClInclude Include="Exporters\Max\MaxPlugin.h" />
+    <ClInclude Include="Exporters\Max\MaxSkeletalExporterBase.h" />
+    <ClInclude Include="Exporters\Maya\MayaGeometryHelper.h" />
+    <ClInclude Include="Exporters\Maya\MayaHelper.h" />
+    <ClInclude Include="Exporters\Maya\MayaIncludeWrapper.h" />
+    <ClInclude Include="Exporters\Maya\MayaPlugin.h" />
+    <ClInclude Include="Exporters\ProgressDialog.h" />
+    <ClInclude Include="Game\GameCenter.h" />
+    <ClInclude Include="Game\InAppPurchase.h" />
+    <ClInclude Include="Game\Pathfinding\AStarTraversal.h" />
+    <ClInclude Include="Game\Pathfinding\GridNavigationGraph.h" />
+    <ClInclude Include="Game\Pathfinding\HexagonalNavigationGraph.h" />
+    <ClInclude Include="Game\Pathfinding\NavigationEdge.h" />
+    <ClInclude Include="Game\Pathfinding\NavigationGraph.h" />
+    <ClInclude Include="Game\Pathfinding\NavigationNode.h" />
+    <ClInclude Include="Game\ScrollingLayer.h" />
+    <ClInclude Include="Game\SplashScreen.h" />
+    <ClInclude Include="Game\Sprite.h" />
+    <ClInclude Include="Geometry\Triangle.h" />
+    <ClInclude Include="Geometry\TriangleArray.h" />
+    <ClInclude Include="Geometry\TriangleArraySet.h" />
+    <ClInclude Include="Geometry\TriangleStripper.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="Graphics\GraphicsInterface.h" />
+    <ClInclude Include="Graphics\iOS\iOSOpenGLES2.h" />
+    <ClInclude Include="Graphics\OpenGL11\OpenGL11Extensions.h" />
+    <ClInclude Include="Graphics\OpenGL11\OpenGL11ShaderConstant.h" />
+    <ClInclude Include="Graphics\OpenGL11\OpenGL11ShaderProgram.h" />
+    <ClInclude Include="Graphics\OpenGL11\OpenGL11.h" />
+    <ClInclude Include="Graphics\OpenGL41\OpenGL41.h" />
+    <ClInclude Include="Graphics\OpenGL41\OpenGL41Extensions.h" />
+    <ClInclude Include="Graphics\OpenGL41\OpenGL41ShaderProgram.h" />
+    <ClInclude Include="Graphics\OpenGLES2\OpenGLES2.h" />
+    <ClInclude Include="Graphics\OpenGLES2\OpenGLES2Extensions.h" />
+    <ClInclude Include="Graphics\OpenGLES2\OpenGLES2ShaderConstant.h" />
+    <ClInclude Include="Graphics\OpenGLES2\OpenGLES2ShaderProgram.h" />
+    <ClInclude Include="Graphics\OpenGLShared\OpenGLBase.h" />
+    <ClInclude Include="Graphics\OpenGLShared\OpenGLShaderConstantCoreShared.h" />
+    <ClInclude Include="Graphics\OpenGLShared\OpenGLShaderProgramCoreShared.h" />
+    <ClInclude Include="Graphics\OpenGLShared\OpenGLShaderProgramShared.h" />
+    <ClInclude Include="Graphics\OpenGLShared\OpenGLShared.h" />
+    <ClInclude Include="Graphics\ShaderConstant.h" />
+    <ClInclude Include="Graphics\ShaderProgram.h" />
+    <ClInclude Include="Graphics\States\CachedState.h" />
+    <ClInclude Include="Graphics\States\SimpleCachedState.h" />
+    <ClInclude Include="Graphics\States\StateCacher.h" />
+    <ClInclude Include="Graphics\States\States.h" />
+    <ClInclude Include="Graphics\States\StateTypes.h" />
+    <ClInclude Include="Image\Formats\DDS.h" />
+    <ClInclude Include="Image\Formats\FreeImageIncludeWrapper.h" />
+    <ClInclude Include="Image\Formats\FreeImageLoader.h" />
+    <ClInclude Include="Image\Formats\LibJPEG.h" />
+    <ClInclude Include="Image\Formats\LibPNG.h" />
+    <ClInclude Include="Image\Formats\Meta.h" />
+    <ClInclude Include="Image\Formats\NativeImage.h" />
+    <ClInclude Include="Image\Formats\PVR.h" />
+    <ClInclude Include="Image\Formats\VTF.h" />
+    <ClInclude Include="Image\Image.h" />
+    <ClInclude Include="Image\ImageFormatRegistry.h" />
+    <ClInclude Include="Image\LightmapPacker.h" />
+    <ClInclude Include="Math\AABB.h" />
+    <ClInclude Include="Math\Color.h" />
+    <ClInclude Include="Math\ConvexHull.h" />
+    <ClInclude Include="Math\HashFunctions.h" />
+    <ClInclude Include="Math\Interpolate.h" />
+    <ClInclude Include="Math\InterpolatedLookupTable.h" />
+    <ClInclude Include="Math\Line.h" />
+    <ClInclude Include="Math\MathCommon.h" />
+    <ClInclude Include="Math\Matrix3.h" />
+    <ClInclude Include="Math\Matrix4.h" />
+    <ClInclude Include="Math\Noise.h" />
+    <ClInclude Include="Math\Plane.h" />
+    <ClInclude Include="Math\Quaternion.h" />
+    <ClInclude Include="Math\RandomNumberGenerator.h" />
+    <ClInclude Include="Math\Ray.h" />
+    <ClInclude Include="Math\Rect.h" />
+    <ClInclude Include="Math\SimpleTransform.h" />
+    <ClInclude Include="Math\Sphere.h" />
+    <ClInclude Include="Math\Vec2.h" />
+    <ClInclude Include="Math\Vec2i.h" />
+    <ClInclude Include="Math\Vec3.h" />
+    <ClInclude Include="Math\WeightedFilter.h" />
+    <ClInclude Include="Physics\Bullet\Bullet.h" />
+    <ClInclude Include="Physics\Bullet\BulletIncludeWrapper.h" />
+    <ClInclude Include="Physics\Bullet\KinematicCharacterController.h" />
+    <ClInclude Include="Physics\PhysicsInterface.h" />
+    <ClInclude Include="Physics\PhysicsIntersectResult.h" />
+    <ClInclude Include="Physics\PhysX\PhysX.h" />
+    <ClInclude Include="Physics\PhysX\PhysXIncludeWrapper.h" />
+    <ClInclude Include="Platform\Android\PlatformAndroid.h" />
+    <ClInclude Include="Platform\Console.h" />
+    <ClInclude Include="Platform\ConsoleCommand.h" />
+    <ClInclude Include="Platform\ForceFeedbackEffects.h" />
+    <ClInclude Include="Platform\FrameTimers.h" />
+    <ClInclude Include="Platform\GameControllerState.h" />
+    <ClInclude Include="Platform\iOS\PlatformiOS.h" />
+    <ClInclude Include="Platform\KeyConstant.h" />
+    <ClInclude Include="Platform\MacOSX\PlatformMacOSX.h" />
+    <ClInclude Include="Platform\MouseButton.h" />
+    <ClInclude Include="Platform\PeriodicTimer.h" />
+    <ClInclude Include="Platform\PlatformEvents.h" />
+    <ClInclude Include="Platform\PlatformInterface.h" />
+    <ClInclude Include="Platform\Resolution.h" />
+    <ClInclude Include="Platform\ScopedTimer.h" />
+    <ClInclude Include="Platform\SDL\PlatformSDL.h" />
+    <ClInclude Include="Platform\SimpleTimer.h" />
+    <ClInclude Include="Platform\TextInput.h" />
+    <ClInclude Include="Platform\ThemeManager.h" />
+    <ClInclude Include="Platform\TimeValue.h" />
+    <ClInclude Include="Platform\Windows\OculusRiftIncludeWrapper.h" />
+    <ClInclude Include="Platform\Windows\PlatformWindows.h" />
+    <ClInclude Include="Render\DataBufferManager.h" />
+    <ClInclude Include="Render\DrawItem.h" />
+    <ClInclude Include="Render\Effect.h" />
+    <ClInclude Include="Render\EffectManager.h" />
+    <ClInclude Include="Render\EffectQueue.h" />
+    <ClInclude Include="Render\EffectQueueArray.h" />
+    <ClInclude Include="Render\Font.h" />
+    <ClInclude Include="Render\FontManager.h" />
+    <ClInclude Include="Render\FreeTypeIncludeWrapper.h" />
+    <ClInclude Include="Render\GeometryChunk.h" />
+    <ClInclude Include="Render\Renderer.h" />
+    <ClInclude Include="Render\RenderEvents.h" />
+    <ClInclude Include="Render\RenderQueueItem.h" />
+    <ClInclude Include="Render\RenderQueueItemArray.h" />
+    <ClInclude Include="Render\RenderTarget.h" />
+    <ClInclude Include="Render\Shaders\AmbientOcclusionGLSL.h" />
+    <ClInclude Include="Render\Shaders\BaseColored.h" />
+    <ClInclude Include="Render\Shaders\BaseSkyDome.h" />
+    <ClInclude Include="Render\Shaders\BaseSurface.h" />
+    <ClInclude Include="Render\Shaders\Blending.h" />
+    <ClInclude Include="Render\Shaders\DecalMappingGLSL.h" />
+    <ClInclude Include="Render\Shaders\InternalDeferredLightingDirectionalLight.h" />
+    <ClInclude Include="Render\Shaders\InternalDeferredLightingPointLight.h" />
+    <ClInclude Include="Render\Shaders\InternalDeferredLightingSetup.h" />
+    <ClInclude Include="Render\Shaders\InternalDeferredLightingSurface.h" />
+    <ClInclude Include="Render\Shaders\InternalFont.h" />
+    <ClInclude Include="Render\Shaders\InternalGeometryClipmapping.h" />
+    <ClInclude Include="Render\Shaders\InternalShadowMapping.h" />
+    <ClInclude Include="Render\Shaders\InternalSprite.h" />
+    <ClInclude Include="Render\Shaders\NormalMapping.h" />
+    <ClInclude Include="Render\Shaders\ParallaxMappingGLSL.h" />
+    <ClInclude Include="Render\Shaders\PostProcessAdd.h" />
+    <ClInclude Include="Render\Shaders\PostProcessBloom.h" />
+    <ClInclude Include="Render\Shaders\PostProcessBlur.h" />
+    <ClInclude Include="Render\Shaders\PostProcessBrightPass.h" />
+    <ClInclude Include="Render\Shaders\PostProcessColor.h" />
+    <ClInclude Include="Render\Shaders\PostProcessDepthOfField.h" />
+    <ClInclude Include="Render\Shaders\PostProcessPassThrough.h" />
+    <ClInclude Include="Render\Shaders\PostProcessScattering.h" />
+    <ClInclude Include="Render\Shaders\PostProcessToneMapping.h" />
+    <ClInclude Include="Render\Shaders\SFXBlur.h" />
+    <ClInclude Include="Render\Shaders\SFXEdge.h" />
+    <ClInclude Include="Render\Shaders\SFXMirror.h" />
+    <ClInclude Include="Render\Shaders\SFXWater.h" />
+    <ClInclude Include="Render\Shaders\Shader.h" />
+    <ClInclude Include="Render\Shaders\ShaderRegistry.h" />
+    <ClInclude Include="Render\Shaders\ShadowMappingGLSL.h" />
+    <ClInclude Include="Render\Shaders\SkeletalAnimationGLSL.h" />
+    <ClInclude Include="Render\Shaders\SpecularGLSL.h" />
+    <ClInclude Include="Render\Shaders\VertexColor.h" />
+    <ClInclude Include="Render\Texture\Texture.h" />
+    <ClInclude Include="Render\Texture\Texture2D.h" />
+    <ClInclude Include="Render\Texture\Texture3D.h" />
+    <ClInclude Include="Render\Texture\TextureCubemap.h" />
+    <ClInclude Include="Render\Texture\TextureManager.h" />
+    <ClInclude Include="Render\Texture\TextureProperties.h" />
+    <ClInclude Include="Render\VertexStream.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scene\ABTCompiler.h" />
+    <ClInclude Include="Scene\Camera.h" />
+    <ClInclude Include="Scene\ComplexEntity.h" />
+    <ClInclude Include="Scene\CullingNode.h" />
+    <ClInclude Include="Scene\Entity.h" />
+    <ClInclude Include="Scene\EntityController\AlphaFadeEntityController.h" />
+    <ClInclude Include="Scene\EntityController\EntityController.h" />
+    <ClInclude Include="Scene\EntityController\PlatformerEntityController.h" />
+    <ClInclude Include="Scene\EntityController\PlayerEntityController.h" />
+    <ClInclude Include="Scene\EntityController\SetOrientationEntityController.h" />
+    <ClInclude Include="Scene\EntityController\TargetPositionEntityController.h" />
+    <ClInclude Include="Scene\GeometryGather.h" />
+    <ClInclude Include="Scene\GUI\GUIButton.h" />
+    <ClInclude Include="Scene\GUI\GUICombobox.h" />
+    <ClInclude Include="Scene\GUI\GUIConsoleWindow.h" />
+    <ClInclude Include="Scene\GUI\GUIEditbox.h" />
+    <ClInclude Include="Scene\GUI\GUIEvents.h" />
+    <ClInclude Include="Scene\GUI\GUILabel.h" />
+    <ClInclude Include="Scene\GUI\GUIMousePointer.h" />
+    <ClInclude Include="Scene\GUI\GUIProgressBar.h" />
+    <ClInclude Include="Scene\GUI\GUISlider.h" />
+    <ClInclude Include="Scene\GUI\GUIWindow.h" />
+    <ClInclude Include="Scene\IntersectionResult.h" />
+    <ClInclude Include="Scene\Light.h" />
+    <ClInclude Include="Scene\Material.h" />
+    <ClInclude Include="Scene\MaterialManager.h" />
+    <ClInclude Include="Scene\Mesh\Mesh.h" />
+    <ClInclude Include="Scene\Mesh\MeshFormatRegistry.h" />
+    <ClInclude Include="Scene\Mesh\MeshManager.h" />
+    <ClInclude Include="Scene\Mesh\OpenAssetImport.h" />
+    <ClInclude Include="Scene\Mesh\OpenAssetImportIncludeWrapper.h" />
+    <ClInclude Include="Scene\Region.h" />
+    <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\SceneEvents.h" />
+    <ClInclude Include="Scene\SkeletalAnimation.h" />
+    <ClInclude Include="Scene\SkeletalMesh.h" />
+    <ClInclude Include="Scene\SkyDome.h" />
+    <ClInclude Include="Scene\SoundEmitter.h" />
+    <ClInclude Include="Scene\SoundListener.h" />
+    <ClInclude Include="Scene\Terrain.h" />
+    <ClInclude Include="Scripting\AngelScriptIncludeWrapper.h" />
+    <ClInclude Include="Scripting\ScriptManager.h" />
+    <ClInclude Include="Sound\Formats\OggVorbisIncludeWrapper.h" />
+    <ClInclude Include="Sound\Formats\OggVorbisLoader.h" />
+    <ClInclude Include="Sound\Formats\WavLoader.h" />
+    <ClInclude Include="Sound\OpenAL\OpenAL.h" />
+    <ClInclude Include="Sound\SoundEvents.h" />
+    <ClInclude Include="Sound\SoundFormatRegistry.h" />
+    <ClInclude Include="Sound\SoundInterface.h" />
+    <ClInclude Include="Sound\SoundShader.h" />
+    <ClInclude Include="Sound\SoundShaderManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Carbon.bmp" />
+    <None Include="Carbon.ico" />
+    <None Include="Core\FileSystem\FileSystem.mm" />
+    <None Include="Core\StringBase.mm" />
+    <None Include="Core\Threads\Thread.mm" />
+    <None Include="Defines.md" />
+    <None Include="EntryPointiOS.mm" />
+    <None Include="EntryPointMacOSX.mm" />
+    <None Include="Game\GameCenter.mm" />
+    <None Include="Game\InAppPurchase.mm" />
+    <None Include="Platform\iOS\PlatformiOS.mm" />
+    <None Include="Platform\MacOSX\PlatformMacOSX.mm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CarbonEngine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="CarbonEngine.manifest" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

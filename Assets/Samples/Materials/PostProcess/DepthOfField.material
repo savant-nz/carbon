@@ -1,0 +1,6 @@
+Effect                          PostProcessDepthOfField
+
+$blurScale                      2.0
+$blurStandardDeviation          1.0
+$focalLength                    175.0
+$focalRange                     50.0

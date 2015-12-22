@@ -1,0 +1,17 @@
+Description             "Water surface with dynamic reflections and refractions"
+
+VertexStream            Position[3]
+
+# Water surface normal, an animated normal map should be used here to simulate ripples
+$normalMap              Texture2D WorldNormal
+
+# The amount of distortion
+$reflectionDistortion   Float
+$refractionDistortion   Float
+
+# Coloring values for the reflection and refraction
+$reflectionTint         Color
+$refractionTint         Color
+
+# Texture tiling factor
+$tilingFactor           Float

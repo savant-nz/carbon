@@ -1,0 +1,17 @@
+Description             "Internal effect used for deferred lighting"
+
+$normalsTexture         Texture2D WorldNormal
+
+$lightPosition          Color
+$lightOrientation       Quaternion
+
+$lightColor             Color
+$lightRadiusSquared     Float
+
+$projectionCubemap      Pointer
+
+$cosMinimumConeAngle    Float
+$cosMaximumConeAngle    Float
+
+$isSpecularEnabled      Boolean
+$specularIntensity      Float

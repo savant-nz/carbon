@@ -1,0 +1,21 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+Import('*')
+
+sources = Glob('*.cpp')
+
+if platform == 'Windows' and architecture == 'x64':
+    sources += ['as_callfunc_x64_msvc_asm.asm']
+
+if platform == 'Android' and architecture.startswith('ARM'):
+    sources += ['as_callfunc_arm_gcc.S']
+
+if platform == 'iOS' and architecture.startswith('ARM'):
+    sources += ['as_callfunc_arm_xcode.S']
+
+result = env.StaticLibrary(target=target, source=sources)
+
+Return('result')

@@ -1,0 +1,6 @@
+Description             "Post-process depth of field"
+
+$focalLength            Float
+$focalRange             Float
+$blurScale              Float
+$blurStandardDeviation  Float

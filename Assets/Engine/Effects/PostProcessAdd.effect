@@ -1,0 +1,6 @@
+Description             "Post-process add"
+
+$addTexture             Texture2D PostProcess
+
+$addTextureFactor       Float
+$finalScale             Float

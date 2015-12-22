@@ -1,0 +1,231 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+import glob
+import os
+import re
+import shutil
+
+Import('*')
+
+maxExporterEnvs = []
+mayaExporterEnvs = []
+
+if platform == 'Windows':
+
+    dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'OculusRift', 'PhysX', 'Vorbis',
+                    'ZLib']
+
+    # Environment for Carbon
+    engineEnv = baseEnv.Clone()
+    engineEnv['CPPDEFINES'] += ['CARBON_EXPORTS', 'CARBON_INCLUDE_PLATFORM_WINDOWS']
+    engineEnv['CPPDEFINES'] += GetDependencyCPPDEFINES(*(dependencies + ['OpenAL', 'OpenGL11']))
+    engineEnv['CPPPATH'] += ['#/Source'] + GetDependencyCPPPATH(*(dependencies + ['OpenALSoft']))
+
+    # Environments for the Max exporters
+    maxVersions = []
+    if not Is64Bit():
+        maxVersions = ['8']
+
+    for version in maxVersions:
+        env = baseEnv.Clone()
+
+        env['CPPDEFINES'] += ['CARBON_INCLUDE_MAX_EXPORTER', 'CARBON_INCLUDE_PHYSX']
+        env['CPPPATH'] += ['#/Source'] + GetDependencyCPPPATH('Max', version=version) + GetDependencyCPPPATH('PhysX')
+        env['LIBPATH'] += GetDependencyLIBPATH('Max', version=version) + GetDependencyLIBPATH('PhysX')
+
+        maxExporterEnvs.append({'version': version, 'env': env})
+
+    # Environments for the Maya exporters
+    if Is64Bit():
+        mayaVersions = ['2009', '2014']
+    else:
+        mayaVersions = ['2009']
+
+    for version in mayaVersions:
+        env = baseEnv.Clone()
+
+        env['CPPDEFINES'] += ['CARBON_INCLUDE_PHYSX', 'CARBON_INCLUDE_MAYA_EXPORTER']
+        env['CPPPATH'] += ['#/Source'] + GetDependencyCPPPATH('Maya', version=version) + GetDependencyCPPPATH('PhysX')
+        env['LIBPATH'] += GetDependencyLIBPATH('Maya', version=version) + GetDependencyLIBPATH('PhysX')
+
+        mayaExporterEnvs.append({'version': version, 'env': env})
+
+    # Environment for the SDK assistant
+    windowsSDKAssistantEnv = baseEnv.Clone()
+    windowsSDKAssistantEnv['CCFLAGS'] += ['/GA']
+    windowsSDKAssistantEnv['CPPPATH'] += ['#/Source']
+    windowsSDKAssistantEnv['LINKFLAGS'] += ['/SUBSYSTEM:WINDOWS']
+
+    # Build method for Carbon client applications
+    def CarbonClientProgram(self, program, sources, **keywords):
+        env = self.Clone()
+        env['CCFLAGS'] += ['/GA'],
+        env['CPPPATH'] += ['#/Source']
+        env['LIBS'] += [GetCarbonEngineBuildResult()]
+        env['LINKFLAGS'] += ['/SUBSYSTEM:WINDOWS']
+
+        if IsCarbonEngineStatic():
+            env['CPPDEFINES'] += ['CARBON_STATIC_LIBRARY']
+            env.SetupForLinkingCarbon()
+
+        return env.Program(program, sources, **keywords)
+
+    baseEnv.AddMethod(CarbonClientProgram)
+
+elif platform == 'Linux' or platform == 'MacOSX':
+
+    dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'PhysX', 'Vorbis', 'ZLib']
+
+    # Environment for Carbon
+    engineEnv = baseEnv.Clone()
+    engineEnv['CPPDEFINES'] += ['CARBON_EXPORTS'] + GetDependencyCPPDEFINES(*(dependencies + ['OpenAL', 'OpenGL11']))
+    engineEnv['CPPPATH'] += ['#/Source'] + GetDependencyCPPPATH(*dependencies)
+
+    if platform == 'Linux':
+        engineEnv['CPPDEFINES'] += ['CARBON_INCLUDE_PLATFORM_SDL']
+    elif platform == 'MacOSX':
+        engineEnv['CPPDEFINES'] += ['CARBON_INCLUDE_PLATFORM_MACOSX'] + GetDependencyCPPDEFINES('OpenGL41')
+
+    # Set a sensible install name for dynamic libraries on Mac OS X
+    if platform == 'MacOSX' and not IsCarbonEngineStatic():
+        engineEnv['LINKFLAGS'] += ['-install_name', '@rpath/lib%s.dylib' % carbonEngineLibraryName]
+
+    # Environment for the Maya exporters on Mac OS X
+    if platform == 'MacOSX':
+        mayaVersions = ['2014']
+    else:
+        mayaVersions = []
+
+    for version in mayaVersions:
+        env = baseEnv.Clone()
+
+        env['CPPDEFINES'] += ['_BOOL', 'CARBON_INCLUDE_MAYA_EXPORTER']
+        env['CPPPATH'] += ['#/Source'] + GetDependencyCPPPATH('Maya', version=version)
+        env['LIBPATH'] += GetDependencyLIBPATH('Maya', version=version)
+        env['LIBS'] += ['OpenMaya', 'OpenMayaAnim', 'Foundation', 'OpenMayaUI']
+
+        if platform == 'MacOSX':
+            env['FRAMEWORKS'] += ['Cocoa', 'IOKit', 'GameKit', 'StoreKit']
+
+        mayaExporterEnvs.append({'version': version, 'env': env})
+
+    # Build method for Carbon client applications
+    def CarbonClientProgram(self, program, sources, **keywords):
+        env = self.Clone()
+        env['CPPPATH'] += ['#/Source']
+        env['LIBS'] += [GetCarbonEngineBuildResult()]
+
+        if IsCarbonEngineStatic():
+            env['CPPDEFINES'] += ['CARBON_STATIC_LIBRARY']
+            env.SetupForLinkingCarbon()
+
+        return env.Program(program, sources, **keywords)
+
+    baseEnv.AddMethod(CarbonClientProgram)
+
+elif platform == 'iOS':
+
+    dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'OpenAssetImport', 'Vorbis', 'ZLib']
+
+    # Environment for Carbon
+    engineEnv = baseEnv.Clone()
+    engineEnv['CPPPATH'] += ['#/Source']
+    engineEnv['CPPPATH'] += GetDependencyCPPPATH(*dependencies)
+
+    # Build method for Carbon client applications
+    def CarbonClientProgram(self, program, sources, **keywords):
+        env = self.Clone()
+        env['CPPPATH'] += ['#/Source']
+        env['LIBS'] += [GetCarbonEngineBuildResult()]
+        env.SetupForLinkingCarbon()
+        return env.Program(program, sources, **keywords)
+
+    baseEnv.AddMethod(CarbonClientProgram)
+
+elif platform == 'Android':
+
+    dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'OpenALSoft', 'OpenAssetImport', 'Vorbis', 'ZLib']
+
+    # Environment for Carbon
+    engineEnv = baseEnv.Clone()
+    engineEnv['CPPPATH'] += ['#/Source'] + GetDependencyCPPPATH(*dependencies)
+
+    # Build method for Carbon client applications
+    def CarbonClientProgram(self, program, sources, **keywords):
+        env = self.Clone()
+        env['CPPPATH'] += ['#/Source']
+        env['LIBS'] += [GetCarbonEngineBuildResult()]
+        env.SetupForLinkingCarbon()
+        return env.Program(program, sources, **keywords)
+
+    baseEnv.AddMethod(CarbonClientProgram)
+
+else:
+
+    engineEnv = platformScript['GetCarbonEngineEnv']()
+
+
+# Make sure EngineAssets.h is current
+if os.system('ruby ../Assets/Engine/CreateEngineAssetsHeader.rb') != 0:
+    Exit(1)
+
+# CarbonEngine
+if IsCarbonEngineStatic():
+    engineEnv['CPPDEFINES'] += ['CARBON_STATIC_LIBRARY']
+else:
+    engineEnv.SetupForLinkingCarbon()
+Export({'env': engineEnv, 'target': carbonEngineLibraryName})
+carbonEngineBuildResult = CarbonSConscript('CarbonEngine/SConscript', variant_dir=carbonEngineLibraryName + '/CarbonEngine')
+Alias('CarbonEngine', Install(installDir, carbonEngineBuildResult))
+SetCarbonEngineBuildResult(carbonEngineBuildResult)
+
+# Provide an 'install' target for POSIX platforms that installs the engine's headers and library files
+if platform == 'Linux' or platform == 'MacOSX':
+    vars = Variables()
+    vars.AddVariables(
+        ('prefix', 'The prefix to install headers and libraries into when building the \'install\' target.', '/usr/local')
+    )
+    Help(vars.GenerateHelpText(Environment()))
+
+    installPrefix = ARGUMENTS.get('prefix', '/usr/local')
+
+    # Install library file and set executable permission
+    for target in carbonEngineBuildResult:
+        installedTarget = Install(os.path.join(installPrefix, 'lib'), target)[0]
+        AddPostAction(installedTarget, ChMod(str(installedTarget), 0755))
+        Alias('install', installedTarget)
+
+    # Install public headers
+    publicHeaders = ['CarbonEngine/CarbonEngine.h', 'CarbonEngine/EntryPoint.h']
+    for header in engineEnv.GetDependentHeaders(publicHeaders, [Dir('#/Source')]):
+        installedHeader = InstallAs(os.path.join(installPrefix, 'include', str(header)), header)
+        Alias('install', installedHeader)
+
+# Exporters can only be built as dynamic libraries
+if not IsCarbonEngineStatic():
+    for e in maxExporterEnvs:
+        target = 'CarbonExporterMax' + e['version']
+        Export({'env': e['env'], 'target': target})
+        result = CarbonSConscript('CarbonEngine/SConscript', variant_dir=target + '/CarbonEngine')
+        Alias(target, InstallAs(source=result[0], target=os.path.join(installDir, target + '.dle')))
+
+    for e in mayaExporterEnvs:
+        target = 'CarbonExporterMaya' + e['version']
+        extensions = {'Windows': '.mll', 'MacOSX': '.bundle', 'Linux': '.so'}
+        Export({'env': e['env'], 'target': target})
+        result = CarbonSConscript('CarbonEngine/SConscript', variant_dir=target + '/CarbonEngine')
+        Alias(target, InstallAs(source=result[0], target=os.path.join(installDir, target + extensions[platform])))
+
+# Windows SDK assistant
+if platform == 'Windows':
+    Export({'env': windowsSDKAssistantEnv})
+    result = CarbonSConscript('WindowsSDKAssistant/SConscript')
+    Alias('WindowsSDKAssistant', Install(installDir, result))
+
+# Sample applications
+for sample in glob.glob('*Sample'):
+    result = CarbonSConscript(os.path.join(sample, 'SConscript'))
+    Alias(sample, Install(installDir, result))

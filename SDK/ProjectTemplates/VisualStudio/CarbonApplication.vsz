@@ -1,0 +1,7 @@
+VSWIZARD 7.0
+Wizard=VsWizard.VsWizardEngine.$VISUAL_STUDIO_VERSION$
+
+Param="WIZARD_ID = 193"
+Param="WIZARD_NAME = CarbonApplication"
+Param="RELATIVE_PATH = VCWizards\AppWiz"
+Param="WIZARD_UI = FALSE"

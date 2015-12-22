@@ -1,0 +1,146 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+Unicode True
+
+SetCompressor /solid lzma
+SetCompressorDictSize 64
+
+!include "FileFunc.nsh"
+!include "MUI2.nsh"
+
+Name "<%= display_name %>"
+OutFile "<%= full_output_path "#{display_name}.exe" %>"
+InstallDir "$PROGRAMFILES<%= { x86: '32', x64: '64' }.fetch architecture %>\<%= application %>"
+
+RequestExecutionLevel admin
+
+!define START_MENU_FOLDER "$SMPROGRAMS\<%= application %>"
+!define UNINSTALLER "$INSTDIR\Uninstall.exe"
+!define UNINSTALLER_REGKEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\<%= application %>"
+
+# Setup Modern UI
+<% if icon %>
+    !define MUI_ICON "<%= icon %>"
+<% end %>
+BrandingText " "
+
+# Installer pages
+!insertmacro MUI_PAGE_WELCOME
+Page custom PageUninstallExistingVersion PageLeaveUninstallExistingVersion
+!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
+
+# Uninstaller pages
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
+
+# Language setup
+!insertmacro MUI_LANGUAGE "English"
+!insertmacro MUI_RESERVEFILE_LANGDLL
+
+# This is the main section for the installer that specifies all the files and registry keys to create during install
+Section
+    # Core binaries from the Carbon SDK
+    SetOutPath "$INSTDIR"
+    File "<%= sdk_path %>\Bin\CarbonEngine<%= { x86: '', x64: '64' }.fetch architecture %>.dll"
+
+    # PhysX binaries
+    File "<%= sdk_path %>\Bin\PhysX3_<%= architecture %>.dll"
+    File "<%= sdk_path %>\Bin\PhysX3Common_<%= architecture %>.dll"
+    File "<%= sdk_path %>\Bin\PhysX3Cooking_<%= architecture %>.dll"
+    File "<%= sdk_path %>\Bin\PhysX3CharacterKinematic_<%= architecture %>.dll"
+    File "<%= sdk_path %>\Bin\PhysX3Extensions_<%= architecture %>.dll"
+
+    # Application executable
+    SetOutPath "$INSTDIR"
+    File "<%= NSIS.path executable %>"
+
+    # Application assets
+    <% current_out_path = nil %>
+    <% asset_files.each do |source, destination| %>
+        <% if current_out_path != File.dirname(destination) %>
+            <% current_out_path = File.dirname destination %>
+            SetOutPath "$INSTDIR\<%= NSIS.path current_out_path %>"
+        <% end %>
+        File "<%= NSIS.path source %>"
+    <% end %>
+
+    # Start menu folder
+    SetOutPath "$INSTDIR"
+    CreateDirectory "${START_MENU_FOLDER}"
+    CreateShortcut  "${START_MENU_FOLDER}\<%= application %>.lnk" "$INSTDIR\<%= NSIS.path File.basename(executable) %>"
+    CreateShortcut  "${START_MENU_FOLDER}\Uninstall.lnk" "${UNINSTALLER}"
+
+    # Put into Windows' list of installed programs
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "DisplayName" "<%= application %>"
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "DisplayVersion" "<%= version %>"
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "DisplayIcon" "$INSTDIR\<%= NSIS.path File.basename(executable) %>"
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "InstallLocation" "$INSTDIR"
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "UninstallString" "$\"${UNINSTALLER}$\""
+    WriteRegStr   HKLM "${UNINSTALLER_REGKEY}" "QuietUninstallString" "$\"${UNINSTALLER}$\" /S"
+    WriteRegDWORD HKLM "${UNINSTALLER_REGKEY}" "NoModify" 1
+    WriteRegDWORD HKLM "${UNINSTALLER_REGKEY}" "NoRepair" 1
+
+    # Create uninstaller
+    WriteUninstaller "${UNINSTALLER}"
+SectionEnd
+
+# This section tells Windows the final size of the installed application
+Section
+    ${GetSize} "$INSTDIR" "/S=0K" $0 $1 $2
+    IntFmt $0 "0x%08X" $0
+    WriteRegDWORD HKLM "${UNINSTALLER_REGKEY}" "EstimatedSize" "$0"
+SectionEnd
+
+# The installer has a custom page that is shown if a version of this application is already installed and requests that
+# it be uninstalled before installing this version.
+Function PageUninstallExistingVersion
+
+    # Check if there is a version already installed on this system, if there isn't then skip showing the custom page
+    ReadRegStr $R0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\<%= application %>" "DisplayName"
+    ReadRegStr $R1 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\<%= application %>" "DisplayVersion"
+    IfErrors 0 +2
+    Abort
+
+    # Set header text
+    !insertmacro MUI_HEADER_TEXT "Already Installed" "Uninstall existing <%= application %>"
+
+    # Create custom page to prompt about uninstallation
+    nsDialogs::Create /NOUNLOAD 1018
+    Pop $0
+    ${NSD_CreateLabel} 0 0 100% 10u "Setup found the following copy of <%= application %> installed on your system:"
+    Pop $0
+    ${NSD_CreateLabel} 15u 20u 100% 10u "$R0 $R1"
+    Pop $0
+    ${NSD_CreateLabel} 0 40u 100% 100% "This must be uninstalled before continuing. Click Next to uninstall or Cancel to exit."
+    Pop $0
+
+    nsDialogs::Show
+FunctionEnd
+
+Function PageLeaveUninstallExistingVersion
+    # Run the uninstaller
+    ReadRegStr $R0 HKLM "${UNINSTALLER_REGKEY}" "UninstallString"
+    ReadRegStr $R1 HKLM "${UNINSTALLER_REGKEY}" "InstallLocation"
+    ExecWait '"$R0" /S _?=$R1'
+
+    # Delete the uninstaller and install directory
+    RmDir /r "$R1"
+FunctionEnd
+
+# This is the section for the uninstaller, it just deletes everything
+Section "Uninstall"
+    # Remove install directory
+    RmDir /r "$INSTDIR"
+
+    # Remove start menu folder
+    RmDir /r "${START_MENU_FOLDER}"
+    DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder\Start Menu\Programs\<%= application %>"
+
+    # Remove from Windows' list of installed programs
+    DeleteRegKey HKLM "${UNINSTALLER_REGKEY}"
+SectionEnd

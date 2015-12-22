@@ -1,0 +1,104 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+import os
+import subprocess
+import re
+import string
+
+Import('*')
+
+# Glob for source files
+sources = env.GlobDirectories('.') + env.GlobDirectories(
+    'Core', 'Exporters', 'Game', 'Geometry', 'Graphics', 'Image', 'Math', 'Physics', 'Platform', 'Render', 'Scene', 'Scripting',
+    'Sound', recursive=True
+)
+
+if 'extraCarbonSConscript' in platformScript:
+    sources += CarbonSConscript(platformScript['extraCarbonSConscript'], variant_dir=target + 'Extra')
+
+# Common.cpp is only ever needed in static library builds on Visual Studio (due to the use of the precompiled headers)
+if not (compiler.startswith('VisualStudio') and IsCarbonEngineStatic()):
+    commonCppRegEx = re.compile('.*CarbonEngine.Common\.cpp$')
+    sources = [f for f in sources if not commonCppRegEx.match(str(f))]
+
+# Visual C++ has problems using precompiled headers with debug builds of static libraries. The workaround is to add an explicit
+# reference to a symbol defined in the precompiled header, in this case the reference is to Exception::Exception(). For details
+# see http://msdn.microsoft.com/en-us/library/w6y1zk9f.aspx and http://msdn.microsoft.com/en-us/library/cf1aswwe.aspx.
+if compiler.startswith('VisualStudio') and IsCarbonEngineStatic() and isDebugBuild:
+    env['CXXFLAGS'] += ['/Yl??1Exception@Carbon@@QAE@XZ']
+
+# Use a precompiled header
+env.UsePrecompiledHeader('Common.h', pathToHeaderRoot='..', includeText='CarbonEngine/Common.h',
+                         isSharedLibrary=not IsCarbonEngineStatic())
+
+# It is helpful to be able to build individual files with a different set of preprocessor defines. This is controlled through
+# carbonCustomFileDefines which is an array where each entry is a dict containing values for 'name' (a string) and 'defines' (an
+# array of strings or tuples), and optionally 'location' if 'name' doesn't specify the path of the the file that the extra
+# defines will be set on.
+carbonCustomFileDefines = platformScript.get('carbonCustomFileDefines', [])
+
+# Set CARBON_VERSION appropriately when building Core/BuildInfo.cpp
+versionScript = string.replace(str(File('#/SDK/Version.rb').srcnode()), '\\', '/')
+rubyCode = 'require "' + versionScript + '"; puts sdk_version'
+version = subprocess.check_output(['ruby', '-e', rubyCode]).strip()
+carbonCustomFileDefines.append({
+    'name': 'Core/BuildInfo.cpp',
+    'defines': [{'CARBON_VERSION': version}]
+})
+
+# Process the list of custom file defines
+for entry in carbonCustomFileDefines:
+    for i in range(len(sources)):
+        if str(sources[i]).replace('\\', '/').endswith(entry['name']):
+
+            # The location of the source file defaults to the name but can be overridden. This is necessary when the source file
+            # lies outside of this directory
+            location = entry.get('location', entry['name'])
+
+            customCPPDEFINES = env['CPPDEFINES'] + entry['defines']
+
+            # Rebuild the object file and replace it in the list of source files
+            if IsCarbonEngineStatic():
+                sources[i] = env.StaticObject(location, CPPDEFINES=customCPPDEFINES)
+            else:
+                sources[i] = env.SharedObject(location, CPPDEFINES=customCPPDEFINES)
+
+            break
+
+# Clang doesn't allow use of a C++ precompiled header when building an Objective C++ source file. To get around this Clang-style
+# precompiled header directives are removed from CCFLAGS when building Objective C++ files. The proper solution would be to have
+# a separate Objective C++ precompiled header built with the -x objective-c++-header flag.
+if compiler == 'Clang' and '-include-pch' in env['CCFLAGS']:
+    objectiveCXXEnv = env.Clone()
+
+    # Remove the 4 CCFLAGS that control the precompiled header: '-Xclang -include-pch -Xclang <file>'
+    index = objectiveCXXEnv['CCFLAGS'].index('-include-pch')
+    objectiveCXXEnv['CCFLAGS'] = objectiveCXXEnv['CCFLAGS'][:index - 1] + objectiveCXXEnv['CCFLAGS'][index + 3:]
+
+    # Loop through all Objective C++ source files building them with the altered environment
+    for i in range(len(sources)):
+        sourceName = str(sources[i])
+        if sourceName.endswith('.mm'):
+            sourceName = sourceName[sourceName.find('CarbonEngine/') + 13:]
+            if IsCarbonEngineStatic():
+                sources[i] = objectiveCXXEnv.StaticObject(target=sourceName + '.o', source=sourceName)
+            else:
+                sources[i] = objectiveCXXEnv.SharedObject(target=sourceName + '.o', source=sourceName)
+
+# Build
+if IsCarbonEngineStatic():
+    result = env.StaticLibrary(target=target, source=sources)
+else:
+    # When building a DLL on Windows also generate PDBs and embed the mainfest file
+    if platform == 'Windows':
+        env['LINKFLAGS'] += ['/PDBALTPATH:%_PDB%']
+        env['PDB'] = target + '.pdb'
+
+        env.EmbedManifestFile('CarbonEngine.manifest', isDLL=True)
+
+    result = env.SharedLibrary(target=target, source=sources)
+
+Return('result')

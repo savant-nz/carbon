@@ -1,0 +1,20 @@
+Description             "Primary surface shader for all geometry, supports vertex coloring, normal mapping, diffuse lighting, \
+                         specular lighting, ambient occlusion, gloss mapping, decal mapping, and parallax mapping"
+
+VertexStream            Position[3]
+VertexStream            DiffuseTextureCoordinate[2]
+
+$diffuseMap             Texture2D WorldDiffuse
+$normalMap              Texture2D WorldNormal Optional
+$glossMap               Texture2D WorldGloss Optional
+$ambientOcclusionMap    Texture2D WorldLightmap Optional
+$decalMap               Texture2D WorldDiffuse Optional
+$decalGlossMap          Texture2D WorldGloss Optional
+
+$diffuseColor           Color Optional
+
+$specularColor          Color Optional
+$specularExponent       Float Optional
+
+$parallaxScale          Float Optional
+$parallaxStepCount      Integer Optional

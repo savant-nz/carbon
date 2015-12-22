@@ -1,0 +1,7 @@
+Description             "Post-process gaussian blur, either horizontal or vertical"
+
+$blurType               String      # The type should be 'horizontal', 'vertical' or '2D'
+$blurStandardDeviation  Float
+$blurScale              Float
+
+$color                  Color Optional

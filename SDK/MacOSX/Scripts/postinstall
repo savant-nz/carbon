@@ -1,0 +1,59 @@
+#!/usr/bin/ruby
+#
+# This script is run following the install of the Carbon SDK for Mac OS X and iOS and is responsible for the following:
+#
+#   - Creating the required environment variables in ~/.profile
+#   - Installing the Xcode project template
+#
+
+require 'fileutils'
+require 'find'
+
+INSTALL_PATH = '/Applications/Carbon SDK'
+XCODE_PROJECT_TEMPLATES_PATH = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application"
+
+def user_profile_filename
+  "#{ENV['HOME']}/.profile"
+end
+
+def user_profile_lines
+  if File.exist? user_profile_filename
+    File.read(user_profile_filename).lines
+  else
+    []
+  end
+end
+
+def update_user_dot_profile
+  vars = {
+    'CARBON_CREATE_INSTALLER_SCRIPT' => "#{INSTALL_PATH}/Scripts/CreateInstaller/CreateInstaller.rb",
+    'CARBON_SHARED_BUILD_SCONSCRIPT' => "#{INSTALL_PATH}/Scripts/SCons/Shared.sconscript.py",
+    'CARBON_SHARED_SCRIPT'           => "#{INSTALL_PATH}/Scripts/Shared.rb"
+  }
+
+  profile_lines = user_profile_lines.reject { |line| vars.keys.any? { |key| line =~ /export #{key}=/ } }
+
+  vars.each { |key, value| profile_lines << "export #{key}=\"#{value}\"\n" }
+
+  File.write user_profile_filename, profile_lines.join
+
+  `chown -R #{ENV['USER']} "#{user_profile_filename}"`
+end
+
+def install_xcode_project_template
+  target = "#{XCODE_PROJECT_TEMPLATES_PATH}/CarbonEngine Application.xctemplate"
+
+  # Create symlink to the project template
+  `sudo -u #{ENV['USER']} mkdir -p "#{File.dirname target}"`
+  `sudo -u #{ENV['USER']} rm -f "#{target}"`
+  `sudo -u #{ENV['USER']} ln -s "#{INSTALL_PATH}/ProjectTemplate" "#{target}"`
+end
+
+def change_owner_to_current_user
+  `chown -R #{ENV['USER']} "/Applications/Carbon SDK"`
+end
+
+# Run all the postinstall tasks
+update_user_dot_profile
+install_xcode_project_template
+change_owner_to_current_user

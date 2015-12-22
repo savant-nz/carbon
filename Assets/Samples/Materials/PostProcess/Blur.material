@@ -1,0 +1,5 @@
+Effect                          PostProcessBlur
+
+$blurScale                      2.0
+$blurStandardDeviation          5.0
+$blurType                       horizontal

@@ -1,0 +1,23 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+Import('*')
+
+sources = [
+    'PhysXExtensions/src/ExtCpuWorkerThread.cpp',
+    'PhysXExtensions/src/ExtDefaultCpuDispatcher.cpp',
+    'PhysXExtensions/src/ExtDefaultSimulationFilterShader.cpp',
+    'PhysXExtensions/src/ExtJoint.cpp',
+    'PhysXExtensions/src/ExtRevoluteJoint.cpp',
+    'PhysXExtensions/src/ExtRevoluteJointSolverPrep.cpp',
+    'PhysXExtensions/src/ExtRigidBodyExt.cpp',
+    'PhysXExtensions/src/ExtSimpleFactory.cpp',
+    'PhysXExtensions/src/ExtSphericalJoint.cpp',
+    'PhysXExtensions/src/ExtSphericalJointSolverPrep.cpp',
+]
+
+result = env.SharedLibrary(target=target, source=sources)[0]
+
+Return('result')

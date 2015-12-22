@@ -1,0 +1,7 @@
+Description             "Applies a standard skydome cubemap texture"
+
+VertexStream            Position[3]
+
+$diffuseMap             TextureCubemap Sky
+
+$depthWrite             Boolean Optional

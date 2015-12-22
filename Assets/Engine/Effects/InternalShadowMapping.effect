@@ -1,0 +1,3 @@
+Description             "Internal effect used in shadow map rendering"
+
+VertexStream            Position[3]

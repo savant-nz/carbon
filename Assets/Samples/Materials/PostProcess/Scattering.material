@@ -1,0 +1,8 @@
+Effect                          PostProcessScattering
+
+$extinctionFactor               1.1
+$g                              0.999975
+$inscatteringFactor             1.45
+$mieCoefficient                 0.0185
+$rayleighCoefficient            1.95
+$turbidity                      7.5

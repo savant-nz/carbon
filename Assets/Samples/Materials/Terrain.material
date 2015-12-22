@@ -1,0 +1,4 @@
+Effect                          InternalGeometryClipmapping
+
+$baseMap                        Terrain.png
+$detailMap                      White.png

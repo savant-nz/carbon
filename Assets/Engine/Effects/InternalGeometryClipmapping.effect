@@ -1,0 +1,6 @@
+Description             "Geometry clipmapping for heightfield terrains"
+
+VertexStream            Position[3]
+
+$baseMap                Texture2D WorldDiffuse
+$detailMap              Texture2D WorldDiffuse

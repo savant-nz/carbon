@@ -1,0 +1,9 @@
+Description             "Internal effect used for deferred lighting"
+
+$normalsTexture         Texture2D WorldNormal
+
+$lightDirection         Vec3
+$lightColor             Color
+
+$isSpecularEnabled      Boolean
+$specularIntensity      Float

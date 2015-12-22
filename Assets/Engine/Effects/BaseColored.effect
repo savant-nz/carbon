@@ -1,0 +1,5 @@
+Description             "Single solid color"
+
+VertexStream            Position[3]
+
+$diffuseColor           Color Optional

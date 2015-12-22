@@ -1,0 +1,1050 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section of PhysXCharacterKinematic */
+		FFFFfe207b0cfe207b0cfe20 /* CctBoxController.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDfe207b0cfe207b0cfe20 /* CctBoxController.cpp */; };
+		FFFFfe807b0cfe807b0cfe80 /* CctCapsuleController.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDfe807b0cfe807b0cfe80 /* CctCapsuleController.cpp */; };
+		FFFFfee07b0cfee07b0cfee0 /* CctCharacterController.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDfee07b0cfee07b0cfee0 /* CctCharacterController.cpp */; };
+		FFFFff407b0cff407b0cff40 /* CctCharacterControllerCallbacks.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDff407b0cff407b0cff40 /* CctCharacterControllerCallbacks.cpp */; };
+		FFFFffa07b0cffa07b0cffa0 /* CctCharacterControllerManager.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDffa07b0cffa07b0cffa0 /* CctCharacterControllerManager.cpp */; };
+		FFFF00007b0d00007b0d0000 /* CctController.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD00007b0d00007b0d0000 /* CctController.cpp */; };
+		FFFF00607b0d00607b0d0060 /* CctObstacleContext.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD00607b0d00607b0d0060 /* CctObstacleContext.cpp */; };
+		FFFF00c07b0d00c07b0d00c0 /* CctSweptBox.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD00c07b0d00c07b0d00c0 /* CctSweptBox.cpp */; };
+		FFFF01207b0d01207b0d0120 /* CctSweptCapsule.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD01207b0d01207b0d0120 /* CctSweptCapsule.cpp */; };
+		FFFF01807b0d01807b0d0180 /* CctSweptVolume.cpp in src */= { isa = PBXBuildFile; fileRef = FFFD01807b0d01807b0d0180 /* CctSweptVolume.cpp */; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileReference section */
+		FFFDa8607b8ca8607b8ca860 /* PhysXCharacterKinematic */ = {isa = PBXFileReference; explicitFileType = "archive.ar"; path = "PhysXCharacterKinematic"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFFD22007b0c22007b0c2200 /* PxBoxController.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxBoxController.h"; path = "../../../Include/characterkinematic/PxBoxController.h"; sourceTree = SOURCE_ROOT; };
+		FFFD22607b0c22607b0c2260 /* PxCapsuleController.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxCapsuleController.h"; path = "../../../Include/characterkinematic/PxCapsuleController.h"; sourceTree = SOURCE_ROOT; };
+		FFFD22c07b0c22c07b0c22c0 /* PxCharacter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxCharacter.h"; path = "../../../Include/characterkinematic/PxCharacter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD23207b0c23207b0c2320 /* PxController.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxController.h"; path = "../../../Include/characterkinematic/PxController.h"; sourceTree = SOURCE_ROOT; };
+		FFFD23807b0c23807b0c2380 /* PxControllerBehavior.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxControllerBehavior.h"; path = "../../../Include/characterkinematic/PxControllerBehavior.h"; sourceTree = SOURCE_ROOT; };
+		FFFD23e07b0c23e07b0c23e0 /* PxControllerManager.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxControllerManager.h"; path = "../../../Include/characterkinematic/PxControllerManager.h"; sourceTree = SOURCE_ROOT; };
+		FFFD24407b0c24407b0c2440 /* PxControllerObstacles.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxControllerObstacles.h"; path = "../../../Include/characterkinematic/PxControllerObstacles.h"; sourceTree = SOURCE_ROOT; };
+		FFFD24a07b0c24a07b0c24a0 /* PxExtended.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxExtended.h"; path = "../../../Include/characterkinematic/PxExtended.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfa007b0cfa007b0cfa00 /* CctBoxController.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctBoxController.h"; path = "../../PhysXCharacterKinematic/src/CctBoxController.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfa607b0cfa607b0cfa60 /* CctCapsuleController.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctCapsuleController.h"; path = "../../PhysXCharacterKinematic/src/CctCapsuleController.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfac07b0cfac07b0cfac0 /* CctCharacterController.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctCharacterController.h"; path = "../../PhysXCharacterKinematic/src/CctCharacterController.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfb207b0cfb207b0cfb20 /* CctCharacterControllerManager.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctCharacterControllerManager.h"; path = "../../PhysXCharacterKinematic/src/CctCharacterControllerManager.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfb807b0cfb807b0cfb80 /* CctController.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctController.h"; path = "../../PhysXCharacterKinematic/src/CctController.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfbe07b0cfbe07b0cfbe0 /* CctInternalStructs.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctInternalStructs.h"; path = "../../PhysXCharacterKinematic/src/CctInternalStructs.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfc407b0cfc407b0cfc40 /* CctObstacleContext.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctObstacleContext.h"; path = "../../PhysXCharacterKinematic/src/CctObstacleContext.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfca07b0cfca07b0cfca0 /* CctSweptBox.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctSweptBox.h"; path = "../../PhysXCharacterKinematic/src/CctSweptBox.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfd007b0cfd007b0cfd00 /* CctSweptCapsule.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctSweptCapsule.h"; path = "../../PhysXCharacterKinematic/src/CctSweptCapsule.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfd607b0cfd607b0cfd60 /* CctSweptVolume.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctSweptVolume.h"; path = "../../PhysXCharacterKinematic/src/CctSweptVolume.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfdc07b0cfdc07b0cfdc0 /* CctUtils.h */= { isa = PBXFileReference; fileEncoding = 4; name = "CctUtils.h"; path = "../../PhysXCharacterKinematic/src/CctUtils.h"; sourceTree = SOURCE_ROOT; };
+		FFFDfe207b0cfe207b0cfe20 /* CctBoxController.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctBoxController.cpp"; path = "../../PhysXCharacterKinematic/src/CctBoxController.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDfe807b0cfe807b0cfe80 /* CctCapsuleController.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctCapsuleController.cpp"; path = "../../PhysXCharacterKinematic/src/CctCapsuleController.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDfee07b0cfee07b0cfee0 /* CctCharacterController.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctCharacterController.cpp"; path = "../../PhysXCharacterKinematic/src/CctCharacterController.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDff407b0cff407b0cff40 /* CctCharacterControllerCallbacks.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctCharacterControllerCallbacks.cpp"; path = "../../PhysXCharacterKinematic/src/CctCharacterControllerCallbacks.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDffa07b0cffa07b0cffa0 /* CctCharacterControllerManager.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctCharacterControllerManager.cpp"; path = "../../PhysXCharacterKinematic/src/CctCharacterControllerManager.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD00007b0d00007b0d0000 /* CctController.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctController.cpp"; path = "../../PhysXCharacterKinematic/src/CctController.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD00607b0d00607b0d0060 /* CctObstacleContext.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctObstacleContext.cpp"; path = "../../PhysXCharacterKinematic/src/CctObstacleContext.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD00c07b0d00c07b0d00c0 /* CctSweptBox.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctSweptBox.cpp"; path = "../../PhysXCharacterKinematic/src/CctSweptBox.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD01207b0d01207b0d0120 /* CctSweptCapsule.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctSweptCapsule.cpp"; path = "../../PhysXCharacterKinematic/src/CctSweptCapsule.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD01807b0d01807b0d0180 /* CctSweptVolume.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "CctSweptVolume.cpp"; path = "../../PhysXCharacterKinematic/src/CctSweptVolume.cpp"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FFF2a8607b8ca8607b8ca860 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FFFCa8607b8ca8607b8ca860 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FFF8a8607b8ca8607b8ca860 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFFFfe207b0cfe207b0cfe20,
+				FFFFfe807b0cfe807b0cfe80,
+				FFFFfee07b0cfee07b0cfee0,
+				FFFFff407b0cff407b0cff40,
+				FFFFffa07b0cffa07b0cffa0,
+				FFFF00007b0d00007b0d0000,
+				FFFF00607b0d00607b0d0060,
+				FFFF00c07b0d00c07b0d00c0,
+				FFFF01207b0d01207b0d0120,
+				FFFF01807b0d01807b0d0180,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+/* End PBXShellScriptBuildPhase section */
+/* Begin PBXTargetDependency section */
+		FFF443807b8d43807b8d4380 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FFFA32e07b9c32e07b9c32e0 /* PhysXExtensions */;
+			targetProxy = FFF532e07b9c32e07b9c32e0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXBuildFile section of PhysXExtensions */
+		FFFFa7207b19a7207b19a720 /* ExtBroadPhase.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDa7207b19a7207b19a720 /* ExtBroadPhase.cpp */; };
+		FFFFa7807b19a7807b19a780 /* ExtClothFabricCooker.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDa7807b19a7807b19a780 /* ExtClothFabricCooker.cpp */; };
+		FFFFa7e07b19a7e07b19a7e0 /* ExtClothGeodesicTetherCooker.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDa7e07b19a7e07b19a7e0 /* ExtClothGeodesicTetherCooker.cpp */; };
+		FFFFa8407b19a8407b19a840 /* ExtClothMeshQuadifier.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDa8407b19a8407b19a840 /* ExtClothMeshQuadifier.cpp */; };
+		FFFFa8a07b19a8a07b19a8a0 /* ExtClothSimpleTetherCooker.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDa8a07b19a8a07b19a8a0 /* ExtClothSimpleTetherCooker.cpp */; };
+		FFFFa9007b19a9007b19a900 /* ExtCollection.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDa9007b19a9007b19a900 /* ExtCollection.cpp */; };
+		FFFFa9607b19a9607b19a960 /* ExtCpuWorkerThread.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDa9607b19a9607b19a960 /* ExtCpuWorkerThread.cpp */; };
+		FFFFa9c07b19a9c07b19a9c0 /* ExtD6Joint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDa9c07b19a9c07b19a9c0 /* ExtD6Joint.cpp */; };
+		FFFFaa207b19aa207b19aa20 /* ExtD6JointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDaa207b19aa207b19aa20 /* ExtD6JointSolverPrep.cpp */; };
+		FFFFaa807b19aa807b19aa80 /* ExtDefaultBufferedProfiler.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDaa807b19aa807b19aa80 /* ExtDefaultBufferedProfiler.cpp */; };
+		FFFFaae07b19aae07b19aae0 /* ExtDefaultCpuDispatcher.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDaae07b19aae07b19aae0 /* ExtDefaultCpuDispatcher.cpp */; };
+		FFFFab407b19ab407b19ab40 /* ExtDefaultErrorCallback.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDab407b19ab407b19ab40 /* ExtDefaultErrorCallback.cpp */; };
+		FFFFaba07b19aba07b19aba0 /* ExtDefaultSimulationFilterShader.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDaba07b19aba07b19aba0 /* ExtDefaultSimulationFilterShader.cpp */; };
+		FFFFac007b19ac007b19ac00 /* ExtDefaultStreams.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDac007b19ac007b19ac00 /* ExtDefaultStreams.cpp */; };
+		FFFFac607b19ac607b19ac60 /* ExtDistanceJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDac607b19ac607b19ac60 /* ExtDistanceJoint.cpp */; };
+		FFFFacc07b19acc07b19acc0 /* ExtDistanceJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDacc07b19acc07b19acc0 /* ExtDistanceJointSolverPrep.cpp */; };
+		FFFFad207b19ad207b19ad20 /* ExtExtensions.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDad207b19ad207b19ad20 /* ExtExtensions.cpp */; };
+		FFFFad807b19ad807b19ad80 /* ExtFixedJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDad807b19ad807b19ad80 /* ExtFixedJoint.cpp */; };
+		FFFFade07b19ade07b19ade0 /* ExtFixedJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDade07b19ade07b19ade0 /* ExtFixedJointSolverPrep.cpp */; };
+		FFFFae407b19ae407b19ae40 /* ExtJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDae407b19ae407b19ae40 /* ExtJoint.cpp */; };
+		FFFFaea07b19aea07b19aea0 /* ExtMetaData.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDaea07b19aea07b19aea0 /* ExtMetaData.cpp */; };
+		FFFFaf007b19af007b19af00 /* ExtParticleExt.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDaf007b19af007b19af00 /* ExtParticleExt.cpp */; };
+		FFFFaf607b19af607b19af60 /* ExtPrismaticJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDaf607b19af607b19af60 /* ExtPrismaticJoint.cpp */; };
+		FFFFafc07b19afc07b19afc0 /* ExtPrismaticJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDafc07b19afc07b19afc0 /* ExtPrismaticJointSolverPrep.cpp */; };
+		FFFFb0207b19b0207b19b020 /* ExtPvdClientImpl.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb0207b19b0207b19b020 /* ExtPvdClientImpl.cpp */; };
+		FFFFb0807b19b0807b19b080 /* ExtPxStringTable.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb0807b19b0807b19b080 /* ExtPxStringTable.cpp */; };
+		FFFFb0e07b19b0e07b19b0e0 /* ExtRevoluteJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb0e07b19b0e07b19b0e0 /* ExtRevoluteJoint.cpp */; };
+		FFFFb1407b19b1407b19b140 /* ExtRevoluteJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb1407b19b1407b19b140 /* ExtRevoluteJointSolverPrep.cpp */; };
+		FFFFb1a07b19b1a07b19b1a0 /* ExtRigidBodyExt.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb1a07b19b1a07b19b1a0 /* ExtRigidBodyExt.cpp */; };
+		FFFFb2007b19b2007b19b200 /* ExtSimpleFactory.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb2007b19b2007b19b200 /* ExtSimpleFactory.cpp */; };
+		FFFFb2607b19b2607b19b260 /* ExtSmoothNormals.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb2607b19b2607b19b260 /* ExtSmoothNormals.cpp */; };
+		FFFFb2c07b19b2c07b19b2c0 /* ExtSphericalJoint.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb2c07b19b2c07b19b2c0 /* ExtSphericalJoint.cpp */; };
+		FFFFb3207b19b3207b19b320 /* ExtSphericalJointSolverPrep.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb3207b19b3207b19b320 /* ExtSphericalJointSolverPrep.cpp */; };
+		FFFFb3807b19b3807b19b380 /* ExtTriangleMeshExt.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb3807b19b3807b19b380 /* ExtTriangleMeshExt.cpp */; };
+		FFFFb3e07b19b3e07b19b3e0 /* ExtVisualDebugger.cpp in src */= { isa = PBXBuildFile; fileRef = FFFDb3e07b19b3e07b19b3e0 /* ExtVisualDebugger.cpp */; };
+		FFFF7ac07b197ac07b197ac0 /* SnSerialUtils.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD7ac07b197ac07b197ac0 /* SnSerialUtils.cpp */; };
+		FFFF7b207b197b207b197b20 /* SnSerialization.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD7b207b197b207b197b20 /* SnSerialization.cpp */; };
+		FFFF7b807b197b807b197b80 /* SnSerializationRegistry.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD7b807b197b807b197b80 /* SnSerializationRegistry.cpp */; };
+		FFFF7ee07b197ee07b197ee0 /* Binary/SnBinaryDeserialization.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD7ee07b197ee07b197ee0 /* Binary/SnBinaryDeserialization.cpp */; };
+		FFFF7f407b197f407b197f40 /* Binary/SnBinarySerialization.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD7f407b197f407b197f40 /* Binary/SnBinarySerialization.cpp */; };
+		FFFF7fa07b197fa07b197fa0 /* Binary/SnConvX.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD7fa07b197fa07b197fa0 /* Binary/SnConvX.cpp */; };
+		FFFF80007b1980007b198000 /* Binary/SnConvX_Align.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD80007b1980007b198000 /* Binary/SnConvX_Align.cpp */; };
+		FFFF80607b1980607b198060 /* Binary/SnConvX_Convert.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD80607b1980607b198060 /* Binary/SnConvX_Convert.cpp */; };
+		FFFF80c07b1980c07b1980c0 /* Binary/SnConvX_Error.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD80c07b1980c07b1980c0 /* Binary/SnConvX_Error.cpp */; };
+		FFFF81207b1981207b198120 /* Binary/SnConvX_MetaData.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD81207b1981207b198120 /* Binary/SnConvX_MetaData.cpp */; };
+		FFFF81807b1981807b198180 /* Binary/SnConvX_Output.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD81807b1981807b198180 /* Binary/SnConvX_Output.cpp */; };
+		FFFF81e07b1981e07b1981e0 /* Binary/SnConvX_Union.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD81e07b1981e07b1981e0 /* Binary/SnConvX_Union.cpp */; };
+		FFFF82407b1982407b198240 /* Binary/SnSerializationContext.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD82407b1982407b198240 /* Binary/SnSerializationContext.cpp */; };
+		FFFF8a807b198a807b198a80 /* Xml/SnJointRepXSerializer.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD8a807b198a807b198a80 /* Xml/SnJointRepXSerializer.cpp */; };
+		FFFF8ae07b198ae07b198ae0 /* Xml/SnRepXCoreSerializer.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD8ae07b198ae07b198ae0 /* Xml/SnRepXCoreSerializer.cpp */; };
+		FFFF8b407b198b407b198b40 /* Xml/SnRepXUpgrader.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD8b407b198b407b198b40 /* Xml/SnRepXUpgrader.cpp */; };
+		FFFF8ba07b198ba07b198ba0 /* Xml/SnXmlSerialization.cpp in serialization */= { isa = PBXBuildFile; fileRef = FFFD8ba07b198ba07b198ba0 /* Xml/SnXmlSerialization.cpp */; };
+		FFFF34807b1934807b193480 /* extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp in metadata */= { isa = PBXBuildFile; fileRef = FFFD34807b1934807b193480 /* extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp */; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileReference section */
+		FFFD32e07b9c32e07b9c32e0 /* PhysXExtensions */ = {isa = PBXFileReference; explicitFileType = "archive.ar"; path = "PhysXExtensions"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFFDb6007b19b6007b19b600 /* PxBinaryConverter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxBinaryConverter.h"; path = "../../../Include/extensions/PxBinaryConverter.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb6607b19b6607b19b660 /* PxBroadPhaseExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxBroadPhaseExt.h"; path = "../../../Include/extensions/PxBroadPhaseExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb6c07b19b6c07b19b6c0 /* PxClothFabricCooker.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxClothFabricCooker.h"; path = "../../../Include/extensions/PxClothFabricCooker.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb7207b19b7207b19b720 /* PxClothMeshDesc.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxClothMeshDesc.h"; path = "../../../Include/extensions/PxClothMeshDesc.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb7807b19b7807b19b780 /* PxClothMeshQuadifier.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxClothMeshQuadifier.h"; path = "../../../Include/extensions/PxClothMeshQuadifier.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb7e07b19b7e07b19b7e0 /* PxClothTetherCooker.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxClothTetherCooker.h"; path = "../../../Include/extensions/PxClothTetherCooker.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb8407b19b8407b19b840 /* PxCollectionExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxCollectionExt.h"; path = "../../../Include/extensions/PxCollectionExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb8a07b19b8a07b19b8a0 /* PxConstraintExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxConstraintExt.h"; path = "../../../Include/extensions/PxConstraintExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb9007b19b9007b19b900 /* PxD6Joint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxD6Joint.h"; path = "../../../Include/extensions/PxD6Joint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb9607b19b9607b19b960 /* PxDefaultAllocator.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultAllocator.h"; path = "../../../Include/extensions/PxDefaultAllocator.h"; sourceTree = SOURCE_ROOT; };
+		FFFDb9c07b19b9c07b19b9c0 /* PxDefaultBufferedProfiler.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultBufferedProfiler.h"; path = "../../../Include/extensions/PxDefaultBufferedProfiler.h"; sourceTree = SOURCE_ROOT; };
+		FFFDba207b19ba207b19ba20 /* PxDefaultCpuDispatcher.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultCpuDispatcher.h"; path = "../../../Include/extensions/PxDefaultCpuDispatcher.h"; sourceTree = SOURCE_ROOT; };
+		FFFDba807b19ba807b19ba80 /* PxDefaultErrorCallback.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultErrorCallback.h"; path = "../../../Include/extensions/PxDefaultErrorCallback.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbae07b19bae07b19bae0 /* PxDefaultSimulationFilterShader.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultSimulationFilterShader.h"; path = "../../../Include/extensions/PxDefaultSimulationFilterShader.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbb407b19bb407b19bb40 /* PxDefaultStreams.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDefaultStreams.h"; path = "../../../Include/extensions/PxDefaultStreams.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbba07b19bba07b19bba0 /* PxDistanceJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxDistanceJoint.h"; path = "../../../Include/extensions/PxDistanceJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbc007b19bc007b19bc00 /* PxExtensionsAPI.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxExtensionsAPI.h"; path = "../../../Include/extensions/PxExtensionsAPI.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbc607b19bc607b19bc60 /* PxFixedJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxFixedJoint.h"; path = "../../../Include/extensions/PxFixedJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbcc07b19bcc07b19bcc0 /* PxJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxJoint.h"; path = "../../../Include/extensions/PxJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbd207b19bd207b19bd20 /* PxJointLimit.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxJointLimit.h"; path = "../../../Include/extensions/PxJointLimit.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbd807b19bd807b19bd80 /* PxJointRepXSerializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxJointRepXSerializer.h"; path = "../../../Include/extensions/PxJointRepXSerializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbde07b19bde07b19bde0 /* PxParticleExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxParticleExt.h"; path = "../../../Include/extensions/PxParticleExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbe407b19be407b19be40 /* PxPrismaticJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxPrismaticJoint.h"; path = "../../../Include/extensions/PxPrismaticJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbea07b19bea07b19bea0 /* PxRepXSerializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxRepXSerializer.h"; path = "../../../Include/extensions/PxRepXSerializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbf007b19bf007b19bf00 /* PxRepXSimpleType.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxRepXSimpleType.h"; path = "../../../Include/extensions/PxRepXSimpleType.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbf607b19bf607b19bf60 /* PxRevoluteJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxRevoluteJoint.h"; path = "../../../Include/extensions/PxRevoluteJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDbfc07b19bfc07b19bfc0 /* PxRigidBodyExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxRigidBodyExt.h"; path = "../../../Include/extensions/PxRigidBodyExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFDc0207b19c0207b19c020 /* PxSerialization.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxSerialization.h"; path = "../../../Include/extensions/PxSerialization.h"; sourceTree = SOURCE_ROOT; };
+		FFFDc0807b19c0807b19c080 /* PxShapeExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxShapeExt.h"; path = "../../../Include/extensions/PxShapeExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFDc0e07b19c0e07b19c0e0 /* PxSimpleFactory.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxSimpleFactory.h"; path = "../../../Include/extensions/PxSimpleFactory.h"; sourceTree = SOURCE_ROOT; };
+		FFFDc1407b19c1407b19c140 /* PxSmoothNormals.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxSmoothNormals.h"; path = "../../../Include/extensions/PxSmoothNormals.h"; sourceTree = SOURCE_ROOT; };
+		FFFDc1a07b19c1a07b19c1a0 /* PxSphericalJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxSphericalJoint.h"; path = "../../../Include/extensions/PxSphericalJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDc2007b19c2007b19c200 /* PxStringTableExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxStringTableExt.h"; path = "../../../Include/extensions/PxStringTableExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFDc2607b19c2607b19c260 /* PxTriangleMeshExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxTriangleMeshExt.h"; path = "../../../Include/extensions/PxTriangleMeshExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFDc2c07b19c2c07b19c2c0 /* PxVisualDebuggerExt.h */= { isa = PBXFileReference; fileEncoding = 4; name = "PxVisualDebuggerExt.h"; path = "../../../Include/extensions/PxVisualDebuggerExt.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa0007b19a0007b19a000 /* ExtConstraintHelper.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtConstraintHelper.h"; path = "../../PhysXExtensions/src/ExtConstraintHelper.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa0607b19a0607b19a060 /* ExtCpuWorkerThread.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtCpuWorkerThread.h"; path = "../../PhysXExtensions/src/ExtCpuWorkerThread.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa0c07b19a0c07b19a0c0 /* ExtD6Joint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtD6Joint.h"; path = "../../PhysXExtensions/src/ExtD6Joint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa1207b19a1207b19a120 /* ExtDefaultBufferedProfiler.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultBufferedProfiler.h"; path = "../../PhysXExtensions/src/ExtDefaultBufferedProfiler.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa1807b19a1807b19a180 /* ExtDefaultCpuDispatcher.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultCpuDispatcher.h"; path = "../../PhysXExtensions/src/ExtDefaultCpuDispatcher.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa1e07b19a1e07b19a1e0 /* ExtDistanceJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDistanceJoint.h"; path = "../../PhysXExtensions/src/ExtDistanceJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa2407b19a2407b19a240 /* ExtFixedJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtFixedJoint.h"; path = "../../PhysXExtensions/src/ExtFixedJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa2a07b19a2a07b19a2a0 /* ExtInertiaTensor.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtInertiaTensor.h"; path = "../../PhysXExtensions/src/ExtInertiaTensor.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa3007b19a3007b19a300 /* ExtJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtJoint.h"; path = "../../PhysXExtensions/src/ExtJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa3607b19a3607b19a360 /* ExtJointMetaDataExtensions.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtJointMetaDataExtensions.h"; path = "../../PhysXExtensions/src/ExtJointMetaDataExtensions.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa3c07b19a3c07b19a3c0 /* ExtPlatform.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPlatform.h"; path = "../../PhysXExtensions/src/ExtPlatform.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa4207b19a4207b19a420 /* ExtPrismaticJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPrismaticJoint.h"; path = "../../PhysXExtensions/src/ExtPrismaticJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa4807b19a4807b19a480 /* ExtPvdClientImpl.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPvdClientImpl.h"; path = "../../PhysXExtensions/src/ExtPvdClientImpl.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa4e07b19a4e07b19a4e0 /* ExtRevoluteJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtRevoluteJoint.h"; path = "../../PhysXExtensions/src/ExtRevoluteJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa5407b19a5407b19a540 /* ExtSerialization.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSerialization.h"; path = "../../PhysXExtensions/src/ExtSerialization.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa5a07b19a5a07b19a5a0 /* ExtSharedQueueEntryPool.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSharedQueueEntryPool.h"; path = "../../PhysXExtensions/src/ExtSharedQueueEntryPool.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa6007b19a6007b19a600 /* ExtSphericalJoint.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSphericalJoint.h"; path = "../../PhysXExtensions/src/ExtSphericalJoint.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa6607b19a6607b19a660 /* ExtTaskQueueHelper.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtTaskQueueHelper.h"; path = "../../PhysXExtensions/src/ExtTaskQueueHelper.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa6c07b19a6c07b19a6c0 /* ExtVisualDebugger.h */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtVisualDebugger.h"; path = "../../PhysXExtensions/src/ExtVisualDebugger.h"; sourceTree = SOURCE_ROOT; };
+		FFFDa7207b19a7207b19a720 /* ExtBroadPhase.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtBroadPhase.cpp"; path = "../../PhysXExtensions/src/ExtBroadPhase.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDa7807b19a7807b19a780 /* ExtClothFabricCooker.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtClothFabricCooker.cpp"; path = "../../PhysXExtensions/src/ExtClothFabricCooker.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDa7e07b19a7e07b19a7e0 /* ExtClothGeodesicTetherCooker.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtClothGeodesicTetherCooker.cpp"; path = "../../PhysXExtensions/src/ExtClothGeodesicTetherCooker.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDa8407b19a8407b19a840 /* ExtClothMeshQuadifier.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtClothMeshQuadifier.cpp"; path = "../../PhysXExtensions/src/ExtClothMeshQuadifier.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDa8a07b19a8a07b19a8a0 /* ExtClothSimpleTetherCooker.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtClothSimpleTetherCooker.cpp"; path = "../../PhysXExtensions/src/ExtClothSimpleTetherCooker.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDa9007b19a9007b19a900 /* ExtCollection.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtCollection.cpp"; path = "../../PhysXExtensions/src/ExtCollection.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDa9607b19a9607b19a960 /* ExtCpuWorkerThread.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtCpuWorkerThread.cpp"; path = "../../PhysXExtensions/src/ExtCpuWorkerThread.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDa9c07b19a9c07b19a9c0 /* ExtD6Joint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtD6Joint.cpp"; path = "../../PhysXExtensions/src/ExtD6Joint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDaa207b19aa207b19aa20 /* ExtD6JointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtD6JointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtD6JointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDaa807b19aa807b19aa80 /* ExtDefaultBufferedProfiler.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultBufferedProfiler.cpp"; path = "../../PhysXExtensions/src/ExtDefaultBufferedProfiler.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDaae07b19aae07b19aae0 /* ExtDefaultCpuDispatcher.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultCpuDispatcher.cpp"; path = "../../PhysXExtensions/src/ExtDefaultCpuDispatcher.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDab407b19ab407b19ab40 /* ExtDefaultErrorCallback.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultErrorCallback.cpp"; path = "../../PhysXExtensions/src/ExtDefaultErrorCallback.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDaba07b19aba07b19aba0 /* ExtDefaultSimulationFilterShader.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultSimulationFilterShader.cpp"; path = "../../PhysXExtensions/src/ExtDefaultSimulationFilterShader.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDac007b19ac007b19ac00 /* ExtDefaultStreams.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDefaultStreams.cpp"; path = "../../PhysXExtensions/src/ExtDefaultStreams.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDac607b19ac607b19ac60 /* ExtDistanceJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDistanceJoint.cpp"; path = "../../PhysXExtensions/src/ExtDistanceJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDacc07b19acc07b19acc0 /* ExtDistanceJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtDistanceJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtDistanceJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDad207b19ad207b19ad20 /* ExtExtensions.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtExtensions.cpp"; path = "../../PhysXExtensions/src/ExtExtensions.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDad807b19ad807b19ad80 /* ExtFixedJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtFixedJoint.cpp"; path = "../../PhysXExtensions/src/ExtFixedJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDade07b19ade07b19ade0 /* ExtFixedJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtFixedJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtFixedJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDae407b19ae407b19ae40 /* ExtJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtJoint.cpp"; path = "../../PhysXExtensions/src/ExtJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDaea07b19aea07b19aea0 /* ExtMetaData.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtMetaData.cpp"; path = "../../PhysXExtensions/src/ExtMetaData.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDaf007b19af007b19af00 /* ExtParticleExt.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtParticleExt.cpp"; path = "../../PhysXExtensions/src/ExtParticleExt.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDaf607b19af607b19af60 /* ExtPrismaticJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPrismaticJoint.cpp"; path = "../../PhysXExtensions/src/ExtPrismaticJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDafc07b19afc07b19afc0 /* ExtPrismaticJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPrismaticJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtPrismaticJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb0207b19b0207b19b020 /* ExtPvdClientImpl.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPvdClientImpl.cpp"; path = "../../PhysXExtensions/src/ExtPvdClientImpl.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb0807b19b0807b19b080 /* ExtPxStringTable.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtPxStringTable.cpp"; path = "../../PhysXExtensions/src/ExtPxStringTable.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb0e07b19b0e07b19b0e0 /* ExtRevoluteJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtRevoluteJoint.cpp"; path = "../../PhysXExtensions/src/ExtRevoluteJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb1407b19b1407b19b140 /* ExtRevoluteJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtRevoluteJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtRevoluteJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb1a07b19b1a07b19b1a0 /* ExtRigidBodyExt.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtRigidBodyExt.cpp"; path = "../../PhysXExtensions/src/ExtRigidBodyExt.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb2007b19b2007b19b200 /* ExtSimpleFactory.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSimpleFactory.cpp"; path = "../../PhysXExtensions/src/ExtSimpleFactory.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb2607b19b2607b19b260 /* ExtSmoothNormals.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSmoothNormals.cpp"; path = "../../PhysXExtensions/src/ExtSmoothNormals.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb2c07b19b2c07b19b2c0 /* ExtSphericalJoint.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSphericalJoint.cpp"; path = "../../PhysXExtensions/src/ExtSphericalJoint.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb3207b19b3207b19b320 /* ExtSphericalJointSolverPrep.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtSphericalJointSolverPrep.cpp"; path = "../../PhysXExtensions/src/ExtSphericalJointSolverPrep.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb3807b19b3807b19b380 /* ExtTriangleMeshExt.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtTriangleMeshExt.cpp"; path = "../../PhysXExtensions/src/ExtTriangleMeshExt.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFDb3e07b19b3e07b19b3e0 /* ExtVisualDebugger.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "ExtVisualDebugger.cpp"; path = "../../PhysXExtensions/src/ExtVisualDebugger.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD7a007b197a007b197a00 /* SnSerialUtils.h */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerialUtils.h"; path = "../../PhysXExtensions/src/serialization/SnSerialUtils.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7a607b197a607b197a60 /* SnSerializationRegistry.h */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerializationRegistry.h"; path = "../../PhysXExtensions/src/serialization/SnSerializationRegistry.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7ac07b197ac07b197ac0 /* SnSerialUtils.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerialUtils.cpp"; path = "../../PhysXExtensions/src/serialization/SnSerialUtils.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD7b207b197b207b197b20 /* SnSerialization.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerialization.cpp"; path = "../../PhysXExtensions/src/serialization/SnSerialization.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD7b807b197b807b197b80 /* SnSerializationRegistry.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "SnSerializationRegistry.cpp"; path = "../../PhysXExtensions/src/serialization/SnSerializationRegistry.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD7be07b197be07b197be0 /* Binary/SnConvX.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7c407b197c407b197c40 /* Binary/SnConvX_Align.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Align.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Align.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7ca07b197ca07b197ca0 /* Binary/SnConvX_Common.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Common.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Common.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7d007b197d007b197d00 /* Binary/SnConvX_Convert.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Convert.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Convert.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7d607b197d607b197d60 /* Binary/SnConvX_MetaData.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_MetaData.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_MetaData.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7dc07b197dc07b197dc0 /* Binary/SnConvX_Output.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Output.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Output.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7e207b197e207b197e20 /* Binary/SnConvX_Union.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Union.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Union.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7e807b197e807b197e80 /* Binary/SnSerializationContext.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnSerializationContext.h"; path = "../../PhysXExtensions/src/serialization/Binary/SnSerializationContext.h"; sourceTree = SOURCE_ROOT; };
+		FFFD7ee07b197ee07b197ee0 /* Binary/SnBinaryDeserialization.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnBinaryDeserialization.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnBinaryDeserialization.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD7f407b197f407b197f40 /* Binary/SnBinarySerialization.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnBinarySerialization.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnBinarySerialization.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD7fa07b197fa07b197fa0 /* Binary/SnConvX.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD80007b1980007b198000 /* Binary/SnConvX_Align.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Align.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Align.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD80607b1980607b198060 /* Binary/SnConvX_Convert.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Convert.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Convert.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD80c07b1980c07b1980c0 /* Binary/SnConvX_Error.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Error.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Error.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD81207b1981207b198120 /* Binary/SnConvX_MetaData.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_MetaData.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_MetaData.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD81807b1981807b198180 /* Binary/SnConvX_Output.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Output.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Output.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD81e07b1981e07b1981e0 /* Binary/SnConvX_Union.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnConvX_Union.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnConvX_Union.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD82407b1982407b198240 /* Binary/SnSerializationContext.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Binary/SnSerializationContext.cpp"; path = "../../PhysXExtensions/src/serialization/Binary/SnSerializationContext.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD82a07b1982a07b1982a0 /* Xml/SnPxStreamOperators.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnPxStreamOperators.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnPxStreamOperators.h"; sourceTree = SOURCE_ROOT; };
+		FFFD83007b1983007b198300 /* Xml/SnRepX1_0Defaults.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepX1_0Defaults.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepX1_0Defaults.h"; sourceTree = SOURCE_ROOT; };
+		FFFD83607b1983607b198360 /* Xml/SnRepX3_1Defaults.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepX3_1Defaults.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepX3_1Defaults.h"; sourceTree = SOURCE_ROOT; };
+		FFFD83c07b1983c07b1983c0 /* Xml/SnRepX3_2Defaults.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepX3_2Defaults.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepX3_2Defaults.h"; sourceTree = SOURCE_ROOT; };
+		FFFD84207b1984207b198420 /* Xml/SnRepXCollection.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXCollection.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXCollection.h"; sourceTree = SOURCE_ROOT; };
+		FFFD84807b1984807b198480 /* Xml/SnRepXCoreSerializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXCoreSerializer.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXCoreSerializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFD84e07b1984e07b1984e0 /* Xml/SnRepXSerializerImpl.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXSerializerImpl.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXSerializerImpl.h"; sourceTree = SOURCE_ROOT; };
+		FFFD85407b1985407b198540 /* Xml/SnRepXUpgrader.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXUpgrader.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXUpgrader.h"; sourceTree = SOURCE_ROOT; };
+		FFFD85a07b1985a07b1985a0 /* Xml/SnSimpleXmlWriter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnSimpleXmlWriter.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnSimpleXmlWriter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD86007b1986007b198600 /* Xml/SnXmlDeserializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlDeserializer.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlDeserializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFD86607b1986607b198660 /* Xml/SnXmlImpl.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlImpl.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlImpl.h"; sourceTree = SOURCE_ROOT; };
+		FFFD86c07b1986c07b1986c0 /* Xml/SnXmlMemoryAllocator.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlMemoryAllocator.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlMemoryAllocator.h"; sourceTree = SOURCE_ROOT; };
+		FFFD87207b1987207b198720 /* Xml/SnXmlMemoryPool.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlMemoryPool.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlMemoryPool.h"; sourceTree = SOURCE_ROOT; };
+		FFFD87807b1987807b198780 /* Xml/SnXmlMemoryPoolStreams.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlMemoryPoolStreams.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlMemoryPoolStreams.h"; sourceTree = SOURCE_ROOT; };
+		FFFD87e07b1987e07b1987e0 /* Xml/SnXmlReader.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlReader.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlReader.h"; sourceTree = SOURCE_ROOT; };
+		FFFD88407b1988407b198840 /* Xml/SnXmlSerializer.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlSerializer.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlSerializer.h"; sourceTree = SOURCE_ROOT; };
+		FFFD88a07b1988a07b1988a0 /* Xml/SnXmlSimpleXmlWriter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlSimpleXmlWriter.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlSimpleXmlWriter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD89007b1989007b198900 /* Xml/SnXmlStringToType.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlStringToType.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlStringToType.h"; sourceTree = SOURCE_ROOT; };
+		FFFD89607b1989607b198960 /* Xml/SnXmlVisitorReader.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlVisitorReader.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlVisitorReader.h"; sourceTree = SOURCE_ROOT; };
+		FFFD89c07b1989c07b1989c0 /* Xml/SnXmlVisitorWriter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlVisitorWriter.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlVisitorWriter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD8a207b198a207b198a20 /* Xml/SnXmlWriter.h */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlWriter.h"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlWriter.h"; sourceTree = SOURCE_ROOT; };
+		FFFD8a807b198a807b198a80 /* Xml/SnJointRepXSerializer.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnJointRepXSerializer.cpp"; path = "../../PhysXExtensions/src/serialization/Xml/SnJointRepXSerializer.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD8ae07b198ae07b198ae0 /* Xml/SnRepXCoreSerializer.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXCoreSerializer.cpp"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXCoreSerializer.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD8b407b198b407b198b40 /* Xml/SnRepXUpgrader.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnRepXUpgrader.cpp"; path = "../../PhysXExtensions/src/serialization/Xml/SnRepXUpgrader.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD8ba07b198ba07b198ba0 /* Xml/SnXmlSerialization.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "Xml/SnXmlSerialization.cpp"; path = "../../PhysXExtensions/src/serialization/Xml/SnXmlSerialization.cpp"; sourceTree = SOURCE_ROOT; };
+		FFFD30007b1930007b193000 /* core/include/PvdMetaDataDefineProperties.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PvdMetaDataDefineProperties.h"; path = "../../PhysXMetaData/core/include/PvdMetaDataDefineProperties.h"; sourceTree = SOURCE_ROOT; };
+		FFFD30607b1930607b193060 /* core/include/PvdMetaDataExtensions.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PvdMetaDataExtensions.h"; path = "../../PhysXMetaData/core/include/PvdMetaDataExtensions.h"; sourceTree = SOURCE_ROOT; };
+		FFFD30c07b1930c07b1930c0 /* core/include/PvdMetaDataPropertyVisitor.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PvdMetaDataPropertyVisitor.h"; path = "../../PhysXMetaData/core/include/PvdMetaDataPropertyVisitor.h"; sourceTree = SOURCE_ROOT; };
+		FFFD31207b1931207b193120 /* core/include/PxAutoGeneratedMetaDataObjectNames.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxAutoGeneratedMetaDataObjectNames.h"; path = "../../PhysXMetaData/core/include/PxAutoGeneratedMetaDataObjectNames.h"; sourceTree = SOURCE_ROOT; };
+		FFFD31807b1931807b193180 /* core/include/PxAutoGeneratedMetaDataObjects.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxAutoGeneratedMetaDataObjects.h"; path = "../../PhysXMetaData/core/include/PxAutoGeneratedMetaDataObjects.h"; sourceTree = SOURCE_ROOT; };
+		FFFD31e07b1931e07b1931e0 /* core/include/PxMetaDataCompare.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxMetaDataCompare.h"; path = "../../PhysXMetaData/core/include/PxMetaDataCompare.h"; sourceTree = SOURCE_ROOT; };
+		FFFD32407b1932407b193240 /* core/include/PxMetaDataCppPrefix.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxMetaDataCppPrefix.h"; path = "../../PhysXMetaData/core/include/PxMetaDataCppPrefix.h"; sourceTree = SOURCE_ROOT; };
+		FFFD32a07b1932a07b1932a0 /* core/include/PxMetaDataObjects.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/PxMetaDataObjects.h"; path = "../../PhysXMetaData/core/include/PxMetaDataObjects.h"; sourceTree = SOURCE_ROOT; };
+		FFFD33007b1933007b193300 /* core/include/RepXMetaDataPropertyVisitor.h */= { isa = PBXFileReference; fileEncoding = 4; name = "core/include/RepXMetaDataPropertyVisitor.h"; path = "../../PhysXMetaData/core/include/RepXMetaDataPropertyVisitor.h"; sourceTree = SOURCE_ROOT; };
+		FFFD33607b1933607b193360 /* extensions/include/PxExtensionAutoGeneratedMetaDataObjectNames.h */= { isa = PBXFileReference; fileEncoding = 4; name = "extensions/include/PxExtensionAutoGeneratedMetaDataObjectNames.h"; path = "../../PhysXMetaData/extensions/include/PxExtensionAutoGeneratedMetaDataObjectNames.h"; sourceTree = SOURCE_ROOT; };
+		FFFD33c07b1933c07b1933c0 /* extensions/include/PxExtensionAutoGeneratedMetaDataObjects.h */= { isa = PBXFileReference; fileEncoding = 4; name = "extensions/include/PxExtensionAutoGeneratedMetaDataObjects.h"; path = "../../PhysXMetaData/extensions/include/PxExtensionAutoGeneratedMetaDataObjects.h"; sourceTree = SOURCE_ROOT; };
+		FFFD34207b1934207b193420 /* extensions/include/PxExtensionMetaDataObjects.h */= { isa = PBXFileReference; fileEncoding = 4; name = "extensions/include/PxExtensionMetaDataObjects.h"; path = "../../PhysXMetaData/extensions/include/PxExtensionMetaDataObjects.h"; sourceTree = SOURCE_ROOT; };
+		FFFD34807b1934807b193480 /* extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp */= { isa = PBXFileReference; fileEncoding = 4; name = "extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp"; path = "../../PhysXMetaData/extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FFF232e07b9c32e07b9c32e0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FFFC32e07b9c32e07b9c32e0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FFF832e07b9c32e07b9c32e0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFFFa7207b19a7207b19a720,
+				FFFFa7807b19a7807b19a780,
+				FFFFa7e07b19a7e07b19a7e0,
+				FFFFa8407b19a8407b19a840,
+				FFFFa8a07b19a8a07b19a8a0,
+				FFFFa9007b19a9007b19a900,
+				FFFFa9607b19a9607b19a960,
+				FFFFa9c07b19a9c07b19a9c0,
+				FFFFaa207b19aa207b19aa20,
+				FFFFaa807b19aa807b19aa80,
+				FFFFaae07b19aae07b19aae0,
+				FFFFab407b19ab407b19ab40,
+				FFFFaba07b19aba07b19aba0,
+				FFFFac007b19ac007b19ac00,
+				FFFFac607b19ac607b19ac60,
+				FFFFacc07b19acc07b19acc0,
+				FFFFad207b19ad207b19ad20,
+				FFFFad807b19ad807b19ad80,
+				FFFFade07b19ade07b19ade0,
+				FFFFae407b19ae407b19ae40,
+				FFFFaea07b19aea07b19aea0,
+				FFFFaf007b19af007b19af00,
+				FFFFaf607b19af607b19af60,
+				FFFFafc07b19afc07b19afc0,
+				FFFFb0207b19b0207b19b020,
+				FFFFb0807b19b0807b19b080,
+				FFFFb0e07b19b0e07b19b0e0,
+				FFFFb1407b19b1407b19b140,
+				FFFFb1a07b19b1a07b19b1a0,
+				FFFFb2007b19b2007b19b200,
+				FFFFb2607b19b2607b19b260,
+				FFFFb2c07b19b2c07b19b2c0,
+				FFFFb3207b19b3207b19b320,
+				FFFFb3807b19b3807b19b380,
+				FFFFb3e07b19b3e07b19b3e0,
+				FFFF7ac07b197ac07b197ac0,
+				FFFF7b207b197b207b197b20,
+				FFFF7b807b197b807b197b80,
+				FFFF7ee07b197ee07b197ee0,
+				FFFF7f407b197f407b197f40,
+				FFFF7fa07b197fa07b197fa0,
+				FFFF80007b1980007b198000,
+				FFFF80607b1980607b198060,
+				FFFF80c07b1980c07b1980c0,
+				FFFF81207b1981207b198120,
+				FFFF81807b1981807b198180,
+				FFFF81e07b1981e07b1981e0,
+				FFFF82407b1982407b198240,
+				FFFF8a807b198a807b198a80,
+				FFFF8ae07b198ae07b198ae0,
+				FFFF8b407b198b407b198b40,
+				FFFF8ba07b198ba07b198ba0,
+				FFFF34807b1934807b193480,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+/* End PBXShellScriptBuildPhase section */
+/* Begin PBXTargetDependency section */
+/* End PBXTargetDependency section */
+
+/* Begin PBXContainerItemProxy section */
+		FFF5a8607b8ca8607b8ca860 /* PBXContainerItemProxy */ = {
+			containerPortal = FFF9ac407b8cac407b8cac40 /* Project object */;
+			isa = PBXContainerItemProxy;
+			proxyType = 1;
+			remoteGlobalIDString = FFFAa8607b8ca8607b8ca860 /* PhysXCharacterKinematic */;
+			remoteInfo = "PhysXCharacterKinematic";
+		};
+		FFF532e07b9c32e07b9c32e0 /* PBXContainerItemProxy */ = {
+			containerPortal = FFF9ac407b8cac407b8cac40 /* Project object */;
+			isa = PBXContainerItemProxy;
+			proxyType = 1;
+			remoteGlobalIDString = FFFA32e07b9c32e07b9c32e0 /* PhysXExtensions */;
+			remoteInfo = "PhysXExtensions";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXGroup section */
+		FFFBac887b8cac887b8cac88 /* PhysXCharacterKinematic */ = {
+			isa = PBXGroup;
+			children = (
+				FFF0ac407b8cac407b8cac40 /* Source */,
+				FFEEac407b8cac407b8cac40 /* Products */,
+			);
+			name = "PhysXCharacterKinematic";
+			sourceTree = "<group>";
+		};
+
+		FFF0ac407b8cac407b8cac40 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FFFBa8607b8ca8607b8ca860,
+				FFFB32e07b9c32e07b9c32e0,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+
+		FFEEac407b8cac407b8cac40 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FFFDa8607b8ca8607b8ca860,
+				FFFD32e07b9c32e07b9c32e0,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+
+		FFFBa8607b8ca8607b8ca860 /* PhysXCharacterKinematic */ = {
+			isa = PBXGroup;
+			children = (
+				FFFBfae07b8cfae07b8cfae0 /* include */,
+				FFFBfb047b8cfb047b8cfb04 /* src */,
+			);
+			name = "PhysXCharacterKinematic";
+			sourceTree = "<group>";
+		};
+		FFFBfae07b8cfae07b8cfae0 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				FFFD22007b0c22007b0c2200 /* PxBoxController.h */,
+				FFFD22607b0c22607b0c2260 /* PxCapsuleController.h */,
+				FFFD22c07b0c22c07b0c22c0 /* PxCharacter.h */,
+				FFFD23207b0c23207b0c2320 /* PxController.h */,
+				FFFD23807b0c23807b0c2380 /* PxControllerBehavior.h */,
+				FFFD23e07b0c23e07b0c23e0 /* PxControllerManager.h */,
+				FFFD24407b0c24407b0c2440 /* PxControllerObstacles.h */,
+				FFFD24a07b0c24a07b0c24a0 /* PxExtended.h */,
+			);
+			name = "include";
+			sourceTree = SOURCE_ROOT;
+		};
+		FFFBfb047b8cfb047b8cfb04 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FFFDfa007b0cfa007b0cfa00 /* CctBoxController.h */,
+				FFFDfa607b0cfa607b0cfa60 /* CctCapsuleController.h */,
+				FFFDfac07b0cfac07b0cfac0 /* CctCharacterController.h */,
+				FFFDfb207b0cfb207b0cfb20 /* CctCharacterControllerManager.h */,
+				FFFDfb807b0cfb807b0cfb80 /* CctController.h */,
+				FFFDfbe07b0cfbe07b0cfbe0 /* CctInternalStructs.h */,
+				FFFDfc407b0cfc407b0cfc40 /* CctObstacleContext.h */,
+				FFFDfca07b0cfca07b0cfca0 /* CctSweptBox.h */,
+				FFFDfd007b0cfd007b0cfd00 /* CctSweptCapsule.h */,
+				FFFDfd607b0cfd607b0cfd60 /* CctSweptVolume.h */,
+				FFFDfdc07b0cfdc07b0cfdc0 /* CctUtils.h */,
+				FFFDfe207b0cfe207b0cfe20 /* CctBoxController.cpp */,
+				FFFDfe807b0cfe807b0cfe80 /* CctCapsuleController.cpp */,
+				FFFDfee07b0cfee07b0cfee0 /* CctCharacterController.cpp */,
+				FFFDff407b0cff407b0cff40 /* CctCharacterControllerCallbacks.cpp */,
+				FFFDffa07b0cffa07b0cffa0 /* CctCharacterControllerManager.cpp */,
+				FFFD00007b0d00007b0d0000 /* CctController.cpp */,
+				FFFD00607b0d00607b0d0060 /* CctObstacleContext.cpp */,
+				FFFD00c07b0d00c07b0d00c0 /* CctSweptBox.cpp */,
+				FFFD01207b0d01207b0d0120 /* CctSweptCapsule.cpp */,
+				FFFD01807b0d01807b0d0180 /* CctSweptVolume.cpp */,
+			);
+			name = "src";
+			sourceTree = SOURCE_ROOT;
+		};
+		FFFB32e07b9c32e07b9c32e0 /* PhysXExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				FFFBbbc07b9cbbc07b9cbbc0 /* include */,
+				FFFBbbe47b9cbbe47b9cbbe4 /* src */,
+				FFFBbc087b9cbc087b9cbc08 /* serialization */,
+				FFFBbc2c7b9cbc2c7b9cbc2c /* metadata */,
+			);
+			name = "PhysXExtensions";
+			sourceTree = "<group>";
+		};
+		FFFBbbc07b9cbbc07b9cbbc0 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				FFFDb6007b19b6007b19b600 /* PxBinaryConverter.h */,
+				FFFDb6607b19b6607b19b660 /* PxBroadPhaseExt.h */,
+				FFFDb6c07b19b6c07b19b6c0 /* PxClothFabricCooker.h */,
+				FFFDb7207b19b7207b19b720 /* PxClothMeshDesc.h */,
+				FFFDb7807b19b7807b19b780 /* PxClothMeshQuadifier.h */,
+				FFFDb7e07b19b7e07b19b7e0 /* PxClothTetherCooker.h */,
+				FFFDb8407b19b8407b19b840 /* PxCollectionExt.h */,
+				FFFDb8a07b19b8a07b19b8a0 /* PxConstraintExt.h */,
+				FFFDb9007b19b9007b19b900 /* PxD6Joint.h */,
+				FFFDb9607b19b9607b19b960 /* PxDefaultAllocator.h */,
+				FFFDb9c07b19b9c07b19b9c0 /* PxDefaultBufferedProfiler.h */,
+				FFFDba207b19ba207b19ba20 /* PxDefaultCpuDispatcher.h */,
+				FFFDba807b19ba807b19ba80 /* PxDefaultErrorCallback.h */,
+				FFFDbae07b19bae07b19bae0 /* PxDefaultSimulationFilterShader.h */,
+				FFFDbb407b19bb407b19bb40 /* PxDefaultStreams.h */,
+				FFFDbba07b19bba07b19bba0 /* PxDistanceJoint.h */,
+				FFFDbc007b19bc007b19bc00 /* PxExtensionsAPI.h */,
+				FFFDbc607b19bc607b19bc60 /* PxFixedJoint.h */,
+				FFFDbcc07b19bcc07b19bcc0 /* PxJoint.h */,
+				FFFDbd207b19bd207b19bd20 /* PxJointLimit.h */,
+				FFFDbd807b19bd807b19bd80 /* PxJointRepXSerializer.h */,
+				FFFDbde07b19bde07b19bde0 /* PxParticleExt.h */,
+				FFFDbe407b19be407b19be40 /* PxPrismaticJoint.h */,
+				FFFDbea07b19bea07b19bea0 /* PxRepXSerializer.h */,
+				FFFDbf007b19bf007b19bf00 /* PxRepXSimpleType.h */,
+				FFFDbf607b19bf607b19bf60 /* PxRevoluteJoint.h */,
+				FFFDbfc07b19bfc07b19bfc0 /* PxRigidBodyExt.h */,
+				FFFDc0207b19c0207b19c020 /* PxSerialization.h */,
+				FFFDc0807b19c0807b19c080 /* PxShapeExt.h */,
+				FFFDc0e07b19c0e07b19c0e0 /* PxSimpleFactory.h */,
+				FFFDc1407b19c1407b19c140 /* PxSmoothNormals.h */,
+				FFFDc1a07b19c1a07b19c1a0 /* PxSphericalJoint.h */,
+				FFFDc2007b19c2007b19c200 /* PxStringTableExt.h */,
+				FFFDc2607b19c2607b19c260 /* PxTriangleMeshExt.h */,
+				FFFDc2c07b19c2c07b19c2c0 /* PxVisualDebuggerExt.h */,
+			);
+			name = "include";
+			sourceTree = SOURCE_ROOT;
+		};
+		FFFBbbe47b9cbbe47b9cbbe4 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FFFDa0007b19a0007b19a000 /* ExtConstraintHelper.h */,
+				FFFDa0607b19a0607b19a060 /* ExtCpuWorkerThread.h */,
+				FFFDa0c07b19a0c07b19a0c0 /* ExtD6Joint.h */,
+				FFFDa1207b19a1207b19a120 /* ExtDefaultBufferedProfiler.h */,
+				FFFDa1807b19a1807b19a180 /* ExtDefaultCpuDispatcher.h */,
+				FFFDa1e07b19a1e07b19a1e0 /* ExtDistanceJoint.h */,
+				FFFDa2407b19a2407b19a240 /* ExtFixedJoint.h */,
+				FFFDa2a07b19a2a07b19a2a0 /* ExtInertiaTensor.h */,
+				FFFDa3007b19a3007b19a300 /* ExtJoint.h */,
+				FFFDa3607b19a3607b19a360 /* ExtJointMetaDataExtensions.h */,
+				FFFDa3c07b19a3c07b19a3c0 /* ExtPlatform.h */,
+				FFFDa4207b19a4207b19a420 /* ExtPrismaticJoint.h */,
+				FFFDa4807b19a4807b19a480 /* ExtPvdClientImpl.h */,
+				FFFDa4e07b19a4e07b19a4e0 /* ExtRevoluteJoint.h */,
+				FFFDa5407b19a5407b19a540 /* ExtSerialization.h */,
+				FFFDa5a07b19a5a07b19a5a0 /* ExtSharedQueueEntryPool.h */,
+				FFFDa6007b19a6007b19a600 /* ExtSphericalJoint.h */,
+				FFFDa6607b19a6607b19a660 /* ExtTaskQueueHelper.h */,
+				FFFDa6c07b19a6c07b19a6c0 /* ExtVisualDebugger.h */,
+				FFFDa7207b19a7207b19a720 /* ExtBroadPhase.cpp */,
+				FFFDa7807b19a7807b19a780 /* ExtClothFabricCooker.cpp */,
+				FFFDa7e07b19a7e07b19a7e0 /* ExtClothGeodesicTetherCooker.cpp */,
+				FFFDa8407b19a8407b19a840 /* ExtClothMeshQuadifier.cpp */,
+				FFFDa8a07b19a8a07b19a8a0 /* ExtClothSimpleTetherCooker.cpp */,
+				FFFDa9007b19a9007b19a900 /* ExtCollection.cpp */,
+				FFFDa9607b19a9607b19a960 /* ExtCpuWorkerThread.cpp */,
+				FFFDa9c07b19a9c07b19a9c0 /* ExtD6Joint.cpp */,
+				FFFDaa207b19aa207b19aa20 /* ExtD6JointSolverPrep.cpp */,
+				FFFDaa807b19aa807b19aa80 /* ExtDefaultBufferedProfiler.cpp */,
+				FFFDaae07b19aae07b19aae0 /* ExtDefaultCpuDispatcher.cpp */,
+				FFFDab407b19ab407b19ab40 /* ExtDefaultErrorCallback.cpp */,
+				FFFDaba07b19aba07b19aba0 /* ExtDefaultSimulationFilterShader.cpp */,
+				FFFDac007b19ac007b19ac00 /* ExtDefaultStreams.cpp */,
+				FFFDac607b19ac607b19ac60 /* ExtDistanceJoint.cpp */,
+				FFFDacc07b19acc07b19acc0 /* ExtDistanceJointSolverPrep.cpp */,
+				FFFDad207b19ad207b19ad20 /* ExtExtensions.cpp */,
+				FFFDad807b19ad807b19ad80 /* ExtFixedJoint.cpp */,
+				FFFDade07b19ade07b19ade0 /* ExtFixedJointSolverPrep.cpp */,
+				FFFDae407b19ae407b19ae40 /* ExtJoint.cpp */,
+				FFFDaea07b19aea07b19aea0 /* ExtMetaData.cpp */,
+				FFFDaf007b19af007b19af00 /* ExtParticleExt.cpp */,
+				FFFDaf607b19af607b19af60 /* ExtPrismaticJoint.cpp */,
+				FFFDafc07b19afc07b19afc0 /* ExtPrismaticJointSolverPrep.cpp */,
+				FFFDb0207b19b0207b19b020 /* ExtPvdClientImpl.cpp */,
+				FFFDb0807b19b0807b19b080 /* ExtPxStringTable.cpp */,
+				FFFDb0e07b19b0e07b19b0e0 /* ExtRevoluteJoint.cpp */,
+				FFFDb1407b19b1407b19b140 /* ExtRevoluteJointSolverPrep.cpp */,
+				FFFDb1a07b19b1a07b19b1a0 /* ExtRigidBodyExt.cpp */,
+				FFFDb2007b19b2007b19b200 /* ExtSimpleFactory.cpp */,
+				FFFDb2607b19b2607b19b260 /* ExtSmoothNormals.cpp */,
+				FFFDb2c07b19b2c07b19b2c0 /* ExtSphericalJoint.cpp */,
+				FFFDb3207b19b3207b19b320 /* ExtSphericalJointSolverPrep.cpp */,
+				FFFDb3807b19b3807b19b380 /* ExtTriangleMeshExt.cpp */,
+				FFFDb3e07b19b3e07b19b3e0 /* ExtVisualDebugger.cpp */,
+			);
+			name = "src";
+			sourceTree = SOURCE_ROOT;
+		};
+		FFFBbc087b9cbc087b9cbc08 /* serialization */ = {
+			isa = PBXGroup;
+			children = (
+				FFFD7a007b197a007b197a00 /* SnSerialUtils.h */,
+				FFFD7a607b197a607b197a60 /* SnSerializationRegistry.h */,
+				FFFD7ac07b197ac07b197ac0 /* SnSerialUtils.cpp */,
+				FFFD7b207b197b207b197b20 /* SnSerialization.cpp */,
+				FFFD7b807b197b807b197b80 /* SnSerializationRegistry.cpp */,
+				FFFD7be07b197be07b197be0 /* Binary/SnConvX.h */,
+				FFFD7c407b197c407b197c40 /* Binary/SnConvX_Align.h */,
+				FFFD7ca07b197ca07b197ca0 /* Binary/SnConvX_Common.h */,
+				FFFD7d007b197d007b197d00 /* Binary/SnConvX_Convert.h */,
+				FFFD7d607b197d607b197d60 /* Binary/SnConvX_MetaData.h */,
+				FFFD7dc07b197dc07b197dc0 /* Binary/SnConvX_Output.h */,
+				FFFD7e207b197e207b197e20 /* Binary/SnConvX_Union.h */,
+				FFFD7e807b197e807b197e80 /* Binary/SnSerializationContext.h */,
+				FFFD7ee07b197ee07b197ee0 /* Binary/SnBinaryDeserialization.cpp */,
+				FFFD7f407b197f407b197f40 /* Binary/SnBinarySerialization.cpp */,
+				FFFD7fa07b197fa07b197fa0 /* Binary/SnConvX.cpp */,
+				FFFD80007b1980007b198000 /* Binary/SnConvX_Align.cpp */,
+				FFFD80607b1980607b198060 /* Binary/SnConvX_Convert.cpp */,
+				FFFD80c07b1980c07b1980c0 /* Binary/SnConvX_Error.cpp */,
+				FFFD81207b1981207b198120 /* Binary/SnConvX_MetaData.cpp */,
+				FFFD81807b1981807b198180 /* Binary/SnConvX_Output.cpp */,
+				FFFD81e07b1981e07b1981e0 /* Binary/SnConvX_Union.cpp */,
+				FFFD82407b1982407b198240 /* Binary/SnSerializationContext.cpp */,
+				FFFD82a07b1982a07b1982a0 /* Xml/SnPxStreamOperators.h */,
+				FFFD83007b1983007b198300 /* Xml/SnRepX1_0Defaults.h */,
+				FFFD83607b1983607b198360 /* Xml/SnRepX3_1Defaults.h */,
+				FFFD83c07b1983c07b1983c0 /* Xml/SnRepX3_2Defaults.h */,
+				FFFD84207b1984207b198420 /* Xml/SnRepXCollection.h */,
+				FFFD84807b1984807b198480 /* Xml/SnRepXCoreSerializer.h */,
+				FFFD84e07b1984e07b1984e0 /* Xml/SnRepXSerializerImpl.h */,
+				FFFD85407b1985407b198540 /* Xml/SnRepXUpgrader.h */,
+				FFFD85a07b1985a07b1985a0 /* Xml/SnSimpleXmlWriter.h */,
+				FFFD86007b1986007b198600 /* Xml/SnXmlDeserializer.h */,
+				FFFD86607b1986607b198660 /* Xml/SnXmlImpl.h */,
+				FFFD86c07b1986c07b1986c0 /* Xml/SnXmlMemoryAllocator.h */,
+				FFFD87207b1987207b198720 /* Xml/SnXmlMemoryPool.h */,
+				FFFD87807b1987807b198780 /* Xml/SnXmlMemoryPoolStreams.h */,
+				FFFD87e07b1987e07b1987e0 /* Xml/SnXmlReader.h */,
+				FFFD88407b1988407b198840 /* Xml/SnXmlSerializer.h */,
+				FFFD88a07b1988a07b1988a0 /* Xml/SnXmlSimpleXmlWriter.h */,
+				FFFD89007b1989007b198900 /* Xml/SnXmlStringToType.h */,
+				FFFD89607b1989607b198960 /* Xml/SnXmlVisitorReader.h */,
+				FFFD89c07b1989c07b1989c0 /* Xml/SnXmlVisitorWriter.h */,
+				FFFD8a207b198a207b198a20 /* Xml/SnXmlWriter.h */,
+				FFFD8a807b198a807b198a80 /* Xml/SnJointRepXSerializer.cpp */,
+				FFFD8ae07b198ae07b198ae0 /* Xml/SnRepXCoreSerializer.cpp */,
+				FFFD8b407b198b407b198b40 /* Xml/SnRepXUpgrader.cpp */,
+				FFFD8ba07b198ba07b198ba0 /* Xml/SnXmlSerialization.cpp */,
+			);
+			name = "serialization";
+			sourceTree = SOURCE_ROOT;
+		};
+		FFFBbc2c7b9cbc2c7b9cbc2c /* metadata */ = {
+			isa = PBXGroup;
+			children = (
+				FFFD30007b1930007b193000 /* core/include/PvdMetaDataDefineProperties.h */,
+				FFFD30607b1930607b193060 /* core/include/PvdMetaDataExtensions.h */,
+				FFFD30c07b1930c07b1930c0 /* core/include/PvdMetaDataPropertyVisitor.h */,
+				FFFD31207b1931207b193120 /* core/include/PxAutoGeneratedMetaDataObjectNames.h */,
+				FFFD31807b1931807b193180 /* core/include/PxAutoGeneratedMetaDataObjects.h */,
+				FFFD31e07b1931e07b1931e0 /* core/include/PxMetaDataCompare.h */,
+				FFFD32407b1932407b193240 /* core/include/PxMetaDataCppPrefix.h */,
+				FFFD32a07b1932a07b1932a0 /* core/include/PxMetaDataObjects.h */,
+				FFFD33007b1933007b193300 /* core/include/RepXMetaDataPropertyVisitor.h */,
+				FFFD33607b1933607b193360 /* extensions/include/PxExtensionAutoGeneratedMetaDataObjectNames.h */,
+				FFFD33c07b1933c07b1933c0 /* extensions/include/PxExtensionAutoGeneratedMetaDataObjects.h */,
+				FFFD34207b1934207b193420 /* extensions/include/PxExtensionMetaDataObjects.h */,
+				FFFD34807b1934807b193480 /* extensions/src/PxExtensionAutoGeneratedMetaDataObjects.cpp */,
+			);
+			name = "metadata";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FFFAa8607b8ca8607b8ca860 /* PhysXCharacterKinematic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFF6a8607b8ca8607b8ca860 /* Build configuration list for PBXNativeTarget "PhysXCharacterKinematic" */;
+			buildPhases = (
+				FFF2a8607b8ca8607b8ca860,
+				FFF8a8607b8ca8607b8ca860,
+				FFFCa8607b8ca8607b8ca860,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFF443807b8d43807b8d4380, /* PhysXExtensions */
+			);
+			name = "PhysXCharacterKinematic";
+			productName = "PhysXCharacterKinematic";
+			productReference = FFFDa8607b8ca8607b8ca860 /* PhysXCharacterKinematic */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FFFA32e07b9c32e07b9c32e0 /* PhysXExtensions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFF632e07b9c32e07b9c32e0 /* Build configuration list for PBXNativeTarget "PhysXExtensions" */;
+			buildPhases = (
+				FFF232e07b9c32e07b9c32e0,
+				FFF832e07b9c32e07b9c32e0,
+				FFFC32e07b9c32e07b9c32e0,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PhysXExtensions";
+			productName = "PhysXExtensions";
+			productReference = FFFD32e07b9c32e07b9c32e0 /* PhysXExtensions */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin XCConfigurationList section */
+		FFF6a8607b8ca8607b8ca860 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFF7c4007b19c4007b19c400,
+				FFF7cae47b19cae47b19cae4,
+				FFF7d1c87b19d1c87b19d1c8,
+				FFF7d8ac7b19d8ac7b19d8ac,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "debug";
+		};
+		FFF632e07b9c32e07b9c32e0 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFF75e007b195e007b195e00,
+				FFF764e47b1964e47b1964e4,
+				FFF76bc87b196bc87b196bc8,
+				FFF772ac7b1972ac7b1972ac,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "debug";
+		};
+		FFF6ac407b8cac407b8cac40 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFF3c4007b19c4007b19c400 /* debug */,
+				FFF3cae47b19cae47b19cae4 /* checked */,
+				FFF3d1c87b19d1c87b19d1c8 /* profile */,
+				FFF3d8ac7b19d8ac7b19d8ac /* release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "debug";
+		};
+/* End XCConfigurationList section */
+/* Begin XCBuildConfiguration section */
+		FFF7c4007b19c4007b19c400 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx64";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_PHYSX_STATIC_LIB", "_DEBUG", "PX_DEBUG", "PX_CHECKED", "PX_SUPPORT_VISUAL_DEBUGGER", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					"-lPhysX3ExtensionsDEBUG", 
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-g3", "-gdwarf-2", "-O0", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/characterkinematic", "../../../Include/common", "../../../Include/geometry", "../../../Include/extensions", "../../../Include/pxtask", "../../../Include", "../../GeomUtils/headers", "../../Common/src", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"../../../Lib/osx64", 
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3CharacterKinematicDEBUG";
+			};
+			name = "debug";
+		};
+		FFF7cae47b19cae47b19cae4 /* checked */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx64";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_PHYSX_STATIC_LIB", "NDEBUG", "PX_CHECKED", "PX_SUPPORT_VISUAL_DEBUGGER", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					"-lPhysX3ExtensionsCHECKED", 
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-g3", "-gdwarf-2", "-O3", "-fno-strict-aliasing", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/characterkinematic", "../../../Include/common", "../../../Include/geometry", "../../../Include/extensions", "../../../Include/pxtask", "../../../Include", "../../GeomUtils/headers", "../../Common/src", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"../../../Lib/osx64", 
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3CharacterKinematicCHECKED";
+			};
+			name = "checked";
+		};
+		FFF7d1c87b19d1c87b19d1c8 /* profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx64";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_PHYSX_STATIC_LIB", "NDEBUG", "PX_PROFILE", "PX_SUPPORT_VISUAL_DEBUGGER", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					"-lPhysX3ExtensionsPROFILE", 
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-O3", "-fno-strict-aliasing", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/characterkinematic", "../../../Include/common", "../../../Include/geometry", "../../../Include/extensions", "../../../Include/pxtask", "../../../Include", "../../GeomUtils/headers", "../../Common/src", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"../../../Lib/osx64", 
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3CharacterKinematicPROFILE";
+			};
+			name = "profile";
+		};
+		FFF7d8ac7b19d8ac7b19d8ac /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx64";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_PHYSX_STATIC_LIB", "NDEBUG", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					"-lPhysX3Extensions", 
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-O3", "-fno-strict-aliasing", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/characterkinematic", "../../../Include/common", "../../../Include/geometry", "../../../Include/extensions", "../../../Include/pxtask", "../../../Include", "../../GeomUtils/headers", "../../Common/src", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"../../../Lib/osx64", 
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3CharacterKinematic";
+			};
+			name = "release";
+		};
+		FFF75e007b195e007b195e00 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx64";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_BUILD_NUMBER=18915364", "PX_PHYSX_STATIC_LIB", "_DEBUG", "PX_DEBUG", "PX_CHECKED", "PX_SUPPORT_VISUAL_DEBUGGER", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-g3", "-gdwarf-2", "-O0", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/common", "../../../Include/geometry", "../../../Include/pvd", "../../../Include/cooking", "../../../Include/extensions", "../../../Include/vehicle", "../../../Include/pxtask", "../../../Include/cloth", "../../../Include", "../../Common/src", "../../GeomUtils/headers", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", "../../PhysXMetaData/core/include", "../../PhysXMetaData/extensions/include", "../../PhysXProfileSDK", "../../PhysXExtensions/src", "../../PhysXExtensions/src/serialization/Xml", "../../PhysXExtensions/src/serialization/Binary", "../../PvdRuntime/src", "../../PhysXVisualDebuggerSDK", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3ExtensionsDEBUG";
+			};
+			name = "debug";
+		};
+		FFF764e47b1964e47b1964e4 /* checked */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx64";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_BUILD_NUMBER=18915364", "PX_PHYSX_STATIC_LIB", "NDEBUG", "PX_CHECKED", "PX_SUPPORT_VISUAL_DEBUGGER", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-g3", "-gdwarf-2", "-O3", "-fno-strict-aliasing", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/common", "../../../Include/geometry", "../../../Include/pvd", "../../../Include/cooking", "../../../Include/extensions", "../../../Include/vehicle", "../../../Include/pxtask", "../../../Include/cloth", "../../../Include", "../../Common/src", "../../GeomUtils/headers", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", "../../PhysXMetaData/core/include", "../../PhysXMetaData/extensions/include", "../../PhysXProfileSDK", "../../PhysXExtensions/src", "../../PhysXExtensions/src/serialization/Xml", "../../PhysXExtensions/src/serialization/Binary", "../../PvdRuntime/src", "../../PhysXVisualDebuggerSDK", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3ExtensionsCHECKED";
+			};
+			name = "checked";
+		};
+		FFF76bc87b196bc87b196bc8 /* profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx64";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_BUILD_NUMBER=18915364", "PX_PHYSX_STATIC_LIB", "NDEBUG", "PX_PROFILE", "PX_SUPPORT_VISUAL_DEBUGGER", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-O3", "-fno-strict-aliasing", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/common", "../../../Include/geometry", "../../../Include/pvd", "../../../Include/cooking", "../../../Include/extensions", "../../../Include/vehicle", "../../../Include/pxtask", "../../../Include/cloth", "../../../Include", "../../Common/src", "../../GeomUtils/headers", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", "../../PhysXMetaData/core/include", "../../PhysXMetaData/extensions/include", "../../PhysXProfileSDK", "../../PhysXExtensions/src", "../../PhysXExtensions/src/serialization/Xml", "../../PhysXExtensions/src/serialization/Binary", "../../PvdRuntime/src", "../../PhysXVisualDebuggerSDK", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3ExtensionsPROFILE";
+			};
+			name = "profile";
+		};
+		FFF772ac7b1972ac7b1972ac /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			ARCHS = "$(ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1)"; ARCHS_STANDARD_64_BIT_PRE_XCODE_3_1 = x86_64; GCC_VERSION = com.apple.compilers.llvm.clang.1_0; SDKROOT=macosx;
+				CONFIGURATION_BUILD_DIR = "../../../Lib/osx64";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				USE_HEADERMAP = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PX_BUILD_NUMBER=18915364", "PX_PHYSX_STATIC_LIB", "NDEBUG", 
+				);
+				GCC_ENABLE_EXCEPTIONS = NO;
+				OTHER_LDFLAGS = (
+					
+				);
+				OTHER_CFLAGS = (
+					"-pipe", "-mmacosx-version-min=10.5", "-msse2", "-ffast-math", "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fvisibility-inlines-hidden", "-Werror", "-Wall", "-Wextra", "-Wstrict-aliasing=2", "-Weverything", "-Wno-pedantic", "-Wno-unknown-warning-option", "-Wno-long-long", "-Wno-newline-eof", "-Wno-extended-offsetof", "-Wno-float-equal", "-Wno-documentation-deprecated-sync", "-Wno-conversion", "-Wno-weak-vtables", "-Wno-unreachable-code", "-Wno-format-nonliteral", "-Wno-cast-align", "-Wno-documentation", "-Wno-covered-switch-default", "-Wno-documentation-unknown-command", "-Wno-padded", "-Wno-unknown-pragmas", "-Wno-invalid-offsetof", "-Wno-unused-parameter", "-Wno-global-constructors", "-Wno-exit-time-destructors", "-Wno-weak-template-vtables", "-Wno-shift-sign-overflow", "-Wno-missing-noreturn", "-Wno-missing-variable-declarations", "-Wno-switch-enum", "-Wno-undef", "-Wno-unused-macros", "-Wno-c99-extensions", "-Wno-missing-prototypes", "-Wno-shadow", "-Wno-unused-member-function", "-Wno-used-but-marked-unused", "-Wno-header-hygiene", "-Wno-variadic-macros", "-O3", "-fno-strict-aliasing", 
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../../Include/foundation", "../../foundation/include", "../../../Include/physxprofilesdk", "../../../Include/physxvisualdebuggersdk", "../../../Include/common", "../../../Include/geometry", "../../../Include/pvd", "../../../Include/cooking", "../../../Include/extensions", "../../../Include/vehicle", "../../../Include/pxtask", "../../../Include/cloth", "../../../Include", "../../Common/src", "../../GeomUtils/headers", "../../GeomUtils/src/contact", "../../GeomUtils/src/common", "../../GeomUtils/src/convex", "../../GeomUtils/src/distance", "../../GeomUtils/src/gjk", "../../GeomUtils/src/intersection", "../../GeomUtils/src/mesh", "../../GeomUtils/src/hf", "../../GeomUtils/src/pcm", "../../PhysXMetaData/core/include", "../../PhysXMetaData/extensions/include", "../../PhysXProfileSDK", "../../PhysXExtensions/src", "../../PhysXExtensions/src/serialization/Xml", "../../PhysXExtensions/src/serialization/Binary", "../../PvdRuntime/src", "../../PhysXVisualDebuggerSDK", 
+				);
+				LIBRARY_SEARCH_PATHS = (
+					
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					
+				);
+				PRODUCT_NAME = "PhysX3Extensions";
+			};
+			name = "release";
+		};
+		FFF3c4007b19c4007b19c400 /* debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "debug";
+		};
+		FFF3cae47b19cae47b19cae4 /* checked */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "checked";
+		};
+		FFF3d1c87b19d1c87b19d1c8 /* profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "profile";
+		};
+		FFF3d8ac7b19d8ac7b19d8ac /* release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = "release";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin PBXProject section */
+		FFF9ac407b8cac407b8cac40 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = FFF6ac407b8cac407b8cac40 /* Build configuration list for PBXProject PhysXCharacterKinematic */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			mainGroup = FFFBac887b8cac887b8cac88 /* PhysXCharacterKinematic */;
+			targets = (
+				FFFAa8607b8ca8607b8ca860,
+				FFFA32e07b9c32e07b9c32e0,
+			);
+		};
+/* End PBXProject section */
+
+	};
+	rootObject = FFF9ac407b8cac407b8cac40 /* Project object */;
+}

@@ -1,0 +1,29 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+Import('*')
+
+sources = [
+    'base/ftbase.c', 'base/ftbbox.c', 'base/ftbdf.c', 'base/ftbitmap.c', 'base/ftcid.c', 'base/ftdebug.c', 'base/ftfstype.c',
+    'base/ftgasp.c', 'base/ftglyph.c', 'base/ftgxval.c', 'base/ftinit.c', 'base/ftlcdfil.c', 'base/ftmm.c', 'base/ftotval.c',
+    'base/ftpatent.c', 'base/ftpfr.c', 'base/ftstroke.c', 'base/ftsynth.c', 'base/ftsystem.c', 'base/fttype1.c',
+    'base/ftwinfnt.c',
+
+    # Font drivers
+    'cff/cff.c', 'sfnt/sfnt.c', 'truetype/truetype.c',
+
+    # Rasterizers
+    'smooth/smooth.c',
+
+    # Auxillary modules
+    'autofit/autofit.c', 'gxvalid/gxvalid.c', 'otvalid/otvalid.c',
+
+    # Gzip
+    'gzip/ftgzip.c'
+]
+
+result = env.StaticLibrary(target=target, source=sources)
+
+Return('result')

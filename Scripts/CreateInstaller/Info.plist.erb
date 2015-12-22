@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string><%= application %></string>
+    <key>CFBundleDisplayName</key>
+    <string><%= display_name %></string>
+    <key>CFBundleName</key>
+    <string><%= application %></string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <% if version %>
+        <key>CFBundleShortVersionString</key>
+        <string><%= version %></string>
+        <key>CFBundleVersion</key>
+        <string><%= version %></string>
+    <% end %>
+    <key>NSHumanReadableCopyright</key>
+    <string>This application is copyright.</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>AppleDockIconEnabled</key>
+    <string>YES</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.8.0</string>
+    <% if icon %>
+        <key>AppleDockIconEnabled</key>
+        <string>YES</string>
+        <key>CFBundleIconFile</key>
+        <string><%= File.basename icon %></string>
+    <% end %>
+</dict>
+</plist>

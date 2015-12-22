@@ -1,0 +1,33 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+# The build of FreeImage is done without LibJXR, LibOpenJPEG, LibRawLite, LibTIFF, and OpenEXR to reduce the static library size
+
+Import('env target platform')
+
+sources = env.GlobDirectories(
+    'DeprecationManager', 'FreeImage', 'FreeImageToolkit', 'LibJPEG', 'LibPNG', 'LibPNG/arm', 'Metadata'
+)
+
+excludedSources = [
+    'FreeImage/FreeImageC.c', 'FreeImage/PluginDDS.cpp', 'FreeImage/PluginEXR.cpp', 'FreeImage/PluginG3.cpp',
+    'FreeImage/PluginHDR.cpp', 'FreeImage/PluginJ2K.cpp', 'FreeImage/PluginJP2.cpp', 'FreeImage/PluginJXR.cpp',
+    'FreeImage/PluginRAW.cpp', 'FreeImage/PluginTIFF.cpp', 'FreeImage/PluginWEBP.cpp',
+
+    'LibJPEG/ansi2knr.c', 'LibJPEG/cdjpeg.c', 'LibJPEG/cjpeg.c', 'LibJPEG/ckconfig.c', 'LibJPEG/djpeg.c', 'LibJPEG/example.c',
+    'LibJPEG/jmemansi.c', 'LibJPEG/jmemdos.c', 'LibJPEG/jmemdosa.asm', 'LibJPEG/jmemmac.c', 'LibJPEG/jmemname.c',
+    'LibJPEG/jpegtran.c', 'LibJPEG/rdjpgcom.c', 'LibJPEG/rdrle.c', 'LibJPEG/wrjpgcom.c', 'LibJPEG/wrrle.c'
+
+    'LibPNG/example.c', 'LibPNG/pngtest.c',
+
+    'Metadata/XTIFF.cpp'
+]
+
+for e in excludedSources:
+    sources = [s for s in sources if not str(s).replace('\\', '/').endswith(e)]
+
+result = env.StaticLibrary(target=target, source=sources)
+
+Return('result')

@@ -1,0 +1,28 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+import re
+
+Import('*')
+
+sources = env.GlobDirectories('Alc', 'Alc/effects', 'Alc/midi', 'common', 'OpenAL32')
+
+backends = ['base', 'loopback', 'null']
+sources += ['Alc/backends/%s.c' % x for x in backends]
+
+# Cut out unwanted mixer backends
+sources = [source for source in sources if not re.search('mixer_[^c].*\.c$', str(source))]
+
+# Add platform-specific sources
+if platform == 'Windows':
+    sources += ['Alc/backends/dsound.c', 'Alc/mixer_sse.c']
+elif platform == 'Android':
+    sources += ['Alc/backends/opensl.c']
+    if architecture == 'ARMv7':
+        sources += ['Alc/mixer_neon.c']
+
+result = env.StaticLibrary(target=target, source=sources)
+
+Return('result')

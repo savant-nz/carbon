@@ -1,0 +1,9 @@
+Description             "Blurring effect"
+
+VertexStream            Position[3]
+VertexStream            DiffuseTextureCoordinate[2]
+
+$diffuseMap             Texture2D WorldDiffuse
+
+$diffuseColor           Color Optional
+$scale                  Float       # The size of the sampling area

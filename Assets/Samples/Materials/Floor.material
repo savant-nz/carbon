@@ -1,0 +1,8 @@
+Effect                          SFXMirror
+
+$diffuseMap                     White
+$reflectanceMap                 FloorReflectanceMap.png
+
+$diffuseColor                   0.1 0.1 0.1
+$fresnelExponent                4.0
+$reflectionColor                0.8 0.8 0.8

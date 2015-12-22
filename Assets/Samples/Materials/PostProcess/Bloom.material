@@ -1,0 +1,7 @@
+Effect                          PostProcessBloom
+
+$bloomFactor                    1.0
+$blurScale                      1.0
+$blurStandardDeviation          3.0
+$brightThreshold                1.0
+$exposure                       1.0

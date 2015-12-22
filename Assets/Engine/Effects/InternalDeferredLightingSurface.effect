@@ -1,0 +1,16 @@
+Description             "Internal effect used for deferred lighting"
+
+VertexStream            Position[3]
+VertexStream            DiffuseTextureCoordinate[2]
+
+$lightingTexture        Texture2D WorldLightmap
+$diffuseMap             Texture2D WorldDiffuse
+$glossMap               Texture2D WorldGloss Optional
+$ambientOcclusionMap    Texture2D WorldLightmap Optional
+$decalMap               Texture2D WorldDiffuse Optional
+$decalGlossMap          Texture2D WorldGloss Optional
+
+$diffuseColor           Color Optional
+
+$specularExponent       Float Optional
+$specularColor          Color Optional

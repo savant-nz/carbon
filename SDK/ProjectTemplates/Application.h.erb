@@ -1,0 +1,26 @@
+// This simple Carbon application renders a spinning logo.
+
+#pragma once
+
+#include "CarbonEngine/CarbonEngine.h"
+using namespace Carbon;
+
+class <%= class_name %> : public CARBON_APPLICATION_CLASS
+{
+public:
+
+    bool initialize() override;
+    void frameUpdate() override;
+    void queueScenes() override;
+
+    // Events can be handled by implementing the corresponding handler method. For example, to handle KeyDownEvent implement the
+    // Application::onKeyDownEvent(const KeyDownEvent&) method. This is demonstrated below. See the API Reference for a full
+    // list of events.
+
+    bool onKeyDownEvent(const KeyDownEvent& e) override;
+
+private:
+
+    Scene scene_;
+    Sprite* sprite_ = nullptr;
+};

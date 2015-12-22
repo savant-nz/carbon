@@ -1,0 +1,14 @@
+Description             "Sprite"
+
+VertexStream            Position[3]
+VertexStream            DiffuseTextureCoordinate[2]
+VertexStream            Normal[3]
+VertexStream            Tangent[3]
+
+$diffuseMap             Texture2D Sprite
+$normalMap              Texture2D WorldNormal Optional
+
+$diffuseColor           Color
+$scaleAndOffset         Float4
+
+$isLightingAllowed      Boolean

@@ -1,0 +1,5 @@
+Description             "Post-process tone mapping"
+
+$exposure               Float
+$whitePoint             Float
+$easing                 Float

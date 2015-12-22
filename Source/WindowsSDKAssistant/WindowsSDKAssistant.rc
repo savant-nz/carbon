@@ -1,0 +1,139 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "windows.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""windows.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (New Zealand) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENZ)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_NZ
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EXPORTER_INSTALLER DIALOGEX 0, 0, 565, 190
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Carbon Exporter Installer"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "3D Studio Max 8.0",IDC_MAX8_FRAME,6,3,272,55
+    LTEXT           "Install directory:",IDC_STATIC1,12,21,54,8
+    EDITTEXT        IDC_MAX8_INSTALL_DIRECTORY,78,19,190,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Install exporter",IDC_INSTALL_MAX8_EXPORTER,198,37,70,14
+    GROUPBOX        "Maya 2009",IDC_MAYA2009_FRAME,286,3,272,55
+    LTEXT           "Install directory:",IDC_STATIC8,292,21,54,8
+    EDITTEXT        IDC_MAYA2009_INSTALL_DIRECTORY,358,19,190,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Install exporter",IDC_INSTALL_MAYA2009_EXPORTER,478,37,70,14
+    GROUPBOX        "Maya 2009 64-bit",IDC_MAYA2009_64BIT_FRAME,286,64,272,55
+    LTEXT           "Install directory:",IDC_STATIC9,292,82,54,8
+    EDITTEXT        IDC_MAYA2009_64BIT_INSTALL_DIRECTORY,358,80,190,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Install exporter",IDC_INSTALL_MAYA2009_64BIT_EXPORTER,478,98,70,14
+    GROUPBOX        "Maya 2014",IDC_MAYA2014_FRAME,286,127,272,55
+    LTEXT           "Install directory:",IDC_STATIC10,292,143,54,8
+    EDITTEXT        IDC_MAYA2014_INSTALL_DIRECTORY,358,143,190,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Install exporter",IDC_INSTALL_MAYA2014_EXPORTER,478,161,70,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_EXPORTER_INSTALLER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 558
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 183
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_WINDOWSSDKASSISTANT ICON                    "WindowsSDKAssistant.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_EXPORTER_INSTALLER AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // English (New Zealand) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

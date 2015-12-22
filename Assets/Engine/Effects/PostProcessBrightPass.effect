@@ -1,0 +1,3 @@
+Description             "Post-process bright pass"
+
+$brightThreshold        Float

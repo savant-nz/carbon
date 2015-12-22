@@ -1,0 +1,21 @@
+#
+# This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not
+# distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#
+
+import os
+
+Import('*')
+
+sources = [
+    'analysis.c', 'bitrate.c', 'block.c', 'codebook.c', 'envelope.c', 'floor0.c', 'floor1.c', 'info.c', 'lpc.c', 'lsp.c',
+    'mapping0.c', 'mdct.c', 'psy.c', 'registry.c', 'res0.c', 'sharedbook.c', 'smallft.c', 'synthesis.c', 'vorbisenc.c',
+    'vorbisfile.c', 'window.c'
+]
+
+libOggObjects = SConscript(GetDependencyPath('Ogg', 'Source/SConscript'), variant_dir=os.path.join(baseVariantDir, 'Ogg'),
+                           exports='env', duplicate=0)
+
+result = env.StaticLibrary(target, sources + libOggObjects)
+
+Return('result')

@@ -1,0 +1,8 @@
+Description             "Post-process atmospheric scattering"
+
+$extinctionFactor       Float
+$inscatteringFactor     Float
+$turbidity              Float
+$rayleighCoefficient    Float
+$mieCoefficient         Float
+$g                      Float
