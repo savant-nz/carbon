@@ -30,7 +30,8 @@ Carbon is licensed under the Mozilla Public License Version 2.0.
 
 ## Downloads
 
-Releases of SDKs for Windows, Mac OS X, and iOS can be downloaded at [Releases](https://github.com/savant-nz/carbon/wiki/Releases).
+Releases of SDKs for Windows, Mac OS X, and iOS can be downloaded at
+[Releases](https://github.com/savant-nz/carbon/wiki/Releases).
 
 SDK releases include the following:
 

@@ -731,10 +731,7 @@ void GeometryChunk::load(FileReader& file)
             throw Exception("GeometryChunk version is too old, please re-export");
 
         file.skip(1);
-        file.read(vertexStreams_, vertexCount_, vertexSize_);
-
-        // Read whether the vertex data is present in this chunk
-        file.read(isVertexDataSpecified_);
+        file.read(vertexStreams_, vertexCount_, vertexSize_, isVertexDataSpecified_);
 
         if (isVertexDataSpecified_)
         {
