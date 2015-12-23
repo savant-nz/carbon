@@ -67,7 +67,7 @@ if platform == 'Windows':
         env['LIBS'] += [GetCarbonEngineBuildResult()]
         env['LINKFLAGS'] += ['/SUBSYSTEM:WINDOWS']
 
-        if IsCarbonEngineStatic():
+        if env.IsCarbonEngineStatic():
             env['CPPDEFINES'] += ['CARBON_STATIC_LIBRARY']
             env.SetupForLinkingCarbon()
 
@@ -90,7 +90,7 @@ elif platform == 'Linux' or platform == 'MacOSX':
         engineEnv['CPPDEFINES'] += ['CARBON_INCLUDE_PLATFORM_MACOSX'] + GetDependencyCPPDEFINES('OpenGL41')
 
     # Set a sensible install name for dynamic libraries on Mac OS X
-    if platform == 'MacOSX' and not IsCarbonEngineStatic():
+    if platform == 'MacOSX' and not engineEnv.IsCarbonEngineStatic():
         engineEnv['LINKFLAGS'] += ['-install_name', '@rpath/lib%s.dylib' % carbonEngineLibraryName]
 
     # Environment for the Maya exporters on Mac OS X
@@ -118,7 +118,7 @@ elif platform == 'Linux' or platform == 'MacOSX':
         env['CPPPATH'] += ['#/Source']
         env['LIBS'] += [GetCarbonEngineBuildResult()]
 
-        if IsCarbonEngineStatic():
+        if env.IsCarbonEngineStatic():
             env['CPPDEFINES'] += ['CARBON_STATIC_LIBRARY']
             env.SetupForLinkingCarbon()
 
@@ -173,7 +173,7 @@ if os.system('ruby ../Assets/Engine/CreateEngineAssetsHeader.rb') != 0:
     Exit(1)
 
 # CarbonEngine
-if IsCarbonEngineStatic():
+if engineEnv.IsCarbonEngineStatic():
     engineEnv['CPPDEFINES'] += ['CARBON_STATIC_LIBRARY']
 else:
     engineEnv.SetupForLinkingCarbon()
@@ -205,7 +205,7 @@ if platform == 'Linux' or platform == 'MacOSX':
         Alias('install', installedHeader)
 
 # Exporters can only be built as dynamic libraries
-if not IsCarbonEngineStatic():
+if not engineEnv.IsCarbonEngineStatic():
     for e in maxExporterEnvs:
         target = 'CarbonExporterMax' + e['version']
         Export({'env': e['env'], 'target': target})

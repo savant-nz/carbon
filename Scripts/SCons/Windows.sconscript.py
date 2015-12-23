@@ -53,7 +53,7 @@ def Carbonize(self, **keywords):
         self['CPPPATH'] += [os.path.join(os.environ['CARBON_SDK_PATH'], 'Include')]
         self['LIBPATH'] += [os.path.join(os.environ['CARBON_SDK_PATH'], 'Library')]
 
-    if IsCarbonEngineStatic():
+    if self.IsCarbonEngineStatic():
         self['CPPDEFINES'] += ['CARBON_STATIC_LIBRARY']
         self.SetupForLinkingCarbon()
 

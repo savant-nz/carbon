@@ -39,7 +39,7 @@ env.AddMethod(SetupForLinkingCarbon)
 
 # Add a method for setting up an environment ready for building against the installed SDK
 def Carbonize(self, **keywords):
-    if IsCarbonEngineStatic():
+    if self.IsCarbonEngineStatic():
         self['CPPDEFINES'] += ['CARBON_STATIC_LIBRARY']
 
     self['LIBS'] += ['CarbonEngine' + {'Debug': 'Debug', 'Release': ''}[buildType]]
@@ -48,12 +48,12 @@ def Carbonize(self, **keywords):
         self['CPPPATH'] += [os.path.join(ARGUMENTS['carbonroot'], 'Source')]
         self['LIBPATH'] += [os.path.join(ARGUMENTS['carbonroot'], 'Build', 'Linux', architecture, 'GCC', buildType)]
 
-        if IsCarbonEngineStatic():
+        if self.IsCarbonEngineStatic():
             self.SetupForLinkingCarbon()
     else:
         # On Linux the headers and library files are expected to be found through the default include and library paths
 
-        if IsCarbonEngineStatic():
+        if self.IsCarbonEngineStatic():
             self.SetupForLinkingCarbon(dependencies=[])
 
     self.Append(**keywords)

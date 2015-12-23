@@ -170,7 +170,7 @@ Export('Is64Bit')
 
 # Add a method for determining whether the main engine library is being linked statically. The default is to link statically
 # except when running `scons install` on a POSIX platform.
-def IsCarbonEngineStatic():
+def IsCarbonEngineStatic(self):
     if (platform == 'Linux' or platform == 'MacOSX') and 'install' in COMMAND_LINE_TARGETS:
         if ARGUMENTS.get('static', '') == 'true':
             print('Error: the \'install\' target should not be used when building with static=true')
@@ -180,7 +180,7 @@ def IsCarbonEngineStatic():
 
     return platformScript.get('isCarbonEngineStatic', ARGUMENTS.get('static', 'true') == 'true')
 
-Export('IsCarbonEngineStatic')
+baseEnv.AddMethod(IsCarbonEngineStatic)
 
 
 # Add a method that returns the name for the main engine library
