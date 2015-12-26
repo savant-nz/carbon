@@ -3,6 +3,8 @@
 Carbon is an open-source cross-platform game and visualization engine for both 2D and 3D applications running on
 desktop and mobile devices.
 
+Our main website is at [http://savant-nz.github.io/carbon](http://savant-nz.github.io/carbon).
+
 ## Features
 
 - Written in modern C++11
@@ -30,21 +32,10 @@ Carbon is licensed under the Mozilla Public License Version 2.0.
 
 ## Downloads
 
-Releases of SDKs for Windows, Mac OS X, and iOS can be downloaded at
-[Releases](https://github.com/savant-nz/carbon/wiki/Releases).
-
-SDK releases include the following:
-
-- Release and debug builds of the engine
-- Sample applications
-- Public headers and library files needed for development
-- Project wizards for Visual Studio and Xcode
-- Exporters for Max and Maya (Windows only)
+See the [Downloads](http://savant-nz.github.io/carbon/downloads.html) page for SDK releases.
 
 ## Contributing
 
 For instructions on setting up a development environment see `BUILDING.md`.
 
 Issue and feature request tracking is handled in [GitHub Issues](https://github.com/savant-nz/carbon/issues).
-
-Pull requests are always welcome.
