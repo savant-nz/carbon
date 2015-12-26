@@ -3,7 +3,7 @@
 Carbon is an open-source cross-platform game and visualization engine for both 2D and 3D applications running on
 desktop and mobile devices.
 
-Our main website is at [http://savant-nz.github.io/carbon](http://savant-nz.github.io/carbon).
+The project's website is at [http://savant-nz.github.io/carbon](http://savant-nz.github.io/carbon).
 
 ## Features
 
