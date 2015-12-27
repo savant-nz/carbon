@@ -1,0 +1,40 @@
+title: Carbon
+tagline: Open-source game and visualization engine
+
+root: /carbon
+
+github_url: https://github.com/savant-nz/carbon
+s3_url: http://savant-nz-carbon.s3.amazonaws.com
+
+# Items on the top navigation bar
+navigation:
+- text: About
+  url: /
+  url2: /index.html
+- text: Downloads
+  url: /downloads.html
+- text: Screenshots
+  url: /screenshots.html
+- text: Contact
+  url: /contact.html
+
+# Screenshots to display, these are sourced from S3
+screenshots:
+- filename: 01.jpg
+  text: Interactive physics simulation and reflective surfaces.
+- filename: 02.jpg
+  text: Infinite terrain and atmospheric scattering.
+
+# People to display on the Contact page
+people:
+- name: Christiaan Gough
+  url: mailto:christiaan.gough@gmail.com
+  role: Project Manager
+- name: Richard Viney
+  url: https://github.com/rviney
+  role: Lead Developer
+
+# Releases to display on the Downloads page, sorted by date
+releases:
+- version: 0.1-alpha-7581ceb
+  date: 2015-12-23
