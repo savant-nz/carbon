@@ -48,7 +48,7 @@ class SDKBuilderBase
   protected
 
   def upload_sdk
-    public_url = AmazonS3.upload_file sdk_filename, bucket: 'carbon-sdks', acl: 'public-read'
+    public_url = AmazonS3.upload_file sdk_filename, bucket: 'savant-nz-carbon', acl: 'public-read', target_prefix: 'sdks/'
 
     puts "URL: #{public_url}"
   end

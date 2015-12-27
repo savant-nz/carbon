@@ -34,8 +34,8 @@ module AmazonS3
   end
 
   def credentials(options)
-    access_key_id = options.fetch :access_key_id, ENV.fetch('CARBON_S3_ACCESS_KEY_ID')
-    secret_access_key = options.fetch :secret_access_key, ENV.fetch('CARBON_S3_SECRET_ACCESS_KEY')
+    access_key_id = options.fetch :access_key_id, ENV['CARBON_S3_ACCESS_KEY_ID']
+    secret_access_key = options.fetch :secret_access_key, ENV['CARBON_S3_SECRET_ACCESS_KEY']
 
     Aws::Credentials.new access_key_id, secret_access_key
   end
@@ -47,7 +47,7 @@ module AmazonS3
 
     bucket = s3.bucket options.fetch(:bucket)
 
-    object_name = options.fetch :object, File.basename(source_file)
+    object_name = options.fetch :object, "#{options[:target_prefix]}#{File.basename(source_file)}"
 
     bucket.object object_name
   end
