@@ -75,7 +75,7 @@ void Bullet::shutdown()
 
 String Bullet::getEngineName() const
 {
-    return String() + "Bullet " + BT_BULLET_VERSION / 100 + "." + BT_BULLET_VERSION % 100;
+    return String() + "Bullet " + (btGetVersion() / 100) + "." + (btGetVersion() % 100);
 }
 
 PhysicsInterface::BodyObject Bullet::createBoundingBoxBody(const AABB& aabb, float mass, bool fixed, const Entity* entity,
