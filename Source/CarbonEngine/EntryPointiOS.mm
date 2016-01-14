@@ -5,10 +5,10 @@
 
 #include "CarbonEngine/Common.h"
 #include "CarbonEngine/Application.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/InterfaceRegistry.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Platform/iOS/PlatformiOS.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 

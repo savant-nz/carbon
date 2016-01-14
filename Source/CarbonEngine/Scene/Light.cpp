@@ -12,7 +12,7 @@
 namespace Carbon
 {
 
-const VersionInfo LightVersionInfo(3, 0);
+const auto LightVersionInfo = VersionInfo(3, 0);
 
 Light::~Light()
 {

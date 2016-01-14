@@ -8,8 +8,8 @@
 #ifdef CARBON_INCLUDE_OPENGL11
 
 #include "CarbonEngine/Graphics/OpenGL11/OpenGL11.h"
-#include "CarbonEngine/Platform/PlatformInterface.h"
 #include "CarbonEngine/Graphics/States/States.h"
+#include "CarbonEngine/Platform/PlatformInterface.h"
 
 namespace Carbon
 {

@@ -4,12 +4,12 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/VersionInfo.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Image/Image.h"
-#include "CarbonEngine/Math/MathCommon.h"
 #include "CarbonEngine/Math/HashFunctions.h"
+#include "CarbonEngine/Math/MathCommon.h"
 
 namespace Carbon
 {

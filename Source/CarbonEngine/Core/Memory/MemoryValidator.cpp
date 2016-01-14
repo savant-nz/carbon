@@ -4,8 +4,8 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/Memory/MemoryValidator.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/MathCommon.h"
 
 namespace Carbon

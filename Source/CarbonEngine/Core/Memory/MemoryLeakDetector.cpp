@@ -4,7 +4,6 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventHandler.h"
 #include "CarbonEngine/Core/EventManager.h"
@@ -12,6 +11,7 @@
 #include "CarbonEngine/Core/Memory/MemoryLeakDetector.h"
 #include "CarbonEngine/Core/Memory/MemoryValidator.h"
 #include "CarbonEngine/Core/Threads/Mutex.h"
+#include "CarbonEngine/Globals.h"
 
 namespace Carbon
 {

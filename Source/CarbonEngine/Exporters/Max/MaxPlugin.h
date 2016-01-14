@@ -8,12 +8,12 @@
 // The Max headers trigger a number of warnings which are disabled briefly while they are included
 #ifdef _MSC_VER
     #pragma warning(push)
-    #pragma warning(disable: 4100) // unreferenced formal parameter
-    #pragma warning(disable: 4201) // nonstandard extension used : nameless struct/union
-    #pragma warning(disable: 4238) // nonstandard extension used : class rvalue used as lvalue
-    #pragma warning(disable: 4239) // nonstandard extension used : 'token' : conversion from 'type' to 'type'
-    #pragma warning(disable: 4245) // conversion from 'type1' to 'type2', signed/unsigned mismatch
-    #pragma warning(disable: 4996) // 'function' was declared deprecated
+    #pragma warning(disable : 4100)    // unreferenced formal parameter
+    #pragma warning(disable : 4201)    // nonstandard extension used : nameless struct/union
+    #pragma warning(disable : 4238)    // nonstandard extension used : class rvalue used as lvalue
+    #pragma warning(disable : 4239)    // nonstandard extension used : 'token' : conversion from 'type' to 'type'
+    #pragma warning(disable : 4245)    // conversion from 'type1' to 'type2', signed/unsigned mismatch
+    #pragma warning(disable : 4996)    // 'function' was declared deprecated
 
     #pragma conform(forScope, push)
     #pragma conform(forScope, off)
@@ -26,12 +26,12 @@ template <typename T> static const T& min(const T& a, const T& b)
 }
 
 // Include Max headers and libraries
-#include <max.h>
-#include <iparamm2.h>
-#include <iskin.h>
-#include <MeshNormalSpec.h>
 #include <CS/BipExp.H>
 #include <CS/PhyExp.H>
+#include <iparamm2.h>
+#include <iskin.h>
+#include <max.h>
+#include <MeshNormalSpec.h>
 #ifdef _MSC_VER
     #pragma comment(lib, "core.lib")
     #pragma comment(lib, "geom.lib")

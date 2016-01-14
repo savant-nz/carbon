@@ -4,13 +4,13 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventHandler.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/Threads/Mutex.h"
 #include "CarbonEngine/Core/Threads/Thread.h"
+#include "CarbonEngine/Globals.h"
 
 namespace Carbon
 {

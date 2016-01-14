@@ -7,10 +7,10 @@
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Exporters/ExportRunners.h"
 #include "CarbonEngine/Render/EffectManager.h"
-#include "CarbonEngine/Scene/Mesh/Mesh.h"
-#include "CarbonEngine/Scene/Mesh/MeshManager.h"
 #include "CarbonEngine/Scene/ABTCompiler.h"
 #include "CarbonEngine/Scene/Material.h"
+#include "CarbonEngine/Scene/Mesh/Mesh.h"
+#include "CarbonEngine/Scene/Mesh/MeshManager.h"
 #include "CarbonEngine/Scene/Scene.h"
 
 namespace Carbon

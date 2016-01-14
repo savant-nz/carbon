@@ -29,8 +29,8 @@
 #include "CarbonEngine/Scene/ComplexEntity.h"
 #include "CarbonEngine/Scene/CullingNode.h"
 #include "CarbonEngine/Scene/GeometryGather.h"
-#include "CarbonEngine/Scene/GUI/GUIWindow.h"
 #include "CarbonEngine/Scene/GUI/GUIEvents.h"
+#include "CarbonEngine/Scene/GUI/GUIWindow.h"
 #include "CarbonEngine/Scene/IntersectionResult.h"
 #include "CarbonEngine/Scene/Light.h"
 #include "CarbonEngine/Scene/Material.h"
@@ -1241,8 +1241,8 @@ Vector<std::pair<Renderer::Camera, GraphicsInterface::OutputDestination>>
                                                          GraphicsInterface::OutputOculusRiftRightEye),
                                GraphicsInterface::OutputOculusRiftRightEye);
 
-                const_cast<Camera*>(camera)
-                    ->setWorldOrientation(platform().getOculusRiftTransformLeftEye().getOrientation().slerp(
+                const_cast<Camera*>(camera)->setWorldOrientation(
+                    platform().getOculusRiftTransformLeftEye().getOrientation().slerp(
                         platform().getOculusRiftTransformRightEye().getOrientation(), 0.5f));
             }
         }

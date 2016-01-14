@@ -609,14 +609,16 @@ public:
      * format.
      */
     typedef std::function<Color(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                unsigned int y, unsigned int z)> ReadPixelFunction;
+                                unsigned int y, unsigned int z)>
+        ReadPixelFunction;
 
     /**
      * Function typedef for writing the color of a single pixel in an image, this is implemented separately for each pixel
      * format.
      */
     typedef std::function<void(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z, const Color& color)> WritePixelFunction;
+                               unsigned int y, unsigned int z, const Color& color)>
+        WritePixelFunction;
 
     /**
      * Returns a function for reading a single pixel value out of a piece of raw image data in the specified pixel format, or

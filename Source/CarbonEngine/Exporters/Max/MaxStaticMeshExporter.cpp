@@ -8,10 +8,10 @@
 #ifdef CARBON_INCLUDE_MAX_EXPORTER
 
 #include "CarbonEngine/Core/BuildInfo.h"
-#include "CarbonEngine/Exporters/ProgressDialog.h"
 #include "CarbonEngine/Exporters/ExporterStrings.h"
 #include "CarbonEngine/Exporters/ExportRunners.h"
 #include "CarbonEngine/Exporters/Max/MaxGeometryExporter.h"
+#include "CarbonEngine/Exporters/ProgressDialog.h"
 #include "CarbonEngine/Scene/Mesh/Mesh.h"
 
 namespace Carbon

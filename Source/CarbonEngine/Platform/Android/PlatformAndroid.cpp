@@ -8,8 +8,9 @@
 #ifdef ANDROID
 
 #include <android/log.h>
-#include "CarbonEngine/Globals.h"
+
 #include "CarbonEngine/Core/Memory/MemoryLeakDetector.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Platform/Android/PlatformAndroid.h"
 
 namespace Carbon

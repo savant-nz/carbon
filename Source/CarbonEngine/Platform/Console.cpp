@@ -10,8 +10,8 @@
 #include "CarbonEngine/Math/MathCommon.h"
 #include "CarbonEngine/Platform/Console.h"
 #include "CarbonEngine/Platform/ConsoleCommand.h"
-#include "CarbonEngine/Platform/PlatformInterface.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
+#include "CarbonEngine/Platform/PlatformInterface.h"
 
 namespace Carbon
 {

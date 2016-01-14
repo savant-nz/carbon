@@ -4,10 +4,10 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/Parameter.h"
 #include "CarbonEngine/Core/SettingsManager.h"
+#include "CarbonEngine/Globals.h"
 
 namespace Carbon
 {

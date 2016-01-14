@@ -6,8 +6,8 @@
 #pragma once
 
 #include "CarbonEngine/Math/Vec2.h"
-#include "CarbonEngine/Render/Renderer.h"
 #include "CarbonEngine/Render/GeometryChunk.h"
+#include "CarbonEngine/Render/Renderer.h"
 
 namespace Carbon
 {

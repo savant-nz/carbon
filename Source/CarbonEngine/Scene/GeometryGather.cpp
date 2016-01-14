@@ -4,9 +4,9 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Render/EffectManager.h"
 #include "CarbonEngine/Render/EffectQueue.h"
 #include "CarbonEngine/Render/EffectQueueArray.h"

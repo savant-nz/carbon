@@ -7,9 +7,9 @@
 
 #ifdef MACOSX
 
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 
 // On Mac OS X a Cocoa NSApplication subclass is used to run the application

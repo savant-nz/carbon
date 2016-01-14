@@ -7,8 +7,8 @@
 
 #ifdef CARBON_INCLUDE_PHYSX
 
-#include "CarbonEngine/Math/Ray.h"
 #include "CarbonEngine/Core/SharedLibrary.h"
+#include "CarbonEngine/Math/Ray.h"
 #include "CarbonEngine/Physics/PhysicsInterface.h"
 #include "CarbonEngine/Physics/PhysicsIntersectResult.h"
 #include "CarbonEngine/Physics/PhysX/PhysXIncludeWrapper.h"

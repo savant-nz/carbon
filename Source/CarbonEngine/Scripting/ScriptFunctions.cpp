@@ -4,9 +4,9 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Scripting/ScriptManager.h"
 
 namespace Carbon

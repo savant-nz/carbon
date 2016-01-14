@@ -4,13 +4,13 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/Endian.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/FileSystem/FileWriter.h"
 #include "CarbonEngine/Core/VersionInfo.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/MathCommon.h"
 
 namespace Carbon

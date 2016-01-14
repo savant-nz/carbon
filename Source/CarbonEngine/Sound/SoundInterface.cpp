@@ -6,8 +6,8 @@
 #include "CarbonEngine/Common.h"
 #include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Core/SettingsManager.h"
-#include "CarbonEngine/Sound/SoundInterface.h"
 #include "CarbonEngine/Sound/OpenAL/OpenAL.h"
+#include "CarbonEngine/Sound/SoundInterface.h"
 
 namespace Carbon
 {

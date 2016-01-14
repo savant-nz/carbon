@@ -4,12 +4,12 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Core/SettingsManager.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Graphics/GraphicsInterface.h"
 #include "CarbonEngine/Graphics/States/StateCacher.h"
 #include "CarbonEngine/Graphics/States/States.h"
@@ -210,11 +210,11 @@ bool Renderer::setShadowMapSize(unsigned int size)
 void Renderer::createUnitRectangleGeometry()
 {
     // Layout: x, y, z, s, t, nx, ny, nz
-    auto vertexData = std::array<float, 8 * 8>{{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-                                                0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-                                                0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-                                                -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-                                                1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f}};
+    auto vertexData = std::array<float, 8 * 8>{{0.0f,  0.0f, 0.0f, 0.0f,  0.0f, 0.0f, 0.0f, 1.0f, 1.0f,  0.0f, 0.0f, 1.0f, 0.0f,
+                                                0.0f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f, 0.0f, 1.0f, 0.0f,  0.0f, 1.0f, 1.0f, 1.0f,
+                                                0.0f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f, 1.0f, 0.0f, 0.0f,  0.0f, 0.0f, 0.0f, 0.0f,
+                                                -1.0f, 0.0f, 0.0f, 0.0f,  1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+                                                1.0f,  0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,  0.0f, 0.0f, -1.0f}};
 
     auto indices = Vector<unsigned int>{0, 1, 2, 1, 3, 2, 4, 5, 6, 5, 7, 6};
 

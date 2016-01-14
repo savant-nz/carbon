@@ -8,10 +8,10 @@
 #ifdef CARBON_INCLUDE_MAYA_EXPORTER
 
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
-#include "CarbonEngine/Exporters/ProgressDialog.h"
 #include "CarbonEngine/Exporters/ExporterStrings.h"
 #include "CarbonEngine/Exporters/Maya/MayaGeometryHelper.h"
 #include "CarbonEngine/Exporters/Maya/MayaHelper.h"
+#include "CarbonEngine/Exporters/ProgressDialog.h"
 #include "CarbonEngine/Geometry/TriangleArray.h"
 #include "CarbonEngine/Geometry/TriangleArraySet.h"
 #include "CarbonEngine/Math/MathCommon.h"

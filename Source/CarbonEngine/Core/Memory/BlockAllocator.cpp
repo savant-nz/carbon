@@ -4,10 +4,10 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/Memory/BlockAllocator.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/MathCommon.h"
 
 namespace Carbon

@@ -4,9 +4,9 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/Memory/BlockAllocator.h"
 #include "CarbonEngine/Core/Memory/BlockAllocatorSet.h"
+#include "CarbonEngine/Globals.h"
 
 namespace Carbon
 {

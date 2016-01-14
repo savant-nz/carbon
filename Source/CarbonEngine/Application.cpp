@@ -5,21 +5,21 @@
 
 #include "CarbonEngine/Common.h"
 #include "CarbonEngine/Application.h"
-#include "CarbonEngine/Globals.h"
-#include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/CoreEvents.h"
+#include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Graphics/GraphicsInterface.h"
 #include "CarbonEngine/Platform/FrameTimers.h"
 #include "CarbonEngine/Platform/PlatformInterface.h"
-#include "CarbonEngine/Render/Renderer.h"
 #include "CarbonEngine/Render/RenderEvents.h"
+#include "CarbonEngine/Render/Renderer.h"
 #include "CarbonEngine/Scene/GUI/GUIEvents.h"
 #include "CarbonEngine/Scene/Scene.h"
 #include "CarbonEngine/Scene/SceneEvents.h"
 #include "CarbonEngine/Scripting/ScriptManager.h"
-#include "CarbonEngine/Sound/SoundInterface.h"
 #include "CarbonEngine/Sound/SoundEvents.h"
+#include "CarbonEngine/Sound/SoundInterface.h"
 
 namespace Carbon
 {

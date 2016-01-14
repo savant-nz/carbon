@@ -7,11 +7,11 @@
 
 #ifdef CARBON_INCLUDE_MAYA_EXPORTER
 
-#include "CarbonEngine/Core/Runnable.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
-#include "CarbonEngine/Exporters/ProgressDialog.h"
+#include "CarbonEngine/Core/Runnable.h"
 #include "CarbonEngine/Exporters/ExporterStrings.h"
 #include "CarbonEngine/Exporters/Maya/MayaHelper.h"
+#include "CarbonEngine/Exporters/ProgressDialog.h"
 #include "CarbonEngine/Scene/SkeletalAnimation.h"
 
 namespace Carbon

@@ -13,7 +13,7 @@ namespace Carbon
 
 const String Region::RegionMaterialPrefix = "tools.region.";
 
-const VersionInfo RegionVersionInfo(1, 0);
+const auto RegionVersionInfo = VersionInfo(1, 0);
 
 Region::~Region()
 {

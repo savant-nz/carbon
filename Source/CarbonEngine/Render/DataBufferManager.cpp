@@ -4,9 +4,9 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 #include "CarbonEngine/Platform/SimpleTimer.h"
 #include "CarbonEngine/Render/DataBufferManager.h"
@@ -25,7 +25,7 @@ DataBufferManager::StaticDataGroup::~StaticDataGroup()
 }
 
 DataBufferManager::StaticDataGroup::Allocation* DataBufferManager::StaticDataGroup::allocate(unsigned int size,
-                                                                                               const byte_t* data)
+                                                                                             const byte_t* data)
 {
     // The number of blocks needed
     auto blocksNeeded = (size + blockSize - 1) / blockSize;
@@ -135,7 +135,7 @@ void DataBufferManager::onRecreateWindowEvent(const RecreateWindowEvent& rwe)
 }
 
 DataBufferManager::AllocationObject DataBufferManager::allocate(GraphicsInterface::DataBufferType type, unsigned int size,
-                                                                  const byte_t* data, bool isDynamic)
+                                                                const byte_t* data, bool isDynamic)
 {
     if (!data)
         return nullptr;
@@ -254,7 +254,7 @@ bool DataBufferManager::updateData(AllocationObject allocationObject)
 }
 
 GraphicsInterface::DataBufferObject DataBufferManager::getAllocationBufferObject(AllocationObject allocationObject,
-                                                                                  uintptr_t& offset)
+                                                                                 uintptr_t& offset)
 {
     if (!allocationObject)
         return nullptr;

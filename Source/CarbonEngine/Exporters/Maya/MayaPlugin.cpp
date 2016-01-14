@@ -7,10 +7,10 @@
 
 #ifdef CARBON_INCLUDE_MAYA_EXPORTER
 
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/BuildInfo.h"
 #include "CarbonEngine/Exporters/ExporterStrings.h"
 #include "CarbonEngine/Exporters/Maya/MayaPlugin.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/Matrix3.h"
 #include <maya/MFnPlugin.h>
 

@@ -4,12 +4,12 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/BuildInfo.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/VersionInfo.h"
 #include "CarbonEngine/Geometry/TriangleArray.h"
 #include "CarbonEngine/Geometry/TriangleArraySet.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/Ray.h"
 #include "CarbonEngine/Scene/Mesh/Mesh.h"
 

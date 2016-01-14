@@ -4,9 +4,9 @@
  */
 
 #include "CarbonEngine/Common.h"
+#include "CarbonEngine/Exporters/DialogBase.h"
 #include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Resource.h"
-#include "CarbonEngine/Exporters/DialogBase.h"
 
 namespace Carbon
 {

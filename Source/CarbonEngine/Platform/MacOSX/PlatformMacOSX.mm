@@ -14,15 +14,15 @@
 #include <Cocoa/Cocoa.h>
 #include "CarbonEngine/Core/Memory/MemoryInterceptor.h"
 
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Core/SharedLibrary.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/MathCommon.h"
+#include "CarbonEngine/Platform/MacOSX/PlatformMacOSX.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 #include "CarbonEngine/Platform/PlatformInterface.h"
-#include "CarbonEngine/Platform/MacOSX/PlatformMacOSX.h"
 
 @interface WindowDelegate : NSObject <NSWindowDelegate>
 - (BOOL)windowShouldClose:(id)sender;

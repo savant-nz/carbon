@@ -9,9 +9,9 @@ REPOSITORY_ROOT = File.expand_path File.join(File.dirname(__FILE__), '..')
 require "#{REPOSITORY_ROOT}/Scripts/Shared.rb"
 require "#{REPOSITORY_ROOT}/Scripts/Git.rb"
 
-# This class uses clang-format and some custom extra customizations in order to automatically format the source code under this
-# directory according to the rules specified in the .clang-format file. Requires that clang-format is installed. Note that
-# current versions of clang-format do not preserve preprocessor indentation.
+# This class uses clang-format in order to automatically format the source code under this directory according to the rules
+# specified in the .clang-format file. Requires that clang-format is installed. Some additional custom formatting is done as
+# well. Note that current versions of clang-format do not preserve preprocessor indentation.
 class SourceCodeFormatter
   def format_source_code
     source_files.each do |file|

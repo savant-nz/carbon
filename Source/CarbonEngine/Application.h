@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventHandler.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/Memory/MemoryStatistics.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 #include "CarbonEngine/Render/RenderEvents.h"
 

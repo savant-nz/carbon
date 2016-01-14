@@ -15,11 +15,11 @@
     #error The OpenGL 4.1 graphics backend must be excluded from the build when using the SDL platform backend
 #endif
 
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Core/SharedLibrary.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Graphics/OpenGL11/OpenGL11.h"
 #include "CarbonEngine/Math/MathCommon.h"
 #include "CarbonEngine/Math/Vec2i.h"
@@ -152,10 +152,10 @@ bool PlatformSDL::setup()
     }
 
     // Log SDL versions
-    auto linked = SDL_version();
+    auto version = SDL_version();
     SDL_GetVersion(&linked);
 
-    LOG_INFO << "Initialized SDL " << linked.major << "." << linked.minor << "." << linked.patch;
+    LOG_INFO << "Initialized SDL " << version.major << "." << version.minor << "." << version.patch;
 
     // Check there is a display to render into
     if (SDL_GetNumVideoDisplays() == 0)

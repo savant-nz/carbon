@@ -15,9 +15,9 @@
 #include "CarbonEngine/Render/Renderer.h"
 #include "CarbonEngine/Render/Shaders/Shader.h"
 #include "CarbonEngine/Render/Shaders/ShaderRegistry.h"
-#include "CarbonEngine/Render/Texture/TextureManager.h"
 #include "CarbonEngine/Render/Texture/Texture2D.h"
 #include "CarbonEngine/Render/Texture/TextureCubemap.h"
+#include "CarbonEngine/Render/Texture/TextureManager.h"
 
 namespace Carbon
 {

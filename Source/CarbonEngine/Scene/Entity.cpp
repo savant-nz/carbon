@@ -4,10 +4,10 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/VersionInfo.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/Interpolate.h"
 #include "CarbonEngine/Math/Ray.h"
 #include "CarbonEngine/Physics/PhysicsInterface.h"

@@ -7,10 +7,10 @@
 
 #ifdef CARBON_INCLUDE_MAX_EXPORTER
 
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/BuildInfo.h"
 #include "CarbonEngine/Exporters/ExportInfo.h"
 #include "CarbonEngine/Exporters/Max/MaxPlugin.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/Matrix3.h"
 
 #if MAX_PRODUCT_VERSION_MAJOR >= 2013 && !defined(CARBON_64BIT)

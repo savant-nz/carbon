@@ -15,13 +15,15 @@ namespace Carbon
  * Typedef for a sound file reading function.
  */
 typedef std::function<bool(FileReader& file, SoundInterface::AudioFormat& format, unsigned int& channelCount,
-                           unsigned int& frequency, Vector<byte_t>& data)> ReadSoundFormatFunction;
+                           unsigned int& frequency, Vector<byte_t>& data)>
+    ReadSoundFormatFunction;
 
 /**
  * Typedef for a sound file writing function.
  */
 typedef std::function<bool(FileWriter& file, SoundInterface::AudioFormat format, unsigned int channelCount,
-                           unsigned int frequency, const Vector<byte_t>& data)> WriteSoundFormatFunction;
+                           unsigned int frequency, const Vector<byte_t>& data)>
+    WriteSoundFormatFunction;
 
 /**
  * Handles the registration of supported sound formats and provides access to the reading and writing functions for each

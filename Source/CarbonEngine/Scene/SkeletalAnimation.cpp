@@ -4,10 +4,10 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
-#include "CarbonEngine/Core/VersionInfo.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
+#include "CarbonEngine/Core/VersionInfo.h"
 #include "CarbonEngine/Exporters/ExportInfo.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Scene/SkeletalAnimation.h"
 
 namespace Carbon

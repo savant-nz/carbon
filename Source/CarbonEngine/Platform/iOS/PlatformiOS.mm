@@ -10,9 +10,9 @@
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/InterfaceRegistry.h"
-#include "CarbonEngine/Platform/PlatformEvents.h"
-#include "CarbonEngine/Platform/iOS/PlatformiOS.h"
 #include "CarbonEngine/Graphics/iOS/iOSOpenGLES2.h"
+#include "CarbonEngine/Platform/iOS/PlatformiOS.h"
+#include "CarbonEngine/Platform/PlatformEvents.h"
 
 // This UIView subclass wraps the CAEAGLLayer from Core Animation. The view content is an EAGL context that an OpenGL ES scene
 // can be rendered into. Input events on the view are passed through to PlatformiOS.

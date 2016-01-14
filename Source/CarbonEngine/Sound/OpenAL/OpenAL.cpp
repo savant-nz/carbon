@@ -7,21 +7,21 @@
 
 #ifdef CARBON_INCLUDE_OPENAL
 
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/Endian.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
 #include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Core/SettingsManager.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/MathCommon.h"
 #include "CarbonEngine/Math/Matrix3.h"
 #include "CarbonEngine/Platform/SimpleTimer.h"
+#include "CarbonEngine/Sound/OpenAL/OpenAL.h"
 #include "CarbonEngine/Sound/SoundEvents.h"
 #include "CarbonEngine/Sound/SoundFormatRegistry.h"
 #include "CarbonEngine/Sound/SoundInterface.h"
 #include "CarbonEngine/Sound/SoundShaderManager.h"
-#include "CarbonEngine/Sound/OpenAL/OpenAL.h"
 
 namespace Carbon
 {
@@ -36,11 +36,11 @@ namespace Carbon
     } while (false)
 
 #ifdef CARBON_DEBUG
-    #define VERIFY_SOURCE_OBJECT assert(sources_.has(reinterpret_cast<Source *>(sourceObject)) && "Unknown source object");
-    #define VERIFY_BUFFER_OBJECT assert(buffers_.has(reinterpret_cast<Buffer *>(bufferObject)) && "Unknown buffer object");
+#define VERIFY_SOURCE_OBJECT assert(sources_.has(reinterpret_cast<Source*>(sourceObject)) && "Unknown source object");
+#define VERIFY_BUFFER_OBJECT assert(buffers_.has(reinterpret_cast<Buffer*>(bufferObject)) && "Unknown buffer object");
 #else
-    #define VERIFY_SOURCE_OBJECT
-    #define VERIFY_BUFFER_OBJECT
+#define VERIFY_SOURCE_OBJECT
+#define VERIFY_BUFFER_OBJECT
 #endif
 
 void OpenAL::SoundLoadThread::main()

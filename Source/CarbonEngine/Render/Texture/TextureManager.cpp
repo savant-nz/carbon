@@ -14,10 +14,10 @@
 #include "CarbonEngine/Math/Noise.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 #include "CarbonEngine/Platform/SimpleTimer.h"
-#include "CarbonEngine/Render/Texture/TextureManager.h"
 #include "CarbonEngine/Render/Texture/Texture2D.h"
 #include "CarbonEngine/Render/Texture/Texture3D.h"
 #include "CarbonEngine/Render/Texture/TextureCubemap.h"
+#include "CarbonEngine/Render/Texture/TextureManager.h"
 
 namespace Carbon
 {

@@ -4,12 +4,12 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/Memory/BlockAllocator.h"
 #include "CarbonEngine/Core/Memory/BlockAllocatorSet.h"
 #include "CarbonEngine/Core/Memory/MemoryInterceptor.h"
 #include "CarbonEngine/Core/Memory/MemoryLeakDetector.h"
 #include "CarbonEngine/Core/Memory/MemoryValidator.h"
+#include "CarbonEngine/Globals.h"
 
 // This MemoryInterceptor backend is based on malloc/free. Platforms can implement their own allocator backend if desired.
 
@@ -28,8 +28,8 @@ namespace Carbon
 // Search for details on the _NO_DEBUG_HEAP environment variable for further information. Putting a generously sized
 // BlockAllocatorSet between the engine and the Windows Debug Heap improves performance a lot when debugging with an IDE.
 #if defined(WINDOWS) && defined(CARBON_DEBUG)
-    #define MEGABYTES(Number) (1024 * 1024 * Number)
-    #define CARBON_BLOCK_ALLOCATOR_CONFIG { { 32, MEGABYTES(4) }, { 256, MEGABYTES(16) }, { 1024, MEGABYTES(16) }, { 0, 0 } }
+    #define MEGABYTES(n) (n * 1024 * 1024)
+    #define CARBON_BLOCK_ALLOCATOR_CONFIG {32, MEGABYTES(4)}, {256, MEGABYTES(16)}, {1024, MEGABYTES(16)}, { 0, 0 }
 #endif
 
 #ifdef CARBON_BLOCK_ALLOCATOR_CONFIG
@@ -82,7 +82,7 @@ void* MemoryInterceptor::untrackedAllocate(size_t size, unsigned int flags, bool
 #ifdef CARBON_BLOCK_ALLOCATOR_CONFIG
     if (!blockAllocators.isCreated())
     {
-        unsigned int setup[][2] = CARBON_BLOCK_ALLOCATOR_CONFIG;
+        unsigned int setup[][2] = {CARBON_BLOCK_ALLOCATOR_CONFIG};
         blockAllocators.create(setup, ::malloc, ::free);
     }
 

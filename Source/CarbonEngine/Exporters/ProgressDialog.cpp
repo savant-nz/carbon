@@ -4,14 +4,14 @@
  */
 
 #include "CarbonEngine/Common.h"
+#include "CarbonEngine/Core/BuildInfo.h"
+#include "CarbonEngine/Core/CoreEvents.h"
+#include "CarbonEngine/Core/EventManager.h"
+#include "CarbonEngine/Core/Runnable.h"
+#include "CarbonEngine/Core/SettingsManager.h"
+#include "CarbonEngine/Exporters/ProgressDialog.h"
 #include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Resource.h"
-#include "CarbonEngine/Core/BuildInfo.h"
-#include "CarbonEngine/Core/EventManager.h"
-#include "CarbonEngine/Core/CoreEvents.h"
-#include "CarbonEngine/Core/SettingsManager.h"
-#include "CarbonEngine/Core/Runnable.h"
-#include "CarbonEngine/Exporters/ProgressDialog.h"
 
 namespace Carbon
 {

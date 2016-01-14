@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "CarbonEngine/Graphics/OpenGLShared/OpenGLShaderProgramShared.h"
 #include "CarbonEngine/Graphics/OpenGLShared/OpenGLShaderConstantCoreShared.h"
+#include "CarbonEngine/Graphics/OpenGLShared/OpenGLShaderProgramShared.h"
 
 namespace Carbon
 {

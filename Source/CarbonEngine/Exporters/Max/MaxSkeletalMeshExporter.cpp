@@ -9,11 +9,11 @@
 
 #include "CarbonEngine/Core/BuildInfo.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
-#include "CarbonEngine/Exporters/ProgressDialog.h"
 #include "CarbonEngine/Exporters/ExporterStrings.h"
 #include "CarbonEngine/Exporters/ExportRunners.h"
 #include "CarbonEngine/Exporters/Max/MaxPlugin.h"
 #include "CarbonEngine/Exporters/Max/MaxSkeletalExporterBase.h"
+#include "CarbonEngine/Exporters/ProgressDialog.h"
 #include "CarbonEngine/Geometry/TriangleArray.h"
 #include "CarbonEngine/Geometry/TriangleArraySet.h"
 #include "CarbonEngine/Math/Matrix3.h"

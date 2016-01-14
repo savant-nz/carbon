@@ -4,12 +4,12 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/SettingsManager.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/MathCommon.h"
-#include "CarbonEngine/Platform/PlatformInterface.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
+#include "CarbonEngine/Platform/PlatformInterface.h"
 #include "CarbonEngine/Scene/EntityController/PlatformerEntityController.h"
 
 namespace Carbon

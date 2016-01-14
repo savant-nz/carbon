@@ -4,9 +4,9 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/VersionInfo.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/MathCommon.h"
 #include "CarbonEngine/Math/Ray.h"
 #include "CarbonEngine/Platform/PlatformInterface.h"

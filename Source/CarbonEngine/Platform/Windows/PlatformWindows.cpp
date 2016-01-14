@@ -7,18 +7,18 @@
 
 #ifdef CARBON_INCLUDE_PLATFORM_WINDOWS
 
-#include "CarbonEngine/Globals.h"
-#include "CarbonEngine/Resource.h"
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Core/InterfaceRegistry.h"
+#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Graphics/GraphicsInterface.h"
 #include "CarbonEngine/Graphics/OpenGL11/OpenGL11.h"
 #include "CarbonEngine/Math/MathCommon.h"
 #include "CarbonEngine/Platform/ForceFeedbackEffects.h"
-#include "CarbonEngine/Platform/PlatformInterface.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
+#include "CarbonEngine/Platform/PlatformInterface.h"
 #include "CarbonEngine/Platform/Windows/PlatformWindows.h"
+#include "CarbonEngine/Resource.h"
 
 namespace Carbon
 {
@@ -388,10 +388,26 @@ void PlatformWindows::createGLWindow(const RECT& rect, WindowMode windowMode, FS
 
             while (true)
             {
-                auto attributes = std::array<int, 20>{
-                    {WGL_DRAW_TO_WINDOW_ARB, GL_TRUE, WGL_SUPPORT_OPENGL_ARB, GL_TRUE, WGL_ACCELERATION_ARB,
-                     WGL_FULL_ACCELERATION_ARB, WGL_COLOR_BITS_ARB, 24, WGL_ALPHA_BITS_ARB, 8, WGL_DEPTH_BITS_ARB, 24,
-                     WGL_DOUBLE_BUFFER_ARB, GL_TRUE, WGL_SAMPLE_BUFFERS_ARB, GL_TRUE, WGL_SAMPLES_ARB, int(fsaa), 0, 0}};
+                auto attributes = std::array<int, 20>{{WGL_DRAW_TO_WINDOW_ARB,
+                                                       GL_TRUE,
+                                                       WGL_SUPPORT_OPENGL_ARB,
+                                                       GL_TRUE,
+                                                       WGL_ACCELERATION_ARB,
+                                                       WGL_FULL_ACCELERATION_ARB,
+                                                       WGL_COLOR_BITS_ARB,
+                                                       24,
+                                                       WGL_ALPHA_BITS_ARB,
+                                                       8,
+                                                       WGL_DEPTH_BITS_ARB,
+                                                       24,
+                                                       WGL_DOUBLE_BUFFER_ARB,
+                                                       GL_TRUE,
+                                                       WGL_SAMPLE_BUFFERS_ARB,
+                                                       GL_TRUE,
+                                                       WGL_SAMPLES_ARB,
+                                                       int(fsaa),
+                                                       0,
+                                                       0}};
 
                 auto numFormats = 0U;
 

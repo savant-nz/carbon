@@ -4,12 +4,12 @@
  */
 
 #include "CarbonEngine/Common.h"
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/Memory/MemoryInterceptor.h"
 #include "CarbonEngine/Core/Memory/MemoryLeakDetector.h"
 #include "CarbonEngine/Core/Memory/MemoryStatistics.h"
 #include "CarbonEngine/Core/Memory/MemoryValidator.h"
 #include "CarbonEngine/Core/Threads/Mutex.h"
+#include "CarbonEngine/Globals.h"
 
 #include "CarbonEngine/Core/Memory/DefineGlobalOperatorNewDelete.h"
 

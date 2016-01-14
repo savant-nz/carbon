@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Core/FileSystem/FileSystem.h"
+#include "CarbonEngine/Globals.h"
 
 namespace Carbon
 {

@@ -10,10 +10,10 @@
 #include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Core/SettingsManager.h"
 #include "CarbonEngine/Math/MathCommon.h"
-#include "CarbonEngine/Platform/PlatformInterface.h"
-#include "CarbonEngine/Platform/PlatformEvents.h"
 #include "CarbonEngine/Platform/Android/PlatformAndroid.h"
 #include "CarbonEngine/Platform/MacOSX/PlatformMacOSX.h"
+#include "CarbonEngine/Platform/PlatformEvents.h"
+#include "CarbonEngine/Platform/PlatformInterface.h"
 #include "CarbonEngine/Platform/SDL/PlatformSDL.h"
 #include "CarbonEngine/Platform/Windows/PlatformWindows.h"
 
