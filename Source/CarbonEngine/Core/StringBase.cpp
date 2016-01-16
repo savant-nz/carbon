@@ -78,19 +78,20 @@ template <> String UnicodeString::toASCII() const
     return result;
 }
 
-template <> Vector<byte_t> String::toUTF8() const
+template <> Vector<byte_t> String::toUTF8(bool includeNullTerminator) const
 {
     auto result = Vector<byte_t>();
 
     for (auto i = 0U; i < length(); i++)
         result.append(at(i) > 0 ? at(i) : '?');
 
-    result.append(0);
+    if (includeNullTerminator)
+        result.append(0);
 
     return result;
 }
 
-template <> Vector<byte_t> UnicodeString::toUTF8() const
+template <> Vector<byte_t> UnicodeString::toUTF8(bool includeNullTerminator) const
 {
     auto result = Vector<byte_t>();
 
@@ -120,24 +121,26 @@ template <> Vector<byte_t> UnicodeString::toUTF8() const
         }
     }
 
-    result.append(0);
+    if (includeNullTerminator)
+        result.append(0);
 
     return result;
 }
 
-template <> Vector<uint16_t> String::toUTF16() const
+template <> Vector<uint16_t> String::toUTF16(bool includeNullTerminator) const
 {
     auto result = Vector<uint16_t>();
 
     for (auto i = 0U; i < length(); i++)
         result.append(at(i) > 0 ? at(i) : '?');
 
-    result.append(0);
+    if (includeNullTerminator)
+        result.append(0);
 
     return result;
 }
 
-template <> Vector<uint16_t> UnicodeString::toUTF16() const
+template <> Vector<uint16_t> UnicodeString::toUTF16(bool includeNullTerminator) const
 {
     auto result = Vector<uint16_t>();
 
@@ -154,7 +157,8 @@ template <> Vector<uint16_t> UnicodeString::toUTF16() const
         }
     }
 
-    result.append(0);
+    if (includeNullTerminator)
+        result.append(0);
 
     return result;
 }
@@ -402,19 +406,12 @@ CARBON_API Vector<UnicodeString> U(const Vector<String>& v)
 
 template <> void String::save(FileWriter& file) const
 {
-    // The on-disk format of String and UnicodeString are both UTF-8 for compatibility reasons. The number of bytes of UTF-8
-    // data is written first and no terminating null character is written.
-
-    auto utf8 = toUTF8();
-    utf8.popBack();
-    file.write(utf8);
+    file.write(toUTF8(false));
 }
 
 template <> void UnicodeString::save(FileWriter& file) const
 {
-    auto utf8 = toUTF8();
-    utf8.popBack();
-    file.write(utf8);
+    file.write(toUTF8(false));
 }
 
 template <> void String::load(FileReader& file)

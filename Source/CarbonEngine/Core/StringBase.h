@@ -1374,14 +1374,16 @@ public:
     StringBase<char> toASCII() const;
 
     /**
-     * Converts this string to UTF-8. The returned vector includes a null terminator.
+     * Converts this string to UTF-8. By default the returned vector includes a null terminator, but this can be overridden by
+     * setting \a includeNullTerminator to false.
      */
-    Vector<byte_t> toUTF8() const;
+    Vector<byte_t> toUTF8(bool includeNullTerminator = true) const;
 
     /**
-     * Converts this string to UTF-16. The returned vector includes a null terminator.
+     * Converts this string to UTF-16. By default the returned vector includes a null terminator, but this can be overridden by
+     * setting \a includeNullTerminator to false.
      */
-    Vector<uint16_t> toUTF16() const;
+    Vector<uint16_t> toUTF16(bool includeNullTerminator = true) const;
 
 #ifdef __OBJC__
     /**
