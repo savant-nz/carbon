@@ -291,19 +291,15 @@ void Globals::recreateGraphicsInterface()
 
 #ifdef WINDOWS
 
-static auto hInstance_ = HINSTANCE();
-
 HINSTANCE Globals::getHInstance()
 {
-    return hInstance_;
-}
+    static auto hInstance = HINSTANCE();
 
-// Store the correct module instance handle on startup
-static void setHInstance()
-{
-    GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, LPCTSTR(&hInstance_), &hInstance_);
+    if (!hInstance)
+        GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, LPCTSTR(&hInstance), &hInstance);
+
+    return hInstance;
 }
-CARBON_REGISTER_STARTUP_FUNCTION(setHInstance, 0);
 
 #endif
 
