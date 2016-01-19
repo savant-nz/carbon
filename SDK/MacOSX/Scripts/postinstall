@@ -9,8 +9,8 @@
 require 'fileutils'
 require 'find'
 
-INSTALL_PATH = '/Applications/Carbon SDK'
-XCODE_PROJECT_TEMPLATES_PATH = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application"
+INSTALL_PATH = '/Applications/Carbon SDK'.freeze
+XCODE_PROJECT_TEMPLATES_PATH = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application".freeze
 
 def user_profile_filename
   "#{ENV['HOME']}/.profile"

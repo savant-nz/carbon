@@ -6,7 +6,7 @@
 
 require 'fileutils'
 
-XCODE_PROJECT_TEMPLATES_PATH = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application"
+XCODE_PROJECT_TEMPLATES_PATH = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application".freeze
 
 [
   '/Applications/Carbon SDK',

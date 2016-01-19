@@ -162,7 +162,7 @@ class AssetEntry
     @root = root
     @name = input.fetch :name
     @recursive = input.fetch :recursive, true
-    @patterns = Array(input.fetch :patterns, '*')
+    @patterns = Array(input.fetch(:patterns, '*'))
   end
 
   def files
@@ -191,8 +191,8 @@ class AssetEntry
     Find.find full_name do |file|
       if File.basename(file)[0] == '.'
         Find.prune
-      else
-        result << file if valid_asset?(file)
+      elsif valid_asset? file
+        result << file
       end
     end
 
@@ -212,7 +212,7 @@ class WindowsInstallerCreator < InstallerCreatorBase
   private
 
   def create_installer
-    NSIS.nsis_with_script_content ERB.new(read_local_file 'Installer.nsi.erb').result(binding)
+    NSIS.nsis_with_script_content ERB.new(read_local_file('Installer.nsi.erb')).result(binding)
 
     "#{display_name}.exe"
   end
@@ -283,7 +283,7 @@ class MacOSXInstallerCreator < InstallerCreatorBase
   end
 
   def app_bundle_create_info_plist
-    File.write "#{app_bundle_path}/Contents/Info.plist", ERB.new(read_local_file 'Info.plist.erb').result(binding)
+    File.write "#{app_bundle_path}/Contents/Info.plist", ERB.new(read_local_file('Info.plist.erb')).result(binding)
   end
 
   def app_bundle_copy_assets

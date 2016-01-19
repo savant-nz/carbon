@@ -24,7 +24,7 @@ CARBON_DEPENDENCIES = {
   PhysX:           '3.3.2',
   Vorbis:          '1.3.5',
   ZLib:            '1.2.8'
-} unless defined? CARBON_DEPENDENCIES
+}.freeze unless defined? CARBON_DEPENDENCIES
 
 # Returns whether the rbconfig identifier for this platform contains the passed identifier.
 def host_os?(identifier)

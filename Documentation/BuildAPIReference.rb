@@ -65,7 +65,7 @@ class APIReferenceBuilder
 
   def create_config_file_from_erb_template
     config_file = Tempfile.new 'doxygen.config'
-    config_file.write ERB.new(File.read config_file_template).result(binding)
+    config_file.write ERB.new(File.read(config_file_template)).result(binding)
     config_file.close
     config_file
   end

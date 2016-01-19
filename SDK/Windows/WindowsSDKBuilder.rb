@@ -129,6 +129,6 @@ class WindowsSDKBuilder < SDKBuilderBase
   end
 
   def create_sdk_installer
-    NSIS.nsis_with_script_content ERB.new(File.read 'SDK/Windows/SDK.nsi.erb').result(binding)
+    NSIS.nsis_with_script_content ERB.new(File.read('SDK/Windows/SDK.nsi.erb')).result(binding)
   end
 end

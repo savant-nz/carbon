@@ -7,7 +7,7 @@ require 'tmpdir'
 
 # Subclass of SDKBuilderBase that creates the Mac OS X SDK package.
 class MacOSXSDKBuilder < SDKBuilderBase
-  BUILD_LOCATION = '/tmp/CarbonSDK'
+  BUILD_LOCATION = '/tmp/CarbonSDK'.freeze
 
   def initialize
     super

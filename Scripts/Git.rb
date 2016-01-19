@@ -37,7 +37,7 @@ module Git
   end
 
   def repository?(repository)
-    File.directory?(File.join repository, '.git') && !File.directory?(File.join repository, '.git', 'svn')
+    File.directory?(File.join(repository, '.git')) && !File.directory?(File.join(repository, '.git', 'svn'))
   end
 
   def uncommitted_changes?(repository)

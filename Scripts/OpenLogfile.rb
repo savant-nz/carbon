@@ -42,11 +42,11 @@ def memory_leaks_logfile(application_logfile)
   logfile
 end
 
-if ARGV.first
-  logfile = logfile_for_application ARGV.first
-else
-  logfile = most_recently_updated_logfile
-end
+logfile = if ARGV.first
+            logfile_for_application ARGV.first
+          else
+            most_recently_updated_logfile
+          end
 
 open_file_with_default_application logfile
 open_file_with_default_application memory_leaks_logfile(logfile)

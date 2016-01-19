@@ -26,7 +26,7 @@ class EngineAssetsHeaderUpdater
   end
 
   def assets
-    Dir.glob(File.join assets_root, '**/*').sort.select do |file|
+    Dir.glob(File.join(assets_root, '**/*')).sort.select do |file|
       !File.directory?(file) && File.basename(file)[0] != '.' && File.basename(file) != 'CreateEngineAssetsHeader.rb'
     end
   end

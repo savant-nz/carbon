@@ -9,15 +9,15 @@ module SCons
 
   # The supported key=value arguments for SCons builds.
   ARGUMENTS = [:architecture, :carbonroot, :compiler, :externalapp, :externalappsourceroot, :gccversion, :platform, :slim,
-               :static, :strict, :type]
+               :static, :strict, :type].freeze
 
   # Runs SCons with the passed options and returns an array of built executables, one for each entry in options[:targets].
   def scons(options = {}, &block)
-    if options[:clean]
-      run_options = { echo_prefix: 'Cleaning ... ', error: 'Clean failed' }
-    else
-      run_options = { echo_prefix: 'Building ... ', error: 'Build failed' }
-    end
+    run_options = if options[:clean]
+                    { echo_prefix: 'Cleaning ... ', error: 'Clean failed' }
+                  else
+                    { echo_prefix: 'Building ... ', error: 'Build failed' }
+                  end
 
     run_options[:echo] = false unless options[:verbose]
 
