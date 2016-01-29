@@ -4,7 +4,7 @@ tagline: Open-source game and visualization engine
 root: /carbon
 
 github_url: https://github.com/savant-nz/carbon
-s3_url: http://savant-nz-carbon.s3.amazonaws.com
+assets_url: http://d19tx8q5ka62g4.cloudfront.net
 
 # Items on the top navigation bar
 navigation:
