@@ -3,6 +3,3 @@ Metrics/LineLength:
 
 Style/FileName:
   Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: false

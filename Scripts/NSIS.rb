@@ -33,7 +33,7 @@ module NSIS
   def executable
     nsis = installation_details
 
-    fail if nsis[:version][:major] < 3
+    raise if nsis[:version][:major] < 3
 
     File.join nsis[:install_directory], 'makensis.exe'
   rescue
