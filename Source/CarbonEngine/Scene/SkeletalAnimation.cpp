@@ -103,7 +103,7 @@ const Vector<SimpleTransform>& SkeletalAnimation::getAnimationFramesForBone(cons
     return empty;
 }
 
-bool SkeletalAnimation::save(const UnicodeString& name)
+bool SkeletalAnimation::save(const UnicodeString& name) const
 {
     try
     {

@@ -109,7 +109,7 @@ public:
     /**
      * Saves this skeletal animation to a file.
      */
-    bool save(const UnicodeString& name);
+    bool save(const UnicodeString& name) const;
 
     /**
      * Loads this skeletal animation from a file.
