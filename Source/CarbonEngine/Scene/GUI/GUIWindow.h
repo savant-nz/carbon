@@ -77,7 +77,7 @@ public:
      * position and text of this GUIWindow. If the width and height and are both zero and some text is specified then
      * GUIWindow::autosize() is called.
      */
-    virtual void initialize(float width, float height, float x = 0.0f, float y = 0.0f,
+    virtual void initialize(float width, float height, const Vec2& position = Vec2::Zero,
                             const UnicodeString& text = UnicodeString::Empty);
 
     /**

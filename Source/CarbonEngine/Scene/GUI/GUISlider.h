@@ -55,19 +55,19 @@ public:
         bool isSnappable_ = false;
     };
 
-    void initialize(float width, float height, float x = 0.0f, float y = 0.0f,
+    void initialize(float width, float height, const Vec2& position = Vec2::Zero,
                     const UnicodeString& text = UnicodeString::Empty) override
     {
-        GUIWindow::initialize(width, height, x, y);
+        GUIWindow::initialize(width, height, position);
     }
 
     /**
      * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>(), it sets the width, height,
      * position and range of this GUISlider.
      */
-    virtual void initialize(float width, float height, float x, float y, float minValue, float maxValue)
+    virtual void initialize(float width, float height, const Vec2& position, float minValue, float maxValue)
     {
-        GUIWindow::initialize(width, height, x, y);
+        GUIWindow::initialize(width, height, position);
         setRange(minValue, maxValue);
     }
 

@@ -86,16 +86,16 @@ void GUIWindow::clear()
     ComplexEntity::clear();
 }
 
-void GUIWindow::initialize(float width, float height, float x, float y, const UnicodeString& text)
+void GUIWindow::initialize(float width, float height, const Vec2& position, const UnicodeString& text)
 {
     setSize(width, height);
-    setWorldPosition(x, y);
+    setWorldPosition(position);
     setText(text);
 
     // Set left and right text margins at 6 pixels, this is only done if there is no default camera, in which case we can be
     // sure that one unit equates to one pixel
     if (getScene() && !getScene()->getDefaultCamera())
-        setTextMargins(Rect(6.0f, 0.0f, 6.0f, 0.0f));
+        setTextMargins({6.0f, 0.0f, 6.0f, 0.0f});
 
     // Autosize if no size was specified and there is some text
     if (width == 0.0f && height == 0.0f && text.length())

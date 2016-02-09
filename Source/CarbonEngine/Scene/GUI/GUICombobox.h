@@ -27,19 +27,19 @@ public:
      */
     EventDispatcher<GUICombobox, const GUIComboboxItemSelectEvent&> onItemSelectEvent;
 
-    void initialize(float width, float height, float x = 0.0f, float y = 0.0f,
+    void initialize(float width, float height, const Vec2& position = Vec2::Zero,
                     const UnicodeString& text = UnicodeString::Empty) override
     {
-        GUIWindow::initialize(width, height, x, y);
+        GUIWindow::initialize(width, height, position);
     }
 
     /**
      * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>(), it sets the width, height,
      * position and items of this GUICombobox.
      */
-    virtual void initialize(float width, float height, float x, float y, const Vector<UnicodeString>& items)
+    virtual void initialize(float width, float height, const Vec2& position, const Vector<UnicodeString>& items)
     {
-        GUIWindow::initialize(width, height, x, y);
+        GUIWindow::initialize(width, height, position);
         setItems(items, 0);
     }
 
