@@ -95,7 +95,7 @@ void GeometryGather::newMaterial(Material* material, const ParameterArray& mater
     // If override parameters are specified then add them as custom parameters to this queue
     if (!materialOverrideParameters.empty())
     {
-        for (const auto& parameter : materialOverrideParameters)
+        for (auto parameter : materialOverrideParameters)
             currentQueue_->queue->setCustomParameter(parameter.getLookup(), parameter.getValue());
     }
 }

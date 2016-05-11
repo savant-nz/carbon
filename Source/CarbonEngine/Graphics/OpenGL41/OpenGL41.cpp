@@ -86,7 +86,7 @@ void OpenGL41::shutdown()
 
 void OpenGL41::setDepthClearValue(float clearValue)
 {
-    glClearDepth(clearValue);
+    glClearDepth(GLclampd(clearValue));
     CARBON_CHECK_OPENGL_ERROR(glClearDepth);
 }
 

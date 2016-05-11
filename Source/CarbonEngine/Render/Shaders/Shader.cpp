@@ -67,7 +67,7 @@ bool Shader::prepareParameters(ParameterArray& parameters, Vector<const Texture*
         return false;
 
     // Go through all parameters
-    for (const auto& parameter : parameters)
+    for (auto parameter : parameters)
     {
         const auto& effectParameter = effect->getParameter(parameter.getName());
 

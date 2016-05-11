@@ -903,7 +903,7 @@ bool ScrollingLayer::save(const String& name) const
             }
         }
 
-        for (const auto& parameter : getParameters())
+        for (auto parameter : getParameters())
         {
             file.writeText(UnicodeString() + "Parameter " + parameter.getName().quoteIfHasSpaces() + " " +
                            getParameter(parameter.getName()).getString().quoteIfHasSpaces());

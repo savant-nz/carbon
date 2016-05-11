@@ -137,6 +137,11 @@ public:
     /**
      * Constructs the string from a floating point value.
      */
+    StringBase(float value) : StringBase(double(value)) {}
+
+    /**
+     * Constructs the string from a floating point value.
+     */
     StringBase(double value);
 
 #ifdef __OBJC__

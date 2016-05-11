@@ -120,8 +120,8 @@
             #define MACOSX 1
         #endif
 
-        #if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_8
-            #error The minimum required Mac OS X version should be set to at least 10.8
+        #if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_9
+            #error The minimum required Mac OS X version should be set to at least 10.9
         #endif
     #endif
 
@@ -294,19 +294,6 @@
 // GCC versions prior to 4.9 are not supported
 #if defined(__GNUC__) && !defined(__clang__) && (__GNUC__ < 4 || __GNUC__ == 4 && __GNUC_MINOR__ < 9)
     #error This version of GCC is not supported, version 4.9 or later is required
-#endif
-
-// Clang prior to 3.7 does not correctly handle C++11 parameter packs that occur after a parameter with a default value. It
-// requires that "= 0" be given as a default value for the parameter pack, which is non-standard. Apple's version of Clang
-// uses a different versioning scheme and as of Xcode 7.2 the problem has not been fixed.
-#if defined(__clang__) && (__clang_major__ == 3 && __clang_minor__ < 7 || defined(__apple_build_version__))
-    #define CARBON_CLANG_PRE_3_7_PARAMETER_PACK_BUG_WORKAROUND = 0
-
-    #if defined(__apple_build_version__) && __apple_build_version__ > 7000181
-        #pragma message "TODO: check whether this new Xcode version fixes the parameter pack default value bug"
-    #endif
-#else
-    #define CARBON_CLANG_PRE_3_7_PARAMETER_PACK_BUG_WORKAROUND
 #endif
 
 // Helper macro that quotes a macro parameter

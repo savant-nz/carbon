@@ -627,9 +627,9 @@ bool PlatformMacOSX::processEvent(const Event& e)
 
                 case NSScrollWheel:
                 {
-                    if ([event scrollingDeltaY] < 0.0f)
+                    if ([event scrollingDeltaY] < 0.0)
                         events().dispatchEvent(MouseWheelEvent(MouseWheelEvent::AwayFromUser, getMousePosition()));
-                    else if ([event scrollingDeltaY] > 0.0f)
+                    else if ([event scrollingDeltaY] > 0.0)
                         events().dispatchEvent(MouseWheelEvent(MouseWheelEvent::TowardsUser, getMousePosition()));
 
                     break;
@@ -666,7 +666,7 @@ bool PlatformMacOSX::processEvent(const Event& e)
     {
         // Move the mouse back to the center of the window
         auto frame = [m->nsWindow frame];
-        auto p = CGPoint{frame.origin.x + frame.size.width * 0.5f, frame.origin.y + frame.size.height * 0.5f};
+        auto p = CGPoint{frame.origin.x + frame.size.width * 0.5, frame.origin.y + frame.size.height * 0.5};
 
         CGWarpMouseCursorPosition(p);
 

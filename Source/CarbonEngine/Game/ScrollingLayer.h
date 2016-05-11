@@ -223,12 +223,11 @@ public:
 
     /**
      * Creates a new entity of the specified type and adds it as a repeating entity to this scrolling layer using
-     * ScrollingLayer::addRepeatingEntity(). The name of the new entity can be specified, and the new entity's `initialize()`
-     * method will be called with any additional arguments that are passed. Returns the new entity or null on failure.
+     * ScrollingLayer::addRepeatingEntity(Entity*). The name of the new entity is specified by \a name, and the new entity's
+     * `initialize()` method will be called with any additional arguments that are passed. Returns the new entity or null on
+     * failure.
      */
-    template <typename EntityType, typename... ArgTypes>
-    EntityType* addRepeatingEntity(const String& name = String::Empty,
-                                   ArgTypes&&... args CARBON_CLANG_PRE_3_7_PARAMETER_PACK_BUG_WORKAROUND)
+    template <typename EntityType, typename... ArgTypes> EntityType* addRepeatingEntity(const String& name, ArgTypes&&... args)
     {
         auto entity = SubclassRegistry<Entity>::create<EntityType>();
         if (!entity || !addRepeatingEntity(entity))
@@ -241,6 +240,15 @@ public:
         initializeIfArgsPassed(entity, std::forward<ArgTypes>(args)...);
 
         return entity;
+    }
+
+    /**
+     * Creates a new entity of the specified type and adds it as a repeating entity to this scrolling layer using
+     * ScrollingLayer::addRepeatingEntity<>(). Returns the new entity or null on failure.
+     */
+    template <typename EntityType> EntityType* addRepeatingEntity()
+    {
+        return addRepeatingEntity<EntityType>(String::Empty);
     }
 
     /**

@@ -41,7 +41,7 @@
                 <key>VALID_ARCHS</key>
                 <string>x86_64</string>
                 <key>MACOSX_DEPLOYMENT_TARGET</key>
-                <string>10.8</string>
+                <string>10.9</string>
                 <key>CLANG_CXX_LANGUAGE_STANDARD</key>
                 <string>c++0x</string>
                 <key>CLANG_CXX_LIBRARY</key>

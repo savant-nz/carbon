@@ -331,7 +331,7 @@ void Entity::clear()
     // Clean up material overrides, each parameter is cleared individually to ensure any per-parameter cleanup is done
     for (auto& overrideParameters : materialOverrideParameters_)
     {
-        for (const auto& parameter : overrideParameters.params)
+        for (auto parameter : overrideParameters.params)
         {
             if (!Parameter::isHiddenParameterName(parameter.getName()))
                 setMaterialOverrideParameter(overrideParameters.material, parameter.getName(), Parameter::Empty);
@@ -566,7 +566,7 @@ void Entity::save(FileWriter& file) const
         file.write(overrideParameters.material);
 
         auto materialOverrideParameters = ParameterArray();
-        for (const auto& parameter : overrideParameters.params)
+        for (auto parameter : overrideParameters.params)
         {
             if (!Parameter::isHiddenParameterName(parameter.getName()))
                 materialOverrideParameters[parameter.getName()] = parameter.getValue();
@@ -690,7 +690,7 @@ void Entity::load(FileReader& file)
                 file.read(materialOverrideParameters);
 
                 // Set each parameter individually so any per-parameter setup takes place
-                for (const auto& parameter : materialOverrideParameters)
+                for (auto parameter : materialOverrideParameters)
                     setMaterialOverrideParameter(material, parameter.getName(), parameter.getValue());
             }
         }

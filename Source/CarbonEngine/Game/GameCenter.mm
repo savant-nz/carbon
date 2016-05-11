@@ -398,7 +398,7 @@ void GameCenter::reportAchievementProgress(const String& achievementID, float pe
     }
 
     auto achievement = [[GKAchievement alloc] initWithIdentifier:achievementID.toNSString()];
-    achievement.percentComplete = percentComplete;
+    achievement.percentComplete = double(percentComplete);
 
     auto achievements = pointer_to<NSArray>::type();
 

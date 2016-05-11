@@ -131,12 +131,10 @@ public:
 
     /**
      * Creates a new entity of the specified type and adds it as a child of this complex entity, returning the new entity
-     * instance. The name of the new child entity can be specified, and the new entity's `initialize()` method will be called
-     * with any additional arguments that are passed.
+     * instance. The name of the new child entity is specified by \a name, and the new entity's `initialize()` method will be
+     * called with any additional arguments that are passed.
      */
-    template <typename EntityType, typename... ArgTypes>
-    EntityType* addChild(const String& name = String::Empty,
-                         ArgTypes&&... args CARBON_CLANG_PRE_3_7_PARAMETER_PACK_BUG_WORKAROUND)
+    template <typename EntityType, typename... ArgTypes> EntityType* addChild(const String& name, ArgTypes&&... args)
     {
         auto entity = SubclassRegistry<Entity>::create<EntityType>();
         if (!entity || !addChild(entity))
@@ -150,6 +148,12 @@ public:
 
         return entity;
     }
+
+    /**
+     * Creates a new entity of the specified type and adds it as a child of this complex entity, returning the new entity
+     * instance.
+     */
+    template <typename EntityType> EntityType* addChild() { return addChild<EntityType>(String::Empty); }
 
     /**
      * Removes a child of this complex entity, if this complex entity is in a scene and the passed child is a complex entity

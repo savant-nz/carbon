@@ -150,12 +150,11 @@ public:
 
     /**
      * Creates a new entity of the specified type and adds it to this scene, returning the new entity instance. The name of the
-     * new entity can be specified, and the new entity's `initialize()` method will be called with any additional arguments that
+     * new entity is specified, and the new entity's `initialize()` method will be called with any additional arguments that
      * are passed.
      */
     template <typename EntityType, typename... ArgTypes>
-    EntityType* addEntity(const String& name = String::Empty,
-                          ArgTypes&&... args CARBON_CLANG_PRE_3_7_PARAMETER_PACK_BUG_WORKAROUND)
+    EntityType* addEntity(const String& name, ArgTypes&&... args)
     {
         auto entity = SubclassRegistry<Entity>::create<EntityType>();
         if (!entity || !addEntity(entity))
@@ -169,6 +168,11 @@ public:
 
         return entity;
     }
+
+    /**
+     * Creates a new entity of the specified type and adds it to this scene, returning the new entity instance.
+     */
+    template <typename EntityType> EntityType* addEntity() { return addEntity<EntityType>(String::Empty); }
 
     /**
      * Returns the entity in this scene with the given name and type, or null if one is not found. If \a name is an empty string

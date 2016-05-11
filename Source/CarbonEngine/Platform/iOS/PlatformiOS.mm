@@ -202,7 +202,7 @@ bool PlatformiOS::setup()
     nativeResolution_ = resolutions_.back();
 
     // Retina resolution support
-    if ([UIScreen mainScreen].scale == 2.0)
+    if ([UIScreen mainScreen].scale == 2.0f)
     {
         resolutions_.emplace(int(view_.frame.size.width * 2), int(view_.frame.size.height * 2), false, true);
 
@@ -263,7 +263,7 @@ bool PlatformiOS::createWindow(const Resolution& resolution, WindowMode windowMo
     glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_);
     CARBON_CHECK_OPENGL_ERROR(glBindFramebuffer);
 
-    // Create and bind a render buffer, set it to be the primary color output of the framebuffer
+    // Create and bind a renderbuffer, set it to be the primary color output of the framebuffer
     glGenRenderbuffers(1, &colorRenderbuffer_);
     CARBON_CHECK_OPENGL_ERROR(glGenRenderbuffers);
     glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer_);
@@ -271,10 +271,10 @@ bool PlatformiOS::createWindow(const Resolution& resolution, WindowMode windowMo
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorRenderbuffer_);
     CARBON_CHECK_OPENGL_ERROR(glFramebufferRenderbuffer);
 
-    // Tell the layer to display the contents of the main render buffer
+    // Tell the layer to display the contents of the main renderbuffer
     [context_ renderbufferStorage:GL_RENDERBUFFER fromDrawable:static_cast<CAEAGLLayer*>(view_.layer)];
 
-    // Get the dimensions of the render buffer
+    // Get the dimensions of the renderbuffer
     auto framebufferWidth = GLint();
     auto framebufferHeight = GLint();
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &framebufferWidth);
@@ -294,7 +294,7 @@ bool PlatformiOS::createWindow(const Resolution& resolution, WindowMode windowMo
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, depthStencilRenderbuffer_);
     CARBON_CHECK_OPENGL_ERROR(glFramebufferRenderbuffer);
 
-    // Bind the main render buffer
+    // Bind the main renderbuffer
     glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer_);
     CARBON_CHECK_OPENGL_ERROR(glBindRenderbuffer);
 
@@ -657,7 +657,7 @@ void PlatformiOS::onGestureRecognized(UIGestureRecognizer* gestureRecognizer)
 
 Vec2 PlatformiOS::convertScreenPosition(CGPoint p) const
 {
-    return {float(p.x), float(view_.frame.size.height - p.y - 1.0) * float(view_.contentScaleFactor)};
+    return {float(p.x), float(view_.frame.size.height - p.y - 1.0f) * float(view_.contentScaleFactor)};
 }
 
 Vec2 PlatformiOS::convertScreenVector(CGPoint v) const

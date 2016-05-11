@@ -96,7 +96,7 @@ private:
 
         return PxForceMode::eFORCE;
     }
-    static PxExtendedVec3 toPxEx(const Vec3& v) { return {v.x, v.y, v.z}; }
+    static PxExtendedVec3 toPxEx(const Vec3& v) { return {PxExtended(v.x), PxExtended(v.y), PxExtended(v.z)}; }
 
     static Vec3 toCarbon(const PxVec3& v) { return {v.x, v.y, v.z}; }
     static Vec3 toCarbon(const PxExtendedVec3& v) { return {float(v.x), float(v.y), float(v.z)}; }

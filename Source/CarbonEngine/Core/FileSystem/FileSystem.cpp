@@ -1020,7 +1020,7 @@ String FileSystem::formatByteSize(uint64_t size)
 
     // Work out major and minor compoments of the "n.nn" value to return
     auto major = size / unit;
-    auto minor = uint((float(size % unit) / unit) * 100.0);
+    auto minor = uint((float(size % unit) / unit) * 100.0f);
     if (minor == 100)
     {
         major += 1;
@@ -1216,7 +1216,7 @@ bool FileSystem::writeTextFile(const UnicodeString& filename, const ParameterArr
         auto file = FileWriter();
         open(filename, file, true);
 
-        for (const auto& parameter : parameters)
+        for (auto parameter : parameters)
         {
             // Check value has no newlines as this would mess things up
             if (parameter.getValue().getString().has('\n'))

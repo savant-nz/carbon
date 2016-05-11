@@ -55,7 +55,7 @@ static byte_t fromLinear(float value)
         result = 1.0f;
     else if (value < 0.0f)
         ;
-    else if (value < 0.0031308)
+    else if (value < 0.0031308f)
         result = value * 12.92f;
     else
         result = 1.055f * powf(value, (1.0f / 2.4f)) - 0.055f;

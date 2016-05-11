@@ -544,7 +544,7 @@ void Material::unloadTextures()
     textureReferences_.clear();
 
     // Remove all hidden texture parameters because the texture references they imply are now defunct
-    for (const auto& parameter : parameters_)
+    for (auto parameter : parameters_)
     {
         if (Parameter::isHiddenParameterName(parameter.getName()))
             parameters_.remove(parameter.getName());

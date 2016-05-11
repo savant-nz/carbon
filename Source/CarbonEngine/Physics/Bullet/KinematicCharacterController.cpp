@@ -118,7 +118,7 @@ bool KinematicCharacterController::recoverFromPenetration(btCollisionWorld* worl
                 auto distance = pt.getDistance();
 
                 // If this is a penetration then the distance will be negative, otherwise the two bodies are just touching
-                if (distance < 0.0)
+                if (distance < 0.0f)
                 {
                     if (distance < maxPenetration)
                     {

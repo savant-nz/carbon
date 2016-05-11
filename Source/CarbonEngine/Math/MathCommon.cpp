@@ -103,7 +103,7 @@ float Math::normalDistribution(float x, float mean, float standardDeviation)
     // Compute squared distance from the mean
     auto d = (x - mean) * (x - mean);
 
-    return expf(-d / (2 * standardDeviation * standardDeviation)) / (standardDeviation * rootTwoPi);
+    return expf(-d / (2.0f * standardDeviation * standardDeviation)) / (standardDeviation * rootTwoPi);
 }
 
 String Math::createGUID()
