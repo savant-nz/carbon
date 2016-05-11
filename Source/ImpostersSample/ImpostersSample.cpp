@@ -48,7 +48,7 @@ void ImpostersSample::createScene()
     {
         for (auto y = 0U; y < ySprites; y++)
         {
-            auto s = scene_.addEntity<Sprite>("", 0.1f, 0.1f, x * 0.1f + 0.05f, y * 0.1f + 0.05f);
+            auto s = scene_.addEntity<Sprite>("", 0.1f, 0.1f, Vec2(x * 0.1f + 0.05f, y * 0.1f + 0.05f));
 
             s->setSpriteTexture(ImposterTextureName);
             s->setSpriteDiffuseColor(Color::randomRGB().normalized());

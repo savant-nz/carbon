@@ -202,7 +202,7 @@ bool PlatformiOS::setup()
     nativeResolution_ = resolutions_.back();
 
     // Retina resolution support
-    if ([UIScreen mainScreen].scale == 2.0f)
+    if ([UIScreen mainScreen].scale == CGFloat(2.0))
     {
         resolutions_.emplace(int(view_.frame.size.width * 2), int(view_.frame.size.height * 2), false, true);
 
@@ -254,7 +254,7 @@ bool PlatformiOS::createWindow(const Resolution& resolution, WindowMode windowMo
         newResolution = findResolution(newResolution.getWidth() / 2, newResolution.getHeight() / 2);
 
     // Use retina display if requested
-    view_.contentScaleFactor = newResolution.isRetinaResolution() ? 2.0f : 1.0f;
+    view_.contentScaleFactor = CGFloat(newResolution.isRetinaResolution() ? 2 : 1);
     view_.layer.contentsScale = view_.contentScaleFactor;
 
     // Create and bind a framebuffer
@@ -657,7 +657,7 @@ void PlatformiOS::onGestureRecognized(UIGestureRecognizer* gestureRecognizer)
 
 Vec2 PlatformiOS::convertScreenPosition(CGPoint p) const
 {
-    return {float(p.x), float(view_.frame.size.height - p.y - 1.0f) * float(view_.contentScaleFactor)};
+    return {float(p.x), float(view_.frame.size.height - p.y - CGFloat(1.0)) * float(view_.contentScaleFactor)};
 }
 
 Vec2 PlatformiOS::convertScreenVector(CGPoint v) const

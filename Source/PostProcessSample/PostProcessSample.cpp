@@ -187,51 +187,51 @@ void PostProcessSample::createGUI()
     else
         infoText += "Note: HDR is not supported on this hardware.";
 
-    auto info = gui_.addEntity<GUIWindow>("", 280.0f, 170.0f, 5.0f, 30.0f, infoText);
+    auto info = gui_.addEntity<GUIWindow>("", 280.0f, 170.0f, Vec2(5.0f, 30.0f), infoText);
     info->setTextMargins(7.0f);
 
     // List of post-process materials
     auto materials = Vector<UnicodeString>{"PassThrough", "Color", "Blur", "BrightPass", "DepthOfField", "Bloom"};
 
     // Create material combobox
-    gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 300.0f, 175.0f, "Current material:");
-    materialCombobox_ = gui_.addEntity<GUICombobox>("", 200.0f, 25.0f, 450.0f, 175.0f, materials);
+    gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(300.0f, 175.0f), "Current material:");
+    materialCombobox_ = gui_.addEntity<GUICombobox>("", 200.0f, 25.0f, Vec2(450.0f, 175.0f), materials);
 
     // Brightpass controls
-    brightThresholdLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 300.0f, 130.0f, "Bright threshold:");
-    brightThresholdSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, 450.0f, 130.0f, 0.5f, 1.5f);
-    brightThresholdValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 770.0f, 130.0f);
+    brightThresholdLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(300.0f, 130.0f), "Bright threshold:");
+    brightThresholdSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, Vec2(450.0f, 130.0f), 0.5f, 1.5f);
+    brightThresholdValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(770.0f, 130.0f));
 
     // Blur controls
-    blurTypeLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 300.0f, 130.0f, "Blur type:");
-    blurTypeCombobox_ = gui_.addEntity<GUICombobox>("", 300.0f, 25.0f, 450.0f, 130.0f);
+    blurTypeLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(300.0f, 130.0f), "Blur type:");
+    blurTypeCombobox_ = gui_.addEntity<GUICombobox>("", 300.0f, 25.0f, Vec2(450.0f, 130.0f));
     blurTypeCombobox_->onItemSelectEvent.addHandler(this, &PostProcessSample::onBlurTypeComboboxItemSelect);
     blurTypeCombobox_->addItems({"horizontal", "vertical", "2D"});
 
-    blurScaleLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 300.0f, 105.0f, "Blur scale:");
-    blurScaleSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, 450.0f, 105.0f, 0.0f, 10.0f);
-    blurScaleValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 770.0f, 105.0f);
-    blurStandardDeviationLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 300.0f, 80.0f, "Blur std dev:");
-    blurStandardDeviationSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, 450.0f, 80.0f, 0.01f, 10.0f);
-    blurStandardDeviationValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 770.0f, 80.0f, "");
+    blurScaleLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(300.0f, 105.0f), "Blur scale:");
+    blurScaleSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, Vec2(450.0f, 105.0f), 0.0f, 10.0f);
+    blurScaleValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(770.0f, 105.0f));
+    blurStandardDeviationLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(300.0f, 80.0f), "Blur std dev:");
+    blurStandardDeviationSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, Vec2(450.0f, 80.0f), 0.01f, 10.0f);
+    blurStandardDeviationValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(770.0f, 80.0f), "");
 
     // Depth of field controls
-    focalLengthLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 300.0f, 55.0f, "Focal length:");
-    focalLengthSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, 450.0f, 55.0f, 0.0f, 500.0f);
-    focalLengthValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 770.0f, 55.0f);
-    focalRangeLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 300.0f, 30.0f, "Focal range:");
-    focalRangeSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, 450.0f, 30.0f, 0.0f, 500.0f);
-    focalRangeValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 770.0f, 30.0f, "");
+    focalLengthLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(300.0f, 55.0f), "Focal length:");
+    focalLengthSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, Vec2(450.0f, 55.0f), 0.0f, 500.0f);
+    focalLengthValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(770.0f, 55.0f));
+    focalRangeLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(300.0f, 30.0f), "Focal range:");
+    focalRangeSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, Vec2(450.0f, 30.0f), 0.0f, 500.0f);
+    focalRangeValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(770.0f, 30.0f), "");
 
     // Bloom controls
-    bloomFactorLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 300.0f, 55.0f, "Bloom factor:");
-    bloomFactorSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, 450.0f, 55.0f, 0.0f, 2.5f);
-    bloomFactorValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 770.0f, 55.0f);
+    bloomFactorLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(300.0f, 55.0f), "Bloom factor:");
+    bloomFactorSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, Vec2(450.0f, 55.0f), 0.0f, 2.5f);
+    bloomFactorValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(770.0f, 55.0f));
 
     // Exposure controls
-    exposureLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 300.0f, 30.0f, "Exposure:");
-    exposureSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, 450.0f, 30.0f, 0.0f, 2.0f);
-    exposureValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, 770.0f, 30.0f);
+    exposureLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(300.0f, 30.0f), "Exposure:");
+    exposureSlider_ = gui_.addEntity<GUISlider>("", 300.0f, 20.0f, Vec2(450.0f, 30.0f), 0.0f, 2.0f);
+    exposureValueLabel_ = gui_.addEntity<GUILabel>("", 0.0f, 0.0f, Vec2(770.0f, 30.0f));
 
     // Setup handler for the postprocess material being changed
     materialCombobox_->onItemSelectEvent.addHandler(this, &PostProcessSample::onMaterialComboboxItemSelect);

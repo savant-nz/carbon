@@ -29,8 +29,10 @@ public:
     /**
      * Describes a notch on a slider. Notches are added to sliders using GUISlider::addNotch.
      */
-    struct Notch
+    class Notch
     {
+    public:
+
         /**
          * Returns the position of the notch on the slider, in the range \a minValue to \a maxValue which was set by the last
          * call to GUISlider::setRange().

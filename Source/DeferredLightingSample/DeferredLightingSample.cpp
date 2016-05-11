@@ -181,7 +181,7 @@ void DeferredLightingSample::createHUD()
     crosshair->alignToScreen(GUIWindow::ScreenMiddle);
 
     // Add info label
-    auto info = hud_.addEntity<GUIWindow>("Info", 300.0f, 35.0f, 5.0f, 30.0f);
+    auto info = hud_.addEntity<GUIWindow>("Info", 300.0f, 35.0f, Vec2(5.0f, 30.0f));
     info->setText("Press the left mouse button to knock the boxes over.\n"
                   "Press the right mouse button to reset the simulation.\n\n"
                   "Press space to drop a light just in front of the camera.\n"
