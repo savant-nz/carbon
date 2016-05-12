@@ -201,10 +201,13 @@ bool PlatformiOS::setup()
     resolutions_.emplace(int(view_.frame.size.width), int(view_.frame.size.height));
     nativeResolution_ = resolutions_.back();
 
+    const auto scale = [UIScreen mainScreen].scale;
+    LOG_INFO << "iOS main screen content scale: " << scale;
+
     // Retina resolution support
-    if ([UIScreen mainScreen].scale == CGFloat(2.0))
+    if (scale > CGFloat(1.0))
     {
-        resolutions_.emplace(int(view_.frame.size.width * 2), int(view_.frame.size.height * 2), false, true);
+        resolutions_.emplace(int(view_.frame.size.width * scale), int(view_.frame.size.height * scale), false, true);
 
         if (areRetinaResolutionsEnabled())
             nativeResolution_ = resolutions_.back();
@@ -254,7 +257,7 @@ bool PlatformiOS::createWindow(const Resolution& resolution, WindowMode windowMo
         newResolution = findResolution(newResolution.getWidth() / 2, newResolution.getHeight() / 2);
 
     // Use retina display if requested
-    view_.contentScaleFactor = CGFloat(newResolution.isRetinaResolution() ? 2 : 1);
+    view_.contentScaleFactor = CGFloat(newResolution.isRetinaResolution() ? [UIScreen mainScreen].nativeScale : 1);
     view_.layer.contentsScale = view_.contentScaleFactor;
 
     // Create and bind a framebuffer
