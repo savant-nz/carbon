@@ -121,9 +121,9 @@ public:
     virtual Rect getOutputDestinationViewport(OutputDestination destination) const override;
     virtual void flushOutputDestination(OutputDestination destination) override;
 
-    std::array<ovrSwapTextureSet*, 2> getOculusRiftSwapTextureSets()
+    std::array<ovrTextureSwapChain, 2> getOculusRiftTextureSwapChains()
     {
-        return {{ oculusRiftEyes_[0].swapTextureSet, oculusRiftEyes_[1].swapTextureSet }};
+        return {{ oculusRiftEyes_[0].textureSwapChain, oculusRiftEyes_[1].textureSwapChain }};
     }
 #endif
 
@@ -181,7 +181,7 @@ private:
     struct OculusRiftEye
     {
         RenderTargetObject renderTarget = nullptr;
-        ovrSwapTextureSet* swapTextureSet = nullptr;
+        ovrTextureSwapChain textureSwapChain = nullptr;
         TextureObject depthTexture = nullptr;
     };
     std::array<OculusRiftEye, 2> oculusRiftEyes_;

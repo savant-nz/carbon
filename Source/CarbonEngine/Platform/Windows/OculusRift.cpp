@@ -88,7 +88,7 @@ void PlatformWindows::oculusRiftUpdate()
          ovr_GetRenderDesc(oculusRiftSession_, ovrEye_Right, oculusRiftHMDDesc_.DefaultEyeFov[1])}};
 
     auto viewOffset = std::array<ovrVector3f, 2>{
-        {eyeRenderDesc[ovrEye_Left].HmdToEyeViewOffset, eyeRenderDesc[ovrEye_Right].HmdToEyeViewOffset}};
+        {eyeRenderDesc[ovrEye_Left].HmdToEyeOffset, eyeRenderDesc[ovrEye_Right].HmdToEyeOffset}};
     auto eyePose = std::array<ovrPosef, 2>();
 
     ovr_CalcEyePoses(headPose, viewOffset.data(), eyePose.data());
@@ -103,14 +103,14 @@ void PlatformWindows::oculusRiftUpdate()
                                                       eyePose[eye].Orientation.x, -eyePose[eye].Orientation.y});
     }
 
-    auto textureSwapSets = static_cast<OpenGL11&>(graphics()).getOculusRiftSwapTextureSets();
-    if (textureSwapSets[ovrEye_Left] && textureSwapSets[ovrEye_Right])
+    auto textureSwapChains = static_cast<OpenGL11&>(graphics()).getOculusRiftTextureSwapChains();
+    if (textureSwapChains[ovrEye_Left] && textureSwapChains[ovrEye_Right])
     {
-        // Set up positional data.
+        // Set up positional data
         auto viewScaleDesc = ovrViewScaleDesc();
         viewScaleDesc.HmdSpaceToWorldScaleInMeters = 1.0f;
-        viewScaleDesc.HmdToEyeViewOffset[ovrEye_Left] = viewOffset[ovrEye_Left];
-        viewScaleDesc.HmdToEyeViewOffset[ovrEye_Right] = viewOffset[ovrEye_Right];
+        viewScaleDesc.HmdToEyeOffset[ovrEye_Left] = viewOffset[ovrEye_Left];
+        viewScaleDesc.HmdToEyeOffset[ovrEye_Right] = viewOffset[ovrEye_Right];
 
         auto layer = ovrLayerEyeFov();
         layer.Header.Type = ovrLayerType_EyeFov;
@@ -118,7 +118,8 @@ void PlatformWindows::oculusRiftUpdate()
 
         for (auto eye = 0U; eye < 2; eye++)
         {
-            layer.ColorTexture[eye] = textureSwapSets[eye];
+            ovr_CommitTextureSwapChain(oculusRiftSession_, textureSwapChains[eye]);
+            layer.ColorTexture[eye] = textureSwapChains[eye];
             layer.Viewport[eye].Size.w = int(getOculusRiftTextureDimensions().getWidth());
             layer.Viewport[eye].Size.h = int(getOculusRiftTextureDimensions().getHeight());
             layer.Fov[eye] = oculusRiftHMDDesc_.DefaultEyeFov[eye];
@@ -131,9 +132,6 @@ void PlatformWindows::oculusRiftUpdate()
 
         if (!OVR_SUCCESS(result))
             LOG_ERROR << "Failed submitting Oculus Rift frame";
-
-        for (auto& set : textureSwapSets)
-            set->CurrentIndex = (set->CurrentIndex + 1) % set->TextureCount;
     }
 
     oculusRiftFrameIndex_++;
@@ -141,8 +139,8 @@ void PlatformWindows::oculusRiftUpdate()
 
 Matrix4 PlatformWindows::getOculusRiftProjectionMatrixLeftEye(float nearPlaneDistance, float farPlaneDistance) const
 {
-    auto matrix = ovrMatrix4f_Projection(oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Left], nearPlaneDistance,
-                                         farPlaneDistance, ovrProjection_RightHanded);
+    auto matrix =
+        ovrMatrix4f_Projection(oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Left], nearPlaneDistance, farPlaneDistance, 0);
 
     return {matrix.M[0][0], matrix.M[1][0], matrix.M[2][0], matrix.M[3][0], matrix.M[0][1], matrix.M[1][1],
             matrix.M[2][1], matrix.M[3][1], matrix.M[0][2], matrix.M[1][2], matrix.M[2][2], matrix.M[3][2],
@@ -151,8 +149,8 @@ Matrix4 PlatformWindows::getOculusRiftProjectionMatrixLeftEye(float nearPlaneDis
 
 Matrix4 PlatformWindows::getOculusRiftProjectionMatrixRightEye(float nearPlaneDistance, float farPlaneDistance) const
 {
-    auto matrix = ovrMatrix4f_Projection(oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Right], nearPlaneDistance,
-                                         farPlaneDistance, ovrProjection_RightHanded);
+    auto matrix =
+        ovrMatrix4f_Projection(oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Right], nearPlaneDistance, farPlaneDistance, 0);
 
     return {matrix.M[0][0], matrix.M[1][0], matrix.M[2][0], matrix.M[3][0], matrix.M[0][1], matrix.M[1][1],
             matrix.M[2][1], matrix.M[3][1], matrix.M[0][2], matrix.M[1][2], matrix.M[2][2], matrix.M[3][2],

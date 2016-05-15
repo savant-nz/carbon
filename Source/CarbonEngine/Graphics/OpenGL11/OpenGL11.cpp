@@ -123,10 +123,10 @@ void OpenGL11::shutdown()
 
     for (auto& eye : oculusRiftEyes_)
     {
-        if (eye.swapTextureSet)
+        if (eye.textureSwapChain)
         {
-            ovr_DestroySwapTextureSet(session, eye.swapTextureSet);
-            eye.swapTextureSet = nullptr;
+            ovr_DestroyTextureSwapChain(session, eye.textureSwapChain);
+            eye.textureSwapChain = nullptr;
         }
 
         if (eye.depthTexture)

@@ -224,31 +224,60 @@ GraphicsInterface::RenderTargetObject OpenGL11::getOutputDestinationRenderTarget
 
     for (auto& eye : oculusRiftEyes_)
     {
-        if (!eye.swapTextureSet)
+        if (!eye.textureSwapChain)
         {
-            auto result = ovr_CreateSwapTextureSetGL(session, GL_SRGB8_ALPHA8_EXT, int(viewport.getWidth()),
-                                                     int(viewport.getHeight()), &eye.swapTextureSet);
+            auto textureSwapChainDesc = ovrTextureSwapChainDesc();
+            textureSwapChainDesc.Type = ovrTexture_2D;
+            textureSwapChainDesc.Format = OVR_FORMAT_R8G8B8A8_UNORM_SRGB;
+            textureSwapChainDesc.ArraySize = 1;
+            textureSwapChainDesc.Width = int(viewport.getWidth());
+            textureSwapChainDesc.Height = int(viewport.getHeight());
+            textureSwapChainDesc.MipLevels = 1;
+            textureSwapChainDesc.SampleCount = 1;
+
+            auto result = ovr_CreateTextureSwapChainGL(session, &textureSwapChainDesc, &eye.textureSwapChain);
 
             if (!OVR_SUCCESS(result))
             {
-                LOG_ERROR << "Failed creating Oculus Rift swap texture set with dimensions " << viewport.getWidth()
+                LOG_ERROR << "Failed creating Oculus Rift texture swap chain with dimensions " << viewport.getWidth()
                           << "x" << viewport.getHeight();
                 continue;
             }
             else
             {
-                for (auto i = 0; i < eye.swapTextureSet->TextureCount; i++)
+                auto swapChainLength = 0;
+                result = ovr_GetTextureSwapChainLength(session, eye.textureSwapChain, &swapChainLength);
+                if (!OVR_SUCCESS(result))
                 {
-                    auto texture = reinterpret_cast<ovrGLTexture*>(&eye.swapTextureSet->Textures[i]);
-                    glBindTexture(GL_TEXTURE_2D, texture->OGL.TexId);
+                    LOG_ERROR << "Failed getting Oculus Rift texture swap chain length";
+                    continue;
+                }
+
+                for (auto i = 0; i < swapChainLength; i++)
+                {
+                    auto textureID = GLuint();
+                    result = ovr_GetTextureSwapChainBufferGL(session, eye.textureSwapChain, i, &textureID);
+                    if (!OVR_SUCCESS(result))
+                    {
+                        LOG_ERROR << "Failed getting Oculus Rift texture swap chain buffer at index " << i;
+                        continue;
+                    }
+
+                    glBindTexture(GL_TEXTURE_2D, textureID);
+                    CARBON_CHECK_OPENGL_ERROR(glBindTexture);
 
                     // Set texture filter and wrap modes
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                    CARBON_CHECK_OPENGL_ERROR(glTexParameteri);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                    CARBON_CHECK_OPENGL_ERROR(glTexParameteri);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE_EXT);
+                    CARBON_CHECK_OPENGL_ERROR(glTexParameteri);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE_EXT);
+                    CARBON_CHECK_OPENGL_ERROR(glTexParameteri);
 
                     glBindTexture(GL_TEXTURE_2D, 0);
+                    CARBON_CHECK_OPENGL_ERROR(glBindTexture);
                 }
             }
         }
@@ -272,10 +301,23 @@ GraphicsInterface::RenderTargetObject OpenGL11::getOutputDestinationRenderTarget
     {
         auto& eye = oculusRiftEyes_[destination == OutputOculusRiftLeftEye ? ovrEye_Left : ovrEye_Right];
 
-        auto texture = Texture(
-            reinterpret_cast<ovrGLTexture*>(&eye.swapTextureSet->Textures[eye.swapTextureSet->CurrentIndex])->OGL.TexId,
-            GraphicsInterface::Texture2D);
+        auto currentIndex = int();
+        auto result = ovr_GetTextureSwapChainCurrentIndex(session, eye.textureSwapChain, &currentIndex);
+        if (!OVR_SUCCESS(result))
+        {
+            LOG_ERROR << "Failed getting Oculus Rift texture swap chain current index";
+            return nullptr;
+        }
 
+        auto textureID = GLuint();
+        result = ovr_GetTextureSwapChainBufferGL(session, eye.textureSwapChain, currentIndex, &textureID);
+        if (!OVR_SUCCESS(result))
+        {
+            LOG_ERROR << "Failed getting Oculus Rift texture swap chain buffer at index " << currentIndex;
+            return nullptr;
+        }
+
+        auto texture = Texture(textureID, GraphicsInterface::Texture2D);
         setRenderTargetColorBufferTextures(eye.renderTarget, {&texture}, {});
 
         return eye.renderTarget;

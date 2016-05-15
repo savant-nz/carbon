@@ -21,7 +21,7 @@ unless defined? CARBON_DEPENDENCIES
     FreeType:        '2.7',
     OpenALSoft:      '1.17.2',
     OpenAssetImport: '3.3.1',
-    OculusRift:      '0.8',
+    OculusRift:      '1.6',
     PhysX:           '3.3.2',
     Vorbis:          '1.3.5',
     ZLib:            '1.2.8'
