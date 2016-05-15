@@ -3,7 +3,7 @@
 #define ALC_API
 
 /* Define to the library version */
-#define ALSOFT_VERSION "1.17.1"
+#define ALSOFT_VERSION "1.17.2"
 
 #ifdef IN_IDE_PARSER
 /* KDevelop's parser doesn't recognize the C99-standard restrict keyword, but
@@ -92,6 +92,9 @@
 /* Define if we have the strtof function */
 /* #undef HAVE_STRTOF */
 
+/* Define if we have the strnlen function */
+/* #undef HAVE_STRNLEN */
+
 /* Define if we have the __int64 type */
 /* #undef HAVE___INT64 */
 
@@ -149,9 +152,6 @@
 /* Define if we have dirent.h */
 /* #undef HAVE_DIRENT_H */
 
-/* Define if we have io.h */
-/* #undef HAVE_IO_H */
-
 /* Define if we have strings.h */
 /* #undef HAVE_STRINGS_H */
 
@@ -196,6 +196,9 @@
 
 /* Define if we have pthread_setname_np() */
 /* #undef HAVE_PTHREAD_SETNAME_NP */
+
+/* Define if pthread_setname_np() only accepts one parameter */
+/* #undef PTHREAD_SETNAME_NP_ONE_PARAM */
 
 /* Define if we have pthread_set_name_np() */
 /* #undef HAVE_PTHREAD_SET_NAME_NP */

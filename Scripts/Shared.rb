@@ -18,7 +18,7 @@ CARBON_DEPENDENCIES = {
   Bullet:          '2.83.7',
   FreeImage:       '3.17.0',
   FreeType:        '2.6.3',
-  OpenALSoft:      '1.17.1',
+  OpenALSoft:      '1.17.2',
   OpenAssetImport: '3.2',
   OculusRift:      '0.8',
   PhysX:           '3.3.2',
