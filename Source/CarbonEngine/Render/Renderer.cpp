@@ -395,7 +395,7 @@ void Renderer::render()
     // Update FSAA state
     States::MultisampleEnabled = platform().getFSAAMode() != PlatformInterface::FSAANone;
 
-    // Group queued sceens by their output destination
+    // Group queued scenes by their output destination
     auto queuedScenesByOutputDestination = std::map<GraphicsInterface::OutputDestination, Vector<QueuedScene*>>();
     for (auto& queuedScene : queuedScenes_)
         queuedScenesByOutputDestination[queuedScene.outputDestination].append(&queuedScene);
