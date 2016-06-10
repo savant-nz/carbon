@@ -254,7 +254,10 @@ bool PlatformiOS::createWindow(const Resolution& resolution, WindowMode windowMo
 
     // If a retina resolution was requested but they are disabled then fall back to the equivalent non-retina resolution
     if (newResolution.isRetinaResolution() && !areRetinaResolutionsEnabled())
-        newResolution = findResolution(newResolution.getWidth() / 2, newResolution.getHeight() / 2);
+    {
+        const auto scale = uint([UIScreen mainScreen].scale);
+        newResolution = findResolution(newResolution.getWidth() / scale, newResolution.getHeight() / scale);
+    }
 
     // Use retina display if requested
     view_.contentScaleFactor = CGFloat(newResolution.isRetinaResolution() ? [UIScreen mainScreen].nativeScale : 1);
