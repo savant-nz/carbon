@@ -10,6 +10,13 @@ sources = env.GlobDirectories(
     'contrib/poly2tri/poly2tri/common', 'contrib/poly2tri/poly2tri/sweep', 'contrib/unzip'
 )
 
+# Workaround for crash in Clang when building ASELoader.cpp with -O3 and targeting iOS (problem started with Xcode 7.3)
+if platform == 'iOS' and isReleaseBuild:
+    newCCFLAGS = ['-O1' if x == '-O3' else x for x in env['CCFLAGS']]
+
+    sources.remove(env.fs.File('code/ASELoader.cpp'))
+    sources += env.StaticObject(source='code/ASELoader.cpp', CCFLAGS=newCCFLAGS)
+
 result = env.StaticLibrary(target=target, source=sources)
 
 Return('result')

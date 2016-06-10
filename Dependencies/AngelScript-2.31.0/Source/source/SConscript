@@ -16,6 +16,14 @@ if platform == 'Android' and architecture.startswith('ARM'):
 if platform == 'iOS' and architecture.startswith('ARM'):
     sources += ['as_callfunc_arm_xcode.S']
 
+# Workaround for crash in Clang when building as_callfunc_x86.cpp for x86 with -O3 and targeting iOS (problem started
+# with Xcode 7.3)
+if platform == 'iOS' and architecture == 'x86' and isReleaseBuild:
+    newCCFLAGS = ['-O0' if x == '-O3' else x for x in env['CCFLAGS']]
+
+    sources.remove(env.fs.File('as_callfunc_x86.cpp'))
+    sources += env.StaticObject(source='as_callfunc_x86.cpp', CCFLAGS=newCCFLAGS)
+
 result = env.StaticLibrary(target=target, source=sources)
 
 Return('result')

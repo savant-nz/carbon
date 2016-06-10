@@ -20,11 +20,6 @@ target = 'OpenAssetImport'
 if compiler.startswith('VisualStudio'):
     target += compiler + {True: 'Debug', False: ''}[isDebugBuild]
 
-# Workaround for -O3 causing Clang to crash when building iOS release builds (problem started with Xcode 7.3)
-if platform == 'iOS' and isReleaseBuild:
-    env['CCFLAGS'].remove('-O3')
-    env['CCFLAGS'] += ['-O1']
-
 result = SConscript('Source/SConscript', variant_dir=baseVariantDir, exports='env target', duplicate=0)
 
 Install(os.path.join('Library', platform, architecture), result)
