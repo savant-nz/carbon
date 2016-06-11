@@ -327,6 +327,8 @@ private:
     };
     Vector<Tile> tiles_;
 
+    bool isValidTileIndex(unsigned int x, unsigned int y) const;
+
     String defaultTileTexture_;
     String defaultTileNormalMap_;
 

@@ -176,10 +176,21 @@ void ScrollingLayer::setGridSize(unsigned int width, unsigned int height)
 
     tileCountX_ = width;
     tileCountY_ = height;
-    tiles_ = newTiles;
+    tiles_ = std::move(newTiles);
 
     clearVisibleTiles();
     unloadUnusedMaterials();
+}
+bool ScrollingLayer::isValidTileIndex(unsigned int x, unsigned int y) const
+
+{
+    if (x < tileCountX_ && y < tileCountY_)
+        return true;
+
+    LOG_ERROR_WITHOUT_CALLER << "ScrollingLayer - Tile index [" << x << ", " << y << "] is out of bounds, "
+                             << "layer size is " << tileCountX_ << "x" << tileCountY_;
+
+    return false;
 }
 
 void ScrollingLayer::setTileAspectRatio(float tileAspectRatio)
@@ -196,35 +207,29 @@ void ScrollingLayer::setTileScale(float tileScale)
 
 const String& ScrollingLayer::getTileTexture(unsigned int x, unsigned int y) const
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return String::Empty;
-    }
 
-    return tiles_[index].texture.length() ? tiles_[index].texture : defaultTileTexture_;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    return tile.texture.length() ? tile.texture : defaultTileTexture_;
 }
 
 void ScrollingLayer::setTileTexture(unsigned int x, unsigned int y, const String& texture)
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
-        return;
-    }
-
-    if (tiles_[index].texture == texture)
+    if (!isValidTileIndex(x, y))
         return;
 
-    tiles_[index].texture = texture;
-    tiles_[index].material = nullptr;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    if (tile.texture == texture)
+        return;
+
+    tile.texture = texture;
+    tile.material = nullptr;
 
     // Refresh the normal map
-    setTileNormalMap(x, y, tiles_[index].normalMap);
+    setTileNormalMap(x, y, tile.normalMap);
 }
 
 void ScrollingLayer::setAllTileTextures(const String& texture)
@@ -257,122 +262,93 @@ void ScrollingLayer::setDefaultTileTexture(const String& texture)
 
 bool ScrollingLayer::isTileVisible(unsigned int x, unsigned int y) const
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return false;
-    }
 
-    return tiles_[index].isVisible;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    return tile.isVisible;
 }
 
 void ScrollingLayer::setTileVisible(unsigned int x, unsigned int y, bool visible)
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return;
-    }
 
-    tiles_[index].isVisible = visible;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    tile.isVisible = visible;
 }
 
 bool ScrollingLayer::isTileFlippedVertically(unsigned int x, unsigned int y) const
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return false;
-    }
 
-    return tiles_[index].isFlippedVertically;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    return tile.isFlippedVertically;
 }
 
 void ScrollingLayer::setTileFlippedVertically(unsigned int x, unsigned int y, bool isFlipped)
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return;
-    }
 
-    tiles_[index].isFlippedVertically = isFlipped;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    tile.isFlippedVertically = isFlipped;
 }
 
 bool ScrollingLayer::isTileFlippedHorizontally(unsigned int x, unsigned int y) const
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return false;
-    }
 
-    return tiles_[index].isFlippedHorizontally;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    return tile.isFlippedHorizontally;
 }
 
 void ScrollingLayer::setTileFlippedHorizontally(unsigned int x, unsigned int y, bool isFlipped)
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return;
-    }
 
-    tiles_[index].isFlippedHorizontally = isFlipped;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    tile.isFlippedHorizontally = isFlipped;
 }
 
 String ScrollingLayer::getTileCollisionMap(unsigned int x, unsigned int y) const
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return String::Empty;
-    }
 
-    if (tiles_[index].collisionMap.length())
-        return tiles_[index].collisionMap;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    if (tile.collisionMap.length())
+        return tile.collisionMap;
 
     return A(ImageFormatRegistry::stripSupportedExtension(getTileTexture(x, y))) + "_collision";
 }
 
 void ScrollingLayer::setTileCollisionMap(unsigned int x, unsigned int y, const String& collisionMap)
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return;
-    }
 
-    tiles_[index].collisionMap = collisionMap;
+    auto& tile = tiles_[y * tileCountX_ + x];
+
+    tile.collisionMap = collisionMap;
 }
 
 void ScrollingLayer::setTileNormalMap(unsigned int x, unsigned int y, const String& normalMap)
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return;
-    }
 
-    auto& tile = tiles_[index];
+    auto& tile = tiles_[y * tileCountX_ + x];
 
     tile.normalMap = normalMap;
     tile.normalMapToUse = normalMap;
@@ -399,18 +375,15 @@ void ScrollingLayer::setTileNormalMap(unsigned int x, unsigned int y, const Stri
 
 const String& ScrollingLayer::getTileNormalMap(unsigned int x, unsigned int y) const
 {
-    auto index = y * tileCountX_ + x;
-
-    if (index >= tileCountX_ * tileCountY_)
-    {
-        LOG_ERROR << "Tile index out of bounds";
+    if (!isValidTileIndex(x, y))
         return String::Empty;
-    }
 
-    if (!tiles_[index].normalMapToUse.length())
-        tiles_[index].normalMapToUse = renderer().getFlatNormalMap()->getName();
+    auto& tile = tiles_[y * tileCountX_ + x];
 
-    return tiles_[index].normalMapToUse;
+    if (!tile.normalMapToUse.length())
+        tile.normalMapToUse = renderer().getFlatNormalMap()->getName();
+
+    return tile.normalMapToUse;
 }
 
 void ScrollingLayer::clampCameraPositionToLayerBounds(Camera* camera, bool negX, bool posX, bool negY, bool posY) const
