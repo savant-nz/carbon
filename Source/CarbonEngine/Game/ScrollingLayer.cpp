@@ -181,14 +181,14 @@ void ScrollingLayer::setGridSize(unsigned int width, unsigned int height)
     clearVisibleTiles();
     unloadUnusedMaterials();
 }
-bool ScrollingLayer::isValidTileIndex(unsigned int x, unsigned int y) const
 
+bool ScrollingLayer::isValidTileIndex(unsigned int x, unsigned int y, const String& function) const
 {
     if (x < tileCountX_ && y < tileCountY_)
         return true;
 
-    LOG_ERROR_WITHOUT_CALLER << "ScrollingLayer - Tile index [" << x << ", " << y << "] is out of bounds, "
-                             << "layer size is " << tileCountX_ << "x" << tileCountY_;
+    CARBON_LOG(Error, function) << "Tile index [" << x << ", " << y << "] is out of bounds, layer size is " << tileCountX_
+                                << "x" << tileCountY_;
 
     return false;
 }
@@ -207,7 +207,7 @@ void ScrollingLayer::setTileScale(float tileScale)
 
 const String& ScrollingLayer::getTileTexture(unsigned int x, unsigned int y) const
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return String::Empty;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -217,7 +217,7 @@ const String& ScrollingLayer::getTileTexture(unsigned int x, unsigned int y) con
 
 void ScrollingLayer::setTileTexture(unsigned int x, unsigned int y, const String& texture)
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -262,7 +262,7 @@ void ScrollingLayer::setDefaultTileTexture(const String& texture)
 
 bool ScrollingLayer::isTileVisible(unsigned int x, unsigned int y) const
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return false;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -272,7 +272,7 @@ bool ScrollingLayer::isTileVisible(unsigned int x, unsigned int y) const
 
 void ScrollingLayer::setTileVisible(unsigned int x, unsigned int y, bool visible)
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -282,7 +282,7 @@ void ScrollingLayer::setTileVisible(unsigned int x, unsigned int y, bool visible
 
 bool ScrollingLayer::isTileFlippedVertically(unsigned int x, unsigned int y) const
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return false;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -292,7 +292,7 @@ bool ScrollingLayer::isTileFlippedVertically(unsigned int x, unsigned int y) con
 
 void ScrollingLayer::setTileFlippedVertically(unsigned int x, unsigned int y, bool isFlipped)
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -302,7 +302,7 @@ void ScrollingLayer::setTileFlippedVertically(unsigned int x, unsigned int y, bo
 
 bool ScrollingLayer::isTileFlippedHorizontally(unsigned int x, unsigned int y) const
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return false;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -312,7 +312,7 @@ bool ScrollingLayer::isTileFlippedHorizontally(unsigned int x, unsigned int y) c
 
 void ScrollingLayer::setTileFlippedHorizontally(unsigned int x, unsigned int y, bool isFlipped)
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -322,7 +322,7 @@ void ScrollingLayer::setTileFlippedHorizontally(unsigned int x, unsigned int y, 
 
 String ScrollingLayer::getTileCollisionMap(unsigned int x, unsigned int y) const
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return String::Empty;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -335,7 +335,7 @@ String ScrollingLayer::getTileCollisionMap(unsigned int x, unsigned int y) const
 
 void ScrollingLayer::setTileCollisionMap(unsigned int x, unsigned int y, const String& collisionMap)
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -345,7 +345,7 @@ void ScrollingLayer::setTileCollisionMap(unsigned int x, unsigned int y, const S
 
 void ScrollingLayer::setTileNormalMap(unsigned int x, unsigned int y, const String& normalMap)
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return;
 
     auto& tile = tiles_[y * tileCountX_ + x];
@@ -375,7 +375,7 @@ void ScrollingLayer::setTileNormalMap(unsigned int x, unsigned int y, const Stri
 
 const String& ScrollingLayer::getTileNormalMap(unsigned int x, unsigned int y) const
 {
-    if (!isValidTileIndex(x, y))
+    if (!isValidTileIndex(x, y, CARBON_CURRENT_FUNCTION))
         return String::Empty;
 
     auto& tile = tiles_[y * tileCountX_ + x];
