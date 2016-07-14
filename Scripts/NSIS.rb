@@ -44,7 +44,7 @@ module NSIS
   def installation_details
     require 'win32/registry'
 
-    Win32::Registry::HKEY_LOCAL_MACHINE.open('Software\NSIS') do |reg|
+    Win32::Registry::HKEY_LOCAL_MACHINE.open('Software\NSIS', Win32::Registry::KEY_READ | 0x200) do |reg|
       {
         version: { major: reg.read('VersionMajor')[1], minor: reg.read('VersionMinor')[1] },
         install_directory: reg.read('')[1]
