@@ -15,8 +15,6 @@ require "#{REPOSITORY_ROOT}/Scripts/Shared.rb"
 # template in this directory: Doxygen.config.erb.
 class APIReferenceBuilder
   def build
-    check_installed_version
-
     FileUtils.rm_rf output_directory
 
     config_file = create_config_file_from_erb_template
@@ -55,12 +53,6 @@ class APIReferenceBuilder
     end
 
     version
-  end
-
-  def check_installed_version
-    return if installed_doxygen_version == config_file_doxygen_version
-
-    puts "Warning: Expecting Doxygen #{config_file_doxygen_version} but #{installed_doxygen_version} is installed"
   end
 
   def create_config_file_from_erb_template

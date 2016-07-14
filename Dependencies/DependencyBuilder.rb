@@ -12,7 +12,7 @@ SUPPORTED_DEPENDENCIES = {
   iOS:     [:AngelScript, :Bullet, :FreeImage, :OpenAssetImport, :Vorbis, :ZLib],
   Linux:   [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenAssetImport, :Vorbis, :ZLib],
   MacOSX:  [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenAssetImport, :Vorbis, :ZLib],
-  Windows: [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenALSoft, :OpenAssetImport, :OculusRift, :PhysX, :Vorbis, :ZLib]
+  Windows: [:AngelScript, :Bullet, :FreeImage, :FreeType, :OculusRift, :OpenALSoft, :OpenAssetImport, :PhysX, :Vorbis, :ZLib]
 }.freeze
 
 # This class is the backend for BuildDependencies.rb
