@@ -36,7 +36,5 @@ people:
 
 # Releases to display on the Downloads page, sorted by date
 releases:
-- version: 0.1-alpha-581b1d5
-  date: 2016-06-10
-- version: 0.1-alpha-7581ceb
-  date: 2015-12-23
+- version: 0.1-alpha-e6765f1
+  date: 2016-07-15
