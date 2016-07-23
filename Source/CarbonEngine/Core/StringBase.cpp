@@ -365,7 +365,7 @@ CARBON_API UnicodeString fromUTF16(const uint16_t* data, unsigned int size)
             // This is a high surrogate, so decode it as a pair along with the next character
             if (i + 1 < size && data[i + 1] >= 0xDC00 && data[i + 1] <= 0xDFFF)
             {
-                result.append(((c - 0xD800) << 10) | (data[i + 1] - 0xDC00));
+                result.append(0x10000 + ((c & 0x03FF) << 10) + (data[i + 1] & 0x03FF));
                 i++;    // Move past low surrogate
             }
             else

@@ -2,7 +2,7 @@
 
 ### 0.1 — Unreleased
 
-- 
+- Fixed decoding of UTF-16 surrogate pairs in `fromUTF16()`
 
 ### 0.1-alpha-e6765f1 — July 15, 2016
 
