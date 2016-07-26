@@ -52,7 +52,7 @@ class CarbonApplication
       end
     end
 
-    puts "Exit code: #{$CHILD_STATUS.exitstatus}" unless $CHILD_STATUS.exitstatus == 0
+    puts "Exit code: #{$CHILD_STATUS.exitstatus}" unless $CHILD_STATUS.exitstatus.zero?
   end
 
   private

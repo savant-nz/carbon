@@ -81,7 +81,7 @@ end
 
 # Shows the passed message, the running time of the script, waits for the user to confirm, and then exits.
 def halt(message, exit_code = 0)
-  message = "Error: #{message}" if exit_code != 0
+  message = "Error: #{message}" if exit_code.nonzero?
 
   message = "\n\n#{message}"
 
@@ -143,7 +143,7 @@ def popen(command)
     end
   end
 rescue EOFError
-  $CHILD_STATUS.exitstatus == 0
+  $CHILD_STATUS.exitstatus.zero?
 end
 
 # Executes the passed command and returns a success flag. If a block is given then it is called for every line output by the
