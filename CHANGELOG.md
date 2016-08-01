@@ -2,6 +2,7 @@
 
 ### 0.1 — Unreleased
 
+- Fixed backgrounded applications on iOS potentially crashing due to not flushing the GPU command queue
 - Fixed decoding of UTF-16 surrogate pairs in `fromUTF16()`
 
 ### 0.1-alpha-e6765f1 — July 15, 2016
