@@ -14,7 +14,7 @@ require 'rbconfig'
 CARBON_SHARED_SCRIPT_START_TIME = Time.now unless defined? CARBON_SHARED_SCRIPT_START_TIME
 
 CARBON_DEPENDENCIES = {
-  AngelScript:     '2.31.0',
+  AngelScript:     '2.31.1',
   Bullet:          '2.83.7',
   FreeImage:       '3.17.0',
   FreeType:        '2.6.3',

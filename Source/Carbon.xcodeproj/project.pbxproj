@@ -4041,7 +4041,7 @@
 					CARBON_INCLUDE_ZLIB,
 				);
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Source/include\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Source/include\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeType-2.6.3/Include\"",
@@ -4053,7 +4053,7 @@
 				INFOPLIST_FILE = CarbonEngine/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/MacOSX/x64\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/MacOSX/x64\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/MacOSX/x64\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/MacOSX/x64\"",
 					"\"$(SRCROOT)/../Dependencies/FreeType-2.6.3/Library/MacOSX/x64\"",
@@ -4098,7 +4098,7 @@
 					CARBON_INCLUDE_ZLIB,
 				);
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Source/include\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Source/include\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeType-2.6.3/Include\"",
@@ -4110,7 +4110,7 @@
 				INFOPLIST_FILE = CarbonEngine/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/MacOSX/x64\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/MacOSX/x64\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/MacOSX/x64\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/MacOSX/x64\"",
 					"\"$(SRCROOT)/../Dependencies/FreeType-2.6.3/Library/MacOSX/x64\"",
@@ -4159,7 +4159,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "SkeletalAnimationSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4189,7 +4189,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "SkeletalAnimationSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4220,7 +4220,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "DeferredLightingSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4250,7 +4250,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "DeferredLightingSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4299,7 +4299,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "TerrainSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4329,7 +4329,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "TerrainSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4414,7 +4414,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "ImpostersSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4444,7 +4444,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "ImpostersSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4489,7 +4489,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "BoxesSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4519,7 +4519,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "BoxesSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4550,7 +4550,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "PostProcessSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4580,7 +4580,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "PostProcessSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.2/Library/iOS\"",
@@ -4632,7 +4632,7 @@
 				GCC_PREFIX_HEADER = CarbonEngine/Common.h;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Source/include\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Source/include\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Source\"",
 					"\"$(SRCROOT)/../Dependencies/Ogg-1.3.2/Include\"",
@@ -4657,7 +4657,7 @@
 				GCC_PREFIX_HEADER = CarbonEngine/Common.h;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.0/Source/include\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Source/include\"",
 					"\"$(SRCROOT)/../Dependencies/Bullet-2.83.7/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Source\"",
 					"\"$(SRCROOT)/../Dependencies/Ogg-1.3.2/Include\"",

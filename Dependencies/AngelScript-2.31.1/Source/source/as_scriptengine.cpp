@@ -405,6 +405,13 @@ int asCScriptEngine::SetEngineProperty(asEEngineProp property, asPWORD value)
 		ep.allowUnicodeIdentifiers = value ? true : false;
 		break;
 
+	case asEP_HEREDOC_TRIM_MODE:
+		if (value <= 2)
+			ep.heredocTrimMode = (int)value;
+		else
+			return asINVALID_ARG;
+		break;
+
 	default:
 		return asINVALID_ARG;
 	}
@@ -492,6 +499,9 @@ asPWORD asCScriptEngine::GetEngineProperty(asEEngineProp property) const
 	case asEP_ALLOW_UNICODE_IDENTIFIERS:
 		return ep.allowUnicodeIdentifiers;
 
+	case asEP_HEREDOC_TRIM_MODE:
+		return ep.heredocTrimMode;
+
 	default:
 		return 0;
 	}
@@ -555,6 +565,7 @@ asCScriptEngine::asCScriptEngine()
 		ep.disallowEmptyListElements     = false;
 		ep.privatePropAsProtected        = false;
 		ep.allowUnicodeIdentifiers       = false;
+		ep.heredocTrimMode               = 1;         // 0 = never trim, 1 = don't trim on single line, 2 = trim initial and final empty line
 	}
 
 	gc.engine = this;
@@ -4255,6 +4266,7 @@ void *asCScriptEngine::CallObjectMethodRetPtr(void *obj, int func) const
 
 void *asCScriptEngine::CallObjectMethodRetPtr(void *obj, int param1, asCScriptFunction *func) const
 {
+	asASSERT( obj != 0 );
 	asASSERT( func != 0 );
 	asSSystemFunctionInterface *i = func->sysFuncIntf;
 
@@ -6269,19 +6281,20 @@ void asCScriptEngine::DestroySubList(asBYTE *&buffer, asSListPatternNode *&node)
 					dt = GetDataTypeFromTypeId(typeId);
 				}
 
-				asCObjectType *ot = dt.GetTypeInfo()->CastToObjectType();
-				if( ot && (ot->flags & asOBJ_ENUM) == 0 )
+				asCTypeInfo *ti = dt.GetTypeInfo();
+				if( ti && (ti->flags & asOBJ_ENUM) == 0 )
 				{
 					// Free all instances of this type
-					if( ot->flags & asOBJ_VALUE )
+					if( ti->flags & asOBJ_VALUE )
 					{
-						asUINT size = ot->GetSize();
+						asUINT size = ti->GetSize();
 
 						// Align the offset to 4 bytes boundary
 						if( size >= 4 && (asPWORD(buffer) & 0x3) )
 							buffer += 4 - (asPWORD(buffer) & 0x3);
 
-						if( ot->beh.destruct )
+						asCObjectType *ot = ti->CastToObjectType();
+						if( ot && ot->beh.destruct )
 						{
 							// Only call the destructor if the object has been created
 							// We'll assume the object has been created if any byte in
@@ -6315,7 +6328,7 @@ void asCScriptEngine::DestroySubList(asBYTE *&buffer, asSListPatternNode *&node)
 						// Call the release behaviour
 						void *ptr = *(void**)buffer;
 						if( ptr )
-							ReleaseScriptObject(ptr, ot);
+							ReleaseScriptObject(ptr, ti);
 						buffer += AS_PTR_SIZE*4;
 					}
 				}
