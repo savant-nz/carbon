@@ -17,7 +17,7 @@ CARBON_DEPENDENCIES = {
   AngelScript:     '2.31.1',
   Bullet:          '2.83.7',
   FreeImage:       '3.17.0',
-  FreeType:        '2.6.3',
+  FreeType:        '2.6.5',
   OpenALSoft:      '1.17.2',
   OpenAssetImport: '3.2',
   OculusRift:      '0.8',
