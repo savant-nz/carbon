@@ -434,6 +434,7 @@ class CARBON_API ConsoleCommand;
 class CARBON_API ConsoleTextChangedEvent;
 class CARBON_API ConvexHull;
 class CARBON_API CullingNode;
+class CARBON_API DataBufferManager;
 class CARBON_API DeviceShakeEvent;
 class CARBON_API DrawGeometryChunkRenderQueueItem;
 class CARBON_API DrawItem;
@@ -617,8 +618,6 @@ class CARBON_API Vec2;
 class CARBON_API Vec3;
 class CARBON_API VersionInfo;
 class CARBON_API VertexStream;
-class CARBON_API DataBufferManager;
-class CARBON_API World;
 
 namespace States
 {
