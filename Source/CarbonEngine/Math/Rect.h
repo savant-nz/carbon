@@ -211,7 +211,7 @@ public:
      */
     bool intersect(const Rect& other) const
     {
-        return other.getLeft() < right_ && other.getRight() < left_ && other.getTop() < bottom_ && other.getBottom() < top_;
+        return left_ < other.getRight() && right_ > other.getLeft() && bottom_ < other.getTop() && top_ > other.getBottom();
     }
 
     /**
