@@ -34,6 +34,8 @@ public:
             glFinish();
             CARBON_CHECK_OPENGL_ERROR(glFinish);
         }
+
+        return true;
     }
 
     // OpenGLES2::setRenderTarget() is overridden here so that when a null RenderTargetObject is set it can be mapped to the
