@@ -9,8 +9,9 @@ namespace Carbon
 {
 
 /**
- * This class contains methods for tracking memory usage and memory allocation statistics. It is called internally by the
- * MemoryInterceptor class and has methods which can be used to get information of memory usage patterns in the application.
+ * This class contains methods for tracking memory usage and memory allocation statistics. It is called internally by
+ * the MemoryInterceptor class and has methods which can be used to get information of memory usage patterns in the
+ * application.
  */
 class CARBON_API MemoryStatistics
 {
@@ -27,8 +28,8 @@ public:
     static void removeAllocation(size_t size);
 
     /**
-     * Returns the total number of bytes in all current allocations, this does not include any system heap overhead or other
-     * memory tracking overhead.
+     * Returns the total number of bytes in all current allocations, this does not include any system heap overhead or
+     * other memory tracking overhead.
      */
     static size_t getAllocationSizeTotal() { return totalAllocationSize_; }
 

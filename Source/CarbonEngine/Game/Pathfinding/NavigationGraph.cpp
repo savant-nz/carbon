@@ -92,8 +92,8 @@ Vector<SimpleTransform> NavigationGraph::createTransformsFromPath(const Vector<N
         auto v1 = Vec3();
         direction.constructBasis(v0, v1);
 
-        auto orientation =
-            Quaternion::createFromRotationMatrix({v0.x, v1.x, direction.x, v0.y, v1.y, direction.y, v0.z, v1.z, direction.z});
+        auto orientation = Quaternion::createFromRotationMatrix(
+            {v0.x, v1.x, direction.x, v0.y, v1.y, direction.y, v0.z, v1.z, direction.z});
 
         // Move to the new position
         transforms.emplace(path[i]->getPosition() * scale,

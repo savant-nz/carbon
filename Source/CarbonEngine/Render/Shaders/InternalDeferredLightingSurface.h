@@ -104,18 +104,19 @@ public:
 
     unsigned int getSortKey(const ParameterArray& params, const ParameterArray& internalParams) const override
     {
-        return getShaderProgramIndex<SkeletalAnimationGLSL<1, 4>, AmbientOcclusionGLSL, DecalMapGLSL, ParallaxMappingGLSL>(
-            params, internalParams);
+        return getShaderProgramIndex<SkeletalAnimationGLSL<1, 4>, AmbientOcclusionGLSL, DecalMapGLSL,
+                                     ParallaxMappingGLSL>(params, internalParams);
     }
 
     InternalDeferredLightingSurfaceProgram* getProgram(unsigned int programIndex)
     {
-        static const auto preprocessorDefines = std::array<String, PreprocessorDefineCount>{
-            {"#define SKELETAL_ANIMATION", "#define AMBIENT_OCCLUSION", "#define DECAL_MAPPING", "#define PARALLAX_MAPPING"}};
+        static const auto preprocessorDefines =
+            std::array<String, PreprocessorDefineCount>{{"#define SKELETAL_ANIMATION", "#define AMBIENT_OCCLUSION",
+                                                         "#define DECAL_MAPPING", "#define PARALLAX_MAPPING"}};
 
-        return setupProgramCombination<InternalDeferredLightingSurfaceProgram>(programIndex, programs, preprocessorDefines,
-                                                                               "InternalDeferredLightingSurface.glsl.vert",
-                                                                               "InternalDeferredLightingSurface.glsl.frag");
+        return setupProgramCombination<InternalDeferredLightingSurfaceProgram>(
+            programIndex, programs, preprocessorDefines, "InternalDeferredLightingSurface.glsl.vert",
+            "InternalDeferredLightingSurface.glsl.frag");
     }
 
     bool updateCurrentProgram(unsigned int sortKey)
@@ -146,8 +147,8 @@ public:
         return true;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (!updateCurrentProgram(sortKey))
             return;

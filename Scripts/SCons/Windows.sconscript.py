@@ -31,11 +31,11 @@ if buildType == 'Debug' and ARGUMENTS.get('slim', 'false') == 'true':
     env['CCFLAGS'] += ['/O1']
 
 
-# This method sets up the environment for linking Carbon as a dynamic library or linking Carbon as a static library into a final
-# application
+# This method sets up the environment for linking Carbon as a dynamic library or linking Carbon as a static library into
+# a final application
 def SetupForLinkingCarbon(self):
-    self['LIBPATH'] += GetDependencyLIBPATH('AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenALSoft', 'OpenAssetImport',
-                                            'OculusRift', 'Vorbis', 'ZLib')
+    self['LIBPATH'] += GetDependencyLIBPATH('AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenALSoft',
+                                            'OpenAssetImport', 'OculusRift', 'Vorbis', 'ZLib')
 
 env.AddMethod(SetupForLinkingCarbon)
 

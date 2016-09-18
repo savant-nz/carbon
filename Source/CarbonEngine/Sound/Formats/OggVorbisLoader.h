@@ -21,8 +21,8 @@ class OGGVorbisLoader
 {
 public:
 
-    static bool load(FileReader& file, SoundInterface::AudioFormat& format, unsigned int& channelCount, unsigned int& frequency,
-                     Vector<byte_t>& data)
+    static bool load(FileReader& file, SoundInterface::AudioFormat& format, unsigned int& channelCount,
+                     unsigned int& frequency, Vector<byte_t>& data)
     {
         auto oggFile = OggVorbis_File();
 
@@ -58,8 +58,8 @@ public:
             while (true)
             {
                 auto bitstream = 0;
-                auto result = ov_read(&oggFile, data.as<char>() + bytesRead, data.size() - bytesRead, 0, vorbisInfo->channels,
-                                      1, &bitstream);
+                auto result = ov_read(&oggFile, data.as<char>() + bytesRead, data.size() - bytesRead, 0,
+                                      vorbisInfo->channels, 1, &bitstream);
                 if (result < 0)
                     throw Exception("Invalid OGG data");
                 else

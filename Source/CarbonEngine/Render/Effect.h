@@ -13,10 +13,10 @@ namespace Carbon
 {
 
 /**
- * This class holds the name, description and parameter information on a single effect. An effect is defined in a text file and
- * describes at a high level the manner in which an object using this effect will be drawn. Shaders then provide as many
- * implementations of the effect as are required. The decision about which shader to use for each effect at runtime is done in
- * Effect::updateActiveShader().
+ * This class holds the name, description and parameter information on a single effect. An effect is defined in a text
+ * file and describes at a high level the manner in which an object using this effect will be drawn. Shaders then
+ * provide as many implementations of the effect as are required. The decision about which shader to use for each effect
+ * at runtime is done in Effect::updateActiveShader().
  */
 class CARBON_API Effect : private Noncopyable
 {
@@ -98,8 +98,8 @@ public:
     const Vector<EffectParameter>& getParameters() const { return parameters_; }
 
     /**
-     * Returns the parameter with the specified name. If no parameter with the given name exists on this effect then an empty
-     * effect parameter definition is returned.
+     * Returns the parameter with the specified name. If no parameter with the given name exists on this effect then an
+     * empty effect parameter definition is returned.
      */
     const EffectParameter& getParameter(const String& name) const;
 
@@ -109,7 +109,8 @@ public:
     bool hasParameter(const String& name) const;
 
     /**
-     * Returns whether the given parameter is a texture parameter. Texture parameters must end with either 'Map' or 'Texture'.
+     * Returns whether the given parameter is a texture parameter. Texture parameters must end with either 'Map' or
+     * 'Texture'.
      */
     static bool isTextureParameter(const String& parameterName);
 
@@ -119,7 +120,8 @@ public:
     bool load(const UnicodeString& filename);
 
     /**
-     * Returns all the available shader implementations for this effect that are compatible with the active graphics interface.
+     * Returns all the available shader implementations for this effect that are compatible with the active graphics
+     * interface.
      */
     Vector<Shader*> getAllShaders() const;
 
@@ -130,21 +132,21 @@ public:
     Shader* getActiveShader() const { return activeShader_; }
 
     /**
-     * Clears the currently active shader, this will also cause the active shader to release any graphics interface resources it
-     * is holding.
+     * Clears the currently active shader, this will also cause the active shader to release any graphics interface
+     * resources it is holding.
      */
     void clearActiveShader();
 
     /**
-     * Updates the active shader being used to render this effect. This will obey the given shader quality setting when choosing
-     * the active shader. Shaders with a quality level above the specified value will not be used unless there are no
-     * alternative shaders at the lower quality setting.
+     * Updates the active shader being used to render this effect. This will obey the given shader quality setting when
+     * choosing the active shader. Shaders with a quality level above the specified value will not be used unless there
+     * are no alternative shaders at the lower quality setting.
      */
     void updateActiveShader(unsigned int quality);
 
     /**
-     * Returns true if this effect has a valid shader that is setup and ready for rendering. If the active shader hasn't been
-     * setup yet then this method will attempt to do so.
+     * Returns true if this effect has a valid shader that is setup and ready for rendering. If the active shader hasn't
+     * been setup yet then this method will attempt to do so.
      */
     bool isActiveShaderReady();
 

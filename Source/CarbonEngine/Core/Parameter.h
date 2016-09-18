@@ -16,9 +16,9 @@ namespace Carbon
 {
 
 /**
- * Holds a value that can be a boolean, integer, float, Vec2, Vec3, Quaternion, Color, Float4, String or untyped pointer. Only
- * one of these types is held at any given time. The ParameterArray class is used to manage a collection of named Parameter
- * instances in a key => value style.
+ * Holds a value that can be a boolean, integer, float, Vec2, Vec3, Quaternion, Color, Float4, String or untyped
+ * pointer. Only one of these types is held at any given time. The ParameterArray class is used to manage a collection
+ * of named Parameter instances in a key => value style.
  */
 class CARBON_API Parameter
 {
@@ -165,8 +165,8 @@ public:
     }
 
     /**
-     * Returns the integer value of this parameter, note that this is a cast-down version of the true 64-bit integer that is
-     * stored internally, to get the full 64-bit value call Parameter::getInteger64().
+     * Returns the integer value of this parameter, note that this is a cast-down version of the true 64-bit integer
+     * that is stored internally, to get the full 64-bit value call Parameter::getInteger64().
      */
     int getInteger() const { return int(getInteger64()); }
 
@@ -266,7 +266,10 @@ public:
     /**
      * Returns the pointer value of this parameter cast to the specified type.
      */
-    template <typename T> T* getPointer() const { return pointer_.isCached ? reinterpret_cast<T*>(pointer_.value) : nullptr; }
+    template <typename T> T* getPointer() const
+    {
+        return pointer_.isCached ? reinterpret_cast<T*>(pointer_.value) : nullptr;
+    }
 
     /**
      * Sets this parameter to a boolean value.
@@ -337,21 +340,21 @@ public:
     }
 
     /**
-     * Converts a string to a parameter type enumeration value. The recognized parameter type strings are: "boolean", "integer",
-     * "float", "vec2", "vec3", "quaternion", "color", "float4", "string" and "pointer". This method is not case sensitive.
-     * Parameter::NullParameter will be returned if no parameter type string is recognized.
+     * Converts a string to a parameter type enumeration value. The recognized parameter type strings are: "boolean",
+     * "integer", "float", "vec2", "vec3", "quaternion", "color", "float4", "string" and "pointer". This method is not
+     * case sensitive. Parameter::NullParameter will be returned if no parameter type string is recognized.
      */
     static Type getTypeFromString(const String& s);
 
     /**
-     * Returns whether the passed parameter name is valid, valid names can only contain letters, numbers, and the following
-     * special characters: . _ [ ].
+     * Returns whether the passed parameter name is valid, valid names can only contain letters, numbers, and the
+     * following special characters: . _ [ ].
      */
     static bool isValidParameterName(const String& name) { return name.isAlphaNumeric("._[]"); }
 
     /**
-     * Returns the hidden parameter name for the given parameter name, this is simply the passed name with a period character
-     * prepended.
+     * Returns the hidden parameter name for the given parameter name, this is simply the passed name with a period
+     * character prepended.
      */
     static String getHiddenParameterName(const String& name) { return "." + name; }
 
@@ -435,7 +438,8 @@ private:
     CachedValue<String> string_;
     CachedValue<void*> pointer_;
 
-    // The master value will either be null or point to the above CachedValue instance that was explicitly set most recently
+    // The master value will either be null or point to the above CachedValue instance that was explicitly set most
+    // recently
     CachedValueBase* masterValue_;
 
     template <typename ValueType> void setMasterValue(CachedValue<ValueType>& cachedValue, const ValueType& value)
@@ -445,8 +449,8 @@ private:
         masterValue_ = &cachedValue;
     }
 
-    // If a cached value is made up of a number of individual floating point values then this method can be used to update it
-    // based on the current contents of the master value.
+    // If a cached value is made up of a number of individual floating point values then this method can be used to
+    // update it based on the current contents of the master value.
     void updateFloat4() const
     {
         // Default to 0,0,0,1
@@ -469,9 +473,9 @@ public:
 
 #ifndef DOXYGEN
 
-    // Following are all the ParameterArray lookups used by the engine, they are stored here for ease of access. Lookups are
-    // much faster when not using strings, i.e. params[Parameter::diffuseColor] is preferred over params["diffuseColor"] even
-    // though both return the same result.
+    // Following are all the ParameterArray lookups used by the engine, they are stored here for ease of access. Lookups
+    // are much faster when not using strings, i.e. params[Parameter::diffuseColor] is preferred over
+    // params["diffuseColor"] even though both return the same result.
 
     static const ParameterArray::Lookup diffuseMap;
     static const ParameterArray::Lookup normalMap;

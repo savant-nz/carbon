@@ -116,7 +116,8 @@ Function PageUninstallExistingVersion
     Pop $0
     ${NSD_CreateLabel} 15u 20u 100% 10u "$R0 $R1"
     Pop $0
-    ${NSD_CreateLabel} 0 40u 100% 100% "This must be uninstalled before continuing. Click Next to uninstall or Cancel to exit."
+    ${NSD_CreateLabel} 0 40u 100% 100% "This must be uninstalled before continuing. Click Next to uninstall or Cancel \
+                                        to exit."
     Pop $0
 
     nsDialogs::Show
@@ -139,7 +140,6 @@ Section "Uninstall"
 
     # Remove start menu folder
     RmDir /r "${START_MENU_FOLDER}"
-    DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder\Start Menu\Programs\<%= application %>"
 
     # Remove from Windows' list of installed programs
     DeleteRegKey HKLM "${UNINSTALLER_REGKEY}"

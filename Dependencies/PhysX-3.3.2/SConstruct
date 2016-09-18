@@ -15,8 +15,8 @@ targetSuffix += '_' + architecture
 
 env = baseEnv.Clone()
 env['CPPDEFINES'] += [{'PX_EXTENSIONS_API': 'extern \\\'C\\\' __declspec(dllexport)'}]
-env['CPPPATH'] += ['#/Include', '#/Include/common', '#/Include/extensions', '#/Include/Foundation', '#/Include/geometry',
-                   '#/Include/pxtask', '#/Source/Common/src', '#/Source/foundation/include']
+env['CPPPATH'] += ['#/Include', '#/Include/common', '#/Include/extensions', '#/Include/Foundation',
+                   '#/Include/geometry', '#/Include/pxtask', '#/Source/Common/src', '#/Source/foundation/include']
 env['LIBPATH'] += [os.path.join('#/Library', platform, architecture)]
 env['LIBS'] += ['PhysX3Common' + targetSuffix]
 

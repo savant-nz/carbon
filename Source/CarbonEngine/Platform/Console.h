@@ -12,8 +12,8 @@ namespace Carbon
 {
 
 /**
- * Handles the dispatch of console command events and the global state of the console. The console rendering is done directly in
- * the renderer based on this class.
+ * Handles the dispatch of console command events and the global state of the console. The console rendering is done
+ * directly in the renderer based on this class.
  */
 class CARBON_API Console : public EventHandler, public Logfile::OutputSink, private Noncopyable
 {
@@ -30,12 +30,14 @@ public:
     void processKeyDownEvent(const KeyDownEvent& kde);
 
     /**
-     * Forces the console to process the given character input event as if it were currently showing and accepting input.
+     * Forces the console to process the given character input event as if it were currently showing and accepting
+     * input.
      */
     void processCharacterInputEvent(const CharacterInputEvent& cie);
 
     /**
-     * Executes the passed string on the console, this method is called when enter is pressed while the console is showing.
+     * Executes the passed string on the console, this method is called when enter is pressed while the console is
+     * showing.
      */
     void execute(const UnicodeString& string);
 
@@ -45,17 +47,17 @@ public:
     bool isEnabled() const { return isEnabled_; }
 
     /**
-     * Sets whether the console should be enabled. When the console is disabled it is not accessible at runtime through the
-     * normal '~' key, but it can still be shown down programatically using the Console::show() method. Disabling the console
-     * hides it if it is currently showing. Note that even when the console is disabled it can still be shown using the hidden
-     * shortcut of holding down the left control and shift keys and pressing '~'.
+     * Sets whether the console should be enabled. When the console is disabled it is not accessible at runtime through
+     * the normal '~' key, but it can still be shown down programatically using the Console::show() method. Disabling
+     * the console hides it if it is currently showing. Note that even when the console is disabled it can still be
+     * shown using the hidden shortcut of holding down the left control and shift keys and pressing '~'.
      */
     void setEnabled(bool enabled);
 
     /**
-     * Adds the passed string to the front of the displayed recent output. This can be used to output messages on the console,
-     * however normally LOG_CONSOLE() should be used to output to the console as it is more flexible and will call any
-     * registered logfile hook functions.
+     * Adds the passed string to the front of the displayed recent output. This can be used to output messages on the
+     * console, however normally LOG_CONSOLE should be used to output to the console as it is more flexible and will
+     * call any registered logfile output sinks.
      */
     void print(const UnicodeString& string);
 
@@ -75,13 +77,14 @@ public:
     void setScreenFraction(float fraction);
 
     /**
-     * Returns the fraction of the available vertical screen space the console will take up when visible, in the range 0 - 1.
+     * Returns the fraction of the available vertical screen space the console will take up when visible, in the range 0
+     * - 1.
      */
     float getScreenFraction() const { return screenFraction_; }
 
     /**
-     * Calculates the number of lines of console output that are visible given the specified line height. This is calculated
-     * based on the current resolution and the current screen fraction (see Console::getScreenFraction()).
+     * Calculates the number of lines of console output that are visible given the specified line height. This is
+     * calculated based on the current resolution and the current screen fraction (see Console::getScreenFraction()).
      */
     unsigned int calculateOutputLineCount(float lineHeight);
 
@@ -102,39 +105,39 @@ public:
     void clearHistory();
 
     /**
-     * Returns the number of items currently in the console history. The maximum number of console history items can be set
-     * using Console::setMaximumHistorySize()
+     * Returns the number of items currently in the console history. The maximum number of console history items can be
+     * set using Console::setMaximumHistorySize()
      */
     unsigned int getHistorySize() const { return history_.size(); }
 
     /**
-     * Returns a given console history item, if the passed index is out of range then an empty string is returned. The oldest
-     * console history item is at index 0.
+     * Returns a given console history item, if the passed index is out of range then an empty string is returned. The
+     * oldest console history item is at index 0.
      */
     const UnicodeString& getHistoryItem(unsigned int index) const;
 
     /**
-     * Returns the maximum number of entries that can currently be stored in the console history. Once this limit is reached old
-     * console history entries will be erased. Defaults to 500 items.
+     * Returns the maximum number of entries that can currently be stored in the console history. Once this limit is
+     * reached old console history entries will be erased. Defaults to 500 items.
      */
     unsigned int getMaximumHistorySize() const { return maximumHistorySize_; }
 
     /**
-     * Sets the maximum number of entries the can be stored in the console history. Once this limit is reached old console
-     * history entries will be erased. Defaults to 500 items.
+     * Sets the maximum number of entries the can be stored in the console history. Once this limit is reached old
+     * console history entries will be erased. Defaults to 500 items.
      */
     void setMaximumHistorySize(unsigned int size);
 
     /**
-     * Returns the number of characters that should be ignored at the front of each history item when rendering the console
-     * history. This is used to allow the user to scroll the console history horizontally using the arrow keys whilst holding
-     * shift.
+     * Returns the number of characters that should be ignored at the front of each history item when rendering the
+     * console history. This is used to allow the user to scroll the console history horizontally using the arrow keys
+     * whilst holding shift.
      */
     unsigned int getHistoryOffsetX() const { return historyOffsetX_; }
 
     /**
-     * Returns the number of most recent history items that should be ignore when rendering the console history. This is used to
-     * allow the user to scroll the console history vertically using the arrow keys whilst holding shift.
+     * Returns the number of most recent history items that should be ignore when rendering the console history. This is
+     * used to allow the user to scroll the console history vertically using the arrow keys whilst holding shift.
      */
     unsigned int getHistoryOffsetY() const { return historyOffsetY_; }
 

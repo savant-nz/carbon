@@ -25,7 +25,8 @@ public:
     void setup();
 
     /**
-     * This method is used by the renderer to notify the texture manager of a RecreateWindowEvent that it needs to process.
+     * This method is used by the renderer to notify the texture manager of a RecreateWindowEvent that it needs to
+     * process.
      */
     void onRecreateWindowEvent(const RecreateWindowEvent& rwe);
 
@@ -61,35 +62,37 @@ public:
     void releaseTexture(const Texture* texture);
 
     /**
-     * Returns whether the two passed texture names will resolve to the same texture, this accounts for the possibility of
-     * automatic image format detection as well as explicit image format extensions that may be present in the texture names.
+     * Returns whether the two passed texture names will resolve to the same texture, this accounts for the possibility
+     * of automatic image format detection as well as explicit image format extensions that may be present in the
+     * texture names.
      */
     static bool areTextureNamesEquivalent(const String& name0, const String& name1);
 
     /**
-     * Enables automatic deletion of textures in TextureManager::releaseTexture() when they reach a reference count of zero.
-     * This also checks through every loaded texture and deletes any with a reference count of zero. This is enabled by default,
-     * but may be disabled for brief periods to avoid excessive unloading and reloading of textures during certain operations.
+     * Enables automatic deletion of textures in TextureManager::releaseTexture() when they reach a reference count of
+     * zero. This also checks through every loaded texture and deletes any with a reference count of zero. This is
+     * enabled by default, but may be disabled for brief periods to avoid excessive unloading and reloading of textures
+     * during certain operations.
      */
     void enableTextureDeletion();
 
     /**
-     * This disables the deleting of textures in TextureManager::releaseTexture() when they reach a reference count of zero. See
-     * TextureManager::enableTextureDeletion() for details.
+     * This disables the deleting of textures in TextureManager::releaseTexture() when they reach a reference count of
+     * zero. See TextureManager::enableTextureDeletion() for details.
      */
     void disableTextureDeletion();
 
     /**
-     * Returns a vector containing the names of all the texture groups currently known. The texture groups used by the engine
-     * are currently 'Font', 'PostProcess', 'Sprite', 'Sky', 'WorldDiffuse', 'WorldEnvironmentMap', 'WorldGloss', 'WorldNormal',
-     * 'WorldOpacity', and 'WorldLightmap'.
+     * Returns a vector containing the names of all the texture groups currently known. The texture groups used by the
+     * engine are currently 'Font', 'PostProcess', 'Sprite', 'Sky', 'WorldDiffuse', 'WorldEnvironmentMap', 'WorldGloss',
+     * 'WorldNormal', 'WorldOpacity', and 'WorldLightmap'.
      */
     Vector<String> getTextureGroups() const;
 
     /**
-     * Sets the texture properties of all textures that have the specified group. The texture groups used by the engine are
-     * listed with the TextureManager::getTextureGroups() method, and one of these should be passed as \a group unless the
-     * application is using its own custom texture groups.
+     * Sets the texture properties of all textures that have the specified group. The texture groups used by the engine
+     * are listed with the TextureManager::getTextureGroups() method, and one of these should be passed as \a group
+     * unless the application is using its own custom texture groups.
      */
     void setGroupProperties(const String& group, const TextureProperties& properties);
 
@@ -99,13 +102,14 @@ public:
     TextureProperties getGroupProperties(const String& group);
 
     /**
-     * Sets up a texture for use and returns a reference to it. If the texture is already loaded then its reference count will
-     * be increased and it will be returned, otherwise an attempt will be made to load it. The reference to the texture that is
-     * taken by calling this method must be released with TextureManager::releaseTexture(). If the texture needs to be loaded or
-     * has not had a texture group assigned to it then it will be assigned the specified texture group, the \a group parameter
-     * is otherwise ignored.
+     * Sets up a texture for use and returns a reference to it. If the texture is already loaded then its reference
+     * count will be increased and it will be returned, otherwise an attempt will be made to load it. The reference to
+     * the texture that is taken by calling this method must be released with TextureManager::releaseTexture(). If the
+     * texture needs to be loaded or has not had a texture group assigned to it then it will be assigned the specified
+     * texture group, the \a group parameter is otherwise ignored.
      */
-    const Texture* setupTexture(GraphicsInterface::TextureType type, const String& name, const String& group = String::Empty);
+    const Texture* setupTexture(GraphicsInterface::TextureType type, const String& name,
+                                const String& group = String::Empty);
 
     /**
      * Returns a new 1x1 2D texture with the given name and RGBA color value.
@@ -144,33 +148,34 @@ public:
     void uploadTextures();
 
     /**
-     * This is a helper method for creating a 2D texture ready for custom rendering via RTT or dynamic texture upload through
-     * Texture::lockImageData(). Internally it just creates a 2D texture, loads it with an empty image that has the passed
-     * dimensions, and then returns the texture. Returns null on failure. Note that the caller is responsible for cleaning up
-     * the returned texture reference using TextureManager::releaseTexture(). An alpha channel can be included in the texture if
-     * required.
+     * This is a helper method for creating a 2D texture ready for custom rendering via RTT or dynamic texture upload
+     * through Texture::lockImageData(). Internally it just creates a 2D texture, loads it with an empty image that has
+     * the passed dimensions, and then returns the texture. Returns null on failure. Note that the caller is responsible
+     * for cleaning up the returned texture reference using TextureManager::releaseTexture(). An alpha channel can be
+     * included in the texture if required.
      */
     Texture2D* create2DTexture(const String& name, unsigned int width, unsigned int height, bool includeAlpha = false);
 
     /**
-     * This is a helper method for creating a cubemap texture ready for custom rendering via render-to-texture or dynamic
-     * texture upload through Texture::lockImageData(). Internally it just creates a cubemap texture, loads it with an empty
-     * image that has the passed dimensions, and then returns the texture. Returns null on failure. Note that the caller is
-     * responsible for cleaning up the returned texture reference using TexureManager::releaseTexture(). An alpha channel can be
-     * included in the texture if required.
+     * This is a helper method for creating a cubemap texture ready for custom rendering via render-to-texture or
+     * dynamic texture upload through Texture::lockImageData(). Internally it just creates a cubemap texture, loads it
+     * with an empty image that has the passed dimensions, and then returns the texture. Returns null on failure. Note
+     * that the caller is responsible for cleaning up the returned texture reference using
+     * TexureManager::releaseTexture(). An alpha channel can be included in the texture if required.
      */
     TextureCubemap* createCubemapTexture(const String& name, unsigned int size, bool includeAlpha = false);
 
     /**
-     * Returns whether the texture load thread is currently executing, this will be true unless there was some problem starting
-     * the thread or the application has called TextureManager::shutdownTextureLoadThread(). To query whether the texture load
-     * thread is currently working on loading texture data in the background use TextureManager::isTextureLoadThreadActive().
+     * Returns whether the texture load thread is currently executing, this will be true unless there was some problem
+     * starting the thread or the application has called TextureManager::shutdownTextureLoadThread(). To query whether
+     * the texture load thread is currently working on loading texture data in the background use
+     * TextureManager::isTextureLoadThreadActive().
      */
     bool isTextureLoadThreadRunning() const;
 
     /**
-     * Returns whether the texture load thread is still working in the background to get textures ready for rendering. This can
-     * be used to wait on a loading screen for all textures to be ready.
+     * Returns whether the texture load thread is still working in the background to get textures ready for rendering.
+     * This can be used to wait on a loading screen for all textures to be ready.
      */
     bool isTextureLoadThreadActive() const;
 

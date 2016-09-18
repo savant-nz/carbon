@@ -33,10 +33,10 @@ if sys.platform == 'darwin':
 if isStrictBuild:
     env['CCFLAGS'] += ['-Weverything', '-Wno-c++98-compat', '-Wno-disabled-macro-expansion', '-Wno-documentation',
                        '-Wno-documentation-unknown-command', '-Wno-exit-time-destructors', '-Wno-float-equal',
-                       '-Wno-format-nonliteral', '-Wno-global-constructors', '-Wno-header-hygiene', '-Wno-implicit-fallthrough',
-                       '-Wno-keyword-macro', '-Wno-missing-noreturn', '-Wno-missing-prototypes',
-                       '-Wno-nullable-to-nonnull-conversion', '-Wno-over-aligned', '-Wno-padded', '-Wno-sign-conversion',
-                       '-Wno-switch-enum', '-Wno-weak-vtables']
+                       '-Wno-format-nonliteral', '-Wno-global-constructors', '-Wno-header-hygiene',
+                       '-Wno-implicit-fallthrough', '-Wno-keyword-macro', '-Wno-missing-noreturn',
+                       '-Wno-missing-prototypes', '-Wno-nullable-to-nonnull-conversion', '-Wno-over-aligned',
+                       '-Wno-padded', '-Wno-sign-conversion', '-Wno-switch-enum', '-Wno-weak-vtables']
 
 
 # Alter GCC's precompiled header support to pass a -include-pch through to Clang

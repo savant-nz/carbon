@@ -1,4 +1,4 @@
 [pep8]
 filename = SConstruct,SConscript,*.py
 exclude = Dependencies/*.py
-max-line-length = 128
+max-line-length = 120

@@ -12,8 +12,8 @@ namespace Carbon
 {
 
 /**
- * A resolution-independent 2D scrolling layer defined by an array of tiles. Multiple scrolling layers can be combined together
- * in a scene to get parallax scrolling effects.
+ * A resolution-independent 2D scrolling layer defined by an array of tiles. Multiple scrolling layers can be combined
+ * together in a scene to get parallax scrolling effects.
  */
 class CARBON_API ScrollingLayer : public ComplexEntity
 {
@@ -25,9 +25,10 @@ public:
     static const UnicodeString ScrollingLayerExtension;
 
     /**
-     * When this is true a call to ScrollingLayer::makePhysical() will also add a series of colored lines to the scene that
-     * outline the polygons that were generated from this scrolling layer's collision maps. This is useful when debugging
-     * scrolling layer physics. The lines are added using the Scene::addImmediateGeometry() method. Defaults to false.
+     * When this is true a call to ScrollingLayer::makePhysical() will also add a series of colored lines to the scene
+     * thatoutline the polygons that were generated from this scrolling layer's collision maps. This is useful when
+     * debugging scrolling layer physics. The lines are added using the Scene::addImmediateGeometry() method. Defaults
+     * to false.
      */
     static bool VisualizeCollisionMapEdges;
 
@@ -35,8 +36,8 @@ public:
     ~ScrollingLayer() override;
 
     /**
-     * Sets the dimensions of the tile array for this scrolling layer, existing tile textures are retained where possible when
-     * changing the size of a scrolling layer.
+     * Sets the dimensions of the tile array for this scrolling layer, existing tile textures are retained where
+     * possible when changing the size of a scrolling layer.
      */
     void setGridSize(unsigned int width, unsigned int height);
 
@@ -51,26 +52,27 @@ public:
     unsigned int getTileCountY() const { return tileCountY_; }
 
     /**
-     * Returns the overall tile scale to use when rendering, this can be used to directly scale a scrolling layer's size.
-     * Defaults to 1.0.
+     * Returns the overall tile scale to use when rendering, this can be used to directly scale a scrolling layer's
+     * size. Defaults to 1.0.
      */
     float getTileScale() const { return tileScale_; }
 
     /**
-     * Sets the overall tile scale to use when rendering, this can be used to directly scale a scrolling layer's size. Defaults
-     * to 1.0.
+     * Sets the overall tile scale to use when rendering, this can be used to directly scale a scrolling layer's size.
+     * Defaults to 1.0.
      */
     void setTileScale(float tileScale);
 
     /**
-     * Returns the aspect ratio to render tiles with. This can be used to define non-square tiles, larger aspect ratios reduce
+     * Returns the aspect ratio to render tiles with. This can be used to define non-square tiles, larger aspect ratios
+     * reduce
      * the height of a tile while leaving its width unchanged. Defaults to 1.0.
      */
     float getTileAspectRatio() const { return tileAspectRatio_; }
 
     /**
-     * Sets the aspect ratio to render tiles with. This can be used to define non-square tiles, larger aspect ratios reduce the
-     * height of a tile while leaving its width unchanged. Defaults to 1.0.
+     * Sets the aspect ratio to render tiles with. This can be used to define non-square tiles, larger aspect ratios
+     * reduce the height of a tile while leaving its width unchanged. Defaults to 1.0.
      */
     void setTileAspectRatio(float tileAspectRatio);
 
@@ -95,7 +97,8 @@ public:
     Vec2 getLayerSize() const { return {getTileWidth() * float(tileCountX_), getTileHeight() * float(tileCountY_)}; }
 
     /**
-     * Returns the overall scaling of the speed this layer will scroll at as the camera moves across it. Defaults to 1.0.
+     * Returns the overall scaling of the speed this layer will scroll at as the camera moves across it. Defaults to
+     * 1.0.
      */
     float getSpeedScale() const { return speedScale_; }
 
@@ -141,13 +144,14 @@ public:
 
     /**
      * Returns the current texture that will be used on tiles that have not had a texture set explicitly using
-     * ScrollingLayer::setTileTexture(). The default is an empty string which will result in TextureError.png being rendered for
-     * the tile.
+     * ScrollingLayer::setTileTexture(). The default is an empty string which will result in TextureError.png being
+     * rendered for the tile.
      */
     const String& getDefaultTileTexture() const { return defaultTileTexture_; }
 
     /**
-     * Sets the texture to use on tiles that have not had a texture set explicitly using ScrollingLayer::setTileTexture().
+     * Sets the texture to use on tiles that have not had a texture set explicitly using
+     * ScrollingLayer::setTileTexture().
      */
     void setDefaultTileTexture(const String& texture);
 
@@ -182,52 +186,53 @@ public:
     void setTileFlippedHorizontally(unsigned int x, unsigned int y, bool isFlipped);
 
     /**
-     * Returns the name of the collision map that will be used on the specified tile. If a specific collision map has been set
-     * with ScrollingLayer::setTileCollisionMap() then it will be returned, otherwise the default of "<tile texture>_collision"
-     * will be used.
+     * Returns the name of the collision map that will be used on the specified tile. If a specific collision map has
+     * been set with ScrollingLayer::setTileCollisionMap() then it will be returned, otherwise the default of "<tile
+     * texture>_collision" will be used.
      */
     String getTileCollisionMap(unsigned int x, unsigned int y) const;
 
     /**
-     * Sets the collision map to use for the specified tile, the alpha of this image will be used to create collision geometry
-     * when this scrolling layer is made physical. If no collision map is specified for a tile then the default of "<tile
-     * texture>_collision" will be used.
+     * Sets the collision map to use for the specified tile, the alpha of this image will be used to create collision
+     * geometry when this scrolling layer is made physical. If no collision map is specified for a tile then the default
+     * of "<tile texture>_collision" will be used.
      */
     void setTileCollisionMap(unsigned int x, unsigned int y, const String& collisionMap);
 
     /**
-     * Returns the name of the normal map that will be used on the specified tile. If a specific normal map has been set with
-     * ScrollingLayer::setTileNormalMap() then it will be returned, otherwise the default of "<tile texture>_normal" will be
-     * used.
+     * Returns the name of the normal map that will be used on the specified tile. If a specific normal map has been set
+     * with ScrollingLayer::setTileNormalMap() then it will be returned, otherwise the default of
+     * "<tile texture>_normal" will be used.
      */
     const String& getTileNormalMap(unsigned int x, unsigned int y) const;
 
     /**
-     * Sets the normal map to use for the specified tile. If no normal map is specified for a tile then the default of "<tile
-     * texture>_normal" will be used.
+     * Sets the normal map to use for the specified tile. If no normal map is specified for a tile then the default of
+     * "<tile texture>_normal" will be used.
      */
     void setTileNormalMap(unsigned int x, unsigned int y, const String& normalMap);
 
     /**
      * Adds an entity to this scrolling layer's scene and treats it as part of the layer which means that it will be
-     * automatically repeated along with the tiles that make up this layer (assuming that repeating in the X or Y axes is turned
-     * on). Note that this repeating will not duplicate the passed entity, it just gets automatically moved around as the layer
-     * scrolls in order to give the appearance of repeating indefinitely. This means that the entity will appear only once even
-     * if the layer size is small enough that it would be expected to appear multiple times. The current local position of the
-     * passed entity is taken as the layer-space position for the repeating entity, and the
-     * ScrollingLayer::setRepeatingEntityPosition() method must be used in order to change this position because calling
-     * Entity::setLocalPosition() directly would get overridden by the automatic repositioning done by the layer on the entity.
-     * Returns success flag.
+     * automatically repeated along with the tiles that make up this layer (assuming that repeating in the X or Y axes
+     * is turned on). Note that this repeating will not duplicate the passed entity, it just gets automatically moved
+     * around as the layer scrolls in order to give the appearance of repeating indefinitely. This means that the entity
+     * will appear only once even if the layer size is small enough that it would be expected to appear multiple times.
+     * The current local position of the passed entity is taken as the layer-space position for the repeating entity,
+     * and the ScrollingLayer::setRepeatingEntityPosition() method must be used in order to change this position because
+     * calling Entity::setLocalPosition() directly would get overridden by the automatic repositioning done by the layer
+     * on the entity. Returns success flag.
      */
     bool addRepeatingEntity(Entity* entity);
 
     /**
      * Creates a new entity of the specified type and adds it as a repeating entity to this scrolling layer using
-     * ScrollingLayer::addRepeatingEntity(Entity*). The name of the new entity is specified by \a name, and the new entity's
-     * `initialize()` method will be called with any additional arguments that are passed. Returns the new entity or null on
-     * failure.
+     * ScrollingLayer::addRepeatingEntity(Entity*). The name of the new entity is specified by \a name, and the new
+     * entity's `initialize()` method will be called with any additional arguments that are passed. Returns the new
+     * entity or null on failure.
      */
-    template <typename EntityType, typename... ArgTypes> EntityType* addRepeatingEntity(const String& name, ArgTypes&&... args)
+    template <typename EntityType, typename... ArgTypes>
+    EntityType* addRepeatingEntity(const String& name, ArgTypes&&... args)
     {
         auto entity = SubclassRegistry<Entity>::create<EntityType>();
         if (!entity || !addRepeatingEntity(entity))
@@ -258,8 +263,9 @@ public:
     bool setRepeatingEntityPosition(Entity* entity, const Vec2& position);
 
     /**
-     * Removes a repeating entity added with ScrollingLayer::addRepeatingEntity(). This is called automatically when a repeating
-     * entity is removed from this layer using Entity::removeFromScene() or an equivalent. Returns success flag.
+     * Removes a repeating entity added with ScrollingLayer::addRepeatingEntity(). This is called automatically when a
+     * repeating entity is removed from this layer using Entity::removeFromScene() or an equivalent. Returns success
+     * flag.
      */
     bool removeRepeatingEntity(Entity* entity);
 
@@ -274,8 +280,8 @@ public:
     bool load(const String& name);
 
     /**
-     * Clamps the position of the passed Camera to the bounds of this scrolling layer, this can be used to avoid showing the
-     * edges of non-repeating scrolling layers.
+     * Clamps the position of the passed Camera to the bounds of this scrolling layer, this can be used to avoid showing
+     * the edges of non-repeating scrolling layers.
      */
     void clampCameraPositionToLayerBounds(Camera* camera, bool negX, bool posX, bool negY, bool posY) const;
 

@@ -66,7 +66,7 @@ bool DeferredLightingSample::onKeyDownEvent(const KeyDownEvent& e)
         // Create a new light
         auto newLight = scene_.addEntity<Light>();
         newLight->setPointLight(Color::random().normalized(),
-                                camera_->localToWorld(Vec3::UnitZ * 1.25f),    // Place the light just in front of the camera
+                                camera_->localToWorld({0, 0, 1.25f}),    // Place the light just in front of the camera
                                 Math::random(1.0f, 3.0f));
 
         // Add a colored box to show the position of the light source

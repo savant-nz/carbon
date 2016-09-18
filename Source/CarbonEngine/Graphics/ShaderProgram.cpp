@@ -77,7 +77,8 @@ bool ShaderProgram::preprocessShaderCode(const String& filename, Vector<String>&
 
                 auto contents = String();
                 auto includedFile = FileReader();
-                if (!fileSystem().readTextFile(includePath + tokens[1].withoutSuffix("\"").withoutPrefix("\""), contents))
+                if (!fileSystem().readTextFile(includePath + tokens[1].withoutSuffix("\"").withoutPrefix("\""),
+                                               contents))
                     LOG_WARNING << "Failed including file '" << tokens[1] << "' in shader '" << filename << "'";
                 else
                     lines.insert(i + 1, contents.getLines());
@@ -106,7 +107,8 @@ bool ShaderProgram::preprocessShaderCode(const String& filename, Vector<String>&
             const auto& tokens = lines[i].getTokens();
             if (tokens.size() != 2)
             {
-                LOG_WARNING << "Encountered unsupported preprocessor command while parsing " << filename << ": " << lines[i];
+                LOG_WARNING << "Encountered unsupported preprocessor command while parsing " << filename << ": "
+                            << lines[i];
                 continue;
             }
 
@@ -177,8 +179,8 @@ bool ShaderProgram::preprocessShaderCode(const String& filename, Vector<String>&
 
 void ShaderProgram::logShaderCode(const String& filename, const String& shaderCode)
 {
-    Logfile::get().writeCollapsibleSection("Shader code for " + FileSystem::getBaseName(filename), U(shaderCode.getLines()),
-                                           Logfile::Info, true);
+    Logfile::get().writeCollapsibleSection("Shader code for " + FileSystem::getBaseName(filename),
+                                           U(shaderCode.getLines()), Logfile::Info, true);
 }
 
 }

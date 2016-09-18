@@ -11,10 +11,10 @@ namespace Carbon
 {
 
 /**
- * Implementation of ShaderProgram for the OpenGL Shading Language version 1.10 and version 4.10 operating under OpenGL 4.1 Core
- * Profile. Note that a number of preprocessor macros are added by OpenGL41ShaderProgram::getSourcePrefix() in order to make
- * GLSL 1.10 syntax compile as GLSL 4.10 code, this is needed because GLSL 4.10 is the only version supported by OpenGL 4.1 Core
- * Profile.
+ * Implementation of ShaderProgram for the OpenGL Shading Language version 1.10 and version 4.10 operating under OpenGL
+ * 4.1 Core Profile. Note that a number of preprocessor macros are added by OpenGL41ShaderProgram::getSourcePrefix() in
+ * order to make GLSL 1.10 syntax compile as GLSL 4.10 code, this is needed because GLSL 4.10 is the only version
+ * supported by OpenGL 4.1 Core Profile.
  */
 class OpenGL41ShaderProgram : public OpenGLShaderProgramCoreShared
 {

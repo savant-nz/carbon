@@ -29,9 +29,9 @@ CARBON_PERSISTENT_SETTING(FrameTimersEnabled, Boolean, FrameTimers::Enabled, fal
 
 static Vector<FrameTimers::FrameTimer*>* registeredTimers;
 
-// The registeredTimers vector is allocated on the first call to FrameTimers::createTimer() in order to avoid issues with the
-// order of construction of static objects in different translation units. The RegisteredTimersVectorDeleter class is used to
-// deallocate the vector when the library is uninitialized in order to avoid a memory leak.
+// The registeredTimers vector is allocated on the first call to FrameTimers::createTimer() in order to avoid issues
+// with the order of construction of static objects in different translation units. The RegisteredTimersVectorDeleter
+// class is used to deallocate the vector when the library is uninitialized in order to avoid a memory leak.
 class RegisteredTimersVectorDeleter
 {
 public:
@@ -83,13 +83,13 @@ void FrameTimers::push(FrameTimer* timer)
     {
         auto currentTime = platform().getTime();
 
-        // If there is a currently running timer then update its accumulated time before pushing the new timer type onto the
-        // stack
+        // If there is a currently running timer then update its accumulated time before pushing the new timer type onto
+        // the stack
         if (!timerStack_.empty())
             timerStack_.back()->accumulatedTime_ += currentTime - lastActivityTime_;
 
-        // Record when the push happened so that the next push/pop can calculate the time that this timer spent on the top of
-        // the stack
+        // Record when the push happened so that the next push/pop can calculate the time that this timer spent on the
+        // top of the stack
         lastActivityTime_ = currentTime;
     }
 
@@ -106,15 +106,15 @@ void FrameTimers::pop()
         // Update the total time for the timer on the top of the stack and then pop it off
         timerStack_.back()->accumulatedTime_ += currentTime - lastActivityTime_;
 
-        // Record when the pop happened so that the next push/pop can calculate the time that the new topmost timer spent on the
-        // top of the stack
+        // Record when the pop happened so that the next push/pop can calculate the time that the new topmost timer
+        // spent on the top of the stack
         lastActivityTime_ = currentTime;
     }
 
     timerStack_.popBack();
 
-    // If the timer stack is empty then look at whether the current sampling period is up and if so then make new sampling data
-    // available
+    // If the timer stack is empty then look at whether the current sampling period is up and if so then make new
+    // sampling data available
     if (timerStack_.empty() && areTimersActive_)
     {
         static auto lastSummaryTime = TimeValue();
@@ -144,8 +144,8 @@ void FrameTimers::pop()
         OnSamplingDataReady.fire(currentTime);
     }
 
-    // Propagate the Enabled state to the areTimersActive state when the timer count hits zero, this ensures that the timer
-    // stack pushes and pops stay matched in the event that Enabled is changed when the timer stack isn't empty
+    // Propagate the Enabled state to the areTimersActive state when the timer count hits zero, this ensures that the
+    // timer stack pushes and pops stay matched in the event that Enabled is changed when the timer stack isn't empty
     if (timerStack_.empty())
         areTimersActive_ = Enabled;
 }

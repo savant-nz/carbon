@@ -40,15 +40,15 @@ public:
     }
 };
 
-// This array holds all the statistics for allocations grouped into the specified size ranges. Each instance in this array holds
-// the statistics for allocations with a size <= to the cutoff and greater than the cutoff of the previous entry. This array can
-// be adjusted to get different groupings of allocation sizes.
+// This array holds all the statistics for allocations grouped into the specified size ranges. Each instance in this
+// array holds the statistics for allocations with a size <= to the cutoff and greater than the cutoff of the previous
+// entry. This array can be adjusted to get different groupings of allocation sizes.
 const size_t AllocationStatisticsCutoffSizes[] = {1, 2, 4, 8, 16, 32, 64, 96, 128, 256, 384, 512, 1024, 1536, 1024 * 2,
-                                                  1024 * 4, 1024 * 8, 1024 * 16, 1024 * 32, 1024 * 64, 1024 * 128, 1024 * 256,
-                                                  1024 * 512, 1024 * 1024, 1024 * 1024 * 2, 1024 * 1024 * 4, 1024 * 1024 * 8,
-                                                  1024 * 1024 * 16, 1024 * 1024 * 32, 1024 * 1024 * 64,
+                                                  1024 * 4, 1024 * 8, 1024 * 16, 1024 * 32, 1024 * 64, 1024 * 128,
+                                                  1024 * 256, 1024 * 512, 1024 * 1024, 1024 * 1024 * 2, 1024 * 1024 * 4,
+                                                  1024 * 1024 * 8, 1024 * 1024 * 16, 1024 * 1024 * 32, 1024 * 1024 * 64,
 
-                                                  // This is a catch-all for all allocation sizes above 64MB, do not remove
+                                                  // This is a catch-all for all allocation sizes above 64MB
                                                   ~size_t(0)};
 
 static AllocationStatistics allocationStatistics[sizeof(AllocationStatisticsCutoffSizes) / sizeof(size_t)];
@@ -56,9 +56,9 @@ static AllocationStatistics allocationStatistics[sizeof(AllocationStatisticsCuto
 // Returns the set of allocation statistics pertaining to an allocation of the given size.
 static AllocationStatistics& getStatisticsForAllocationSize(size_t size)
 {
-    // Set up the allocation statistics instances the first time this method is called, an AllocationStatistics constructor
-    // can't be used because that would introduce static initialization order dependencies.
-    static bool isSetup = false;
+    // Set up the allocation statistics instances the first time this method is called, an AllocationStatistics
+    // constructor can't be used because that would introduce static initialization order dependencies.
+    static auto isSetup = false;
     if (!isSetup)
     {
         isSetup = true;
@@ -101,7 +101,8 @@ void MemoryStatistics::logAllocationDetails()
     for (const auto& stats : allocationStatistics)
         totalAllocationCount += stats.activeCount;
 
-    LOG_DEBUG << FileSystem::formatByteSize(getAllocationSizeTotal()) << " used by " << totalAllocationCount << " allocations";
+    LOG_DEBUG << FileSystem::formatByteSize(getAllocationSizeTotal()) << " used by " << totalAllocationCount
+              << " allocations";
 
     for (const auto& stats : allocationStatistics)
     {

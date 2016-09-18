@@ -86,8 +86,8 @@ bool PlatformerEntityController::update(TimeValue time)
         {
             if ((p0.time - pastWorldPositions_[i].time).toSeconds() > 0.05f)
             {
-                velocity_ =
-                    (p0.position - pastWorldPositions_[i].position) / (p0.time - pastWorldPositions_[i].time).toSeconds();
+                velocity_ = (p0.position - pastWorldPositions_[i].position) /
+                    (p0.time - pastWorldPositions_[i].time).toSeconds();
                 break;
             }
         }
@@ -109,8 +109,9 @@ bool PlatformerEntityController::update(TimeValue time)
     }
     else
     {
-        // The controller is not in contact with the ground so a fall should be reported when the controller is next on the
-        // ground, the final fall distance is determined based on how high the controller got since it was last on the ground.
+        // The controller is not in contact with the ground so a fall should be reported when the controller is next on
+        // the ground, the final fall distance is determined based on how high the controller got since it was last on
+        // the ground.
         reportFallWhenNextOnGround_ = true;
         maximumYSinceLastOnGround_ = std::max(maximumYSinceLastOnGround_, getEntity()->getWorldPosition().y);
     }
@@ -128,8 +129,8 @@ bool PlatformerEntityController::update(TimeValue time)
     auto jumpOffset = 0.0f;
     if (isJumping_)
     {
-        // Check whether the character controller has hit something above it. If it has, and the surface hit is fairly close to
-        // horizontal, then the jump terminates immediately
+        // Check whether the character controller has hit something above it. If it has, and the surface hit is fairly
+        // close to horizontal, then the jump terminates immediately
         if (physics().getCharacterControllerUpAxisCollision(getEntity()->characterController_, collisionNormal))
             isJumping_ = collisionNormal.dot(-Vec3::UnitY) < 0.95f;
 
@@ -146,7 +147,8 @@ bool PlatformerEntityController::update(TimeValue time)
 
                 auto jumpExponent = 2.0f;
 
-                jumpOffset = jumpHeight_ * (powf(fabsf(1.0f - t1), jumpExponent) - powf(fabsf(1.0f - t0), jumpExponent));
+                jumpOffset =
+                    jumpHeight_ * (powf(fabsf(1.0f - t1), jumpExponent) - powf(fabsf(1.0f - t0), jumpExponent));
             }
         }
     }
@@ -173,7 +175,8 @@ bool PlatformerEntityController::update(TimeValue time)
     velocity_.x = Math::absClamp(velocity_.x, maximumHorizontalSpeed_);
     velocity_.y = Math::absClamp(velocity_.y, maximumVerticalSpeed_);
 
-    // If the fall following a jump has hit the maximum fall speed then clamp to the maximum speed and terminate the jump
+    // If the fall following a jump has hit the maximum fall speed then clamp to the maximum speed and terminate the
+    // jump
     if (velocity_.y + (jumpOffset / seconds) < -maximumVerticalSpeed_)
     {
         velocity_.y = -maximumVerticalSpeed_;
@@ -182,7 +185,8 @@ bool PlatformerEntityController::update(TimeValue time)
     }
 
     // Move the character controller
-    physics().moveCharacterController(getEntity()->characterController_, velocity_ * seconds + Vec2(0.0f, jumpOffset), seconds);
+    physics().moveCharacterController(getEntity()->characterController_, velocity_ * seconds + Vec2(0.0f, jumpOffset),
+                                      seconds);
 
     return true;
 }

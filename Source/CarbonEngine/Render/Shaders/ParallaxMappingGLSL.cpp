@@ -21,7 +21,8 @@ const auto parallaxStepCountParameter = ParameterArray::Lookup("parallaxStepCoun
 
 bool ParallaxMappingGLSL::isPresent(const ParameterArray& params, const ParameterArray& internalParams)
 {
-    return params.has(parallaxScaleParameter) && params.has(parallaxStepCountParameter) && params.has(Parameter::normalMap);
+    return params.has(parallaxScaleParameter) && params.has(parallaxStepCountParameter) &&
+        params.has(Parameter::normalMap);
 }
 
 void ParallaxMappingGLSL::cache(Shader::ManagedShaderProgram* program_)
@@ -44,8 +45,8 @@ void ParallaxMappingGLSL::setShaderParams(const GeometryChunk& geometryChunk, co
                                                 powf(float(normalAndHeightMap->getImage().getHeight()), 2.0f));
     }
 
-    parallaxConstants->setFloat3(params[parallaxScaleParameter].getFloat(), params[parallaxStepCountParameter].getFloat(),
-                                 texelsAcrossDiagonalOfHeightMap);
+    parallaxConstants->setFloat3(params[parallaxScaleParameter].getFloat(),
+                                 params[parallaxStepCountParameter].getFloat(), texelsAcrossDiagonalOfHeightMap);
 }
 
 }

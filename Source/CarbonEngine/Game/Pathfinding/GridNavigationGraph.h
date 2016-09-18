@@ -11,8 +11,8 @@ namespace Carbon
 {
 
 /**
- * Automatically sets up a grid navigation graph with the given dimensions where every adjacent node in the grid is connected.
- * This class can create both 2D and 3D graphs.
+ * Automatically sets up a grid navigation graph with the given dimensions where every adjacent node in the grid is
+ * connected. This class can create both 2D and 3D graphs.
  */
 class CARBON_API GridNavigationGraph : public NavigationGraph
 {
@@ -47,10 +47,11 @@ public:
     }
 
     /**
-     * Sets whether the node at the given location in this given is traversable by using NavigationNode::setTraversable(). If \a
-     * cutCorners is set to false then this method also makes the edges surrounding this node untraversable so that paths
-     * through this graph won't use them. Doing this avoids the appearance of paths 'cutting corners' close to untraversable
-     * nodes even though the generated path did not actually pass through that node.
+     * Sets whether the node at the given location in this given is traversable by using
+     * NavigationNode::setTraversable(). If \a cutCorners is set to false then this method also makes the edges
+     * surrounding this node untraversable so that paths through this graph won't use them. Doing this avoids the
+     * appearance of paths 'cutting corners' close to untraversable nodes even though the generated path did not
+     * actually pass through that node.
      */
     void setTraversable(unsigned int x, unsigned int y, unsigned int z, bool traversable, bool cutCorners = false);
 

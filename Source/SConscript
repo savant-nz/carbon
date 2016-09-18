@@ -15,8 +15,8 @@ mayaExporterEnvs = []
 
 if platform == 'Windows':
 
-    dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'OculusRift', 'PhysX', 'Vorbis',
-                    'ZLib']
+    dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'OculusRift', 'PhysX',
+                    'Vorbis', 'ZLib']
 
     # Environment for Carbon
     engineEnv = baseEnv.Clone()
@@ -178,7 +178,8 @@ if engineEnv.IsCarbonEngineStatic():
 else:
     engineEnv.SetupForLinkingCarbon()
 Export({'env': engineEnv, 'target': carbonEngineLibraryName})
-carbonEngineBuildResult = CarbonSConscript('CarbonEngine/SConscript', variant_dir=carbonEngineLibraryName + '/CarbonEngine')
+carbonEngineBuildResult = CarbonSConscript('CarbonEngine/SConscript',
+                                           variant_dir=carbonEngineLibraryName + '/CarbonEngine')
 Alias('CarbonEngine', Install(installDir, carbonEngineBuildResult))
 SetCarbonEngineBuildResult(carbonEngineBuildResult)
 
@@ -186,7 +187,7 @@ SetCarbonEngineBuildResult(carbonEngineBuildResult)
 if platform == 'Linux' or platform == 'MacOSX':
     vars = Variables()
     vars.AddVariables(
-        ('prefix', 'The prefix to install headers and libraries into when building the \'install\' target.', '/usr/local')
+        ('prefix', 'The prefix to install headers and libraries to when building the \'install\' target.', '/usr/local')
     )
     Help(vars.GenerateHelpText(Environment()))
 

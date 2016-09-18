@@ -16,7 +16,8 @@ namespace Carbon
 namespace Shaders
 {
 
-const auto ambientOcclusionMapParameter = ParameterArray::Lookup(Parameter::getHiddenParameterName("ambientOcclusionMap"));
+const auto ambientOcclusionMapParameter =
+    ParameterArray::Lookup(Parameter::getHiddenParameterName("ambientOcclusionMap"));
 
 bool AmbientOcclusionGLSL::isPresent(const ParameterArray& params, const ParameterArray& internalParams)
 {

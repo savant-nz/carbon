@@ -49,8 +49,8 @@ public:
     Vec3 getPoint(float distance) const { return origin_ + direction_ * distance; }
 
     /**
-     * Returns whether there is an intersection between this ray and the passed triangle, and if there is then the distance
-     * along this ray to the intersection is returned in \a t.
+     * Returns whether there is an intersection between this ray and the passed triangle, and if there is then the
+     * distance along this ray to the intersection is returned in \a t.
      */
     bool intersect(const Vec3& v0, const Vec3& v1, const Vec3& v2, float* t = nullptr) const
     {

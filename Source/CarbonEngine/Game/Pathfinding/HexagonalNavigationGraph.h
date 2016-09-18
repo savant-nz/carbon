@@ -11,8 +11,8 @@ namespace Carbon
 {
 
 /**
- * Automatically sets up a hexagonal navigation graph, the graph is indexable as a 2D grid however every second row is moved
- * half a unit in the X direction to create the hexagonal navigation shape.
+ * Automatically sets up a hexagonal navigation graph, the graph is indexable as a 2D grid however every second row is
+ * moved half a unit in the X direction to create the hexagonal navigation shape.
  */
 class CARBON_API HexagonalNavigationGraph : public NavigationGraph
 {

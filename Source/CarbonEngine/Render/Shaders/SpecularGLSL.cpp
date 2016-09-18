@@ -26,7 +26,8 @@ float SpecularGLSL::getSpecularExponent(const ParameterArray& params)
 
 bool SpecularGLSL::isPresent(const ParameterArray& params, const ParameterArray& internalParams)
 {
-    return params.has(Parameter::normalMap) && (params.has(Parameter::specularColor) || params.has(Parameter::glossMap));
+    return params.has(Parameter::normalMap) &&
+        (params.has(Parameter::specularColor) || params.has(Parameter::glossMap));
 }
 
 void SpecularGLSL::cache(Shader::ManagedShaderProgram* program_)
@@ -41,7 +42,8 @@ void SpecularGLSL::enterShader(unsigned int textureUnit)
     sGlossMap->setInteger(textureUnit);
 }
 
-void SpecularGLSL::setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, unsigned int textureUnit)
+void SpecularGLSL::setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                                   unsigned int textureUnit)
 {
     specularColor->setFloat3(params);
     specularExponent->setFloat(getSpecularExponent(params));

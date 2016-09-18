@@ -32,7 +32,8 @@ bool SkeletalExporterBase::exportData(Runnable& r)
     // Warn if both physiques and skins are found
     if (physiqueNodes.size() && skinNodes.size())
     {
-        LOG_WARNING_WITHOUT_CALLER << "Both Character Studio Physique and native ISkin nodes were found, ignoring ISkins";
+        LOG_WARNING_WITHOUT_CALLER
+            << "Both Character Studio Physique and native ISkin nodes were found, ignoring ISkins";
         skinNodes.clear();
     }
 
@@ -160,8 +161,8 @@ int SkeletalExporterBase::findOrAddBone(INode* node)
     newBone.name = boneName;
     newBone.parent = findOrAddBone(node->GetParentNode());
 
-    // Use the bone's first frame transform as the bind pose, this can be overwritten by the exporters if they get out the
-    // actual bind pose
+    // Use the bone's first frame transform as the bind pose, this can be overwritten by the exporters if they get out
+    // the actual bind pose
     auto localTransform = ::Matrix3();
     if (newBone.parent == -1)
         localTransform = node->GetNodeTM(0);

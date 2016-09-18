@@ -14,16 +14,16 @@ namespace Shaders
 {
 
 /**
- * Implementation of ambient occlusion for GLSL. This is a shader component that is used by other GLSL shaders in order to
- * support ambient occlusion.
+ * Implementation of ambient occlusion for GLSL. This is a shader component that is used by other GLSL shaders in order
+ * to support ambient occlusion.
  */
 class CARBON_API AmbientOcclusionGLSL
 {
 public:
 
     /**
-     * Returns whether ambient occlusion should be done under the given params. The params must specify an ambient occlusion
-     * texture.
+     * Returns whether ambient occlusion should be done under the given params. The params must specify an ambient
+     * occlusion texture.
      */
     static bool isPresent(const ParameterArray& params, const ParameterArray& internalParams);
 

@@ -13,8 +13,8 @@ namespace Carbon
 {
 
 /**
- * This entity controller automatically moves its entity towards a specified entity or world space point at a constant speed,
- * then removes itself once the target has been reached.
+ * This entity controller automatically moves its entity towards a specified entity or world space point at a constant
+ * speed, then removes itself once the target has been reached.
  */
 class CARBON_API TargetPositionEntityController : public EntityController
 {
@@ -77,8 +77,8 @@ public:
 
         if (isFollowingWorldGeometry_)
         {
-            // This is the distance moved between sampling a new world geometry height to align against. Using this distance
-            // value avoids having to sample a height on every update
+            // This is the distance moved between sampling a new world geometry height to align against. Using this
+            // distance value avoids having to sample a height on every update
             const auto distanceBetweenUpdates = 2.5f;
 
             // Check if we're due to update the world geometry alignment vector
@@ -90,8 +90,8 @@ public:
                 auto& initialPosition = getEntity()->getWorldPosition();
                 auto ahead = initialPosition + (target - initialPosition).ofLength(distanceBetweenUpdates);
 
-                // Now shoot a ray into the world geometry to see where this entity should be, this entity is made invisible
-                // to avoid self-intersection
+                // Now shoot a ray into the world geometry to see where this entity should be, this entity is made
+                // invisible to avoid self-intersection
                 auto ray = Ray(ahead + Vec3::UnitY * 100.0f, -Vec3::UnitY);
 
                 auto wasVisible = getEntity()->isVisibleIgnoreAlpha(false);

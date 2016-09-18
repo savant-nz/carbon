@@ -40,7 +40,9 @@ class FaceInfo
 {
 public:
 
-    FaceInfo(unsigned int v0, unsigned int v1, unsigned int v2, bool isFake_ = false) : v{{v0, v1, v2}}, isFake(isFake_) {}
+    FaceInfo(unsigned int v0, unsigned int v1, unsigned int v2, bool isFake_ = false) : v{{v0, v1, v2}}, isFake(isFake_)
+    {
+    }
 
     std::array<unsigned int, 3> v = {};
     StripInfo* strip = nullptr;
@@ -91,7 +93,10 @@ class StripInfo : private Noncopyable
 {
 public:
 
-    StripInfo(const StripStartInfo& startInfo_, int experimentID_ = -1) : startInfo(startInfo_), experimentID(experimentID_) {}
+    StripInfo(const StripStartInfo& startInfo_, int experimentID_ = -1)
+        : startInfo(startInfo_), experimentID(experimentID_)
+    {
+    }
 
     // This is an experiment if the experiment id is >= 0
     bool isExperiment() const { return experimentID >= 0; }
@@ -140,11 +145,13 @@ public:
     FaceInfo* findGoodResetPoint(Vector<FaceInfo*>& faceInfos, Vector<EdgeInfo*>& edgeInfos);
     bool findAllStrips(Vector<StripInfo*>& allStrips, Vector<FaceInfo*>& allFaceInfos, Vector<EdgeInfo*>& allEdgeInfos,
                        unsigned int sampleCount, Runnable& r);
-    bool splitUpStripsAndOptimize(Vector<StripInfo*>& allStrips, Vector<StripInfo*>& outStrips, Vector<EdgeInfo*>& edgeInfos,
-                                  Vector<FaceInfo*>& outFaceList, Runnable& r);
-    bool findTraversal(Vector<FaceInfo*>& faceInfos, Vector<EdgeInfo*>& edgeInfos, StripInfo* strip, StripStartInfo& startInfo);
+    bool splitUpStripsAndOptimize(Vector<StripInfo*>& allStrips, Vector<StripInfo*>& outStrips,
+                                  Vector<EdgeInfo*>& edgeInfos, Vector<FaceInfo*>& outFaceList, Runnable& r);
+    bool findTraversal(Vector<FaceInfo*>& faceInfos, Vector<EdgeInfo*>& edgeInfos, StripInfo* strip,
+                       StripStartInfo& startInfo);
     void updateCacheStrip(VertexCache& vertexCache, const StripInfo* strip);
-    bool buildstripifyInfo(Vector<FaceInfo*>& faceInfos, Vector<EdgeInfo*>& edgeInfos_, unsigned int maxIndex, Runnable& r);
+    bool buildstripifyInfo(Vector<FaceInfo*>& faceInfos, Vector<EdgeInfo*>& edgeInfos_, unsigned int maxIndex,
+                           Runnable& r);
 
 private:
 
@@ -156,8 +163,8 @@ private:
 // Find the edge info for these two indices
 EdgeInfo* Stripifier::findEdgeInfo(Vector<EdgeInfo*>& edgeInfos, unsigned int v0, unsigned int v1)
 {
-    // We can get to it through either array because the edge infos have a v0 and v1 and there is no order except how it was
-    // first created
+    // We can get to it through either array because the edge infos have a v0 and v1 and there is no order except how it
+    // was first created
     auto infoIter = edgeInfos[v0];
 
     while (infoIter)
@@ -215,7 +222,8 @@ bool Stripifier::buildstripifyInfo(Vector<FaceInfo*>& faceInfos, Vector<EdgeInfo
         if (FaceInfo(v[0], v[1], v[2]).isDegenerate())
             continue;
 
-        // Create the face info and add it to the list of faces, but only if this exact face doesn't already exist in the list
+        // Create the face info and add it to the list of faces, but only if this exact face doesn't already exist in
+        // the list
         auto faceInfo = new FaceInfo(v[0], v[1], v[2]);
 
         // Grab the edge infos, creating them if they do not already exist
@@ -299,12 +307,12 @@ bool Stripifier::buildstripifyInfo(Vector<FaceInfo*>& faceInfos, Vector<EdgeInfo
     return true;
 }
 
-// A good reset point is one near other committed areas so that we know that when we've made the longest strips its because
-// we're stripifying in the same general orientation.
+// A good reset point is one near other committed areas so that we know that when we've made the longest strips its
+// because we're stripifying in the same general orientation.
 FaceInfo* Stripifier::findGoodResetPoint(Vector<FaceInfo*>& faceInfos, Vector<EdgeInfo*>& edgeInfos)
 {
-    // We hop into different areas of the mesh to try to get other large open spans done. Areas of small strips can just be left
-    // to triangle lists added at the end.
+    // We hop into different areas of the mesh to try to get other large open spans done. Areas of small strips can just
+    // be left to triangle lists added at the end.
     auto result = pointer_to<FaceInfo>::type();
 
     auto startPoint = -1;
@@ -398,7 +406,8 @@ int Stripifier::getNextIndex(const Vector<unsigned int>& indices, const FaceInfo
     {
         if (fv[i] != v[0] && fv[i] != v[1])
         {
-            if ((fv[(i + 1) % 3] != v[0] && fv[(i + 1) % 3] != v[1]) || (fv[(i + 2) % 3] != v[0] && fv[(i + 2) % 3] != v[1]))
+            if ((fv[(i + 1) % 3] != v[0] && fv[(i + 1) % 3] != v[1]) ||
+                (fv[(i + 2) % 3] != v[0] && fv[(i + 2) % 3] != v[1]))
                 LOG_DEBUG << "Triangle doesn't have all of its vertices, duplicate triangle probably got us derailed";
 
             return fv[i];
@@ -415,8 +424,8 @@ int Stripifier::getNextIndex(const Vector<unsigned int>& indices, const FaceInfo
     return -1;
 }
 
-// If either the faceInfo has a real strip index because it is already assigned to a committed strip OR it is assigned in an
-// experiment and the experiment index is the one we are building for, then it is marked and unavailable
+// If either the faceInfo has a real strip index because it is already assigned to a committed strip OR it is assigned
+// in an experiment and the experiment index is the one we are building for, then it is marked and unavailable
 bool StripInfo::isMarked(const FaceInfo* faceInfo)
 {
     return faceInfo->strip || (isExperiment() && faceInfo->experimentID == experimentID);
@@ -517,8 +526,8 @@ void StripInfo::build(Vector<EdgeInfo*>& edgeInfos, Vector<FaceInfo*>& faceInfos
     nextFace = Stripifier::findOtherFace(edgeInfos, nv0, nv1, startInfo.startFace);
     while (nextFace && !isMarked(nextFace))
     {
-        // This tests to see if newFace is "unique", meaning that its vertices aren't already in the list so, strips which
-        // "wrap-around" are not allowed
+        // This tests to see if newFace is "unique", meaning that its vertices aren't already in the list so, strips
+        // which "wrap-around" are not allowed
 
         auto bv0 = false;
         auto bv1 = false;
@@ -614,13 +623,15 @@ bool Stripifier::findTraversal(Vector<FaceInfo*>& faceInfos, Vector<EdgeInfo*>& 
     auto edgeIter = edgeInfos[v];
     while (edgeIter)
     {
-        if (edgeIter->face[0] && !strip->hasFace(edgeIter->face[0]) && edgeIter->face[1] && !strip->isMarked(edgeIter->face[1]))
+        if (edgeIter->face[0] && !strip->hasFace(edgeIter->face[0]) && edgeIter->face[1] &&
+            !strip->isMarked(edgeIter->face[1]))
         {
             untouchedFace = edgeIter->face[1];
             break;
         }
 
-        if (edgeIter->face[1] && !strip->hasFace(edgeIter->face[1]) && edgeIter->face[0] && !strip->isMarked(edgeIter->face[0]))
+        if (edgeIter->face[1] && !strip->hasFace(edgeIter->face[1]) && edgeIter->face[0] &&
+            !strip->isMarked(edgeIter->face[0]))
         {
             untouchedFace = edgeIter->face[0];
             break;
@@ -669,8 +680,8 @@ void Stripifier::createStrips(const Vector<StripInfo*>& allStrips, Vector<int>& 
 
     auto lastFace = FaceInfo(0, 0, 0);
 
-    // We infer the cw/ccw ordering depending on the number of indices. This is screwed up by the fact that we insert -1s to
-    // denote changing strips, this is to account for that
+    // We infer the cw/ccw ordering depending on the number of indices. This is screwed up by the fact that we insert
+    // -1s to denote changing strips, this is to account for that
     auto accountForNegatives = 0U;
 
     for (auto i = 0U; i < allStrips.size(); i++)
@@ -826,8 +837,8 @@ bool Stripifier::stripify(const Vector<unsigned int>& indices, unsigned int maxI
     return true;
 }
 
-// Splits the input vector of strips into smaller, cache friendly pieces, then reorders these pieces to maximize cache hits. The
-// final strips are output through outStrips.
+// Splits the input vector of strips into smaller, cache friendly pieces, then reorders these pieces to maximize cache
+// hits. The final strips are output through outStrips.
 bool Stripifier::splitUpStripsAndOptimize(Vector<StripInfo*>& allStrips, Vector<StripInfo*>& outStrips,
                                           Vector<EdgeInfo*>& edgeInfos, Vector<FaceInfo*>& outFaceList, Runnable& r)
 {
@@ -942,8 +953,8 @@ bool Stripifier::splitUpStripsAndOptimize(Vector<StripInfo*>& allStrips, Vector<
         }
         else
         {
-            // We're not just doing a tempStrips.append(allBigStrips[i]) because this way we can delete allBigStrips later to
-            // free the memory
+            // We're not just doing a tempStrips.append(allBigStrips[i]) because this way we can delete allBigStrips
+            // later to free the memory
             currentStrip = new StripInfo(startInfo, -1);
             currentStrip->faces.append(strip->faces);
 
@@ -1082,11 +1093,12 @@ void Stripifier::updateCacheStrip(VertexCache& vertexCache, const StripInfo* str
     }
 }
 
-// Does the stripification, puts output strips into allStrips. Works by setting running a number of experiments in different
-// areas of the mesh, and accepting the one which results in the longest strips. It then accepts this, and moves on to a
-// different area of the mesh. We try to jump around the mesh some, to ensure that large open spans of strips get generated.
-bool Stripifier::findAllStrips(Vector<StripInfo*>& allStrips, Vector<FaceInfo*>& allFaceInfos, Vector<EdgeInfo*>& allEdgeInfos,
-                               unsigned int sampleCount, Runnable& r)
+// Does the stripification, puts output strips into allStrips. Works by setting running a number of experiments in
+// different areas of the mesh, and accepting the one which results in the longest strips. It then accepts this, and
+// moves on to a different area of the mesh. We try to jump around the mesh some, to ensure that large open spans of
+// strips get generated.
+bool Stripifier::findAllStrips(Vector<StripInfo*>& allStrips, Vector<FaceInfo*>& allFaceInfos,
+                               Vector<EdgeInfo*>& allEdgeInfos, unsigned int sampleCount, Runnable& r)
 {
     auto experimentID = 0;
     auto done = false;
@@ -1106,7 +1118,8 @@ bool Stripifier::findAllStrips(Vector<StripInfo*>& allStrips, Vector<FaceInfo*>&
                 break;
             }
             else if (resetPoints.find(nextFace) != resetPoints.end())
-                continue;    // Already evaluated starting at this face in this slew of experiments, skip going any further
+                continue;    // Already evaluated starting at this face in this slew of experiments, skip going any
+                             // further
 
             assert(!nextFace->strip);
 
@@ -1126,8 +1139,8 @@ bool Stripifier::findAllStrips(Vector<StripInfo*>& allStrips, Vector<FaceInfo*>&
         if (done)
             break;
 
-        // Phase 2: Iterate through that we setup in the last phase and really build each of the strips and strips that follow
-        // to see how far we get
+        // Phase 2: Iterate through that we setup in the last phase and really build each of the strips and strips that
+        // follow to see how far we get
         for (auto& experiment : experiments)
         {
             // Build the first strip of the list
@@ -1170,8 +1183,8 @@ bool Stripifier::findAllStrips(Vector<StripInfo*>& allStrips, Vector<FaceInfo*>&
             }
         }
 
-        // Phase 4: commit the best experiment of the bunch by setting their experimentID to -1 and adding to the allStrips
-        // vector
+        // Phase 4: commit the best experiment of the bunch by setting their experimentID to -1 and adding to the
+        // allStrips vector
         for (auto strip : experiments[bestIndex])
         {
             // Tell the strip that it is now real
@@ -1261,7 +1274,8 @@ bool TriangleStripper::run(const Vector<unsigned int>& indices, Vector<Primitive
         for (i = 0; i < stripLength; i++)
             result[j].second[i] = stripIndices[offset + i];
 
-        // Add 1 to account for the -1 separating strips. This doesn't break the stitched case since we'll exit the loop.
+        // Add 1 to account for the -1 separating strips. This doesn't break the stitched case since we'll exit the
+        // loop.
         offset += stripLength + 1;
     }
 

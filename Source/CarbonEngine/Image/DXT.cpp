@@ -9,7 +9,8 @@
 namespace Carbon
 {
 
-void Image::decompressDXTCBlock(const byte_t* blockData, std::array<std::array<byte_t, 4>, 16>& output, PixelFormat pixelFormat)
+void Image::decompressDXTCBlock(const byte_t* blockData, std::array<std::array<byte_t, 4>, 16>& output,
+                                PixelFormat pixelFormat)
 {
     // Decompress alpha block if present
     if (pixelFormat == DXT3)

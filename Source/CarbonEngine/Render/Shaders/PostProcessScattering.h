@@ -80,12 +80,12 @@ public:
         program.sDepthTexture->setInteger(1);
     }
 
-    // Given the direction of the sun and the atmospheric turbidity this function returns the sun color to use for atmospheric
-    // simulation. The different wavelengths of light scatter differently depending on the angle of the sun, which leads to
-    // effects such as red/orange sunsets.
+    // Given the direction of the sun and the atmospheric turbidity this function returns the sun color to use for
+    // atmospheric simulation. The different wavelengths of light scatter differently depending on the angle of the sun,
+    // which leads to effects such as red/orange sunsets.
     //
-    // The equations used are based on the paper "A Practical Analytic Model for Daylight" and its accompanying implementation
-    // that can be found at http://www.cs.utah.edu/vissim/papers/sunsky/code/RiSunConstants.C
+    // The equations used are based on the paper "A Practical Analytic Model for Daylight" and its accompanying
+    // implementation that can be found at http://www.cs.utah.edu/vissim/papers/sunsky/code/RiSunConstants.C
     Color computeSunlightColor(const Vec3& lightDirection, float turbidity, float sunIntensity)
     {
         // Get sun's zenith angle
@@ -119,8 +119,8 @@ public:
         return {tau.x, tau.y, tau.z, 1.0f};
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         program.setVertexAttributeArrayConfiguration(geometryChunk);
 

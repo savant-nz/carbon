@@ -71,7 +71,8 @@ void GUIConsoleWindow::updateCursorDrawPosition()
 
     cursorDrawPosition_ = lines_.back().getPosition();
     cursorDrawPosition_.x += font->getWidth(
-        console().getPrompt() + lines_.back().getText().substr(0, console().getTextInput().getCursorPosition()), fontSize);
+        console().getPrompt() + lines_.back().getText().substr(0, console().getTextInput().getCursorPosition()),
+        fontSize);
     cursorDrawPosition_.x -= font->getCharacterPreMove('|', fontSize);
 }
 

@@ -12,19 +12,20 @@ namespace Carbon
 {
 
 /**
- * Base class for console commands that defeines an interface for executing a command and doing parameter validation and tab
- * completion. Console commands are registered through Console::registerCommand(). There are macros that handle registration of
- * console commands: CARBON_REGISTER_CONSOLE_COMMAND_SUBCLASS(), CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND(),
- * CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND_WITH_AUTOCOMPLETE().
+ * Base class for console commands that defeines an interface for executing a command and doing parameter validation and
+ * tab completion. Console commands are registered through Console::registerCommand(). There are macros that handle
+ * registration of console commands: CARBON_REGISTER_CONSOLE_COMMAND_SUBCLASS(),
+ * CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND(), CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND_WITH_AUTOCOMPLETE().
  */
 class CARBON_API ConsoleCommand
 {
 public:
 
     /**
-     * Constructs this console command with the given name and parameters description. The format of the parameters description
-     * is used to automatically validate that the correct number of parameters have been given. Each parameter name must be
-     * enclosed by angle brackets, and optional parameters should additionally be surrounded by square brackets.
+     * Constructs this console command with the given name and parameters description. The format of the parameters
+     * description is used to automatically validate that the correct number of parameters have been given. Each
+     * parameter name must be enclosed by angle brackets, and optional parameters should additionally be surrounded by
+     * square brackets.
      */
     ConsoleCommand(UnicodeString name, UnicodeString parametersDescription)
         : name_(std::move(name)), parametersDescription_(std::move(parametersDescription))
@@ -46,9 +47,9 @@ public:
     const UnicodeString& getParametersDescription() const { return parametersDescription_; }
 
     /**
-     * Returns whether the given set of parameters is valid for this console command. Currently this only checks the number of
-     * parameters, no type checking is done. The number of parameters is determiend based on the formatting of the parameters
-     * description string.
+     * Returns whether the given set of parameters is valid for this console command. Currently this only checks the
+     * number of parameters, no type checking is done. The number of parameters is determiend based on the formatting of
+     * the parameters description string.
      */
     bool areParametersValid(const Vector<UnicodeString>& parameters) const
     {
@@ -94,8 +95,8 @@ private:
     CARBON_UNIQUE_NAMESPACE_END
 
 /**
- * Registers a simple console command with a function to call when the command is run and a function to call when autocomplete
- * possibilities need to be enumerated.
+ * Registers a simple console command with a function to call when the command is run and a function to call when
+ * autocomplete possibilities need to be enumerated.
  */
 #define CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND_WITH_AUTOCOMPLETE(Name, ParametersDescription)         \
     CARBON_UNIQUE_NAMESPACE                                                                           \
@@ -125,18 +126,20 @@ private:
  * Registers a simple console command with a function to call when the command is run. This is identical to
  * CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND_WITH_AUTOCOMPLETE() except for there being no autocomplete function.
  */
-#define CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND(Name, ParametersDescription)                                               \
-    CARBON_UNIQUE_NAMESPACE                                                                                               \
-    {                                                                                                                     \
-        static void autocomplete##Name##ConsoleCommand(unsigned int parameter, Carbon::Vector<Carbon::UnicodeString>&) {} \
-        CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND_WITH_AUTOCOMPLETE(Name, ParametersDescription)                             \
-    }                                                                                                                     \
+#define CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND(Name, ParametersDescription)                                            \
+    CARBON_UNIQUE_NAMESPACE                                                                                            \
+    {                                                                                                                  \
+        static void autocomplete##Name##ConsoleCommand(unsigned int parameter, Carbon::Vector<Carbon::UnicodeString>&) \
+        {                                                                                                              \
+        }                                                                                                              \
+        CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND_WITH_AUTOCOMPLETE(Name, ParametersDescription)                          \
+    }                                                                                                                  \
     CARBON_UNIQUE_NAMESPACE_END
 
 /**
- * Creates a static instance of the Parameter class with the given \a ParameterName and hooks it up to a console command of the
- * same name. This allows the parameter's value to be directly observed and altered on the console at runtime. Intended for use
- * during debugging.
+ * Creates a static instance of the Parameter class with the given \a ParameterName and hooks it up to a console command
+ * of the same name. This allows the parameter's value to be directly observed and altered on the console at runtime.
+ * Intended for use during debugging.
  */
 #define CARBON_CREATE_CONSOLE_PARAMETER(ParameterName, InitialValue)                        \
     static Carbon::Parameter ParameterName(InitialValue);                                   \

@@ -92,8 +92,8 @@ void GUIWindow::initialize(float width, float height, const Vec2& position, cons
     setWorldPosition(position);
     setText(text);
 
-    // Set left and right text margins at 6 pixels, this is only done if there is no default camera, in which case we can be
-    // sure that one unit equates to one pixel
+    // Set left and right text margins at 6 pixels, this is only done if there is no default camera, in which case we
+    // can be sure that one unit equates to one pixel
     if (getScene() && !getScene()->getDefaultCamera())
         setTextMargins({6.0f, 0.0f, 6.0f, 0.0f});
 
@@ -125,7 +125,10 @@ void GUIWindow::intersectRay(const Ray& ray, Vector<IntersectionResult>& interse
                 auto material = getMaterialRoot() + getMaterial();
 
                 if (!onlyWorldGeometry || (getScene() && getScene()->isWorldGeometryMaterial(material)))
-                    intersections.emplace(t, ray.getPoint(t), getWorldOrientation().getZVector(), this, material, surfaceColor);
+                {
+                    intersections.emplace(t, ray.getPoint(t), getWorldOrientation().getZVector(), this, material,
+                                          surfaceColor);
+                }
             }
         }
     }
@@ -169,7 +172,8 @@ bool GUIWindow::gatherGeometry(GeometryGather& gather)
                     gather.addImmediateTriangles(1);
                     gather.addImmediateTriangle(Vec3(width_ - getResizeHandleSize(), getBorderSize()),
                                                 Vec3(width_ - getBorderSize(), getBorderSize()),
-                                                Vec3(width_ - getBorderSize(), getResizeHandleSize()), getBorderColor());
+                                                Vec3(width_ - getBorderSize(), getResizeHandleSize()),
+                                                getBorderColor());
                 }
             }
 
@@ -210,10 +214,10 @@ bool GUIWindow::invalidateWorldTransform(const String& attachmentPoint)
 {
     if (ComplexEntity::invalidateWorldTransform(attachmentPoint))
     {
-        // For interactive windows we need to fire mouse enter and exit events whenever the window is moved, at present this
-        // gets deferred to an UpdateEvent handler to avoid always immediately recalculating the world transform after it has
-        // just been invalidated, which probably isn't great for performance. The world transform will still be calculated in
-        // the UpdateEvent handler that fires, but it means it happens at most once per frame.
+        // For interactive windows we need to fire mouse enter and exit events whenever the window is moved, at present
+        // this gets deferred to an UpdateEvent handler to avoid always immediately recalculating the world transform
+        // after it has just been invalidated, which probably isn't great for performance. The world transform will
+        // still be calculated in the UpdateEvent handler that fires, but it means it happens at most once per frame.
         if (isInteractive())
             events().addHandler<UpdateEvent>(this);
 
@@ -474,8 +478,8 @@ bool GUIWindow::processEvent(const Event& e)
                         isBeingResized_ = false;
                 }
 
-                // If this window is draggable and a drag can be started from the curent window-local mouse position then enter
-                // a drag
+                // If this window is draggable and a drag can be started from the curent window-local mouse position
+                // then enter a drag
                 if (isDraggable_ && allowDragEnter(localPosition) && !isBeingResized_)
                 {
                     if (mbde->getButton() == LeftMouseButton)
@@ -654,7 +658,8 @@ void GUIWindow::alignToScreen(ScreenLocation location, const Vec2& offset)
             position.setXY((orthographicRect.getWidth() - width) * 0.5f, 0.0f);
             break;
         case ScreenMiddle:
-            position.setXY((orthographicRect.getWidth() - width) * 0.5f, (orthographicRect.getHeight() - height) * 0.5f);
+            position.setXY((orthographicRect.getWidth() - width) * 0.5f,
+                           (orthographicRect.getHeight() - height) * 0.5f);
             break;
         case ScreenTopMiddle:
             position.setXY((orthographicRect.getWidth() - width) * 0.5f, orthographicRect.getHeight() - height);
@@ -704,7 +709,8 @@ void GUIWindow::rotateAroundCenter(float radians)
     if (centerOnLocalOrigin_)
         rotateAroundZ(radians);
     else
-        rotateAroundPoint(localToWorld(Vec3(getWidth() * 0.5f, getHeight() * 0.5f)), Quaternion::createRotationZ(radians));
+        rotateAroundPoint(localToWorld(Vec3(getWidth() * 0.5f, getHeight() * 0.5f)),
+                          Quaternion::createRotationZ(radians));
 }
 
 void GUIWindow::setIsBeingDragged(bool dragged)
@@ -758,8 +764,8 @@ void GUIWindow::updateLines()
 
             if (currentLineWidth > maxWidth)
             {
-                // If this happens then the line is now too long to fit in the window so it has to be clipped off to ensure that
-                // it doesn't spill over the edge
+                // If this happens then the line is now too long to fit in the window so it has to be clipped off to
+                // ensure that it doesn't spill over the edge
 
                 auto clippedLine = UnicodeString();
                 auto newWidth = 0.0f;
@@ -824,7 +830,8 @@ void GUIWindow::positionLines()
 
     // Vertical alignment
     auto verticalOffset = 0.0f;
-    if (textAlignment_ == Font::AlignTopLeft || textAlignment_ == Font::AlignTopCenter || textAlignment_ == Font::AlignTopRight)
+    if (textAlignment_ == Font::AlignTopLeft || textAlignment_ == Font::AlignTopCenter ||
+        textAlignment_ == Font::AlignTopRight)
         verticalOffset = height - totalHeight;
     else if (textAlignment_ == Font::AlignCenterLeft || textAlignment_ == Font::AlignCenter ||
              textAlignment_ == Font::AlignCenterRight)
@@ -880,8 +887,8 @@ void GUIWindow::save(FileWriter& file) const
 
     file.write(isEnabled_, width_, height_, centerOnLocalOrigin_, borderSize_, alignToScreen_);
     file.writeEnum(alignScreenLocation_);
-    file.write(alignOffset_, material_, hoverMaterial_, useCustomFillColor_, useCustomBorderColor_, useCustomTextColor_);
-    file.write(fillColor_, borderColor_, textColor_, text_, textMargins_, isWordWrapEnabled_);
+    file.write(alignOffset_, material_, hoverMaterial_, useCustomFillColor_, useCustomBorderColor_, useCustomTextColor_,
+               fillColor_, borderColor_, textColor_, text_, textMargins_, isWordWrapEnabled_);
     file.writeEnum(textAlignment_);
     file.write(font_ ? font_->getName() : String::Empty, fontSize_, isDraggable_, isResizable_);
 
@@ -900,8 +907,8 @@ void GUIWindow::load(FileReader& file)
 
         file.read(isEnabled_, width_, height_, centerOnLocalOrigin_, borderSize_, alignToScreen_);
         file.readEnum(alignScreenLocation_);
-        file.read(alignOffset_, material_, hoverMaterial_, useCustomFillColor_, useCustomBorderColor_);
-        file.read(useCustomTextColor_, fillColor_, borderColor_, textColor_, text_, textMargins_, isWordWrapEnabled_);
+        file.read(alignOffset_, material_, hoverMaterial_, useCustomFillColor_, useCustomBorderColor_,
+                  useCustomTextColor_, fillColor_, borderColor_, textColor_, text_, textMargins_, isWordWrapEnabled_);
         file.readEnum(textAlignment_, Font::AlignLast);
         file.read(fontName, fontSize_, isDraggable_, isResizable_);
 
@@ -944,8 +951,8 @@ void GUIWindow::queueWindow(GeometryGather& gather, float width, float height, f
         gather.addImmediateTriangle(Vec3(0.0f, borderSize), Vec3(width, 0.0f), Vec3(width, borderSize), borderColor);
 
         // Left
-        gather.addImmediateTriangle(Vec3(0.0f, borderSize), Vec3(borderSize, borderSize), Vec3(0.0f, height - borderSize),
-                                    borderColor);
+        gather.addImmediateTriangle(Vec3(0.0f, borderSize), Vec3(borderSize, borderSize),
+                                    Vec3(0.0f, height - borderSize), borderColor);
         gather.addImmediateTriangle(Vec3(0.0f, height - borderSize), Vec3(borderSize, borderSize),
                                     Vec3(borderSize, height - borderSize), borderColor);
 
@@ -956,9 +963,10 @@ void GUIWindow::queueWindow(GeometryGather& gather, float width, float height, f
                                     Vec3(width, height - borderSize), borderColor);
 
         // Top
-        gather.addImmediateTriangle(Vec3(0.0f, height - borderSize), Vec3(width, height - borderSize), Vec3(0.0f, height),
+        gather.addImmediateTriangle(Vec3(0.0f, height - borderSize), Vec3(width, height - borderSize),
+                                    Vec3(0.0f, height), borderColor);
+        gather.addImmediateTriangle(Vec3(0.0f, height), Vec3(width, height - borderSize), Vec3(width, height),
                                     borderColor);
-        gather.addImmediateTriangle(Vec3(0.0f, height), Vec3(width, height - borderSize), Vec3(width, height), borderColor);
     }
 }
 
@@ -1028,13 +1036,14 @@ void GUIWindow::doMouseEnterExitHandling(const Vec2& mousePosition)
 
 int GUIWindow::getRenderPriority() const
 {
-    // GUIWindows with focus return a render priority of a million so that they appear above everything else in the scene
+    // GUIWindows with focus return a render priority of a million so that they appear above everything else in the
+    // scene
     if (hasFocus())
         return 1000000;
 
-    // If a GUIWindow has not had an explicit render priority set then it defaults to using a render priority that is one
-    // greater than that of its parent entity, assuming the parent entity is also a GUIWindow. This means that render priorities
-    // will be correct by default in window hierarchies.
+    // If a GUIWindow has not had an explicit render priority set then it defaults to using a render priority that is
+    // one greater than that of its parent entity, assuming the parent entity is also a GUIWindow. This means that
+    // render priorities will be correct by default in window hierarchies.
 
     auto actualRenderPriority = ComplexEntity::getRenderPriority();
 

@@ -11,7 +11,8 @@
 namespace Carbon
 {
 
-HexagonalNavigationGraph::HexagonalNavigationGraph(unsigned int width, unsigned int height) : width_(width), height_(height)
+HexagonalNavigationGraph::HexagonalNavigationGraph(unsigned int width, unsigned int height)
+    : width_(width), height_(height)
 {
     // Add all the nodes
     for (auto y = 0U; y < height; y++)

@@ -146,14 +146,14 @@ rescue EOFError
   $CHILD_STATUS.exitstatus.zero?
 end
 
-# Executes the passed command and returns a success flag. If a block is given then it is called for every line output by the
-# command, otherwise each line of output is printed to stdout. Supported options:
+# Executes the passed command and returns a success flag. If a block is given then it is called for every line output by
+# the command, otherwise each line of output is printed to stdout. Supported options:
 #
-#   :echo                   Whether to print 'command' to stdout prior to executing it. Defaults to true. If :echo is set to a
-#                           string then that string is output instead of 'command'.
+#   :echo                   Whether to print 'command' to stdout prior to executing it. Defaults to true. If :echo is
+#                           set to a string then that string is output instead of 'command'.
 #   :echo_prefix            When :echo is true (or omitted) then :echo_prefix is prefixed to the default echo output.
-#   :error                  If the command fails and :error is a callable object then it is called, otherwise error() is called
-#                           with :error as its message parameter.
+#   :error                  If the command fails and :error is a callable object then it is called, otherwise error() is
+#                           called with :error as its message parameter.
 #   :working_directory      The working directory in which to execute the command.
 def run(command, options = {})
   command = prepend_cd command, options[:working_directory]

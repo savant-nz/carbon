@@ -74,7 +74,9 @@ public:
     /**
      * Constructor that initializes the three index values.
      */
-    RawIndexedTriangle(unsigned int index0, unsigned int index1, unsigned index2) : indices_{{index0, index1, index2}} {}
+    RawIndexedTriangle(unsigned int index0, unsigned int index1, unsigned index2) : indices_{{index0, index1, index2}}
+    {
+    }
 
     /**
      * Offsets this triangle's indices by the specified amount.
@@ -133,8 +135,8 @@ public:
     }
 
     /**
-     * Returns this triangle's indices, these index into the vertex array data on the TriangleArray class that this triangle is
-     * being managed by.
+     * Returns this triangle's indices, these index into the vertex array data on the TriangleArray class that this
+     * triangle is being managed by.
      */
     const std::array<unsigned int, 3>& getIndices() const { return indices_; }
 
@@ -174,20 +176,20 @@ public:
     const TriangleArray* getParentTriangleArray() const { return array_; }
 
     /**
-     * Returns a pointer to the vertex data referenced by the given index in this triangle. Returns null if this triangle is not
-     * currently in a triangle array.
+     * Returns a pointer to the vertex data referenced by the given index in this triangle. Returns null if this
+     * triangle is not currently in a triangle array.
      */
     const byte_t* getVertexData(unsigned int v) const;
 
     /**
-     * Returns the position of a vertex in this triangle. Returns a zero vector if this triangle is not currently in a triangle
-     * array.
+     * Returns the position of a vertex in this triangle. Returns a zero vector if this triangle is not currently in a
+     * triangle array.
      */
     const Vec3& getVertexPosition(unsigned int v) const;
 
     /**
-     * Returns the vertex data referenced by the given vertex of this triangle in a vector. Returns an empty vector if this
-     * triangle is not currently in a triangle array.
+     * Returns the vertex data referenced by the given vertex of this triangle in a vector. Returns an empty vector if
+     * this triangle is not currently in a triangle array.
      */
     Vector<byte_t> copyVertexData(unsigned int v) const;
 
@@ -197,9 +199,9 @@ public:
     Vec3 getNormal() const;
 
     /**
-     * Splits this triangle by a plane, and returns the resultant pieces. The total number of triangles after splitting will be
-     * no less than one and no more than three. The resulting pieces only have the vertices set, they have no material or
-     * lightmap data set.
+     * Splits this triangle by a plane, and returns the resultant pieces. The total number of triangles after splitting
+     * will be no less than one and no more than three. The resulting pieces only have the vertices set, they have no
+     * material or lightmap data set.
      */
     void split(const Plane& plane, TriangleArray& frontPieces, TriangleArray& backPieces) const;
 

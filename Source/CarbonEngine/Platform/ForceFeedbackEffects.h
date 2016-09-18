@@ -16,14 +16,14 @@ class CARBON_API ForceFeedbackEffect
 public:
 
     /**
-     * The length of time this effect should play for, measured in microseconds, If this is set to `UINT_MAX` then the effect
-     * will play forever. The default value is 1,000,000, meaning the effect will play for one second.
+     * The length of time this effect should play for, measured in microseconds, If this is set to `UINT_MAX` then the
+     * effect will play forever. The default value is 1,000,000, meaning the effect will play for one second.
      */
     unsigned int duration = 1000000;
 
     /**
-     * The gain to be applied to this effect, in the range 0 - 10,000. The gain is a scaling factor applied to all magnitudes of
-     * this effect. The default value is 10,000.
+     * The gain to be applied to this effect, in the range 0 - 10,000. The gain is a scaling factor applied to all
+     * magnitudes of this effect. The default value is 10,000.
      */
     unsigned int gain = 10000;
 
@@ -120,13 +120,14 @@ public:
     int offset = 0;
 
     /**
-     * Position in the cycle of the periodic effect at which playback begins, in the range 0 to 35,999. The default value is
-     * zero.
+     * Position in the cycle of the periodic effect at which playback begins, in the range 0 to 35,999. The default
+     * value is zero.
      */
     unsigned int phase = 0;
 
     /**
-     * Period of the effect, in microseconds. The default value is 1,000,000, meaning the period of the effect is one second.
+     * Period of the effect, in microseconds. The default value is 1,000,000, meaning the period of the effect is one
+     * second.
      */
     unsigned int period = 1000000;
 };

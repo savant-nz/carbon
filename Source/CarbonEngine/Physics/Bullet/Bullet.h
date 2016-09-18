@@ -37,15 +37,18 @@ public:
                                      const SimpleTransform& initialTransform) override;
     BodyObject createCapsuleBody(float height, float radius, float mass, bool fixed, const Entity* entity,
                                  const SimpleTransform& initialTransform) override;
-    BodyTemplateObject createBodyTemplateFromGeometry(const Vector<Vec3>& vertices, const Vector<RawIndexedTriangle>& triangles,
-                                                      bool deleteOnceUnused, float customCollisionMargin = 0.5f) override;
+    BodyTemplateObject createBodyTemplateFromGeometry(const Vector<Vec3>& vertices,
+                                                      const Vector<RawIndexedTriangle>& triangles,
+                                                      bool deleteOnceUnused,
+                                                      float customCollisionMargin = 0.5f) override;
     BodyTemplateObject createBodyTemplateFromHeightmap(unsigned int heightmapWidth, unsigned int heightmapHeight,
                                                        const Vector<float>& heightmap, bool deleteOnceUnused) override;
     bool deleteBodyTemplate(BodyTemplateObject bodyTemplateObject) override;
     BodyTemplateObject createGeometryBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float mass, bool fixed,
-                                                      const Entity* entity, const SimpleTransform& initialTransform) override;
-    BodyObject createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float heightScale, float terrainScale,
-                                               float mass, bool fixed, const Entity* entity,
+                                                      const Entity* entity,
+                                                      const SimpleTransform& initialTransform) override;
+    BodyObject createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float heightScale,
+                                               float terrainScale, float mass, bool fixed, const Entity* entity,
                                                const SimpleTransform& initialTransform) override;
     bool deleteBody(BodyObject bodyObject) override;
     const Entity* getBodyEntity(BodyObject bodyObject) const override;
@@ -60,15 +63,17 @@ public:
     bool constrainBodyToXYPlane(BodyObject bodyObject) override;
     JointObject createHingeJoint(BodyObject firstBodyObject, BodyObject secondBodyObject, const Vec3& globalAnchor,
                                  const Vec3& globalAxis) override;
-    JointObject createBallAndSocketJoint(BodyObject firstBodyObject, BodyObject secondBodyObject, const Vec3& globalAnchor,
-                                         const Vec3& angularLimits) override;
+    JointObject createBallAndSocketJoint(BodyObject firstBodyObject, BodyObject secondBodyObject,
+                                         const Vec3& globalAnchor, const Vec3& angularLimits) override;
     bool deleteJoint(JointObject jointObject) override;
     bool getBodyJoints(BodyObject bodyObject, Vector<JointObject>& joints) const override;
     CharacterControllerObject createCharacterController(float height, float radius, const Entity* entity) override;
     bool deleteCharacterController(CharacterControllerObject characterControllerObject) override;
     Vec3 getCharacterControllerPosition(CharacterControllerObject characterControllerObject) const override;
-    bool setCharacterControllerPosition(CharacterControllerObject characterControllerObject, const Vec3& position) override;
-    void moveCharacterController(CharacterControllerObject characterControllerObject, const Vec3& move, float time) override;
+    bool setCharacterControllerPosition(CharacterControllerObject characterControllerObject,
+                                        const Vec3& position) override;
+    void moveCharacterController(CharacterControllerObject characterControllerObject, const Vec3& move,
+                                 float time) override;
     bool getCharacterControllerUpAxisCollision(CharacterControllerObject controllerObject,
                                                Vec3& collisionNormal) const override;
     bool getCharacterControllerDownAxisCollision(CharacterControllerObject controllerObject,
@@ -89,7 +94,10 @@ public:
     {
         return btTransform(toBullet(t.getOrientation()), toBullet(t.getPosition()));
     }
-    static SimpleTransform toCarbon(const btTransform& t) { return {toCarbon(t.getOrigin()), toCarbon(t.getRotation())}; }
+    static SimpleTransform toCarbon(const btTransform& t)
+    {
+        return {toCarbon(t.getOrigin()), toCarbon(t.getRotation())};
+    }
 
 private:
 

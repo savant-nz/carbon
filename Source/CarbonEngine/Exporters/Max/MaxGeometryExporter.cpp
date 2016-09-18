@@ -105,7 +105,8 @@ bool GeometryExporter::exportGeomObject(INode* node, TriangleArraySet& triangleS
         vertices[i].setXYZ(vertex.x, vertex.z, -vertex.y);
     }
 
-    // Work out the winding order to use, a mirroring transform on the node flips the winding order and so we need to compensate
+    // Work out the winding order to use, a mirroring transform on the node flips the winding order and so we need to
+    // compensate
     auto winding = std::array<unsigned int, 3>{{0, 1, 2}};
     if (DotProd(CrossProd(transform.GetRow(0), transform.GetRow(1)), transform.GetRow(2)) < 0.0)
         std::swap(winding[1], winding[2]);
@@ -114,7 +115,8 @@ bool GeometryExporter::exportGeomObject(INode* node, TriangleArraySet& triangleS
     auto meshNormals = mesh->GetSpecifiedNormals();
 
     // Construct vertex stream layout
-    auto meshVertexStreams = Vector<VertexStream>{{VertexStream::Position, 3}, {VertexStream::DiffuseTextureCoordinate, 2}};
+    auto meshVertexStreams =
+        Vector<VertexStream>{{VertexStream::Position, 3}, {VertexStream::DiffuseTextureCoordinate, 2}};
     if (meshNormals)
         meshVertexStreams.emplace(VertexStream::Normal, 3);
 
@@ -157,12 +159,14 @@ bool GeometryExporter::exportGeomObject(INode* node, TriangleArraySet& triangleS
         if (meshNormals)
         {
             for (auto v = 0U; v < 3; v++)
-                *reinterpret_cast<Vec3*>(&newVertices[v][currentOffset]) = maxPoint3ToVec3(meshNormals->GetNormal(i, v));
-            currentOffset += 8;
+            {
+                *reinterpret_cast<Vec3*>(&newVertices[v][currentOffset]) =
+                    maxPoint3ToVec3(meshNormals->GetNormal(i, v));
+            }
         }
 
-        // If there was a multi-material assigned to this mesh then we need to get the actual submaterial being used on this
-        // face
+        // If there was a multi-material assigned to this mesh then we need to get the actual submaterial being used on
+        // this face
         auto materialName = material;
         if (isMultiMaterial)
         {

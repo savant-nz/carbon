@@ -11,7 +11,8 @@ namespace Carbon
 {
 
 /**
- * Provides JPEG image reading support through LibJPEG. Note that this uses the copy of LibJPEG that is part of FreeImage.
+ * Provides JPEG image reading support through LibJPEG. Note that this uses the copy of LibJPEG that is part of
+ * FreeImage.
  */
 class LibJPEG
 {

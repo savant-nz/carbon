@@ -11,16 +11,16 @@ namespace Carbon
 {
 
 /**
- * This class manages fixed-size allocations in a chunk of memory and is intended for internal use in accelerating allocation
- * speed. This class is thread-safe.
+ * This class manages fixed-size allocations in a chunk of memory and is intended for internal use in accelerating
+ * allocation speed. This class is thread-safe.
  */
 class CARBON_API BlockAllocator : private Noncopyable
 {
 public:
 
     /**
-     * Sets up this block allocator to use the given chunk size and block size. \a fnAlloc and \a fnFree must point to functions
-     * that can be used by this class to allocate and free any memory that the block allocator needs.
+     * Sets up this block allocator to use the given chunk size and block size. \a fnAlloc and \a fnFree must point to
+     * functions that can be used by this class to allocate and free any memory that the block allocator needs.
      */
     BlockAllocator(unsigned int chunkSize, unsigned int blockSize, unsigned int freeBlockCacheSize,
                    const std::function<void*(size_t size)>& fnAlloc, const std::function<void(void* p)>& fnFree);
@@ -53,8 +53,8 @@ public:
     unsigned int getHighestAllocatedBlockCount() const { return highestAllocatedBlockCount_; }
 
     /**
-     * Returns a pointer to a freshly allocated block, or null if there are no free blocks. Blocks allocated using this method
-     * must be freed using the BlockAllocator::free() method.
+     * Returns a pointer to a freshly allocated block, or null if there are no free blocks. Blocks allocated using this
+     * method must be freed using the BlockAllocator::free() method.
      */
     void* allocate();
 

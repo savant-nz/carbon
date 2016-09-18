@@ -56,8 +56,8 @@ public:
     /**
      * Adds a triangle to this array that uses the given 3 vertex indices. Returns success flag.
      */
-    bool addTriangle(unsigned int index0, unsigned int index1, unsigned int index2, const String& material = String::Empty,
-                     const String& lightmap = String::Empty);
+    bool addTriangle(unsigned int index0, unsigned int index1, unsigned int index2,
+                     const String& material = String::Empty, const String& lightmap = String::Empty);
 
     /**
      * Adds a triangle to this array based on an existing triangle in another array. Returns success flag.
@@ -65,8 +65,8 @@ public:
     bool addTriangle(const Triangle& triangle);
 
     /**
-     * Adds a triangle to this array with the given vertex data, material and lightmap. The vertex data pointers must point to
-     * data that is correctly laid out for this triangle array. Returns success flag.
+     * Adds a triangle to this array with the given vertex data, material and lightmap. The vertex data pointers must
+     * point to data that is correctly laid out for this triangle array. Returns success flag.
      */
     bool addTriangle(const void* v0, const void* v1, const void* v2, const String& material = String::Empty,
                      const String& lightmap = String::Empty);
@@ -87,8 +87,8 @@ public:
     void erase(unsigned int index) { triangles_.erase(index); }
 
     /**
-     * Reserves storage space for the specified number of triangles, this is a hint to the triangle array that can help avoid
-     * unnecessary internal resizing and copying while a triangle array is being constructed.
+     * Reserves storage space for the specified number of triangles, this is a hint to the triangle array that can help
+     * avoid unnecessary internal resizing and copying while a triangle array is being constructed.
      */
     void reserve(unsigned int size) { triangles_.reserve(size); }
 
@@ -98,9 +98,9 @@ public:
     bool removeDegenerateTriangles(Runnable& r = Runnable::Empty);
 
     /**
-     * Appends the given array of triangles to this triangle array. Note that this will result in a complete second copy of all
-     * the triangle data which can be avoided by using the TriangleArray::transferTriangle() method instead. Returns success
-     * flag.
+     * Appends the given array of triangles to this triangle array. Note that this will result in a complete second copy
+     * of all the triangle data which can be avoided by using the TriangleArray::transferTriangle() method instead.
+     * Returns success flag.
      */
     bool append(const TriangleArray& triangles);
 
@@ -130,7 +130,8 @@ public:
     const GeometryChunk& getVertexDataGeometryChunk() const { return vertexDataGeometryChunk_; }
 
     /**
-     * Copies the vertex stream layout and vertex data from a geometry chunk into the vertex data chunk for this triangle array.
+     * Copies the vertex stream layout and vertex data from a geometry chunk into the vertex data chunk for this
+     * triangle array.
      */
     bool copyVertexStreamsAndDataFromGeometryChunk(const GeometryChunk& geometryChunk);
 
@@ -151,7 +152,8 @@ private:
 
     Vector<Triangle> triangles_;
 
-    // The vertex stream description and all vertex data referenced by the triangles in this array is stored in a geometry chunk
+    // The vertex stream description and all vertex data referenced by the triangles in this array is stored in a
+    // geometry chunk
     GeometryChunk vertexDataGeometryChunk_;
     unsigned int usedVertexCount_ = 0;
 };

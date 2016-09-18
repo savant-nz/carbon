@@ -164,8 +164,9 @@ bool SkeletalAnimation::load(const String& name)
 
         file.endVersionedSection();
 
-        LOG_INFO << "Loaded skeletal animation - '" << name << "' - frame rate: " << frameRate_ << ", frames: " << frameCount_
-                 << ", bones: " << boneAnimations_.size() << ", export info: " << exportInfo;
+        LOG_INFO << "Loaded skeletal animation - '" << name << "' - frame rate: " << frameRate_
+                 << ", frames: " << frameCount_ << ", bones: " << boneAnimations_.size()
+                 << ", export info: " << exportInfo;
 
         isLoaded_ = true;
 

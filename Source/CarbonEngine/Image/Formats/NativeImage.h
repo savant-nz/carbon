@@ -7,8 +7,8 @@ namespace Carbon
 {
 
 /**
- * This hooks the native Image class save and load up to the ImageFormatRegistry mechanism so that .image files save and load
- * like all other supported image formats.
+ * This hooks the native Image class save and load up to the ImageFormatRegistry mechanism so that .image files save and
+ * load like all other supported image formats.
  */
 class NativeImage
 {

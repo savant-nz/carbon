@@ -24,7 +24,8 @@ CARBON_REGISTER_STARTUP_FUNCTION(loadSettings, 1000)
 
 UnicodeString SettingsManager::getFullSettingsFilename() const
 {
-    return FileSystem::LocalFilePrefix + FileSystem::joinPaths(fileSystem().getUserDataLocalDirectory(), SettingsFilename);
+    return FileSystem::LocalFilePrefix +
+        FileSystem::joinPaths(fileSystem().getUserDataLocalDirectory(), SettingsFilename);
 }
 
 #endif

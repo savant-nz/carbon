@@ -12,8 +12,8 @@ namespace States
 {
 
 /**
- * Provides a single point of access for flushing cached states to the graphics interface, and for pushing and popping all
- * cached states.
+ * Provides a single point of access for flushing cached states to the graphics interface, and for pushing and popping
+ * all cached states.
  */
 class CARBON_API StateCacher : private Noncopyable
 {
@@ -25,8 +25,8 @@ public:
     static void setup();
 
     /**
-     * Disables the specified state, flushing it will now be a no-op and will never result in a call through to the graphics
-     * interface.
+     * Disables the specified state, flushing it will now be a no-op and will never result in a call through to the
+     * graphics interface.
      */
     static void disable(CachedState& state);
 

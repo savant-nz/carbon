@@ -5,8 +5,9 @@
 #
 
 #
-# This script builds and packages the engine into a redistributable SDK for the current platform. There are SDKs for Windows and
-# Mac OS X / iOS. To use this script the build environment must be setup, instructions for this can be found in BUILDING.md.
+# This script builds and packages the engine into a redistributable SDK for the current platform. There are SDKs for
+# Windows and Mac OS X / iOS. To use this script the build environment must be setup, instructions for this can be found
+# in BUILDING.md.
 #
 # On Windows, "Carbon SDK <version>.exe" is created.
 #
@@ -48,7 +49,8 @@ class SDKBuilderBase
   protected
 
   def upload_sdk
-    public_url = AmazonS3.upload_file sdk_filename, bucket: 'savant-nz-carbon', acl: 'public-read', target_prefix: 'sdks/'
+    public_url = AmazonS3.upload_file sdk_filename, bucket: 'savant-nz-carbon', acl: 'public-read',
+                                                    target_prefix: 'sdks/'
 
     puts "URL: #{public_url}"
   end
@@ -127,12 +129,12 @@ error 'SDK build not supported on this platform' unless builder_class
 builder = builder_class.new
 
 options = OptionParser.new do |parser|
-  parser.on '-c', '--compiler COMPILER', 'Sets the compiler to use, this overrides the platform\'s default' do |compiler|
+  parser.on '-c', '--compiler COMPILER', 'Sets the compiler, this overrides the platform\'s default' do |compiler|
     builder.compiler = compiler
   end
 
   if windows?
-    parser.on '-f', '--fast-build', 'Makes the SDK build faster by using less aggressive compression options (Windows only)' do
+    parser.on '-f', '--fast-build', 'Speeds up the build by using less aggressive compression (Windows only)' do
       builder.fast_build = true
     end
   end

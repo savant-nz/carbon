@@ -11,9 +11,9 @@ namespace Carbon
 {
 
 /**
- * This class manages a vector of render queue items, with individual methods for adding each different type of item. This
- * allows more optimal internal allocation and management of individual render queue item instances. See RenderQueueItem for
- * more details.
+ * This class manages a vector of render queue items, with individual methods for adding each different type of item.
+ * This allows more optimal internal allocation and management of individual render queue item instances. See
+ * RenderQueueItem for more details.
  */
 class CARBON_API RenderQueueItemArray : private Noncopyable
 {
@@ -46,7 +46,8 @@ public:
     /**
      * Adds a DrawTextRenderQueueItem to the back of this render queue item array.
      */
-    void addDrawTextItem(const Font* font, float fontSize, const UnicodeString& text, const Color& color = Color::White);
+    void addDrawTextItem(const Font* font, float fontSize, const UnicodeString& text,
+                         const Color& color = Color::White);
 
     /**
      * Returns an iterator at the start of the vector of render queue items.

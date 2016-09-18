@@ -55,7 +55,8 @@ CARBON_DEFINE_FRAME_TIMER(SceneGatherTimer, Color(0.5f, 0.3f, 1.0f))
 Vector<Scene*> Scene::allScenes_;
 Vector<String> Scene::globalPostProcessMaterials_;
 
-Scene::Scene(const String& name, bool is2D) : embeddedResources_("Scene" + UnicodeString::toHex(HashFunctions::hash(this)))
+Scene::Scene(const String& name, bool is2D)
+    : embeddedResources_("Scene" + UnicodeString::toHex(HashFunctions::hash(this)))
 {
     clear();
     setName(name);
@@ -120,7 +121,8 @@ void Scene::removeAllEntities()
     // Clear out the scene graph
     if (entities_.size())
     {
-        // Get a list of all the entities in this scene ordered such that children always appear after their parent in the list
+        // Get a list of all the entities in this scene ordered such that children always appear after their parent in
+        // the list
         auto allEntities = Vector<Entity*>(1, getRootEntity());
         allEntities.reserve(entities_.size());
         for (auto i = 0U; i < allEntities.size(); i++)
@@ -200,8 +202,8 @@ void Scene::setEnabled(bool enabled)
 {
     isEnabled_ = enabled;
 
-    // Disabling a scene stops any current window drags and resizes that are going on, this is because now that the scene is
-    // disabled it won't get the mouse button released event that normally terminates these operations
+    // Disabling a scene stops any current window drags and resizes that are going on, this is because now that the
+    // scene is disabled it won't get the mouse button released event that normally terminates these operations
     if (!enabled && is2D())
     {
         for (auto entity : entities_)
@@ -244,7 +246,8 @@ Rect Scene::getDefaultCameraOrthographicRect() const
 
     auto& cameraWorldPosition = camera->getWorldPosition();
 
-    return {cameraWorldPosition.x, cameraWorldPosition.y, cameraWorldPosition.x + size.x, cameraWorldPosition.y + size.y};
+    return {cameraWorldPosition.x, cameraWorldPosition.y, cameraWorldPosition.x + size.x,
+            cameraWorldPosition.y + size.y};
 }
 
 Camera* Scene::create2DCamera(float orthographicWidth, float orthographicHeight)
@@ -307,9 +310,9 @@ bool Scene::processEvent(const Event& e)
     if (e.as<UpdateEvent>())
     {
         // Call Entity::update() on all entities in this scene that currently return true from
-        // Entity::isPerFrameUpdateRequired(). Note that the current list of entities in this scene that return true from this
-        // method is cached to avoid checking every entity every frame. See Entity::recheckIsPerFrameUpdateRequired() for
-        // details.
+        // Entity::isPerFrameUpdateRequired(). Note that the current list of entities in this scene that return true
+        // from this method is cached to avoid checking every entity every frame. See
+        // Entity::recheckIsPerFrameUpdateRequired() for details.
 
         for (auto entity : entitiesRequiringUpdate_)
             entity->update();
@@ -324,8 +327,8 @@ bool Scene::processEvent(const Event& e)
     {
         // For 2D scenes, handle keyboard and mouse events
 
-        // The entity with focus gets first go at all incoming scene events and can stop them from reaching other GUI windows by
-        // returning false
+        // The entity with focus gets first go at all incoming scene events and can stop them from reaching other GUI
+        // windows by returning false
         auto originalFocusWindow = getFocusWindow();
         auto focusWindowSwallowedEvent = originalFocusWindow && !originalFocusWindow->processEvent(e);
 
@@ -346,8 +349,8 @@ bool Scene::processEvent(const Event& e)
                 {
                     if (!focusWindowSwallowedEvent && window != currentFocusWindow)
                     {
-                        if (mbde->getButton() == LeftMouseButton && window->intersect(screenToWorld(mbde->getPosition())) &&
-                            window->isVisible())
+                        if (mbde->getButton() == LeftMouseButton &&
+                            window->intersect(screenToWorld(mbde->getPosition())) && window->isVisible())
                         {
                             if (currentFocusWindow)
                                 currentFocusWindow->setHasFocus(false);
@@ -464,9 +467,9 @@ void Scene::gatherLights(const ConvexHull& area, Vector<Renderer::Light*>& light
             (light->getRadius() <= 0.0f || !area.intersect(Sphere(light->getWorldPosition(), light->getRadius()))))
             continue;
 
-        // The resulting lights vector is sorted according to light type and properties in order to reduce state changes in the
-        // renderer. The ordering of lights is directional, point, spot. TODO: also sort by whether or not specular and a 2D
-        // projection texture is enabled
+        // The resulting lights vector is sorted according to light type and properties in order to reduce state changes
+        // in the renderer. The ordering of lights is directional, point, spot. TODO: also sort by whether or not
+        // specular and a 2D projection texture is enabled
 
         if (light->isDirectionalLight())
             lights.insert(directionalLightCount++, light);
@@ -541,8 +544,8 @@ void Scene::save(FileWriter& file) const
     // Write collision vertices and triangles
     file.write(collisionVertices_, collisionTriangles_);
 
-    file.write(ExportInfo::get(), postProcessMaterials_, String::Empty, isVisible_, preProcessedPhysicsData_);
-    file.write(worldGeometryMaterials_, isDepthClearEnabled_);
+    file.write(ExportInfo::get(), postProcessMaterials_, String::Empty, isVisible_, preProcessedPhysicsData_,
+               worldGeometryMaterials_, isDepthClearEnabled_);
 
     file.endVersionedSection();
 
@@ -572,8 +575,8 @@ void Scene::load(FileReader& file, ExportInfo& exportInfo)
 {
     try
     {
-        // Clear the scene but maintain the static mesh root as it will be reset by clear() but is needed later in this method
-        // when changing the static mesh entities into real static meshes
+        // Clear the scene but maintain the static mesh root as it will be reset by clear() but is needed later in this
+        // method when changing the static mesh entities into real static meshes
         auto originalStaticMeshRoot = getStaticMeshRoot();
         clear();
         setStaticMeshRoot(originalStaticMeshRoot);
@@ -611,9 +614,9 @@ void Scene::load(FileReader& file, ExportInfo& exportInfo)
                 auto entityType = String();
                 file.read(entityType);
 
-                // Instantiate this entity. The type string in the scene file should be the fully qualified entity class name,
-                // however older scenes leave off the 'Carbon::' namespace prefix so if the type string as-is isn't recognized
-                // then 'Carbon::' is prepended and the lookup is attempted again.
+                // Instantiate this entity. The type string in the scene file should be the fully qualified entity class
+                // name, however older scenes leave off the 'Carbon::' namespace prefix so if the type string as-is
+                // isn't recognized then 'Carbon::' is prepended and the lookup is attempted again.
                 auto entity = SubclassRegistry<Entity>::create(entityType);
                 if (!entity)
                 {
@@ -715,8 +718,8 @@ void Scene::load(FileReader& file, ExportInfo& exportInfo)
             {
                 if (resourceName.startsWith(Mesh::MeshDirectory.asLower()))
                 {
-                    embeddedResources_.renameFile(resourceName,
-                                                  Mesh::MeshDirectory + resourceName.substr(Mesh::MeshDirectory.length()));
+                    embeddedResources_.renameFile(resourceName, Mesh::MeshDirectory +
+                                                      resourceName.substr(Mesh::MeshDirectory.length()));
                 }
             }
         }
@@ -781,8 +784,8 @@ void Scene::load(FileReader& file, ExportInfo& exportInfo)
             // Strip off prefix to get the mesh name
             auto meshName = entity->getName().substr(StaticMeshConversionPrefix.length());
 
-            // Everything after the last underscore is removed as this is used to make the entity names unique and so shouldn't
-            // be treated as part of the mesh name
+            // Everything after the last underscore is removed as this is used to make the entity names unique and so
+            // shouldn't be treated as part of the mesh name
             auto index = meshName.findLastOf("_");
             if (index != -1)
                 meshName = meshName.substr(0, index);
@@ -920,7 +923,8 @@ bool Scene::intersect(const Ray& ray, Vector<IntersectionResult>& intersections,
     return !intersections.empty();
 }
 
-bool Scene::intersect(const Vec2& pixel, Vector<IntersectionResult>& intersections, Camera* camera, bool onlyWorldGeometry)
+bool Scene::intersect(const Vec2& pixel, Vector<IntersectionResult>& intersections, Camera* camera,
+                      bool onlyWorldGeometry)
 {
     if (!camera)
     {
@@ -1110,7 +1114,10 @@ void Scene::makePhysical()
 
         bodyTemplate = mesh->getPhysicsBodyTemplate();
         if (bodyTemplate)
-            bodies_.append(physics().createGeometryBodyFromTemplate(bodyTemplate, 0.0f, true, nullptr, staticMesh.transform));
+        {
+            bodies_.append(
+                physics().createGeometryBodyFromTemplate(bodyTemplate, 0.0f, true, nullptr, staticMesh.transform));
+        }
 
         meshes().releaseMesh(mesh);
     }
@@ -1219,8 +1226,10 @@ Vector<std::pair<Renderer::Camera, GraphicsInterface::OutputDestination>>
         if (!camera)
             camera = getDefaultCamera();
 
-        auto renderToDefaultOutput = (oculusRiftMode_ == OculusRiftDisabled || oculusRiftMode_ == OculusRiftAndDefaultOutput);
-        auto renderToOculusRift = (oculusRiftMode_ == OculusRiftAndDefaultOutput || oculusRiftMode_ == OculusRiftExclusive);
+        auto renderToDefaultOutput =
+            (oculusRiftMode_ == OculusRiftDisabled || oculusRiftMode_ == OculusRiftAndDefaultOutput);
+        auto renderToOculusRift =
+            (oculusRiftMode_ == OculusRiftAndDefaultOutput || oculusRiftMode_ == OculusRiftExclusive);
 
         if (camera)
         {
@@ -1256,31 +1265,31 @@ Vector<std::pair<Renderer::Camera, GraphicsInterface::OutputDestination>>
 
                 if (renderToDefaultOutput)
                 {
-                    result.emplace(
-                        Renderer::Camera(SimpleTransform::Identity, viewport,
-                                         Matrix4::getOrthographicProjection(
-                                             Rect(0.0f, 0.0f, viewport.getWidth(), viewport.getHeight()), -100.0f, 100.0f),
-                                         -100.0f, 100.0f),
-                        GraphicsInterface::OutputDefault);
+                    result.emplace(Renderer::Camera(SimpleTransform::Identity, viewport,
+                                                    Matrix4::getOrthographicProjection(
+                                                        Rect(0.0f, 0.0f, viewport.getWidth(), viewport.getHeight()),
+                                                        -100.0f, 100.0f),
+                                                    -100.0f, 100.0f),
+                                   GraphicsInterface::OutputDefault);
                 }
 
                 if (renderToOculusRift)
                 {
                     viewport = platform().getOculusRiftTextureDimensions();
 
-                    result.emplace(
-                        Renderer::Camera(SimpleTransform::Identity, viewport,
-                                         Matrix4::getOrthographicProjection(
-                                             Rect(0.0f, 0.0f, viewport.getWidth(), viewport.getHeight()), -100.0f, 100.0f),
-                                         -100.0f, 100.0f),
-                        GraphicsInterface::OutputOculusRiftLeftEye);
+                    result.emplace(Renderer::Camera(SimpleTransform::Identity, viewport,
+                                                    Matrix4::getOrthographicProjection(
+                                                        Rect(0.0f, 0.0f, viewport.getWidth(), viewport.getHeight()),
+                                                        -100.0f, 100.0f),
+                                                    -100.0f, 100.0f),
+                                   GraphicsInterface::OutputOculusRiftLeftEye);
 
-                    result.emplace(
-                        Renderer::Camera(SimpleTransform::Identity, viewport,
-                                         Matrix4::getOrthographicProjection(
-                                             Rect(0.0f, 0.0f, viewport.getWidth(), viewport.getHeight()), -100.0f, 100.0f),
-                                         -100.0f, 100.0f),
-                        GraphicsInterface::OutputOculusRiftRightEye);
+                    result.emplace(Renderer::Camera(SimpleTransform::Identity, viewport,
+                                                    Matrix4::getOrthographicProjection(
+                                                        Rect(0.0f, 0.0f, viewport.getWidth(), viewport.getHeight()),
+                                                        -100.0f, 100.0f),
+                                                    -100.0f, 100.0f),
+                                   GraphicsInterface::OutputOculusRiftRightEye);
                 }
             }
             else
@@ -1364,7 +1373,8 @@ void Scene::addImmediateGeometry(const Vec3& start, const Vec3& end, const Color
         for (auto i = 0U; i < indices.size(); i++)
             indices[i] = i;
 
-        immediateGeometryChunk_.setupIndexData(Vector<DrawItem>{{GraphicsInterface::LineList, indices.size(), 0}}, indices);
+        immediateGeometryChunk_.setupIndexData(Vector<DrawItem>{{GraphicsInterface::LineList, indices.size(), 0}},
+                                               indices);
     }
 
     auto vertexLayout = immediateGeometryChunk_.lockVertexData<ImmediateGeometryVertex>();
@@ -1424,7 +1434,8 @@ bool Scene::precacheTexture(const String& name, GraphicsInterface::TextureType t
     return true;
 }
 
-void Scene::precacheTextureDirectory(const String& directory, bool recursive, GraphicsInterface::TextureType textureType)
+void Scene::precacheTextureDirectory(const String& directory, bool recursive,
+                                     GraphicsInterface::TextureType textureType)
 {
     auto fullPath = (directory.startsWith("/") ? String::Empty : A(Texture::TextureDirectory)) + directory;
 

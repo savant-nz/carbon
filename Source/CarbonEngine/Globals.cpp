@@ -76,9 +76,9 @@ DEFINE_GLOBAL(ThemeManager, themeManager_, theme)
 
 #ifndef CONSOLE
 // This logfile output sink is active for the duration of the engine's execution on all non-console platforms. On
-// Windows, Mac OS X and Linux it logs all warnings, errors and debug output to stderr, and on iOS all log output is sent
-// straight to stdout. On Windows all output is also sent to the debugger output. Console platforms handle their own log
-// display.
+// Windows, Mac OS X and Linux it logs all warnings, errors and debug output to stderr, and on iOS all log output is
+// sent straight to stdout. On Windows all output is also sent to the debugger output. Console platforms handle their
+// own log display.
 static class LogfileOutputPrinter : public Logfile::OutputSink
 {
 public:
@@ -126,18 +126,20 @@ bool Globals::initializeEngine(const String& clientName)
 
     leakedResourceCount_ = 0;
 
-    // Check validity of client name, everything before the last colon is removed in order to strip out any namespaces that may
-    // be present
+    // Check validity of client name, everything before the last colon is removed in order to strip out any namespaces
+    // that may be present
     clientName_ = clientName.substr(clientName.findLastOf(":") + 1);
     if (!clientName_.length() || !clientName_.isAlphaNumeric("_") || clientName_.length() >= clientNameBuffer_.size())
     {
-        debugLog("Invalid client name: %s. Only letters, numbers and underscores are allowed. Maximum length is %i characters.",
+        debugLog("Invalid client name: %s. Only letters, numbers and underscores are allowed. Maximum length is %i "
+                 "characters.",
                  clientName.cStr(), int(clientNameBuffer_.size() - 1));
         return false;
     }
 
-    // Copy the client name into the clientNameBuffer_ buffer, this is exposed through Globals::getClientNameBuffer() so that
-    // the client name can be queried during static deinitialization, e.g. when writing the memory leaks report HTML file header
+    // Copy the client name into the clientNameBuffer_ buffer, this is exposed through Globals::getClientNameBuffer() so
+    // that the client name can be queried during static deinitialization, e.g. when writing the memory leaks report
+    // HTML file header
     strncpy(clientNameBuffer_.data(), clientName_.cStr(), clientNameBuffer_.size() - 1);
     clientNameBuffer_.back() = 0;
 
@@ -386,7 +388,8 @@ void Globals::setCommandLineParameters(int argc, const char** argv)
         commandLineParameters_.append(argv[i]);
 
 #ifdef MACOSX
-    // Remove the process serial number that Mac OS X passes on the command line when an application is run from the Finder/Dock
+    // Remove the process serial number that Mac OS X passes on the command line when an application is run from the
+    // Finder or Dock
     commandLineParameters_.eraseIf([](const UnicodeString& s) { return s.startsWith("-psn_"); });
 #endif
 }

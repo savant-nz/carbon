@@ -21,8 +21,8 @@ public:
 };
 
 /**
- * This event is sent whenever a file system error occurs, see the FileSystemError enumeration for details. Applications can use
- * this to display information about hardware faults, low disk space, and so on.
+ * This event is sent whenever a file system error occurs, see the FileSystemError enumeration for details. Applications
+ * can use this to display information about hardware faults, low disk space, and so on.
  */
 class CARBON_API FileSystemErrorEvent : public Event
 {
@@ -73,10 +73,11 @@ public:
 };
 
 /**
- * This event is sent in order to gather information from the engine about where memory is being used. Parts of the engine that
- * are managing resources of a significant size should handle this event and call GatherMemorySummaryEvent::addAllocation() for
- * each of the relevant allocations. The gathered information is then be used to display information showing where memory is
- * being used and where savings could be made. It can also be useful for uncovering resource leaks.
+ * This event is sent in order to gather information from the engine about where memory is being used. Parts of the
+ * engine that are managing resources of a significant size should handle this event and call
+ * GatherMemorySummaryEvent::addAllocation() for each of the relevant allocations. The gathered information is then be
+ * used to display information showing where memory is being used and where savings could be made. It can also be useful
+ * for uncovering resource leaks.
  */
 class CARBON_API GatherMemorySummaryEvent : public Event
 {
@@ -84,25 +85,25 @@ public:
 
     /**
      * This class describes a single memory allocation that has been gathered by this event. Handlers of this event add
-     * information on their allocations using the GatherMemorySummaryEvent::addAllocation() method, the list of allocations is
-     * returned by GatherMemorySummaryEvent::getAllocations().
+     * information on their allocations using the GatherMemorySummaryEvent::addAllocation() method, the list of
+     * allocations is returned by GatherMemorySummaryEvent::getAllocations().
      */
     class MemoryAllocation
     {
     public:
 
         /**
-         * Returns the human readable description of what this allocation is for. There are no predefined allocation types, but
-         * handlers of this event should use sensible names that reflect what each memory allocation is being used for. This
-         * should generally specify a broad category of data, i.e. 'Texture', with specific details unique to this allocation
-         * put into the separate details field.
+         * Returns the human readable description of what this allocation is for. There are no predefined allocation
+         * types, but handlers of this event should use sensible names that reflect what each memory allocation is being
+         * used for. This should generally specify a broad category of data, i.e. 'Texture', with specific details
+         * unique to this allocation put into the separate details field.
          */
         const String& getType() const { return type_; }
 
         /**
-         * Returns the details on this memory allocation that provides more information than the type alone. One example of
-         * using this comes with texture image data, where the type is set to 'Texture' and details is set to the name of the
-         * texture the image data is for. Can be left blank.
+         * Returns the details on this memory allocation that provides more information than the type alone. One example
+         * of using this comes with texture image data, where the type is set to 'Texture' and details is set to the
+         * name of the texture the image data is for. Can be left blank.
          */
         const String& getDetails() const { return details_; }
 
@@ -137,8 +138,8 @@ public:
     };
 
     /**
-     * Adds a new allocation to the list of allocations gathered by this event. Handlers of this event should call this method
-     * once for each allocation they have information on. If \a address is null then this method does nothing.
+     * Adds a new allocation to the list of allocations gathered by this event. Handlers of this event should call this
+     * method once for each allocation they have information on. If \a address is null then this method does nothing.
      */
     void addAllocation(const String& type, const String& details, const void* address, size_t size) const
     {
@@ -152,7 +153,8 @@ public:
     const Vector<MemoryAllocation>& getAllocations() const { return allocations_; }
 
     /**
-     * Sends a GatherMemorySummaryEvent and then logs all returned memory usage information to the console and the logfile.
+     * Sends a GatherMemorySummaryEvent and then logs all returned memory usage information to the console and the
+     * logfile.
      */
     static void report();
 
@@ -162,19 +164,19 @@ private:
 };
 
 /**
- * This event is sent on some platforms when the operating system detects that the amount of free memory is running low, the
- * application should respond by freeing caches and other allocations that can be easily recreated later. At present this event
- * is only sent on iOS devices.
+ * This event is sent on some platforms when the operating system detects that the amount of free memory is running low,
+ * the application should respond by freeing caches and other allocations that can be easily recreated later. At present
+ * this event is only sent on iOS devices.
  */
 class CARBON_API LowMemoryWarningEvent : public Event
 {
 };
 
 /**
- * This event is sent when the engine is notified that the user wants to reset or shut down the application. This event is only
- * a notification to the application, i.e. the application is responsible for taking appropriate action to termiante the main
- * loop. Reset means returning the application to its startup screen, and can be distinguished from a shutdown request using
- * ShutdownRequestEvent::isReset().
+ * This event is sent when the engine is notified that the user wants to reset or shut down the application. This event
+ * is only a notification to the application, i.e. the application is responsible for taking appropriate action to
+ * terminate the main loop. Reset means returning the application to its startup screen, and can be distinguished from a
+ * shutdown request using ShutdownRequestEvent::isReset().
  */
 class CARBON_API ShutdownRequestEvent : public Event
 {
@@ -186,8 +188,9 @@ public:
     ShutdownRequestEvent(bool isReset = false) : isReset_(isReset) {}
 
     /**
-     * The shutdown request event may be sent in response to a reset request, which should return the application to its startup
-     * screen. Applications that need to distinugish between shutdown and reset requests can do so by using this value.
+     * The shutdown request event may be sent in response to a reset request, which should return the application to its
+     * startup screen. Applications that need to distinugish between shutdown and reset requests can do so by using this
+     * value.
      */
     bool isReset() const { return isReset_; }
 

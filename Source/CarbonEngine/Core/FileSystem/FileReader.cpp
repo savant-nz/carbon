@@ -179,7 +179,9 @@ bool FileReader::openLocalFile(const UnicodeString& filename)
     m->hLocalFileMemoryMap = CreateFileMapping(hFile, nullptr, PAGE_READONLY, 0, 0, nullptr);
     if (m->hLocalFileMemoryMap)
     {
-        m->localFileMemoryMap = reinterpret_cast<byte_t*>(MapViewOfFile(m->hLocalFileMemoryMap, FILE_MAP_READ, 0, 0, 0));
+        m->localFileMemoryMap =
+            reinterpret_cast<byte_t*>(MapViewOfFile(m->hLocalFileMemoryMap, FILE_MAP_READ, 0, 0, 0));
+
         if (!m->localFileMemoryMap)
         {
             CloseHandle(m->hLocalFileMemoryMap);
@@ -398,7 +400,8 @@ void FileReader::readBytes(void* buffer, unsigned int count, unsigned int* bytes
     if (*bytesRead != count)
     {
         setLastError(IncompleteFileSystemError);
-        throw Exception() << "Failed reading file, requested " << count << " bytes but only read " << *bytesRead << " bytes";
+        throw Exception() << "Failed reading file, requested " << count << " bytes but only read " << *bytesRead
+                          << " bytes";
     }
 }
 
@@ -505,8 +508,8 @@ VersionInfo FileReader::beginVersionedSection(const VersionInfo& versionInfo)
     if (readVersion.getMajor() > versionInfo.getMajor())
     {
         setLastError(VersionedSectionFileSystemError);
-        throw Exception() << "Unsupported section version " << readVersion << ", only versions compatible with " << versionInfo
-                          << " are supported";
+        throw Exception() << "Unsupported section version " << readVersion << ", only versions compatible with "
+                          << versionInfo << " are supported";
     }
 
     // Check section does not go past the end of the file

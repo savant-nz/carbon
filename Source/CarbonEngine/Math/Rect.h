@@ -178,8 +178,8 @@ public:
     Vec2 getMiddle() const { return {(left_ + right_) * 0.5f, (bottom_ + top_) * 0.5f}; }
 
     /**
-     * Returns a point inside this rect, both \a u and \a v should be normalized, and will be clamped to the range 0-1 if \a
-     * clamp is true.
+     * Returns a point inside this rect, both \a u and \a v should be normalized, and will be clamped to the range 0-1
+     * if \a clamp is true.
      */
     Vec2 getPoint(float u, float v, bool clamp = true) const;
 
@@ -211,12 +211,13 @@ public:
      */
     bool intersect(const Rect& other) const
     {
-        return left_ < other.getRight() && right_ > other.getLeft() && bottom_ < other.getTop() && top_ > other.getBottom();
+        return left_ < other.getRight() && right_ > other.getLeft() && bottom_ < other.getTop() &&
+            top_ > other.getBottom();
     }
 
     /**
-     * Computes the intersection between this rect and the passed rect, if there is an overlap then true is returned and the
-     * overlapping area is returned in \a overlap.
+     * Computes the intersection between this rect and the passed rect, if there is an overlap then true is returned and
+     * the overlapping area is returned in \a overlap.
      */
     bool getIntersection(const Rect& rect, Rect& overlap) const;
 
@@ -226,14 +227,14 @@ public:
     float getAspectRatio() const { return getWidth() / getHeight(); }
 
     /**
-     * Increases the size of this rect to encompass the given point. If the point is already contained in this rect then this
-     * method does nothing.
+     * Increases the size of this rect to encompass the given point. If the point is already contained in this rect then
+     * this method does nothing.
      */
     void addPoint(const Vec2& p);
 
     /**
-     * Increases the size of this rect to encompass the given rect. If the given rect is already contained in this rect then
-     * this method does nothing.
+     * Increases the size of this rect to encompass the given rect. If the given rect is already contained in this rect
+     * then this method does nothing.
      */
     void merge(const Rect& rect);
 
@@ -255,7 +256,10 @@ public:
     /**
      * Converts this rect into a string of form "left bottom right top".
      */
-    operator UnicodeString() const { return UnicodeString() << left_ << " " << bottom_ << " " << right_ << " " << top_; }
+    operator UnicodeString() const
+    {
+        return UnicodeString() << left_ << " " << bottom_ << " " << right_ << " " << top_;
+    }
 
     /**
      * Saves this rect to a file stream. Throws an Exception if an error occurs.

@@ -256,11 +256,12 @@ bool GUICombobox::gatherGeometry(GeometryGather& gather)
 
             gather.addImmediateTriangle(Vec3(left, getBorderSize()), Vec3(left + getBorderSize(), getBorderSize()),
                                         Vec3(left, height - getBorderSize()), getBorderColor());
-            gather.addImmediateTriangle(Vec3(left, height - getBorderSize()), Vec3(left + getBorderSize(), getBorderSize()),
+            gather.addImmediateTriangle(Vec3(left, height - getBorderSize()),
+                                        Vec3(left + getBorderSize(), getBorderSize()),
                                         Vec3(left + getBorderSize(), height - getBorderSize()), getBorderColor());
 
-            // Draw the arrow, use the highlight color when the mouse is in the window. The sides of the arrow are always at 45
-            // degrees, so the height of the arrow is half its width
+            // Draw the arrow, use the highlight color when the mouse is in the window. The sides of the arrow are
+            // always at 45 degrees, so the height of the arrow is half its width
             gather.addImmediateTriangles(1);
 
             auto horizontalMargin = getBorderSize() + getTextMargins().getRight();
@@ -300,7 +301,8 @@ bool GUICombobox::gatherGeometry(GeometryGather& gather)
                     auto& c = theme()["HighlightColor"];
 
                     gather.changePriority(getRenderPriority() + 1);
-                    gather.changeTransformation(localToWorld(Vec3(p.x + getBorderSize(), itemY)), getWorldOrientation());
+                    gather.changeTransformation(localToWorld(Vec3(p.x + getBorderSize(), itemY)),
+                                                getWorldOrientation());
                     queueWindow(gather, dropdownWidth - getBorderSize() * 2.0f, fontSize, getBorderSize(), c, c);
                 }
 
@@ -331,7 +333,8 @@ bool GUICombobox::gatherGeometry(GeometryGather& gather)
 
                 // Draw the item text
                 gather.changePriority(getRenderPriority() + 2);
-                queueText(gather, Vec2(p.x + getBorderSize() + getTextMargins().getLeft() + xOffset, itemY), items_[i], color);
+                queueText(gather, Vec2(p.x + getBorderSize() + getTextMargins().getLeft() + xOffset, itemY), items_[i],
+                          color);
             }
         }
     }
@@ -341,8 +344,8 @@ bool GUICombobox::gatherGeometry(GeometryGather& gather)
 
 float GUICombobox::getDropdownWidth() const
 {
-    // The width of the dropdown is the width of the widest item plus text margins The minimum is the width of the text area in
-    // the combobox
+    // The width of the dropdown is the width of the widest item plus text margins The minimum is the width of the text
+    // area in the combobox
 
     auto font = getFontToUse();
     auto fontSize = getFontSizeToUse(font);
@@ -366,10 +369,10 @@ float GUICombobox::getDropdownHeight() const
 
 Vec2 GUICombobox::getDropdownPosition() const
 {
-    // This method calculates where the dropdown should be put so that it can be easily seen. The placement options used in
-    // order of preference are: below the combobox window, above the combobox window, on the right side of the combobox window,
-    // on the left side of the combobox window. This code doesn't currently account for any rotation that might be on this
-    // combobox.
+    // This method calculates where the dropdown should be put so that it can be easily seen. The placement options used
+    // in order of preference are: below the combobox window, above the combobox window, on the right side of the
+    // combobox window, on the left side of the combobox window. This code doesn't currently account for any rotation
+    // that might be on this combobox.
 
     auto orthographicRect = getScene()->getDefaultCameraOrthographicRect();
 
@@ -386,8 +389,8 @@ Vec2 GUICombobox::getDropdownPosition() const
         position.y = getHeight() - getBorderSize();
     else
     {
-        // The dropdown has to go to one side. If the right side has enough space then go there, otherwise use the side with the
-        // most space
+        // The dropdown has to go to one side. If the right side has enough space then go there, otherwise use the side
+        // with the most space
 
         auto spaceOnRight = orthographicRect.getWidth() - getWorldPosition().x - getWidth();
         auto spaceOnLeft = getWorldPosition().x;
@@ -448,7 +451,8 @@ float GUICombobox::getArrowBoxWidth() const
 
 void GUICombobox::updateLines()
 {
-    // Have one line which is the text of the selected item, and draw as many characters as will fit before running out of space
+    // Have one line which is the text of the selected item, and draw as many characters as will fit before running out
+    // of space
 
     auto font = getFontToUse();
     auto fontSize = getFontSizeToUse(font);
@@ -515,7 +519,8 @@ bool GUICombobox::intersect(const Vec2& position) const
     // Check for intersection with the dropdown
     auto p = getDropdownPosition();
 
-    return Rect(p.x, p.y, p.x + getDropdownWidth(), p.y + getDropdownHeight()).intersect(worldToLocal(position).toVec2());
+    return Rect(p.x, p.y, p.x + getDropdownWidth(), p.y + getDropdownHeight())
+        .intersect(worldToLocal(position).toVec2());
 }
 
 void GUICombobox::save(FileWriter& file) const

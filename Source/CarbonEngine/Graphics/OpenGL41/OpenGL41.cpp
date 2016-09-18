@@ -24,14 +24,15 @@ bool OpenGL41::isSupported() const
 {
 #ifdef MACOSX
     // Check whether this OpenGL context was created with an OpenGL 4.1 core profile
-    auto attributes = std::array<int, 14>{{kCGLPFAMinimumPolicy, kCGLPFAAccelerated, kCGLPFADoubleBuffer, kCGLPFAColorSize, 24,
-                                           kCGLPFAAlphaSize, 8, kCGLPFADepthSize, 24, kCGLPFAStencilSize, 8,
-                                           kCGLPFAOpenGLProfile, 0x4100, 0}};
+    auto attributes = std::array<int, 14>{{kCGLPFAMinimumPolicy, kCGLPFAAccelerated, kCGLPFADoubleBuffer,
+                                           kCGLPFAColorSize, 24, kCGLPFAAlphaSize, 8, kCGLPFADepthSize, 24,
+                                           kCGLPFAStencilSize, 8, kCGLPFAOpenGLProfile, 0x4100, 0}};
 
     // Try and choose an OpenGL 4.1 pixel format
     auto pixelFormat = CGLPixelFormatObj();
     auto pixelFormatCount = GLint();
-    CGLChoosePixelFormat(reinterpret_cast<const CGLPixelFormatAttribute*>(attributes.data()), &pixelFormat, &pixelFormatCount);
+    CGLChoosePixelFormat(reinterpret_cast<const CGLPixelFormatAttribute*>(attributes.data()), &pixelFormat,
+                         &pixelFormatCount);
 
     // If there is a pixel format available then OpenGL 4.1 is supported
     if (pixelFormat)
@@ -175,15 +176,15 @@ bool OpenGL41::isPrimitiveTypeSupported(PrimitiveType primitiveType) const
 }
 
 void OpenGL41::drawIndexedPrimitives(PrimitiveType primitiveType, unsigned int lowestIndex, unsigned int highestIndex,
-                                     unsigned int indexCount, DataType indexDataType, DataBufferObject indexDataBufferObject,
-                                     uintptr_t indexOffset)
+                                     unsigned int indexCount, DataType indexDataType,
+                                     DataBufferObject indexDataBufferObject, uintptr_t indexOffset)
 {
     assert(indexDataBufferObject && "Index data buffer not specified");
 
     setIndexDataBuffer(reinterpret_cast<DataBuffer*>(indexDataBufferObject));
 
-    glDrawRangeElements(glPrimitiveType[primitiveType], lowestIndex, highestIndex, indexCount, glDataTypeEnum[indexDataType],
-                        reinterpret_cast<void*>(indexOffset));
+    glDrawRangeElements(glPrimitiveType[primitiveType], lowestIndex, highestIndex, indexCount,
+                        glDataTypeEnum[indexDataType], reinterpret_cast<void*>(indexOffset));
     CARBON_CHECK_OPENGL_ERROR(glDrawRangeElements);
 
     GraphicsInterface::drawIndexedPrimitives(primitiveType, lowestIndex, highestIndex, indexCount, indexDataType,

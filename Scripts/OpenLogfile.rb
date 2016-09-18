@@ -4,8 +4,8 @@
 # distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-# Shortcut for opening a Carbon application's logfile, if no application name is passed on the command line then the most
-# recently written logfile is opened.
+# Shortcut for opening a Carbon application's logfile, if no application name is passed on the command line then the
+# most recently written logfile is opened.
 
 require "#{File.expand_path File.dirname(__FILE__)}/Shared.rb"
 

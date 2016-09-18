@@ -70,7 +70,8 @@ public:
             // Get animation start and end times
             auto startTime = MAnimControl::minTime();
             auto endTime = MAnimControl::maxTime();
-            LOG_INFO << "Exporting from frame " << startTime.as(MTime::uiUnit()) << " to frame " << endTime.as(MTime::uiUnit());
+            LOG_INFO << "Exporting from frame " << startTime.as(MTime::uiUnit()) << " to frame "
+                     << endTime.as(MTime::uiUnit());
 
             // Calculate start and end frames
             auto startFrame = int(startTime.value());
@@ -146,11 +147,15 @@ public:
     bool haveReadMethod() const override { return false; }
     bool haveWriteMethod() const override { return true; }
 
-    MString defaultExtension() const override { return toMString(SkeletalAnimation::SkeletalAnimationExtension.substr(1)); }
+    MString defaultExtension() const override
+    {
+        return toMString(SkeletalAnimation::SkeletalAnimationExtension.substr(1));
+    }
 
     MString filter() const override { return toMString("*" + SkeletalAnimation::SkeletalAnimationExtension); }
 
-    MPxFileTranslator::MFileKind identifyFile(const MFileObject& fileName, const char* buffer, short size) const override
+    MPxFileTranslator::MFileKind identifyFile(const MFileObject& fileName, const char* buffer,
+                                              short size) const override
     {
         if (MStringToString(fileName.name()).asLower().endsWith(SkeletalAnimation::SkeletalAnimationExtension))
             return kIsMyFileType;
@@ -158,7 +163,8 @@ public:
         return kNotMyFileType;
     }
 
-    MStatus writer(const MFileObject& file, const MString& optionsString, MPxFileTranslator::FileAccessMode mode) override
+    MStatus writer(const MFileObject& file, const MString& optionsString,
+                   MPxFileTranslator::FileAccessMode mode) override
     {
         onlyExportSelected = (mode == kExportActiveAccessMode);
 

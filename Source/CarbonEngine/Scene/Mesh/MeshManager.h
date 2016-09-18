@@ -16,8 +16,8 @@ class CARBON_API MeshManager : private Noncopyable
 public:
 
     /**
-     * Returns the mesh object with the given name. This will either trigger a mesh load or return a pointer to an already
-     * loaded mesh and increase its reference count.
+     * Returns the mesh object with the given name. This will either trigger a mesh load or return a pointer to an
+     * already loaded mesh and increase its reference count.
      */
     const Mesh* getMesh(const String& name);
 
@@ -27,15 +27,16 @@ public:
     Mesh* createMesh();
 
     /**
-     * Releases a mesh reference taken either by MeshManager::getMesh() or MeshManager::createMesh(), if the reference count for
-     * a mesh reaches zero then it is unloaded.
+     * Releases a mesh reference taken either by MeshManager::getMesh() or MeshManager::createMesh(), if the reference
+     * count for a mesh reaches zero then it is unloaded.
      */
     void releaseMesh(const Mesh* m);
 
     /**
-     * Takes a mesh that is not stored in Carbon's native format, loads it, and then saves it back out to the local file system
-     * in the native mesh format. This is useful to avoid additional mesh processing that occurs when loading non-native meshes
-     * at runtime, as the native version can then be used instead of the original source mesh file. Returns success flag.
+     * Takes a mesh that is not stored in Carbon's native format, loads it, and then saves it back out to the local file
+     * system in the native mesh format. This is useful to avoid additional mesh processing that occurs when loading
+     * non-native meshes at runtime, as the native version can then be used instead of the original source mesh file.
+     * Returns success flag.
      */
     bool convertMeshToNativeFormat(const String& name);
 

@@ -26,7 +26,8 @@ SplashScreen::~SplashScreen()
     scene_ = nullptr;
 }
 
-void SplashScreen::addLogo(const String& logoTexture, Vec2 size, GUIWindow::ScreenLocation alignment, const Vec2& offset)
+void SplashScreen::addLogo(const String& logoTexture, Vec2 size, GUIWindow::ScreenLocation alignment,
+                           const Vec2& offset)
 {
     logos_.emplace(logoTexture, size, alignment, offset);
 }

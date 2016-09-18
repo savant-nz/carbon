@@ -142,8 +142,8 @@ const Matrix4& Camera::getProjectionMatrix(float aspectRatio) const
             if (getScene()->is2D())
             {
                 // 2D orthographic scenes have the camera position in the bottom left corner
-                projectionMatrix_ = Matrix4::getOrthographicProjection(Rect(0.0f, 0.0f, orthographicSize.x, orthographicSize.y),
-                                                                       nearPlaneDistance_, farPlaneDistance_);
+                projectionMatrix_ = Matrix4::getOrthographicProjection(
+                    Rect(0.0f, 0.0f, orthographicSize.x, orthographicSize.y), nearPlaneDistance_, farPlaneDistance_);
             }
             else
             {
@@ -152,8 +152,8 @@ const Matrix4& Camera::getProjectionMatrix(float aspectRatio) const
                 auto width = orthographicSize.x * 0.5f;
                 auto height = orthographicSize.y * 0.5f;
 
-                projectionMatrix_ = Matrix4::getOrthographicProjection(Rect(-width, -height, width, height), nearPlaneDistance_,
-                                                                       farPlaneDistance_);
+                projectionMatrix_ = Matrix4::getOrthographicProjection(Rect(-width, -height, width, height),
+                                                                       nearPlaneDistance_, farPlaneDistance_);
             }
         }
         else
@@ -182,7 +182,8 @@ void Camera::setViewport(const Rect& viewport)
 
 float Camera::getDefaultAspectRatio() const
 {
-    return getAspectRatio(platform().getWindowWidthf(), platform().getWindowHeightf(), platform().getFinalDisplayAspectRatio());
+    return getAspectRatio(platform().getWindowWidthf(), platform().getWindowHeightf(),
+                          platform().getFinalDisplayAspectRatio());
 }
 
 float Camera::getAspectRatio(float targetWidth, float targetHeight, float targetFinalDisplayAspectRatio) const
@@ -196,7 +197,8 @@ Ray Camera::getRayThroughPixel(const Vec2& pixel) const
     if (!isPixelInViewport(pixel))
         return {Vec3::Zero, -Vec3::UnitZ};
 
-    auto target = Matrix4::unproject(pixel, getWorldTransform().getInverse(), getProjectionMatrix(), getScreenSpaceViewport());
+    auto target =
+        Matrix4::unproject(pixel, getWorldTransform().getInverse(), getProjectionMatrix(), getScreenSpaceViewport());
 
     if (isOrthographic())
         return {target - getDirection() * nearPlaneDistance_, getDirection()};
@@ -216,7 +218,8 @@ Vec2 Camera::worldToScreen(const Vec3& p, bool clamp) const
     // Multiply by projection matrix and do a perspective division
     auto& projection = getProjectionMatrix();
 
-    auto w = projection[3] * localPoint.x + projection[7] * localPoint.y + projection[11] * localPoint.z + projection[15];
+    auto w =
+        projection[3] * localPoint.x + projection[7] * localPoint.y + projection[11] * localPoint.z + projection[15];
     auto clipSpacePoint = (projection * localPoint).toVec2() / w;
 
     if (clipSpacePoint.x < -1.0f || clipSpacePoint.x > 1.0f || clipSpacePoint.y < -1.0f || clipSpacePoint.y > 1.0f)
@@ -298,7 +301,8 @@ Renderer::Camera Camera::getRendererCamera(const Vec2& targetDimensions, float t
         auto aspectRatio = getAspectRatio(targetDimensions.x, targetDimensions.y, targetFinalDisplayAspectRatio);
         auto viewport = viewport_ * targetDimensions;
 
-        return {getWorldTransform(), viewport, getProjectionMatrix(aspectRatio), getNearPlaneDistance(), getFarPlaneDistance()};
+        return {getWorldTransform(), viewport, getProjectionMatrix(aspectRatio), getNearPlaneDistance(),
+                getFarPlaneDistance()};
     }
     else if (outputDestination == GraphicsInterface::OutputOculusRiftLeftEye ||
              outputDestination == GraphicsInterface::OutputOculusRiftRightEye)
@@ -309,8 +313,9 @@ Renderer::Camera Camera::getRendererCamera(const Vec2& targetDimensions, float t
 
         if (isOrthographic())
         {
-            return {getWorldTransform(), riftTextureDimensions, getProjectionMatrix(riftTextureDimensions.getAspectRatio()),
-                    getNearPlaneDistance(), getFarPlaneDistance()};
+            return {getWorldTransform(), riftTextureDimensions,
+                    getProjectionMatrix(riftTextureDimensions.getAspectRatio()), getNearPlaneDistance(),
+                    getFarPlaneDistance()};
         }
         else
         {

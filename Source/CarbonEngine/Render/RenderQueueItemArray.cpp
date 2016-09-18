@@ -31,7 +31,8 @@ void RenderQueueItemArray::addDrawRectangleItem(float width, float height)
     items_.append(new DrawRectangleRenderQueueItem(width, height));
 }
 
-void RenderQueueItemArray::addDrawTextItem(const Font* font, float fontSize, const UnicodeString& text, const Color& color)
+void RenderQueueItemArray::addDrawTextItem(const Font* font, float fontSize, const UnicodeString& text,
+                                           const Color& color)
 {
     items_.append(new DrawTextRenderQueueItem(font, fontSize, text, color));
 }
@@ -56,9 +57,8 @@ void RenderQueueItemArray::debugTrace() const
             }
             else
             {
-                LOG_DEBUG
-                    << "    " << i << " - DrawGeometryChunk - chunk: " << &geometryChunk
-                    << ", triangles: " << geometryChunk.getDrawItems()[drawChunkItem->getDrawItemIndex()].getTriangleCount();
+                LOG_DEBUG << "    " << i << " - DrawGeometryChunk - chunk: " << &geometryChunk << ", triangles: "
+                          << geometryChunk.getDrawItems()[drawChunkItem->getDrawItemIndex()].getTriangleCount();
             }
         }
         else if (auto drawRectItem = items_[i]->as<DrawRectangleRenderQueueItem>())

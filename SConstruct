@@ -9,13 +9,13 @@ SConscript('Source/SConscript')
 
 vars = Variables()
 vars.AddVariables(
-    ('externalapp', 'The name of an external application to include in with the main engine build. This allows external apps '
-                    'to hook into this build system for debugging and development without having to set up their own build '
-                    'script. The externalappsourceroot= argument must specify the relative path to search in for the app\'s '
-                    'source code.'),
+    ('externalapp', 'The name of an external application to include in with the main engine build. This allows '
+                    'external apps to hook into this build system for debugging and development without having to set '
+                    'up their own build script. The externalappsourceroot= argument must specify the relative path to '
+                    'search in for the app\'s source code.'),
 
-    ('externalappsourceroot', 'The relative path to the directory that holds the external application\'s source code. Should '
-                              'be relative to this SConstruct file, e.g. ../MyApplication')
+    ('externalappsourceroot', 'The relative path to the directory that holds the external application\'s source code. '
+                              'Should be relative to this SConstruct file, e.g. ../MyApplication')
 )
 Help(vars.GenerateHelpText(Environment()))
 
@@ -27,7 +27,8 @@ if 'externalapp' in ARGUMENTS:
     externalAppName = ARGUMENTS['externalapp']
     externalAppSourceRoot = ARGUMENTS['externalappsourceroot']
 
-    # Setup a variant dir so that build outputs don't get put with the app's code (only works if the source root is relative)
+    # Setup a variant dir so that build outputs don't get put with the app's code (only works if the source root is
+    # relative)
     variantDir = os.path.join(baseVariantDir, externalAppName)
     VariantDir(variantDir, os.path.join('#', externalAppSourceRoot), duplicate=0)
 
@@ -35,9 +36,11 @@ if 'externalapp' in ARGUMENTS:
     sourceFiles = []
     for dirpath, dirnames, filenames in os.walk(externalAppSourceRoot):
         dirpath = dirpath[len(externalAppSourceRoot) + 1:]
-        sourceFiles += [os.path.join(variantDir, dirpath, f) for f in filenames if f.endswith('.cpp') or f.endswith('.mm')]
+        filenames = [f for f in filenames if f.endswith('.cpp') or f.endswith('.mm')]
+        sourceFiles += [os.path.join(variantDir, dirpath, f) for f in filenames]
     if sourceFiles == []:
-        print('Error: external application has no source files, check its source root "%s" is correct.' % externalAppSourceRoot)
+        print('Error: external application has no source files, check its source root "%s" is correct.'
+              % externalAppSourceRoot)
         Exit(1)
 
     # Build and install the app

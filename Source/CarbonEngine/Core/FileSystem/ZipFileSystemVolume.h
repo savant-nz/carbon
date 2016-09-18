@@ -11,9 +11,9 @@ namespace Carbon
 {
 
 /**
- * Allows a compressed Zip archive to be mounted onto the virtual file system and have its stored files enumerated and read from
- * without having to extract the whole archive. This can be useful for reading data from sources that use the Zip format for
- * storing files.
+ * Allows a compressed Zip archive to be mounted onto the virtual file system and have its stored files enumerated and
+ * read from without having to extract the whole archive. This can be useful for reading data from sources that use the
+ * Zip format for storing files.
  */
 class CARBON_API ZipFileSystemVolume : public FileSystemVolume
 {

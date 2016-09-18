@@ -115,9 +115,9 @@ bool PostProcessSample::onGUISliderChangedEvent(const GUISliderChangedEvent& e)
 
 bool PostProcessSample::onMouseButtonDownEvent(const MouseButtonDownEvent& e)
 {
-    // The left-click and right-click drags that are used to manipulate the object and the camera are only allowed to be started
-    // by a mouse button down event that does not happen over one of the gui windows, as otherwise the act of altering a slider
-    // would also be interpreted as a left-click drag, which is not the desired behavior.
+    // The left-click and right-click drags that are used to manipulate the object and the camera are only allowed to be
+    // started by a mouse button down event that does not happen over one of the gui windows, as otherwise the act of
+    // altering a slider would also be interpreted as a left-click drag, which is not the desired behavior.
 
     if (e.getButton() == LeftMouseButton)
         inObjectDrag_ = !gui_.intersect(e.getPosition());

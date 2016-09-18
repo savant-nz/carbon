@@ -122,12 +122,12 @@ public:
     {
         static const auto preprocessorDefines = std::array<String, PreprocessorDefineCount>{
             {"#define SKELETAL_ANIMATION\n#define WEIGHTS_PER_VERTEX 2",
-             "#define SKELETAL_ANIMATION\n#undef WEIGHTS_PER_VERTEX\n#define WEIGHTS_PER_VERTEX 4", "#define AMBIENT_OCCLUSION",
-             "#define DECAL_MAPPING", "#define PARALLAX_MAPPING", "#define SPECULAR", "#define NORMAL_MAPPING",
-             "#define VERTEX_COLOR"}};
+             "#define SKELETAL_ANIMATION\n#undef WEIGHTS_PER_VERTEX\n#define WEIGHTS_PER_VERTEX 4",
+             "#define AMBIENT_OCCLUSION", "#define DECAL_MAPPING", "#define PARALLAX_MAPPING", "#define SPECULAR",
+             "#define NORMAL_MAPPING", "#define VERTEX_COLOR"}};
 
-        return setupProgramCombination<BaseSurfaceProgram>(programIndex, programs, preprocessorDefines, "BaseSurface.glsl.vert",
-                                                           "BaseSurface.glsl.frag");
+        return setupProgramCombination<BaseSurfaceProgram>(programIndex, programs, preprocessorDefines,
+                                                           "BaseSurface.glsl.vert", "BaseSurface.glsl.frag");
     }
 
     bool updateCurrentProgram(unsigned int sortKey)
@@ -160,8 +160,8 @@ public:
         return true;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (!updateCurrentProgram(sortKey))
             return;

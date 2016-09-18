@@ -249,7 +249,8 @@ void Console::processKeyDownEvent(const KeyDownEvent& kde)
             while (true)
             {
                 if (completions.has([&](const UnicodeString& c) {
-                        return completionLength >= c.length() || c.at(completionLength) != completions[0].at(completionLength);
+                        return completionLength >= c.length() ||
+                            c.at(completionLength) != completions[0].at(completionLength);
                     }))
                 {
                     break;
@@ -259,7 +260,8 @@ void Console::processKeyDownEvent(const KeyDownEvent& kde)
             }
 
             auto index = currentText.findLastOf(" ");
-            setCurrentText(currentText.substr(0, index == -1 ? 0 : (index + 1)) + completions[0].substr(0, completionLength));
+            setCurrentText(currentText.substr(0, index == -1 ? 0 : (index + 1)) +
+                           completions[0].substr(0, completionLength));
 
             LOG_CONSOLE << prompt_ << currentText;
             if (command)
@@ -323,7 +325,7 @@ void Console::execute(const UnicodeString& string)
 
     if (!consoleCommand->areParametersValid(parameters))
     {
-        LOG_CONSOLE << "Error: incorrect number of parameters for console command '" << consoleCommand->getName() << "'";
+        LOG_CONSOLE << "Error: incorrect number of parameters for console command " << consoleCommand->getName();
         return;
     }
 

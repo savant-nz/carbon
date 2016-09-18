@@ -15,8 +15,8 @@ namespace Carbon
 {
 
 /**
- * Holds geometry and material information for a single mesh. This is the base container for all static geometry. Meshes are
- * loaded through MeshFormatRegistry and then attached to entities for rendering using Entity::attachMesh().
+ * Holds geometry and material information for a single mesh. This is the base container for all static geometry. Meshes
+ * are loaded through MeshFormatRegistry and then attached to entities for rendering using Entity::attachMesh().
  */
 class CARBON_API Mesh : private Noncopyable
 {
@@ -32,7 +32,8 @@ public:
     ~Mesh() { clear(); }
 
     /**
-     * A mesh is composed of a number of mesh components and each mesh component consists of a material and a geometry chunk.
+     * A mesh is composed of a number of mesh components and each mesh component consists of a material and a geometry
+     * chunk.
      */
     class MeshComponent
     {
@@ -147,8 +148,8 @@ public:
     Sphere getSphere() const;
 
     /**
-     * Returns the physics body template for this mesh. If one has not been created then it will created automatically by
-     * calling this method. Returns null on failure.
+     * Returns the physics body template for this mesh. If one has not been created then it will created automatically
+     * by calling this method. Returns null on failure.
      */
     PhysicsInterface::BodyTemplateObject getPhysicsBodyTemplate() const;
 

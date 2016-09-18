@@ -14,7 +14,8 @@ namespace Carbon
 {
 
 /**
- * Wrapper class for integrating Game Center functionality on iOS and Mac OS X, currently exposes leaderboards and achievements.
+ * Wrapper class for integrating Game Center functionality on iOS and Mac OS X, currently exposes leaderboards and
+ * achievements.
  */
 class CARBON_API GameCenter : public EventHandler, private Noncopyable
 {
@@ -24,15 +25,15 @@ public:
     ~GameCenter() override;
 
     /**
-     * This event is fired every time the active Game Center player changes. This can happen at any point, and applications
-     * should handle this in order to keep their display of Game Center content current. An empty string means no Game Center
-     * player is active.
+     * This event is fired every time the active Game Center player changes. This can happen at any point, and
+     * applications should handle this in order to keep their display of Game Center content current. An empty string
+     * means no Game Center player is active.
      */
     EventDispatcher<GameCenter, const UnicodeString&> onPlayerChanged;
 
     /**
-     * This event is fired following an onPlayerChanged event when the achievements for the newly active player have been
-     * loaded.
+     * This event is fired following an onPlayerChanged event when the achievements for the newly active player have
+     * been loaded.
      */
     EventDispatcher<GameCenter, unsigned int> onAchievementsLoaded;
 
@@ -42,19 +43,20 @@ public:
     EventDispatcher<GameCenter, const String&> onLeaderboardLoaded;
 
     /**
-     * This method must be called at application startup in order to use Game Center, pass the names of any leaderboards that
-     * will be used.
+     * This method must be called at application startup in order to use Game Center, pass the names of any leaderboards
+     * that will be used.
      */
     void enable(const Vector<String>& leaderboards = {});
 
     /**
-     * Returns whether or not there is currently an active local player that has been successfully authenticated with Game
-     * Center.
+     * Returns whether or not there is currently an active local player that has been successfully authenticated with
+     * Game Center.
      */
     bool isAuthenticated() const;
 
     /**
-     * Returns the name of the currently active and authenticated local player, or an empty string if there is no active player.
+     * Returns the name of the currently active and authenticated local player, or an empty string if there is no active
+     * player.
      */
     UnicodeString getPlayerName() const;
 
@@ -73,8 +75,8 @@ public:
     void showUI(GameCenterUI ui);
 
     /**
-     * Returns the active player's score on the specified leaderboard, or the lowest possible negative value if the leaderboard
-     * is invalid.
+     * Returns the active player's score on the specified leaderboard, or the lowest possible negative value if the
+     * leaderboard is invalid.
      */
     int64_t getLeaderboardScore(const String& leaderboardID) const;
 
@@ -89,8 +91,8 @@ public:
     bool areAchievementsLoaded() const;
 
     /**
-     * Returns the active player's progress on the specified achievement as a percentage. If there is no active player or the
-     * achievements for the active player are not currently loaded or available then -1.0f is returned.
+     * Returns the active player's progress on the specified achievement as a percentage. If there is no active player
+     * or the achievements for the active player are not currently loaded or available then -1.0f is returned.
      */
     float getAchievementProgress(const String& achievementID) const;
 

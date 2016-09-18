@@ -24,11 +24,10 @@ if 'gccversion' in ARGUMENTS:
     env['CXX'] += '-' + ARGUMENTS['gccversion']
 
 
-# The SetupForLinkingCarbon() method sets up the environment for linking Carbon as a dynamic library or linking Carbon as a
-# static library into a final application
+# The SetupForLinkingCarbon() method sets up the environment for linking Carbon as a dynamic library or linking Carbon
+# as a static library into a final application
 def SetupForLinkingCarbon(self, **keywords):
     defaultDependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'Vorbis', 'ZLib']
-
     dependencies = keywords.get('dependencies', defaultDependencies)
 
     self['LIBPATH'] += GetDependencyLIBPATH(*dependencies)

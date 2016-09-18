@@ -91,7 +91,8 @@ void VertexStream::load(FileReader& file)
         file.read(normalizeFixedPoint_);
 }
 
-void VertexStream::interpolate(const Vector<VertexStream>& streams, const byte_t* v0, const byte_t* v1, byte_t* result, float t)
+void VertexStream::interpolate(const Vector<VertexStream>& streams, const byte_t* v0, const byte_t* v1, byte_t* result,
+                               float t)
 {
     for (auto& stream : streams)
     {

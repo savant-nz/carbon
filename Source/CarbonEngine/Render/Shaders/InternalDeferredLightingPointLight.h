@@ -90,7 +90,9 @@ public:
     Vector<InternalDeferredLightingPointLightProgram*> programs;
     InternalDeferredLightingPointLightProgram* currentProgram = nullptr;
 
-    InternalDeferredLightingPointLightGLSL() : Shader("InternalDeferredLightingPointLight", 100, ShaderProgram::GLSL110) {}
+    InternalDeferredLightingPointLightGLSL() : Shader("InternalDeferredLightingPointLight", 100, ShaderProgram::GLSL110)
+    {
+    }
 
     bool initialize() override
     {
@@ -136,9 +138,9 @@ public:
 
     InternalDeferredLightingPointLightProgram* getProgram(unsigned int programIndex)
     {
-        static const auto preprocessorDefines =
-            std::array<String, PreprocessorDefineCount>{{"#define SPECULAR", "#define SPOTLIGHT", "#define PROJECTION_TEXTURE",
-                                                         "#define PROJECTION_CUBEMAP", "#define SHADOW_MAPPING"}};
+        static const auto preprocessorDefines = std::array<String, PreprocessorDefineCount>{
+            {"#define SPECULAR", "#define SPOTLIGHT", "#define PROJECTION_TEXTURE", "#define PROJECTION_CUBEMAP",
+             "#define SHADOW_MAPPING"}};
 
         return setupProgramCombination<InternalDeferredLightingPointLightProgram>(
             programIndex, programs, preprocessorDefines, "UnitRectangle.glsl.vert",
@@ -172,8 +174,8 @@ public:
         return true;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (!updateCurrentProgram(sortKey))
             return;

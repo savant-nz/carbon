@@ -97,9 +97,9 @@ bool TextInput::onKeyDownEvent(const KeyDownEvent& kde)
     else
         return false;
 
-    // The cursor blinking cycle is started from the time of the last input event, which ensures that the cursor is constantly
-    // visible while inputting text. To do this, TextInput::isCursorOn() needs to know when the last input happened, and that is
-    // stored here.
+    // The cursor blinking cycle is started from the time of the last input event, which ensures that the cursor is
+    // constantly visible while inputting text. To do this, TextInput::isCursorOn() needs to know when the last input
+    // happened, and that is stored here.
     restartCursorBlink();
 
     return true;

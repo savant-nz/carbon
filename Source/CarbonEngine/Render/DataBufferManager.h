@@ -23,38 +23,41 @@ public:
     typedef void* AllocationObject;
 
     /**
-     * This method is used by the renderer to notify the data buffer manager of a RecreateWindowEvent that it needs to process.
+     * This method is used by the renderer to notify the data buffer manager of a RecreateWindowEvent that it needs to
+     * process.
      */
     void onRecreateWindowEvent(const RecreateWindowEvent& rwe);
 
     /**
-     * Allocates video memory and returns the new allocation. \a type specifies the type of memory to be allocated, and must be
-     * one of VertexDataBuffer or IndexDataBuffer. \a size is the size in bytes of the allocation being requested. \a data is
-     * the pointer to source the data from. This pointer is normally a geometry chunk's internal vertex or index data pointer.
-     * The data at this pointer is not copied by this method, and the caller is responsible for ensuring that the pointer stays
-     * valid until the allocation is freed with DataBufferManager::deallocate(). If the contents of the allocation are likely to
-     * change frequently then \a isDynamic should be set to true so that the allocator can optimize for dynamic data. If the
-     * allocation fails for any reason then null is returned.
+     * Allocates video memory and returns the new allocation. \a type specifies the type of memory to be allocated, and
+     * must be one of VertexDataBuffer or IndexDataBuffer. \a size is the size in bytes of the allocation being
+     * requested. \a data is the pointer to source the data from. This pointer is normally a geometry chunk's internal
+     * vertex or index data pointer. The data at this pointer is not copied by this method, and the caller is
+     * responsible for ensuring that the pointer stays valid until the allocation is freed with
+     * DataBufferManager::deallocate(). If the contents of the allocation are likely to change frequently then
+     * \a isDynamic should be set to true so that the allocator can optimize for dynamic data. If the allocation fails
+     * for any reason then null is returned.
      */
-    AllocationObject allocate(GraphicsInterface::DataBufferType type, unsigned int size, const byte_t* data, bool isDynamic);
+    AllocationObject allocate(GraphicsInterface::DataBufferType type, unsigned int size, const byte_t* data,
+                              bool isDynamic);
 
     /**
-     * Frees an allocation done by DataBufferManager::allocate(). This method does nothing if null is passed. Returns success
-     * flag.
+     * Frees an allocation done by DataBufferManager::allocate(). This method does nothing if null is passed. Returns
+     * success flag.
      */
     bool free(AllocationObject allocationObject);
 
     /**
-     * Tells the data buffer manager that the data for the given allocation has changed and needs to be updated. The updated
-     * data will be read from the \a data pointer that was passed to the DataBufferManager::allocate() method when the
-     * allocation object was created. Returns success flag.
+     * Tells the data buffer manager that the data for the given allocation has changed and needs to be updated. The
+     * updated data will be read from the \a data pointer that was passed to the DataBufferManager::allocate() method
+     * when the allocation object was created. Returns success flag.
      */
     bool updateData(AllocationObject allocationObject);
 
     /**
-     * Returns the graphics interface data buffer object to use when rendering the data in the given allocation. The \a offset
-     * parameter is set to the number of bytes from the start of the data buffer object to the start of the allocation in the
-     * returned data buffer object.
+     * Returns the graphics interface data buffer object to use when rendering the data in the given allocation. The \a
+     * offset parameter is set to the number of bytes from the start of the data buffer object to the start of the
+     * allocation in the returned data buffer object.
      */
     GraphicsInterface::DataBufferObject getAllocationBufferObject(AllocationObject allocationObject, uintptr_t& offset);
 
@@ -116,7 +119,8 @@ private:
         unsigned int size = 0;
         const byte_t* data = nullptr;
 
-        GraphicsInterface::DataBufferObject buffer = nullptr;    // The data buffer object used if this is a dynamic allocation
+        // The data buffer object used if this is a dynamic allocation
+        GraphicsInterface::DataBufferObject buffer = nullptr;
 
         // For static allocations
         StaticDataGroup* group = nullptr;

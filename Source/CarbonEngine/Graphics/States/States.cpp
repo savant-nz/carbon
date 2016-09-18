@@ -31,24 +31,28 @@ DEFINE_SIMPLE_CACHED_STATE(DepthCompareFunction, CompareFunction, CompareFunctio
 DEFINE_SIMPLE_CACHED_STATE(DepthTestEnabled, bool, bool, true)
 DEFINE_SIMPLE_CACHED_STATE(DepthWriteEnabled, bool, bool, true)
 DEFINE_SIMPLE_CACHED_STATE(MultisampleEnabled, bool, bool, false)
-DEFINE_SIMPLE_CACHED_STATE(RenderTarget, GraphicsInterface::RenderTargetObject, GraphicsInterface::RenderTargetObject, nullptr)
+DEFINE_SIMPLE_CACHED_STATE(RenderTarget, GraphicsInterface::RenderTargetObject, GraphicsInterface::RenderTargetObject,
+                           nullptr)
 DEFINE_SIMPLE_CACHED_STATE(ScissorEnabled, bool, bool, false)
 DEFINE_SIMPLE_CACHED_STATE(ScissorRectangle, Rect, const Rect&, Rect(0.0f, 0.0f, 0.0f, 0.0f))
 DEFINE_SIMPLE_CACHED_STATE(ShaderProgram, Carbon::ShaderProgram*, Carbon::ShaderProgram*, nullptr)
 DEFINE_SIMPLE_CACHED_STATE(StencilClearValue, unsigned int, unsigned int, 0)
-DEFINE_SIMPLE_CACHED_STATE(StencilOperationsForBackFaces, StencilOperations, const StencilOperations&, StencilOperations())
-DEFINE_SIMPLE_CACHED_STATE(StencilOperationsForFrontFaces, StencilOperations, const StencilOperations&, StencilOperations())
+DEFINE_SIMPLE_CACHED_STATE(StencilOperationsForBackFaces, StencilOperations, const StencilOperations&,
+                           StencilOperations())
+DEFINE_SIMPLE_CACHED_STATE(StencilOperationsForFrontFaces, StencilOperations, const StencilOperations&,
+                           StencilOperations())
 DEFINE_SIMPLE_CACHED_STATE(StencilTestEnabled, bool, bool, false)
 DEFINE_SIMPLE_CACHED_STATE(StencilTestFunction, StencilTestSetup, const StencilTestSetup&, StencilTestSetup())
 DEFINE_SIMPLE_CACHED_STATE(StencilWriteEnabled, bool, bool, false)
-DEFINE_SIMPLE_CACHED_STATE(VertexAttributeArrayConfiguration, GraphicsInterface::VertexAttributeArrayConfigurationObject,
+DEFINE_SIMPLE_CACHED_STATE(VertexAttributeArrayConfiguration,
+                           GraphicsInterface::VertexAttributeArrayConfigurationObject,
                            GraphicsInterface::VertexAttributeArrayConfigurationObject, nullptr)
 DEFINE_SIMPLE_CACHED_STATE(Viewport, Rect, const Rect&, Rect(0.0f, 0.0f, 1.0f, 1.0f))
 
 DEFINE_INDEXED_CACHED_STATE(Texture, GraphicsInterface::TextureObject, GraphicsInterface::TextureObject, nullptr)
 DEFINE_INDEXED_CACHED_STATE(VertexAttributeArrayEnabled, bool, bool, false)
-DEFINE_INDEXED_CACHED_STATE(VertexAttributeArraySource, GraphicsInterface::ArraySource, const GraphicsInterface::ArraySource&,
-                            GraphicsInterface::ArraySource())
+DEFINE_INDEXED_CACHED_STATE(VertexAttributeArraySource, GraphicsInterface::ArraySource,
+                            const GraphicsInterface::ArraySource&, GraphicsInterface::ArraySource())
 }
 
 }

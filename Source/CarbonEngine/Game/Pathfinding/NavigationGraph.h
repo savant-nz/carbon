@@ -12,9 +12,9 @@ namespace Carbon
 {
 
 /**
- * Describes a navigation graph that can be used to carry out pathfinding on. This class should not be used directly, one of the
- * provided subclasses that assist with setting up common navigation graph shapes should be used, e.g. GridNavigationGraph or
- * HexagonalNavigationGraph.
+ * Describes a navigation graph that can be used to carry out pathfinding on. This class should not be used directly,
+ * one of the provided subclasses that assist with setting up common navigation graph shapes should be used, e.g.
+ * GridNavigationGraph or HexagonalNavigationGraph.
  */
 class CARBON_API NavigationGraph : private Noncopyable
 {
@@ -61,8 +61,8 @@ public:
     NavigationNode& getNode(unsigned int index) { return *nodes_[index]; }
 
     /**
-     * Uses Scene::addImmediateGeometry() on the passed scene to create geometry that visualizes this graph and a single path
-     * through it. If \a path is null then it will be skipped. All the geometry can be scaled, offset and colored.
+     * Uses Scene::addImmediateGeometry() on the passed scene to create geometry that visualizes this graph and a single
+     * path through it. If \a path is null then it will be skipped. All the geometry can be scaled, offset and colored.
      */
     void addToSceneImmediateGeometry(Scene& scene, const Vec3& offset, float scale, const Color& nodeColor,
                                      const Color& edgeColor, const Vector<NavigationNode*>* path = nullptr,
@@ -94,14 +94,14 @@ protected:
     NavigationEdge& addEdge(NavigationNode* from, NavigationNode* to, float costToTraverse = 1.0f);
 
     /**
-     * This method is used by subclasses to alter the navigation graph, it removes a single node from the nodes array along with
-     * all edges connected to the node. Returns success flag.
+     * This method is used by subclasses to alter the navigation graph, it removes a single node from the nodes array
+     * along with all edges connected to the node. Returns success flag.
      */
     bool removeNode(NavigationNode* node);
 
     /**
-     * This method is used by subclasses to alter the navigation graph, it removes a single edge from the graph. Returns success
-     * flag.
+     * This method is used by subclasses to alter the navigation graph, it removes a single edge from the graph. Returns
+     * success flag.
      */
     bool removeEdge(NavigationEdge* edge);
 

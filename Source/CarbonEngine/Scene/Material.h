@@ -11,11 +11,11 @@ namespace Carbon
 {
 
 /**
- * Materials are the primary way that the appearance of a rendered object is controlled. Materials consist of an effect and a
- * set of parameters for that effect to use, where the parameters are things such as textures and colors. Most materials are
- * loaded from ".material" files, but they can also be created at runtime. Materials can store any number of parameters, which
- * means applications can store their own arbitrary data on their materials. Note that some effects may have required parameters
- * that can't be omitted.
+ * Materials are the primary way that the appearance of a rendered object is controlled. Materials consist of an effect
+ * and a set of parameters for that effect to use, where the parameters are things such as textures and colors. Most
+ * materials are loaded from ".material" files, but they can also be created at runtime. Materials can store any number
+ * of parameters, which means applications can store their own arbitrary data on their materials. Note that some effects
+ * may have required parameters that can't be omitted.
  *
  * Materials are managed by the MaterialManager class.
  */
@@ -206,14 +206,14 @@ public:
     }
 
     /**
-     * Sets the value of a parameter on this material. This can be used to change or add parameters to a material at runtime,
-     * the change takes effect immediately. Returns success flag.
+     * Sets the value of a parameter on this material. This can be used to change or add parameters to a material at
+     * runtime, the change takes effect immediately. Returns success flag.
      */
     bool setParameter(const ParameterArray::Lookup& lookup, const Parameter& parameter);
 
     /**
-     * Sets the value of a parameter on this material. This can be used to change or add parameters to a material at runtime,
-     * the change takes effect immediately. Returns success flag.
+     * Sets the value of a parameter on this material. This can be used to change or add parameters to a material at
+     * runtime, the change takes effect immediately. Returns success flag.
      */
     bool setParameter(const String& name, const Parameter& parameter)
     {
@@ -231,9 +231,10 @@ public:
     template <typename LookupType> bool hasParameter(const LookupType& lookup) const { return parameters_.has(lookup); }
 
     /**
-     * Returns a pointer to the texture currently in use for the given texture parameter on this material. The returned texture
-     * will have its image data loaded, and so this method may cause a JIT texture load to occur on the main thread. If the
-     * parameter is not a valid texture parameter as specified by this material's effect then null is returned.
+     * Returns a pointer to the texture currently in use for the given texture parameter on this material. The returned
+     * texture will have its image data loaded, and so this method may cause a JIT texture load to occur on the main
+     * thread. If the parameter is not a valid texture parameter as specified by this material's effect then null is
+     * returned.
      */
     Texture* getTextureForParameter(const ParameterArray::Lookup& lookup);
 
@@ -248,16 +249,16 @@ public:
     const Vector<AnimatedTexture>& getAnimatedTextures() const { return animatedTextures_; }
 
     /**
-     * Sets the frame rate of the given texture used by this material. The \a name parameter must be the name of the texture
-     * parameter and not the name of a texture. This will only affect textures that have multiple animation frames, standard
-     * textures are unaffected. Returns success flag.
+     * Sets the frame rate of the given texture used by this material. The \a name parameter must be the name of the
+     * texture parameter and not the name of a texture. This will only affect textures that have multiple animation
+     * frames, standard textures are unaffected. Returns success flag.
      */
     bool setAnimatedTextureFPS(const String& name, unsigned int fps);
 
     /**
-     * Sets up the specified EffectQueue for rendering the contents of this material, this sets any animated texture updates
-     * needed for this material using EffectQueue::addTextureAnimation() and calls EffectQueue::useParams() with this material's
-     * main ParameterArray.
+     * Sets up the specified EffectQueue for rendering the contents of this material, this sets any animated texture
+     * updates needed for this material using EffectQueue::addTextureAnimation() and calls EffectQueue::useParams() with
+     * this material's main ParameterArray.
      */
     void setupEffectQueue(EffectQueue* queue) const;
 

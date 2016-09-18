@@ -9,8 +9,8 @@ namespace Carbon
 {
 
 /**
- * A recursive mutex synchronization primitive. This class has no public methods because all operations on it are done via the
- * ScopedMutexLock class to ensure correct pairing of mutex acquires and releases.
+ * A recursive mutex synchronization primitive. This class has no public methods because all operations on it are done
+ * via the ScopedMutexLock class to ensure correct pairing of mutex acquires and releases.
  */
 class CARBON_API Mutex
 {
@@ -20,9 +20,9 @@ class CARBON_API Mutex
 };
 
 /**
- * This class assists with correct acquire and release of the Mutex class by acquiring a mutex in its constructor and releasing
- * it in its destructor. This ensures correct acquire/release pairing. There are also ScopedMutexLock::acquire() and
- * ScopedMutexLock::release() methods that provide finer control.
+ * This class assists with correct acquire and release of the Mutex class by acquiring a mutex in its constructor and
+ * releasing it in its destructor. This ensures correct acquire/release pairing. There are also
+ * ScopedMutexLock::acquire() and ScopedMutexLock::release() methods that provide finer control.
  */
 class CARBON_API ScopedMutexLock : private Noncopyable
 {
@@ -52,9 +52,10 @@ public:
     }
 
     /**
-     * Releases the mutex that was passed to the constructor. This can be used to release the mutex prior to this class falling
-     * out of scope, and can also be used in combination with ScopedMutexLock::acquire() to temporarily release then re-acquire
-     * the mutex. An internal counter is used to make sure that the correct number of mutex releases occur in the destructor.
+     * Releases the mutex that was passed to the constructor. This can be used to release the mutex prior to this class
+     * falling out of scope, and can also be used in combination with ScopedMutexLock::acquire() to temporarily release
+     * then re-acquire the mutex. An internal counter is used to make sure that the correct number of mutex releases
+     * occur in the destructor.
      */
     void release()
     {
@@ -68,9 +69,9 @@ public:
     }
 
     /**
-     * Acquires the mutex that was passed to the constructor. This can be used in combination with ScopedMutexLock::release()
-     * to gain  finer control over the mutex. An internal counter is used to make sure that the correct number of mutex releases
-     * occur in the destructor.
+     * Acquires the mutex that was passed to the constructor. This can be used in combination with
+     * ScopedMutexLock::release() to gain  finer control over the mutex. An internal counter is used to make sure that
+     * the correct number of mutex releases occur in the destructor.
      */
     void acquire()
     {

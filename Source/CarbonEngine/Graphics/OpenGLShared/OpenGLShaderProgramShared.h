@@ -13,7 +13,8 @@ namespace Carbon
 {
 
 /**
- * This is a partial ShaderProgram implementation for OpenGL and GLSL that contains code shared by all of the OpenGL backends.
+ * This is a partial ShaderProgram implementation for OpenGL and GLSL that contains code shared by all of the OpenGL
+ * backends.
  */
 class OpenGLShaderProgramShared : public ShaderProgram
 {
@@ -59,7 +60,8 @@ public:
             {
                 auto filenames = String(shaderSource.second.filenames, " + ");
 
-                auto source = getSourcePrefix(shaderSource.first) + getPreprocessorDefines() + shaderSource.second.source;
+                auto source =
+                    getSourcePrefix(shaderSource.first) + getPreprocessorDefines() + shaderSource.second.source;
 
                 // Run GLSL processing
                 prepareGLSL(filenames, source);

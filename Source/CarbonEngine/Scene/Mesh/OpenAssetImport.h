@@ -95,7 +95,8 @@ public:
                         vertices[k].normal = *reinterpret_cast<const Vec3*>(&m->mNormals[index]);
 
                         if (hasDiffuseTextureCoordinates)
-                            vertices[k].diffuseTextureCoordinate = *reinterpret_cast<const Vec2*>(&m->mTextureCoords[0][index]);
+                            vertices[k].diffuseTextureCoordinate =
+                                *reinterpret_cast<const Vec2*>(&m->mTextureCoords[0][index]);
                     }
 
                     triangles->addTriangle(&vertices[0], &vertices[1], &vertices[2], materialNames[m->mMaterialIndex]);

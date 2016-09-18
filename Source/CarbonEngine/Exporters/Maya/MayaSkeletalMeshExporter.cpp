@@ -117,9 +117,9 @@ public:
         return true;
     }
 
-    // Exports the relative bind pose transform for the joint at the given DAG node, and puts it onto the given bone. Two
-    // diferent methods for finding the bind pose are used, if they both fail then the current joint transform is used and a
-    // warning is emitted.
+    // Exports the relative bind pose transform for the joint at the given DAG node, and puts it onto the given bone.
+    // Two diferent methods for finding the bind pose are used, if they both fail then the current joint transform is
+    // used and a warning is emitted.
     void exportJointBindPose(MFnDagNode& fnJoint, SkeletalMesh::Bone& bone)
     {
         auto status = MStatus();
@@ -134,10 +134,11 @@ public:
             {
                 auto elementPlug = plugWorldMatrixArray[j];
 
-                // Starting from this plug, search for a skin cluster, if one is found then this will be the skin cluster that
-                // has this joint's bind pose
-                auto dgIt = MItDependencyGraph(elementPlug, MFn::kInvalid, MItDependencyGraph::kDownstream,
-                                               MItDependencyGraph::kDepthFirst, MItDependencyGraph::kPlugLevel, &status);
+                // Starting from this plug, search for a skin cluster, if one is found then this will be the skin
+                // cluster that has this joint's bind pose
+                auto dgIt =
+                    MItDependencyGraph(elementPlug, MFn::kInvalid, MItDependencyGraph::kDownstream,
+                                       MItDependencyGraph::kDepthFirst, MItDependencyGraph::kPlugLevel, &status);
                 if (status != MS::kSuccess)
                     continue;
 
@@ -159,9 +160,10 @@ public:
                         dgIt.getPlugPath(plugs);
                         plugs[0].connectedTo(plugs, false, true);
 
-                        // Look up the bindPreMatrix array plug on the skin cluster with the logical index of the matrix that
-                        // holds this joint's world space bind pose
-                        auto bindPreMatrixPlug = bindPreMatrixArrayPlug.elementByLogicalIndex(plugs[0].logicalIndex(), &status);
+                        // Look up the bindPreMatrix array plug on the skin cluster with the logical index of the matrix
+                        // that holds this joint's world space bind pose
+                        auto bindPreMatrixPlug =
+                            bindPreMatrixArrayPlug.elementByLogicalIndex(plugs[0].logicalIndex(), &status);
                         if (status == MS::kSuccess)
                         {
                             // Retrieve the matrix data
@@ -182,8 +184,9 @@ public:
                                 bone.referenceRelative.setPosition(
                                     parentBone.currentAbsolute.getOrientation().getInverse() *
                                     (bone.currentAbsolute.getPosition() - parentBone.currentAbsolute.getPosition()));
-                                bone.referenceRelative.setOrientation(bone.currentAbsolute.getOrientation() *
-                                                                      parentBone.currentAbsolute.getOrientation().getInverse());
+                                bone.referenceRelative.setOrientation(
+                                    bone.currentAbsolute.getOrientation() *
+                                    parentBone.currentAbsolute.getOrientation().getInverse());
                             }
 
                             return;
@@ -213,9 +216,10 @@ public:
                     {
                         auto localTransformPlug = MPlug(bindPosePlug.node(), xformMatrixAttribute);
 
-                        // xformMatrix is an array. To get the local matrix we need to select the same index as our bindPosePlug
-                        // (logicalIndex())
-                        localTransformPlug.selectAncestorLogicalIndex(bindPosePlug.logicalIndex(), xformMatrixAttribute);
+                        // xformMatrix is an array. To get the local matrix we need to select the same index as our
+                        // bindPosePlug's logical index
+                        localTransformPlug.selectAncestorLogicalIndex(bindPosePlug.logicalIndex(),
+                                                                      xformMatrixAttribute);
 
                         // Get out the matrix value as an object
                         auto localMatrixObject = MObject();
@@ -231,14 +235,16 @@ public:
             }
         }
 
-        LOG_WARNING_WITHOUT_CALLER << "No bind pose found for bone " << bone.name << ", using current transform instead";
+        LOG_WARNING_WITHOUT_CALLER << "No bind pose found for bone " << bone.name
+                                   << ", using current transform instead";
 
         bone.referenceRelative = MMatrixToAffineTransform(fnJoint.transformationMatrix());
         updateBoneCurrentAbsoluteUsingReferenceRelative(bone);
     }
 
     // Exports rotation constraints for a single axis of a joint.
-    void exportJointAxisRotationConstraints(MFnTransform& fnTransform, SkeletalMesh::Bone::RagdollAxisConstraint& constraint,
+    void exportJointAxisRotationConstraints(MFnTransform& fnTransform,
+                                            SkeletalMesh::Bone::RagdollAxisConstraint& constraint,
                                             MFnTransform::LimitType minLimit, MFnTransform::LimitType maxLimit)
     {
         constraint.enabled = fnTransform.isLimited(minLimit) && fnTransform.isLimited(maxLimit);
@@ -250,12 +256,12 @@ public:
         }
     }
 
-    // Updates a bone's currentAbsolute transform based on its referenceRelative. This assumes that the parent bone already has
-    // a correct currentAbsolute transform set.
+    // Updates a bone's currentAbsolute transform based on its referenceRelative. This assumes that the parent bone
+    // already has a correct currentAbsolute transform set.
     void updateBoneCurrentAbsoluteUsingReferenceRelative(SkeletalMesh::Bone& bone)
     {
-        // Update currentAbsolute on this bone as well as it may be needed to calculate the referenceRelative of upcoming bones
-        // (i.e. they have a proper bind pose retrievable by exportJointBindPose())
+        // Update currentAbsolute on this bone as well as it may be needed to calculate the referenceRelative of
+        // upcoming bones (i.e. they have a proper bind pose retrievable by exportJointBindPose())
         if (bone.parent == -1)
             bone.currentAbsolute = bone.referenceRelative;
         else
@@ -352,8 +358,9 @@ public:
 
             LOG_INFO << "Exporting skin cluster: " << MStringToString(fnSkinCluster.name());
 
-            // Get the list of influence objects for this skin cluster. These should all be bones, however the indices used on
-            // the skin cluster reference this array and not our bones array, so we need to create a mapping between the two.
+            // Get the list of influence objects for this skin cluster. These should all be bones, however the indices
+            // used on the skin cluster reference this array and not our bones array, so we need to create a mapping
+            // between the two.
             auto influenceObjectPaths = MDagPathArray();
             fnSkinCluster.influenceObjects(influenceObjectPaths, &status);
 
@@ -440,7 +447,8 @@ public:
                     continue;
                 }
 
-                // Retrieve the mesh right as it comes into the skin cluster to be deformed, this will be the bind pose mesh
+                // Retrieve the mesh right as it comes into the skin cluster to be deformed, this will be the bind pose
+                // mesh
                 auto childPlug = inputPlug.elementByLogicalIndex(0);
                 auto geomPlug = childPlug.child(0);
                 auto dataObj1 = MObject();
@@ -459,8 +467,8 @@ public:
                     continue;
                 }
 
-                if (!GeometryHelper::exportMFnMesh(geomPath, fnMesh, fnMeshWithShaders.object(), triangleSet, &skeletalVertices,
-                                                   *this))
+                if (!GeometryHelper::exportMFnMesh(geomPath, fnMesh, fnMeshWithShaders.object(), triangleSet,
+                                                   &skeletalVertices, *this))
                     return false;
             }
         }
@@ -485,7 +493,8 @@ public:
 
     MString filter() const override { return toMString("*" + SkeletalMesh::SkeletalMeshExtension); }
 
-    MPxFileTranslator::MFileKind identifyFile(const MFileObject& fileName, const char* buffer, short size) const override
+    MPxFileTranslator::MFileKind identifyFile(const MFileObject& fileName, const char* buffer,
+                                              short size) const override
     {
         if (MStringToString(fileName.name()).asLower().endsWith(SkeletalMesh::SkeletalMeshExtension))
             return kIsMyFileType;
@@ -493,7 +502,8 @@ public:
         return kNotMyFileType;
     }
 
-    MStatus writer(const MFileObject& file, const MString& optionsString, MPxFileTranslator::FileAccessMode mode) override
+    MStatus writer(const MFileObject& file, const MString& optionsString,
+                   MPxFileTranslator::FileAccessMode mode) override
     {
         onlyExportSelected = (mode == kExportActiveAccessMode);
 

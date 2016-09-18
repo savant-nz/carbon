@@ -29,8 +29,8 @@ public:
 };
 
 /**
- * Delegate subclass for calling a specific member function of a specific class type. This is specialized for void and bool
- * return types.
+ * Delegate subclass for calling a specific member function of a specific class type. This is specialized for `void` and
+ * `bool` return types.
  */
 template <typename Handler, typename Return, typename Sender, typename EventData> class EventDelegate;
 
@@ -43,7 +43,8 @@ class EventDelegate<Handler, void, Sender, EventData> : public Delegate<Sender, 
 public:
 
     /**
-     * Event delegate callback typedef that takes a reference to the object sending the event as well as the event's data.
+     * Event delegate callback typedef that takes a reference to the object sending the event as well as the event's
+     * data.
      */
     typedef void (Handler::*CallbackMethod)(Sender&, EventData);
 
@@ -85,7 +86,8 @@ class EventDelegate<Handler, bool, Sender, EventData> : public Delegate<Sender, 
 public:
 
     /**
-     * Event delegate callback typedef that takes a reference to the object sending the event as well as the event's data.
+     * Event delegate callback typedef that takes a reference to the object sending the event as well as the event's
+     * data.
      */
     typedef bool (Handler::*CallbackMethod)(Sender&, EventData);
 
@@ -115,9 +117,9 @@ private:
 };
 
 /**
- * Base class for EventDispatcher that is needed to allow a handler to be removed from all existing EventDispatcher instances in
- * one call. To do this the handler pointer is treated as a void * rather than a typed value, see the implementation of
- * EventDispatcher::remove() for more details.
+ * Base class for EventDispatcher that is needed to allow a handler to be removed from all existing EventDispatcher
+ * instances in one call. To do this the handler pointer is treated as a void * rather than a typed value, see the
+ * implementation of EventDispatcher::remove() for more details.
  */
 class EventDispatcherBase
 {
@@ -140,11 +142,12 @@ protected:
 };
 
 /**
- * The global event system implemented by the Event, EventHandler and EventManager classes isn't well-suited to events that have
- * an originating object such as GUI events which occur on a specific window. In such cases a delegate system is more
- * appropriate, and this is provided by the EventDispatcher class. An object can define multiple instance-specific events and
- * then interested parties can register their own instance methods using EventDispatcher::addHandler() to be run when the event
- * is fired on that specific object by a call to EventDispatcher::fire().
+ * The global event system implemented by the Event, EventHandler and EventManager classes isn't well-suited to events
+ * that have an originating object such as GUI events which occur on a specific window. In such cases a delegate system
+ * is more appropriate, and this is provided by the EventDispatcher class. An object can define multiple
+ * instance-specific events and then interested parties can register their own instance methods using
+ * EventDispatcher::addHandler() to be run when the event is fired on that specific object by a call to
+ * EventDispatcher::fire().
  */
 template <typename Sender, typename EventData> class EventDispatcher : public EventDispatcherBase, private Noncopyable
 {
@@ -176,7 +179,8 @@ public:
     }
 
     /**
-     * Fires this event with the given event data, this calls all the delegates registered with EventDelegate::addHandler().
+     * Fires this event with the given event data, this calls all the delegates registered with
+     * EventDelegate::addHandler().
      */
     void fire(EventData data) const
     {
@@ -190,8 +194,8 @@ public:
         // The firing state is tracked so that calls to EventDispatcher::removeHandler() while firing can be queued
         isFiring_ = true;
 
-        // Store the size so that any calls to EventDispatcher::addHandler() made during these calls to EventDelegate::invoke()
-        // don't have their new handlers called straight away for this event
+        // Store the size so that any calls to EventDispatcher::addHandler() made during these calls to
+        // EventDelegate::invoke() don't have their new handlers called straight away for this event
         auto size = delegates_.size();
 
         for (auto i = 0U; i < size; i++)
@@ -252,7 +256,8 @@ public:
     }
 
     /**
-     * Removes a delegate for this event that was added with the EventDispatcher::addHandler() method. Returns success flag.
+     * Removes a delegate for this event that was added with the EventDispatcher::addHandler() method. Returns success
+     * flag.
      */
     template <typename Handler, typename Return>
     bool removeHandler(Handler* handler, Return (Handler::*callback)(Sender&, EventData))
@@ -286,8 +291,8 @@ public:
     }
 
     /**
-     * Removes the given handler instance from all events it is currently registered for regardless of the event type or class
-     * method being used to handle each event.
+     * Removes the given handler instance from all events it is currently registered for regardless of the event type or
+     * class method being used to handle each event.
      */
     template <typename Handler> static void removeFromAllEvents(Handler* handler)
     {

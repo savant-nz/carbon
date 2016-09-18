@@ -11,7 +11,8 @@ namespace Carbon
 {
 
 /**
- * Button GUI item. A GUIButton's text highlights when the mouse is over it. Text alignment defaults to Font::AlignCenter.
+ * Button GUI item. A GUIButton's text highlights when the mouse is over it. Text alignment defaults to
+ * Font::AlignCenter.
  */
 class CARBON_API GUIButton : public GUIWindow
 {

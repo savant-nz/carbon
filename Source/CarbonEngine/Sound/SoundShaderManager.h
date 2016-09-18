@@ -9,8 +9,8 @@ namespace Carbon
 {
 
 /**
- * Manages all loaded sound shaders with reference counting, the sound shaders are applied to sound sources in the sound layer.
- * See the SoundShader and SoundInterface classes for details.
+ * Manages all loaded sound shaders with reference counting, the sound shaders are applied to sound sources in the sound
+ * layer. See the SoundShader and SoundInterface classes for details.
  */
 class CARBON_API SoundShaderManager : private Noncopyable
 {
@@ -22,16 +22,16 @@ public:
     void clear();
 
     /**
-     * Takes a reference to a sound shader, the sound shader will be loaded if it isn't currently being used or the reference
-     * count of the already loaded sound shader will be increased. The reference to the sound shader that is taken by this
-     * method must always be released using SoundShaderManager::releaseSoundShader(). Returns a pointer to the sound shader
-     * object.
+     * Takes a reference to a sound shader, the sound shader will be loaded if it isn't currently being used or the
+     * reference count of the already loaded sound shader will be increased. The reference to the sound shader that is
+     * taken by this method must always be released using SoundShaderManager::releaseSoundShader(). Returns a pointer to
+     * the sound shader object.
      */
     const SoundShader* setupSoundShader(const String& name);
 
     /**
-     * Releases a sound shader reference that was returned by SoundShaderManager::setupSoundShader(). Releasing a null pointer
-     * is a no-op.
+     * Releases a sound shader reference that was returned by SoundShaderManager::setupSoundShader(). Releasing a null
+     * pointer is a no-op.
      */
     void releaseSoundShader(const SoundShader* soundShader);
 

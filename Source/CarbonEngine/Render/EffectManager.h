@@ -19,8 +19,8 @@ public:
 
     /**
      * Parses all the .effect files in the effects directory and loads in all defined effects. By default
-     * Effect::updateActiveShader() will be called on each loaded effect, but this can be skipped if no rendering is going to be
-     * done (this is used by exporters).
+     * Effect::updateActiveShader() will be called on each loaded effect, but this can be skipped if no rendering is
+     * going to be done (this is used by exporters).
      */
     void loadEffects(bool updateActiveShaders = true);
 
@@ -40,8 +40,8 @@ public:
     Effect* getEffect(const String& name);
 
     /**
-     * Returns the active shader for the given effect by calling its Effect::getActiveShader() method. This is a helper method
-     * that returns null if the effect doesn't exist.
+     * Returns the active shader for the given effect by calling its Effect::getActiveShader() method. This is a helper
+     * method that returns null if the effect doesn't exist.
      */
     Shader* getEffectActiveShader(const String& name);
 

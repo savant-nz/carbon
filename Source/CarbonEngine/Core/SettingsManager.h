@@ -12,10 +12,11 @@ namespace Carbon
 
 /**
  * An interface for handling persistent settings. Settings are identified by a string and are mainly used to store user
- * preferences. Settings are read in from a settings file on startup, can be altered at runtime, and are then saved back to the
- * file on shutdown. The location of the settings file is in the current user's directory and varies depending on the platform.
- * The name of the settings file is based on the client name that was passed to the Globals::initializeEngine() function at
- * startup, which enables different clients of the engine to have separate non-overlapping settings files.
+ * preferences. Settings are read in from a settings file on startup, can be altered at runtime, and are then saved back
+ * to the file on shutdown. The location of the settings file is in the current user's directory and varies depending on
+ * the platform. The name of the settings file is based on the client name that was passed to the
+ * Globals::initializeEngine() function at startup, which enables different clients of the engine to have separate
+ * non-overlapping settings files.
  */
 class CARBON_API SettingsManager : private Noncopyable
 {
@@ -34,35 +35,40 @@ public:
 #endif
 
     /**
-     * Loads all the settings from the settings file for this application into this class. This method is only allowed to be run
-     * once, subsequent calls are no-ops, and it is called automatically on startup by Globals::initializeEngine(). This method
-     * does nothing if local file system access was not included in the build.
+     * Loads all the settings from the settings file for this application into this class. This method is only allowed
+     * to be run once, subsequent calls are no-ops, and it is called automatically on startup by
+     * Globals::initializeEngine(). This method does nothing if local file system access was not included in the build.
      */
     void load();
 
     /**
-     * Returns the current value for the given boolean setting, if the setting is not set then \a defaultValue is returned.
+     * Returns the current value for the given boolean setting, if the setting is not set then \a defaultValue is
+     * returned.
      */
     bool getBoolean(const String& name, bool defaultValue = false) const;
 
     /**
-     * Returns the current value for the given integer setting, if the setting is not set then \a defaultValue is returned.
+     * Returns the current value for the given integer setting, if the setting is not set then \a defaultValue is
+     * returned.
      */
     unsigned int getInteger(const String& name, unsigned int defaultValue = 0) const;
 
     /**
-     * Returns the current value for the given float setting, if the setting is not set then \a defaultValue is returned.
+     * Returns the current value for the given float setting, if the setting is not set then \a defaultValue is
+     * returned.
      */
     float getFloat(const String& name, float defaultValue = 0.0f) const;
 
     /**
-     * Returns the current value for the given color setting, if the setting is not set then \a defaultValue is returned.
+     * Returns the current value for the given color setting, if the setting is not set then \a defaultValue is
+     * returned.
      */
     Color getColor(const String& name, const Color& defaultValue = Color::Zero) const;
 
     /**
-     * Sets the value of a single named setting. \a name cannot be empty and may only contain numbers, letters and the period
-     * character. \a value may contain any characters except the double quote, \\r and \\n characters. Returns success flag.
+     * Sets the value of a single named setting. \a name cannot be empty and may only contain numbers, letters and the
+     * period character. \a value may contain any characters except the double quote, \\r and \\n characters. Returns
+     * success flag.
      */
     bool set(const String& name, const String& value);
 
@@ -82,9 +88,9 @@ private:
 };
 
 /**
- * Registers a global setting with the given name that will automatically load into the specified variable on startup and then
- * save that variable's final value on shutdown, which means the variable's value will persist across executions of the engine.
- * \a Type must be Boolean, Integer, Float or Color.
+ * Registers a global setting with the given name that will automatically load into the specified variable on startup
+ * and then save that variable's final value on shutdown, which means the variable's value will persist across
+ * executions of the engine. \a Type must be Boolean, Integer, Float or Color.
  */
 #define CARBON_PERSISTENT_SETTING(Name, Type, Variable, DefaultValue)                               \
     CARBON_UNIQUE_NAMESPACE                                                                         \

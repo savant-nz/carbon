@@ -31,13 +31,14 @@ enum BlendFactor
 /**
  * Converts a human readable string into a blending factor, the string must be one of Zero, One, SourceColor,
  * OneMinusSourceColor, DestinationColor, OneMinusDestinationColor, SourceAlpha, OneMinusSourceAlpha, DestinationAlpha,
- * OneMinusDestinationAlpha. Case insensitive. If the string isn't recognized then an error is reported and One is returned.
+ * OneMinusDestinationAlpha. Case insensitive. If the string isn't recognized then an error is reported and One is
+ * returned.
  */
 extern CARBON_API BlendFactor convertBlendFactorStringToEnum(const String& blendFactor);
 
 /**
- * Comparision functions available when doing depth testing and alpha testing, the name describes what comparison is done on the
- * incoming value to determine whether the test passes or fails.
+ * Comparision functions available when doing depth testing and alpha testing, the name describes what comparison is
+ * done on the incoming value to determine whether the test passes or fails.
  */
 enum CompareFunction
 {
@@ -145,15 +146,15 @@ public:
     CompareFunction getCompareFunction() const { return compareFunction_; }
 
     /**
-     * Returns the reference value to use in the stencil test comparison, the value in the stencil buffer is compared to this
-     * reference value using the chosen comparison function and the result of that test determines whether the stencil test
-     * passes or fails.
+     * Returns the reference value to use in the stencil test comparison, the value in the stencil buffer is compared to
+     * this reference value using the chosen comparison function and the result of that test determines whether the
+     * stencil test passes or fails.
      */
     unsigned int getReferenceValue() const { return referenceValue_; }
 
     /**
-     * Returns the mask that is bitwise ANDed with both the reference value and the value in the stencil buffer prior to doing
-     * any comparison that may be specified by the compare function.
+     * Returns the mask that is bitwise ANDed with both the reference value and the value in the stencil buffer prior to
+     * doing any comparison that may be specified by the compare function.
      */
     unsigned int getMask() const { return mask_; }
 
@@ -162,7 +163,8 @@ public:
      */
     bool operator!=(const StencilTestSetup& other) const
     {
-        return compareFunction_ != other.compareFunction_ || referenceValue_ != other.referenceValue_ || mask_ != other.mask_;
+        return compareFunction_ != other.compareFunction_ || referenceValue_ != other.referenceValue_ ||
+            mask_ != other.mask_;
     }
 
     /**
@@ -194,28 +196,32 @@ enum StencilBufferOperation
     ZeroStencilBufferValue,
 
     /**
-     * Replaces the current value in the stencil buffer with the reference value specified in the current stencil test setup.
+     * Replaces the current value in the stencil buffer with the reference value specified in the current stencil test
+     * setup.
      */
     ReplaceStencilBufferValueWithReferenceValue,
 
     /**
-     * Increments the the current value in the stencil buffer by one, clamping to the maximum value if integer overflow occurs.
+     * Increments the the current value in the stencil buffer by one, clamping to the maximum value if integer overflow
+     * occurs.
      */
     IncrementStencilBufferValue,
 
     /**
-     * Decrements the the current value in the stencil buffer by one, clamping to the minimum value if integer underflow occurs.
+     * Decrements the the current value in the stencil buffer by one, clamping to the minimum value if integer underflow
+     * occurs.
      */
     DecrementStencilBufferValue,
 
     /**
-     * Increments the the current value in the stencil buffer by one, wrapping around to zero if integer overflow occurs.
+     * Increments the the current value in the stencil buffer by one, wrapping around to zero if integer overflow
+     * occurs.
      */
     IncrementStencilBufferValueAllowingWrapAround,
 
     /**
-     * Decrements the the current value in the stencil buffer by one, wrapping around to the maximum value if integer underflow
-     * occurs.
+     * Decrements the the current value in the stencil buffer by one, wrapping around to the maximum value if integer
+     * underflow occurs.
      */
     DecrementStencilBufferValueAllowingWrapAround,
 
@@ -226,8 +232,9 @@ enum StencilBufferOperation
 };
 
 /**
- * Describes a set of three stencil operations that specify what operations to take in the event that a fragment fails the
- * stencil test, passes the stencil test but fails the depth test, and passes both the stencil test and the depth test.
+ * Describes a set of three stencil operations that specify what operations to take in the event that a fragment fails
+ * the stencil test, passes the stencil test but fails the depth test, and passes both the stencil test and the depth
+ * test.
  */
 class CARBON_API StencilOperations
 {
@@ -252,12 +259,14 @@ public:
     StencilBufferOperation getStencilTestFailOperation() const { return stencilTestFailOperation_; }
 
     /**
-     * Returns the stencil buffer operation to carry out when a fragment passes the stencil test but fails the depth test.
+     * Returns the stencil buffer operation to carry out when a fragment passes the stencil test but fails the depth
+     * test.
      */
     StencilBufferOperation getDepthTestFailOperation() const { return depthTestFailOperation_; }
 
     /**
-     * Returns the stencil buffer operation to carry out when a fragment passes both the stencil test and the depth test.
+     * Returns the stencil buffer operation to carry out when a fragment passes both the stencil test and the depth
+     * test.
      */
     StencilBufferOperation getBothTestsPassOperation() const { return bothTestsPassOperation_; }
 
@@ -276,7 +285,8 @@ public:
      */
     operator UnicodeString() const
     {
-        return UnicodeString() << stencilTestFailOperation_ << " " << depthTestFailOperation_ << " " << bothTestsPassOperation_;
+        return UnicodeString() << stencilTestFailOperation_ << " " << depthTestFailOperation_ << " "
+                               << bothTestsPassOperation_;
     }
 
 private:
@@ -286,7 +296,8 @@ private:
     StencilBufferOperation bothTestsPassOperation_ = KeepStencilBufferValue;
 };
 
-// These functions allow the enumerations defined in this file to be streamed directly onto a string in a human-readable format
+// These functions allow the enumerations defined in this file to be streamed directly onto a string in a human-readable
+// format
 extern CARBON_API UnicodeString& operator<<(UnicodeString& s, BlendFactor blendFactor);
 extern CARBON_API UnicodeString& operator<<(UnicodeString& s, CompareFunction compareFunction);
 extern CARBON_API UnicodeString& operator<<(UnicodeString& s, StencilBufferOperation stencilBufferOperation);

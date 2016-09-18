@@ -27,7 +27,8 @@ namespace Carbon
 void Renderer::drawDebugOverlays()
 {
     // Skip this method if no overlays are active
-    if (!FrameTimers::Enabled && debugTexture_.name.length() == 0 && !showFPS_ && !showDebugInfo_ && !console().isVisible())
+    if (!FrameTimers::Enabled && debugTexture_.name.length() == 0 && !showFPS_ && !showDebugInfo_ &&
+        !console().isVisible())
         return;
 
     // Camera for rendering the debug overlays
@@ -122,11 +123,13 @@ void Renderer::drawConsole(const Font* font, float fontSize, float padding, Effe
     // Draw history items
     for (auto i = 0U; i < outputLineCount; i++)
     {
-        auto& historyItem = console().getHistoryItem(console().getHistorySize() - (console().getHistoryOffsetY() + i) - 1);
+        auto& historyItem =
+            console().getHistoryItem(console().getHistorySize() - (console().getHistoryOffsetY() + i) - 1);
         if (historyItem.length() > console().getHistoryOffsetX())
         {
             q->getItems().addChangeTransformItem(Vec3(padding, offset + ((i + 1) * fontSize)));
-            q->getItems().addDrawTextItem(font, fontSize, historyItem.substr(console().getHistoryOffsetX()), consoleTextColor);
+            q->getItems().addDrawTextItem(font, fontSize, historyItem.substr(console().getHistoryOffsetX()),
+                                          consoleTextColor);
         }
     }
 
@@ -137,7 +140,8 @@ void Renderer::drawConsole(const Font* font, float fontSize, float padding, Effe
     // Draw cursor
     if (console().getTextInput().isCursorOn(false))
     {
-        auto s = console().getPrompt() + console().getCurrentText().substr(0, console().getTextInput().getCursorPosition());
+        auto s =
+            console().getPrompt() + console().getCurrentText().substr(0, console().getTextInput().getCursorPosition());
 
         auto xOffset = font->getWidth(s, fontSize) - font->getCharacterPreMove('|', fontSize);
 
@@ -238,8 +242,8 @@ void Renderer::drawFrameTimersGraph(const Font* font, float fontSize)
             {
                 for (auto j = 0U; j < FrameTimers::HistorySize; j++)
                 {
-                    *itPosition++ =
-                        Vec3(float(FrameTimers::HistorySize - j - 1) * sampleWidth, timer->getHistoryEntry(j) * graphHeight);
+                    *itPosition++ = Vec3(float(FrameTimers::HistorySize - j - 1) * sampleWidth,
+                                         timer->getHistoryEntry(j) * graphHeight);
                     *itColor++ = timer->getColor().toRGBA8();
                 }
             }
@@ -298,7 +302,8 @@ void Renderer::drawFrameTimersGraph(const Font* font, float fontSize)
         auto q = EffectQueue(0, baseSurfaceEffect_);
 
         q.useParams(baseDiffuseVertexColorParams);
-        q.setSortKey(baseSurfaceEffect_->getActiveShader()->getSortKey(baseDiffuseVertexColorParams, ParameterArray::Empty));
+        q.setSortKey(
+            baseSurfaceEffect_->getActiveShader()->getSortKey(baseDiffuseVertexColorParams, ParameterArray::Empty));
         q.getItems().addChangeTransformItem(Vec3(borderSize, borderSize));
         q.getItems().addDrawGeometryChunkItem(timerGraphAxesGeometryChunk_);
 
@@ -319,7 +324,8 @@ void Renderer::drawFrameTimersGraph(const Font* font, float fontSize)
         xOffset = Math::clamp01(xOffset) * sampleWidth;
 
         q.useParams(baseDiffuseVertexColorParams);
-        q.setSortKey(baseSurfaceEffect_->getActiveShader()->getSortKey(baseDiffuseVertexColorParams, ParameterArray::Empty));
+        q.setSortKey(
+            baseSurfaceEffect_->getActiveShader()->getSortKey(baseDiffuseVertexColorParams, ParameterArray::Empty));
         q.getItems().addChangeTransformItem(Vec3(borderSize - xOffset, borderSize));
         q.getItems().addDrawGeometryChunkItem(timerResultsGeometryChunk_);
 
@@ -343,8 +349,9 @@ void Renderer::drawFrameTimersGraph(const Font* font, float fontSize)
         static const auto axisLabels = std::array<UnicodeString, 3>{{"25%", "50%", "75%"}};
         for (auto i = 0U; i < 3; i++)
         {
-            q.getItems().addChangeTransformItem(Vec3(borderSize - font->getWidth(axisLabels[i], fontSize) - 2.0f,
-                                                     ceilf(borderSize + float(i + 1) * graphHeight * 0.25f - fontSize * 0.5f)));
+            q.getItems().addChangeTransformItem(
+                Vec3(borderSize - font->getWidth(axisLabels[i], fontSize) - 2.0f,
+                     ceilf(borderSize + float(i + 1) * graphHeight * 0.25f - fontSize * 0.5f)));
             q.getItems().addDrawTextItem(font, fontSize, axisLabels[i], Color::White);
         }
 
@@ -445,8 +452,8 @@ void Renderer::drawDebugTexture(EffectQueueArray& queues)
 
     // Set the texture frame to view and and clamp to the chosen mipmap level
     t->setCurrentFrame(debugTexture_.frame);
-    graphics().setTextureBaseAndMaximumMipmapLevels(t->getActiveTextureObject(), t->getTextureType(), debugTexture_.mipmap,
-                                                    debugTexture_.mipmap);
+    graphics().setTextureBaseAndMaximumMipmapLevels(t->getActiveTextureObject(), t->getTextureType(),
+                                                    debugTexture_.mipmap, debugTexture_.mipmap);
 
     States::StateCacher::push();
 
@@ -479,7 +486,8 @@ void Renderer::drawDebugTexture(EffectQueueArray& queues)
 
         if (image.getPixelFormat() == Image::UnknownPixelFormat)
             lines[1] = "Error: unknown pixel format";
-        else if ((!image.hasMipmaps() && debugTexture_.mipmap) || (image.hasMipmaps() && debugTexture_.mipmap >= mipmapCount))
+        else if ((!image.hasMipmaps() && debugTexture_.mipmap) ||
+                 (image.hasMipmaps() && debugTexture_.mipmap >= mipmapCount))
             lines[1] = "Error: nonexistent mipmap selected";
         else
         {
@@ -507,8 +515,8 @@ void Renderer::drawDebugTextureSurface(const Texture* texture, float scale)
     params[Parameter::diffuseColor].setColor(Color::White);
     params[Parameter::diffuseMap].setPointer(static_cast<const Texture*>(getWhiteTexture()));
 
-    // To view the alpha channel of a texture first a solid white background is drawn and then the texture itself is rendered
-    // with a blending mode that multiplies the framebuffer by the incoming texture alpha
+    // To view the alpha channel of a texture first a solid white background is drawn and then the texture itself is
+    // rendered with a blending mode that multiplies the framebuffer by the incoming texture alpha
 
     auto shader = baseSurfaceEffect_->getActiveShader();
     if (!shader || !shader->setup())
@@ -558,8 +566,8 @@ void Renderer::drawDebugTextureSurfaceGeometry(const Texture* texture, float sca
     }
     else if (texture->getTextureType() == GraphicsInterface::TextureCubemap)
     {
-        // TODO: Add back support for debug rendering of cubemap textures, the original implementation was removed when OpenGL
-        // ES 2 support was added in r4684
+        // TODO: Add back support for debug rendering of cubemap textures, the original implementation was removed when
+        // OpenGL ES 2 support was added in r4684
     }
 }
 

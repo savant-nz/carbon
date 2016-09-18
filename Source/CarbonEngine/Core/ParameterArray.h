@@ -22,10 +22,10 @@ public:
     static const ParameterArray Empty;
 
     /**
-     * A Lookup object is a small class that is used to speed up the process of looking up a Parameter in a ParameterArray. A
-     * Lookup object is created to be a lookup of a specified parameter name, e.g. "diffuseColor", which it does by assigning a
-     * unique index value to each parameter name. The same Lookup object can be used to look up its parameter in any
-     * ParameterArray instance.
+     * A Lookup object is a small class that is used to speed up the process of looking up a Parameter in a
+     * ParameterArray. A Lookup object is created to be a lookup of a specified parameter name, e.g. "diffuseColor",
+     * which it does by assigning a unique index value to each parameter name. The same Lookup object can be used to
+     * look up its parameter in any ParameterArray instance.
      */
     class Lookup
     {
@@ -37,8 +37,8 @@ public:
         explicit Lookup(const String& name);
 
         /**
-         * Returns the name of the parameter that this Lookup instance actually looks up in a ParameterArray, i.e. the \a name
-         * that was passed to its constructor.
+         * Returns the name of the parameter that this Lookup instance actually looks up in a ParameterArray, i.e. the
+         * \a name that was passed to its constructor.
          */
         const String& getName() const;
 
@@ -97,12 +97,14 @@ public:
     bool empty() const { return size_ == 0; }
 
     /**
-     * Returns the parameter for the given Lookup. If no such parameter exists then a reference to Parameter::Empty is returned.
+     * Returns the parameter for the given Lookup. If no such parameter exists then a reference to Parameter::Empty is
+     * returned.
      */
     const Parameter& operator[](const Lookup& lookup) const { return get(lookup); }
 
     /**
-     * Returns the parameter with the given name. If no such parameter exists then a reference to Parameter::Empty is returned.
+     * Returns the parameter with the given name. If no such parameter exists then a reference to Parameter::Empty is
+     * returned.
      */
     const Parameter& operator[](const String& name) const { return get(Lookup(name)); }
 
@@ -122,7 +124,8 @@ public:
     const Parameter& get(const Lookup& lookup) const;
 
     /**
-     * Returns the parameter for the given Lookup. If no such parameter exists then the given fallback value is returned.
+     * Returns the parameter for the given Lookup. If no such parameter exists then the given fallback value is
+     * returned.
      */
     const Parameter& get(const Lookup& lookup, const Parameter& fallback) const;
 
@@ -162,9 +165,9 @@ public:
     void clear();
 
     /**
-     * Takes a second ParameterArray class and merges its contents into this one. If there is a Parameter with the same name in
-     * both this ParameterArray and the passed ParameterArray then the one passed in overwrites the one currently stored in this
-     * ParameterArray.
+     * Takes a second ParameterArray class and merges its contents into this one. If there is a Parameter with the same
+     * name in both this ParameterArray and the passed ParameterArray then the one passed in overwrites the one
+     * currently stored in this ParameterArray.
      */
     void merge(const ParameterArray& parameters);
 
@@ -257,7 +260,8 @@ public:
         const Vector<Parameter*>& entries_;
         unsigned int position_ = 0;
 
-        ForwardIterator(const Vector<Parameter*>& entries, unsigned int position) : entries_(entries), position_(position)
+        ForwardIterator(const Vector<Parameter*>& entries, unsigned int position)
+            : entries_(entries), position_(position)
         {
             advanceToNextParameter();
         }

@@ -13,7 +13,8 @@ function OnFinish() {
       return VS_E_WIZARDBACKBUTTONPRESS;
     }
 
-    // Create a safe project name and add it as a symbol. The name 'CarbonApplication' is avoided because it causes errors.
+    // Create a safe project name and add it as a symbol. The name 'CarbonApplication' is avoided because it causes
+    // errors.
     if (projectName === 'CarbonApplication') {
       projectName = 'MyCarbonApplication';
     }

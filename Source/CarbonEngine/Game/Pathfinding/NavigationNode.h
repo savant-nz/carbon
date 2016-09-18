@@ -24,18 +24,20 @@ public:
     const Vector<NavigationEdge*>& getEdges() const { return edges_; }
 
     /**
-     * Returns the neighbor of this node across the specified edge, \a edgeIndex should be less than the number of edges.
+     * Returns the neighbor of this node across the specified edge, \a edgeIndex should be less than the number of
+     * edges.
      */
     const NavigationNode* getNeighbor(unsigned int edgeIndex) const;
 
     /**
-     * Returns the neighbor of this node across the specified edge, \a edgeIndex should be less than the number of edges.
+     * Returns the neighbor of this node across the specified edge, \a edgeIndex should be less than the number of
+     * edges.
      */
     NavigationNode* getNeighbor(unsigned int edgeIndex);
 
     /**
-     * Returns the edge that connects this node to the passed neighbor node, if the passed node is not a direct neighbor of this
-     * node then null is returned.
+     * Returns the edge that connects this node to the passed neighbor node, if the passed node is not a direct neighbor
+     * of this node then null is returned.
      */
     NavigationEdge* getEdgeToNeighbor(const NavigationNode& node) const;
 
@@ -55,14 +57,14 @@ public:
     void setPosition(const Vec3& position) { position_ = position; }
 
     /**
-     * Returns whether this node is traversable by pathfinding algorithms, i.e. whether this node can be included in a path
-     * through this graph.
+     * Returns whether this node is traversable by pathfinding algorithms, i.e. whether this node can be included in a
+     * path through this graph.
      */
     bool isTraversable() const { return isTraversable_; }
 
     /**
-     * Sets whether this node is traversable by pathfinding algorithms, i.e. whether this node can be included in a path through
-     * this graph.
+     * Sets whether this node is traversable by pathfinding algorithms, i.e. whether this node can be included in a path
+     * through this graph.
      */
     void setTraversable(bool traversable) { isTraversable_ = traversable; }
 

@@ -85,8 +85,9 @@ void FileWriter::setLastError(FileSystemError error) const
             events().queueEvent(new FileSystemErrorEvent(error, getName()));
         else
         {
-            // Couldn't send file system error because the engine isn't initialized. An error can't be logged because this
-            // situation can happen as part of log initialization, and so logging here could cause infinite recursion.
+            // Couldn't send file system error because the engine isn't initialized. An error can't be logged because
+            // this situation can happen as part of log initialization, and so logging here could cause infinite
+            // recursion.
         }
     }
 
@@ -328,8 +329,8 @@ void FileWriter::writeText(const UnicodeString& text, unsigned int newlineCount)
         writeBytes("\n", 1);
 }
 
-// Writes the section begin ID, major version, minor version and four placeholder bytes for the section size that will be filled
-// in later by the call to FileWriter::endVersionedSection()
+// Writes the section begin ID, major version, minor version and four placeholder bytes for the section size that will
+// be filled in later by the call to FileWriter::endVersionedSection()
 void FileWriter::beginVersionedSection(const VersionInfo& versionInfo)
 {
     write(FileSystem::SectionBeginID);

@@ -75,8 +75,8 @@ extern SimpleTransform maxMatrix3ToSimpleTransform(::Matrix3 matrix);
 extern Color maxColorToColor(::Color color);
 
 /**
- * This function fixes Max's habit of uppercasing the file extension. Parameters are the export filename received from Max and
- * the extension being used for the export.
+ * This function fixes Max's habit of uppercasing the file extension. Parameters are the export filename received from
+ * Max and the extension being used for the export.
  */
 extern String fixMaxFilename(const String& filename, const String& extension);
 

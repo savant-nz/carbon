@@ -9,21 +9,23 @@ namespace Carbon
 {
 
 /**
- * Provides a generic system for registering multiple implementations of the specified \a InterfaceClass, each of which is
- * assigned a priority. This is used for managing the various implementations of PlatformInterface, GraphicsInterface,
- * SoundInterface and PhysicsInterface, and plays a central role in providing API and platform independence.
+ * Provides a generic system for registering multiple implementations of the specified \a InterfaceClass, each of which
+ * is assigned a priority. This is used for managing the various implementations of PlatformInterface,
+ * GraphicsInterface, SoundInterface and PhysicsInterface, and plays a central role in providing API and platform
+ * independence.
  *
- * An implementation is created by InterfaceRegistry::create() by looking at all registered implementations, ordering them by
- * priority, and then trying to create and initialize each one until an implementation is successfully initialized. See
- * CARBON_REGISTER_INTERFACE_IMPLEMENTATION() for more details. The priority system can be overridden by setting
- * InterfaceRegistry::OverrideImplementationName.
+ * An implementation is created by InterfaceRegistry::create() by looking at all registered implementations, ordering
+ * them by priority, and then trying to create and initialize each one until an implementation is successfully
+ * initialized. See CARBON_REGISTER_INTERFACE_IMPLEMENTATION() for more details. The priority system can be overridden
+ * by setting InterfaceRegistry::OverrideImplementationName.
  */
 template <typename InterfaceClass> class CARBON_API InterfaceRegistry
 {
 public:
 
     /**
-     * Holds details on an interface implementation that has been registered using InterfaceRegistry::registerImplementation().
+     * Holds details on an interface implementation that has been registered using
+     * InterfaceRegistry::registerImplementation().
      */
     class Implementation
     {
@@ -47,10 +49,11 @@ public:
         unsigned int getPriority() const { return priority_; }
 
         /**
-         * Sets the current priority of this implementation. Note that changes to priority will only take effect during the next
-         * call to InterfaceRegistry::create(). The default behavior is for higher priorty implementations get first go at being
-         * created/initialized, however if InterfaceRegistry::OverrideImplementationName is set then the implementation with
-         * that name gets first go, followed by all remaining implementations in order of priority.
+         * Sets the current priority of this implementation. Note that changes to priority will only take effect during
+         * the next call to InterfaceRegistry::create(). The default behavior is for higher priorty implementations get
+         * first go at being created/initialized, however if InterfaceRegistry::OverrideImplementationName is set then
+         * the implementation with that name gets first go, followed by all remaining implementations in order of
+         * priority.
          */
         void setPriority(unsigned int priority) { priority_ = priority; }
 
@@ -99,17 +102,18 @@ public:
     }
 
     /**
-     * When this is set it overrides the priority system used to order the registered implementations, this means that if the
-     * name of an implementation is specified by this variable then that implementation will be given top priority when calling
-     * InterfaceRegistry::create(). Applications that need to force the selection of a specific implementation or backend should
-     * not set this value directly and should instead use the CARBON_USE_INTERFACE_IMPLEMENTATION() macro.
+     * When this is set it overrides the priority system used to order the registered implementations, this means that
+     * if the name of an implementation is specified by this variable then that implementation will be given top
+     * priority when calling InterfaceRegistry::create(). Applications that need to force the selection of a specific
+     * implementation or backend should not set this value directly and should instead use the
+     * CARBON_USE_INTERFACE_IMPLEMENTATION() macro.
      */
     static char OverrideImplementationName[256];
 
     /**
      * Iterates through all registered implementations in order of priority and returns the first one that successfully
-     * instantiates and initializes. If InterfaceRegistry::OverrideImplementationName is set then the standard priority ordering
-     * can be circumvented.
+     * instantiates and initializes. If InterfaceRegistry::OverrideImplementationName is set then the standard priority
+     * ordering can be circumvented.
      */
     static InterfaceClass* create()
     {
@@ -123,7 +127,8 @@ public:
             return nullptr;
 
         // Sort implementations by priority
-        implementations_->sortBy([](Implementation* i0, Implementation* i1) { return i0->getPriority() > i1->getPriority(); });
+        implementations_->sortBy(
+            [](Implementation* i0, Implementation* i1) { return i0->getPriority() > i1->getPriority(); });
 
         // If an override implementation is specified then put it first in the list
         for (auto i = 0U; i < implementations_->size(); i++)
@@ -143,7 +148,10 @@ public:
             if (instance && setup(instance))
             {
                 if (strlen(OverrideImplementationName) && implementation->getName() != OverrideImplementationName)
-                    LOG_WARNING_WITHOUT_CALLER << "The override implementation was not used: " << OverrideImplementationName;
+                {
+                    LOG_WARNING_WITHOUT_CALLER << "The override implementation was not used: "
+                                               << OverrideImplementationName;
+                }
 
                 activeImplementation_ = implementation;
                 activeInstance_ = instance;
@@ -210,9 +218,9 @@ private:
     static Implementation* activeImplementation_;
     static InterfaceClass* activeInstance_;
 
-    // This method is called by InterfaceRegistry::create() after it creates a new implementation in order to determine whether
-    // the implementation is usable. This method must be implemented for each type that this class is used with, and if it
-    // returns false then InterfaceRegistry::create() will not use the passed interface.
+    // This method is called by InterfaceRegistry::create() after it creates a new implementation in order to determine
+    // whether the implementation is usable. This method must be implemented for each type that this class is used with,
+    // and if it returns false then InterfaceRegistry::create() will not use the passed interface.
     static bool setup(InterfaceClass* i);
 };
 
@@ -221,8 +229,8 @@ private:
  */
 
 /**
- * This macro instantiates an InterfaceRegistry for the given \a Interface class, the static members it needs are defined so
- * that they can be linked against. The macro should be followed immediately by the definition of the
+ * This macro instantiates an InterfaceRegistry for the given \a Interface class, the static members it needs are
+ * defined so that they can be linked against. The macro should be followed immediately by the definition of the
  * InterfaceRegistry::setup() method that is specialized for the given \a Interface class.
  */
 #define CARBON_DEFINE_INTERFACE_REGISTRY(InterfaceClass)                                                   \
@@ -256,21 +264,23 @@ private:
     CARBON_UNIQUE_NAMESPACE_END
 
 /**
- * If an application wants to skip the default selection of an interface implementation based on priority ordering and instead
- * just specify the implementation to use then it can do so using this CARBON_USE_INTERFACE_IMPLEMENTATION() macro. The macro
- * should be placed in the application's main source file, e.g. alongside its include of `CarbonEngine/EntryPoint.h`.
+ * If an application wants to skip the default selection of an interface implementation based on priority ordering and
+ * instead just specify the implementation to use then it can do so using this CARBON_USE_INTERFACE_IMPLEMENTATION()
+ * macro. The macro should be placed in the application's main source file, e.g. alongside its include of
+ * `CarbonEngine/EntryPoint.h`.
  */
-#define CARBON_USE_INTERFACE_IMPLEMENTATION(InterfaceClass, ImplementationClass)                                           \
-    CARBON_UNIQUE_NAMESPACE                                                                                                \
-    {                                                                                                                      \
-        typedef Carbon::InterfaceRegistry<InterfaceClass> RegistryClass;                                                   \
-        static struct UseInterfaceImplementation                                                                           \
-        {                                                                                                                  \
-            UseInterfaceImplementation()                                                                                   \
-            {                                                                                                              \
-                memcpy(RegistryClass::OverrideImplementationName, #ImplementationClass, strlen(#ImplementationClass) + 1); \
-            }                                                                                                              \
-        } useInterfaceImplementation;                                                                                      \
-    }                                                                                                                      \
+#define CARBON_USE_INTERFACE_IMPLEMENTATION(InterfaceClass, ImplementationClass)        \
+    CARBON_UNIQUE_NAMESPACE                                                             \
+    {                                                                                   \
+        typedef Carbon::InterfaceRegistry<InterfaceClass> RegistryClass;                \
+        static struct UseInterfaceImplementation                                        \
+        {                                                                               \
+            UseInterfaceImplementation()                                                \
+            {                                                                           \
+                memcpy(RegistryClass::OverrideImplementationName, #ImplementationClass, \
+                       strlen(#ImplementationClass) + 1);                               \
+            }                                                                           \
+        } useInterfaceImplementation;                                                   \
+    }                                                                                   \
     CARBON_UNIQUE_NAMESPACE_END
 }

@@ -49,7 +49,8 @@ void OpenGL41::deleteRenderTarget(RenderTargetObject renderTargetObject)
     renderTarget = nullptr;
 }
 
-bool OpenGL41::setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject, const Vector<TextureObject>& textures,
+bool OpenGL41::setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject,
+                                                  const Vector<TextureObject>& textures,
                                                   const Vector<int>& cubemapFaces)
 {
     if (!renderTargetObject)
@@ -80,7 +81,8 @@ bool OpenGL41::setRenderTargetColorBufferTextures(RenderTargetObject renderTarge
         // Check whether the hardware state needs updating
         if (renderTarget->colorTextures[i] != colorTexture || renderTarget->colorTextureTargets[i] != textureTarget)
         {
-            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, textureTarget, getOpenGLTexture(colorTexture), 0);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, textureTarget,
+                                   getOpenGLTexture(colorTexture), 0);
             CARBON_CHECK_OPENGL_ERROR(glFramebufferTexture2D);
 
             renderTarget->colorTextures[i] = colorTexture;
@@ -95,8 +97,8 @@ bool OpenGL41::setRenderTargetColorBufferTextures(RenderTargetObject renderTarge
     glDrawBuffers(maximumDrawBuffers_, drawBuffers.getData());
     CARBON_CHECK_OPENGL_ERROR(glDrawBuffers);
 
-    // Set the read buffer to the first color attachment (i.e. first texture) if it is specified, otherwise there is no read
-    // buffer
+    // Set the read buffer to the first color attachment (i.e. first texture) if it is specified, otherwise there is no
+    // read buffer
     glReadBuffer(textures.size() ? GL_COLOR_ATTACHMENT0 : GL_NONE);
     CARBON_CHECK_OPENGL_ERROR(glReadBuffer);
 

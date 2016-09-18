@@ -20,8 +20,8 @@ LightmapPacker::LightmapPacker(unsigned int width, unsigned int height, Image::P
 
 bool LightmapPacker::addLightmap(unsigned int width, unsigned int height, const byte_t* data, Rect& rect)
 {
-    // There is a 1 pixel border around each lightmap which gets filled with the border colors of the lightmap This avoids
-    // texture filtering artifacts in texture sampling
+    // There is a 1 pixel border around each lightmap which gets filled with the border colors of the lightmap. This
+    // avoids texture filtering artifacts in texture sampling.
 
     auto spacedWidth = width + 2;
     auto spacedHeight = height + 2;
@@ -77,7 +77,8 @@ bool LightmapPacker::addLightmap(unsigned int width, unsigned int height, const 
                 }
 
                 // Copy the top and bottom of the lightmap data into the lightmap border
-                memcpy(&image_.getDataForFrame(0)[((y - 1) * image_.getWidth() + x) * pixelSize], data, width * pixelSize);
+                memcpy(&image_.getDataForFrame(0)[((y - 1) * image_.getWidth() + x) * pixelSize], data,
+                       width * pixelSize);
                 memcpy(&image_.getDataForFrame(0)[((y + height) * image_.getWidth() + x) * pixelSize],
                        data + (height - 1) * width * pixelSize, width * pixelSize);
 

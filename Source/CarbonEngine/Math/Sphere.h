@@ -86,27 +86,31 @@ public:
     void merge(const Vec3& p);
 
     /**
-     * Enlarges this sphere so that the given sphere is completely contained within it. If the given sphere is already contained
-     * in this sphere then this method does nothing. The given sphere can have a scale factor applied prior to merging.
+     * Enlarges this sphere so that the given sphere is completely contained within it. If the given sphere is already
+     * contained in this sphere then this method does nothing. The given sphere can have a scale factor applied prior to
+     * merging.
      */
     void merge(const Sphere& sphere, float scale = 1.0f);
 
     /**
-     * Emits a warning if this sphere is not well formed, meaning that one or more of its parts of its definition are not finite
-     * or are huge unrealistic values.
+     * Emits a warning if this sphere is not well formed, meaning that one or more of its parts of its definition are
+     * not finite or are huge unrealistic values.
      */
     void warnIfNotWellFormed() const;
 
     /**
-     * Returns whether there is an intersection between this sphere and the passed ray, and if there is the distance along the
-     * ray to the intersection point is returned in \a t.
+     * Returns whether there is an intersection between this sphere and the passed ray, and if there is the distance
+     * along the ray to the intersection point is returned in \a t.
      */
     bool intersect(const Ray& ray, float* t = nullptr) const;
 
     /**
      * Returns whether there is an intersection between this sphere and the passed sphere.
      */
-    bool intersect(const Sphere& sphere) const { return origin_.distance(sphere.getOrigin()) < (radius_ + sphere.getRadius()); }
+    bool intersect(const Sphere& sphere) const
+    {
+        return origin_.distance(sphere.getOrigin()) < (radius_ + sphere.getRadius());
+    }
 
     /**
      * Returns whether there is an intersection between this sphere and the passed point.
@@ -114,7 +118,8 @@ public:
     bool intersect(const Vec3& point) { return (origin_ - point).length() < radius_; }
 
     /**
-     * Returns a string containing this sphere's origin and radius, the format is "(origin.x origin.y, origin.z) radius".
+     * Returns a string containing this sphere's origin and radius, the format is "(origin.x origin.y, origin.z)
+     * radius".
      */
     operator UnicodeString() const { return UnicodeString() << "(" << origin_ << ") " << radius_; }
 

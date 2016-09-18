@@ -19,9 +19,9 @@
 namespace Carbon
 {
 
-// Immediate triangles that get gathered are rendered by putting their geometry into the following geometry chunk and appending
-// a draw item to it. This geometry chunk has its draw items cleared at the start of every frame which means it will grow in
-// size as needed and never shrink back down, thus avoiding unnecessary allocations.
+// Immediate triangles that get gathered are rendered by putting their geometry into the following geometry chunk and
+// appending a draw item to it. This geometry chunk has its draw items cleared at the start of every frame which means
+// it will grow in size as needed and never shrink back down, thus avoiding unnecessary allocations.
 static auto immediateTriangleGeometry = GeometryChunk();
 static auto immediateTriangleCount = 0U;
 
@@ -52,8 +52,8 @@ GeometryGather::GeometryGather(const Vec3& cameraPosition, const ConvexHull& fru
 
 GeometryGather::~GeometryGather()
 {
-    // Now that the gather has completed it is important to unlock the vertex data so it has an opportunity to be uploaded to
-    // the graphics interface
+    // Now that the gather has completed it is important to unlock the vertex data so it has an opportunity to be
+    // uploaded to the graphics interface
     immediateTriangleGeometry.unlockVertexData();
 }
 
@@ -63,7 +63,8 @@ void GeometryGather::changeMaterial(const String& material, const ParameterArray
 
     if (materialOverrideParameters.empty())
     {
-        // Try and find an existing queue that uses the specified material, the current priority, and has no custom parameters
+        // Try and find an existing queue that uses the specified material, the current priority, and has no custom
+        // parameters
         for (auto& q : materialQueueInfos_)
         {
             if (q.queue->getPriority() == currentPriority_ && q.material == material && !q.queue->hasCustomParams() &&
@@ -160,8 +161,9 @@ void GeometryGather::addImmediateTriangles(unsigned int triangleCount)
 
         auto initialVertexCount = immediateTriangleGeometry.getVertexCount();
 
-        immediateTriangleGeometry.setVertexCount(std::max(immediateTriangleGeometry.getVertexCount() * 2,
-                                                          immediateTriangleGeometry.getVertexCount() + triangleCount * 3));
+        immediateTriangleGeometry.setVertexCount(
+            std::max(immediateTriangleGeometry.getVertexCount() * 2,
+                     immediateTriangleGeometry.getVertexCount() + triangleCount * 3));
 
         // Reset the new vertex data
         auto vertices = immediateTriangleGeometry.lockVertexData<ImmediateVertex>();
@@ -179,7 +181,8 @@ void GeometryGather::addImmediateTriangles(unsigned int triangleCount)
     }
 
     // Add a drawitem for these immediate triangles and queue it for rendering
-    immediateTriangleGeometry.appendDrawItem({GraphicsInterface::TriangleList, triangleCount * 3, immediateTriangleCount * 3});
+    immediateTriangleGeometry.appendDrawItem(
+        {GraphicsInterface::TriangleList, triangleCount * 3, immediateTriangleCount * 3});
 
     addGeometryChunk(immediateTriangleGeometry, immediateTriangleGeometry.getDrawItems().size() - 1);
 }
@@ -191,7 +194,8 @@ void GeometryGather::addImmediateTriangle(const Vec3& v0, const Vec3& v1, const 
 
     assert(immediateTriangleGeometry.isVertexDataLocked());
 
-    auto vertices = immediateTriangleGeometry.getLockedVertexDataPointer<ImmediateVertex>() + immediateTriangleCount * 3;
+    auto vertices =
+        immediateTriangleGeometry.getLockedVertexDataPointer<ImmediateVertex>() + immediateTriangleCount * 3;
 
     vertices[0].p = v0;
     vertices[0].color = color.toRGBA8();

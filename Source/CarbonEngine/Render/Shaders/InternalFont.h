@@ -51,8 +51,8 @@ public:
         States::BlendFunction = States::BlendFunctionSetup(States::SourceAlpha, States::OneMinusSourceAlpha);
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (pass == 0)
         {

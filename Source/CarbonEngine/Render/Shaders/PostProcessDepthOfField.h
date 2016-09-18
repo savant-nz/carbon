@@ -64,10 +64,13 @@ public:
             renderer().requestTemporaryTexture(States::Viewport, true, false, TextureProperties::BilinearFilter);
     }
 
-    unsigned int getPassCount(const ParameterArray& params, const ParameterArray& internalParams) const override { return 2; }
+    unsigned int getPassCount(const ParameterArray& params, const ParameterArray& internalParams) const override
+    {
+        return 2;
+    }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (activeShader)
         {
@@ -102,8 +105,8 @@ public:
         }
         else if (pass == 1)
         {
-            // Pass 2: Do depth of field by blurring between the full resolution scene texture and the downsampled and blurred
-            // scene texture according to the depth at each pixel
+            // Pass 2: Do depth of field by blurring between the full resolution scene texture and the downsampled and
+            // blurred scene texture according to the depth at each pixel
 
             program.activate();
 

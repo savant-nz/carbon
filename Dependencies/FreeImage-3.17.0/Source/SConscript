@@ -3,7 +3,8 @@
 # distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-# The build of FreeImage is done without LibJXR, LibOpenJPEG, LibRawLite, LibTIFF, and OpenEXR to reduce the static library size
+# The build of FreeImage is done without LibJXR, LibOpenJPEG, LibRawLite, LibTIFF, and OpenEXR to reduce the static
+# library size
 
 Import('env target platform')
 
@@ -16,9 +17,10 @@ excludedSources = [
     'FreeImage/PluginHDR.cpp', 'FreeImage/PluginJ2K.cpp', 'FreeImage/PluginJP2.cpp', 'FreeImage/PluginJXR.cpp',
     'FreeImage/PluginRAW.cpp', 'FreeImage/PluginTIFF.cpp', 'FreeImage/PluginWEBP.cpp',
 
-    'LibJPEG/ansi2knr.c', 'LibJPEG/cdjpeg.c', 'LibJPEG/cjpeg.c', 'LibJPEG/ckconfig.c', 'LibJPEG/djpeg.c', 'LibJPEG/example.c',
-    'LibJPEG/jmemansi.c', 'LibJPEG/jmemdos.c', 'LibJPEG/jmemdosa.asm', 'LibJPEG/jmemmac.c', 'LibJPEG/jmemname.c',
-    'LibJPEG/jpegtran.c', 'LibJPEG/rdjpgcom.c', 'LibJPEG/rdrle.c', 'LibJPEG/wrjpgcom.c', 'LibJPEG/wrrle.c'
+    'LibJPEG/ansi2knr.c', 'LibJPEG/cdjpeg.c', 'LibJPEG/cjpeg.c', 'LibJPEG/ckconfig.c', 'LibJPEG/djpeg.c',
+    'LibJPEG/example.c', 'LibJPEG/jmemansi.c', 'LibJPEG/jmemdos.c', 'LibJPEG/jmemdosa.asm', 'LibJPEG/jmemmac.c',
+    'LibJPEG/jmemname.c', 'LibJPEG/jpegtran.c', 'LibJPEG/rdjpgcom.c', 'LibJPEG/rdrle.c', 'LibJPEG/wrjpgcom.c',
+    'LibJPEG/wrrle.c'
 
     'LibPNG/example.c', 'LibPNG/pngtest.c',
 

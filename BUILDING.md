@@ -22,8 +22,8 @@ On Mac OS X:
 - Install [SCons](http://www.scons.org) using Homebrew: `brew install scons`
 
 On Ubuntu Linux:
-- Install required packages using the following command: `apt-get install g++ git libopenal-dev libgl1-mesa-dev libsdl2-dev
-  libudev-dev libxinerama-dev ruby scons`
+- Install required packages using the following command: `apt-get install g++ git libopenal-dev libgl1-mesa-dev
+  libsdl2-dev libudev-dev libxinerama-dev ruby scons`
 
 Once this setup is complete build the engine's dependencies:
 
@@ -33,8 +33,8 @@ If you are using Mac OS X and want to develop or test on iOS then build the depe
 
     ruby Dependencies/BuildDependencies.rb --platform iOS
 
-After the dependencies have been built open the Visual Studio or Xcode project file in the `Source/` directory and build and run
-the sample applications.
+After the dependencies have been built open the Visual Studio or Xcode project file in the `Source/` directory and build
+and run the sample applications.
 
 Alternatively, build and run sample applications from the command line:
 

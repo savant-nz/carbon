@@ -9,9 +9,9 @@ namespace Carbon
 {
 
 /**
- * The interpolated lookup table class allows [index, value] pairs to be added and then quickly retrieved, index values for
- * which no specific data exists will have their value calculated based on interpolation of the closest data points that are
- * present.
+ * The interpolated lookup table class allows [index, value] pairs to be added and then quickly retrieved, index values
+ * for which no specific data exists will have their value calculated based on interpolation of the closest data points
+ * that are present.
  */
 template <typename IndexType, typename ValueType> class InterpolatedLookupTable
 {
@@ -28,9 +28,9 @@ public:
     void clear() { entries_.clear(); }
 
     /**
-     * Adds an entry into this interpolated lookup table, each entry consists of a unique index and a corresponding value. Any
-     * index can be looked up with InterpolatedLookupTable::lookup(), and the values of the two closest index values will be
-     * interpolated to get the result of the lookup.
+     * Adds an entry into this interpolated lookup table, each entry consists of a unique index and a corresponding
+     * value. Any index can be looked up with InterpolatedLookupTable::lookup(), and the values of the two closest index
+     * values will be interpolated to get the result of the lookup.
      */
     void add(const IndexType& index, const ValueType& value)
     {
@@ -44,11 +44,13 @@ public:
 
     /**
      * Looks up a value in this lookup table based on a given index. The two data points added using the
-     * InterpolatedLookupTable::add() method that are closest to the given index value will be interpolated appropriately to get
-     * the result of the lookup. Lookups are O(log N) where N is the number of data points that have been added. By default
-     * linear interpolation will be used, but a different interpolation function can be supplied if needed.
+     * InterpolatedLookupTable::add() method that are closest to the given index value will be interpolated
+     * appropriately to get the result of the lookup. Lookups are O(log N) where N is the number of data points that
+     * have been added. By default linear interpolation will be used, but a different interpolation function can be
+     * supplied if needed.
      */
-    ValueType lookup(const IndexType& index, InterpolateFunctionType fnInterpolate = Interpolate::linear<ValueType>) const
+    ValueType lookup(const IndexType& index,
+                     InterpolateFunctionType fnInterpolate = Interpolate::linear<ValueType>) const
     {
         if (entries_.empty())
             return {};

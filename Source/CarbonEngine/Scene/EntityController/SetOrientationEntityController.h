@@ -12,8 +12,8 @@ namespace Carbon
 {
 
 /**
- * This entity controller automatically sets its entity's orientation so that it always points either at another entity or at a
- * specified world space point.
+ * This entity controller automatically sets its entity's orientation so that it always points either at another entity
+ * or at a specified world space point.
  */
 class CARBON_API SetOrientationEntityController : public EntityController
 {

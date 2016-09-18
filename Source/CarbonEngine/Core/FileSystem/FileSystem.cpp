@@ -30,8 +30,8 @@ FileSystem::FileSystem() : builtInVolume_(".BuiltIn")
     initialWorkingDirectory_ = getCurrentWorkingDirectory();
     LOG_INFO << "Working directory: " << initialWorkingDirectory_;
 
-    // Add the $SAVE$ file system volume, platforms that don't support local file system access are responsible for providing
-    // their own SAVE volume
+    // Add the $SAVE$ file system volume, platforms that don't support local file system access are responsible for
+    // providing their own SAVE volume
     createSaveVolume();
 #endif
 }
@@ -74,8 +74,8 @@ void FileSystem::FileLoadThread::main()
 {
     try
     {
-        // A small variable-length sleep at the start of a file load thread helps in situations where a number of file load
-        // threads are spawned as a group
+        // A small variable-length sleep at the start of a file load thread helps in situations where a number of file
+        // load threads are spawned as a group
         sleep(Math::random(2, 10));
 
         fileSystem().open(filename, file);
@@ -134,8 +134,8 @@ void FileSystem::open(const UnicodeString& filename, FileReader& file)
             if (error == NoFileSystemError)
                 return;
 
-            // Certain errors need to be reported back even if the attempt to open failed as the application may need to know
-            // about them
+            // Certain errors need to be reported back even if the attempt to open failed as the application may need to
+            // know about them
             if (error == OutOfMemoryFileSystemError || error == InvalidOperationFileSystemError ||
                 error == InvalidDataFileSystemError || error == IncompleteFileSystemError ||
                 error == DataCorruptionFileSystemError || error == HardwareFailureFileSystemError ||
@@ -178,8 +178,8 @@ FileSystem::AsynchronousLoadState FileSystem::getOpenAsyncResult(AsynchronousLoa
     {
         if (wait)
         {
-            // Wait for this file load thread to complete. To avoid deadlock it is important not to hold the file system mutex
-            // while waiting, as the file load thread is likely to need it.
+            // Wait for this file load thread to complete. To avoid deadlock it is important not to hold the file system
+            // mutex while waiting, as the file load thread is likely to need it.
             lock.release();
             thread->wait();
             lock.acquire();
@@ -245,8 +245,8 @@ void FileSystem::open(const UnicodeString& filename, FileWriter& file, bool asTe
 
     auto virtualFilename = joinPaths("/", filename);
 
-    // See if the file is under the mount location of a volume and if so then try and save it into that volume, volumes mounted
-    // under "/" are skipped
+    // See if the file is under the mount location of a volume and if so then try and save it into that volume, volumes
+    // mounted under "/" are skipped
     for (auto volume : volumes_)
     {
         if (volume->getMountLocation() != "/" && virtualFilename.startsWith(volume->getMountLocation()))
@@ -350,7 +350,8 @@ FileSystemError FileSystem::deleteFile(const UnicodeString& filename)
                 if (error == NoFileSystemError)
                     throw error;
 
-                // Not supported and resource missing errors are fine here, other ones need to be reported back as a real error
+                // Not supported and resource missing errors are fine here, other ones need to be reported back as a
+                // real error
                 if (error != NotSupportedFileSystemError && error != ResourceMissingFileSystemError)
                     throw error;
             }
@@ -393,11 +394,13 @@ bool FileSystem::addVolume(FileSystemVolume* volume, const UnicodeString& mountL
     {
         for (auto existingVolume : volumes_)
         {
-            if (existingVolume->getMountLocation() != "/" && (mountLocation.startsWith(existingVolume->getMountLocation()) ||
-                                                              existingVolume->getMountLocation().startsWith(mountLocation)))
+            if (existingVolume->getMountLocation() != "/" &&
+                (mountLocation.startsWith(existingVolume->getMountLocation()) ||
+                 existingVolume->getMountLocation().startsWith(mountLocation)))
             {
                 LOG_ERROR << "The mount location '" << mountLocation
-                          << "' overlaps with the mount location of existing volume '" << existingVolume->getName() << "'";
+                          << "' overlaps with the mount location of existing volume '" << existingVolume->getName()
+                          << "'";
 
                 return false;
             }
@@ -544,8 +547,8 @@ bool FileSystem::addLocalAssetDirectory(const UnicodeString& directory)
     }
 
     // Add the new asset directory
-    assetDirectoryVolumes_.append(
-        new LocalDirectoryFileSystemVolume(UnicodeString() + ".SEARCH" + assetDirectoryVolumes_.size(), newAssetDirectory));
+    assetDirectoryVolumes_.append(new LocalDirectoryFileSystemVolume(
+        UnicodeString() + ".SEARCH" + assetDirectoryVolumes_.size(), newAssetDirectory));
     addVolume(assetDirectoryVolumes_.back());
 
     LOG_INFO << "Added asset directory: " << assetDirectoryVolumes_.back()->getLocalDirectory();
@@ -666,7 +669,8 @@ void FileSystem::enumerateLocalFiles(const UnicodeString& directory, const Unico
 #endif
 }
 
-void FileSystem::enumerateLocalDirectories(const UnicodeString& directory, bool recursive, Vector<UnicodeString>& directories)
+void FileSystem::enumerateLocalDirectories(const UnicodeString& directory, bool recursive,
+                                           Vector<UnicodeString>& directories)
 {
 #ifdef WINDOWS
 
@@ -679,7 +683,8 @@ void FileSystem::enumerateLocalDirectories(const UnicodeString& directory, bool 
 
     while (true)
     {
-        if ((fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && !(fileData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN))
+        if ((fileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) &&
+            !(fileData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN))
         {
             auto subdirectory = fromUTF16(fileData.cFileName);
 
@@ -844,9 +849,9 @@ UnicodeString FileSystem::getSDKInstallDirectory()
 bool FileSystem::addSDKSampleAssetsDirectory()
 {
     // When a sample application is running in Visual Studio from under a Carbon checkout its working directory will be
-    // /Source/<sample name>, and if this is the case then there is a ../../Assets/Samples directory that should be used to
-    // source sample data. If this directory is there then use it. This ensures the sample data is accessible when the SDK is
-    // not installed.
+    // /Source/<sample name>, and if this is the case then there is a ../../Assets/Samples directory that should be used
+    // to source sample data. If this directory is there then use it. This ensures the sample data is accessible when
+    // the SDK is not installed.
     if (addLocalAssetDirectory("../../Assets/Samples"))
         return true;
 
@@ -923,8 +928,8 @@ bool FileSystem::enumerateFiles(UnicodeString directory, const UnicodeString& ex
         {
             auto volumeFiles = Vector<UnicodeString>();
 
-            auto result =
-                specifiedVolume->enumerateFiles(stripVolumeName(directory, specifiedVolume), extension, recursive, volumeFiles);
+            auto result = specifiedVolume->enumerateFiles(stripVolumeName(directory, specifiedVolume), extension,
+                                                          recursive, volumeFiles);
 
             for (const auto& volumeFile : volumeFiles)
                 files.append(getVolumeNamePrefix(specifiedVolume->getName()) + volumeFile);
@@ -942,8 +947,8 @@ bool FileSystem::enumerateFiles(UnicodeString directory, const UnicodeString& ex
 
             if (virtualDirectory.startsWith(volume->getMountLocation()))
             {
-                error = volume->enumerateFiles(virtualDirectory.withoutPrefix(volume->getMountLocation()), extension, recursive,
-                                               volumeFiles);
+                error = volume->enumerateFiles(virtualDirectory.withoutPrefix(volume->getMountLocation()), extension,
+                                               recursive, volumeFiles);
             }
             else if (recursive && volume->getMountLocation().startsWith(virtualDirectory))
                 error = volume->enumerateFiles("/", extension, true, volumeFiles);
@@ -952,8 +957,8 @@ bool FileSystem::enumerateFiles(UnicodeString directory, const UnicodeString& ex
                 files.append(getVolumeNamePrefix(volume->getName()) + volumeFile);
 
             // Some file system errors are fine here, other more serious ones need to be reported
-            if (error != NoFileSystemError && error != ResourceMissingFileSystemError && error != NotSupportedFileSystemError &&
-                error != AccessDeniedFileSystemError)
+            if (error != NoFileSystemError && error != ResourceMissingFileSystemError &&
+                error != NotSupportedFileSystemError && error != AccessDeniedFileSystemError)
                 throw error;
         }
 
@@ -1276,14 +1281,14 @@ UnicodeString FileSystem::stripVolumeName(const UnicodeString& filename, const F
 
 FileSystemVolume* FileSystem::getVolumeSpecifiedByFilename(const UnicodeString& filename)
 {
-    return volumes_.detect([&](const FileSystemVolume* v) { return filename.startsWith(getVolumeNamePrefix(v->getName())); },
-                           nullptr);
+    return volumes_.detect(
+        [&](const FileSystemVolume* v) { return filename.startsWith(getVolumeNamePrefix(v->getName())); }, nullptr);
 }
 
 const FileSystemVolume* FileSystem::getVolumeSpecifiedByFilename(const UnicodeString& filename) const
 {
-    return volumes_.detect([&](const FileSystemVolume* v) { return filename.startsWith(getVolumeNamePrefix(v->getName())); },
-                           nullptr);
+    return volumes_.detect(
+        [&](const FileSystemVolume* v) { return filename.startsWith(getVolumeNamePrefix(v->getName())); }, nullptr);
 }
 
 }

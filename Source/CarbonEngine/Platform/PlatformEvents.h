@@ -45,11 +45,11 @@ private:
 };
 
 /**
- * This event is sent when the application gains focus. On desktop platforms this corresponds to the main rendering window
- * becoming top-most. On phone and tablet platforms this event is sent when the application starts up, resumes from being
- * backgrounded, or is returned to after a system message has been shown and dismissed by the user. On iOS
- * ApplicationGainFocusEvent::wasBackgrounded() returns true when this event is sent because the application was resumed from
- * being backgrounded.
+ * This event is sent when the application gains focus. On desktop platforms this corresponds to the main rendering
+ * window becoming top-most. On phone and tablet platforms this event is sent when the application starts up, resumes
+ * from being backgrounded, or is returned to after a system message has been shown and dismissed by the user. On iOS
+ * ApplicationGainFocusEvent::wasBackgrounded() returns true when this event is sent because the application was resumed
+ * from being backgrounded.
  */
 class CARBON_API ApplicationGainFocusEvent : public Event
 {
@@ -63,8 +63,8 @@ public:
     ApplicationGainFocusEvent(bool wasBackgrounded) : wasBackgrounded_(wasBackgrounded) {}
 
     /**
-     * For use on iOS systems, if this returns true then this event signals that the application has been resumed from being
-     * backgrounded.
+     * For use on iOS systems, if this returns true then this event signals that the application has been resumed from
+     * being backgrounded.
      */
     bool wasBackgrounded() const { return wasBackgrounded_; }
 
@@ -76,11 +76,12 @@ private:
 };
 
 /**
- * This event is sent when the application loses focus. On desktop platforms this corresponds to the main rendering window no
- * longer being top-most. On phone and tablet platforms this event is sent when the application is backgrounded or a system
- * message appears, applications running on these platforms should respond by saving any state necessary for resuming from the
- * current position should the application be unexpectedly terminated. On iOS ApplicationLoseFocusEvent::backgrounded() returns
- * true when this event is sent because the application was backgrounded.
+ * This event is sent when the application loses focus. On desktop platforms this corresponds to the main rendering
+ * window no longer being top-most. On phone and tablet platforms this event is sent when the application is
+ * backgrounded or a system message appears, applications running on these platforms should respond by saving any state
+ * necessary for resuming from the current position should the application be unexpectedly terminated. On iOS
+ * ApplicationLoseFocusEvent::backgrounded() returns true when this event is sent because the application was
+ * backgrounded.
  */
 class CARBON_API ApplicationLoseFocusEvent : public Event
 {
@@ -106,8 +107,8 @@ private:
 };
 
 /**
- * Key down event. This class does not deal with character input, all conversion from raw input events to printable characters,
- * such as for display in editboxes is done automatically and exposed through the CharacterInputEvent class.
+ * Key down event. This class does not deal with character input, all conversion from raw input events to printable
+ * characters, such as for display in editboxes is done automatically and exposed through the CharacterInputEvent class.
  */
 class CARBON_API KeyDownEvent : public Event
 {
@@ -330,11 +331,11 @@ private:
 };
 
 /**
- * When the main window is being recreated due to an option change two events are sent out. A RecreateWindowEvent with a type of
- * CloseWindow is sent prior to the existing window being destroyed, and once the new window has been created another
- * RecreateWindowEvent is sent out with a type of NewWindow. The events are always sent out in pairs. The expected response to
- * these events is to delete all allocated graphics interface objects on the first event, then recreate them for the new window
- * on the second event.
+ * When the main window is being recreated due to an option change two events are sent out. A RecreateWindowEvent with a
+ * type of CloseWindow is sent prior to the existing window being destroyed, and once the new window has been created
+ * another RecreateWindowEvent is sent out with a type of NewWindow. The events are always sent out in pairs. The
+ * expected response to these events is to delete all allocated graphics interface objects on the first event, then
+ * recreate them for the new window on the second event.
  */
 class CARBON_API RecreateWindowEvent : public Event
 {
@@ -362,7 +363,8 @@ public:
     RecreateWindowEvent(WindowEventType type) : type_(type) {}
 
     /**
-     * Returns the type of this recreate window event, indicating whether it is for a window close or for a window creation.
+     * Returns the type of this recreate window event, indicating whether it is for a window close or for a window
+     * creation.
      */
     WindowEventType getWindowEventType() const { return type_; }
 
@@ -386,7 +388,8 @@ public:
     /**
      * Constructs this game controller button event with the given button index.
      */
-    GameControllerButtonDownEvent(unsigned int controllerID, unsigned int button) : controllerID_(controllerID), button_(button)
+    GameControllerButtonDownEvent(unsigned int controllerID, unsigned int button)
+        : controllerID_(controllerID), button_(button)
     {
     }
 
@@ -421,7 +424,8 @@ public:
     /**
      * Constructs this game controller button up event with the given button index.
      */
-    GameControllerButtonUpEvent(unsigned int controllerID, unsigned int button) : controllerID_(controllerID), button_(button)
+    GameControllerButtonUpEvent(unsigned int controllerID, unsigned int button)
+        : controllerID_(controllerID), button_(button)
     {
     }
 
@@ -447,15 +451,16 @@ private:
 };
 
 /**
- * This event is sent whenever the current device is shaken, only supported on devices that have the relevant movement sensors
- * such as many iOS devices.
+ * This event is sent whenever the current device is shaken, only supported on devices that have the relevant movement
+ * sensors such as many iOS devices.
  */
 class CARBON_API DeviceShakeEvent : public Event
 {
 };
 
 /**
- * This event is sent when a finger touches down onto the touchscreen, only supported on devices that support touch input.
+ * This event is sent when a finger touches down onto the touchscreen, only supported on devices that support touch
+ * input.
  */
 class CARBON_API TouchBeginEvent : public Event
 {
@@ -605,7 +610,8 @@ private:
 };
 
 /**
- * This event is sent when a pinch gesture is performed on the touchscreen, only supported on devices that support touch input.
+ * This event is sent when a pinch gesture is performed on the touchscreen, only supported on devices that support touch
+ * input.
  */
 class CARBON_API TouchPinchEvent : public Event
 {
@@ -638,8 +644,8 @@ private:
 };
 
 /**
- * This event is sent when a rotation gesture is performed on the touchscreen, only supported on devices that support touch
- * input.
+ * This event is sent when a rotation gesture is performed on the touchscreen, only supported on devices that support
+ * touch input.
  */
 class CARBON_API TouchRotationEvent : public Event
 {
@@ -672,7 +678,8 @@ private:
 };
 
 /**
- * This event is sent when a swipe gesture is performed on the touchscreen, only supported on devices that support touch input.
+ * This event is sent when a swipe gesture is performed on the touchscreen, only supported on devices that support touch
+ * input.
  */
 class CARBON_API TouchSwipeEvent : public Event
 {
@@ -726,7 +733,8 @@ private:
 };
 
 /**
- * This event is sent when a pan gesture is performed on the touchscreen, only supported on devices that support touch input.
+ * This event is sent when a pan gesture is performed on the touchscreen, only supported on devices that support touch
+ * input.
  */
 class CARBON_API TouchPanEvent : public Event
 {
@@ -735,7 +743,10 @@ public:
     /**
      * Initializes the contents of this touch pan event.
      */
-    TouchPanEvent(const Vec2& translation, unsigned int fingerCount) : translation_(translation), fingerCount_(fingerCount) {}
+    TouchPanEvent(const Vec2& translation, unsigned int fingerCount)
+        : translation_(translation), fingerCount_(fingerCount)
+    {
+    }
 
     /**
      * Returns the current translation of the pan in pixels.

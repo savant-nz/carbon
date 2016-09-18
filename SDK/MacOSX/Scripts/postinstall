@@ -10,7 +10,7 @@ require 'fileutils'
 require 'find'
 
 INSTALL_PATH = '/Applications/Carbon SDK'.freeze
-XCODE_PROJECT_TEMPLATES_PATH = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application".freeze
+XCODE_PROJECT_TEMPLATES = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application".freeze
 
 def user_profile_filename
   "#{ENV['HOME']}/.profile"
@@ -41,7 +41,7 @@ def update_user_dot_profile
 end
 
 def install_xcode_project_template
-  target = "#{XCODE_PROJECT_TEMPLATES_PATH}/CarbonEngine Application.xctemplate"
+  target = "#{XCODE_PROJECT_TEMPLATES}/CarbonEngine Application.xctemplate"
 
   # Create symlink to the project template
   `sudo -u #{ENV['USER']} mkdir -p "#{File.dirname target}"`

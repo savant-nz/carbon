@@ -14,11 +14,12 @@ const Matrix3 Matrix3::Identity(1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 
 
 Matrix3 Matrix3::operator*(const Matrix3& other) const
 {
-    return {m_[0] * other[0] + m_[3] * other[1] + m_[6] * other[2], m_[1] * other[0] + m_[4] * other[1] + m_[7] * other[2],
-            m_[2] * other[0] + m_[5] * other[1] + m_[8] * other[2], m_[0] * other[3] + m_[3] * other[4] + m_[6] * other[5],
-            m_[1] * other[3] + m_[4] * other[4] + m_[7] * other[5], m_[2] * other[3] + m_[5] * other[4] + m_[8] * other[5],
-            m_[0] * other[6] + m_[3] * other[7] + m_[6] * other[8], m_[1] * other[6] + m_[4] * other[7] + m_[7] * other[8],
-            m_[2] * other[6] + m_[5] * other[7] + m_[8] * other[8]};
+    return {
+        m_[0] * other[0] + m_[3] * other[1] + m_[6] * other[2], m_[1] * other[0] + m_[4] * other[1] + m_[7] * other[2],
+        m_[2] * other[0] + m_[5] * other[1] + m_[8] * other[2], m_[0] * other[3] + m_[3] * other[4] + m_[6] * other[5],
+        m_[1] * other[3] + m_[4] * other[4] + m_[7] * other[5], m_[2] * other[3] + m_[5] * other[4] + m_[8] * other[5],
+        m_[0] * other[6] + m_[3] * other[7] + m_[6] * other[8], m_[1] * other[6] + m_[4] * other[7] + m_[7] * other[8],
+        m_[2] * other[6] + m_[5] * other[7] + m_[8] * other[8]};
 }
 
 bool Matrix3::getInverse(Matrix3& inv) const

@@ -11,8 +11,9 @@ namespace Carbon
 {
 
 /**
- * Empty class that is subclassed by OpenGLShared which is then subclassed by all OpenGL graphics backends. This is mainly used
- * to register GLSL-based shaders that are able to be used by any OpenGL backend, e.g. both OpenGL11 and OpenGLES2.
+ * Empty class that is subclassed by OpenGLShared which is then subclassed by all OpenGL graphics backends. This is
+ * mainly used to register GLSL-based shaders that are able to be used by any OpenGL backend, e.g. both OpenGL11 and
+ * OpenGLES2.
  */
 class CARBON_API OpenGLBase : public GraphicsInterface
 {

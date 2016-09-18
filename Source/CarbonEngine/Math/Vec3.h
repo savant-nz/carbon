@@ -267,12 +267,18 @@ public:
     /**
      * Calculates the distance between two points.
      */
-    float distance(const Vec3& v) const { return sqrtf((x - v.x) * (x - v.x) + (y - v.y) * (y - v.y) + (z - v.z) * (z - v.z)); }
+    float distance(const Vec3& v) const
+    {
+        return sqrtf((x - v.x) * (x - v.x) + (y - v.y) * (y - v.y) + (z - v.z) * (z - v.z));
+    }
 
     /**
      * Calculates the distance between two points.
      */
-    float distanceSquared(const Vec3& v) const { return (x - v.x) * (x - v.x) + (y - v.y) * (y - v.y) + (z - v.z) * (z - v.z); }
+    float distanceSquared(const Vec3& v) const
+    {
+        return (x - v.x) * (x - v.x) + (y - v.y) * (y - v.y) + (z - v.z) * (z - v.z);
+    }
 
     /**
      * Returns a vector with the direction of this vector but with the given length
@@ -379,8 +385,8 @@ public:
     bool isFinite() const { return std::isfinite(x) && std::isfinite(y) && std::isfinite(z); }
 
     /**
-     * Returns two normalized vectors that together with this vector define a basis with this vector along its positive Z axis.
-     * This vector must already be normalized.
+     * Returns two normalized vectors that together with this vector define a basis with this vector along its positive
+     * Z axis. This vector must already be normalized.
      */
     void constructBasis(Vec3& v0, Vec3& v1) const
     {
@@ -392,8 +398,8 @@ public:
     }
 
     /**
-     * Returns a vector that represents a 2D offset in the XY plane of the local basis of this vector that is calculated by the
-     * Vec3::constructBasis() method.
+     * Returns a vector that represents a 2D offset in the XY plane of the local basis of this vector that is calculated
+     * by the Vec3::constructBasis() method.
      */
     Vec3 getLocalOffset(float xOffset, float yOffset) const
     {
@@ -456,8 +462,8 @@ public:
     static const Vec3 NegateZ;
 
     /**
-     * Returns a vector where the x, y and z values are randomly generated in the range -1 to 1. Note that the returned vector
-     * is not normalized.
+     * Returns a vector where the x, y and z values are randomly generated in the range -1 to 1. Note that the returned
+     * vector is not normalized.
      */
     static Vec3 random() { return {Math::random(-1.0f, 1.0f), Math::random(-1.0f, 1.0f), Math::random(-1.0f, 1.0f)}; }
 };

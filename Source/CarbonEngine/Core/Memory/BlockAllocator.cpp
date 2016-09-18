@@ -14,7 +14,8 @@ namespace Carbon
 {
 
 BlockAllocator::BlockAllocator(unsigned int chunkSize, unsigned int blockSize, unsigned int freeBlockCacheSize,
-                               const std::function<void*(size_t size)>& fnAlloc, const std::function<void(void* p)>& fnFree)
+                               const std::function<void*(size_t size)>& fnAlloc,
+                               const std::function<void(void* p)>& fnFree)
     : blockSize_(blockSize),
       blockCount_(chunkSize / blockSize),
       chunk_(reinterpret_cast<byte_t*>(fnAlloc(chunkSize))),
@@ -71,9 +72,10 @@ void* BlockAllocator::allocate()
     {
         repopulateFreeBlockCache();
 
-        // We confirmed earlier in this method that there are unallocated blocks, which means that searching for free blocks
-        // with which to repopulate the free block cache must succeed in finding at least one free block that can be allocated.
-        // If this doesn't happen then there is some inconsistency, corruption or other problem within the block allocator.
+        // We confirmed earlier in this method that there are unallocated blocks, which means that searching for free
+        // blocks with which to repopulate the free block cache must succeed in finding at least one free block that can
+        // be allocated. If this doesn't happen then there is some inconsistency, corruption or other problem within the
+        // block allocator.
 
         assert(freeBlockCacheEntryCount_ && "Block allocator internal consistency failure");
     }
@@ -88,7 +90,7 @@ void* BlockAllocator::allocate()
     auto usedMask = byte_t(1 << (blockIndex & 0x7));
 
     // Check that this block is marked as free in usedBlocks_[]
-    assert((usedBlocks_[blockIndex / 8] & usedMask) == 0 && "Block about to be allocated is not currently marked as free");
+    assert((usedBlocks_[blockIndex / 8] & usedMask) == 0 && "Block to be allocated is not currently marked as free");
 
     // Allocate this block
     usedBlocks_[blockIndex / 8] |= usedMask;
@@ -119,7 +121,7 @@ bool BlockAllocator::free(void* block)
     auto usedMask = byte_t(1 << (blockIndex & 0x7));
 
     // Check that this block is currently allocated, if this assert triggers then a block was probably double-freed
-    assert((usedBlocks_[blockIndex / 8] & usedMask) && "Block not marked as allocated, this can be caused by a double free");
+    assert((usedBlocks_[blockIndex / 8] & usedMask) && "Block not marked as allocated, possible double free");
 
     // Deallocate this item
     usedBlocks_[blockIndex / 8] &= ~usedMask;
@@ -142,8 +144,8 @@ void BlockAllocator::printInfo() const
     LOG_DEBUG << "    Chunk size           " << FileSystem::formatByteSize(chunkSize_);
     LOG_DEBUG << "    Current usage        " << FileSystem::formatByteSize(allocatedBlockCount_ * blockSize_) << " ("
               << String::formatPercentage(allocatedBlockCount_, blockCount_) << ")";
-    LOG_DEBUG << "    Highest usage        " << FileSystem::formatByteSize(highestAllocatedBlockCount_ * blockSize_) << " ("
-              << String::formatPercentage(highestAllocatedBlockCount_, blockCount_) << ")";
+    LOG_DEBUG << "    Highest usage        " << FileSystem::formatByteSize(highestAllocatedBlockCount_ * blockSize_)
+              << " (" << String::formatPercentage(highestAllocatedBlockCount_, blockCount_) << ")";
 }
 
 unsigned int BlockAllocator::getMemoryUsage() const
@@ -160,8 +162,8 @@ void BlockAllocator::processGatherMemorySummaryEvent(const GatherMemorySummaryEv
 
 void BlockAllocator::repopulateFreeBlockCache()
 {
-    // Try and start in a place where the search is likely to find free blocks faster than if it started at the beginning and
-    // worked its way forwards from there
+    // Try and start in a place where the search is likely to find free blocks faster than if it started at the
+    // beginning and worked its way forwards from there
 
     auto start = allocatedBlockCount_ / 8;
     auto end = start + usedBlocksArraySize_;

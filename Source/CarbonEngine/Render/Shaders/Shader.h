@@ -27,9 +27,9 @@ public:
     static const UnicodeString ShaderDirectory;
 
     /**
-     * Every shader has a shader type that is returned by the Shader::getShaderType() method. The shader type is used in the
-     * renderer to sort and process geometry as well as ensure that the shader is supplied with the resources it needs to render
-     * correctly.
+     * Every shader has a shader type that is returned by the Shader::getShaderType() method. The shader type is used in
+     * the renderer to sort and process geometry as well as ensure that the shader is supplied with the resources it
+     * needs to render correctly.
      */
     enum ShaderType
     {
@@ -54,7 +54,8 @@ public:
         Framebuffer,
 
         /**
-         * A shader that requires both refraction and reflection framebuffer textures as inputs. Mainly used for water effects.
+         * A shader that requires both refraction and reflection framebuffer textures as inputs. Mainly used for water
+         * effects.
          */
         RefractionReflection,
 
@@ -65,9 +66,10 @@ public:
     };
 
     /**
-     * Constructs this shader with the given effect name, quality level, and an optional required shader language. The default
-     * implementation of Shader::hasHardwareSupport() checks that the specified shader language has hardware support which means
-     * that shader subclasses that rely on a single shader language do not need to override Shader::hasHardwareSupport().
+     * Constructs this shader with the given effect name, quality level, and an optional required shader language. The
+     * default implementation of Shader::hasHardwareSupport() checks that the specified shader language has hardware
+     * support which means that shader subclasses that rely on a single shader language do not need to override
+     * Shader::hasHardwareSupport().
      */
     Shader(String effectName, unsigned int quality,
            ShaderProgram::ShaderLanguage requiredShaderLanguage = ShaderProgram::NoShaderLanguage);
@@ -86,14 +88,15 @@ public:
     const String& getEffectName() const { return effectName_; }
 
     /**
-     * Returns the quality level of this shader's implementation of the effect. A value of 100 or greater means no parts of the
-     * effect are missing. This value is set in the constructor.
+     * Returns the quality level of this shader's implementation of the effect. A value of 100 or greater means no parts
+     * of the effect are missing. This value is set in the constructor.
      */
     unsigned int getQuality() const { return quality_; }
 
     /**
-     * Whether this shader can run on the current hardware setup. The default implementation returns whether the shader language
-     * passed to the constructor is supported. Shaders that have more specific hardware requirements should override this.
+     * Whether this shader can run on the current hardware setup. The default implementation returns whether the shader
+     * language passed to the constructor is supported. Shaders that have more specific hardware requirements should
+     * override this.
      */
     virtual bool hasHardwareSupport() const
     {
@@ -102,9 +105,9 @@ public:
     }
 
     /**
-     * Returns the shader type when the shader is using the specified parameters. Shaders can return different types given a
-     * different set of input parameters. That default implementation returns \a Normal except when the "blend" parameter is set
-     * to true in which case \a Blended is returned.
+     * Returns the shader type when the shader is using the specified parameters. Shaders can return different types
+     * given a different set of input parameters. That default implementation returns \a Normal except when the "blend"
+     * parameter is set to true in which case \a Blended is returned.
      */
     virtual ShaderType getShaderType(const ParameterArray& params, const ParameterArray& internalParams) const
     {
@@ -112,8 +115,8 @@ public:
     }
 
     /**
-     * Initializes this shader for rendering if it has not yet been initialized. Returns a flag indicating whether the shader
-     * has initialized successfully and can be used in rendering.
+     * Initializes this shader for rendering if it has not yet been initialized. Returns a flag indicating whether the
+     * shader has initialized successfully and can be used in rendering.
      */
     bool setup();
 
@@ -128,8 +131,8 @@ public:
     void cleanup();
 
     /**
-     * Causes this shader to do any precaching it can to avoid JIT processes occurring during rendering, typically this is used
-     * to compile all possible shader feature combinations.
+     * Causes this shader to do any precaching it can to avoid JIT processes occurring during rendering, typically this
+     * is used to compile all possible shader feature combinations.
      */
     virtual void precache() {}
 
@@ -141,16 +144,20 @@ public:
     /**
      * Returns the number of rendering passes needed by this shader when rendering with the given \a params and \a
      * internalParams, the default implementation returns 1 indicating that this is a single pass shader, and shader
-     * implementations that require multiple passes can override this as needed. Shader::setShaderParams() will be called once
-     * for every rendering pass.
+     * implementations that require multiple passes can override this as needed. Shader::setShaderParams() will be
+     * called once for every rendering pass.
      */
-    virtual unsigned int getPassCount(const ParameterArray& params, const ParameterArray& internalParams) const { return 1; }
+    virtual unsigned int getPassCount(const ParameterArray& params, const ParameterArray& internalParams) const
+    {
+        return 1;
+    }
 
     /**
-     * Called for each geometry chunk prior to it being rendered, this is called once for every rendering pass. By default there
-     * is only one rendering pass done but multipass shaders can increase this number by overriding Shader::getPassCount(). The
-     * \a pass parameter indicates which pass is currently being rendered. The \a sortKey parameter will be set to the sort key
-     * that was returned for this set of parameters when it was passed to Shader::getSortKey().
+     * Called for each geometry chunk prior to it being rendered, this is called once for every rendering pass. By
+     * default there is only one rendering pass done but multipass shaders can increase this number by overriding
+     * Shader::getPassCount(). The \a pass parameter indicates which pass is currently being rendered. The \a sortKey
+     * parameter will be set to the sort key that was returned for this set of parameters when it was passed to
+     * Shader::getSortKey().
      */
     virtual void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
                                  const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) = 0;
@@ -161,35 +168,39 @@ public:
     virtual void exitShader() = 0;
 
     /**
-     * Returns the sorting key for this shader given the specified parameters. This is used to sort rendering order to avoid
-     * excessive state changes. The sort key is passed back to the shader in calls to Shader::setShaderParams() so it can use
-     * the sort key to store information that is then used in rendering.
+     * Returns the sorting key for this shader given the specified parameters. This is used to sort rendering order to
+     * avoid excessive state changes. The sort key is passed back to the shader in calls to Shader::setShaderParams() so
+     * it can use the sort key to store information that is then used in rendering.
      */
-    virtual unsigned int getSortKey(const ParameterArray& params, const ParameterArray& internalParams) const { return 0; }
+    virtual unsigned int getSortKey(const ParameterArray& params, const ParameterArray& internalParams) const
+    {
+        return 0;
+    }
 
     /**
-     * The standard behavior for multi-pass post-process shaders is for them to output to the relevant output texture during
-     * their final pass, with other previous passes being done to other offscreen buffers. However, if a multi-pass post-process
-     * shader wants to start writing to its output texture in an earlier pass then it can return true from this method and all
-     * remaining rendering passes from it will be directed into the relevant output texture.
+     * The standard behavior for multi-pass post-process shaders is for them to output to the relevant output texture
+     * during their final pass, with other previous passes being done to other offscreen buffers. However, if a
+     * multi-pass post-process shader wants to start writing to its output texture in an earlier pass then it can return
+     * true from this method and all remaining rendering passes from it will be directed into the relevant output
+     * texture.
      */
     virtual bool isPostProcessShaderReadyToOutput(unsigned int pass) const { return false; }
 
     /**
-     * This takes a set of effect parameters, and for each parameter that has a name that is a texture parameter for this
-     * shader's effect, a new hidden parameter is added that contains a pointer to the loaded texture. This pointer is then used
-     * in the shader to get the correct texture instance to use. Any new texture references taken are appended to the \a
-     * textureReferences vector. The caller is responsible for managing and releasing these references properly. This method may
-     * also create new hidden parameters in the given parameter array which means that the parameter array passed to
-     * Shader::setShaderParams() must have first been passed through this method.
+     * This takes a set of effect parameters, and for each parameter that has a name that is a texture parameter for
+     * this shader's effect, a new hidden parameter is added that contains a pointer to the loaded texture. This pointer
+     * is then used in the shader to get the correct texture instance to use. Any new texture references taken are
+     * appended to the \a textureReferences vector. The caller is responsible for managing and releasing these
+     * references properly. This method may also create new hidden parameters in the given parameter array which means
+     * that the parameter array passed to Shader::setShaderParams() must have first been passed through this method.
      */
     bool prepareParameters(ParameterArray& parameters, Vector<const Texture*>& textureReferences) const;
 
     /**
-     * The ManagedShaderProgram class is provided for shader subclasses to use in order to make it easier to use a ShaderProgram
-     * instance that has been provided by the graphics interface. This class must be subclassed in order to be used. It handles
-     * setup, cleanup and has a ManagedShaderProgram::cache() method that should be implemented by subclasses to cache the
-     * necessary ShaderConstant instances that will be used during rendering.
+     * The ManagedShaderProgram class is provided for shader subclasses to use in order to make it easier to use a
+     * ShaderProgram instance that has been provided by the graphics interface. This class must be subclassed in order
+     * to be used. It handles setup, cleanup and has a ManagedShaderProgram::cache() method that should be implemented
+     * by subclasses to cache the necessary ShaderConstant instances that will be used during rendering.
      */
     class ManagedShaderProgram : private Noncopyable
     {
@@ -221,8 +232,8 @@ public:
 
         /**
          * Maps available vertex attributes so that they can be later be activated for rendering using
-         * ManagedShaderProgram::setVertexAttributeArrayConfiguration(). The "vs" prefix on vertex stream names is removed
-         * automatically. This method is automatically called as part of ManagedShaderProgram::setup().
+         * ManagedShaderProgram::setVertexAttributeArrayConfiguration(). The "vs" prefix on vertex stream names is
+         * removed automatically. This method is automatically called as part of ManagedShaderProgram::setup().
          */
         bool mapVertexAttributes();
 
@@ -242,10 +253,11 @@ public:
     protected:
 
         /**
-         * Should be implemented by subclasses to cache any ShaderConstant instances that will be needed during rendering. This
-         * method is automatically called as part of ManagedShaderProgram::setup(). If any errors occur then an Exception should
-         * be raised and this will cause ManagedShaderProgram::setup() call to clean up and then return false. The
-         * CACHE_SHADER_CONSTANT() macro is provided to make implementing this method less verbose.
+         * Should be implemented by subclasses to cache any ShaderConstant instances that will be needed during
+         * rendering. This method is automatically called as part of ManagedShaderProgram::setup(). If any errors occur
+         * then an Exception should be raised and this will cause ManagedShaderProgram::setup() call to clean up and
+         * then return false. The CACHE_SHADER_CONSTANT() macro is provided to make implementing this method less
+         * verbose.
          */
         virtual void cache() = 0;
 
@@ -262,14 +274,16 @@ public:
             int index = -1;
 
             MappedVertexAttribute() {}
-            MappedVertexAttribute(unsigned int streamType_, int index_) : vertexStreamType(streamType_), index(index_) {}
+            MappedVertexAttribute(unsigned int streamType_, int index_) : vertexStreamType(streamType_), index(index_)
+            {
+            }
         };
         Vector<MappedVertexAttribute> mappedVertexAttributes_;
     };
 
     /**
-     * Sets up the state required for using the given texture on the given texture unit. This contains fallbacks if the texture
-     * failed to load.
+     * Sets up the state required for using the given texture on the given texture unit. This contains fallbacks if the
+     * texture failed to load.
      */
     static void setTexture(unsigned int unit, const Texture* texture, const Texture* fallback = nullptr);
 
@@ -300,15 +314,16 @@ protected:
     virtual void uninitialize() {}
 
     /**
-     * For use in shaders that create shader program variants by compiling the same code with differing preprocessor defines,
-     * this method compiles a single program identified by the passed index, where the index is a bitfield that indicates which
-     * of the passed preprocessor defines should be present in its compilation. Returns a pointer to the successfully set up
-     * program or null on failure.
+     * For use in shaders that create shader program variants by compiling the same code with differing preprocessor
+     * defines, this method compiles a single program identified by the passed index, where the index is a bitfield that
+     * indicates which of the passed preprocessor defines should be present in its compilation. Returns a pointer to the
+     * successfully set up program or null on failure.
      */
     template <typename ManagedShaderProgramSubclass, size_t DefineCount, typename... ShaderFiles>
-    ManagedShaderProgramSubclass*
-        setupProgramCombination(unsigned int programIndex, Vector<ManagedShaderProgramSubclass*>& programs,
-                                const std::array<String, DefineCount>& preprocessorDefines, ShaderFiles&&... shaderFiles)
+    ManagedShaderProgramSubclass* setupProgramCombination(unsigned int programIndex,
+                                                          Vector<ManagedShaderProgramSubclass*>& programs,
+                                                          const std::array<String, DefineCount>& preprocessorDefines,
+                                                          ShaderFiles&&... shaderFiles)
     {
         // If the program has already been done then return it if the setup was successful
         if (programs[programIndex])
@@ -339,11 +354,11 @@ protected:
     }
 
     /**
-     * For use in shaders that create shader program variants using Shader::setupProgramCombination(), returns the index into
-     * the array of shader programs that should be used when rendering using the given geometry chunk and parameters. This
-     * method is templated with each of the shader components used by the shader and uses the static `isPresent()` method on
-     * each of the shader component classes to determine whether that particular component is enabled. The returned index value
-     * is computed based on which components are enabled.
+     * For use in shaders that create shader program variants using Shader::setupProgramCombination(), returns the index
+     * into the array of shader programs that should be used when rendering using the given geometry chunk and
+     * parameters. This method is templated with each of the shader components used by the shader and uses the static
+     * `isPresent()` method on each of the shader component classes to determine whether that particular component is
+     * enabled. The returned index value is computed based on which components are enabled.
      */
     template <typename ShaderComponent>
     static unsigned int getShaderProgramIndex(const ParameterArray& params, const ParameterArray& internalParams)
@@ -375,8 +390,8 @@ private:
 };
 
 /**
- * For use by ManagedShaderProgram::cache() implementations, assigns a member variable with the shader constant of the same
- * name and throws an Exception on failure (i.e. if the shader constant doesn't exist).
+ * For use by ManagedShaderProgram::cache() implementations, assigns a member variable with the shader constant of the
+ * same name and throws an Exception on failure (i.e. if the shader constant doesn't exist).
  */
 #define CACHE_SHADER_CONSTANT(Name)                                    \
     do                                                                 \

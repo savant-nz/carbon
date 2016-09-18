@@ -12,8 +12,8 @@ namespace Carbon
 {
 
 /**
- * RenderQueueItem is the base class for all items that go into a RenderQueueItemArray. Render queue items are either a change
- * of transform or a draw command.
+ * RenderQueueItem is the base class for all items that go into a RenderQueueItemArray. Render queue items are either a
+ * change of transform or a draw command.
  */
 class CARBON_API RenderQueueItem
 {
@@ -22,9 +22,9 @@ public:
     virtual ~RenderQueueItem() {}
 
     /**
-     * Template method that is used to check the render queue item type, null is returned if this item is not of the specified
-     * type, and if it is of the specified type then a pointer to that event type is returned. Internally this uses a
-     * dynamic_cast.
+     * Template method that is used to check the render queue item type, null is returned if this item is not of the
+     * specified type, and if it is of the specified type then a pointer to that event type is returned. Internally this
+     * uses a `dynamic_cast`.
      */
     template <typename T> const T* as() const { return dynamic_cast<const T*>(this); }
 };
@@ -40,7 +40,8 @@ public:
     /**
      * Initializes this change transform render queue item with the given values.
      */
-    ChangeTransformRenderQueueItem(const SimpleTransform& transform, const Vec3& scale) : transform_(transform), scale_(scale)
+    ChangeTransformRenderQueueItem(const SimpleTransform& transform, const Vec3& scale)
+        : transform_(transform), scale_(scale)
     {
     }
 
@@ -61,8 +62,8 @@ private:
 };
 
 /**
- * This render queue item specifies a geometry chunk to be drawn using the current state. There are also flags controlling
- * shadowing.
+ * This render queue item specifies a geometry chunk to be drawn using the current state. There are also flags
+ * controlling shadowing.
  */
 class CARBON_API DrawGeometryChunkRenderQueueItem : public RenderQueueItem
 {
@@ -87,7 +88,8 @@ public:
     const GeometryChunk& getGeometryChunk() const { return geometryChunk_; }
 
     /**
-     * Returns the index of the single draw item in the geometry chunk to render, or -1 if all draw items should be rendered.
+     * Returns the index of the single draw item in the geometry chunk to render, or -1 if all draw items should be
+     * rendered.
      */
     int getDrawItemIndex() const { return drawItemIndex_; }
 
@@ -98,8 +100,8 @@ private:
 };
 
 /**
- * This render queue item specifies a rectangle to be drawn using the current state. This is primarily a convenience item used
- * to render 2D elements which avoids having to provide a GeometryChunk.
+ * This render queue item specifies a rectangle to be drawn using the current state. This is primarily a convenience
+ * item used to render 2D elements which avoids having to provide a GeometryChunk.
  */
 class CARBON_API DrawRectangleRenderQueueItem : public RenderQueueItem
 {
@@ -127,8 +129,8 @@ private:
 };
 
 /**
- * This render queue item specifies a text string to be drawn using the current state. The font can be set, as well as the text
- * color.
+ * This render queue item specifies a text string to be drawn using the current state. The font can be set, as well as
+ * the text color.
  */
 class DrawTextRenderQueueItem : public RenderQueueItem
 {

@@ -21,7 +21,8 @@ FileSystemError LocalDirectoryFileSystemVolume::open(const UnicodeString& filena
     {
         auto correctFullPath = FileSystem::getCanonicalPath(fullPath);
 
-        // Report incorrect case in paths on Windows and Mac OS X, helps catch errors only seen on case-sensitive platforms
+        // Report incorrect case in paths on Windows and Mac OS X, helps catch errors only seen on case-sensitive
+        // platforms
         if (fullPath != correctFullPath)
         {
             LOG_WARNING << "Incorrect case for " << filename.quoteIfHasSpaces() << ", the correct case is '"
@@ -47,11 +48,13 @@ bool LocalDirectoryFileSystemVolume::doesFileExist(const UnicodeString& filename
     return FileSystem::doesLocalFileExist(FileSystem::joinPaths(localDirectory_, filename));
 }
 
-FileSystemError LocalDirectoryFileSystemVolume::enumerateFiles(const UnicodeString& directory, const UnicodeString& extension,
-                                                               bool recursive, Vector<UnicodeString>& files) const
+FileSystemError LocalDirectoryFileSystemVolume::enumerateFiles(const UnicodeString& directory,
+                                                               const UnicodeString& extension, bool recursive,
+                                                               Vector<UnicodeString>& files) const
 {
     auto localFiles = Vector<UnicodeString>();
-    FileSystem::enumerateLocalFiles(FileSystem::joinPaths(localDirectory_, directory), extension, recursive, localFiles);
+    FileSystem::enumerateLocalFiles(FileSystem::joinPaths(localDirectory_, directory), extension, recursive,
+                                    localFiles);
 
     for (const auto& localFile : localFiles)
         files.append(localFile.withoutPrefix(localDirectory_));

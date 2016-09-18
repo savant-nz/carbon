@@ -14,8 +14,8 @@ namespace Shaders
 {
 
 /**
- * Implementation of shadow mapping for GLSL. This is a shader component that is used by other shaders in order to support
- * directional light shadow mapping.
+ * Implementation of shadow mapping for GLSL. This is a shader component that is used by other shaders in order to
+ * support directional light shadow mapping.
  */
 class CARBON_API ShadowMappingGLSL
 {

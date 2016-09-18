@@ -99,8 +99,8 @@ void DataBufferManager::onRecreateWindowEvent(const RecreateWindowEvent& rwe)
 {
     if (rwe.getWindowEventType() == RecreateWindowEvent::CloseWindow)
     {
-        // Flag all static groups as dirty and delete their buffers. This will force the buffer to be recreated and uploaded
-        // next time they are accessed.
+        // Flag all static groups as dirty and delete their buffers. This will force the buffer to be recreated and
+        // uploaded next time they are accessed.
         for (auto group : staticDataGroups_)
         {
             graphics().deleteDataBuffer(group->buffer);
@@ -134,8 +134,8 @@ void DataBufferManager::onRecreateWindowEvent(const RecreateWindowEvent& rwe)
     }
 }
 
-DataBufferManager::AllocationObject DataBufferManager::allocate(GraphicsInterface::DataBufferType type, unsigned int size,
-                                                                const byte_t* data, bool isDynamic)
+DataBufferManager::AllocationObject DataBufferManager::allocate(GraphicsInterface::DataBufferType type,
+                                                                unsigned int size, const byte_t* data, bool isDynamic)
 {
     if (!data)
         return nullptr;
@@ -147,19 +147,20 @@ DataBufferManager::AllocationObject DataBufferManager::allocate(GraphicsInterfac
     auto allocation = new Allocation(type, isDynamic, size, data);
     allocations_.append(allocation);
 
-    // Dynamic data goes straight into its own buffer if the buffer type is supported, whereas static data is combined into a
-    // small number of shared buffers
+    // Dynamic data goes straight into its own buffer if the buffer type is supported, whereas static data is combined
+    // into a small number of shared buffers
     if (isDynamic)
     {
         allocation->buffer = graphics().createDataBuffer();
-        if (!allocation->buffer || !graphics().uploadDynamicDataBuffer(allocation->buffer, allocation->type, size, data))
+        if (!allocation->buffer ||
+            !graphics().uploadDynamicDataBuffer(allocation->buffer, allocation->type, size, data))
             LOG_ERROR << "Failed creating dynamic buffer";
 
         return allocation;
     }
 
-    // This is a static data allocation, look through all the static data groups already created and see if there's room for
-    // this allocation in any of them and if there is then allocate directly from there
+    // This is a static data allocation, look through all the static data groups already created and see if there's room
+    // for this allocation in any of them and if there is then allocate directly from there
     for (auto group : staticDataGroups_)
     {
         if (group->type == type)
@@ -173,8 +174,8 @@ DataBufferManager::AllocationObject DataBufferManager::allocate(GraphicsInterfac
         }
     }
 
-    // The allocation doesn't fit in any existing static data group so make a new one. If this allocation is larger than the
-    // default static data group size then it is sized especially for this allocation.
+    // The allocation doesn't fit in any existing static data group so make a new one. If this allocation is larger than
+    // the default static data group size then it is sized especially for this allocation.
 
     const auto defaultBlockSize = 16384U;
     const auto defaultBlockCount = 128U;
@@ -218,8 +219,9 @@ bool DataBufferManager::free(AllocationObject allocationObject)
             staticDataGroups_.unorderedEraseValue(group);
             delete group;
 
-            LOG_INFO << "Deleted static " << (allocation->type == GraphicsInterface::VertexDataBuffer ? "vertex" : "index")
-                     << " data group " << allocation->group;
+            LOG_INFO << "Deleted static "
+                     << (allocation->type == GraphicsInterface::VertexDataBuffer ? "vertex" : "index") << " data group "
+                     << allocation->group;
         }
     }
 
@@ -245,8 +247,8 @@ bool DataBufferManager::updateData(AllocationObject allocationObject)
     }
     else
     {
-        // For static allocations setting the dirty flag will force an upload the next time it is accessed, so there's no need
-        // to do anything right now
+        // For static allocations setting the dirty flag will force an upload the next time it is accessed, so there's
+        // no need to do anything right now
         allocation->group->isDirty = true;
     }
 
@@ -337,8 +339,8 @@ String DataBufferManager::getMemoryStatistics() const
             totalBytes += allocation->size;
     }
 
-    return String() << staticDataGroups_.size() << " static, " << dynamicBufferCount << " dynamic, " << allocations_.size()
-                    << " allocations, " << FileSystem::formatByteSize(totalBytes);
+    return String() << staticDataGroups_.size() << " static, " << dynamicBufferCount << " dynamic, "
+                    << allocations_.size() << " allocations, " << FileSystem::formatByteSize(totalBytes);
 }
 
 }

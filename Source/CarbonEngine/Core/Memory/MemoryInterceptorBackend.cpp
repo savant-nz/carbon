@@ -11,12 +11,13 @@
 #include "CarbonEngine/Core/Memory/MemoryValidator.h"
 #include "CarbonEngine/Globals.h"
 
-// This MemoryInterceptor backend is based on malloc/free. Platforms can implement their own allocator backend if desired.
+// This MemoryInterceptor backend is based on malloc/free. Platforms can implement their own allocator backend if
+// desired.
 
 #ifdef CARBON_INCLUDE_DEFAULT_MEMORY_INTERCEPTOR_BACKEND
 
-// Current versions of iOS and Mac OS X do not support the C++11 thread_local storage class specifier. Mac OS X does support
-// __thread but this is a non-standard extension. Use pthreads for TLS on both platforms.
+// Current versions of iOS and Mac OS X do not support the C++11 thread_local storage class specifier. Mac OS X does
+// support __thread but this is a non-standard extension. Use pthreads for TLS on both platforms.
 #ifdef APPLE
     #define USE_PTHREADS_FOR_TLS
 #endif
@@ -24,12 +25,14 @@
 namespace Carbon
 {
 
-// On Windows a basic BlockAllocatorSet is used in debug builds in order to avoid most interaction with the slow debug heap.
-// Search for details on the _NO_DEBUG_HEAP environment variable for further information. Putting a generously sized
-// BlockAllocatorSet between the engine and the Windows Debug Heap improves performance a lot when debugging with an IDE.
+// On Windows a basic BlockAllocatorSet is used in debug builds in order to avoid most interaction with the slow debug
+// heap. Search for details on the _NO_DEBUG_HEAP environment variable for further information. Putting a generously
+// sized BlockAllocatorSet between the engine and the Windows Debug Heap improves performance a lot when debugging with
+// an IDE.
 #if defined(WINDOWS) && defined(CARBON_DEBUG)
     #define MEGABYTES(n) (n * 1024 * 1024)
-    #define CARBON_BLOCK_ALLOCATOR_CONFIG {32, MEGABYTES(4)}, {256, MEGABYTES(16)}, {1024, MEGABYTES(16)}, { 0, 0 }
+    #define CARBON_BLOCK_ALLOCATOR_CONFIG \
+        {32, MEGABYTES(4)}, {256, MEGABYTES(16)}, {1024, MEGABYTES(16)}, { 0, 0 }
 #endif
 
 #ifdef CARBON_BLOCK_ALLOCATOR_CONFIG
@@ -97,7 +100,8 @@ void* MemoryInterceptor::untrackedAllocate(size_t size, unsigned int flags, bool
 
     if (canThrowBadAlloc)
     {
-        Globals::debugLog("Memory interceptor backend could not allocate %llu bytes, throwing std::bad_alloc", uint64_t(size));
+        Globals::debugLog("Memory interceptor backend could not allocate %llu bytes, throwing std::bad_alloc",
+                          uint64_t(size));
         throw std::bad_alloc();
     }
     else

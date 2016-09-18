@@ -69,12 +69,14 @@ public:
     static float clamp01(float value) { return clamp(value, 0.0f, 1.0f); }
 
     /**
-     * Returns the given value clamped so that it lies between -limit and limit, i.e. its absolute value is less than \a limit.
+     * Returns the given value clamped so that it lies between -limit and limit, i.e. its absolute value is less than \a
+     * limit.
      */
     template <typename T> static T absClamp(const T& value, const T& limit) { return clamp(value, -limit, limit); }
 
     /**
-     * Returns the sign of the passed floating point value. Returns 1.0f for positive, -1.0f for negative, and 0.0f for 0.0f.
+     * Returns the sign of the passed floating point value. Returns 1.0f for positive, -1.0f for negative, and 0.0f for
+     * 0.0f.
      */
     static float getSign(float value) { return float((0.0f < value) - (value < 0.0f)); }
 
@@ -89,14 +91,14 @@ public:
     static int random(int lower, int upper);
 
     /**
-     * Returns a random floating point number in the given range. The range of return values is inclusive of \a lower and \a
-     * upper.
+     * Returns a random floating point number in the given range. The range of return values is inclusive of \a lower
+     * and \a upper.
      */
     static float random(float lower, float upper);
 
     /**
-     * Templated random function that can generate a random object of any type provided it defines addition, subtraction and
-     * floating point multiplication operators.
+     * Templated random function that can generate a random object of any type provided it defines addition, subtraction
+     * and floating point multiplication operators.
      */
     template <typename T> static T random(const T& lower, const T& upper)
     {
@@ -104,8 +106,8 @@ public:
     }
 
     /**
-     * Returns a random boolean value, the chance of the return value being true is specified by \a chance which should be
-     * between zero and one and defaults to 0.5.
+     * Returns a random boolean value, the chance of the return value being true is specified by \a chance which should
+     * be between zero and one and defaults to 0.5.
      */
     static bool randomBool(float chance = 0.5f) { return random(0.0f, 1.0f) <= clamp01(chance); }
 
@@ -128,10 +130,10 @@ public:
     }
 
     /**
-     * Returns the positive modulus of \a value mod \a modulus. This method returns the same result for positive values as the
-     * standard modulus operator, but for negative values the result of the modulus will be shifted into the positive range. For
-     * example, -1 mod 5 will return 4, whereas the standard modulus operator would return -1. If \a modulus is zero then \a
-     * value is returned unchanged.
+     * Returns the positive modulus of \a value mod \a modulus. This method returns the same result for positive values
+     * as the standard modulus operator, but for negative values the result of the modulus will be shifted into the
+     * positive range. For example, -1 mod 5 will return 4, whereas the standard modulus operator would return -1. If
+     * \a modulus is zero then \a value is returned unchanged.
      */
     static int positiveModulus(int value, int modulus);
 

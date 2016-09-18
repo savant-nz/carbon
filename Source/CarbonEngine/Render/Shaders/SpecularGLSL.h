@@ -14,7 +14,8 @@ namespace Shaders
 {
 
 /**
- * Implementation of specular for GLSL. This is a shader component that is used by other shaders in order to support specular.
+ * Implementation of specular for GLSL. This is a shader component that is used by other shaders in order to support
+ * specular.
  */
 class CARBON_API SpecularGLSL
 {
@@ -27,8 +28,8 @@ public:
     static const Parameter DefaultSpecularExponent;
 
     /**
-     * Returns the specular exponent to use given a set of parameters. If \a parameters contains a specularExponent value then
-     * that will be returned, if not then DefaultSpecularExponent will be returned.
+     * Returns the specular exponent to use given a set of parameters. If \a parameters contains a specularExponent
+     * value then that will be returned, if not then DefaultSpecularExponent will be returned.
      */
     static float getSpecularExponent(const ParameterArray& params);
 

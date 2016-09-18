@@ -28,7 +28,10 @@ public:
     /**
      * Returns a hash of the raw data contained in the passed vector.
      */
-    template <typename T> static unsigned int hash(const Vector<T>& data) { return hash(data.getData(), data.getDataSize()); }
+    template <typename T> static unsigned int hash(const Vector<T>& data)
+    {
+        return hash(data.getData(), data.getDataSize());
+    }
 
     /**
      * Returns a hash of the raw data contained in the passed vector.

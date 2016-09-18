@@ -13,8 +13,8 @@ namespace Carbon
 {
 
 /**
- * A SoundListener entity can be added to a scene to define the positional audio listener, it is often attached as a child of
- * another entity where the other entity is the main game object being controlled by the player.
+ * A SoundListener entity can be added to a scene to define the positional audio listener, it is often attached as a
+ * child of another entity where the other entity is the main game object being controlled by the player.
  */
 class CARBON_API SoundListener : public Entity
 {

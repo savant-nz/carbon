@@ -195,7 +195,8 @@ static void runEnumerateFilesConsoleCommand(const Vector<UnicodeString>& paramet
 
     // Enumerate the files using the given parameters
     auto files = Vector<UnicodeString>();
-    fileSystem().enumerateFiles(parameters[0], extension, parameters.size() > 2 ? parameters[2].asBoolean() : true, files);
+    fileSystem().enumerateFiles(parameters[0], extension, parameters.size() > 2 ? parameters[2].asBoolean() : true,
+                                files);
 
     // Print results
     if (files.empty())
@@ -266,7 +267,8 @@ static void runWindowedConsoleCommand(const Vector<UnicodeString>& parameters)
     if (platform().getWindowMode() != PlatformInterface::Windowed)
     {
         // Change the window mode
-        if (!platform().resizeWindow(platform().getCurrentResolution(), PlatformInterface::Windowed, platform().getFSAAMode()))
+        if (!platform().resizeWindow(platform().getCurrentResolution(), PlatformInterface::Windowed,
+                                     platform().getFSAAMode()))
             LOG_CONSOLE << "Error: failed changing window mode";
     }
 }
@@ -311,7 +313,8 @@ CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND(ReleaseInputLock, "")
 
 static void runVerticalSyncConsoleCommand(const Vector<UnicodeString>& parameters)
 {
-    if (!platform().setVerticalSyncEnabled(parameters.size() ? parameters[0].asBoolean() : !platform().isVerticalSyncEnabled()))
+    if (!platform().setVerticalSyncEnabled(parameters.size() ? parameters[0].asBoolean() :
+                                                               !platform().isVerticalSyncEnabled()))
         LOG_CONSOLE << "Failed changing vertical sync";
 }
 CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND(VerticalSync, "[<true|false>]")
@@ -419,7 +422,8 @@ static void runCompileFontConsoleCommand(const Vector<UnicodeString>& parameters
     else
         LOG_CONSOLE << "Failed compiling font";
 }
-CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND(CompileFont, "<font name> <font size> [<texture size> = 512] [<characters text file>]")
+CARBON_REGISTER_SIMPLE_CONSOLE_COMMAND(CompileFont,
+                                       "<font name> <font size> [<texture size> = 512] [<characters file>]")
 
 static void runListTextureGroupsConsoleCommand(const Vector<UnicodeString>& parameters)
 {
@@ -487,17 +491,19 @@ static void runTextureMemoryConsoleCommand(const Vector<UnicodeString>& paramete
 
         totalImageDataSize += image.getDataSize();
 
-        LOG_CONSOLE << name.padToLength(maximumNameLength + 4)
-                    << FileSystem::formatByteSize(image.getDataSize()).prePadToLength(10)
-                    << Image::getPixelFormatString(image.getPixelFormat()).prePadToLength(maximumPixelFormatNameLength + 4)
-                    << (String() + image.getWidth() + "x" + image.getHeight() +
-                        (image.getDepth() > 1 ? (String() + "x" + image.getDepth()) : ""))
-                           .prePadToLength(13)
-                    << "    " << Texture::convertTextureTypeToString(texture->getTextureType());
+        LOG_CONSOLE
+            << name.padToLength(maximumNameLength + 4)
+            << FileSystem::formatByteSize(image.getDataSize()).prePadToLength(10)
+            << Image::getPixelFormatString(image.getPixelFormat()).prePadToLength(maximumPixelFormatNameLength + 4)
+            << (String() + image.getWidth() + "x" + image.getHeight() +
+                (image.getDepth() > 1 ? (String() + "x" + image.getDepth()) : ""))
+                   .prePadToLength(13)
+            << "    " << Texture::convertTextureTypeToString(texture->getTextureType());
     }
 
     LOG_CONSOLE << "";
-    LOG_CONSOLE << "There are " << textureNames.size() << " textures using " << FileSystem::formatByteSize(totalImageDataSize);
+    LOG_CONSOLE << "There are " << textureNames.size() << " textures using "
+                << FileSystem::formatByteSize(totalImageDataSize);
 }
 static void autocompleteTextureMemoryConsoleCommand(unsigned int parameterIndex, Vector<UnicodeString>& completions)
 {
@@ -804,7 +810,8 @@ static void runSampleTextureConsoleCommand(const Vector<UnicodeString>& paramete
 {
     auto texture = dynamic_cast<Texture2D*>(textures().getTexture(A(parameters[0])));
     if (texture)
-        LOG_CONSOLE << "Sample result: " << texture->sampleNearestTexel(parameters[0].asFloat(), parameters[1].asFloat());
+        LOG_CONSOLE << "Sample result: "
+                    << texture->sampleNearestTexel(parameters[0].asFloat(), parameters[1].asFloat());
     else
         LOG_CONSOLE << "Error: unknown 2D texture";
 }
@@ -858,7 +865,8 @@ static void runMaterialParametersConsoleCommand(const Vector<UnicodeString>& par
 {
     LOG_CONSOLE << materials().getMaterial(A(parameters[0])).getParameters();
 }
-static void autocompleteMaterialParametersConsoleCommand(unsigned int parameterIndex, Vector<UnicodeString>& completions)
+static void autocompleteMaterialParametersConsoleCommand(unsigned int parameterIndex,
+                                                         Vector<UnicodeString>& completions)
 {
     completions = U(materials().getMaterialNames());
 }
@@ -868,7 +876,8 @@ static void runSetMaterialParameterConsoleCommand(const Vector<UnicodeString>& p
 {
     materials().getMaterial(A(parameters[0])).setParameter(A(parameters[1]), A(parameters[2]));
 }
-static void autocompleteSetMaterialParameterConsoleCommand(unsigned int parameterIndex, Vector<UnicodeString>& completions)
+static void autocompleteSetMaterialParameterConsoleCommand(unsigned int parameterIndex,
+                                                           Vector<UnicodeString>& completions)
 {
     if (parameterIndex == 0)
         completions = U(materials().getMaterialNames());

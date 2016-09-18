@@ -34,8 +34,8 @@ public:
     public:
 
         /**
-         * Returns the position of the notch on the slider, in the range \a minValue to \a maxValue which was set by the last
-         * call to GUISlider::setRange().
+         * Returns the position of the notch on the slider, in the range \a minValue to \a maxValue which was set by the
+         * last call to GUISlider::setRange().
          */
         float getPosition() const { return position_; }
 
@@ -64,8 +64,8 @@ public:
     }
 
     /**
-     * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>(), it sets the width, height,
-     * position and range of this GUISlider.
+     * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>(), it sets the width,
+     * height, position and range of this GUISlider.
      */
     virtual void initialize(float width, float height, const Vec2& position, float minValue, float maxValue)
     {
@@ -79,20 +79,21 @@ public:
     float getFraction() const { return fraction_; }
 
     /**
-     * Sets the current slider fraction. The given value will be clamped to the range 0.0 - 1.0 and then applied to the slider.
+     * Sets the current slider fraction. The given value will be clamped to the range 0.0 - 1.0 and then applied to the
+     * slider.
      */
     void setFraction(float fraction);
 
     /**
      * Sets the range of values for this slider, this is used to set the minimum and maximum values for the slider. The
-     * GUISlider::getValue() and GUISlider::setValue() methods work with the currently set range. The default range is 0.0 to
-     * 1.0. Returns success flag.
+     * GUISlider::getValue() and GUISlider::setValue() methods work with the currently set range. The default range is
+     * 0.0 to 1.0. Returns success flag.
      */
     bool setRange(float minValue, float maxValue);
 
     /**
-     * Returns the current value on this slider by taking the current slider fraction and converting it into a value in the
-     * slider range set by GUISlider::setRange().
+     * Returns the current value on this slider by taking the current slider fraction and converting it into a value in
+     * the slider range set by GUISlider::setRange().
      */
     float getValue() const;
 
@@ -123,8 +124,8 @@ public:
     void setHandleWidth(float width) { handleWidth_ = Math::clamp01(width); }
 
     /**
-     * Returns the material that will be used to draw the slider handle, the bar behind the slider will be drawn with the
-     * GUIWindow::getMaterial() material.
+     * Returns the material that will be used to draw the slider handle, the bar behind the slider will be drawn with
+     * the GUIWindow::getMaterial() material.
      */
     const String& getHandleMaterial() const { return handleMaterial_; }
 
@@ -135,10 +136,10 @@ public:
     void setHandleMaterial(const String& material) { handleMaterial_ = material; }
 
     /**
-     * Adds a notch to this slider at the specified position. The position must not lie outside the range specified by setRange.
-     * Notches can be made snappable so that when the user clicks on the slider near the notch the slider will snap onto the
-     * notch position. Snapping can be controlled with GUISlider::getNotchSnapDistance() and GUISlider::setNotchSnapDistance().
-     * Returns success flag.
+     * Adds a notch to this slider at the specified position. The position must not lie outside the range specified by
+     * setRange. Notches can be made snappable so that when the user clicks on the slider near the notch the slider will
+     * snap onto the notch position. Snapping can be controlled with GUISlider::getNotchSnapDistance() and
+     * GUISlider::setNotchSnapDistance(). Returns success flag.
      */
     bool addNotch(float position, bool isSnappable);
 
@@ -153,14 +154,14 @@ public:
     void clearNotches() { notches_.clear(); }
 
     /**
-     * Returns the distance in pixels around a snappable notch in which an automatic snap will occur when the user clicks on the
-     * slider.
+     * Returns the distance in pixels around a snappable notch in which an automatic snap will occur when the user
+     * clicks on the slider.
      */
     unsigned int getNotchSnapDistance() const { return notchSnapDistance_; }
 
     /**
-     * Sets the distance in pixels around a snappable notch in which an automatic snap will occur when the user clicks on the
-     * slider.
+     * Sets the distance in pixels around a snappable notch in which an automatic snap will occur when the user clicks
+     * on the slider.
      */
     void setNotchSnapDistance(unsigned int distance) { notchSnapDistance_ = distance; }
 
@@ -185,21 +186,21 @@ public:
     void setNotchHeight(float height);
 
     /**
-     * Returns the slider value that corresponds to the slider being at the given position in world space. This will clamp the
-     * value to the valid range if \a p lies outside the slider window's area.
+     * Returns the slider value that corresponds to the slider being at the given position in world space. This will
+     * clamp the value to the valid range if \a p lies outside the slider window's area.
      */
     float getValueFromWorldPosition(const Vec3& p) const;
 
     /**
-     * Returns the world position on the slider that corresponds to the given slider value. If the given value lies outside the
-     * valid range of the slider then it will be clamped appropriately. The returned position will always lie on the middle of
-     * the sliding bar.
+     * Returns the world position on the slider that corresponds to the given slider value. If the given value lies
+     * outside the valid range of the slider then it will be clamped appropriately. The returned position will always
+     * lie on the middle of the sliding bar.
      */
     Vec3 getWorldPositionFromValue(float value) const;
 
     /**
-     * Sets the output window that will automatically have its text set to this slider's value whenever this slider's value
-     * changes. If set to null then automatic output window updating is disabled. Defaults to null.
+     * Sets the output window that will automatically have its text set to this slider's value whenever this slider's
+     * value changes. If set to null then automatic output window updating is disabled. Defaults to null.
      */
     void setOutputWindow(GUIWindow* window);
 

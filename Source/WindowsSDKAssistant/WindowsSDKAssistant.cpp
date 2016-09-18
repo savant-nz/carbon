@@ -4,21 +4,22 @@
  */
 
 /*
- * This little utility is included with the Carbon SDK for Windows and is used in both the installer and uninstaller to carry
- * out certain parts of the install that would be difficult to do in NSIS code. It also provides a small interface to install
- * exporters when run with the /exporterinstallerdialog parameter. The command line parameters detailed below are used to direct
- * the action of the program during the installation and uninstallation processes.
+ * This little utility is included with the Carbon SDK for Windows and is used in both the installer and uninstaller to
+ * carry out certain parts of the install that would be difficult to do in NSIS code. It also provides a small interface
+ * to install exporters when run with the /exporterinstallerdialog parameter. The command line parameters detailed below
+ * are used to direct the action of the program during the installation and uninstallation processes.
  *
- *  /exporters                  Copies all exporter plugins to the plugin directories of their respective applications. If the
- *                              application for the plugin is not installed then it is ignored.
+ *  /exporters                  Copies all exporter plugins to the plugin directories of their respective applications.
+ *                              If the application for the plugin is not installed then it is ignored.
  *
  *  /environment                Adds the SDK's Bin\ directory to the current user's PATH environment variable. This also
  *                              sets the SDK's required environment variables.
  *
- *  /projecttemplates           Makes the Visual Studio project templates and wizards available in all the supported versions.
+ *  /projecttemplates           Makes the Visual Studio project templates and wizards available in all the supported
+ *                              versions.
  *
- *  /delete                     If this is specified then the above commands will delete the the relevant files and paths rather
- *                              than adding them. This is used by the uninstaller.
+ *  /delete                     If this is specified then the above commands will delete the the relevant files and
+ *                              paths rather than adding them. This is used by the uninstaller.
  *
  *  /silent                     Stops the above commands from showing any error messages they otherwise might.
  *
@@ -39,8 +40,8 @@ const auto rvSDKDirectory = std::wstring(L"InstallLocation");
 
 std::wstring getRegistryString(const std::wstring& subkey, const std::wstring& value, HKEY hKey, bool use64BitRegistry)
 {
-    // If the 64-bit registry is requested then check that we're actually running on a 64-bit system. This is necessary because
-    // a KEY_WOW64_64KEY registry access on a 32-bit machine will silently redirect to the 32-bit registry
+    // If the 64-bit registry is requested then check that we're actually running on a 64-bit system. This is necessary
+    // because a KEY_WOW64_64KEY registry access on a 32-bit machine will silently redirect to the 32-bit registry
     if (use64BitRegistry)
     {
         auto isWow64 = BOOL();
@@ -77,8 +78,8 @@ bool setRegistryString(const std::wstring& subkey, const std::wstring& value, co
     if (RegOpenKeyEx(hKey, subkey.c_str(), 0, KEY_SET_VALUE, &hOpenedKey) != ERROR_SUCCESS)
         return false;
 
-    auto result =
-        RegSetValueEx(hOpenedKey, value.c_str(), 0, REG_SZ, LPCBYTE(contents.c_str()), DWORD(contents.length() + 1) * 2);
+    auto result = RegSetValueEx(hOpenedKey, value.c_str(), 0, REG_SZ, LPCBYTE(contents.c_str()),
+                                DWORD(contents.length() + 1) * 2);
 
     RegCloseKey(hOpenedKey);
 

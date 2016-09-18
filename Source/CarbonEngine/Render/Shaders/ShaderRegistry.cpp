@@ -17,7 +17,8 @@ struct RegisteredShader
     ShaderRegistry::IsSupportedByGraphicsInterfaceFunction fnIsSupportedByGraphicsInterface = nullptr;
 
     RegisteredShader() {}
-    RegisteredShader(Shader* shader_, ShaderRegistry::IsSupportedByGraphicsInterfaceFunction fnIsSupportedByGraphicsInterface_)
+    RegisteredShader(Shader* shader_,
+                     ShaderRegistry::IsSupportedByGraphicsInterfaceFunction fnIsSupportedByGraphicsInterface_)
         : shader(shader_), fnIsSupportedByGraphicsInterface(fnIsSupportedByGraphicsInterface_)
     {
     }

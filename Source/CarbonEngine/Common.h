@@ -8,9 +8,10 @@
 
 #ifndef DOXYGEN
 
-// Determine what platform is being targeted. Either WINDOWS, LINUX, MACOSX, iOS, ANDROID or CONSOLE will be defined, and
-// these defines should be used when conditional compilation for a specific platform is required. APPLE is defined on all Apple
-// platforms. Android is a Linux platform and so both LINUX and ANDROID will be defined when building for Android.
+// Determine what platform is being targeted. Either WINDOWS, LINUX, MACOSX, iOS, ANDROID or CONSOLE will be defined,
+// and these defines should be used when conditional compilation for a specific platform is required. APPLE is defined
+// on all Apple platforms. Android is a Linux platform and so both LINUX and ANDROID will be defined when building for
+// Android.
 
 #if defined(_WIN32) || defined(_WIN64)
     #ifndef WINDOWS
@@ -25,8 +26,9 @@
             #define CARBON_MSVC_VERSION "Unknown"
         #endif
 
-        // The CARBON_STATIC_LIBRARY_DEPENDENCY_SUFFIX macro is used to automatically select the correct static library file for
-        // a dependency such as FreeImage, it is aware of debug and release variants as well as the MSVC version being used
+        // The CARBON_STATIC_LIBRARY_DEPENDENCY_SUFFIX macro is used to automatically select the correct static library
+        // file for a dependency such as FreeImage, it is aware of debug and release variants as well as the MSVC
+        // version being used
         #ifdef _DEBUG
             #define CARBON_STATIC_LIBRARY_DEPENDENCY_SUFFIX "VisualStudio" CARBON_MSVC_VERSION "Debug.lib"
         #else
@@ -140,8 +142,8 @@
 
 #ifdef WINDOWS
 
-    // Use Unicode-aware Windows and system APIs. The currently supported versions of 3D Studio Max are not Unicode compatible,
-    // so the Max exporter plugin builds don't define these tokens.
+    // Use Unicode-aware Windows and system APIs. The currently supported versions of 3D Studio Max are not Unicode
+    // compatible, so the Max exporter plugin builds don't define these tokens.
     #undef _UNICODE
     #undef UNICODE
     #ifndef CARBON_INCLUDE_MAX_EXPORTER
@@ -263,8 +265,9 @@
     #endif
 #endif
 
-// The standard exporting of symbols unnecessarily increases the size of exporter plugin builds, so turn off the default symbol
-// exporting behavior for these builds. Any required public symbols will be exported using CARBON_EXPORTER_API instead.
+// The standard exporting of symbols unnecessarily increases the size of exporter plugin builds, so turn off the default
+// symbol exporting behavior for these builds. Any required public symbols will be exported using CARBON_EXPORTER_API
+// instead.
 #if defined(CARBON_INCLUDE_MAX_EXPORTER) || defined(CARBON_INCLUDE_MAYA_EXPORTER)
     #undef CARBON_API
 #endif
@@ -304,26 +307,26 @@
 #define CARBON_JOIN_MACRO_VALUES_(x, y) x##y
 #define CARBON_JOIN_MACRO_VALUES(x, y) CARBON_JOIN_MACRO_VALUES_(x, y)
 
-// Defines a namespace with a unique name based off the __LINE__ macro, an anonymous namespace is also put in place to avoid
-// interactions between uses of CARBON_UNIQUE_NAMESPACE in different files that happen to have the same expansion of the
-// __LINE__ macro
+// Defines a namespace with a unique name based off the __LINE__ macro, an anonymous namespace is also put in place to
+// avoid interactions between uses of CARBON_UNIQUE_NAMESPACE in different files that happen to have the same expansion
+// of the __LINE__ macro
 #define CARBON_UNIQUE_NAMESPACE                                   \
     namespace CARBON_JOIN_MACRO_VALUES(UniqueNamespace, __LINE__) \
     {                                                             \
     namespace
 #define CARBON_UNIQUE_NAMESPACE_END }
 
-// Include the C++ standard library headers needed by the engine, these are not included for client applications because client
-// applications are responsible for making sure they include all the headers they need rather than relying on an include in this
-// header which could end up changing.
+// Include the C++ standard library headers needed by the engine, these are not included for client applications because
+// client applications are responsible for making sure they include all the headers they need rather than relying on an
+// include in this header which could end up changing.
 //
-// This also helps to enforce STL containers never appearing in the engine's public API. This separation is important for
-// maintaining compatibility when the engine is used by an application that doesn't use the exact same STL library version as
-// was used to compile the engine. Mixing STL implementation versions can cause memory corruption or crashes.
+// This also helps to enforce STL containers never appearing in the engine's public API. This separation is important
+// for maintaining compatibility when the engine is used by an application that doesn't use the exact same STL library
+// version as was used to compile the engine. Mixing STL implementation versions can cause memory corruption or crashes.
 //
-// Because of this STL classes should not be part of the public API, particularly those which make allocations. An exception is
-// made in the case of certain low-level types that don't allocate, e.g. std::array, std::exception, std::function, std::pair
-// and std::type_info.
+// Because of this STL classes should not be part of the public API, particularly those which make allocations. An
+// exception is made in the case of certain low-level types that don't allocate, e.g. std::array, std::exception,
+// std::function, std::pair and std::type_info.
 #ifdef CARBON_EXPORTS
     #include <cctype>
     #include <cerrno>
@@ -349,8 +352,8 @@
     #include <vector>
 #endif
 
-// The following standard library headers must be included in client applications because they contain definitions that are used
-// by engine headers
+// The following standard library headers must be included in client applications because they contain definitions that
+// are used by engine headers
 #include <algorithm>
 #include <array>
 #include <cfloat>
@@ -368,8 +371,8 @@
     #error The libc++ library must be used on Apple platforms
 #endif
 
-// CARBON_DEBUG should be used for conditional compilation of extra debugging code useful in development, by default it is
-// defined in debug builds, but it can be explicitly removed by defining CARBON_DISABLE_DEBUG
+// CARBON_DEBUG should be used for conditional compilation of extra debugging code useful in development, by default it
+// is defined in debug builds, but it can be explicitly removed by defining CARBON_DISABLE_DEBUG
 #if defined(_DEBUG) && !defined(DEBUG)
     #define DEBUG
 #endif
@@ -377,7 +380,8 @@
     #define CARBON_DEBUG
 #endif
 
-// If CARBON_DEBUG is defined then assert() calls are included in the build, otherwise they are explicitly turned into no-ops
+// If CARBON_DEBUG is defined then assert() calls are included in the build, otherwise they are explicitly turned into
+// no-ops
 #ifdef CARBON_DEBUG
     #include <cassert>
 #else
@@ -402,8 +406,8 @@
     #pragma warning(disable: 4101)    // 'identifier' : unreferenced local variable
 #endif
 
-// The CARBON_INCLUDE_CONSOLE_COMMANDS token toggles whether or not all of the built-in console commands are included in the
-// build, it is defined automatically unless CARBON_DISABLE_CONSOLE_COMMANDS has been specified
+// The CARBON_INCLUDE_CONSOLE_COMMANDS token toggles whether or not all of the built-in console commands are included in
+// the build, it is defined automatically unless CARBON_DISABLE_CONSOLE_COMMANDS has been specified
 #undef CARBON_INCLUDE_CONSOLE_COMMANDS
 #ifndef CARBON_DISABLE_CONSOLE_COMMANDS
     #define CARBON_INCLUDE_CONSOLE_COMMANDS
@@ -703,8 +707,8 @@ enum DataType
 extern CARBON_API unsigned int getDataTypeSize(DataType dataType);
 
 /**
- * Typedef for a pointer to a function that takes no arguments and returns nothing, this is used as a generic function pointer
- * type.
+ * Typedef for a pointer to a function that takes no arguments and returns nothing, this is used as a generic function
+ * pointer type.
  */
 typedef void (*VoidFunction)();
 

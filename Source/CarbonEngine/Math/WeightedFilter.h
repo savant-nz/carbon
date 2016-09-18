@@ -16,8 +16,8 @@ template <typename T, unsigned int BufferSize> class CARBON_API WeightedFilter
 public:
 
     /**
-     * Controls how the filter averages the data. A value of one gives all values equal weight, a value below one gives more
-     * importance to the more recent values the closer it gets to zero.
+     * Controls how the filter averages the data. A value of one gives all values equal weight, a value below one gives
+     * more importance to the more recent values the closer it gets to zero.
      */
     float weightModifier = 1.0f;
 

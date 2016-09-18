@@ -73,13 +73,14 @@ void MaterialManager::reloadMaterials()
 {
     LOG_INFO << "Reloading materials";
 
-    // When reloading materials we don't want to have to reload textures that are still going to be in use after the materials
-    // are reloaded. By default this would happen because clearing all the current materials would wipe all references to most
-    // textures and they would then be deleted, only to immediately be reloaded once the fresh materials are loaded back in. To
-    // get around this we disable the automatic texture deletion feature of the texture manager and then re-enable it once the
-    // materials are reloaded. But since the material textures are loaded JIT this isn't enough because the new materials
-    // wouldn't have been used. To get around this we take a list of the currently loaded materials and ensure that they have
-    // their textures re-referenced before we re-enable the texture deletion feature on the texture manager.
+    // When reloading materials we don't want to have to reload textures that are still going to be in use after the
+    // materials are reloaded. By default this would happen because clearing all the current materials would wipe all
+    // references to most textures and they would then be deleted, only to immediately be reloaded once the fresh
+    // materials are loaded back in. To get around this we disable the automatic texture deletion feature of the texture
+    // manager and then re-enable it once the materials are reloaded. But since the material textures are loaded JIT
+    // this isn't enough because the new materials wouldn't have been used. To get around this we take a list of the
+    // currently loaded materials and ensure that they have their textures re-referenced before we re-enable the texture
+    // deletion feature on the texture manager.
 
     textures().disableTextureDeletion();
     auto loadedMaterials = Vector<std::pair<String, bool>>();
@@ -102,8 +103,8 @@ void MaterialManager::reloadMaterials()
             getMaterial(loadedMaterial.first);
     }
 
-    // Turn the texture manager garbage collector back on, this will delete any textures that are now unused as a result of
-    // reloading materials
+    // Turn the texture manager garbage collector back on, this will delete any textures that are now unused as a result
+    // of reloading materials
     textures().enableTextureDeletion();
 
     LOG_INFO << "Reloaded materials";

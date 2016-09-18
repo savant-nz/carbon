@@ -54,8 +54,8 @@ bool ComplexEntity::addChild(Entity* entity)
     // Store the entity's current parent, this will be null if it is not currently in a scene
     auto parent = entity->getParent();
 
-    // If the entity is already in a scene then this method can be used to change its position in the scene graph, but not to
-    // move it to a different scene
+    // If the entity is already in a scene then this method can be used to change its position in the scene graph, but
+    // not to move it to a different scene
     if (entity->getScene() && entity->getScene() != getScene())
     {
         LOG_ERROR << "Entity can't be moved into a different scene: " << *entity;
@@ -67,7 +67,8 @@ bool ComplexEntity::addChild(Entity* entity)
     children_.insert(-index - 1, entity);
     entity->parent_ = this;
 
-    // If the entity was already in this scene and is just changing its position in the scene graph then update the old parent
+    // If the entity was already in this scene and is just changing its position in the scene graph then update the old
+    // parent
     if (parent)
     {
         parent->children_.erase(parent->children_.binarySearch(entity));
@@ -75,8 +76,8 @@ bool ComplexEntity::addChild(Entity* entity)
     }
     else
     {
-        // If this complex entity is in a scene then add the whole entity hierarchy rooted at the new child entity into the
-        // scene
+        // If this complex entity is in a scene then add the whole entity hierarchy rooted at the new child entity into
+        // the scene
         if (getScene())
         {
             auto newSceneEntities = Vector<Entity*>{entity};
@@ -135,8 +136,8 @@ bool ComplexEntity::removeChild(Entity* entity)
             getScene()->removeEntityFromInternalArray(e);
         }
 
-        // If the entity being deleted is a non-complex entity or has no children then try and destroy it using the entity type
-        // registry
+        // If the entity being deleted is a non-complex entity or has no children then try and destroy it using the
+        // entity type registry
         if (!entity->isEntityType<ComplexEntity>() || static_cast<ComplexEntity*>(entity)->getChildCount() == 0)
             SubclassRegistry<Entity>::destroy(entity);
     }
@@ -275,7 +276,8 @@ void ComplexEntity::load(FileReader& file)
 
 ComplexEntity::operator UnicodeString() const
 {
-    return Entity::operator UnicodeString() + (getChildCount() ? (String() + ", direct children: " + getChildCount()) : "");
+    return Entity::operator UnicodeString() +
+        (getChildCount() ? (String() + ", direct children: " + getChildCount()) : "");
 }
 
 void ComplexEntity::calculateLocalExtents() const

@@ -41,7 +41,8 @@ void MemoryInterceptor::start(const char* file, unsigned int line)
 #endif
 }
 
-void* MemoryInterceptor::allocate(size_t size, unsigned int flags, bool isArray, bool canThrowBadAlloc, bool doLeakDetection)
+void* MemoryInterceptor::allocate(size_t size, unsigned int flags, bool isArray, bool canThrowBadAlloc,
+                                  bool doLeakDetection)
 {
 #ifdef CARBON_INCLUDE_MEMORY_INTERCEPTOR
     setup();
@@ -53,14 +54,14 @@ void* MemoryInterceptor::allocate(size_t size, unsigned int flags, bool isArray,
     // Get index for this allocation
     auto index = getNextAllocationIndex();
 
-    // Get the file and line information for this allocation, note that these are only set for allocations from code that
-    // actually saw the relevant operator new overload.
+    // Get the file and line information for this allocation, note that these are only set for allocations from code
+    // that actually saw the relevant operator new overload.
     auto file = pointer_to<const char>::type();
     auto line = 0U;
     getCurrentThreadsFileAndLine(file, line);
 
-    // Wipe the current file and line information, if it stayed around and the next allocation to be processed was from code
-    // that hadn't seen the operator new oveload then this file and line information would get reused incorrectly
+    // Wipe the current file and line information, if it stayed around and the next allocation to be processed was from
+    // code that hadn't seen the operator new oveload then this file and line information would get reused incorrectly
     setCurrentThreadsFileAndLine(nullptr, 0);
 
     // If stress testing is enabled then do a full validation of all current allocations
@@ -116,10 +117,10 @@ void* MemoryInterceptor::allocate(size_t size, unsigned int flags, bool isArray,
 
 #ifdef CARBON_INCLUDE_MEMORY_INTERCEPTOR
 
-// Reporting of memory leaks on shutdown is done by detecting when static deinitialization is in process using the following
-// class and then writing the memory leaks report file straight away. It is then rewritten on every subsequent invocation of
-// MemoryInterceptor::free(). This inefficient system is required because there is no way to know when static deinitialization
-// has finished and then write the memory leaks logfile just once.
+// Reporting of memory leaks on shutdown is done by detecting when static deinitialization is in process using the
+// following class and then writing the memory leaks report file straight away. It is then rewritten on every subsequent
+// invocation of MemoryInterceptor::free(). This inefficient system is required because there is no way to know when
+// static deinitialization has finished and then write the memory leaks logfile just once.
 static bool isInStaticDeinitialization;
 static struct StaticDeinitializationDetector
 {
@@ -196,8 +197,8 @@ unsigned int MemoryInterceptor::validateAllAllocations()
     // Reset the error count
     memoryValidationErrorCount = 0;
 
-    // The memory error callback is redirected so that all errors are reported without asserts, and also so that any errors
-    // detected can be grouped by allocation
+    // The memory error callback is redirected so that all errors are reported without asserts, and also so that any
+    // errors detected can be grouped by allocation
     auto originalMemoryErrorCallback = MemoryValidator::fnErrorCallback;
     MemoryValidator::fnErrorCallback = validateAllAllocationsMemoryErrorCallback;
 
@@ -230,8 +231,8 @@ void MemoryInterceptor::validateAllAllocationsAllocationCallback(const void* add
     currentLine = line;
     currentIndex = index;
 
-    // Validation for a specific allocation is implemented in the memory interceptor backend. Any errors detected will end up in
-    // the callback below
+    // Validation for a specific allocation is implemented in the memory interceptor backend. Any errors detected will
+    // end up in the callback below
     validateSingleAllocation(address, size, file, line, index);
 }
 

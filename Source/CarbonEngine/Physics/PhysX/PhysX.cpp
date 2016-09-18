@@ -339,19 +339,19 @@ PhysicsInterface::BodyObject PhysX::createBody(PxShape& pxShape, const SimpleTra
     return body;
 }
 
-PhysicsInterface::BodyObject PhysX::createBoundingBoxBody(const AABB& aabb, float mass, bool fixed, const Entity* entity,
-                                                          const SimpleTransform& initialTransform)
+PhysicsInterface::BodyObject PhysX::createBoundingBoxBody(const AABB& aabb, float mass, bool fixed,
+                                                          const Entity* entity, const SimpleTransform& initialTransform)
 {
-    auto pxShape =
-        physics_->createShape(PxBoxGeometry(toPx((aabb.getMaximum() - aabb.getMinimum()) * 0.5f)), *defaultMaterial_, true);
+    auto pxShape = physics_->createShape(PxBoxGeometry(toPx((aabb.getMaximum() - aabb.getMinimum()) * 0.5f)),
+                                         *defaultMaterial_, true);
 
     pxShape->setLocalPose(toPx(SimpleTransform(aabb.getCenter())));
 
     return createBody(*pxShape, initialTransform, mass, fixed, entity, nullptr);
 }
 
-PhysicsInterface::BodyObject PhysX::createCapsuleBody(float height, float radius, float mass, bool fixed, const Entity* entity,
-                                                      const SimpleTransform& initialTransform)
+PhysicsInterface::BodyObject PhysX::createCapsuleBody(float height, float radius, float mass, bool fixed,
+                                                      const Entity* entity, const SimpleTransform& initialTransform)
 {
     auto pxShape = physics_->createShape(PxCapsuleGeometry(radius, height * 0.5f), *defaultMaterial_, true);
 
@@ -362,7 +362,8 @@ PhysicsInterface::BodyObject PhysX::createCapsuleBody(float height, float radius
 
 PhysicsInterface::BodyTemplateObject PhysX::createBodyTemplateFromGeometry(const Vector<Vec3>& vertices,
                                                                            const Vector<RawIndexedTriangle>& triangles,
-                                                                           bool deleteOnceUnused, float customCollisionMargin)
+                                                                           bool deleteOnceUnused,
+                                                                           float customCollisionMargin)
 {
     auto data = Vector<byte_t>();
     if (!preProcessGeometry(vertices, triangles, data))
@@ -443,8 +444,8 @@ PhysicsInterface::BodyTemplateObject PhysX::createBodyTemplateFromHeightmap(unsi
         heightFieldDesc.nbRows = heightmapWidth;
         heightFieldDesc.nbColumns = heightmapHeight;
 
-        // The height values need to be scaled into the -32767 - 32767 range in order to be packed into the 16-bit signed
-        // integer format used by PhysX
+        // The height values need to be scaled into the -32767 - 32767 range in order to be packed into the 16-bit
+        // signed integer format used by PhysX
         auto lowest = 0.0f;
         auto highest = 0.0f;
         Math::calculateBounds(heightmap.getData(), sampleCount, lowest, highest);
@@ -460,7 +461,8 @@ PhysicsInterface::BodyTemplateObject PhysX::createBodyTemplateFromHeightmap(unsi
         for (auto y = 0U; y < heightmapHeight; y++)
         {
             for (auto x = 0U; x < heightmapWidth; x++)
-                sampleData[x * heightmapHeight + y].height = short(heightmap[y * heightmapWidth + x] * heightScaleFactor);
+                sampleData[x * heightmapHeight + y].height =
+                    short(heightmap[y * heightmapWidth + x] * heightScaleFactor);
         }
         heightFieldDesc.samples.data = sampleData.getData();
         heightFieldDesc.samples.stride = sizeof(PxHeightFieldSample);
@@ -547,9 +549,9 @@ PhysicsInterface::BodyObject PhysX::createGeometryBodyFromTemplate(BodyTemplateO
     return bodyObject;
 }
 
-PhysicsInterface::BodyObject PhysX::createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float heightScale,
-                                                                    float terrainScale, float mass, bool fixed,
-                                                                    const Entity* entity,
+PhysicsInterface::BodyObject PhysX::createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject,
+                                                                    float heightScale, float terrainScale, float mass,
+                                                                    bool fixed, const Entity* entity,
                                                                     const SimpleTransform& initialTransform)
 {
     auto bodyTemplate = reinterpret_cast<BodyTemplate*>(bodyTemplateObject);
@@ -560,10 +562,10 @@ PhysicsInterface::BodyObject PhysX::createHeightmapBodyFromTemplate(BodyTemplate
         return nullptr;
     }
 
-    auto pxShape =
-        physics_->createShape(PxHeightFieldGeometry(bodyTemplate->pxHeightField, PxMeshGeometryFlags(0),
-                                                    heightScale / bodyTemplate->heightScaleFactor, terrainScale, terrainScale),
-                              *defaultMaterial_, true);
+    auto pxShape = physics_->createShape(PxHeightFieldGeometry(bodyTemplate->pxHeightField, PxMeshGeometryFlags(0),
+                                                               heightScale / bodyTemplate->heightScaleFactor,
+                                                               terrainScale, terrainScale),
+                                         *defaultMaterial_, true);
 
     auto bodyObject = createBody(*pxShape, initialTransform, mass, fixed, entity, bodyTemplate);
     if (!bodyObject)
@@ -582,8 +584,8 @@ bool PhysX::deleteBody(BodyObject bodyObject)
 
     auto body = reinterpret_cast<Body*>(bodyObject);
 
-    // Any joints using this body are automatically removed from the simulation and any pointers to the body to be deleted are
-    // nulled but the PhysX::Joint instance lives on until an actual call to PhysX::deleteJoint()
+    // Any joints using this body are automatically removed from the simulation and any pointers to the body to be
+    // deleted are nulled but the PhysX::Joint instance lives on until an actual call to PhysX::deleteJoint()
     for (auto joint : joints_)
     {
         if (joint->firstBody == body || joint->secondBody == body)
@@ -732,11 +734,12 @@ PhysicsInterface::JointObject PhysX::createHingeJoint(BodyObject firstBodyObject
     auto firstBody = reinterpret_cast<Body*>(firstBodyObject);
     auto secondBody = reinterpret_cast<Body*>(secondBodyObject);
 
-    auto jointTransform = PxTransform(toPx(globalAnchor), toPx(Quaternion::createFromVectorToVector(Vec3::UnitY, globalAxis)));
+    auto jointTransform =
+        PxTransform(toPx(globalAnchor), toPx(Quaternion::createFromVectorToVector(Vec3::UnitY, globalAxis)));
 
-    auto pxJoint =
-        PxRevoluteJointCreate(*physics_, firstBody->pxActor, jointTransform * firstBody->pxActor->getGlobalPose().getInverse(),
-                              secondBody->pxActor, jointTransform * secondBody->pxActor->getGlobalPose().getInverse());
+    auto pxJoint = PxRevoluteJointCreate(
+        *physics_, firstBody->pxActor, jointTransform * firstBody->pxActor->getGlobalPose().getInverse(),
+        secondBody->pxActor, jointTransform * secondBody->pxActor->getGlobalPose().getInverse());
     if (!pxJoint)
     {
         LOG_ERROR << "Failed creating joint";
@@ -762,9 +765,9 @@ PhysicsInterface::JointObject PhysX::createBallAndSocketJoint(BodyObject firstBo
 
     auto jointTransform = PxTransform(toPx(globalAnchor));
 
-    auto pxJoint =
-        PxSphericalJointCreate(*physics_, firstBody->pxActor, jointTransform * firstBody->pxActor->getGlobalPose().getInverse(),
-                               secondBody->pxActor, jointTransform * secondBody->pxActor->getGlobalPose().getInverse());
+    auto pxJoint = PxSphericalJointCreate(
+        *physics_, firstBody->pxActor, jointTransform * firstBody->pxActor->getGlobalPose().getInverse(),
+        secondBody->pxActor, jointTransform * secondBody->pxActor->getGlobalPose().getInverse());
     if (!pxJoint)
     {
         LOG_ERROR << "Failed creating joint";
@@ -811,7 +814,8 @@ bool PhysX::getBodyJoints(BodyObject bodyObject, Vector<JointObject>& joints) co
     return true;
 }
 
-PhysicsInterface::CharacterControllerObject PhysX::createCharacterController(float height, float radius, const Entity* entity)
+PhysicsInterface::CharacterControllerObject PhysX::createCharacterController(float height, float radius,
+                                                                             const Entity* entity)
 {
     // Create new character controller
     auto characterController = new CharacterController;
@@ -831,7 +835,8 @@ PhysicsInterface::CharacterControllerObject PhysX::createCharacterController(flo
     description.stepOffset = radius;    // Maximum obstacle height the character can climb
     description.userData = characterController;
 
-    characterController->pxController = static_cast<PxCapsuleController*>(controllerManager_->createController(description));
+    characterController->pxController =
+        static_cast<PxCapsuleController*>(controllerManager_->createController(description));
     if (!characterController->pxController)
     {
         LOG_ERROR << "Failed creating controller";
@@ -878,8 +883,8 @@ bool PhysX::setCharacterControllerPosition(PhysicsInterface::CharacterController
     return true;
 }
 
-void PhysX::moveCharacterController(PhysicsInterface::CharacterControllerObject characterControllerObject, const Vec3& move,
-                                    float time)
+void PhysX::moveCharacterController(PhysicsInterface::CharacterControllerObject characterControllerObject,
+                                    const Vec3& move, float time)
 {
     if (!characterControllerObject)
         return;
@@ -890,8 +895,9 @@ void PhysX::moveCharacterController(PhysicsInterface::CharacterControllerObject 
     {
         auto currentTime = platform().getTime();
 
-        characterController->pxController->move(
-            toPx(move), Math::Epsilon, (currentTime - characterController->lastUpdateTime).toSeconds(), PxControllerFilters());
+        characterController->pxController->move(toPx(move), Math::Epsilon,
+                                                (currentTime - characterController->lastUpdateTime).toSeconds(),
+                                                PxControllerFilters());
 
         characterController->lastUpdateTime = currentTime;
     }

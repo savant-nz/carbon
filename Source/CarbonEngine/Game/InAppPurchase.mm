@@ -204,7 +204,8 @@ bool InAppPurchase::purchase(const String& productIdentifier)
         {
             LOG_INFO << "Initiating in-app purchase of product: " << productIdentifier;
 
-            // Attempt to make a purchase of this product, the result will be returned by InAppPurchase::onTransactionCompleted
+            // Attempt to make a purchase of this product, the result will be returned by
+            // InAppPurchase::onTransactionCompleted
             [[SKPaymentQueue defaultQueue] addPayment:[SKPayment paymentWithProduct:product]];
 
             return true;

@@ -83,8 +83,8 @@ bool Effect::load(const UnicodeString& filename)
                 if (componentCount < 1 || componentCount > 4)
                     throw Exception() << "Invalid vertex stream component count: " << componentCount;
 
-                vertexStreams_.emplace(VertexStream::streamNameToType(line[1].withoutIndexInBrackets()), uint(componentCount),
-                                       TypeNone);
+                vertexStreams_.emplace(VertexStream::streamNameToType(line[1].withoutIndexInBrackets()),
+                                       uint(componentCount), TypeNone);
             }
             else if (line[0].at(0) == '$')
             {

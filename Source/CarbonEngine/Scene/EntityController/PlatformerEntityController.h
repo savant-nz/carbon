@@ -11,9 +11,9 @@ namespace Carbon
 {
 
 /**
- * This entity controller allows an entity to be controlled in a manner suitable for use in a 2D platformer-style game. Using a
- * platformer entity controller on an entity that has a physics character controller will result in a controllable entity that
- * collides with the scene's physical simulation.
+ * This entity controller allows an entity to be controlled in a manner suitable for use in a 2D platformer-style game.
+ * Using a platformer entity controller on an entity that has a physics character controller will result in a
+ * controllable entity that collides with the scene's physical simulation.
  */
 class CARBON_API PlatformerEntityController : public EntityController
 {
@@ -27,17 +27,20 @@ public:
     void clear();
 
     /**
-     * Returns the maximum horizontal speed that this platformer controller can move at, in units per second. Defaults to 20.
+     * Returns the maximum horizontal speed that this platformer controller can move at, in units per second. Defaults
+     * to 20.
      */
     float getMaximumHorizontalSpeed() const { return maximumHorizontalSpeed_; }
 
     /**
-     * Sets the maximum horizontal speed that this platformer controller can move at, in units per second. Defaults to 20.
+     * Sets the maximum horizontal speed that this platformer controller can move at, in units per second. Defaults to
+     * 20.
      */
     void setMaximumHorizontalSpeed(float speed) { maximumHorizontalSpeed_ = speed; }
 
     /**
-     * Returns the maximum vertical speed that this platformer controller can move at, in units per second. Defaults to 50.
+     * Returns the maximum vertical speed that this platformer controller can move at, in units per second. Defaults to
+     * 50.
      */
     float getMaximumVerticalSpeed() const { return maximumVerticalSpeed_; }
 
@@ -83,8 +86,8 @@ public:
     void setUserInputAllowed(bool allowed) { isUserInputAllowed_ = allowed; }
 
     /**
-     * Sets the keys to use to move this controller left and right, these keys are used by PlatformerEntityController::update().
-     * The default values are left and right arrow.
+     * Sets the keys to use to move this controller left and right, these keys are used by
+     * PlatformerEntityController::update(). The default values are left and right arrow.
      */
     void setMovementKeys(KeyConstant left, KeyConstant right)
     {
@@ -93,9 +96,9 @@ public:
     }
 
     /**
-     * Updates the position of the entity being affected by this controller based on world collisions and whether the movement
-     * keys are currently pressed. Specifying false for \a allowInput prevents user control over the platformer controller, this
-     * is useful for when the entity being controlled is dead or disabled.
+     * Updates the position of the entity being affected by this controller based on world collisions and whether the
+     * movement keys are currently pressed. Specifying false for \a allowInput prevents user control over the platformer
+     * controller, this is useful for when the entity being controlled is dead or disabled.
      */
     bool update(TimeValue time) override;
 
@@ -105,8 +108,9 @@ public:
     bool isInMidAir() const;
 
     /**
-     * Causes this platformer controller to jump up into the air to the specified height. If the entity is already in mid-air
-     * then calling this method will do nothing. The return value indicates whether the jump was able to be initiated.
+     * Causes this platformer controller to jump up into the air to the specified height. If the entity is already in
+     * mid-air then calling this method will do nothing. The return value indicates whether the jump was able to be
+     * initiated.
      */
     bool jump(float height, float time = 0.4f);
 
@@ -116,22 +120,22 @@ public:
     bool isJumping() const { return isJumping_; }
 
     /**
-     * Returns the current scale on horizontal movement that affects how fast the platformer controller moves horizontally while
-     * jumping. Defaults to 1.0.
+     * Returns the current scale on horizontal movement that affects how fast the platformer controller moves
+     * horizontally while jumping. Defaults to 1.0.
      */
     float getJumpHorizontalMovementScale() const { return jumpHorizontalMovementScale_; }
 
     /**
-     * Sets the scale on horizontal movement that affects how fast the platformer controller moves horizontally while jumping.
-     * Defaults to 1.0.
+     * Sets the scale on horizontal movement that affects how fast the platformer controller moves horizontally while
+     * jumping. Defaults to 1.0.
      */
     void setJumpHorizontalMovementScale(float scale = 1.0f) { jumpHorizontalMovementScale_ = scale; }
 
     /**
-     * Returns the distance fallen by the platformer controller if it was falling in previous frames and hit the ground in the
-     * current frame. Note that this method will return zero while the platformer controller is falling through the air as well
-     * as when it is just sitting on the ground, this means that to reliably detect falls an application must poll this method
-     * every frame.
+     * Returns the distance fallen by the platformer controller if it was falling in previous frames and hit the ground
+     * in the current frame. Note that this method will return zero while the platformer controller is falling through
+     * the air as well as when it is just sitting on the ground, this means that to reliably detect falls an application
+     * must poll this method every frame.
      */
     float getFallDistance() const { return fallDistance_; }
 

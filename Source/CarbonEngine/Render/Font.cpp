@@ -151,10 +151,10 @@ bool Font::setup()
         texture_ = textures().create2DTexture();
         texture_->load(String() + "/" + A(FontDirectory) + name_, "Font");
 
-        // Texture dimensions are needed to create the font geometry, if we don't know what the texture size is then there is no
-        // alternative but to wait here on the main thread for the font texture image to load. This wait is only needed when
-        // loading older font files, the latest format includes the texture dimensions directly in the font file so the font
-        // texture load is free to occur on the texture load thread.
+        // Texture dimensions are needed to create the font geometry, if we don't know what the texture size is then
+        // there is no alternative but to wait here on the main thread for the font texture image to load. This wait is
+        // only needed when loading older font files, the latest format includes the texture dimensions directly in the
+        // font file so the font texture load is free to occur on the texture load thread.
         if (textureDimensions_ == Vec2::Zero)
         {
             texture_->ensureImageIsLoaded();
@@ -181,7 +181,8 @@ bool Font::setup()
     for (auto& character : characters_)
     {
         *itPosition++ = Vec3(0.0f, character.getAscend() * scale);
-        *itTexCoord++ = Vec2(character.getPosition().x * oow, 1.0f - (character.getPosition().y + character.getHeight()) * ooh);
+        *itTexCoord++ =
+            Vec2(character.getPosition().x * oow, 1.0f - (character.getPosition().y + character.getHeight()) * ooh);
 
         *itPosition++ = Vec3(character.getWidth() * scale, character.getAscend() * scale);
         *itTexCoord++ = Vec2((character.getPosition().x + character.getWidth()) * oow,
@@ -191,7 +192,8 @@ bool Font::setup()
         *itTexCoord++ = Vec2(character.getPosition().x * oow, 1.0f - character.getPosition().y * ooh);
 
         *itPosition++ = Vec3(character.getWidth() * scale, (character.getHeight() + character.getAscend()) * scale);
-        *itTexCoord++ = Vec2((character.getPosition().x + character.getWidth()) * oow, 1.0f - character.getPosition().y * ooh);
+        *itTexCoord++ =
+            Vec2((character.getPosition().x + character.getWidth()) * oow, 1.0f - character.getPosition().y * ooh);
     }
 
     // Finished creating the vertex data
@@ -281,9 +283,11 @@ bool Font::load(const String& name)
         if (readVersion.getMajor() != FontVersionInfo.getMajor())
             throw Exception("Font file version is too old");
 
-        file.read(characters_, maximumCharacterHeight_, maximumCharacterWidth_, verticalOffsetToOrigin_, originalSystemFont_);
+        file.read(characters_, maximumCharacterHeight_, maximumCharacterWidth_, verticalOffsetToOrigin_,
+                  originalSystemFont_);
 
-        // v5.1, store texture dimensions in the .font file to avoid needing the font image loaded when creating font geometry
+        // v5.1, store texture dimensions in the .font file to avoid needing the font image loaded when creating font
+        // geometry
         if (readVersion.getMinor() >= 1)
             file.read(textureDimensions_);
 
@@ -421,7 +425,8 @@ bool Font::loadFromSystemFont(const UnicodeString& name, unsigned int size, cons
             // Render this glyph
             error = FT_Render_Glyph(ftFace->glyph, FT_RENDER_MODE_NORMAL);
             if (error != 0 && error != 0x13)
-                throw Exception() << "Failed rendering glyph for " << formatCodePoint(codePoint) << ", error: " << error;
+                throw Exception() << "Failed rendering glyph for " << formatCodePoint(codePoint)
+                                  << ", error: " << error;
 
             auto isGlyphRenderable = (error == 0);
 
@@ -459,7 +464,8 @@ bool Font::loadFromSystemFont(const UnicodeString& name, unsigned int size, cons
                     tallest = 0;
                 }
 
-                // Keep track of the tallest character in this row so that yPos can be updated when wrapping to the next row
+                // Keep track of the tallest character in this row so that yPos can be updated when wrapping to the next
+                // row
                 if (bitmap.rows > tallest)
                     tallest = bitmap.rows;
 
@@ -472,7 +478,7 @@ bool Font::loadFromSystemFont(const UnicodeString& name, unsigned int size, cons
                     textureData.resize(textureData.size() + textureSize);
 
                 if (textureData.size() > textureSize * textureSize)
-                    throw Exception("Font texture is full, try setting a larger texture size or reducing the font size");
+                    throw Exception("Font texture is full, try a larger texture size or reducing the font size");
 
                 // Store font bitmap data
                 for (auto y = 0U; y < uint(bitmap.rows); y++)
@@ -504,8 +510,8 @@ bool Font::loadFromSystemFont(const UnicodeString& name, unsigned int size, cons
         if (textureData.empty())
             throw Exception("No character data was generated");
 
-        // Shift all characters up by the lowest ascend in all the font's characters, this ensures all characters render above
-        // their local origin
+        // Shift all characters up by the lowest ascend in all the font's characters, this ensures all characters render
+        // above their local origin
         verticalOffsetToOrigin_ = -lowestAscend;
         for (auto& character : characters_)
             character.ascend_ += verticalOffsetToOrigin_;
@@ -594,26 +600,27 @@ UnicodeString Font::formatCodePoint(UnicodeCharacter c)
     return "U+" + UnicodeString::toHex(c).trimmedLeft("0").prePadToLength(4, '0');
 }
 
-// Initialize the default code points at startup to include all the printable characters from Windows-1250 and Windows-1252.
-// Client applications can alter the set of code points included in a font by using Font::setDefaultCodePoints() and/or the
-// characters parameter of Font::loadFromSystemFont().
+// Initialize the default code points at startup to include all the printable characters from Windows-1250 and
+// Windows-1252. Client applications can alter the set of code points included in a font by using
+// Font::setDefaultCodePoints() and/or the characters parameter of Font::loadFromSystemFont().
 static void initializeDefaultCodePoints()
 {
     auto defaultCodePoints = std::array<UnicodeCharacter, 271>{
-        {32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61,
-         62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91,
-         92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116,
-         117, 118, 119, 120, 121, 122, 123, 124, 125, 126,
+        {32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+         60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87,
+         88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111,
+         112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126,
 
          // Additional characters that occur in either Windows-1250 or Windows-1252
-         160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183,
-         184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207,
-         208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231,
-         232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255,
-         258, 259, 260, 261, 262, 263, 268, 269, 270, 271, 272, 273, 280, 281, 282, 283, 313, 314, 317, 318, 321, 322, 323, 324,
-         327, 328, 336, 337, 338, 339, 340, 341, 344, 345, 346, 347, 350, 351, 352, 353, 354, 355, 356, 357, 366, 367, 368, 369,
-         376, 377, 378, 379, 380, 381, 382, 402, 710, 711, 728, 729, 731, 732, 733, 8211, 8212, 8216, 8217, 8218, 8220, 8221,
-         8222, 8224, 8225, 8226, 8230, 8240, 8249, 8250, 8364, 8482}};
+         160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181,
+         182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203,
+         204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225,
+         226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247,
+         248, 249, 250, 251, 252, 253, 254, 255, 258, 259, 260, 261, 262, 263, 268, 269, 270, 271, 272, 273, 280, 281,
+         282, 283, 313, 314, 317, 318, 321, 322, 323, 324, 327, 328, 336, 337, 338, 339, 340, 341, 344, 345, 346, 347,
+         350, 351, 352, 353, 354, 355, 356, 357, 366, 367, 368, 369, 376, 377, 378, 379, 380, 381, 382, 402, 710, 711,
+         728, 729, 731, 732, 733, 8211, 8212, 8216, 8217, 8218, 8220, 8221, 8222, 8224, 8225, 8226, 8230, 8240, 8249,
+         8250, 8364, 8482}};
 
     for (auto codePoint : defaultCodePoints)
         Font::addDefaultCodePoint(codePoint);

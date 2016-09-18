@@ -13,17 +13,18 @@ namespace Carbon
 {
 
 /**
- * This class provides a periodic timer that triggers its PeriodicTimer::onTimerEvent at a regular interval. Periodic timers can
- * be repeating or just fire once. PeriodicTimer::createSingle() can be used to easily create a single-use timer that only needs
- * to fire once after a certain interval. Note that periodic timer accuracy and performance is influenced by the update rate of
- * the main loop.
+ * This class provides a periodic timer that triggers its PeriodicTimer::onTimerEvent at a regular interval. Periodic
+ * timers can be repeating or just fire once. PeriodicTimer::createSingle() can be used to easily create a single-use
+ * timer that only needs to fire once after a certain interval. Note that periodic timer accuracy and performance is
+ * influenced by the update rate of the main loop.
  */
 class CARBON_API PeriodicTimer : public EventHandler, private Noncopyable
 {
 public:
 
     /**
-     * Timer event dispatcher for this timer, fired whenever this timer triggers. The second parameter is the timeout value.
+     * Timer event dispatcher for this timer, fired whenever this timer triggers. The second parameter is the timeout
+     * value.
      */
     EventDispatcher<PeriodicTimer, TimeValue> onTimerEvent;
 

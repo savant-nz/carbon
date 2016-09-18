@@ -65,8 +65,8 @@ public:
     const TriangleArray& operator[](unsigned int index) const { return *arrays_[index]; }
 
     /**
-     * Returns the triangle array in this set that has the given vertex stream layout, or if no such triangle array exists then
-     * one is created with the given vertex stream layout.
+     * Returns the triangle array in this set that has the given vertex stream layout, or if no such triangle array
+     * exists then one is created with the given vertex stream layout.
      */
     TriangleArray* findOrCreateArrayByVertexStreamLayout(const Vector<VertexStream>& streams);
 
@@ -91,8 +91,8 @@ public:
     bool remove(TriangleArray* array);
 
     /**
-     * Transforms all the vertex position data in this triangle set's triangle arrays by the given 4x4 matrix. Returns success
-     * flag.
+     * Transforms all the vertex position data in this triangle set's triangle arrays by the given 4x4 matrix. Returns
+     * success flag.
      */
     bool transformPositionData(const Matrix4& transform);
 

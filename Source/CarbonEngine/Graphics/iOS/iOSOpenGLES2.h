@@ -25,8 +25,8 @@ public:
     iOSOpenGLES2() : OpenGLES2() { events().addHandler<ApplicationLoseFocusEvent>(this); }
     ~iOSOpenGLES2() { events().removeHandler(this); }
 
-    // Run glFinish() when the application loses focus so that no pending OpenGL calls are executed while the application
-    // is backgrounded. iOS terminates backgrounded applications that try to use the GPU.
+    // Run glFinish() when the application loses focus so that no pending OpenGL calls are executed while the
+    // application is backgrounded. iOS terminates backgrounded applications that try to use the GPU.
     bool processEvent(const Event& e) override
     {
         if (e.as<ApplicationLoseFocusEvent>())
@@ -38,8 +38,8 @@ public:
         return true;
     }
 
-    // OpenGLES2::setRenderTarget() is overridden here so that when a null RenderTargetObject is set it can be mapped to the
-    // framebuffer that was created in PlatformiOS.mm.
+    // OpenGLES2::setRenderTarget() is overridden here so that when a null RenderTargetObject is set it can be mapped to
+    // the framebuffer that was created in PlatformiOS.mm.
     void setRenderTarget(RenderTargetObject renderTargetObject) override
     {
         auto fbo = GLuint();

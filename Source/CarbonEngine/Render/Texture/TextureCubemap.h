@@ -18,7 +18,8 @@ class CARBON_API TextureCubemap : public Texture
 public:
 
     /**
-     * Returns the size of the cubemap texture. Since cubemaps must be square, this is the width and height of each face.
+     * Returns the size of the cubemap texture. Since cubemaps must be square, this is the width and height of each
+     * face.
      */
     unsigned int getSize() const { return getImage().getWidth(); }
 

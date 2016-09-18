@@ -164,8 +164,8 @@ void Application::setupAssetDirectories()
         auto resourcesDirectory = FileSystem::getApplicationResourcesDirectory();
         fileSystem().addLocalAssetDirectory(resourcesDirectory);
 
-        // Also add any immediate subdirectories of the bundle's Resources folder as asset directories if if they have "assets"
-        // in their name
+        // Also add any immediate subdirectories of the bundle's Resources folder as asset directories if if they have
+        // "assets" in their name
         auto subdirectories = Vector<UnicodeString>();
         FileSystem::enumerateLocalDirectories(resourcesDirectory, false, subdirectories);
         for (const auto& subdirectory : subdirectories)
@@ -221,13 +221,15 @@ void Application::onInitializationFailed(InitializationFailureReason reason)
 #if defined(CARBON_INCLUDE_LOCAL_FILESYSTEM_ACCESS) && !defined(iOS) && !defined(ANDROID)
     if (Logfile::Enabled)
     {
-        if (platform().showMessageBox(error + ".\n\nPress OK to open the logfile or Cancel to exit.", Globals::getClientName(),
-                                      PlatformInterface::OKCancelButtons, PlatformInterface::ErrorIcon))
+        if (platform().showMessageBox(error + ".\n\nPress OK to open the logfile or Cancel to exit.",
+                                      Globals::getClientName(), PlatformInterface::OKCancelButtons,
+                                      PlatformInterface::ErrorIcon))
             platform().openWithDefaultApplication(Logfile::get().getFilename());
     }
     else
 #endif
-        platform().showMessageBox(error, Globals::getClientName(), PlatformInterface::OKButton, PlatformInterface::ErrorIcon);
+        platform().showMessageBox(error, Globals::getClientName(), PlatformInterface::OKButton,
+                                  PlatformInterface::ErrorIcon);
 }
 
 bool Application::mainLoop()

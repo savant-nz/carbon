@@ -29,7 +29,8 @@ namespace Carbon
 {
 
 /**
- * Windows/DirectInput platform implementation. See the documentation for the PlatformInterface class for more information.
+ * Windows/DirectInput platform implementation. See the documentation for the PlatformInterface class for more
+ * information.
  */
 class PlatformWindows : public PlatformInterface
 {
@@ -73,8 +74,14 @@ public:
 #ifdef CARBON_INCLUDE_OCULUSRIFT
     bool isOculusRiftSupported() const override;
     bool isOculusRiftPresent() const override;
-    const SimpleTransform& getOculusRiftTransformLeftEye() const override { return oculusRiftEyeTransforms_[ovrEye_Left]; }
-    const SimpleTransform& getOculusRiftTransformRightEye() const override { return oculusRiftEyeTransforms_[ovrEye_Right]; }
+    const SimpleTransform& getOculusRiftTransformLeftEye() const override
+    {
+        return oculusRiftEyeTransforms_[ovrEye_Left];
+    }
+    const SimpleTransform& getOculusRiftTransformRightEye() const override
+    {
+        return oculusRiftEyeTransforms_[ovrEye_Right];
+    }
     Matrix4 getOculusRiftProjectionMatrixLeftEye(float nearPlaneDistance, float farPlaneDistance) const override;
     Matrix4 getOculusRiftProjectionMatrixRightEye(float nearPlaneDistance, float farPlaneDistance) const override;
     const Rect& getOculusRiftTextureDimensions() const override { return oculusRiftEyeTextureDimensions_; }
@@ -92,7 +99,8 @@ private:
 
 #ifdef CARBON_INCLUDE_OPENGL11
     HGLRC hGLRC_ = nullptr;
-    void createGLWindow(const RECT& rect, WindowMode windowMode, const PIXELFORMATDESCRIPTOR& pixelFormatDescriptor, int pf);
+    void createGLWindow(const RECT& rect, WindowMode windowMode, const PIXELFORMATDESCRIPTOR& pixelFormatDescriptor,
+                        int pf);
     void createGLWindow(const RECT& rect, WindowMode windowMode, FSAAMode fsaa);
     void closeGLWindow();
 #endif

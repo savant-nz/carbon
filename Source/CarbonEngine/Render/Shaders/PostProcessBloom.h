@@ -32,7 +32,8 @@ public:
         if (renderer().isHDREnabled())
         {
             // Intermediate bloom textures are 1/16th the area of the viewport
-            auto rect = Rect(0.0f, 0.0f, States::Viewport.get().getWidth() / 4.0f, States::Viewport.get().getHeight() / 4.0f);
+            auto rect =
+                Rect(0.0f, 0.0f, States::Viewport.get().getWidth() / 4.0f, States::Viewport.get().getHeight() / 4.0f);
 
             bloomTextures[0] = renderer().requestTemporaryTexture(rect, true, false, TextureProperties::BilinearFilter);
             bloomTextures[1] = renderer().requestTemporaryTexture(rect, true, false, TextureProperties::BilinearFilter);
@@ -62,8 +63,8 @@ public:
         }
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         exitActiveShader();
 
@@ -82,7 +83,8 @@ public:
         {
             if (pass == 0)
             {
-                // Pass 1: Copy final render into low resolution texture clamping LDR values using the bright pass effect
+                // Pass 1: Copy final render into low resolution texture clamping LDR values using the bright pass
+                // effect
 
                 activeShader = effects().getEffectActiveShader("PostProcessBrightPass");
                 if (!activeShader || !activeShader->setup())
@@ -97,8 +99,8 @@ public:
             }
             else if (pass == 1 || pass == 2)
             {
-                // Pass 2 and 3: Horizontal and vertical blur on the texture created by the bright pass effect in the first
-                // pass, this uses the blur effect
+                // Pass 2 and 3: Horizontal and vertical blur on the texture created by the bright pass effect in the
+                // first pass, this uses the blur effect
 
                 activeShader = effects().getEffectActiveShader("PostProcessBlur");
                 if (!activeShader || !activeShader->setup())
@@ -121,8 +123,8 @@ public:
             }
             else if (pass == 3)
             {
-                // Pass 4: Creates the final bloomed image by overlaying the final blurred bloom texture on the original input
-                // texture using the add effect
+                // Pass 4: Creates the final bloomed image by overlaying the final blurred bloom texture on the original
+                // input texture using the add effect
 
                 activeShader = effects().getEffectActiveShader("PostProcessAdd");
                 if (!activeShader || !activeShader->setup())

@@ -10,17 +10,18 @@ import SCons
 # Add information about global build system command line options that are available
 vars = Variables()
 vars.AddVariables(
-    ('type', 'Sets the build type, must be Debug or Release. Debug builds include additional debugging code, symbols and do '
-             'not optimize the resulting executables.', 'Release'),
-    ('strict', '(true/false) Whether a strict build should be done, this maximizes warnings and strictness checking and also '
-               'treats build warnings as errors.', 'false'),
-    ('platform', 'Overrides the default build platform, when this is set the build system will search for an appropriate build '
-                 'script that supports building for the requested platform. This overrides the automatic platform detection.'),
-    ('platformscript', 'Specifies the platform build to use for this build, this will be used instead of doing a search for an '
-                       'appropriate platform script. This overrides the platform= argument.'),
-    ('carbonroot', 'When building client applications this specifies the path to the Carbon repository to build against '
-                   'instead of building against the installed SDK. Note that this does not cause the specified Carbon '
-                   'repository itself to be rebuilt.'),
+    ('type', 'Sets the build type, must be Debug or Release. Debug builds include additional debugging code, symbols '
+             'and do not optimize the resulting executables.', 'Release'),
+    ('strict', '(true/false) Whether a strict build should be done, this maximizes warnings and strictness checking '
+               'and also treats build warnings as errors.', 'false'),
+    ('platform', 'Overrides the default build platform, when this is set the build system will search for an '
+                 'appropriate build script that supports building for the requested platform. This overrides the '
+                 'automatic platform detection.'),
+    ('platformscript', 'Specifies the platform build to use for this build, this will be used instead of doing a '
+                       'search for an appropriate platform script. This overrides the platform= argument.'),
+    ('carbonroot', 'When building client applications this specifies the path to the Carbon repository to build '
+                   'against instead of building against the installed SDK. Note that this does not cause the specified '
+                   'Carbon repository itself to be rebuilt.'),
     ('static', '(true/false) Whether to build/use CarbonEngine as a static library instead of a dynamic library. Some '
                'platforms do not support building as a dynamic library.')
 )
@@ -54,7 +55,8 @@ def GetDependenciesPath():
 Export('GetDependenciesPath')
 
 
-# Returns the full path to the specified dependency with an optional array of subpaths as well. Optional keywords: version.
+# Returns the full path to the specified dependency with an optional array of subpaths as well. The dependency version
+# can be specified as a keyword, which is required in the case of Max and Maya.
 def GetDependencyPath(dependency, *paths, **keywords):
     defaultVersions = {
         'AngelScript': '2.31.1', 'Bullet': '2.83.7', 'FreeImage': '3.17.0', 'FreeType': '2.6.5', 'Max': '', 'Maya': '',
@@ -126,10 +128,10 @@ def SetCarbonEngineBuildResult(buildResult):
 Export('GetCarbonEngineBuildResult', 'SetCarbonEngineBuildResult')
 
 
-# A platform script is responsible for providing a base SCons.Environment configured for building for a specific platform. The
-# platform script to use is automatically detected unless a platform= or platformscript= argument is provided. Setting platform=
-# triggers a search for an appropriate build script for the specified build platform. The platform script to use can also be set
-# explicitly using the platformscript= argument.
+# A platform script is responsible for providing a base SCons.Environment configured for building for a specific
+# platform. The platform script to use is automatically detected unless a platform= or platformscript= argument is
+# provided. Setting platform= triggers a search for an appropriate build script for the specified build platform. The
+# platform script to use can also be set explicitly using the platformscript= argument.
 platformScriptFile = None
 if 'platformscript' in ARGUMENTS:
     platformScriptFile = ARGUMENTS['platformscript']
@@ -168,8 +170,8 @@ def Is64Bit():
 Export('Is64Bit')
 
 
-# Add a method for determining whether the main engine library is being linked statically. The default is to link statically
-# except when running `scons install` on a POSIX platform.
+# Add a method for determining whether the main engine library is being linked statically. The default is to link
+# statically except when running `scons install` on a POSIX platform.
 def IsCarbonEngineStatic(self):
     if (platform == 'Linux' or platform == 'MacOSX') and 'install' in COMMAND_LINE_TARGETS:
         if ARGUMENTS.get('static', '') == 'true':
@@ -193,8 +195,8 @@ if platform == 'Windows' and Is64Bit():
 Export('carbonEngineLibraryName')
 
 
-# GlobDirectories() takes a list of directories and returns a list of all source files found inside them that are relevant to
-# the current platform. Optional keywords are 'recursive' (which defaults to False).
+# GlobDirectories() takes a list of directories and returns a list of all source files found inside them that are
+# relevant to the current platform. Optional keywords are 'recursive' (which defaults to False).
 def GlobDirectories(self, *directories, **keywords):
     sourceFileExtensions = ['c', 'cpp', 'cc', 'cxx']
     if platform == 'MacOSX' or platform == 'iOS':
@@ -256,8 +258,8 @@ if not hasattr(baseEnv, 'UsePrecompiledHeader'):
     baseEnv.AddMethod(UsePrecompiledHeader)
 
 
-# This method allows the precompiled header configuration to be done based on PRECOMPILED_HEADER and PRECOMPILED_HEADER_OPTIONS
-# keywords
+# This method allows the precompiled header configuration to be done based on PRECOMPILED_HEADER and
+# PRECOMPILED_HEADER_OPTIONS keywords
 def SetupPrecompiledHeader(self, keywords):
     if 'PRECOMPILED_HEADER' in keywords:
         self.UsePrecompiledHeader(keywords['PRECOMPILED_HEADER'], **keywords.get('PRECOMPILED_HEADER_OPTIONS', {}))
@@ -265,8 +267,8 @@ def SetupPrecompiledHeader(self, keywords):
 baseEnv.AddMethod(SetupPrecompiledHeader)
 
 
-# Add builder method for building a program against the installed SDK. The platform script is expected to have provided a
-# Carbonize() method on baseEnv for this purpose that sets up a build environment appropriately.
+# Add builder method for building a program against the installed SDK. The platform script is expected to have provided
+# a Carbonize() method on baseEnv for this purpose that sets up a build environment appropriately.
 def CarbonProgram(self, program, sources, **keywords):
     e = self.Clone()
     e.Carbonize(**keywords)
@@ -284,8 +286,8 @@ installDir = os.path.join('#/Build', outputPrefix)
 Export('baseVariantDir', 'installDir')
 
 
-# Helper method that takes a target name and a set of source files and builds a program from it using baseEnv.CarbonProgram().
-# Install() is called automatically as well. U
+# Helper method that takes a target name and a set of source files and builds a program from it using
+# baseEnv.CarbonProgram(). Install() is called automatically as well.
 def BuildCarbonProgram(target, sourceFiles):
     result = baseEnv.CarbonProgram(target, sourceFiles)
     Alias(target, Install(installDir, result))
@@ -294,9 +296,9 @@ def BuildCarbonProgram(target, sourceFiles):
 Export('BuildCarbonProgram')
 
 
-# Wrapper method around SConscript() that automatically sets duplicate=0 and variant_dir. If variant_dir is not specified then
-# one is deduced based on the name or directory of the script file being run. The variant_dir is automatically prepended with
-# baseVariantDir. This method is otherwise identical to vanilla SConscript()
+# Wrapper method around SConscript() that automatically sets duplicate=0 and variant_dir. If variant_dir is not
+# specified then one is deduced based on the name or directory of the script file being run. The variant_dir is
+# automatically prepended with baseVariantDir. This method is otherwise identical to vanilla SConscript()
 def CarbonSConscript(*scripts, **keywords):
     if 'variant_dir' not in keywords:
         keywords['variant_dir'] = os.path.splitext(os.path.basename(scripts[0]))[0]

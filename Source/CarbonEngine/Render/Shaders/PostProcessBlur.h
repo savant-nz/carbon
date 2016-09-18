@@ -58,8 +58,8 @@ public:
         program.sInputTexture->setInteger(0);
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         // Get the input texture to blur
         auto t = static_cast<Texture2D*>(internalParams[Parameter::inputTexture].getPointer<Texture>());
@@ -167,8 +167,9 @@ private:
     }
 
     // Calculates offsets and weights for a 13-tap 2D gaussian blur.
-    void getSampleOffsets2D(unsigned int textureWidth, unsigned int textureHeight, std::array<Vec2, FilterTapCount>& offsets,
-                            std::array<float, FilterTapCount>& weights, float standardDeviation)
+    void getSampleOffsets2D(unsigned int textureWidth, unsigned int textureHeight,
+                            std::array<Vec2, FilterTapCount>& offsets, std::array<float, FilterTapCount>& weights,
+                            float standardDeviation)
     {
         static const auto samplePoints = std::array<Vec2, FilterTapCount>{{{0.0f, 0.0f},
                                                                            {-0.32621f, -0.40581f},

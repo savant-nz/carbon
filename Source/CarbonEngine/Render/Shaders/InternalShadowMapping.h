@@ -75,10 +75,12 @@ public:
 
     InternalShadowMappingProgram* getProgram(unsigned int programIndex)
     {
-        static const auto preprocessorDefines = std::array<String, PreprocessorDefineCount>{{"#define SKELETAL_ANIMATION"}};
+        static const auto preprocessorDefines =
+            std::array<String, PreprocessorDefineCount>{{"#define SKELETAL_ANIMATION"}};
 
-        return setupProgramCombination<InternalShadowMappingProgram>(
-            programIndex, programs, preprocessorDefines, "InternalShadowMapping.glsl.vert", "InternalShadowMapping.glsl.frag");
+        return setupProgramCombination<InternalShadowMappingProgram>(programIndex, programs, preprocessorDefines,
+                                                                     "InternalShadowMapping.glsl.vert",
+                                                                     "InternalShadowMapping.glsl.frag");
     }
 
     bool updateCurrentProgram(unsigned int sortKey)
@@ -96,8 +98,8 @@ public:
         return true;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (!updateCurrentProgram(sortKey))
             return;

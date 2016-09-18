@@ -13,17 +13,19 @@ namespace Carbon
 {
 
 /**
- * Manages a single constant used by a shader program. This class is subclassed by graphics interface implementations that
- * support specific shader languages, and instances of the subclass are then returned by ShaderProgram::getConstant() for
- * assignment. This class handles caching of shader constant values to avoid unnecessary updates.
+ * Manages a single constant used by a shader program. This class is subclassed by graphics interface implementations
+ * that support specific shader languages, and instances of the subclass are then returned by
+ * ShaderProgram::getConstant() for assignment. This class handles caching of shader constant values to avoid
+ * unnecessary updates.
  */
 class CARBON_API ShaderConstant
 {
 public:
 
     /**
-     * Constructs this shader constant with the given parameter name. The parameter name is used by the ShaderConstant::set*()
-     * methods that take a ParameterArray reference, which use it to look up the parameter to assign to this shader constant.
+     * Constructs this shader constant with the given parameter name. The parameter name is used by the
+     * ShaderConstant::set*() methods that take a ParameterArray reference, which use it to look up the parameter to
+     * assign to this shader constant.
      */
     ShaderConstant(const String& parameterName) : parameterName_(parameterName), parameterLookup_(parameterName) {}
 
@@ -75,9 +77,10 @@ public:
     }
 
     /**
-     * Sets the value of this shader constant. The component count indicates the number of individual float components in each
-     * item of the array. The item count indicates the number of items in the array. Note that array shader constants are not
-     * cached and so calling this method will always result in a hardware update by the graphics interface.
+     * Sets the value of this shader constant. The component count indicates the number of individual float components
+     * in each item of the array. The item count indicates the number of items in the array. Note that array shader
+     * constants are not cached and so calling this method will always result in a hardware update by the graphics
+     * interface.
      */
     virtual void setArray(unsigned int componentCount, unsigned int itemCount, const float* data)
     {
@@ -117,8 +120,8 @@ public:
     }
 
     /**
-     * Sets the value of this shader constant as the 4x4 matrix represented by the given position, quaternion and scale. See
-     * setMatrix4(const Matrix4 &) for details.
+     * Sets the value of this shader constant as the 4x4 matrix represented by the given position, quaternion and scale.
+     * See setMatrix4(const Matrix4 &) for details.
      */
     void setMatrix4(const SimpleTransform& transform, const Vec3& scale = Vec3::One)
     {
@@ -177,14 +180,14 @@ public:
     void setFloat4(float f) { setFloat4(f, f, f, f); }
 
     /**
-     * Sets the value of this shader constant to the specified vector, the w component defaults to one but can be customized if
-     * needed.
+     * Sets the value of this shader constant to the specified vector, the w component defaults to one but can be
+     * customized if needed.
      */
     void setFloat4(const Vec2& xy, const Vec2& zw) { setFloat4(xy.x, xy.y, zw.x, zw.y); }
 
     /**
-     * Sets the value of this shader constant to the specified vector, the w component defaults to one but can be customized if
-     * needed.
+     * Sets the value of this shader constant to the specified vector, the w component defaults to one but can be
+     * customized if needed.
      */
     void setFloat4(const Vec3& v, float w = 1.0f) { setFloat4(v.x, v.y, v.z, w); }
 
@@ -221,8 +224,8 @@ private:
     const String parameterName_;
     const ParameterArray::Lookup parameterLookup_;
 
-    // Holds the current hardware values for this constant, these are used to avoid unnecessary updates of hardware shader
-    // constants
+    // Holds the current hardware values for this constant, these are used to avoid unnecessary updates of hardware
+    // shader constants
     struct
     {
         float f[4] = {};

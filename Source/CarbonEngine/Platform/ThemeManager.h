@@ -12,7 +12,8 @@ namespace Carbon
 
 /**
  * Manages the current theme colors for the GUI. Themes can be set at runtime or loaded from a .guitheme file. There are
- * 'ListGUIThemes' and 'GUITheme' console commands available. Initially the theme colors are set from the default system theme.
+ * 'ListGUIThemes' and 'GUITheme' console commands available. Initially the theme colors are set from the default system
+ * theme.
  */
 class CARBON_API ThemeManager : private Noncopyable
 {
@@ -34,8 +35,8 @@ public:
     bool load(const UnicodeString& name);
 
     /**
-     * Returns the specified theme color. If there is no theme color with the specified name then a highlighter purple will be
-     * returned to make the missing theme color apparent.
+     * Returns the specified theme color. If there is no theme color with the specified name then a highlighter purple
+     * will be returned to make the missing theme color apparent.
      */
     const Color& get(const String& name);
 

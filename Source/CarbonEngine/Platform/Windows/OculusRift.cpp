@@ -67,8 +67,8 @@ void PlatformWindows::oculusRiftUpdate()
     {
         auto leftEyeSize =
             ovr_GetFovTextureSize(oculusRiftSession_, ovrEye_Left, oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Left], 1.0f);
-        auto rightEyeSize =
-            ovr_GetFovTextureSize(oculusRiftSession_, ovrEye_Right, oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Right], 1.0f);
+        auto rightEyeSize = ovr_GetFovTextureSize(oculusRiftSession_, ovrEye_Right,
+                                                  oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Right], 1.0f);
 
         if (leftEyeSize.w != rightEyeSize.w || leftEyeSize.h != rightEyeSize.h)
             LOG_WARNING << "Different texture sizes for left and right eyes were requested but this is not supported";
@@ -141,8 +141,8 @@ void PlatformWindows::oculusRiftUpdate()
 
 Matrix4 PlatformWindows::getOculusRiftProjectionMatrixLeftEye(float nearPlaneDistance, float farPlaneDistance) const
 {
-    auto matrix = ovrMatrix4f_Projection(oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Left], nearPlaneDistance, farPlaneDistance,
-                                         ovrProjection_RightHanded);
+    auto matrix = ovrMatrix4f_Projection(oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Left], nearPlaneDistance,
+                                         farPlaneDistance, ovrProjection_RightHanded);
 
     return {matrix.M[0][0], matrix.M[1][0], matrix.M[2][0], matrix.M[3][0], matrix.M[0][1], matrix.M[1][1],
             matrix.M[2][1], matrix.M[3][1], matrix.M[0][2], matrix.M[1][2], matrix.M[2][2], matrix.M[3][2],
@@ -151,8 +151,8 @@ Matrix4 PlatformWindows::getOculusRiftProjectionMatrixLeftEye(float nearPlaneDis
 
 Matrix4 PlatformWindows::getOculusRiftProjectionMatrixRightEye(float nearPlaneDistance, float farPlaneDistance) const
 {
-    auto matrix = ovrMatrix4f_Projection(oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Right], nearPlaneDistance, farPlaneDistance,
-                                         ovrProjection_RightHanded);
+    auto matrix = ovrMatrix4f_Projection(oculusRiftHMDDesc_.DefaultEyeFov[ovrEye_Right], nearPlaneDistance,
+                                         farPlaneDistance, ovrProjection_RightHanded);
 
     return {matrix.M[0][0], matrix.M[1][0], matrix.M[2][0], matrix.M[3][0], matrix.M[0][1], matrix.M[1][1],
             matrix.M[2][1], matrix.M[3][1], matrix.M[0][2], matrix.M[1][2], matrix.M[2][2], matrix.M[3][2],

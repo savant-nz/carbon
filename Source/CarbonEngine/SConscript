@@ -12,8 +12,8 @@ Import('*')
 
 # Glob for source files
 sources = env.GlobDirectories('.') + env.GlobDirectories(
-    'Core', 'Exporters', 'Game', 'Geometry', 'Graphics', 'Image', 'Math', 'Physics', 'Platform', 'Render', 'Scene', 'Scripting',
-    'Sound', recursive=True
+    'Core', 'Exporters', 'Game', 'Geometry', 'Graphics', 'Image', 'Math', 'Physics', 'Platform', 'Render', 'Scene',
+    'Scripting', 'Sound', recursive=True
 )
 
 if 'extraCarbonSConscript' in platformScript:
@@ -24,9 +24,10 @@ if not (compiler.startswith('VisualStudio') and env.IsCarbonEngineStatic()):
     commonCppRegEx = re.compile('.*CarbonEngine.Common\.cpp$')
     sources = [f for f in sources if not commonCppRegEx.match(str(f))]
 
-# Visual C++ has problems using precompiled headers with debug builds of static libraries. The workaround is to add an explicit
-# reference to a symbol defined in the precompiled header, in this case the reference is to Exception::Exception(). For details
-# see http://msdn.microsoft.com/en-us/library/w6y1zk9f.aspx and http://msdn.microsoft.com/en-us/library/cf1aswwe.aspx.
+# Visual C++ has problems using precompiled headers with debug builds of static libraries. The workaround is to add an
+# explicit reference to a symbol defined in the precompiled header, in this case the reference is to
+# Carbon::Exception::Exception(). For details see http://msdn.microsoft.com/en-us/library/w6y1zk9f.aspx and
+# http://msdn.microsoft.com/en-us/library/cf1aswwe.aspx.
 if compiler.startswith('VisualStudio') and env.IsCarbonEngineStatic() and isDebugBuild:
     env['CXXFLAGS'] += ['/Yl??1Exception@Carbon@@QAE@XZ']
 
@@ -34,10 +35,10 @@ if compiler.startswith('VisualStudio') and env.IsCarbonEngineStatic() and isDebu
 env.UsePrecompiledHeader('Common.h', pathToHeaderRoot='..', includeText='CarbonEngine/Common.h',
                          isSharedLibrary=not env.IsCarbonEngineStatic())
 
-# It is helpful to be able to build individual files with a different set of preprocessor defines. This is controlled through
-# carbonCustomFileDefines which is an array where each entry is a dict containing values for 'name' (a string) and 'defines' (an
-# array of strings or tuples), and optionally 'location' if 'name' doesn't specify the path of the the file that the extra
-# defines will be set on.
+# It is helpful to be able to build individual files with a different set of preprocessor defines. This is controlled
+# through carbonCustomFileDefines which is an array where each entry is a dict containing values for 'name' (a string)
+# and 'defines' (an array of strings or tuples), and optionally 'location' if 'name' doesn't specify the path of the the
+# file that the extra defines will be set on.
 carbonCustomFileDefines = platformScript.get('carbonCustomFileDefines', [])
 
 # Set CARBON_VERSION appropriately when building Core/BuildInfo.cpp
@@ -54,8 +55,8 @@ for entry in carbonCustomFileDefines:
     for i in range(len(sources)):
         if str(sources[i]).replace('\\', '/').endswith(entry['name']):
 
-            # The location of the source file defaults to the name but can be overridden. This is necessary when the source file
-            # lies outside of this directory
+            # The location of the source file defaults to the name but can be overridden. This is necessary when the
+            # source file lies outside of this directory
             location = entry.get('location', entry['name'])
 
             customCPPDEFINES = env['CPPDEFINES'] + entry['defines']
@@ -68,9 +69,9 @@ for entry in carbonCustomFileDefines:
 
             break
 
-# Clang doesn't allow use of a C++ precompiled header when building an Objective C++ source file. To get around this Clang-style
-# precompiled header directives are removed from CCFLAGS when building Objective C++ files. The proper solution would be to have
-# a separate Objective C++ precompiled header built with the -x objective-c++-header flag.
+# Clang doesn't allow use of a C++ precompiled header when building an Objective C++ source file. To get around this
+# Clang-style precompiled header directives are removed from CCFLAGS when building Objective C++ files. The proper
+# solution would be to have a separate Objective C++ precompiled header built with the -x objective-c++-header flag.
 if compiler == 'Clang' and '-include-pch' in env['CCFLAGS']:
     objectiveCXXEnv = env.Clone()
 

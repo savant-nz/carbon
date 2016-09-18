@@ -51,7 +51,8 @@ extern const std::wstring dialogTitle;
 // Helper functions to access the registry and carry out operations on files
 extern std::wstring getRegistryString(const std::wstring& key, const std::wstring& value, HKEY hKey,
                                       bool use64BitRegistry = false);
-extern bool setRegistryString(const std::wstring& key, const std::wstring& value, const std::wstring& contents, HKEY hKey);
+extern bool setRegistryString(const std::wstring& key, const std::wstring& value, const std::wstring& contents,
+                              HKEY hKey);
 extern bool deleteRegistryKeyValue(const std::wstring& subkey, const std::wstring& value, HKEY hKey);
 extern bool shellOperation(UINT wFunc, const std::wstring& from, const std::wstring& to);
 

@@ -6,12 +6,12 @@
 
 require 'fileutils'
 
-XCODE_PROJECT_TEMPLATES_PATH = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application".freeze
+XCODE_PROJECT_TEMPLATES = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application".freeze
 
 [
   '/Applications/Carbon SDK',
-  "#{XCODE_PROJECT_TEMPLATES_PATH}/CarbonEngine Application",
-  "#{XCODE_PROJECT_TEMPLATES_PATH}/CarbonEngine iOS Application"
+  "#{XCODE_PROJECT_TEMPLATES}/CarbonEngine Application",
+  "#{XCODE_PROJECT_TEMPLATES}/CarbonEngine iOS Application"
 ].each do |entry|
   FileUtils.rm_rf entry
 end

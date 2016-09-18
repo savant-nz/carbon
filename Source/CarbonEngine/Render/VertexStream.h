@@ -93,8 +93,8 @@ public:
     VertexStream() {}
 
     /**
-     * Initializes this vertex stream with the given stream type, component count, data type, and fixed point normalization
-     * flag.
+     * Initializes this vertex stream with the given stream type, component count, data type, and fixed point
+     * normalization flag.
      */
     VertexStream(unsigned int type, unsigned int componentCount, DataType dataType = TypeFloat,
                  bool normalizeFixedPoint = true);
@@ -138,17 +138,17 @@ public:
     unsigned int getOffset() const { return offset_; }
 
     /**
-     * Returns the size in bytes of a single entry of this vertex stream. This is equal to the number of components in the
-     * stream multiplied by the size of the stream data type in bytes.
+     * Returns the size in bytes of a single entry of this vertex stream. This is equal to the number of components in
+     * the stream multiplied by the size of the stream data type in bytes.
      */
     unsigned int getSize() const { return componentCount_ * getDataTypeSize(Carbon::DataType(dataType_)); }
 
     /**
      * Returns whether the values stored in this vertex stream should be normalized into the 0-1 range or passed through
-     * directly. The main instance when fixed-point normalization must be turned off is in a vertex stream containing skeletal
-     * bone indices, most others will probably have it turned on, e.g. a 32-bit per-vertex color stream. This normalization flag
-     * only applies to fixed point data types such as 8-bit, 16-bit and 32-bit integers, it is ignored for vertex streams that
-     * use floating point values.
+     * directly. The main instance when fixed-point normalization must be turned off is in a vertex stream containing
+     * skeletal bone indices, most others will probably have it turned on, e.g. a 32-bit per-vertex color stream. This
+     * normalization flag only applies to fixed point data types such as 8-bit, 16-bit and 32-bit integers, it is
+     * ignored for vertex streams that use floating point values.
      */
     bool normalizeFixedPoint() const { return normalizeFixedPoint_; }
 
@@ -165,11 +165,12 @@ public:
     /**
      * Performs linear interpolation between two vertices that use the given vertex stream layout.
      */
-    static void interpolate(const Vector<VertexStream>& streams, const byte_t* v0, const byte_t* v1, byte_t* result, float t);
+    static void interpolate(const Vector<VertexStream>& streams, const byte_t* v0, const byte_t* v1, byte_t* result,
+                            float t);
 
     /**
-     * Returns the size in bytes of a vertex that uses the given vertex streams, this is calculated by summing the value of
-     * VertexStream::getSize() for all the passed vertex streams.
+     * Returns the size in bytes of a vertex that uses the given vertex streams, this is calculated by summing the value
+     * of VertexStream::getSize() for all the passed vertex streams.
      */
     static unsigned int getVertexSize(const Vector<VertexStream>& streams);
 

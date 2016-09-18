@@ -55,8 +55,8 @@ public:
     }
 
     /**
-     * Removes an entry from this container, the return value indicates whether or not the entry was present in this container
-     * and thus able to be erased.
+     * Removes an entry from this container, the return value indicates whether or not the entry was present in this
+     * container and thus able to be erased.
      */
     bool erase(T* entry)
     {

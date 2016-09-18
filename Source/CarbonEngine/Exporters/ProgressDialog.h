@@ -12,8 +12,8 @@ namespace Carbon
 {
 
 /**
- * This class shows a progress dialog for the invocation of the Runnable::run() method for a Runnable subclass instance. It is
- * fully multithreaded and interacts with the running task through the methods on the Runnable class.
+ * This class shows a progress dialog for the invocation of the Runnable::run() method for a Runnable subclass instance.
+ * It is fully multithreaded and interacts with the running task through the methods on the Runnable class.
  */
 class CARBON_API ProgressDialog : public DialogBase, public Logfile::OutputSink
 {
@@ -51,8 +51,8 @@ private:
 
     HANDLE workerThread_ = nullptr;
 
-    // This is called when something is written to a logfile. It prepends the text to the 'detailedoutput_' variable so it can
-    // be displayed in the detailed output window in the dialog.
+    // This is called when something is written to a logfile. It prepends the text to detailedOutput_ so it can be
+    // displayed in the detailed output window in the dialog.
     void processLogfileOutput(Logfile::OutputType outputType, const UnicodeString& line);
 
     // Entry point for the worker thread which does the actual invocation of runnable_->run()

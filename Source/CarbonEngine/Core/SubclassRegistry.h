@@ -9,19 +9,19 @@ namespace Carbon
 {
 
 /**
- * Templated static class that manages global registration of the subclasses of a specific superclass type. Each subclass is
- * registered as a factory that is used for creation and destruction of that subclass type and can be looked up by a public
- * name or by a std::type_info. This class is currently used with Carbon::Entity and Carbon::EntityController in order to allow
- * their subclasses to be instantiated/destroyed by the engine as needed even when those subclasses are defined inside client
- * applications.
+ * Templated static class that manages global registration of the subclasses of a specific superclass type. Each
+ * subclass is registered as a factory that is used for creation and destruction of that subclass type and can be looked
+ * up by a public name or by a std::type_info. This class is currently used with Carbon::Entity and
+ * Carbon::EntityController in order to allow their subclasses to be instantiated/destroyed by the engine as needed even
+ * when those subclasses are defined inside client applications.
  */
 template <typename SuperclassType> class CARBON_API SubclassRegistry
 {
 public:
 
     /**
-     * Defines a simple factory interface for this superclass type, this is then implemented to create factories for individual
-     * subclass types.
+     * Defines a simple factory interface for this superclass type, this is then implemented to create factories for
+     * individual subclass types.
      */
     class Factory
     {
@@ -38,14 +38,14 @@ public:
         virtual ~Factory() {}
 
         /**
-         * Returns the public name for the subclass type created/destroyed by this factory. This is used whenever the type name
-         * needs to be persisted.
+         * Returns the public name for the subclass type created/destroyed by this factory. This is used whenever the
+         * type name needs to be persisted.
          */
         const String& getPublicName() const { return publicName_; }
 
         /**
-         * Returns the std::type_info name for the subclass type created/destroyed by this factory. The format of this varies
-         * by toolchain and so should never be persisted.
+         * Returns the std::type_info name for the subclass type created/destroyed by this factory. The format of this
+         * varies by toolchain and so should never be persisted.
          */
         const String& getTypeInfoName() const { return typeInfoName_; }
 
@@ -66,8 +66,8 @@ public:
     };
 
     /**
-     * Adds the specified factory to this registry. This method is normally used through the CARBON_REGISTER_SUBCLASS() macro
-     * rather than being called directly.
+     * Adds the specified factory to this registry. This method is normally used through the CARBON_REGISTER_SUBCLASS()
+     * macro rather than being called directly.
      */
     static void registerFactory(Factory* factory)
     {
@@ -76,7 +76,8 @@ public:
     }
 
     /**
-     * Returns the public type name for the given superclass instance, or an empty string if the subclass type is unknown.
+     * Returns the public type name for the given superclass instance, or an empty string if the subclass type is
+     * unknown.
      */
     static const String& getPublicTypeName(const SuperclassType* instance)
     {
@@ -116,9 +117,9 @@ public:
     }
 
     /**
-     * Destroys an instance of a subclass that was created through SubclassRegistry::create(). If the passed pointer is null or
-     * points to an instance of a type that was not created through this SubclassRegistry then this method does nothing.
-     * Returns success flag.
+     * Destroys an instance of a subclass that was created through SubclassRegistry::create(). If the passed pointer is
+     * null or points to an instance of a type that was not created through this SubclassRegistry then this method does
+     * nothing. Returns success flag.
      */
     static bool destroy(SuperclassType* instance)
     {
@@ -156,8 +157,8 @@ private:
  */
 
 /**
- * This macro defines a SubclassRegistry for the given superclass, instantiating the static member it needs so that it can be
- * linked against.
+ * This macro defines a SubclassRegistry for the given superclass, instantiating the static member it needs so that it
+ * can be linked against.
  */
 #define CARBON_DEFINE_SUBCLASS_REGISTRY(SuperclassType) \
     typedef SubclassRegistry<SuperclassType> Registry;  \

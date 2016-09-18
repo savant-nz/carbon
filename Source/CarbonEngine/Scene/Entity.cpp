@@ -263,12 +263,12 @@ void Entity::rotateAroundPoint(const Vec3& point, const Quaternion& rotation)
 
 bool Entity::invalidateWorldTransform(const String& attachmentPoint)
 {
-    // If this entity does not have an up to date world transform then by definition every entity below it in the scene graph
-    // does not have one either. This is because computing any entity's world involves computing world transforms for every one
-    // of its parent entities right up to the root entity. Also, because an entity's world space AABB and extents are dependent
-    // on its world transform every entity below this one in the scene graph does not have those up to date either.
-    // Consequently, if this entity's world transform is already dirty then there is no need to propagate this invalidation, so
-    // we can simply swallow it and avoid the overhead.
+    // If this entity does not have an up to date world transform then by definition every entity below it in the scene
+    // graph does not have one either. This is because computing any entity's world involves computing world transforms
+    // for every one of its parent entities right up to the root entity. Also, because an entity's world space AABB and
+    // extents are dependent on its world transform every entity below this one in the scene graph does not have those
+    // up to date either. Consequently, if this entity's world transform is already dirty then there is no need to
+    // propagate this invalidation, so we can simply swallow it and avoid the overhead.
     if (isWorldTransformDirty_)
         return false;
 
@@ -487,7 +487,8 @@ bool Entity::gatherGeometry(GeometryGather& gather)
 
                 if (!hasSetMeshTransform)
                 {
-                    gather.changeTransformation(meshTransform.getPosition(), meshTransform.getOrientation(), meshScale_);
+                    gather.changeTransformation(meshTransform.getPosition(), meshTransform.getOrientation(),
+                                                meshScale_);
                     hasSetMeshTransform = true;
                 }
 
@@ -919,7 +920,7 @@ bool Entity::makePhysical(float mass, bool fixed)
     if (getScene()->is2D() && !fixed)
     {
         if (!physics().constrainBodyToXYPlane(rigidBody_))
-            LOG_WARNING << "Unable to constrain this entity to the XY plane, 2D physics will probably not work correctly";
+            LOG_WARNING << "Unable to constrain this entity to the XY plane";
     }
 
     recheckIsPerFrameUpdateRequired();
@@ -1117,9 +1118,9 @@ ParameterArray Entity::getMaterialOverrideParameters(const String& material) con
 
     if (alpha != 1.0f)
     {
-        // Entity alpha fading works by multiplying the alpha component of the diffuseColor parameter of the entity's materials
-        // by this entity's alpha value and forcing blending to be on. Note that this will only work if the material's effect
-        // supports the $diffuseColor and $blend parameters.
+        // Entity alpha fading works by multiplying the alpha component of the diffuseColor parameter of the entity's
+        // materials by this entity's alpha value and forcing blending to be on. Note that this will only work if the
+        // material's effect supports the $diffuseColor and $blend parameters.
 
         // Get diffuse color for the window from the material
         auto diffuseColor = Color();

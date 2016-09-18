@@ -13,9 +13,9 @@
 namespace Carbon
 {
 
-// internalTimers is a vector of all the currently active internal timer objects created by PeriodicTimer::createSingle(). These
-// timers automatically delete themselves when they fire, and any that are yet to fire when the engine shuts down are deleted by
-// the internalTimersDeleter() function in order to avoid leaking memory.
+// internalTimers is a vector of all the currently active internal timer objects created by
+// PeriodicTimer::createSingle(). These timers automatically delete themselves when they fire, and any that are yet to
+// fire when the engine shuts down are deleted by the internalTimersDeleter() function in order to avoid leaking memory.
 static auto internalTimers = Vector<PeriodicTimer*>();
 static void internalTimersDeleter()
 {
@@ -59,7 +59,7 @@ bool PeriodicTimer::processEvent(const Event& e)
 {
     if (e.as<UpdateEvent>())
     {
-        // Work out how many timer events need to be sent based on how much time has elapsed since the last event was sent
+        // Work out how many timer events need to be sent based on how much time has elapsed since the last event
         auto eventCount = lastFireTime_.getTimeSince() / timeout_;
         if (eventCount > 0)
         {

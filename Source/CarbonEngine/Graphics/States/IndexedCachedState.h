@@ -15,10 +15,11 @@ namespace States
 {
 
 /**
- * Indexed cached states are single-value states that are also associated with an index, examples include vertex attribute
- * arrays and textures. This template class generically wraps all management of indexed cached states.
+ * Indexed cached states are single-value states that are also associated with an index, examples include vertex
+ * attribute arrays and textures. This template class generically wraps all management of indexed cached states.
  */
-template <typename ValueType, typename GraphicsInterfaceSetterParameterType> class IndexedCachedState : private Noncopyable
+template <typename ValueType, typename GraphicsInterfaceSetterParameterType>
+class IndexedCachedState : private Noncopyable
 {
 public:
 
@@ -29,16 +30,16 @@ public:
         SetGraphicsInterfaceStateMethod;
 
     /**
-     * This is the actual CachedState subclass used by indexed cached states, it is allocated in IndexedCachedState::setup() and
-     * then instances of it are returned by operator[].
+     * This is the actual CachedState subclass used by indexed cached states, it is allocated in
+     * IndexedCachedState::setup() and then instances of it are returned by operator[].
      */
     class SingleIndexedCachedState : public CachedState
     {
     public:
 
         /**
-         * Constructor takes the name of this indexed cached state, its default value, and a pointer to the GraphicsInterface
-         * member function to use to update this indexed state.
+         * Constructor takes the name of this indexed cached state, its default value, and a pointer to the
+         * GraphicsInterface member function to use to update this indexed state.
          */
         SingleIndexedCachedState(const String& name, unsigned int index,
                                  SetGraphicsInterfaceStateMethod setGraphicsInterfaceStateMethod)
@@ -62,8 +63,9 @@ public:
         void set(const ValueType& value) { stack_[stackPosition_] = value; }
 
         /**
-         * The assignment operator is a shorthand for SingleIndexedCachedState::set() which allows the instance of the class to
-         * be assigned the cached state type directly. This permits a simple syntax for setting indexed cached states.
+         * The assignment operator is a shorthand for SingleIndexedCachedState::set() which allows the instance of the
+         * class to be assigned the cached state type directly. This permits a simple syntax for setting indexed cached
+         * states.
          */
         SingleIndexedCachedState& operator=(const ValueType& other)
         {
@@ -110,8 +112,8 @@ public:
 
         /**
          * Calls SingleIndexedCachedState::push(), SingleIndexedCachedState::set() with the passed value,
-         * SingleIndexedCachedState::flush() and then SingleIndexedCachedState::pop(). This is useful for ensuring the real
-         * graphics interface state is set to a specific value without affecting the current cached state.
+         * SingleIndexedCachedState::flush() and then SingleIndexedCachedState::pop(). This is useful for ensuring the
+         * real graphics interface state is set to a specific value without affecting the current cached state.
          */
         void pushSetFlushPop(const ValueType& value)
         {
@@ -159,7 +161,8 @@ public:
     /**
      * Constructs this indexed cached state with the given name, default value, and graphics interface setter method.
      */
-    IndexedCachedState(String name, ValueType defaultValue, SetGraphicsInterfaceStateMethod setGraphicsInterfaceStateMethod)
+    IndexedCachedState(String name, ValueType defaultValue,
+                       SetGraphicsInterfaceStateMethod setGraphicsInterfaceStateMethod)
         : name_(std::move(name)),
           defaultValue_(std::move(defaultValue)),
           setGraphicsInterfaceStateMethod_(setGraphicsInterfaceStateMethod)
@@ -169,8 +172,8 @@ public:
     ~IndexedCachedState() { clear(); }
 
     /**
-     * Sets the number of entries in this indexed cached state, this is called inside GraphicsInterface::setup() implementations
-     * in order to appropriately size indexed cached states to the active graphics hardware.
+     * Sets the number of entries in this indexed cached state, this is called inside GraphicsInterface::setup()
+     * implementations in order to appropriately size indexed cached states to the active graphics hardware.
      */
     void setup(unsigned int size)
     {
@@ -201,8 +204,8 @@ public:
     unsigned int size() { return states_.size(); }
 
     /**
-     * This is the primary accessor for using an indexed cached state, it returns the SingleIndexedCachedState instance for the
-     * given index value.
+     * This is the primary accessor for using an indexed cached state, it returns the SingleIndexedCachedState instance
+     * for the given index value.
      */
     SingleIndexedCachedState& operator[](unsigned int index) { return *states_[index]; }
 
@@ -217,10 +220,10 @@ public:
     SingleIndexedCachedState** end() { return states_.end(); }
 
     /**
-     * If this indexed cached state is dealing with a GraphicsInterface object such as a texture then it needs to be able to
-     * handle when the object gets deleted and properly flush it out of the caching system. This is particularly important
-     * because new objects may reuse the same value as old objects and this would confuse the state cacher if the old value had
-     * not been completely erased from the caching system.
+     * If this indexed cached state is dealing with a GraphicsInterface object such as a texture then it needs to be
+     * able to handle when the object gets deleted and properly flush it out of the caching system. This is particularly
+     * important because new objects may reuse the same value as old objects and this would confuse the state cacher if
+     * the old value had not been completely erased from the caching system.
      */
     void onGraphicsInterfaceObjectDelete(ValueType value)
     {

@@ -23,16 +23,16 @@ public:
     VersionInfo(uint16_t major, uint16_t minor) : major_(major), minor_(minor) {}
 
     /**
-     * Major version number. A change in the major version number indicates an alteration to the file format that will prevent
-     * existing code from loading the new version, i.e. v1.x loaders will not load v2.x files.
+     * Major version number. A change in the major version number indicates an alteration to the file format that will
+     * prevent existing code from loading the new version, i.e. v1.x loaders will not load v2.x files.
      */
     uint16_t getMajor() const { return major_; }
 
     /**
      * Minor version number. A change in the minor version number indicates a backwards/forwards compatible addition or
-     * extension to the file format. So a v1.x loader should be able to load any file that has a major version of 1. It may
-     * not understand the information added in later minor revisions, but it can just skip over this data and load the parts it
-     * understands, i.e. a v1.4 loader will load a v1.6 file and just ignore the new data.
+     * extension to the file format. So a v1.x loader should be able to load any file that has a major version of 1. It
+     * may not understand the information added in later minor revisions, but it can just skip over this data and load
+     * the parts it understands, i.e. a v1.4 loader will load a v1.6 file and just ignore the new data.
      */
     uint16_t getMinor() const { return minor_; }
 

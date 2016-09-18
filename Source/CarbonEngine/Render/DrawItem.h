@@ -12,9 +12,9 @@ namespace Carbon
 {
 
 /**
- * A drawitem describes a primitive type to draw and an index range that contains the indices to use when drawing this drawitem.
- * This class is used by GeometryChunk to desribe the individual primitive drawing commands needed to render its stored vertex
- * and index data.
+ * A drawitem describes a primitive type to draw and an index range that contains the indices to use when drawing this
+ * drawitem. This class is used by GeometryChunk to desribe the individual primitive drawing commands needed to render
+ * its stored vertex and index data.
  */
 class CARBON_API DrawItem
 {
@@ -35,7 +35,8 @@ public:
      */
     bool operator==(const DrawItem& other) const
     {
-        return primitiveType_ == other.primitiveType_ && indexCount_ == other.indexCount_ && indexOffset_ == other.indexOffset_;
+        return primitiveType_ == other.primitiveType_ && indexCount_ == other.indexCount_ &&
+            indexOffset_ == other.indexOffset_;
     }
 
     /**
@@ -43,7 +44,8 @@ public:
      */
     bool operator!=(const DrawItem& other) const
     {
-        return primitiveType_ != other.primitiveType_ || indexCount_ != other.indexCount_ || indexOffset_ != other.indexOffset_;
+        return primitiveType_ != other.primitiveType_ || indexCount_ != other.indexCount_ ||
+            indexOffset_ != other.indexOffset_;
     }
 
     /**

@@ -180,9 +180,9 @@ bool AABB::intersect(const Ray& ray, float* t) const
     if (intersect(ray.getOrigin()))
         return true;
 
-    // Ray-box intersection using IEEE numerical properties to ensure that the test is both robust and efficient, as described
-    // in "An Efficient and Robust Ray-Box Intersection Algorithm" by Amy Williams, Steve Barrus, R. Keith Morley, and Peter
-    // Shirley. Journal of graphics tools, 10(1):49-54, 2005.
+    // Ray-box intersection using IEEE numerical properties to ensure that the test is both robust and efficient, as
+    // described in "An Efficient and Robust Ray-Box Intersection Algorithm" by Amy Williams, Steve Barrus, R. Keith
+    // Morley, and Peter Shirley. Journal of graphics tools, 10(1):49-54, 2005.
 
     auto bbox = std::array<Vec3, 2>{{minimum_, maximum_}};
 
@@ -255,28 +255,34 @@ bool AABB::orientedIntersect(const SimpleTransform& aabb0Transform, const AABB& 
     aabb1.getCorners(corners, aabb0Transform.getInverse() * aabb1Transform);
 
     // Separating axis test
-    if ((corners[0].x < aabb0.getMinimum().x && corners[1].x < aabb0.getMinimum().x && corners[2].x < aabb0.getMinimum().x &&
-         corners[3].x < aabb0.getMinimum().x && corners[4].x < aabb0.getMinimum().x && corners[5].x < aabb0.getMinimum().x &&
+    if ((corners[0].x < aabb0.getMinimum().x && corners[1].x < aabb0.getMinimum().x &&
+         corners[2].x < aabb0.getMinimum().x && corners[3].x < aabb0.getMinimum().x &&
+         corners[4].x < aabb0.getMinimum().x && corners[5].x < aabb0.getMinimum().x &&
          corners[6].x < aabb0.getMinimum().x && corners[7].x < aabb0.getMinimum().x) ||
 
-        (corners[0].x > aabb0.getMaximum().x && corners[1].x > aabb0.getMaximum().x && corners[2].x > aabb0.getMaximum().x &&
-         corners[3].x > aabb0.getMaximum().x && corners[4].x > aabb0.getMaximum().x && corners[5].x > aabb0.getMaximum().x &&
+        (corners[0].x > aabb0.getMaximum().x && corners[1].x > aabb0.getMaximum().x &&
+         corners[2].x > aabb0.getMaximum().x && corners[3].x > aabb0.getMaximum().x &&
+         corners[4].x > aabb0.getMaximum().x && corners[5].x > aabb0.getMaximum().x &&
          corners[6].x > aabb0.getMaximum().x && corners[7].x > aabb0.getMaximum().x) ||
 
-        (corners[0].y < aabb0.getMinimum().y && corners[1].y < aabb0.getMinimum().y && corners[2].y < aabb0.getMinimum().y &&
-         corners[3].y < aabb0.getMinimum().y && corners[4].y < aabb0.getMinimum().y && corners[5].y < aabb0.getMinimum().y &&
+        (corners[0].y < aabb0.getMinimum().y && corners[1].y < aabb0.getMinimum().y &&
+         corners[2].y < aabb0.getMinimum().y && corners[3].y < aabb0.getMinimum().y &&
+         corners[4].y < aabb0.getMinimum().y && corners[5].y < aabb0.getMinimum().y &&
          corners[6].y < aabb0.getMinimum().y && corners[7].y < aabb0.getMinimum().y) ||
 
-        (corners[0].y > aabb0.getMaximum().y && corners[1].y > aabb0.getMaximum().y && corners[2].y > aabb0.getMaximum().y &&
-         corners[3].y > aabb0.getMaximum().y && corners[4].y > aabb0.getMaximum().y && corners[5].y > aabb0.getMaximum().y &&
+        (corners[0].y > aabb0.getMaximum().y && corners[1].y > aabb0.getMaximum().y &&
+         corners[2].y > aabb0.getMaximum().y && corners[3].y > aabb0.getMaximum().y &&
+         corners[4].y > aabb0.getMaximum().y && corners[5].y > aabb0.getMaximum().y &&
          corners[6].y > aabb0.getMaximum().y && corners[7].y > aabb0.getMaximum().y) ||
 
-        (corners[0].z < aabb0.getMinimum().z && corners[1].y < aabb0.getMinimum().z && corners[2].z < aabb0.getMinimum().z &&
-         corners[3].z < aabb0.getMinimum().z && corners[4].z < aabb0.getMinimum().z && corners[5].y < aabb0.getMinimum().z &&
+        (corners[0].z < aabb0.getMinimum().z && corners[1].y < aabb0.getMinimum().z &&
+         corners[2].z < aabb0.getMinimum().z && corners[3].z < aabb0.getMinimum().z &&
+         corners[4].z < aabb0.getMinimum().z && corners[5].y < aabb0.getMinimum().z &&
          corners[6].z < aabb0.getMinimum().z && corners[7].z < aabb0.getMinimum().z) ||
 
-        (corners[0].z > aabb0.getMaximum().z && corners[1].y > aabb0.getMaximum().z && corners[2].z > aabb0.getMaximum().z &&
-         corners[3].z > aabb0.getMaximum().z && corners[4].z > aabb0.getMaximum().z && corners[5].y > aabb0.getMaximum().z &&
+        (corners[0].z > aabb0.getMaximum().z && corners[1].y > aabb0.getMaximum().z &&
+         corners[2].z > aabb0.getMaximum().z && corners[3].z > aabb0.getMaximum().z &&
+         corners[4].z > aabb0.getMaximum().z && corners[5].y > aabb0.getMaximum().z &&
          corners[6].z > aabb0.getMaximum().z && corners[7].z > aabb0.getMaximum().z))
         return false;
 
@@ -284,30 +290,35 @@ bool AABB::orientedIntersect(const SimpleTransform& aabb0Transform, const AABB& 
     aabb0.getCorners(corners, aabb1Transform.getInverse() * aabb0Transform);
 
     // Separating axis test
-    return !(
-        (corners[0].x < aabb1.getMinimum().x && corners[1].x < aabb1.getMinimum().x && corners[2].x < aabb1.getMinimum().x &&
-         corners[3].x < aabb1.getMinimum().x && corners[4].x < aabb1.getMinimum().x && corners[5].x < aabb1.getMinimum().x &&
-         corners[6].x < aabb1.getMinimum().x && corners[7].x < aabb1.getMinimum().x) ||
+    return !((corners[0].x < aabb1.getMinimum().x && corners[1].x < aabb1.getMinimum().x &&
+              corners[2].x < aabb1.getMinimum().x && corners[3].x < aabb1.getMinimum().x &&
+              corners[4].x < aabb1.getMinimum().x && corners[5].x < aabb1.getMinimum().x &&
+              corners[6].x < aabb1.getMinimum().x && corners[7].x < aabb1.getMinimum().x) ||
 
-        (corners[0].x > aabb1.getMaximum().x && corners[1].x > aabb1.getMaximum().x && corners[2].x > aabb1.getMaximum().x &&
-         corners[3].x > aabb1.getMaximum().x && corners[4].x > aabb1.getMaximum().x && corners[5].x > aabb1.getMaximum().x &&
-         corners[6].x > aabb1.getMaximum().x && corners[7].x > aabb1.getMaximum().x) ||
+             (corners[0].x > aabb1.getMaximum().x && corners[1].x > aabb1.getMaximum().x &&
+              corners[2].x > aabb1.getMaximum().x && corners[3].x > aabb1.getMaximum().x &&
+              corners[4].x > aabb1.getMaximum().x && corners[5].x > aabb1.getMaximum().x &&
+              corners[6].x > aabb1.getMaximum().x && corners[7].x > aabb1.getMaximum().x) ||
 
-        (corners[0].y < aabb1.getMinimum().y && corners[1].y < aabb1.getMinimum().y && corners[2].y < aabb1.getMinimum().y &&
-         corners[3].y < aabb1.getMinimum().y && corners[4].y < aabb1.getMinimum().y && corners[5].y < aabb1.getMinimum().y &&
-         corners[6].y < aabb1.getMinimum().y && corners[7].y < aabb1.getMinimum().y) ||
+             (corners[0].y < aabb1.getMinimum().y && corners[1].y < aabb1.getMinimum().y &&
+              corners[2].y < aabb1.getMinimum().y && corners[3].y < aabb1.getMinimum().y &&
+              corners[4].y < aabb1.getMinimum().y && corners[5].y < aabb1.getMinimum().y &&
+              corners[6].y < aabb1.getMinimum().y && corners[7].y < aabb1.getMinimum().y) ||
 
-        (corners[0].y > aabb1.getMaximum().y && corners[1].y > aabb1.getMaximum().y && corners[2].y > aabb1.getMaximum().y &&
-         corners[3].y > aabb1.getMaximum().y && corners[4].y > aabb1.getMaximum().y && corners[5].y > aabb1.getMaximum().y &&
-         corners[6].y > aabb1.getMaximum().y && corners[7].y > aabb1.getMaximum().y) ||
+             (corners[0].y > aabb1.getMaximum().y && corners[1].y > aabb1.getMaximum().y &&
+              corners[2].y > aabb1.getMaximum().y && corners[3].y > aabb1.getMaximum().y &&
+              corners[4].y > aabb1.getMaximum().y && corners[5].y > aabb1.getMaximum().y &&
+              corners[6].y > aabb1.getMaximum().y && corners[7].y > aabb1.getMaximum().y) ||
 
-        (corners[0].z < aabb1.getMinimum().z && corners[1].y < aabb1.getMinimum().z && corners[2].z < aabb1.getMinimum().z &&
-         corners[3].z < aabb1.getMinimum().z && corners[4].z < aabb1.getMinimum().z && corners[5].y < aabb1.getMinimum().z &&
-         corners[6].z < aabb1.getMinimum().z && corners[7].z < aabb1.getMinimum().z) ||
+             (corners[0].z < aabb1.getMinimum().z && corners[1].y < aabb1.getMinimum().z &&
+              corners[2].z < aabb1.getMinimum().z && corners[3].z < aabb1.getMinimum().z &&
+              corners[4].z < aabb1.getMinimum().z && corners[5].y < aabb1.getMinimum().z &&
+              corners[6].z < aabb1.getMinimum().z && corners[7].z < aabb1.getMinimum().z) ||
 
-        (corners[0].z > aabb1.getMaximum().z && corners[1].y > aabb1.getMaximum().z && corners[2].z > aabb1.getMaximum().z &&
-         corners[3].z > aabb1.getMaximum().z && corners[4].z > aabb1.getMaximum().z && corners[5].y > aabb1.getMaximum().z &&
-         corners[6].z > aabb1.getMaximum().z && corners[7].z > aabb1.getMaximum().z));
+             (corners[0].z > aabb1.getMaximum().z && corners[1].y > aabb1.getMaximum().z &&
+              corners[2].z > aabb1.getMaximum().z && corners[3].z > aabb1.getMaximum().z &&
+              corners[4].z > aabb1.getMaximum().z && corners[5].y > aabb1.getMaximum().z &&
+              corners[6].z > aabb1.getMaximum().z && corners[7].z > aabb1.getMaximum().z));
 }
 
 }

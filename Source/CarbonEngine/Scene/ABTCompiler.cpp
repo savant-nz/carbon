@@ -67,10 +67,10 @@ static bool divideTriangles(const Plane& plane, const TriangleArraySet& triangle
                 arrayToTransferTriangleTo = frontArray;
             else if (allowOvergrowth)
             {
-                // The triangle is spanning the split plane Instead of just blindly splitting the triangle, work out whether
-                // shifting the splitting plane along its normal by a maximum of +/- the overgrowth value will mean the triangle
-                // doesn't have to be split. If this is possible then we use the smallest shift possible that avoids splitting
-                // the triangle
+                // The triangle is spanning the split plane Instead of just blindly splitting the triangle, work out
+                // whether shifting the splitting plane along its normal by a maximum of +/- the overgrowth value will
+                // mean the triangle doesn't have to be split. If this is possible then we use the smallest shift
+                // possible that avoids splitting the triangle
 
                 auto maxBackDist = 0.0f;
                 auto maxFrontDist = 0.0f;
@@ -92,16 +92,16 @@ static bool divideTriangles(const Plane& plane, const TriangleArraySet& triangle
 
             if (arrayToTransferTriangleTo)
             {
-                if (!arrayToTransferTriangleTo->addTriangle(tri.getVertexData(0), tri.getVertexData(1), tri.getVertexData(2),
-                                                            tri.getMaterial(), tri.getLightmap()))
+                if (!arrayToTransferTriangleTo->addTriangle(tri.getVertexData(0), tri.getVertexData(1),
+                                                            tri.getVertexData(2), tri.getMaterial(), tri.getLightmap()))
                     return false;
 
                 continue;
             }
 
-            // Overgrowing failed to account for the spanning triangle so it must be split. If the triangle has a vertex within
-            // the overgrowing region then we split along the plane that vertex lies in in order to reduce the number of
-            // triangles produced by the split from 3 to 2
+            // Overgrowing failed to account for the spanning triangle so it must be split. If the triangle has a vertex
+            // within the overgrowing region then we split along the plane that vertex lies in in order to reduce the
+            // number of triangles produced by the split from 3 to 2
 
             // Find closest vertex to split plane
             auto closestVertex = 0U;
@@ -268,8 +268,8 @@ bool ABTCompiler::compile(Scene& scene, TriangleArraySet& triangleSet, Runnable&
 
         initialTriangleCount_ = triangleSet.getTriangleCount();
 
-        // Subdivide the scene triangle array down into localised areas. This builds the scene-graph culling structure and fills
-        // finalNodes_ with a list of nodes and the triangles associated with that node.
+        // Subdivide the scene triangle array down into localised areas. This builds the scene-graph culling structure
+        // and fills finalNodes_ with a list of nodes and the triangles associated with that node.
         r.beginTask("subdividing", 15);
         auto root = scene.addEntity<CullingNode>();
         if (!subdivide(scene, root, triangleSet, r))
@@ -281,8 +281,8 @@ bool ABTCompiler::compile(Scene& scene, TriangleArraySet& triangleSet, Runnable&
         for (auto node : finalNodes_)
             totalNodeTriangles += node->triangleSet.getTriangleCount();
 
-        // The subdivision step above has produced a list of nodes in the scene graph and a list of triangles that are to be
-        // drawn for that node. Go through the list of nodes and compile the geometry for each one
+        // The subdivision step above has produced a list of nodes in the scene graph and a list of triangles that are
+        // to be drawn for that node. Go through the list of nodes and compile the geometry for each one
         for (auto i = 0U; i < finalNodes_.size(); i++)
         {
             auto node = finalNodes_[i]->node;
@@ -290,7 +290,8 @@ bool ABTCompiler::compile(Scene& scene, TriangleArraySet& triangleSet, Runnable&
 
             auto nodeTriangleCount = nodeTriangleSet.getTriangleCount();
 
-            r.beginTask(String() + "node " + (i + 1) + "/" + finalNodes_.size() + " with " + nodeTriangleCount + " triangles",
+            r.beginTask(String() + "node " + (i + 1) + "/" + finalNodes_.size() + " with " + nodeTriangleCount +
+                            " triangles",
                         80.0f * float(nodeTriangleCount) / float(totalNodeTriangles));
 
             if (lightingType_ == ABTCompiler::LightingPerPixel)
@@ -320,8 +321,8 @@ bool ABTCompiler::compile(Scene& scene, TriangleArraySet& triangleSet, Runnable&
                     {
                         auto lightmapTriangleSet = TriangleArraySet();
 
-                        auto lightmapTriangles =
-                            lightmapTriangleSet.findOrCreateArrayByVertexStreamLayout(nodeTriangles->getVertexStreams());
+                        auto lightmapTriangles = lightmapTriangleSet.findOrCreateArrayByVertexStreamLayout(
+                            nodeTriangles->getVertexStreams());
 
                         for (auto& triangle : *nodeTriangles)
                         {
@@ -363,7 +364,8 @@ bool ABTCompiler::compile(Scene& scene, TriangleArraySet& triangleSet, Runnable&
         // Compile regions
         for (auto& rawRegion : rawRegions)
         {
-            LOG_INFO << "Compiling region: '" << rawRegion.first << "' with " << rawRegion.second->size() << " triangles";
+            LOG_INFO << "Compiling region: '" << rawRegion.first << "' with " << rawRegion.second->size()
+                     << " triangles";
 
             scene.addEntity<Region>(rawRegion.first)->setup(*rawRegion.second);
         }

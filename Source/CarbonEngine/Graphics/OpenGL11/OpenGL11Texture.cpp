@@ -64,7 +64,8 @@ void OpenGL11::setupTextureFormats()
     }
 
     if (extensions_.EXT_packed_depth_stencil)
-        textureFormats_[Image::Depth24Stencil8] = {GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8_EXT, GL_DEPTH24_STENCIL8_EXT};
+        textureFormats_[Image::Depth24Stencil8] = {GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8_EXT,
+                                                   GL_DEPTH24_STENCIL8_EXT};
 
     if (extensions_.EXT_texture_compression_s3tc)
     {
@@ -209,14 +210,14 @@ bool OpenGL11::uploadTexture(TextureObject texture, TextureType type, Image::Pix
         {
             if (Image::isPixelFormatCompressed(pixelFormat))
             {
-                glCompressedTexImage2DARB(GL_TEXTURE_2D, i, glInternalFormat, data[i].getWidth(), data[i].getHeight(), 0,
-                                          data[i].getDataSize(), data[i].getData());
+                glCompressedTexImage2DARB(GL_TEXTURE_2D, i, glInternalFormat, data[i].getWidth(), data[i].getHeight(),
+                                          0, data[i].getDataSize(), data[i].getData());
                 CARBON_CHECK_OPENGL_ERROR(glCompressedTexImage2DARB);
             }
             else
             {
-                glTexImage2D(GL_TEXTURE_2D, i, glInternalFormat, data[i].getWidth(), data[i].getHeight(), 0, glDataFormat,
-                             glDataType, data[i].getData());
+                glTexImage2D(GL_TEXTURE_2D, i, glInternalFormat, data[i].getWidth(), data[i].getHeight(), 0,
+                             glDataFormat, glDataType, data[i].getData());
                 CARBON_CHECK_OPENGL_ERROR(glTexImage2D);
             }
         }
@@ -227,8 +228,9 @@ bool OpenGL11::uploadTexture(TextureObject texture, TextureType type, Image::Pix
         {
             if (Image::isPixelFormatCompressed(pixelFormat))
             {
-                glCompressedTexImage3DARB(GL_TEXTURE_3D_EXT, i, glInternalFormat, data[i].getWidth(), data[i].getHeight(),
-                                          data[i].getDepth(), 0, data[i].getDataSize(), data[i].getData());
+                glCompressedTexImage3DARB(GL_TEXTURE_3D_EXT, i, glInternalFormat, data[i].getWidth(),
+                                          data[i].getHeight(), data[i].getDepth(), 0, data[i].getDataSize(),
+                                          data[i].getData());
                 CARBON_CHECK_OPENGL_ERROR(glCompressedTexImage3DARB);
             }
             else
@@ -260,8 +262,8 @@ bool OpenGL11::uploadTexture(TextureObject texture, TextureType type, Image::Pix
                 }
                 else
                 {
-                    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB + i, j, glInternalFormat, d.getWidth(), d.getHeight(), 0,
-                                 glDataFormat, glDataType, d.getData());
+                    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB + i, j, glInternalFormat, d.getWidth(),
+                                 d.getHeight(), 0, glDataFormat, glDataType, d.getData());
                     CARBON_CHECK_OPENGL_ERROR(glTexImage2D);
                 }
             }
@@ -273,7 +275,8 @@ bool OpenGL11::uploadTexture(TextureObject texture, TextureType type, Image::Pix
     return true;
 }
 
-void OpenGL11::setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter, TextureFilter magFilter)
+void OpenGL11::setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter,
+                                TextureFilter magFilter)
 {
     States::Texture[activeTextureUnit_].pushSetFlushPop(texture);
 

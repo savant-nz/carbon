@@ -11,8 +11,8 @@ namespace Carbon
 {
 
 /**
- * Typedef for the triangle exporting function passed to the export runner classes below. It takes a TriangleSet to output the
- * result into and a Runnable which is used to check the cancelled state. Returns success flag.
+ * Typedef for the triangle exporting function passed to the export runner classes below. It takes a TriangleSet to
+ * output the result into and a Runnable which is used to check the cancelled state. Returns success flag.
  */
 typedef std::function<bool(TriangleArraySet&, Runnable&)> ExportTrianglesFunction;
 
@@ -30,15 +30,16 @@ class CARBON_API SceneExportRunner : public Runnable
 public:
 
     /**
-     * Typedef for the entity exporting function passed to the constructor. This function is responsible for exporting all
-     * non-geometric entities into the under construction Scene object.
+     * Typedef for the entity exporting function passed to the constructor. This function is responsible for exporting
+     * all non-geometric entities into the under construction Scene object.
      */
     typedef std::function<bool(Scene&, Runnable&)> ExportEntitiesFunction;
 
     SceneExportRunner(const SceneExportRunner&);
 
     SceneExportRunner(UnicodeString filename, ExportTrianglesFunction fnExportTriangles,
-                      ExportMaterialsFunction fnExportMaterials = nullptr, ExportEntitiesFunction fnExportEntities = nullptr);
+                      ExportMaterialsFunction fnExportMaterials = nullptr,
+                      ExportEntitiesFunction fnExportEntities = nullptr);
 
     bool run() override;
 

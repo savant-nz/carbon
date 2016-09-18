@@ -11,12 +11,12 @@
 namespace Carbon
 {
 
-// There are three color component types used in uncompressed images: byte_t, uint16_t (for 16-bit floats), and 32-bit float.
-// Each of these is available as a specialization of the ColorComponentType class and there are methods for converting each
-// to/from a 32-bit float, this allows image conversion routines to abstractly deal with a variety of different image types by
-// way of a common 32-bit float intermediate representation. More complicated formats such as packed 16-bit RGB formats and
-// compressed formats use custom read/write pixel functions that are implemented separately and so do not use the
-// ColorComponentType class.
+// There are three color component types used in uncompressed images: byte_t, uint16_t (for 16-bit floats), and 32-bit
+// float. Each of these is available as a specialization of the ColorComponentType class and there are methods for
+// converting each to/from a 32-bit float, this allows image conversion routines to abstractly deal with a variety of
+// different image types by way of a common 32-bit float intermediate representation. More complicated formats such as
+// packed 16-bit RGB formats and compressed formats use custom read/write pixel functions that are implemented
+// separately and so do not use the ColorComponentType class.
 template <typename T> class ColorComponentType
 {
 public:
@@ -49,8 +49,8 @@ public:
     }
 
     template <unsigned int RedOffset, unsigned int GreenOffset, unsigned int BlueOffset>
-    static Color readRGBPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                              unsigned int y, unsigned int z)
+    static Color readRGBPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                              unsigned int x, unsigned int y, unsigned int z)
     {
         auto pixel = reinterpret_cast<const T*>(data + getPixelOffset(width, height, depth, x, y, z, 3));
 
@@ -69,16 +69,16 @@ public:
     }
 
     template <unsigned int RedOffset, unsigned int GreenOffset, unsigned int BlueOffset, unsigned int AlphaOffset>
-    static Color readRGBAPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z)
+    static Color readRGBAPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z)
     {
         auto pixel = reinterpret_cast<const T*>(data + getPixelOffset(width, height, depth, x, y, z, 4));
         return toColor(pixel[RedOffset], pixel[GreenOffset], pixel[BlueOffset], pixel[AlphaOffset]);
     }
 
     template <unsigned int RedOffset, unsigned int GreenOffset, unsigned int BlueOffset, unsigned int AlphaOffset>
-    static void writeRGBAPixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z, const Color& color)
+    static void writeRGBAPixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z, const Color& color)
     {
         auto pixel = reinterpret_cast<T*>(data + getPixelOffset(width, height, depth, x, y, z, 4));
 
@@ -88,8 +88,8 @@ public:
         pixel[AlphaOffset] = fromFloat(color.a);
     }
 
-    static Color readRedPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                              unsigned int y, unsigned int z)
+    static Color readRedPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                              unsigned int x, unsigned int y, unsigned int z)
     {
         auto pixel = reinterpret_cast<const T*>(data + getPixelOffset(width, height, depth, x, y, z, 1));
         return toColor(*pixel, T(), T(), One);
@@ -109,23 +109,23 @@ public:
         return toColor(pixel[0], pixel[1], T(), One);
     }
 
-    static void writeRedGreenPixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                   unsigned int y, unsigned int z, const Color& color)
+    static void writeRedGreenPixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                   unsigned int x, unsigned int y, unsigned int z, const Color& color)
     {
         auto pixel = reinterpret_cast<T*>(data + getPixelOffset(width, height, depth, x, y, z, 1));
         pixel[0] = fromFloat(color.r);
         pixel[1] = fromFloat(color.g);
     }
 
-    static Color readAlphaPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                unsigned int y, unsigned int z)
+    static Color readAlphaPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                unsigned int x, unsigned int y, unsigned int z)
     {
         auto pixel = reinterpret_cast<const T*>(data + getPixelOffset(width, height, depth, x, y, z, 1));
         return toColor(One, *pixel);
     }
 
-    static void writeAlphaPixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                unsigned int y, unsigned int z, const Color& color)
+    static void writeAlphaPixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                unsigned int x, unsigned int y, unsigned int z, const Color& color)
     {
         auto pixel = reinterpret_cast<T*>(data + getPixelOffset(width, height, depth, x, y, z, 1));
         pixel[0] = fromFloat(color.a);
@@ -138,15 +138,15 @@ public:
         return toColor(*pixel, One);
     }
 
-    static void writeLuminancePixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                    unsigned int y, unsigned int z, const Color& color)
+    static void writeLuminancePixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                    unsigned int x, unsigned int y, unsigned int z, const Color& color)
     {
         auto pixel = reinterpret_cast<T*>(data + getPixelOffset(width, height, depth, x, y, z, 1));
         pixel[0] = fromFloat(color.getRGBLuminance());
     }
 
-    static Color readLuminanceAlphaPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
-                                         unsigned int x, unsigned int y, unsigned int z)
+    static Color readLuminanceAlphaPixel(const byte_t* data, unsigned int width, unsigned int height,
+                                         unsigned int depth, unsigned int x, unsigned int y, unsigned int z)
     {
         auto pixel = reinterpret_cast<const T*>(data + getPixelOffset(width, height, depth, x, y, z, 2));
         return toColor(pixel[0], pixel[1]);
@@ -312,7 +312,8 @@ bool Image::setPixelFormat(PixelFormat newPixelFormat)
 }
 
 bool Image::convertRawImage(const byte_t* source, PixelFormat sourcePixelFormat, byte_t* destination,
-                            PixelFormat destinationPixelFormat, unsigned int width, unsigned int height, unsigned int depth)
+                            PixelFormat destinationPixelFormat, unsigned int width, unsigned int height,
+                            unsigned int depth)
 {
     // Check that the source and destination buffers are different, in-place conversion is not supported
     if (source == destination)
@@ -362,12 +363,13 @@ bool Image::canConvertToPixelFormat(PixelFormat pixelFormat) const
     return getPixelFormatReadFunction(pixelFormat_) && getPixelFormatWriteFunction(pixelFormat);
 }
 
-Color Image::readRGB565Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                             unsigned int y, unsigned int z)
+Color Image::readRGB565Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                             unsigned int x, unsigned int y, unsigned int z)
 {
     data += (width * height * z + width * y + x) * 2;
 
-    return {ColorComponentType<byte_t>::toFloat(rgb565GetR(data)), ColorComponentType<byte_t>::toFloat(rgb565GetG(data)),
+    return {ColorComponentType<byte_t>::toFloat(rgb565GetR(data)),
+            ColorComponentType<byte_t>::toFloat(rgb565GetG(data)),
             ColorComponentType<byte_t>::toFloat(rgb565GetB(data)), 1.0f};
 }
 
@@ -387,12 +389,13 @@ void Image::writeRGB565Pixel(byte_t* data, unsigned int width, unsigned int heig
 #endif
 }
 
-Color Image::readBGR565Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                             unsigned int y, unsigned int z)
+Color Image::readBGR565Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                             unsigned int x, unsigned int y, unsigned int z)
 {
     data += (width * height * z + width * y + x) * 2;
 
-    return {ColorComponentType<byte_t>::toFloat(rgb565GetB(data)), ColorComponentType<byte_t>::toFloat(rgb565GetG(data)),
+    return {ColorComponentType<byte_t>::toFloat(rgb565GetB(data)),
+            ColorComponentType<byte_t>::toFloat(rgb565GetG(data)),
             ColorComponentType<byte_t>::toFloat(rgb565GetR(data)), 1.0f};
 }
 
@@ -412,8 +415,8 @@ void Image::writeBGR565Pixel(byte_t* data, unsigned int width, unsigned int heig
 #endif
 }
 
-Color Image::readRGBA5551Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z)
+Color Image::readRGBA5551Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -422,8 +425,8 @@ Color Image::readRGBA5551Pixel(const byte_t* data, unsigned int width, unsigned 
             ColorComponentType<byte_t>::toFloat(extract16BitValue(data, 0x003E, 0, 5)), (*data & 0x01) ? 1.0f : 0.0f};
 }
 
-void Image::writeRGBA5551Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z, const Color& color)
+void Image::writeRGBA5551Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z, const Color& color)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -439,8 +442,8 @@ void Image::writeRGBA5551Pixel(byte_t* data, unsigned int width, unsigned int he
 #endif
 }
 
-Color Image::readARGB1555Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z)
+Color Image::readARGB1555Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -449,8 +452,8 @@ Color Image::readARGB1555Pixel(const byte_t* data, unsigned int width, unsigned 
             ColorComponentType<byte_t>::toFloat(extract16BitValue(data, 0x001F, 0, 5)), (*data & 0x80) ? 1.0f : 0.0f};
 }
 
-void Image::writeARGB1555Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z, const Color& color)
+void Image::writeARGB1555Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z, const Color& color)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -466,8 +469,8 @@ void Image::writeARGB1555Pixel(byte_t* data, unsigned int width, unsigned int he
 #endif
 }
 
-Color Image::readRGBA4444Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z)
+Color Image::readRGBA4444Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -477,8 +480,8 @@ Color Image::readRGBA4444Pixel(const byte_t* data, unsigned int width, unsigned 
             ColorComponentType<byte_t>::toFloat(extract16BitValue(data, 0x000F, 0, 4))};
 }
 
-void Image::writeRGBA4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z, const Color& color)
+void Image::writeRGBA4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z, const Color& color)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -494,8 +497,8 @@ void Image::writeRGBA4444Pixel(byte_t* data, unsigned int width, unsigned int he
 #endif
 }
 
-Color Image::readARGB4444Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z)
+Color Image::readARGB4444Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -505,8 +508,8 @@ Color Image::readARGB4444Pixel(const byte_t* data, unsigned int width, unsigned 
             ColorComponentType<byte_t>::toFloat(extract16BitValue(data, 0xF000, 12, 4))};
 }
 
-void Image::writeARGB4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z, const Color& color)
+void Image::writeARGB4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z, const Color& color)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -522,8 +525,8 @@ void Image::writeARGB4444Pixel(byte_t* data, unsigned int width, unsigned int he
 #endif
 }
 
-Color Image::readABGR4444Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z)
+Color Image::readABGR4444Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -533,8 +536,8 @@ Color Image::readABGR4444Pixel(const byte_t* data, unsigned int width, unsigned 
             ColorComponentType<byte_t>::toFloat(extract16BitValue(data, 0xF000, 12, 4))};
 }
 
-void Image::writeABGR4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z, const Color& color)
+void Image::writeABGR4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z, const Color& color)
 {
     data += (width * height * z + width * y + x) * 2;
 
@@ -551,13 +554,13 @@ void Image::writeABGR4444Pixel(byte_t* data, unsigned int width, unsigned int he
 }
 
 template <Image::PixelFormat SourcePixelFormat>
-Color Image::readDXTPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                          unsigned int y, unsigned int z)
+Color Image::readDXTPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                          unsigned int x, unsigned int y, unsigned int z)
 {
     auto output = std::array<std::array<byte_t, 4>, 16>();
 
-    decompressDXTCBlock(data + ((y / 4) * (width / 4) + (x / 4)) * getCompressedPixelFormatBlockSize(SourcePixelFormat), output,
-                        SourcePixelFormat);
+    decompressDXTCBlock(data + ((y / 4) * (width / 4) + (x / 4)) * getCompressedPixelFormatBlockSize(SourcePixelFormat),
+                        output, SourcePixelFormat);
 
     auto& rgba = output[(y % 4) * 4 + (x % 4)];
 
@@ -570,8 +573,8 @@ std::array<std::pair<Image::ReadPixelFunction, Image::WritePixelFunction>, Image
 
 void Image::setupPixelFormatReadWriteFunctions()
 {
-    // Most uncompressed formats use instantiations of the read and write methods on the ColorComponentType class, other more
-    // complicated formats have custom read/write functions.
+    // Most uncompressed formats use instantiations of the read and write methods on the ColorComponentType class, other
+    // more complicated formats have custom read/write functions.
 
     pixelFormatReadWriteFunctions_[UnknownPixelFormat] = {nullptr, nullptr};
 

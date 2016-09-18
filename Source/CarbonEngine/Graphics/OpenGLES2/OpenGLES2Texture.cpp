@@ -50,7 +50,8 @@ void OpenGLES2::setupTextureFormats()
         textureFormats_[Image::Depth] = {GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, GL_DEPTH_COMPONENT};
 
     if (extensions_.OES_packed_depth_stencil)
-        textureFormats_[Image::Depth24Stencil8] = {GL_DEPTH_STENCIL_OES, GL_UNSIGNED_INT_24_8_OES, GL_DEPTH_STENCIL_OES};
+        textureFormats_[Image::Depth24Stencil8] = {GL_DEPTH_STENCIL_OES, GL_UNSIGNED_INT_24_8_OES,
+                                                   GL_DEPTH_STENCIL_OES};
 }
 
 unsigned int OpenGLES2::getMaximumTextureSize(TextureType type) const
@@ -95,8 +96,8 @@ bool OpenGLES2::isTextureSupported(TextureType type, const Image& image) const
 
 bool OpenGLES2::isNonPowerOfTwoTextureSupported(TextureType type) const
 {
-    // NOTE: NPOT requires that clamp wrapping be used and that minification filtering is either nearest or linear, these
-    // restrictions mean that it's only really useful for doing offscreen rendering.
+    // NOTE: NPOT requires that clamp wrapping be used and that minification filtering is either nearest or linear,
+    // these restrictions mean that it's only really useful for doing offscreen rendering.
 
     return type == Texture2D;
 }
@@ -183,8 +184,8 @@ bool OpenGLES2::uploadTexture(TextureObject texture, TextureType type, Image::Pi
             }
             else
             {
-                glTexImage2D(GL_TEXTURE_2D, i, glInternalFormat, data[i].getWidth(), data[i].getHeight(), 0, glDataFormat,
-                             glDataType, data[i].getData());
+                glTexImage2D(GL_TEXTURE_2D, i, glInternalFormat, data[i].getWidth(), data[i].getHeight(), 0,
+                             glDataFormat, glDataType, data[i].getData());
                 CARBON_CHECK_OPENGL_ERROR(glTexImage2D);
             }
         }
@@ -204,14 +205,14 @@ bool OpenGLES2::uploadTexture(TextureObject texture, TextureType type, Image::Pi
 
                 if (Image::isPixelFormatCompressed(pixelFormat))
                 {
-                    glCompressedTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, j, glInternalFormat, d.getWidth(), d.getHeight(),
-                                           0, d.getDataSize(), d.getData());
+                    glCompressedTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, j, glInternalFormat, d.getWidth(),
+                                           d.getHeight(), 0, d.getDataSize(), d.getData());
                     CARBON_CHECK_OPENGL_ERROR(glCompressedTexImage2D);
                 }
                 else
                 {
-                    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, j, glInternalFormat, d.getWidth(), d.getHeight(), 0,
-                                 glDataFormat, glDataType, d.getData());
+                    glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, j, glInternalFormat, d.getWidth(), d.getHeight(),
+                                 0, glDataFormat, glDataType, d.getData());
                     CARBON_CHECK_OPENGL_ERROR(glTexImage2D);
                 }
             }
@@ -223,7 +224,8 @@ bool OpenGLES2::uploadTexture(TextureObject texture, TextureType type, Image::Pi
     return true;
 }
 
-void OpenGLES2::setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter, TextureFilter magFilter)
+void OpenGLES2::setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter,
+                                 TextureFilter magFilter)
 {
     States::Texture[activeTextureUnit_].pushSetFlushPop(texture);
 

@@ -12,8 +12,8 @@ namespace Shaders
 {
 
 /**
- * Implementation of blending for all hardware. This is a shader component that is used by other shaders in order to support
- * blending.
+ * Implementation of blending for all hardware. This is a shader component that is used by other shaders in order to
+ * support blending.
  */
 class CARBON_API Blending
 {

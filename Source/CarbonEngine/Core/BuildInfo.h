@@ -16,16 +16,16 @@ class CARBON_API BuildInfo
 public:
 
     /**
-     * Returns build information about the engine including toolchain and architecture information, and compilation environment
-     * setup. All of this information is automatically logged on startup.
+     * Returns build information about the engine including toolchain and architecture information, and compilation
+     * environment setup. All of this information is automatically logged on startup.
      */
     static Vector<String> getBuildInfo();
 
     /**
-     * Returns the engine's version. This returns the contents of the CARBON_VERSION define at build time or "Unknown" if that
-     * define was missing. This is used to version SDK releases, see `BuildSDK.rb` for specific details about versioning. The
-     * returned value will be suffixed with a '+' if the build was done on an unsynced branch or with uncommitted changes
-     * present.
+     * Returns the engine's version. This returns the contents of the CARBON_VERSION define at build time or "Unknown"
+     * if that define was missing. This is used to version SDK releases, see `BuildSDK.rb` for specific details about
+     * versioning. The returned value will be suffixed with a '+' if the build was done on an unsynced branch or with
+     * uncommitted changes present.
      */
     static String getVersion();
 

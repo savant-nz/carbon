@@ -16,8 +16,8 @@ namespace Carbon
  * \public
  *
  * The possible errors that can be reported by a file system operation. See FileReader::getLastError() or
- * FileWriter::getLastError() for details. File system errors can be handled centrally in an application by registering to
- * receive FileSystemErrorEvent.
+ * FileWriter::getLastError() for details. File system errors can be handled centrally in an application by registering
+ * to receive FileSystemErrorEvent.
  */
 enum FileSystemError
 {
@@ -38,8 +38,8 @@ enum FileSystemError
     InvalidResourceNameFileSystemError,
 
     /**
-     * The privilege level is not sufficient to perform the requested operation. This can be due to lacking read permissions
-     * when reading a file or not having write permission when trying to write a file.
+     * The privilege level is not sufficient to perform the requested operation. This can be due to lacking read
+     * permissions when reading a file or not having write permission when trying to write a file.
      */
     AccessDeniedFileSystemError,
 
@@ -59,42 +59,44 @@ enum FileSystemError
     NotSupportedFileSystemError,
 
     /**
-     * There was not enough free memory or other resources such as available file handles to perform the requested operation.
+     * There was not enough free memory or other resources such as available file handles to perform the requested
+     * operation.
      */
     OutOfMemoryFileSystemError,
 
     /**
-     * The requested operation is not valid given the current state or setup of the relevant FileReader or FileWriter class.
+     * The requested operation is not valid given the current state or setup of the relevant FileReader or FileWriter
+     * class.
      */
     InvalidOperationFileSystemError,
 
     /**
-     * For some reason the requested operation wasn't able to be fully completed, one possible cause for this error is that
-     * fewer than the requested number of bytes were able to be read or written.
+     * For some reason the requested operation wasn't able to be fully completed, one possible cause for this error is
+     * that fewer than the requested number of bytes were able to be read or written.
      */
     IncompleteFileSystemError,
 
     /**
-     * When working with versioned file sections (see FileReader::beginVersionedSection() for details), this error indicates
-     * there was an error in the header for a versioned file section.
+     * When working with versioned file sections (see FileReader::beginVersionedSection() for details), this error
+     * indicates there was an error in the header for a versioned file section.
      */
     VersionedSectionFileSystemError,
 
     /**
-     * Data corruption was encountered while performing the requested operation, this can be caused by faulty hardware or by
-     * illegal tampering with memory reserved for exclusive access by the underlying file system.
+     * Data corruption was encountered while performing the requested operation, this can be caused by faulty hardware
+     * or by illegal tampering with memory reserved for exclusive access by the underlying file system.
      */
     DataCorruptionFileSystemError,
 
     /**
-     * A hardware failure was encountered while performing the requested operation that prevented it from being completed
-     * successfully.
+     * A hardware failure was encountered while performing the requested operation that prevented it from being
+     * completed successfully.
      */
     HardwareFailureFileSystemError,
 
     /**
-     * The specified file system could not be accessed because it uses removable media and no media is currently present, e.g.
-     * memory stick is not inserted.
+     * The specified file system could not be accessed because it uses removable media and no media is currently
+     * present, e.g. memory stick is not inserted.
      */
     RemovableMediaNotPresentError,
 

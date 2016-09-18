@@ -14,21 +14,22 @@ namespace Carbon
 typedef char32_t UnicodeCharacter;
 
 /**
- * The StringBase class template implements string handling and is intended to be specialized on the char type for handling of
- * ASCII strings and on the UnicodeCharacter type for UTF-32 strings. There are String and UnicodeString typedefs for these two
- * specializations.
+ * The StringBase class template implements string handling and is intended to be specialized on the char type for
+ * handling of ASCII strings and on the UnicodeCharacter type for UTF-32 strings. There are String and UnicodeString
+ * typedefs for these two specializations.
  *
- * The StringBase class template has two ways of storing its data: on the heap or in a local buffer. Use of the local buffer is
- * preferred because it means that no heap allocations need to be done and the string is more cache friendly. However, the local
- * buffer is of limited size and so can only be used when the contained string fits in the available space.
+ * The StringBase class template has two ways of storing its data: on the heap or in a local buffer. Use of the local
+ * buffer is preferred because it means that no heap allocations need to be done and the string is more cache friendly.
+ * However, the local buffer is of limited size and so can only be used when the contained string fits in the available
+ * space.
  *
- * The StringBase class template is defined as being 32 bytes in size for ASCII strings and 64 bytes in size for UTF-32 strings.
- * For ASCII strings this results in the local storage buffer being 24 bytes in size on 32-bit systems and 20 bytes on 64-bit
- * systems. This means that ASCII strings with 19 or fewer characters will be locally cached on all systems and those with 23 or
- * fewer characters will be locally cached on 32-bit systems but not 64-bit systems.
+ * The StringBase class template is defined as being 32 bytes in size for ASCII strings and 64 bytes in size for UTF-32
+ * strings. For ASCII strings this results in the local storage buffer being 24 bytes in size on 32-bit systems and 20
+ * bytes on 64-bit systems. This means that ASCII strings with 19 or fewer characters will be locally cached on all
+ * systems and those with 23 or fewer characters will be locally cached on 32-bit systems but not 64-bit systems.
  *
- * Similarly, UTF-32 strings with 12 or fewer characters will be locally cached on 64-bit systems, and this increases to 13 or
- * fewer characters on 32-bit systems.
+ * Similarly, UTF-32 strings with 12 or fewer characters will be locally cached on 64-bit systems, and this increases to
+ * 13 or fewer characters on 32-bit systems.
  */
 template <typename T> class CARBON_API StringBase
 {
@@ -89,7 +90,7 @@ public:
     }
 
     /**
-     * Constructs the string from a single ASCII character value repeated the specified number of times (default is once).
+     * Constructs the string from a single ASCII character value repeated the specified number of times.
      */
     explicit StringBase(char value, unsigned int count = 1) : StringBase()
     {
@@ -175,7 +176,8 @@ public:
      * Constructs this string from the passed vector's items. The default separator is a comma.
      */
     template <typename T2>
-    explicit StringBase(const Vector<T2>& v, const StringBase<T>& separator = ", ", unsigned int startIndex = 0) : StringBase()
+    explicit StringBase(const Vector<T2>& v, const StringBase<T>& separator = ", ", unsigned int startIndex = 0)
+        : StringBase()
     {
         for (auto i = startIndex; i < v.size(); i++)
         {
@@ -349,14 +351,14 @@ public:
     }
 
     /**
-     * Returns this string's internal data pointer. Note that because this is a pointer to internal data, it is invalidated when
-     * any changes are made to this string instance.
+     * Returns this string's internal data pointer. Note that because this is a pointer to internal data, it is
+     * invalidated when any changes are made to this string instance.
      */
     const T* cStr() const { return storage_; }
 
     /**
-     * Returns whether the specified character occurs in this string, starting at the specified offset. If no starting offset is
-     * given then the whole string is searched.
+     * Returns whether the specified character occurs in this string, starting at the specified offset. If no starting
+     * offset is given then the whole string is searched.
      */
     bool has(T character, unsigned int start = 0) const
     {
@@ -370,8 +372,8 @@ public:
     }
 
     /**
-     * Searches this string for the given string starting at the given index. If no index is given then the whole string is
-     * searched. Returns -1 if the specified string is not found in this string.
+     * Searches this string for the given string starting at the given index. If no index is given then the whole string
+     * is searched. Returns -1 if the specified string is not found in this string.
      */
     int find(const StringBase<T>& s, unsigned int start = 0) const
     {
@@ -493,9 +495,9 @@ public:
     }
 
     /**
-     * Resizes this string to the specified length. If the string length is increased, the additional characters are given the
-     * specified value. If an internal allocation fails then `std::bad_alloc` is thrown. Reducing the size of a string always
-     * succeeds.
+     * Resizes this string to the specified length. If the string length is increased, the additional characters are
+     * given the specified value. If an internal allocation fails then `std::bad_alloc` is thrown. Reducing the size of
+     * a string always succeeds.
      */
     void resize(unsigned int newLength, T character = 0)
     {
@@ -521,8 +523,8 @@ public:
             auto requiredAllocationSize = newLength + 1;
             auto idealAllocationSize = newLength * 3 / 2 + 1;
 
-            // Work out whether we need to reallocate, if the existing heap storage size is big enough but not much too big then
-            // keep it for the time being
+            // Work out whether we need to reallocate, if the existing heap storage size is big enough but not much too
+            // big then keep it for the time being
             if (isUsingLocalStorage() || localStorage_.heapAllocationSize < requiredAllocationSize ||
                 localStorage_.heapAllocationSize > idealAllocationSize)
             {
@@ -560,8 +562,8 @@ public:
 
     /**
      * Searches this string for the first occurrence of one of the characters in a given string, starting at the offset
-     * specified. If no offset is specified then the whole string is searched. Returns the index of the character if found, or
-     * -1 if there was no match.
+     * specified. If no offset is specified then the whole string is searched. Returns the index of the character if
+     * found, or -1 if there was no match.
      */
     int findFirstOf(const StringBase<T>& s, unsigned int start = 0) const
     {
@@ -581,8 +583,8 @@ public:
     }
 
     /**
-     * Searches this string for the first occurence of a character that doesn't appear in the given string, starting at the
-     * offset specified. Returns the index of the character if found, or -1 if there was no match.
+     * Searches this string for the first occurence of a character that doesn't appear in the given string, starting at
+     * the offset specified. Returns the index of the character if found, or -1 if there was no match.
      */
     int findFirstNotOf(const StringBase<T>& s, unsigned int start = 0) const
     {
@@ -610,8 +612,8 @@ public:
     }
 
     /**
-     * Searches this string for the last occurrence of one of the characters in a given string up to a given index. Returns the
-     * index of the character if found, or -1 if there was no match.
+     * Searches this string for the last occurrence of one of the characters in a given string up to a given index.
+     * Returns the index of the character if found, or -1 if there was no match.
      */
     int findLastOf(const StringBase<T>& s, unsigned int end) const
     {
@@ -680,8 +682,8 @@ public:
     }
 
     /**
-     * Returns whether this string contains only numeric characters, i.e. 0-9. Returns true for an empty string. A list of other
-     * characters to allow can be specified if desired.
+     * Returns whether this string contains only numeric characters, i.e. 0-9. Returns true for an empty string. A list
+     * of other characters to allow can be specified if desired.
      */
     bool isNumeric(const StringBase<T>& allowed = StringBase<T>::Empty) const
     {
@@ -697,8 +699,8 @@ public:
     }
 
     /**
-     * Returns whether this string contains only alphanumeric characters, i.e. a-z and 0-9. Returns true for an empty string. A
-     * list of other characters can be specified if desired.
+     * Returns whether this string contains only alphanumeric characters, i.e. a-z and 0-9. Returns true for an empty
+     * string. A list of other characters can be specified if desired.
      */
     bool isAlphaNumeric(const StringBase<T>& allowed = StringBase<T>::Empty) const
     {
@@ -706,7 +708,8 @@ public:
 
         for (auto i = 0U; i < length(); i++)
         {
-            if ((s[i] < 'a' || s[i] > 'z') && (s[i] < 'A' || s[i] > 'Z') && (s[i] < '0' || s[i] > '9') && !allowed.has(s[i]))
+            if ((s[i] < 'a' || s[i] > 'z') && (s[i] < 'A' || s[i] > 'Z') && (s[i] < '0' || s[i] > '9') &&
+                !allowed.has(s[i]))
                 return false;
         }
 
@@ -714,14 +717,15 @@ public:
     }
 
     /**
-     * Returns whether this string can be sensibly converted to a boolean value with StringBase::asBoolean(). The values that
-     * will convert correctly are "true", "false", "yes", "no", "on", "off", "0", and "1".
+     * Returns whether this string can be sensibly converted to a boolean value with StringBase::asBoolean(). The values
+     * that will convert correctly are "true", "false", "yes", "no", "on", "off", "0", and "1".
      */
     bool isBoolean() const
     {
         auto b = asLower();
 
-        return b == "true" || b == "false" || b == "yes" || b == "no" || b == "on" || b == "off" || b == "1" || b == "0";
+        return b == "true" || b == "false" || b == "yes" || b == "no" || b == "on" || b == "off" || b == "1" ||
+            b == "0";
     }
 
     /**
@@ -750,8 +754,8 @@ public:
     }
 
     /**
-     * Returns whether this string can be sensibly converted to an integer value with StringBase::asInteger(). This also checks
-     * that the integer value is in the given range, inclusive of the two bounding values.
+     * Returns whether this string can be sensibly converted to an integer value with StringBase::asInteger(). This also
+     * checks that the integer value is in the given range, inclusive of the two bounding values.
      */
     bool isIntegerInRange(int lower, int upper) const
     {
@@ -810,8 +814,8 @@ public:
     }
 
     /**
-     * Returns whether this string can be sensibly converted to a floating point value with StringBase::asFloat(). This also
-     * checks that the floating point value is in the given range, inclusive of the two bounding values.
+     * Returns whether this string can be sensibly converted to a floating point value with StringBase::asFloat(). This
+     * also checks that the floating point value is in the given range, inclusive of the two bounding values.
      */
     bool isFloatInRange(float lower, float upper) const
     {
@@ -904,8 +908,8 @@ public:
     }
 
     /**
-     * Trims characters from both sides of this string using StringBase::trimLeft() and StringBase::trimRight(). Returns the
-     * number of characters that were removed.
+     * Trims characters from both sides of this string using StringBase::trimLeft() and StringBase::trimRight(). Returns
+     * the number of characters that were removed.
      */
     unsigned int trim(const StringBase<T>& trimCharacters = TrimCharacters)
     {
@@ -981,8 +985,8 @@ public:
     }
 
     /**
-     * Splits this string into pieces using the given separators, note that consecutive separators in this string will result in
-     * zero-length strings being returned.
+     * Splits this string into pieces using the given separators, note that consecutive separators in this string will
+     * result in zero-length strings being returned.
      */
     Vector<StringBase<T>> split(const StringBase<T>& separators) const
     {
@@ -1094,8 +1098,8 @@ public:
     }
 
     /**
-     * Returns whether the end of this string matches the given string. If the two strings are identical then true is returned.
-     * If \a end is an empty string then true is returned.
+     * Returns whether the end of this string matches the given string. If the two strings are identical then true is
+     * returned. If \a end is an empty string then true is returned.
      */
     bool endsWith(const StringBase<T>& end) const
     {
@@ -1109,8 +1113,8 @@ public:
     }
 
     /**
-     * Returns a copy of this string padded out to the given length with the character provided. If the length of this string
-     * equals or exceeds the given pad length then it is returned unaltered.
+     * Returns a copy of this string padded out to the given length with the character provided. If the length of this
+     * string equals or exceeds the given pad length then it is returned unaltered.
      */
     StringBase<T> padToLength(unsigned int length, T c = ' ') const
     {
@@ -1123,8 +1127,8 @@ public:
     }
 
     /**
-     * Returns a copy of this string padded on its left hand side with the character provided in order to reach the given
-     * length. If the length of this string equals or exceeds the given pad length then it is returned unaltered.
+     * Returns a copy of this string padded on its left hand side with the character provided in order to reach the
+     * given length. If the length of this string equals or exceeds the given pad length then it is returned unaltered.
      */
     StringBase<T> prePadToLength(unsigned int length, T c = ' ') const
     {
@@ -1137,7 +1141,8 @@ public:
     }
 
     /**
-     * Returns this string enclosed in double quotes if it has any of the given characters, otherwise just returns this string.
+     * Returns this string enclosed in double quotes if it has any of the given characters, otherwise just returns this
+     * string.
      */
     StringBase<T> quoteIfHas(const StringBase<T>& characters) const
     {
@@ -1154,8 +1159,8 @@ public:
 
     /**
      * Creates a Vector of tokens from the contents of this string using space and tab characters as separators. This is
-     * different to StringBase::split() in that it correctly handles quoting, e.g. If this string is set to 'A "B C" D' then
-     * this method will return the following three tokens: "A", "B C", "D".
+     * different to StringBase::split() in that it correctly handles quoting, e.g. If this string is set to 'A "B C" D'
+     * then this method will return the following three tokens: "A", "B C", "D".
      */
     Vector<StringBase<T>> getTokens() const
     {
@@ -1213,8 +1218,8 @@ public:
     }
 
     /**
-     * If this string is in the format "<name>[<index>]" then this method returns the index value between the square brackets at
-     * the end, if an error occurs parsing this string then -1 is returned.
+     * If this string is in the format "<name>[<index>]" then this method returns the index value between the square
+     * brackets at the end, if an error occurs parsing this string then -1 is returned.
      */
     int getIndexInBrackets() const
     {
@@ -1234,8 +1239,9 @@ public:
     }
 
     /**
-     * If this string is in the format "<name>[<index>]" then this method returns the "<name>" portion and chops off the index
-     * in square brackets, if an error occurs parsing this string then a copy of this string is returned unchanged.
+     * If this string is in the format "<name>[<index>]" then this method returns the "<name>" portion and chops off the
+     * index in square brackets, if an error occurs parsing this string then a copy of this string is returned
+     * unchanged.
      */
     StringBase<T> withoutIndexInBrackets() const
     {
@@ -1280,7 +1286,8 @@ public:
     /**
      * Returns the given fraction formatted as a percentage string with the given number of decimal places.
      */
-    template <typename T2> static StringBase<T> formatPercentage(T2 numerator, T2 denominator, unsigned int decimalPlaces = 1)
+    template <typename T2>
+    static StringBase<T> formatPercentage(T2 numerator, T2 denominator, unsigned int decimalPlaces = 1)
     {
         auto percentage = 100.0f * (float(numerator) / float(denominator));
 
@@ -1303,8 +1310,8 @@ public:
     }
 
     /**
-     * Returns the passed data formatted as a human-readable hexadecimal string. If \a addSpacing is set to true then a single
-     * space will be inserted every 4 bytes to improve readability.
+     * Returns the passed data formatted as a human-readable hexadecimal string. If \a addSpacing is set to true then a
+     * single space will be inserted every 4 bytes to improve readability.
      */
     static StringBase<T> toHex(const byte_t* data, unsigned int size, bool addSpacing = true)
     {
@@ -1354,8 +1361,8 @@ public:
     static const StringBase<T> CarriageReturn;
 
     /**
-     * The default set of characters used by the string trimming routines. There are four characters in this set: space, tab,
-     * newline, carriage return.
+     * The default set of characters used by the string trimming routines. There are four characters in this set: space,
+     * tab, newline, carriage return.
      */
     static const StringBase<T> TrimCharacters;
 
@@ -1373,20 +1380,20 @@ public:
     }
 
     /**
-     * Converts this string to an ASCII string, any characters that can't be represented in ASCII are replaced with a '?'
-     * character. This method is implemented for UnicodeString but not String.
+     * Converts this string to an ASCII string, any characters that can't be represented in ASCII are replaced with a
+     * '?' character. This method is implemented for UnicodeString but not String.
      */
     StringBase<char> toASCII() const;
 
     /**
-     * Converts this string to UTF-8. By default the returned vector includes a null terminator, but this can be overridden by
-     * setting \a includeNullTerminator to false.
+     * Converts this string to UTF-8. By default the returned vector includes a null terminator, but this can be
+     * overridden by setting \a includeNullTerminator to false.
      */
     Vector<byte_t> toUTF8(bool includeNullTerminator = true) const;
 
     /**
-     * Converts this string to UTF-16. By default the returned vector includes a null terminator, but this can be overridden by
-     * setting \a includeNullTerminator to false.
+     * Converts this string to UTF-16. By default the returned vector includes a null terminator, but this can be
+     * overridden by setting \a includeNullTerminator to false.
      */
     Vector<uint16_t> toUTF16(bool includeNullTerminator = true) const;
 
@@ -1404,8 +1411,8 @@ public:
 #endif
 
     /**
-     * Converts this string to UTF8 and copies the resulting bytes including a null terminator into the specified destination
-     * buffer. If the buffer is too small then false is returned.
+     * Converts this string to UTF8 and copies the resulting bytes including a null terminator into the specified
+     * destination buffer. If the buffer is too small then false is returned.
      */
     bool copyUTF8To(void* destination, unsigned int destinationSize) const
     {
@@ -1420,8 +1427,8 @@ public:
     }
 
     /**
-     * Returns whether or not the passed character is a printable ASCII character, i.e. whether it lies in the range 0x20 -
-     * 0x7E.
+     * Returns whether or not the passed character is a printable ASCII character, i.e. whether it lies in the range
+     * 0x20 - 0x7E.
      */
     static bool isPrintableASCII(int c) { return c >= 0x20 && c <= 0x7E; }
 
@@ -1570,18 +1577,20 @@ CARBON_API UnicodeString fromUTF8(const char* string);
 CARBON_API UnicodeString fromUTF16(const uint16_t* data, unsigned int size);
 
 /**
- * Converts a null-terminated UTF-16 string to a UnicodeString. Intended for use on Windows where `wchar_t` is two bytes wide.
+ * Converts a null-terminated UTF-16 string to a UnicodeString. Intended for use on Windows where `wchar_t` is two bytes
+ * wide.
  */
 CARBON_API UnicodeString fromUTF16(const wchar_t* string);
 
 /**
- * Shorthand function to down-convert a Unicode string to an ASCII string, characters not part of ASCII are replaced with '?'.
+ * Shorthand function to down-convert a Unicode string to an ASCII string, characters not part of ASCII are replaced
+ * with '?'.
  */
 CARBON_API String A(const UnicodeString& s);
 
 /**
- * Shorthand function to down-convert a Unicode string vector to an ASCII string vector, characters not part of ASCII are
- * replaced with '?'.
+ * Shorthand function to down-convert a Unicode string vector to an ASCII string vector, characters not part of ASCII
+ * are replaced with '?'.
  */
 CARBON_API Vector<String> A(const Vector<UnicodeString>& v);
 

@@ -11,9 +11,9 @@ namespace Carbon
 {
 
 /**
- * Class used to store image and texture data. Can handle 2D, 3D and cubemap images with mipmaps in a variety of pixel formats
- * including animations. Pixel data is stored with a bottom left origin. A number of image conversion and transformations are
- * supported, and this class forms the base of texture image data handling.
+ * Class used to store image and texture data. Can handle 2D, 3D and cubemap images with mipmaps in a variety of pixel
+ * formats including animations. Pixel data is stored with a bottom left origin. A number of image conversion and
+ * transformations are supported, and this class forms the base of texture image data handling.
  */
 class CARBON_API Image
 {
@@ -80,7 +80,8 @@ public:
         SRGB8,
 
         /**
-         * RGB stored as an 8-bit unsigned integer value per component in the sRGB color space as well as a linear 8-bit alpha.
+         * RGB stored as an 8-bit unsigned integer value per component in the sRGB color space as well as a linear 8-bit
+         * alpha.
          */
         SRGBA8,
 
@@ -239,25 +240,26 @@ public:
     friend void swap(Image& first, Image& second);
 
     /**
-     * Clears this image's current contents and initializes it to hold a 2D/3D image of the specified dimensions, pixel format,
-     * mipmap state, and frame count. If \a frameCount is zero then this method will not allocate any data. This method returns
-     * false if \a frameCount is non-zero and an internal allocation fails.
+     * Clears this image's current contents and initializes it to hold a 2D/3D image of the specified dimensions, pixel
+     * format, mipmap state, and frame count. If \a frameCount is zero then this method will not allocate any data. This
+     * method returns false if \a frameCount is non-zero and an internal allocation fails.
      */
     bool initialize(unsigned int width, unsigned int height, unsigned int depth, PixelFormat pixelFormat,
                     bool hasMipmaps = false, unsigned int frameCount = 0);
 
     /**
-     * Clears this image's current contents and initializes it to hold a cubemap image of the specified size, pixel format,
-     * mipmap state, and frame count. If \a frameCount is zero then this method will not allocate any data. This method returns
-     * false if \a frameCount is non-zero and an internal allocation fails.
+     * Clears this image's current contents and initializes it to hold a cubemap image of the specified size, pixel
+     * format, mipmap state, and frame count. If \a frameCount is zero then this method will not allocate any data. This
+     * method returns false if \a frameCount is non-zero and an internal allocation fails.
      */
-    bool initializeCubemap(unsigned int size, PixelFormat pixelFormat, bool hasMipmaps = false, unsigned int frameCount = 0);
+    bool initializeCubemap(unsigned int size, PixelFormat pixelFormat, bool hasMipmaps = false,
+                           unsigned int frameCount = 0);
 
     /**
      * Clears this image's current contents and initializs it to be a cubemap built out of the six individual 2D images
-     * specified. All six cubemap face images must have identical specifications. In order to avoid a copy of the image data
-     * into the new cubemap, the contents of the passed images is transferred directly onto this image leaving the source images
-     * empty after this call completes. Returns success flag.
+     * specified. All six cubemap face images must have identical specifications. In order to avoid a copy of the image
+     * data into the new cubemap, the contents of the passed images is transferred directly onto this image leaving the
+     * source images empty after this call completes. Returns success flag.
      */
     bool initializeCubemap(std::array<Image, 6>& faces);
 
@@ -287,9 +289,9 @@ public:
     PixelFormat getPixelFormat() const { return pixelFormat_; }
 
     /**
-     * Converts this image to the specified pixel format, if the specified pixel format is the same as the current pixel format
-     * then nothing is done. This method relies on being able to read and write the current and specified pixel formats, which
-     * is supported for most but not all pixel formats. Returns success flag.
+     * Converts this image to the specified pixel format, if the specified pixel format is the same as the current pixel
+     * format then nothing is done. This method relies on being able to read and write the current and specified pixel
+     * formats, which is supported for most but not all pixel formats. Returns success flag.
      */
     bool setPixelFormat(PixelFormat newPixelFormat);
 
@@ -315,8 +317,8 @@ public:
     unsigned int getFrameCount() const { return frames_.size(); }
 
     /**
-     * Sets the number of frames in this image, this may internally alloate or deallocate memory for storing image data. If an
-     * internal allocation fails then false is returned.
+     * Sets the number of frames in this image, this may internally alloate or deallocate memory for storing image data.
+     * If an internal allocation fails then false is returned.
      */
     bool setFrameCount(unsigned int frameCount);
 
@@ -331,9 +333,9 @@ public:
     byte_t* getDataForFrame(unsigned int frameIndex) { return frames_[frameIndex]->data.getData(); }
 
     /**
-     * Returns the internal data pointer for the specified frame and cubemap side, returns null if this image is not a cubemap.
-     * The \a faceIndex parameter must be in the range 0-5, the order of cubemap faces is positive x, negative x, positive y,
-     * negative y, positive z, negative z.
+     * Returns the internal data pointer for the specified frame and cubemap side, returns null if this image is not a
+     * cubemap. The \a faceIndex parameter must be in the range 0-5, the order of cubemap faces is positive x, negative
+     * x, positive y, negative y, positive z, negative z.
      */
     const byte_t* getCubemapDataForFrame(unsigned int frameIndex, unsigned int faceIndex) const
     {
@@ -343,9 +345,9 @@ public:
     }
 
     /**
-     * Returns the internal data pointer for the specified frame and cubemap side, returns null if this image is not a cubemap.
-     * The \a faceIndex parameter must be in the range 0-5, the order of cubemap faces is positive x, negative x, positive y,
-     * negative y, positive z, negative z.
+     * Returns the internal data pointer for the specified frame and cubemap side, returns null if this image is not a
+     * cubemap. The \a faceIndex parameter must be in the range 0-5, the order of cubemap faces is positive x, negative
+     * x, positive y, negative y, positive z, negative z.
      */
     byte_t* getCubemapDataForFrame(unsigned int frameIndex, unsigned int faceIndex)
     {
@@ -355,27 +357,30 @@ public:
     }
 
     /**
-     * Returns pointers to all of the frame data in use by this image, in 2D and 3D images there is one block of data per frame,
-     * and in cubemap images there are six blocks of data per frame.
+     * Returns pointers to all of the frame data in use by this image, in 2D and 3D images there is one block of data
+     * per frame, and in cubemap images there are six blocks of data per frame.
      */
     Vector<byte_t*> getAllData();
 
     /**
-     * Returns pointers to all of the frame data in use by this image, in 2D and 3D images there is one block of data per frame,
-     * and in cubemap images there are six blocks of data per frame.
+     * Returns pointers to all of the frame data in use by this image, in 2D and 3D images there is one block of data
+     * per frame, and in cubemap images there are six blocks of data per frame.
      */
     Vector<const byte_t*> getAllData() const;
 
     /**
-     * Returns the number of mipmaps in this image's data. If Image::hasMipmaps() is true then the mipmap count is calculated
-     * from this image's dimensions, otherwise 1 is returned.
+     * Returns the number of mipmaps in this image's data. If Image::hasMipmaps() is true then the mipmap count is
+     * calculated from this image's dimensions, otherwise 1 is returned.
      */
-    unsigned int getMipmapCount() const { return hasMipmaps() ? getImageMipmapCount(getWidth(), getHeight(), getDepth()) : 1; }
+    unsigned int getMipmapCount() const
+    {
+        return hasMipmaps() ? getImageMipmapCount(getWidth(), getHeight(), getDepth()) : 1;
+    }
 
     /**
-     * Appends the frames in the passed image onto the end of this image. The image data is taken of the passed image and so no
-     * copying or allocations are done. This method requires that this image and the passed image have the same dimensions,
-     * pixel format, mipmap flag and cubemap flag. Returns success flag.
+     * Appends the frames in the passed image onto the end of this image. The image data is taken of the passed image
+     * and so no copying or allocations are done. This method requires that this image and the passed image have the
+     * same dimensions, pixel format, mipmap flag and cubemap flag. Returns success flag.
      */
     bool append(Image& image);
 
@@ -405,8 +410,8 @@ public:
     bool isNPOT() const;
 
     /**
-     * Returns the amount of memory used by each frame of this image. Note that for cubemap images this returns the memory used
-     * by one face of the cubemap, not the full amount for all six cube faces. The return value is in bytes.
+     * Returns the amount of memory used by each frame of this image. Note that for cubemap images this returns the
+     * memory used by one face of the cubemap, not the full amount for all six cube faces. The return value is in bytes.
      */
     unsigned int getFrameDataSize() const;
 
@@ -416,20 +421,20 @@ public:
     unsigned int getDataSize() const;
 
     /**
-     * Returns the color of the pixel at the specified position. This is not supported on cubemap images or images stored in a
-     * depth or depth/stencil format.
+     * Returns the color of the pixel at the specified position. This is not supported on cubemap images or images
+     * stored in a depth or depth/stencil format.
      */
     Color getPixelColor(unsigned int x, unsigned int y, unsigned int z = 0, unsigned int frame = 0) const;
 
     /**
-     * Returns the color of the pixel at the given normalized texture coordinates. This is not supported on cubemap images or
-     * images stored in a depth or depth/stencil format.
+     * Returns the color of the pixel at the given normalized texture coordinates. This is not supported on cubemap
+     * images or images stored in a depth or depth/stencil format.
      */
     Color getPixelColor(float u, float v, float w = 0.0f, unsigned int frame = 0) const;
 
     /**
-     * Sets the color of the pixel at the specified position. This is not supported on cubemap images or images stored in a
-     * depth, depth/stencil or compressed pixel format. Returns success flag.
+     * Sets the color of the pixel at the specified position. This is not supported on cubemap images or images stored
+     * in a depth, depth/stencil or compressed pixel format. Returns success flag.
      */
     bool setPixelColor(unsigned int x, unsigned int y, unsigned int z, const Color& color);
 
@@ -459,8 +464,8 @@ public:
     unsigned int getHash() const;
 
     /**
-     * Generates mipmaps for this image if it doesn't already have them. This is only supported for uncompressed pixel formats.
-     * Returns success flag.
+     * Generates mipmaps for this image if it doesn't already have them. This is only supported for uncompressed pixel
+     * formats. Returns success flag.
      */
     bool generateMipmaps();
 
@@ -475,16 +480,16 @@ public:
     bool flipHorizontal();
 
     /**
-     * Rotates this image counter-clockwise 90 degrees, this operation is supported for most pixel formats. Returns success
-     * flag.
+     * Rotates this image counter-clockwise 90 degrees, this operation is supported for most pixel formats. Returns
+     * success flag.
      */
     bool rotateCCW();
 
     /**
      * Calls the passed fnImageOperation function once for every frame, cubemap face, and mipmap level in this image
      */
-    bool enumerateImage(
-        const std::function<bool(unsigned int, unsigned int, unsigned int, Image::PixelFormat, byte_t*)>& fnImageOperation);
+    bool enumerateImage(const std::function<bool(unsigned int, unsigned int, unsigned int, Image::PixelFormat,
+                                                 byte_t*)>& fnImageOperation);
 
     /**
      * Does an in-place horizontal flip of the specified 2D/3D image data. Returns success flag.
@@ -497,7 +502,8 @@ public:
     static bool rawFlipVertical(unsigned int w, unsigned int h, unsigned int d, PixelFormat pf, byte_t* data);
 
     /**
-     * Does an in-place counter-clockwise rotation by 90 degrees of the specified 2D/3D image data. Returns success flag.
+     * Does an in-place counter-clockwise rotation by 90 degrees of the specified 2D/3D image data. Returns success
+     * flag.
      */
     static bool rawRotateCCW(unsigned int w, unsigned int h, unsigned int d, PixelFormat pf, byte_t* data);
 
@@ -522,11 +528,12 @@ public:
     static void getNextMipmapSize(unsigned int& width, unsigned int& height, unsigned int& depth);
 
     /**
-     * Returns the number of bytes required to store an image of the given dimensions in a certain pixel format. The size
-     * required to store this image as well as a full mipmap chain for it can be returned by setting \a hasMipmaps to true.
+     * Returns the number of bytes required to store an image of the given dimensions in a certain pixel format. The
+     * size required to store this image as well as a full mipmap chain for it can be returned by setting \a hasMipmaps
+     * to true.
      */
-    static unsigned int getImageDataSize(unsigned int width, unsigned int height, unsigned int depth, PixelFormat pixelFormat,
-                                         bool hasMipmaps = false);
+    static unsigned int getImageDataSize(unsigned int width, unsigned int height, unsigned int depth,
+                                         PixelFormat pixelFormat, bool hasMipmaps = false);
 
     /**
      * Returns the size of a single compression block in the given pixel format. The pixel format must be compressed.
@@ -542,21 +549,27 @@ public:
     static const String& getPixelFormatString(PixelFormat pixelFormat) { return pixelFormatDetails_[pixelFormat].name; }
 
     /**
-     * Converts the given pixel format name into a pixel format enumeration value. Returns `UnknownPixelFormat` if the passed
-     * string is not a recognized pixel format name. Case insensitive.
+     * Converts the given pixel format name into a pixel format enumeration value. Returns `UnknownPixelFormat` if the
+     * passed string is not a recognized pixel format name. Case insensitive.
      */
     static PixelFormat getPixelFormatFromString(const String& pixelFormatName);
 
     /**
-     * Returns the size in bytes required for a single pixel in the given pixel format. If the pixel format is compressed then
-     * there is no per-pixel size and so zero will be returned.
+     * Returns the size in bytes required for a single pixel in the given pixel format. If the pixel format is
+     * compressed then there is no per-pixel size and so zero will be returned.
      */
-    static unsigned int getPixelFormatPixelSize(PixelFormat pixelFormat) { return pixelFormatDetails_[pixelFormat].pixelSize; }
+    static unsigned int getPixelFormatPixelSize(PixelFormat pixelFormat)
+    {
+        return pixelFormatDetails_[pixelFormat].pixelSize;
+    }
 
     /**
      * Returns whether the given pixel format is able to store alpha data in some form.
      */
-    static bool isPixelFormatAlphaAware(PixelFormat pixelFormat) { return pixelFormatDetails_[pixelFormat].isAlphaAware; }
+    static bool isPixelFormatAlphaAware(PixelFormat pixelFormat)
+    {
+        return pixelFormatDetails_[pixelFormat].isAlphaAware;
+    }
 
     /**
      * Returns whether the given pixel format is an uncompressed format, i.e anything except PVRTC or DXT formats.
@@ -574,7 +587,10 @@ public:
     /**
      * Returns whether the given pixel format is a DXT/S3TC compressed format
      */
-    static bool isPixelFormatDXTCompressed(PixelFormat pixelFormat) { return pixelFormatDetails_[pixelFormat].isDXTCompressed; }
+    static bool isPixelFormatDXTCompressed(PixelFormat pixelFormat)
+    {
+        return pixelFormatDetails_[pixelFormat].isDXTCompressed;
+    }
 
     /**
      * Returns whether the given pixel format is a PVRTC compressed format
@@ -587,42 +603,48 @@ public:
     /**
      * Returns whether the given pixel format is a floating point format.
      */
-    static bool isPixelFormatFloatingPoint(PixelFormat pixelFormat) { return pixelFormatDetails_[pixelFormat].isFloatingPoint; }
+    static bool isPixelFormatFloatingPoint(PixelFormat pixelFormat)
+    {
+        return pixelFormatDetails_[pixelFormat].isFloatingPoint;
+    }
 
     /**
      * Returns whether the given pixel format can be used to store depth buffer data.
      */
-    static bool isPixelFormatDepthAware(PixelFormat pixelFormat) { return pixelFormatDetails_[pixelFormat].isDepthAware; }
+    static bool isPixelFormatDepthAware(PixelFormat pixelFormat)
+    {
+        return pixelFormatDetails_[pixelFormat].isDepthAware;
+    }
 
     /**
-     * This is a lower level image conversion routine than Image::setPixelFormat() that works with a single piece of image data.
-     * In general the Image::setPixelFormat() method should be used instead of this method, however lower level conversions can
-     * prove useful under certain circumstances. Note that Image::setPixelFormat() internally uses this method to do
-     * conversions.
+     * This is a lower level image conversion routine than Image::setPixelFormat() that works with a single piece of
+     * image data. In general the Image::setPixelFormat() method should be used instead of this method, however lower
+     * level conversions can prove useful under certain circumstances. Note that Image::setPixelFormat() internally uses
+     * this method to do conversions.
      */
     static bool convertRawImage(const byte_t* source, PixelFormat sourcePixelFormat, byte_t* destination,
                                 PixelFormat destinationPixelFormat, unsigned int width, unsigned int height,
                                 unsigned int depth);
 
     /**
-     * Function typedef for reading the color of a single pixel in an image, this is implemented separately for each pixel
-     * format.
+     * Function typedef for reading the color of a single pixel in an image, this is implemented separately for each
+     * pixel format.
      */
-    typedef std::function<Color(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                unsigned int y, unsigned int z)>
+    typedef std::function<Color(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                unsigned int x, unsigned int y, unsigned int z)>
         ReadPixelFunction;
 
     /**
-     * Function typedef for writing the color of a single pixel in an image, this is implemented separately for each pixel
-     * format.
+     * Function typedef for writing the color of a single pixel in an image, this is implemented separately for each
+     * pixel format.
      */
-    typedef std::function<void(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                               unsigned int y, unsigned int z, const Color& color)>
+    typedef std::function<void(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                               unsigned int x, unsigned int y, unsigned int z, const Color& color)>
         WritePixelFunction;
 
     /**
-     * Returns a function for reading a single pixel value out of a piece of raw image data in the specified pixel format, or
-     * null if reading individual pixels in that pixel format isn't supported.
+     * Returns a function for reading a single pixel value out of a piece of raw image data in the specified pixel
+     * format, or null if reading individual pixels in that pixel format isn't supported.
      */
     static ReadPixelFunction getPixelFormatReadFunction(PixelFormat pixelFormat)
     {
@@ -630,8 +652,8 @@ public:
     }
 
     /**
-     * Returns a function for writing a single pixel value to a piece of raw image data in the specified pixel format, or null
-     * if writing individual pixels in that pixel format isn't supported.
+     * Returns a function for writing a single pixel value to a piece of raw image data in the specified pixel format,
+     * or null if writing individual pixels in that pixel format isn't supported.
      */
     static WritePixelFunction getPixelFormatWriteFunction(PixelFormat pixelFormat)
     {
@@ -661,13 +683,13 @@ private:
     // Holds pixel data for a single frame of this image
     struct SingleFrame
     {
-        // The pixel data for a single frame of a non-cubemap image. Will include mipmap data if Image::hasMipmaps() of the
-        // owning Image class is set to true. Mipmap data is tagged onto the data array in order of decreasing size.
+        // The pixel data for a single frame of a non-cubemap image. Will include mipmap data if Image::hasMipmaps() of
+        // the owning Image class is set to true. Mipmap data is tagged onto the data array in order of decreasing size.
         Vector<byte_t> data;
 
-        // The pixel data for a single frame of a cubemap image. This is in the same format as the FrameData::data member but
-        // with one pixel data array for each cubemap face. The cubemap sides are in the order: positive x, negative x, positive
-        // y, negative y, positive z, negative z.
+        // The pixel data for a single frame of a cubemap image. This is in the same format as the FrameData::data
+        // member but with one pixel data array for each cubemap face. The cubemap sides are in the order: positive x,
+        // negative x, positive y, negative y, positive z, negative z.
         std::array<Vector<byte_t>, 6> cubemapData;
     };
 
@@ -708,46 +730,46 @@ private:
     static std::array<std::pair<ReadPixelFunction, WritePixelFunction>, LastPixelFormat> pixelFormatReadWriteFunctions_;
 
     // Some pixel formats require custom read and write functions
-    static Color readSRGB8Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                unsigned int y, unsigned int z);
-    static void writeSRGB8Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                unsigned int y, unsigned int z, const Color& color);
+    static Color readSRGB8Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                unsigned int x, unsigned int y, unsigned int z);
+    static void writeSRGB8Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                unsigned int x, unsigned int y, unsigned int z, const Color& color);
     static Color readSRGBA8Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
                                  unsigned int x, unsigned int y, unsigned int z);
-    static void writeSRGBA8Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                 unsigned int y, unsigned int z, const Color& color);
+    static void writeSRGBA8Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                 unsigned int x, unsigned int y, unsigned int z, const Color& color);
     static Color readRGB565Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
                                  unsigned int x, unsigned int y, unsigned int z);
-    static void writeRGB565Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                 unsigned int y, unsigned int z, const Color& color);
+    static void writeRGB565Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                 unsigned int x, unsigned int y, unsigned int z, const Color& color);
     static Color readBGR565Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
                                  unsigned int x, unsigned int y, unsigned int z);
-    static void writeBGR565Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                 unsigned int y, unsigned int z, const Color& color);
+    static void writeBGR565Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                 unsigned int x, unsigned int y, unsigned int z, const Color& color);
     static Color readRGBA5551Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
                                    unsigned int x, unsigned int y, unsigned int z);
-    static void writeRGBA5551Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                   unsigned int y, unsigned int z, const Color& color);
+    static void writeRGBA5551Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                   unsigned int x, unsigned int y, unsigned int z, const Color& color);
     static Color readARGB1555Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
                                    unsigned int x, unsigned int y, unsigned int z);
-    static void writeARGB1555Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                   unsigned int y, unsigned int z, const Color& color);
+    static void writeARGB1555Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                   unsigned int x, unsigned int y, unsigned int z, const Color& color);
     static Color readRGBA4444Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
                                    unsigned int x, unsigned int y, unsigned int z);
-    static void writeRGBA4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                   unsigned int y, unsigned int z, const Color& color);
+    static void writeRGBA4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                   unsigned int x, unsigned int y, unsigned int z, const Color& color);
     static Color readARGB4444Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
                                    unsigned int x, unsigned int y, unsigned int z);
-    static void writeARGB4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                   unsigned int y, unsigned int z, const Color& color);
+    static void writeARGB4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                   unsigned int x, unsigned int y, unsigned int z, const Color& color);
     static Color readABGR4444Pixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
                                    unsigned int x, unsigned int y, unsigned int z);
-    static void writeABGR4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                                   unsigned int y, unsigned int z, const Color& color);
+    static void writeABGR4444Pixel(byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                                   unsigned int x, unsigned int y, unsigned int z, const Color& color);
 
     template <Image::PixelFormat SourcePixelFormat>
-    static Color readDXTPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth, unsigned int x,
-                              unsigned int y, unsigned int z);
+    static Color readDXTPixel(const byte_t* data, unsigned int width, unsigned int height, unsigned int depth,
+                              unsigned int x, unsigned int y, unsigned int z);
 
     // Helper methods for working with DXT formats, implemented in DXT.cpp
     static void decompressDXTCBlock(const byte_t* blockData, std::array<std::array<byte_t, 4>, 16>& output,

@@ -11,10 +11,10 @@ namespace Carbon
 {
 
 /**
- * Describes a file system volume that can be mounted into the main file system so that its contents are accessible by the whole
- * application. This class is subclassed to make content available on the main file system. Note that because file system access
- * can occur on any thread this class needs to manage any additional synchronization that is needed if there are situations
- * where the synchronization by the main file system mutex is insufficient.
+ * Describes a file system volume that can be mounted into the main file system so that its contents are accessible by
+ * the whole application. This class is subclassed to make content available on the main file system. Note that because
+ * file system access can occur on any thread this class needs to manage any additional synchronization that is needed
+ * if there are situations where the synchronization by the main file system mutex is insufficient.
  */
 class CARBON_API FileSystemVolume : private Noncopyable
 {
@@ -35,7 +35,10 @@ public:
     /**
      * Attempts to open a file on this volume for reading. Returns a file system error flag.
      */
-    virtual FileSystemError open(const UnicodeString& filename, FileReader& file) const { return NotSupportedFileSystemError; }
+    virtual FileSystemError open(const UnicodeString& filename, FileReader& file) const
+    {
+        return NotSupportedFileSystemError;
+    }
 
     /**
      * Attempts to open a file on this volume for writing. Returns a file system error flag.
@@ -51,10 +54,11 @@ public:
     virtual bool doesFileExist(const UnicodeString& filename) const { return false; }
 
     /**
-     * Identical to FileSystem::enumerateFiles() except only returns the file matches for this volume. Returns error flag.
+     * Identical to FileSystem::enumerateFiles() except only returns the file matches for this volume. Returns error
+     * flag.
      */
-    virtual FileSystemError enumerateFiles(const UnicodeString& directory, const UnicodeString& extension, bool recursive,
-                                           Vector<UnicodeString>& files) const
+    virtual FileSystemError enumerateFiles(const UnicodeString& directory, const UnicodeString& extension,
+                                           bool recursive, Vector<UnicodeString>& files) const
     {
         return NotSupportedFileSystemError;
     }
@@ -65,8 +69,9 @@ public:
     virtual FileSystemError deleteFile(const UnicodeString& filename) { return NotSupportedFileSystemError; }
 
     /**
-     * Returns whether this volume has enough free space to create the given number of directories and create new files of the
-     * given sizes. The size of each file to check whether there is space for should be passed in the \a fileSizes vector.
+     * Returns whether this volume has enough free space to create the given number of directories and create new files
+     * of the given sizes. The size of each file to check whether there is space for should be passed in the
+     * \a fileSizes vector.
      */
     virtual FileSystemError hasSpaceFor(unsigned int directoryCount, const Vector<unsigned int>& fileSizes) const
     {
@@ -74,8 +79,9 @@ public:
     }
 
     /**
-     * Returns whether this volume has enough free space to create and write a single file of the given size in an existing
-     * directory. This is a wrapper for the more general functionality provided by FileSystemVolume::hasSpaceFor().
+     * Returns whether this volume has enough free space to create and write a single file of the given size in an
+     * existing directory. This is a wrapper for the more general functionality provided by
+     * FileSystemVolume::hasSpaceFor().
      */
     FileSystemError hasSpaceFor(unsigned int fileSizeInBytes) const
     {
@@ -83,10 +89,10 @@ public:
     }
 
     /**
-     * Returns the amount of free space on this volume in bytes. Note that this method should not be used to determine whether
-     * or not there is space to write a given set of files of specific sizes, to check that use one of the
-     * FileSystemVolume::hasSpaceFor() methods. Volumes do not have to support this method, and an error is logged and zero is
-     * returned if this method is called on a volume which does not support checking for free space.
+     * Returns the amount of free space on this volume in bytes. Note that this method should not be used to determine
+     * whether or not there is space to write a given set of files of specific sizes, to check that use one of the
+     * FileSystemVolume::hasSpaceFor() methods. Volumes do not have to support this method, and an error is logged and
+     * zero is returned if this method is called on a volume which does not support checking for free space.
      */
     virtual unsigned int getFreeSpaceInBytes() const
     {
@@ -94,14 +100,14 @@ public:
         return 0;
     }
 
-    // The following methods are for use with file system volumes that provide detailed information about used and free file
-    // system blocks that needs to be accessible by the user. Errors will be logged if any of the methods below are used on file
-    // system volumes that don't support them.
+    // The following methods are for use with file system volumes that provide detailed information about used and free
+    // file system blocks that needs to be accessible by the user. Errors will be logged if any of the methods below are
+    // used on file system volumes that don't support them.
 
     /**
-     * For file system volumes that provide information about blocks, this returns the size in bytes of a single file system
-     * block. The value returned by FileSystemVolume::getFreeSpaceInBytes() will be a multiple of the block size. An error is
-     * logged and zero is returned if this method is not supported by this file system volume.
+     * For file system volumes that provide information about blocks, this returns the size in bytes of a single file
+     * system block. The value returned by FileSystemVolume::getFreeSpaceInBytes() will be a multiple of the block size.
+     * An error is logged and zero is returned if this method is not supported by this file system volume.
      */
     virtual unsigned int getBlockSize() const
     {
@@ -110,9 +116,9 @@ public:
     }
 
     /**
-     * For file system volumes that provide information about blocks, this returns the number of file system blocks that are
-     * required to store a file of the given size. An error is logged and zero is returned if this method is not supported by
-     * this file system volume.
+     * For file system volumes that provide information about blocks, this returns the number of file system blocks that
+     * are required to store a file of the given size. An error is logged and zero is returned if this method is not
+     * supported by this file system volume.
      */
     unsigned int getBlockCountForFileSize(unsigned int fileSizeInBytes) const
     {
@@ -123,12 +129,12 @@ public:
     }
 
     /**
-     * For file system volumes that provide information about blocks, this returns the number of free file system blocks that
-     * are currently available for use by the application. This value is calculated by dividing the free space returned by
-     * FileSystemVolume::getFreeSpaceInBytes() by the block size returned by FileSystemVolume::getBlockSize(). Note that this
-     * method should not be used to determine whether or not there is space to write a given file to this volume, instead use
-     * one of the FileSystemVolume::hasSpaceFor() methods. An error is logged and zero is returned if this method is not
-     * supported by the file system volume.
+     * For file system volumes that provide information about blocks, this returns the number of free file system blocks
+     * that are currently available for use by the application. This value is calculated by dividing the free space
+     * returned by FileSystemVolume::getFreeSpaceInBytes() by the block size returned by
+     * FileSystemVolume::getBlockSize(). Note that this method should not be used to determine whether or not there is
+     * space to write a given file to this volume, instead use one of the FileSystemVolume::hasSpaceFor() methods. An
+     * error is logged and zero is returned if this method is not supported by the file system volume.
      */
     unsigned int getFreeBlockCount() const
     {
@@ -141,10 +147,11 @@ public:
     }
 
     /**
-     * For file system volumes that provide information about blocks, this returns the number of file system blocks that need to
-     * be freed up in order to save a file of the given size. An error is logged and zero is returned if this method is not
-     * supported by this file system volume. Note that this method should not be used to determine whether or not there is space
-     * to write a given file to this volume, to check that use one of the FileSystemVolume::hasSpaceFor() methods.
+     * For file system volumes that provide information about blocks, this returns the number of file system blocks that
+     * need to be freed up in order to save a file of the given size. An error is logged and zero is returned if this
+     * method is not supported by this file system volume. Note that this method should not be used to determine whether
+     * or not there is space to write a given file to this volume, to check that use one of the
+     * FileSystemVolume::hasSpaceFor() methods.
      */
     unsigned int getAdditionalBlocksRequiredForFileSize(unsigned fileSizeInBytes) const
     {
@@ -159,8 +166,8 @@ public:
     }
 
     /**
-     * Returns the value of the \a mountLocation argument used when this volume was mounted into the virtual file system by
-     * FileSystem::addVolume().
+     * Returns the value of the \a mountLocation argument used when this volume was mounted into the virtual file system
+     * by FileSystem::addVolume().
      */
     const UnicodeString& getMountLocation() const { return mountLocation_; }
 

@@ -42,18 +42,21 @@ public:
                                      const SimpleTransform& initialTransform) override;
     BodyObject createCapsuleBody(float height, float radius, float mass, bool fixed, const Entity* entity,
                                  const SimpleTransform& initialTransform) override;
-    BodyTemplateObject createBodyTemplateFromGeometry(const Vector<Vec3>& vertices, const Vector<RawIndexedTriangle>& triangles,
-                                                      bool deleteOnceUnused, float customCollisionMargin = 0.0f) override;
+    BodyTemplateObject createBodyTemplateFromGeometry(const Vector<Vec3>& vertices,
+                                                      const Vector<RawIndexedTriangle>& triangles,
+                                                      bool deleteOnceUnused,
+                                                      float customCollisionMargin = 0.0f) override;
     bool preProcessGeometry(const Vector<Vec3>& vertices, const Vector<RawIndexedTriangle>& triangles,
                             Vector<byte_t>& output) override;
-    BodyTemplateObject createBodyTemplateFromPreProcessedGeometry(const Vector<byte_t>& data, bool deleteOnceUnused) override;
+    BodyTemplateObject createBodyTemplateFromPreProcessedGeometry(const Vector<byte_t>& data,
+                                                                  bool deleteOnceUnused) override;
     BodyTemplateObject createBodyTemplateFromHeightmap(unsigned int heightmapWidth, unsigned int heightmapHeight,
                                                        const Vector<float>& heightmap, bool deleteOnceUnused) override;
     bool deleteBodyTemplate(BodyTemplateObject bodyTemplateObject) override;
     BodyObject createGeometryBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float mass, bool fixed,
                                               const Entity* entity, const SimpleTransform& initialTransform) override;
-    BodyObject createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float heightScale, float terrainScale,
-                                               float mass, bool fixed, const Entity* entity,
+    BodyObject createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float heightScale,
+                                               float terrainScale, float mass, bool fixed, const Entity* entity,
                                                const SimpleTransform& initialTransform) override;
     bool deleteBody(BodyObject bodyObject) override;
     const Entity* getBodyEntity(BodyObject bodyObject) const override;
@@ -67,15 +70,17 @@ public:
     void applyTorqueToBody(BodyObject bodyObject, const Vec3& torque, ForceMode mode) override;
     JointObject createHingeJoint(BodyObject firstBodyObject, BodyObject secondBodyObject, const Vec3& globalAnchor,
                                  const Vec3& globalAxis) override;
-    JointObject createBallAndSocketJoint(BodyObject firstBodyObject, BodyObject secondBodyObject, const Vec3& globalAnchor,
-                                         const Vec3& angularLimits) override;
+    JointObject createBallAndSocketJoint(BodyObject firstBodyObject, BodyObject secondBodyObject,
+                                         const Vec3& globalAnchor, const Vec3& angularLimits) override;
     bool deleteJoint(JointObject jointObject) override;
     bool getBodyJoints(BodyObject bodyObject, Vector<JointObject>& joints) const override;
     CharacterControllerObject createCharacterController(float height, float radius, const Entity* entity) override;
     bool deleteCharacterController(CharacterControllerObject characterControllerObject) override;
     Vec3 getCharacterControllerPosition(CharacterControllerObject characterControllerObject) const override;
-    bool setCharacterControllerPosition(CharacterControllerObject characterControllerObject, const Vec3& position) override;
-    void moveCharacterController(CharacterControllerObject characterControllerObject, const Vec3& move, float time) override;
+    bool setCharacterControllerPosition(CharacterControllerObject characterControllerObject,
+                                        const Vec3& position) override;
+    void moveCharacterController(CharacterControllerObject characterControllerObject, const Vec3& move,
+                                 float time) override;
     TimeValue getSubstepSize() const override;
     void update(TimeValue time) override;
     const Vec3& getGravityVector() const override;
@@ -141,8 +146,8 @@ private:
         }
     };
 
-    PhysicsInterface::BodyObject createBody(PxShape& pxShape, const SimpleTransform& initialTransform, float mass, bool fixed,
-                                            const Entity* entity, BodyTemplate* bodyTemplate);
+    PhysicsInterface::BodyObject createBody(PxShape& pxShape, const SimpleTransform& initialTransform, float mass,
+                                            bool fixed, const Entity* entity, BodyTemplate* bodyTemplate);
 
     // Internal class that maps to a PhysX joint.
     class Joint
@@ -203,9 +208,9 @@ private:
 
 #ifdef CARBON_PHYSX_DYNAMIC_LIBRARY
 
-    // When used as a dynamic library PhysX is loaded dynamically at runtime in order to avoid a fixed dependency. If the
-    // relevant shared libraries aren't available at runtime then the PhysX backend won't be available for use. Below are the
-    // functions implemented in the dynamic PhysX libraries that are mapped at runtime.
+    // When used as a dynamic library PhysX is loaded dynamically at runtime in order to avoid a fixed dependency. If
+    // the relevant shared libraries aren't available at runtime then the PhysX backend won't be available for use.
+    // Below are the functions implemented in the dynamic PhysX libraries that are mapped at runtime.
 
     struct
     {
@@ -216,27 +221,30 @@ private:
                                                                PxErrorCallback& errorCallback);
     typedef PxFoundation&(PX_CALL_CONV* PFnPxGetFoundation)();
     typedef PxPhysics*(PX_CALL_CONV* PFnPxCreateBasePhysics)(PxU32 version, PxFoundation& foundation,
-                                                             const PxTolerancesScale& scale, bool trackOutstandingAllocations,
+                                                             const PxTolerancesScale& scale,
+                                                             bool trackOutstandingAllocations,
                                                              PxProfileZoneManager* profileZoneManager);
     typedef void(PX_CALL_CONV* PFnPxRegisterArticulations)(PxPhysics& physics);
     typedef void(PX_CALL_CONV* PFnPxRegisterHeightFields)(PxPhysics& physics);
     typedef PxCooking*(PX_CALL_CONV* PFnPxCreateCooking)(PxU32 version, PxFoundation& foundation,
                                                          const PxCookingParams& params);
     typedef PxControllerManager*(PX_CALL_CONV* PFnPxCreateControllerManager)(PxScene& scene);
-    typedef PxRigidDynamic*(PX_CALL_CONV* PFnPxCreateDynamic)(PxPhysics& sdk, const PxTransform& transform, PxShape& shape,
-                                                              PxReal density);
-    typedef PxRigidStatic*(PX_CALL_CONV* PFnPxCreateStatic)(PxPhysics& sdk, const PxTransform& transform, PxShape& shape);
-    typedef PxDefaultCpuDispatcher*(PX_CALL_CONV* PFnPxDefaultCpuDispatcherCreate)(PxU32 numThreads, PxU32* affinityMasks);
-    typedef PxFilterFlags(PX_CALL_CONV* PFnPxDefaultSimulationFilterShader)(PxFilterObjectAttributes attributes0,
-                                                                            PxFilterData filterData0,
-                                                                            PxFilterObjectAttributes attributes1,
-                                                                            PxFilterData filterData1, PxPairFlags& pairFlags,
-                                                                            const void* constantBlock, PxU32 constantBlockSize);
+    typedef PxRigidDynamic*(PX_CALL_CONV* PFnPxCreateDynamic)(PxPhysics& sdk, const PxTransform& transform,
+                                                              PxShape& shape, PxReal density);
+    typedef PxRigidStatic*(PX_CALL_CONV* PFnPxCreateStatic)(PxPhysics& sdk, const PxTransform& transform,
+                                                            PxShape& shape);
+    typedef PxDefaultCpuDispatcher*(PX_CALL_CONV* PFnPxDefaultCpuDispatcherCreate)(PxU32 numThreads,
+                                                                                   PxU32* affinityMasks);
+    typedef PxFilterFlags(PX_CALL_CONV* PFnPxDefaultSimulationFilterShader)(
+        PxFilterObjectAttributes attributes0, PxFilterData filterData0, PxFilterObjectAttributes attributes1,
+        PxFilterData filterData1, PxPairFlags& pairFlags, const void* constantBlock, PxU32 constantBlockSize);
     typedef PxRevoluteJoint*(PX_CALL_CONV* PFnPxRevoluteJointCreate)(PxPhysics& physics, PxRigidActor* actor0,
-                                                                     const PxTransform& localFrame0, PxRigidActor* actor1,
+                                                                     const PxTransform& localFrame0,
+                                                                     PxRigidActor* actor1,
                                                                      const PxTransform& localFrame1);
     typedef PxSphericalJoint*(PX_CALL_CONV* PFnPxSphericalJointCreate)(PxPhysics& physics, PxRigidActor* actor0,
-                                                                       const PxTransform& localFrame0, PxRigidActor* actor1,
+                                                                       const PxTransform& localFrame0,
+                                                                       PxRigidActor* actor1,
                                                                        const PxTransform& localFrame1);
 
     PFnPxCreateFoundation PxCreateFoundation = nullptr;

@@ -147,7 +147,8 @@ void GameCenter::enable(const Vector<String>& leaderboards)
             // Try and load current achievements
             [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray* achievements, NSError* loadError) {
                 if (loadError)
-                    LOG_ERROR_WITHOUT_CALLER << "Game Center achievements load error: " << [loadError localizedDescription];
+                    LOG_ERROR_WITHOUT_CALLER << "Game Center achievements load error: "
+                                             << [loadError localizedDescription];
                 else
                 {
                     assert(Thread::isRunningInMainThread());
@@ -194,8 +195,8 @@ void GameCenter::enable(const Vector<String>& leaderboards)
             }
             else
             {
-                LOG_ERROR_WITHOUT_CALLER << "Game Center authentication error: '" << [authenticationError localizedDescription]
-                                         << "'";
+                LOG_ERROR_WITHOUT_CALLER << "Game Center authentication error: '"
+                                         << [authenticationError localizedDescription] << "'";
             }
         }
     };
@@ -225,7 +226,8 @@ void GameCenter::updateLeaderboard(const String& leaderboardID)
         assert(Thread::isRunningInMainThread());
 
         if (error)
-            LOG_ERROR_WITHOUT_CALLER << "Failed loading Game Center leaderboard, error: " << [error localizedDescription];
+            LOG_ERROR_WITHOUT_CALLER << "Failed loading Game Center leaderboard, error: "
+                                     << [error localizedDescription];
         else
         {
             m->leaderboards[leaderboardID] =
@@ -405,7 +407,8 @@ void GameCenter::reportAchievementProgress(const String& achievementID, float pe
     [GKAchievement reportAchievements:achievements
                 withCompletionHandler:^(NSError* error) {
                     if (error)
-                        LOG_ERROR_WITHOUT_CALLER << "Error reporting Game Center achievement: " << [error localizedDescription];
+                        LOG_ERROR_WITHOUT_CALLER << "Error reporting Game Center achievement: "
+                                                 << [error localizedDescription];
                     else
                     {
                         LOG_INFO << "Updated Game Center achievement: " << achievement.identifier << " = "

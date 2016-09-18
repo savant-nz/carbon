@@ -13,8 +13,8 @@ class WAVLoader
 {
 public:
 
-    static bool load(FileReader& file, SoundInterface::AudioFormat& format, unsigned int& channelCount, unsigned int& frequency,
-                     Vector<byte_t>& data)
+    static bool load(FileReader& file, SoundInterface::AudioFormat& format, unsigned int& channelCount,
+                     unsigned int& frequency, Vector<byte_t>& data)
     {
         try
         {

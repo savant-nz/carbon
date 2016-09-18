@@ -33,8 +33,8 @@ public:
     void setCursorPosition(unsigned int position) { cursorPosition_ = position; }
 
     /**
-     * Sets the characters that are allowed to be entered in the text input field. If this string is empty then all characters
-     * are allowed.
+     * Sets the characters that are allowed to be entered in the text input field. If this string is empty then all
+     * characters are allowed.
      */
     void setAllowedCharacters(UnicodeString characters) { allowedCharacters_ = std::move(characters); }
 
@@ -45,16 +45,16 @@ public:
     bool onKeyDownEvent(const KeyDownEvent& kde);
 
     /**
-     * Processes a character input event for this text input instance and uses it to update the string which was passed to the
-     * constructor.
+     * Processes a character input event for this text input instance and uses it to update the string which was passed
+     * to the constructor.
      */
     bool onCharacterInputEvent(const CharacterInputEvent& cie);
 
     /**
-     * Returns whether the input field for this text input object should currently be drawing the cursor. This ensures the
-     * on/off cursor blinking happens in the expected way as the input field is being used. If \a checkConsoleState is true then
-     * this method will always return false if the console is currently showing, meaning that text input fields will not have
-     * blinking cursors when the console is down.
+     * Returns whether the input field for this text input object should currently be drawing the cursor. This ensures
+     * the on/off cursor blinking happens in the expected way as the input field is being used. If \a checkConsoleState
+     * is true then this method will always return false if the console is currently showing, meaning that text input
+     * fields will not have blinking cursors when the console is down.
      */
     bool isCursorOn(bool checkConsoleState = true) const;
 

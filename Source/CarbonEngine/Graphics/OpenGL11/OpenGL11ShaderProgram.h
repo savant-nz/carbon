@@ -14,8 +14,8 @@ namespace Carbon
 using namespace OpenGL11Extensions;
 
 /**
- * Implementation of ShaderProgram for the OpenGL Shading Language version 1.10 operating under OpenGL 1.1 with the relevant
- * extensions.
+ * Implementation of ShaderProgram for the OpenGL Shading Language version 1.10 operating under OpenGL 1.1 with the
+ * relevant extensions.
  */
 class OpenGL11ShaderProgram : public OpenGLShaderProgramShared
 {

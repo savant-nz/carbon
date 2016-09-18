@@ -11,8 +11,8 @@ Import('*')
 
 vars = Variables()
 vars.AddVariables(
-    ('architecture', 'Sets the target build architecture, must be ARMv7, ARM64, x86 or x64. This controls whether the build '
-                     'targets iOS devices (ARMv7 and ARM64) or the iOS simulator (x86 and x64).', 'ARMv7')
+    ('architecture', 'Sets the target build architecture, must be ARMv7, ARM64, x86 or x64. This controls whether the '
+                     'build targets iOS devices (ARMv7 and ARM64) or the iOS simulator (x86 and x64).', 'ARMv7')
 )
 Help(vars.GenerateHelpText(Environment()))
 
@@ -22,12 +22,14 @@ if architecture not in ['ARMv7', 'ARM64', 'x86', 'x64']:
     print('Error: invalid build architecture')
     Exit(1)
 
+xcodePath = '/Applications/Xcode.app/Contents/Developer'
+
 # Get path to the SDK and associated flags
 if architecture.startswith('ARM'):
-    sdkPath = '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'
+    sdkPath = xcodePath + '/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'
     versionMinFlag = '-mios-version-min='
 else:
-    sdkPath = '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk'
+    sdkPath = xcodePath + '/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk'
     versionMinFlag = '-mios-simulator-version-min='
 
 if not os.path.exists(sdkPath):
@@ -64,12 +66,14 @@ if architecture.startswith('ARM'):
 
 # This method sets up the environment for linking Carbon as a static library into a final application
 def SetupForLinkingCarbon(self, **keywords):
-    dependencies = keywords.get('dependencies', ['AngelScript', 'Bullet', 'FreeImage', 'OpenAssetImport', 'Vorbis', 'ZLib'])
+    defaultDependencies = ['AngelScript', 'Bullet', 'FreeImage', 'OpenAssetImport', 'Vorbis', 'ZLib']
+    dependencies = keywords.get('dependencies', defaultDependencies)
 
     self['LIBPATH'] += GetDependencyLIBPATH(*dependencies)
     self['LIBS'] += dependencies
 
-    self['FRAMEWORKS'] += ['CoreGraphics', 'Foundation', 'GameKit', 'OpenAL', 'OpenGLES', 'QuartzCore', 'StoreKit', 'UIKit']
+    self['FRAMEWORKS'] += ['CoreGraphics', 'Foundation', 'GameKit', 'OpenAL', 'OpenGLES', 'QuartzCore', 'StoreKit',
+                           'UIKit']
 
 env.AddMethod(SetupForLinkingCarbon)
 
@@ -92,5 +96,6 @@ def Carbonize(self, **keywords):
 env.AddMethod(Carbonize)
 
 # Return all the build setup details for this platform
-details = {'platform': 'iOS', 'architecture': architecture, 'compiler': 'Clang', 'env': env, 'isCarbonEngineStatic': True}
+details = {'platform': 'iOS', 'architecture': architecture, 'compiler': 'Clang', 'env': env,
+           'isCarbonEngineStatic': True}
 Return('details')

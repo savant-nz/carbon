@@ -24,8 +24,8 @@ bool Renderer::setupForPostProcessing(RenderTarget& renderTarget, const EffectQu
     if (!postProcessEffects.size() || !renderTarget)
         return false;
 
-    // If an already rendered scene had post-process pass through enabled then just pick up where it left off, i.e. render this
-    // scene over top into the same texture, this is what allows for post-process pass through
+    // If an already rendered scene had post-process pass through enabled then just pick up where it left off, i.e.
+    // render this scene over top into the same texture, this is what allows for post-process pass through
     auto colorTexture = renderTarget.getColorTexture();
     auto depthStencilTexture = renderTarget.getDepthTexture();
 
@@ -40,8 +40,8 @@ bool Renderer::setupForPostProcessing(RenderTarget& renderTarget, const EffectQu
     }
     else
     {
-        // We are continuing a post-process pass through started by a previous scene, don't want to clear what's already been
-        // rendered
+        // We are continuing a post-process pass through started by a previous scene, don't want to clear what's already
+        // been rendered
         if (clearColorBuffer)
             *clearColorBuffer = false;
     }
@@ -67,9 +67,9 @@ void Renderer::drawPostProcess(RenderTarget& renderTarget, const EffectQueueArra
                                GraphicsInterface::RenderTargetObject finalRenderTargetObject, const Rect& finalViewport,
                                bool isPostProcessPassThroughActive)
 {
-    // If post-process pass through is active then there is nothing to do except restore state, one of the subseqent scenes will
-    // have post-processing effects on it that take the final post-process source texture from the render target and actually
-    // process it for display
+    // If post-process pass through is active then there is nothing to do except restore state, one of the subseqent
+    // scenes will have post-processing effects on it that take the final post-process source texture from the render
+    // target and actually process it for display
     if (isPostProcessPassThroughActive)
     {
         States::StateCacher::pop();
@@ -80,12 +80,14 @@ void Renderer::drawPostProcess(RenderTarget& renderTarget, const EffectQueueArra
     auto colorTexture = renderTarget.getColorTexture();
     auto depthTexture = renderTarget.getDepthTexture();
 
-    // If multiple post-process effects are used then an additional intermediate texture will be needed to chain them together
+    // If multiple post-process effects are used then an additional intermediate texture will be needed to chain them
+    // together
     auto intermediateColorTexture = pointer_to<const Texture>::type();
     auto isIntermediateColorTextureCleared = false;
 
-    // Detach the textures from the render target, the render target is available to be reused by multipass post-process shaders
-    // and the render target needs to be clear to allow this to happen, see Renderer::setPostProcessIntermediateTargetTexture()
+    // Detach the textures from the render target, the render target is available to be reused by multipass post-process
+    // shaders and the render target needs to be clear to allow this to happen, see
+    // Renderer::setPostProcessIntermediateTargetTexture()
     renderTarget.removeTextures();
     activePostProcessRenderTarget_ = &renderTarget;
 

@@ -11,11 +11,12 @@ namespace Carbon
 {
 
 /**
- * Defines an interface for a task that can be "run". Implementations of this class subclass the Runnable::run() method to carry
- * out a task. While this task is being carried out the other methods on its Runnable instance are used to check if the task has
- * been cancelled and should terminate, as well as keep users of this class up to date in regard to what is currently being
- * executed inside Runnable::run() and how much progress has been made. This class is intended to be used in combination with a
- * GUI and is fully thread-safe, it is used primarily to help with communication between a worker thread and a GUI thread.
+ * Defines an interface for a task that can be "run". Implementations of this class subclass the Runnable::run() method
+ * to carry out a task. While this task is being carried out the other methods on its Runnable instance are used to
+ * check if the task has been cancelled and should terminate, as well as keep users of this class up to date in regard
+ * to what is currently being executed inside Runnable::run() and how much progress has been made. This class is
+ * intended to be used in combination with a GUI and is fully thread-safe, it is used primarily to help with
+ * communication between a worker thread and a GUI thread.
  */
 class CARBON_API Runnable : private Noncopyable
 {
@@ -41,9 +42,9 @@ public:
     virtual bool run() { return true; }
 
     /**
-     * Returns whether the task executing in Runnable::run() has been asked to terminate for some reason such as the user
-     * pressing cancel. The code in Runnable::run() should check this value frequently and exit immediately returning false if
-     * it detects a cancellation.
+     * Returns whether the task executing in Runnable::run() has been asked to terminate for some reason such as the
+     * user pressing cancel. The code in Runnable::run() should check this value frequently and exit immediately
+     * returning false if it detects a cancellation.
      */
     bool isCancelled() const { return isCancelled_; }
 
@@ -74,13 +75,13 @@ public:
     void setTaskStringDirty();
 
     /**
-     * This begins a new task that will occupy the given percentage of the currently active task. Tasks can be layered, for
-     * example a first task that accounts for 20% of the total percentage for the Runnable::run() operation could be started,
-     * and it internally could have two subtasks, one making up 25% of the parent task's 20% and the other making up 75% of the
-     * parent task's 20%. These subtasks would run internally from 0 - 100% and all the accumulation of percentages up to parent
-     * tasks is done automatically. Each call to Runnable::beginTask() must be paired with a call to Runnable::endTask(). There
-     * is no limit to the level of subtask layering, but callers should ensure that at each level the subtasks have a combined
-     * percentage of 100.
+     * This begins a new task that will occupy the given percentage of the currently active task. Tasks can be layered,
+     * for example a first task that accounts for 20% of the total percentage for the Runnable::run() operation could be
+     * started, and it internally could have two subtasks, one making up 25% of the parent task's 20% and the other
+     * making up 75% of the parent task's 20%. These subtasks would run internally from 0 - 100% and all the
+     * accumulation of percentages up to parent tasks is done automatically. Each call to Runnable::beginTask() must be
+     * paired with a call to Runnable::endTask(). There is no limit to the level of subtask layering, but callers should
+     * ensure that at each level the subtasks have a combined percentage of 100.
      */
     void beginTask(const String& task, float percentage);
 
@@ -90,10 +91,10 @@ public:
     void endTask();
 
     /**
-     * Sets the percentage complete of the current task from the number of items to do and the number currently done. This
-     * percentage is for the task most recently started with Runnable::beginTask() that has not been ended with
-     * Runnable::endTask(). The return value is set to the current return value from Runnable::isCancelled() in order to allow
-     * an update of task progress to be done along with a cancellation check in one call rather than needing two.
+     * Sets the percentage complete of the current task from the number of items to do and the number currently done.
+     * This percentage is for the task most recently started with Runnable::beginTask() that has not been ended with
+     * Runnable::endTask(). The return value is set to the current return value from Runnable::isCancelled() in order to
+     * allow an update of task progress to be done along with a cancellation check in one call rather than needing two.
      */
     bool setTaskProgress(unsigned int done, unsigned int total);
 

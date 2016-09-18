@@ -11,8 +11,8 @@ require 'tempfile'
 
 require "#{REPOSITORY_ROOT}/Scripts/Shared.rb"
 
-# This class uses Doxygen to build the API Reference from the source code documentation. The Doxygen configuration is an ERb
-# template in this directory: Doxygen.config.erb.
+# This class uses Doxygen to build the API Reference from the source code documentation. The Doxygen configuration is
+# stored in the `Doxygen.config.erb` file in this directory.
 class APIReferenceBuilder
   def build
     FileUtils.rm_rf output_directory
@@ -28,8 +28,9 @@ class APIReferenceBuilder
 
   def input_directories
     %w(
-      . Core Core/FileSystem Core/Memory Core/Threads Game Game/Pathfinding Geometry Graphics Graphics/States Image Math Physics
-      Platform Render Render/Shaders Render/Texture Scene Scene/EntityController Scene/GUI Scene/Mesh Scripting Sound
+      . Core Core/FileSystem Core/Memory Core/Threads Game Game/Pathfinding Geometry Graphics Graphics/States Image Math
+      Physics Platform Render Render/Shaders Render/Texture Scene Scene/EntityController Scene/GUI Scene/Mesh Scripting
+      Sound
     ).map { |d| "Source/CarbonEngine/#{d}" }.join ' '
   end
 
@@ -65,7 +66,8 @@ class APIReferenceBuilder
   def run_doxygen(config_file)
     command = "doxygen #{config_file.path.quoted}"
 
-    run command, working_directory: REPOSITORY_ROOT, echo: 'Building API reference ...', error: 'Failed building API reference'
+    run command, working_directory: REPOSITORY_ROOT, echo: 'Building API reference ...',
+                 error: 'Failed building API reference'
   end
 end
 

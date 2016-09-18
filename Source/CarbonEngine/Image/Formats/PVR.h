@@ -139,8 +139,9 @@ public:
                 }
 
                 if (pixelFormat == Image::UnknownPixelFormat)
-                    throw Exception() << "Unsupported pixel format, details: " << String::toHex(rawPixelFormat[0]) << ":"
-                                      << String::toHex(rawPixelFormat[1]) << " with channel type " << channelType;
+                    throw Exception() << "Unsupported pixel format, details: " << String::toHex(rawPixelFormat[0])
+                                      << ":" << String::toHex(rawPixelFormat[1]) << " with channel type "
+                                      << channelType;
 
                 if (faceCount == 6)
                     isCubemap = true;
@@ -232,7 +233,8 @@ public:
 
             // Warn about potential troubles rendering images with premultiplied alpha
             if (isPremultiplied)
-                LOG_WARNING << "Premultiplied alpha is not supported, blending may render incorrectly: " << file.getName();
+                LOG_WARNING << "Premultiplied alpha is not supported, blending may render incorrectly: "
+                            << file.getName();
 
             if (!file.isEOF())
                 LOG_WARNING << file.getName() << " - PVR load was successful, but not all data in the file was read";

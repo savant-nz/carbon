@@ -146,7 +146,8 @@ bool Terrain::createFromTexture(const String& name)
         for (auto i = heightmapHeight_ * heightmapWidth_; i > 0; i--)
             *heightmap++ = Math::byteToFloat(*data++);
 
-        LOG_INFO << "Loaded terrain heightmap: '" << name << "', dimensions: " << image.getWidth() << "x" << image.getHeight();
+        LOG_INFO << "Loaded terrain heightmap: '" << name << "', dimensions: " << image.getWidth() << "x"
+                 << image.getHeight();
 
         return true;
     }
@@ -264,8 +265,8 @@ void Terrain::smooth(unsigned int repeats)
         {
             for (auto x = 1U; x < heightmapWidth_ - 1; x++)
             {
-                newData[y * heightmapWidth_ + x] =
-                    (getHeight(x - 1, y - 1) + getHeight(x - 1, y + 1) + getHeight(x + 1, y - 1) + getHeight(x + 1, y + 1)) /
+                newData[y * heightmapWidth_ + x] = (getHeight(x - 1, y - 1) + getHeight(x - 1, y + 1) +
+                                                    getHeight(x + 1, y - 1) + getHeight(x + 1, y + 1)) /
                         16.0f +
                     (getHeight(x, y - 1) + getHeight(x, y + 1) + getHeight(x + 1, y) + getHeight(x - 1, y)) / 8.0f +
                     getHeight(x, y) / 4.0f;
@@ -753,8 +754,8 @@ bool Terrain::gatherGeometry(GeometryGather& gather)
 
             for (auto i = 0U; i < clipmaps_.size(); i++)
             {
-                // Get the central sample position of the camera in this clipmap. The '| 1' ensures that clipmaps always align
-                // to an odd boundary and so will match up correctly with the next coarsest clipmap
+                // Get the central sample position of the camera in this clipmap. The '| 1' ensures that clipmaps always
+                // align to an odd boundary and so will match up correctly with the next coarsest clipmap
                 auto center = Vec2i(int(floorf(clipmapCameraPosition.x)) | 1, int(floorf(clipmapCameraPosition.z)) | 1);
 
                 // Update clipmap if the center has changed
@@ -772,7 +773,8 @@ bool Terrain::gatherGeometry(GeometryGather& gather)
                 auto material = getMaterialRoot() + material_;
                 auto overrideParameters = getMaterialOverrideParameters(material);
                 overrideParameters[Parameter::clipmapSize].setInteger(clipmapSize_);
-                overrideParameters[Parameter::scales].setFloat4(clipmapScale, heightScale_, textureScale_, terrainScale_);
+                overrideParameters[Parameter::scales].setFloat4(clipmapScale, heightScale_, textureScale_,
+                                                                terrainScale_);
                 overrideParameters[Parameter::clipmapOrigin].setVec3(clipmapOrigin);
                 overrideParameters[Parameter::clipmapCameraPosition].setVec2(clipmapCameraPosition.getXZ());
                 overrideParameters[Parameter::heightfieldTexture].setPointer<Texture>(clipmaps_[i].texture);
@@ -790,8 +792,9 @@ bool Terrain::gatherGeometry(GeometryGather& gather)
                 }
                 else
                 {
-                    // Add the approriate trims. Note that xCenter and yCenter are always odd numbers, which means the positive
-                    // modulus is either 1 or 3, depending on where the finer layer is sitting inside this layer
+                    // Add the approriate trims. Note that xCenter and yCenter are always odd numbers, which means the
+                    // positive modulus is either 1 or 3, depending on where the finer layer is sitting inside this
+                    // layer
 
                     // Left/right trim
                     if (Math::positiveModulus(clipmaps_[i - 1].center.x, 4) == 1)

@@ -52,7 +52,10 @@ public:
         return RefractionReflection;
     }
 
-    bool initialize() override { return program.setup(ShaderProgram::GLSL110, {"SFXWater.glsl.vert", "SFXWater.glsl.frag"}); }
+    bool initialize() override
+    {
+        return program.setup(ShaderProgram::GLSL110, {"SFXWater.glsl.vert", "SFXWater.glsl.frag"});
+    }
 
     void uninitialize() override { program.clear(); }
 
@@ -67,8 +70,8 @@ public:
         program.sRefractionMap->setInteger(2);
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         program.setVertexAttributeArrayConfiguration(geometryChunk);
 

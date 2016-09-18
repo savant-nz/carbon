@@ -33,7 +33,8 @@ public:
         BilinearFilter,
 
         /**
-         * Trilinear filtering. This requires the texture to have mipmaps, otherwise BilinearFilter will be used instead.
+         * Trilinear filtering. This requires the texture to have mipmaps, otherwise BilinearFilter will be used
+         * instead.
          */
         TrilinearFilter
     };
@@ -89,8 +90,9 @@ public:
     void setWrap(GraphicsInterface::TextureWrap wrap) { wrap_ = wrap; }
 
     /**
-     * Returns the current texture quality level. The texture quality value sets the maximum size for a texture, any textures
-     * larger than the maximum size are scaled down. A quality value of zero means there is no imposed limit on texture size.
+     * Returns the current texture quality level. The texture quality value sets the maximum size for a texture, any
+     * textures larger than the maximum size are scaled down. A quality value of zero means there is no imposed limit on
+     * texture size.
      */
     unsigned int getQuality() const { return quality_; }
 
@@ -105,8 +107,9 @@ public:
     unsigned int getAnisotropy() const { return anisotropy_; }
 
     /**
-     * Sets the current level of anisotropy. This clamps to between 1 and the maximum value the hardware allows for anisotropy.
-     * The maximum allowable anisotropy value can be retrieved with GraphicsInterface::getMaximumTextureAnisotropy().
+     * Sets the current level of anisotropy. This clamps to between 1 and the maximum value the hardware allows for
+     * anisotropy. The maximum allowable anisotropy value can be retrieved with
+     * GraphicsInterface::getMaximumTextureAnisotropy().
      */
     void setAnisotropy(unsigned int anisotropy) { anisotropy_ = anisotropy; }
 

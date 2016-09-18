@@ -58,11 +58,12 @@ void setupEnvironment()
 
     setupEnvironmentVariable(L"CARBON_SDK_PATH", sdkPath);
     setupEnvironmentVariable(L"CARBON_SHARED_SCRIPT", sdkPath + L"\\Scripts\\Shared.rb");
-    setupEnvironmentVariable(L"CARBON_CREATE_INSTALLER_SCRIPT", sdkPath + L"\\Scripts\\CreateInstaller\\CreateInstaller.rb");
+    setupEnvironmentVariable(L"CARBON_CREATE_INSTALLER_SCRIPT",
+                             sdkPath + L"\\Scripts\\CreateInstaller\\CreateInstaller.rb");
     setupEnvironmentVariable(L"CARBON_SHARED_BUILD_SCONSCRIPT", sdkPath + L"\\Scripts\\SCons\\Shared.sconscript.py");
 
     // Send a system broadcast message to notify of the change to the environment
     auto result = DWORD_PTR();
-    SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, LPARAM(L"Environment"), SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG,
-                       10000, &result);
+    SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, LPARAM(L"Environment"),
+                       SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, 10000, &result);
 }

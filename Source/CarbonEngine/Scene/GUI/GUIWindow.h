@@ -15,7 +15,8 @@ namespace Carbon
 {
 
 /**
- * This is the base class for all the 2D GUI entities. Each GUI window has a material and text which gets drawn with the window.
+ * This is the base class for all the 2D GUI entities. Each GUI window has a material and text which gets drawn with the
+ * window.
  */
 class CARBON_API GUIWindow : public ComplexEntity, public EventHandler
 {
@@ -31,39 +32,44 @@ public:
     EventDispatcher<GUIWindow, const GUIMouseButtonDownEvent&> onMouseButtonDownEvent;
 
     /**
-     * Mouse button up event dispatcher for this window, this can be used as an alternative to handling GUIMouseButtonUpEvent
-     * globally.
+     * Mouse button up event dispatcher for this window, this can be used as an alternative to handling
+     * GUIMouseButtonUpEvent globally.
      */
     EventDispatcher<GUIWindow, const GUIMouseButtonUpEvent&> onMouseButtonUpEvent;
 
     /**
-     * Mouse move event dispatcher for this window, this can be used as an alternative to handling GUIMouseMoveEvent globally.
+     * Mouse move event dispatcher for this window, this can be used as an alternative to handling GUIMouseMoveEvent
+     * globally.
      */
     EventDispatcher<GUIWindow, const GUIMouseMoveEvent&> onMouseMoveEvent;
 
     /**
-     * Mouse enter event dispatcher for this window, this can be used as an alternative to handling GUIMouseEnterEvent globally.
+     * Mouse enter event dispatcher for this window, this can be used as an alternative to handling GUIMouseEnterEvent
+     * globally.
      */
     EventDispatcher<GUIWindow, const GUIMouseEnterEvent&> onMouseEnterEvent;
 
     /**
-     * Mouse exit event dispatcher for this window, this can be used as an alternative to handling GUIMouseExitEvent globally.
+     * Mouse exit event dispatcher for this window, this can be used as an alternative to handling GUIMouseExitEvent
+     * globally.
      */
     EventDispatcher<GUIWindow, const GUIMouseExitEvent&> onMouseExitEvent;
 
     /**
-     * Window pressed event dispatcher for this window, this can be used as an alternative to handling GUIWindowPressedEvent
-     * globally.
+     * Window pressed event dispatcher for this window, this can be used as an alternative to handling
+     * GUIWindowPressedEvent globally.
      */
     EventDispatcher<GUIWindow, const GUIWindowPressedEvent&> onWindowPressedEvent;
 
     /**
-     * Gain focus event dispatcher for this window, this can be used as an alternative to handling GUIGainFocusEvent globally.
+     * Gain focus event dispatcher for this window, this can be used as an alternative to handling GUIGainFocusEvent
+     * globally.
      */
     EventDispatcher<GUIWindow, const GUIGainFocusEvent&> onGainFocusEvent;
 
     /**
-     * Lose focus event dispatcher for this window, this can be used as an alternative to handling GUILoseFocusEvent globally.
+     * Lose focus event dispatcher for this window, this can be used as an alternative to handling GUILoseFocusEvent
+     * globally.
      */
     EventDispatcher<GUIWindow, const GUILoseFocusEvent&> onLoseFocusEvent;
 
@@ -73,15 +79,16 @@ public:
     EventDispatcher<GUIWindow, const Vec2&> onSizeChangedEvent;
 
     /**
-     * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>(), it sets the width, height,
-     * position and text of this GUIWindow. If the width and height and are both zero and some text is specified then
-     * GUIWindow::autosize() is called.
+     * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>(), it sets the width,
+     * height, position and text of this GUIWindow. If the width and height and are both zero and some text is specified
+     * then GUIWindow::autosize() is called.
      */
     virtual void initialize(float width, float height, const Vec2& position = Vec2::Zero,
                             const UnicodeString& text = UnicodeString::Empty);
 
     /**
-     * Returns whether or not this window is enabled. Enabled windows are able to respond to user input. Defaults to true.
+     * Returns whether or not this window is enabled. Enabled windows are able to respond to user input. Defaults to
+     * true.
      */
     bool isEnabled() const { return isEnabled_; }
 
@@ -151,8 +158,8 @@ public:
     void setHoverMaterial(const String& material) { hoverMaterial_ = material; }
 
     /**
-     * Returns the fill color for this window. If a color has been set with GUIWindow::setFillColor() then it will be used,
-     * otherwise the color will be taken from the current GUI theme.
+     * Returns the fill color for this window. If a color has been set with GUIWindow::setFillColor() then it will be
+     * used, otherwise the color will be taken from the current GUI theme.
      */
     virtual Color getFillColor() const;
 
@@ -162,8 +169,8 @@ public:
     void setFillColor(const Color& color);
 
     /**
-     * Returns the border color for this window. If a color has been set with GUIWindow::setFillColor() then it will be used,
-     * otherwise the color will be taken from the current GUI theme.
+     * Returns the border color for this window. If a color has been set with GUIWindow::setFillColor() then it will be
+     * used, otherwise the color will be taken from the current GUI theme.
      */
     virtual Color getBorderColor() const;
 
@@ -173,8 +180,8 @@ public:
     void setBorderColor(const Color& color);
 
     /**
-     * Returns the text color for this window. If a color has been set with GUIWindow::setTextColor() then it will be used,
-     * otherwise the color will be taken from the current GUI theme.
+     * Returns the text color for this window. If a color has been set with GUIWindow::setTextColor() then it will be
+     * used, otherwise the color will be taken from the current GUI theme.
      */
     virtual Color getTextColor() const;
 
@@ -185,16 +192,16 @@ public:
 
     /**
      * This erases any custom window colors set with GUIWindow::setFillColor(), GUIWindow::setBorderColor(). and
-     * GUIWindow::setTextColor(). The window will now be drawn with colors from the current GUI theme. This is the default
-     * behavior.
+     * GUIWindow::setTextColor(). The window will now be drawn with colors from the current GUI theme. This is the
+     * default behavior.
      */
     void useThemeColors();
 
     /**
-     * Returns the surface color at the given local space point on this GUIWindow. If there is a material applied to this
-     * GUIWindow then its diffuse texture sample will be returned. Otherwise the fill color of this window will be returned. The
-     * alpha value for this window is included in the returned color. If the given local space point is outside the bounds of
-     * this window then Color::Zero is returned.
+     * Returns the surface color at the given local space point on this GUIWindow. If there is a material applied to
+     * this GUIWindow then its diffuse texture sample will be returned. Otherwise the fill color of this window will be
+     * returned. The alpha value for this window is included in the returned color. If the given local space point is
+     * outside the bounds of this window then Color::Zero is returned.
      */
     virtual Color getSurfaceColor(const Vec2& localPosition) const;
 
@@ -209,11 +216,11 @@ public:
     virtual void setText(const UnicodeString& text);
 
     /**
-     * Resizes this window so that it is as small as possible with all its text still visible. If the text is multilined (i.e.
-     * it contains newline characters), then the width of the window will be based on the length of the longest line and the
-     * height based on the number of lines. If the text horizontal alignment is set to centered or right aligned then after the
-     * window width is changed, the window position may be altered as well to keep the center or right hand side of the text in
-     * the same place.
+     * Resizes this window so that it is as small as possible with all its text still visible. If the text is multilined
+     * (i.e. it contains newline characters), then the width of the window will be based on the length of the longest
+     * line and the height based on the number of lines. If the text horizontal alignment is set to centered or right
+     * aligned then after the window width is changed, the window position may be altered as well to keep the center or
+     * right hand side of the text in the same place.
      */
     virtual void autosize();
 
@@ -253,20 +260,21 @@ public:
     void setTextAlignment(Font::TextAlignment alignment);
 
     /**
-     * Returns the current font being used on this window. Defaults to the system variable width font defined on the FontManager
-     * class.
+     * Returns the current font being used on this window. Defaults to the system variable width font defined on the
+     * FontManager class.
      */
     const Font* getFont() const { return font_; }
 
     /**
-     * Sets the font to use on this window, the font size is set through GUIWindow::setFontSize(). The default font is the
-     * system variable width font.
+     * Sets the font to use on this window, the font size is set through GUIWindow::setFontSize(). The default font is
+     * the system variable width font.
      */
     void setFont(const String& font);
 
     /**
-     * Returns the font size being used when drawing text on this window, this directly specifies the maximum allowed height of
-     * a font character. If the font size is zero then the size used will be taken directly from the specified font.
+     * Returns the font size being used when drawing text on this window, this directly specifies the maximum allowed
+     * height of a font character. If the font size is zero then the size used will be taken directly from the specified
+     * font.
      */
     float getFontSize() const { return fontSize_; }
 
@@ -276,28 +284,28 @@ public:
     void setFontSize(float size);
 
     /**
-     * Returns whether this window has any interactive behavior. Returns false for GUIWindows unless they are draggable or
-     * resizeable. The different GUI window types which subclass GUIWindow will return true in this function if they have
-     * interactive behavior. An interactive window can have focus and therefore receive directed user input and fire events in
-     * response to user input.
+     * Returns whether this window has any interactive behavior. Returns false for GUIWindows unless they are draggable
+     * or resizeable. The different GUI window types which subclass GUIWindow will return true in this function if they
+     * have interactive behavior. An interactive window can have focus and therefore receive directed user input and
+     * fire events in response to user input.
      */
     virtual bool isInteractive() const { return isDraggable_ || isResizable_; }
 
     /**
-     * Tests whether the given world space 2D point is inside this window's rectangle. Subclasses can override this to alter the
-     * hit area for a window.
+     * Tests whether the given world space 2D point is inside this window's rectangle. Subclasses can override this to
+     * alter the hit area for a window.
      */
     virtual bool intersect(const Vec2& position) const;
 
     /**
-     * Tests whether the given world space 3D point is inside this window's rectangle. Subclasses can override this to alter the
-     * hit area for a window. The z component of the position is ignored.
+     * Tests whether the given world space 3D point is inside this window's rectangle. Subclasses can override this to
+     * alter the hit area for a window. The z component of the position is ignored.
      */
     virtual bool intersect(const Vec3& position) const { return intersect(position.toVec2()); }
 
     /**
-     * The GUIWindow::intersect(const Vec2 &) method hides the standard Entity::intersect(const Entity*) method, redefine it
-     * here so that it's still available.
+     * The GUIWindow::intersect(const Vec2 &) method hides the standard Entity::intersect(const Entity*) method,
+     * redefine it here so that it's still available.
      */
     bool intersect(const Entity* entity) const override { return ComplexEntity::intersect(entity); }
 
@@ -317,7 +325,8 @@ public:
     bool isMouseInWindow() const;
 
     /**
-     * Returns whether there is an active touch currently in this window, only relevant on devices that support touch input.
+     * Returns whether there is an active touch currently in this window, only relevant on devices that support touch
+     * input.
      */
     bool isTouchInWindow() const;
 
@@ -333,8 +342,8 @@ public:
 
     /**
      * If a window is draggable then before entering a drag this method is called to ask whether the current local mouse
-     * position is a place on the window that can be used to drag it. By default this method always returns true but this can be
-     * overriden by subclasses that need to customize dragging behavior.
+     * position is a place on the window that can be used to drag it. By default this method always returns true but
+     * this can be overriden by subclasses that need to customize dragging behavior.
      */
     virtual bool allowDragEnter(const Vec2& localPosition) const { return true; }
 
@@ -386,30 +395,30 @@ public:
     };
 
     /**
-     * Aligns this GUIWindow to a screen location. The alignment is then automatically kept when the screen is resized. An
-     * optional offset can be given to shift the window from its aligned position. Note that the alignment applies to the full
-     * extents of this GUIWindow and any child windows it may have. This means that a collection of windows that share a parent
-     * can easily be aligned to the screen as a group by aligning the parent entity. Calling this method with ScreenLocationNone
-     * will disable any current alignment active on this window, but will not alter its current position. A 2D offset from the
-     * screen location can be specified as well if required.
+     * Aligns this GUIWindow to a screen location. The alignment is then automatically kept when the screen is resized.
+     * An optional offset can be given to shift the window from its aligned position. Note that the alignment applies to
+     * the full extents of this GUIWindow and any child windows it may have. This means that a collection of windows
+     * that share a parent can easily be aligned to the screen as a group by aligning the parent entity. Calling this
+     * method with ScreenLocationNone will disable any current alignment active on this window, but will not alter its
+     * current position. A 2D offset from the screen location can be specified as well if required.
      */
     void alignToScreen(ScreenLocation location, const Vec2& offset = Vec2::Zero);
 
     /**
-     * Sets whether to center this window on its position, when this is false the bottom left corner of the window is located at
-     * the origin in local entity space. Defaults to false on GUI entities and true on Sprite entities.
+     * Sets whether to center this window on its position, when this is false the bottom left corner of the window is
+     * located at the origin in local entity space. Defaults to false on GUI entities and true on Sprite entities.
      */
     void setCenteredOnLocalOrigin(bool center);
 
     /**
-     * Returns whether this window is centered on its local origin. See GUIWindow::setCenteredOnLocalOrigin() for details.
-     * Defaults to false.
+     * Returns whether this window is centered on its local origin. See GUIWindow::setCenteredOnLocalOrigin() for
+     * details. Defaults to false.
      */
     bool isCenteredOnLocalOrigin() const { return centerOnLocalOrigin_; }
 
     /**
-     * Returns the current angle by which this window is currently rotated around its center. Clockwise rotations are returned
-     * as positive angles and counter-clockwise rotations are returned as negative angles.
+     * Returns the current angle by which this window is currently rotated around its center. Clockwise rotations are
+     * returned as positive angles and counter-clockwise rotations are returned as negative angles.
      */
     float getRotationAroundCenter() const;
 
@@ -437,9 +446,9 @@ public:
 protected:
 
     /**
-     * The text string for this window. This is what is set by the user of this class and is then processed and positioned into
-     * individual lines by GUIWindow::updateLines() for display in order to account for wrapping, newline characters, text
-     * alignment, and overflow if there is too much text to fit inside the window.
+     * The text string for this window. This is what is set by the user of this class and is then processed and
+     * positioned into individual lines by GUIWindow::updateLines() for display in order to account for wrapping,
+     * newline characters, text alignment, and overflow if there is too much text to fit inside the window.
      */
     UnicodeString text_;
 
@@ -501,20 +510,21 @@ protected:
     bool areLinesCurrent_ = false;
 
     /**
-     * Updates the GUIWindow::lines_ vector based on the contents of GUIWindow::text_, subclasses can override this method to
-     * change how text is positioned and drawn.
+     * Updates the GUIWindow::lines_ vector based on the contents of GUIWindow::text_, subclasses can override this
+     * method to change how text is positioned and drawn.
      */
     virtual void updateLines();
 
     /**
-     * Sets the \a position and \a isVisible members of the current entries in the GUIWindow::lines_ vector. This is called
-     * immediately after GUIWIndow::updateLines() and prior to any lines of text being drawn.
+     * Sets the \a position and \a isVisible members of the current entries in the GUIWindow::lines_ vector. This is
+     * called immediately after GUIWIndow::updateLines() and prior to any lines of text being drawn.
      */
     virtual void positionLines();
 
     /**
-     * Returns the text margins to use when positioning text inside this window, by default this is the text margins as set by
-     * GUIWindow::setTextMargins() plus the border size for this window. Subclasses can override this to alter the text margins.
+     * Returns the text margins to use when positioning text inside this window, by default this is the text margins as
+     * set by GUIWindow::setTextMargins() plus the border size for this window. Subclasses can override this to alter
+     * the text margins.
      */
     virtual Rect getTextMarginsToUse() const { return textMargins_ + Vec2(getBorderSize()); }
 
@@ -525,8 +535,8 @@ protected:
     const Font* getFontToUse() const;
 
     /**
-     * Returns the font size to use when positioning and rendering text for this window, if no font size has been set with
-     * GUIWindow::setFontSize() then the
+     * Returns the font size to use when positioning and rendering text for this window, if no font size has been set
+     * with GUIWindow::setFontSize() then the
      */
     float getFontSizeToUse(const Font* font) const;
 
@@ -541,20 +551,20 @@ protected:
     Vec2 screenToWorld(const Vec2& p) const;
 
     /**
-     * Converts from local entity space to window coordinates for this window where (0,0) is the bottom left corner of this
-     * window.
+     * Converts from local entity space to window coordinates for this window where (0,0) is the bottom left corner of
+     * this window.
      */
     Vec2 localToWindow(const Vec3& p) const;
 
     /**
-     * The material to sue when rendering this window, if no material is set then the window is rendered with a border and
-     * translucent background the default colors for which are controlled by the current theme.
+     * The material to sue when rendering this window, if no material is set then the window is rendered with a border
+     * and translucent background the default colors for which are controlled by the current theme.
      */
     String material_;
 
     /**
-     * Takes the specified color and returns it with its alpha value multipled through by this window's final alpha as returned
-     * by Entity::getFinalAlpha(), the RGB component is returned unchanged.
+     * Takes the specified color and returns it with its alpha value multipled through by this window's final alpha as
+     * returned by Entity::getFinalAlpha(), the RGB component is returned unchanged.
      */
     Color adjustColorAlpha(const Color& c) const { return {c.r, c.g, c.b, c.a * getFinalAlpha()}; }
 
@@ -632,7 +642,7 @@ private:
     bool isBeingDragged_ = false;
     Vec2 dragOrigin_;
     uintptr_t dragTouchID_ = 0;
-    void setIsBeingDragged(bool dragged);    // This is responsible for calling onEnterDrag() and onExitDrag() as appropriate
+    void setIsBeingDragged(bool dragged);    // This is responsible for calling onEnterDrag() and onExitDrag()
 
     bool isResizable_ = false;
     bool isBeingResized_ = false;

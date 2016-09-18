@@ -9,16 +9,16 @@ namespace Carbon
 {
 
 /**
- * Resolution class that describes a single resolution (e.g. 1920x1080, 1024x768) that is used by the PlatformInterface class to
- * manage supported resolutions.
+ * Resolution class that describes a single resolution (e.g. 1920x1080, 1024x768) that is used by the PlatformInterface
+ * class to manage supported resolutions.
  */
 class CARBON_API Resolution
 {
 public:
 
     /**
-     * Resolution object that is used to indicate an invalid or unspecified resolution, both width and height are zero and so
-     * its Resolution::isValid() method will return false.
+     * Resolution object that is used to indicate an invalid or unspecified resolution, both width and height are zero
+     * and so its Resolution::isValid() method will return false.
      */
     static const Resolution Zero;
 
@@ -75,8 +75,8 @@ public:
     bool isValid() const { return width_ && height_; }
 
     /**
-     * Returns whether or not this resolution was added via PlatformInterface::addCustomResolution(), if this is the case then
-     * it is likely that fullscreen rendering using this resolution will not be possible.
+     * Returns whether or not this resolution was added via PlatformInterface::addCustomResolution(), if this is the
+     * case then it is likely that fullscreen rendering using this resolution will not be possible.
      */
     bool isCustomResolution() const { return isCustomResolution_; }
 

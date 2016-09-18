@@ -11,17 +11,17 @@ namespace Carbon
 {
 
 /**
- * Static class that manages the registered shader classes. Each shader has a static instance that is created and registered
- * using the CARBON_REGISTER_SHADER() macro.
+ * Static class that manages the registered shader classes. Each shader has a static instance that is created and
+ * registered using the CARBON_REGISTER_SHADER() macro.
  */
 class CARBON_API ShaderRegistry : private Noncopyable
 {
 public:
 
     /**
-     * When a shader instance is registered with ShaderRegistry::registerShader() a function is supplied that can be called to
-     * query whether the shader can be used with the currently active graphics interface. This function is used to filter the
-     * list of shaders returned by ShaderRegistry::getShadersForEffect().
+     * When a shader instance is registered with ShaderRegistry::registerShader() a function is supplied that can be
+     * called to query whether the shader can be used with the currently active graphics interface. This function is
+     * used to filter the list of shaders returned by ShaderRegistry::getShadersForEffect().
      */
     typedef std::function<bool()> IsSupportedByGraphicsInterfaceFunction;
 
@@ -37,7 +37,8 @@ public:
     static void unregisterShader(Shader* shader);
 
     /**
-     * Returns the shaders that are registered for the given effect and which can be used with the active graphics interface.
+     * Returns the shaders that are registered for the given effect and which can be used with the active graphics
+     * interface.
      */
     static Vector<Shader*> getShadersForEffect(const String& effectName);
 };

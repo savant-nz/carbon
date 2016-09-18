@@ -12,9 +12,9 @@ namespace Carbon
 {
 
 /**
- * This is a simple subclass of FileSystemVolume that exposes a specified set of files to the virtual filesystem. The files to
- * expose are added with SimpleFileSystemVolume::addFile() and they will then be accessible wherever this volume is mounted on
- * the virtual file system. See FileSystem::addVolume() for details.
+ * This is a simple subclass of FileSystemVolume that exposes a specified set of files to the virtual filesystem. The
+ * files to expose are added with SimpleFileSystemVolume::addFile() and they will then be accessible wherever this
+ * volume is mounted on the virtual file system. See FileSystem::addVolume() for details.
  */
 class CARBON_API SimpleFileSystemVolume : public FileSystemVolume
 {

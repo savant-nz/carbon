@@ -109,7 +109,8 @@ void Renderer::drawEffectQueues(const Vector<EffectQueue*>& queues, BlendedGeome
                 {
                     auto modelMatrix = Matrix4();
 
-                    // Identity quaternions are fairly common so detect this case to avoid a quaternion->matrix conversion
+                    // Identity quaternions are fairly common so detect this case to avoid a quaternion->matrix
+                    // conversion
                     if (currentTransform_.getOrientation() == Quaternion::Identity)
                     {
                         modelMatrix[0] = currentScale_.x;
@@ -143,7 +144,8 @@ void Renderer::drawEffectQueues(const Vector<EffectQueue*>& queues, BlendedGeome
                 // Apply the blended geometry setting
                 if (blendedGeometrySetting != DrawBlendedGeometry)
                 {
-                    auto isBlended = (currentShader->getShaderType(q->getParams(), q->getInternalParams()) == Shader::Blended);
+                    auto isBlended =
+                        (currentShader->getShaderType(q->getParams(), q->getInternalParams()) == Shader::Blended);
 
                     if ((blendedGeometrySetting == SkipBlendedGeometry && isBlended) ||
                         (blendedGeometrySetting == OnlyDrawBlendedGeometry && !isBlended))
@@ -154,7 +156,8 @@ void Renderer::drawEffectQueues(const Vector<EffectQueue*>& queues, BlendedGeome
 
                 // Call the appropriate method for executing this queue item
                 if (auto chunkItem = item->as<DrawGeometryChunkRenderQueueItem>())
-                    executeRenderQueueItem(*chunkItem, effect, currentShader, q->getParams(), q->getInternalParams(), sortKey);
+                    executeRenderQueueItem(*chunkItem, effect, currentShader, q->getParams(), q->getInternalParams(),
+                                           sortKey);
                 else if (auto rectItem = item->as<DrawRectangleRenderQueueItem>())
                     executeRenderQueueItem(*rectItem, currentShader, q->getParams(), q->getInternalParams(), sortKey);
                 else if (auto textItem = item->as<DrawTextRenderQueueItem>())
@@ -196,7 +199,8 @@ void Renderer::executeRenderQueueItem(const DrawTextRenderQueueItem& item, Shade
     auto xPixelSize = (2.0f / getCamera().getProjectionMatrix()[0]) / States::Viewport.get().getWidth();
     auto yPixelSize = (2.0f / getCamera().getProjectionMatrix()[5]) / States::Viewport.get().getHeight();
 
-    // Prepare a parameter array with diffuse texture and color to pass to setShaderParams() for the internal font shader
+    // Prepare a parameter array with diffuse texture and color to pass to setShaderParams() for the internal font
+    // shader
     auto params = ParameterArray();
     params[Parameter::diffuseMap].setPointer<Texture>(item.getFont()->getTexture());
     params[Parameter::diffuseColor].setColor(item.getColor());
@@ -248,8 +252,8 @@ void Renderer::executeRenderQueueItem(const DrawTextRenderQueueItem& item, Shade
         // Position this character
         modelViewMatrix_.translate((xTranslation + character.getPreMove()) * xTranslationScaleFactor);
 
-        // Clamp the X translation to a pixel boundary, the real accumulated translation is restored after flushing the clamped
-        // modelview matrix
+        // Clamp the X translation to a pixel boundary, the real accumulated translation is restored after flushing the
+        // clamped modelview matrix
         auto modelView12 = 0.0f;
         if (item.getFont()->getAlignCharactersToPixelBoundaries())
         {
@@ -269,8 +273,8 @@ void Renderer::executeRenderQueueItem(const DrawTextRenderQueueItem& item, Shade
         auto offset = characterIndex * 6;
 
         // Draw the character
-        graphics().drawIndexedPrimitives(GraphicsInterface::TriangleList, offset, offset + 3, 6, TypeUInt16, indexDataBuffer,
-                                         indexBufferOffset + offset * indexDataTypeSize);
+        graphics().drawIndexedPrimitives(GraphicsInterface::TriangleList, offset, offset + 3, 6, TypeUInt16,
+                                         indexDataBuffer, indexBufferOffset + offset * indexDataTypeSize);
 
         // Move to the next character in the string
         codePoint++;
@@ -283,8 +287,9 @@ void Renderer::executeRenderQueueItem(const DrawTextRenderQueueItem& item, Shade
     clearCachedTransforms();
 }
 
-void Renderer::executeRenderQueueItem(const DrawRectangleRenderQueueItem& item, Shader* shader, const ParameterArray& params,
-                                      const ParameterArray& internalParams, unsigned int sortKey)
+void Renderer::executeRenderQueueItem(const DrawRectangleRenderQueueItem& item, Shader* shader,
+                                      const ParameterArray& params, const ParameterArray& internalParams,
+                                      unsigned int sortKey)
 {
     auto initialModelViewMatrix = modelViewMatrix_;
     modelViewMatrix_.scale(item.getWidth(), item.getHeight());
@@ -309,7 +314,8 @@ void Renderer::executeRenderQueueItem(const DrawRectangleRenderQueueItem& item, 
 }
 
 void Renderer::executeRenderQueueItem(const DrawGeometryChunkRenderQueueItem& item, Effect* effect, Shader* shader,
-                                      const ParameterArray& params, const ParameterArray& internalParams, unsigned int sortKey)
+                                      const ParameterArray& params, const ParameterArray& internalParams,
+                                      unsigned int sortKey)
 {
     auto& chunk = item.getGeometryChunk();
 
@@ -341,8 +347,8 @@ void Renderer::executeRenderQueueItem(const DrawGeometryChunkRenderQueueItem& it
             for (auto& drawItem : chunk.getDrawItems())
             {
                 graphics().drawIndexedPrimitives(drawItem.getPrimitiveType(), drawItem.getLowestIndex(),
-                                                 drawItem.getHighestIndex(), drawItem.getIndexCount(), chunk.getIndexDataType(),
-                                                 indexDataBuffer,
+                                                 drawItem.getHighestIndex(), drawItem.getIndexCount(),
+                                                 chunk.getIndexDataType(), indexDataBuffer,
                                                  indexBufferOffset + drawItem.getIndexOffset() * indexDataTypeSize);
             }
         }
@@ -350,8 +356,9 @@ void Renderer::executeRenderQueueItem(const DrawGeometryChunkRenderQueueItem& it
         {
             auto& drawItem = chunk.getDrawItems()[item.getDrawItemIndex()];
 
-            graphics().drawIndexedPrimitives(drawItem.getPrimitiveType(), drawItem.getLowestIndex(), drawItem.getHighestIndex(),
-                                             drawItem.getIndexCount(), chunk.getIndexDataType(), indexDataBuffer,
+            graphics().drawIndexedPrimitives(drawItem.getPrimitiveType(), drawItem.getLowestIndex(),
+                                             drawItem.getHighestIndex(), drawItem.getIndexCount(),
+                                             chunk.getIndexDataType(), indexDataBuffer,
                                              indexBufferOffset + drawItem.getIndexOffset() * indexDataTypeSize);
         }
     }
@@ -369,7 +376,8 @@ void Renderer::drawUnitRectangle()
     States::StateCacher::flush();
 
     graphics().drawIndexedPrimitives(drawItem.getPrimitiveType(), drawItem.getLowestIndex(), drawItem.getHighestIndex(),
-                                     drawItem.getIndexCount(), unitRectangleGeometry_.getIndexDataType(), indexDataBuffer,
+                                     drawItem.getIndexCount(), unitRectangleGeometry_.getIndexDataType(),
+                                     indexDataBuffer,
                                      indexBufferOffset + drawItem.getIndexOffset() * indexDataTypeSize);
 }
 

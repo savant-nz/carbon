@@ -145,9 +145,9 @@ bool PlatformInterface::resizeWindow(const Resolution& resolution, WindowMode wi
     if (!resolutions_.has(resolution))
         return false;
 
-    // To change resolution, window mode or FSAA mode the main window is destroyed and recreated using the new settings. If the
-    // new settings fail the previous ones will be used as a fallback. The RecreateWindowEvent class is used to notify the
-    // engine that the platform layer is being shutdown/reinitialized.
+    // To change resolution, window mode or FSAA mode the main window is destroyed and recreated using the new settings.
+    // If the new settings fail the previous ones will be used as a fallback. The RecreateWindowEvent class is used to
+    // notify the engine that the platform layer is being shutdown/reinitialized.
 
     LOG_INFO << "Recreating main window";
 
@@ -190,8 +190,8 @@ bool PlatformInterface::resizeWindow(const Resolution& resolution, WindowMode wi
         }
         else
         {
-            // This really should never happen, as the window was successfully created earlier with these settings. This is
-            // basically a fatal/unrecoverable error as we now have no rendering window
+            // This really should never happen, as the window was successfully created earlier with these settings. This
+            // is basically a fatal/unrecoverable error as we now have no rendering window
             LOG_ERROR << "Failed reverting window settings, there is now no rendering window";
         }
 
@@ -287,7 +287,8 @@ void PlatformInterface::calculateGammaRamp(float gamma, std::array<uint16_t, 256
         ramp = defaultRamp;
 }
 
-void PlatformInterface::calculateGammaRamp(float gamma, std::array<float, 256>& ramp, const std::array<float, 256>& defaultRamp)
+void PlatformInterface::calculateGammaRamp(float gamma, std::array<float, 256>& ramp,
+                                           const std::array<float, 256>& defaultRamp)
 {
     if (gamma > 0.0f)
     {
@@ -331,12 +332,12 @@ void PlatformInterface::sortResolutions()
 
 void PlatformInterface::updatePersistentSettings() const
 {
-    // If we are currently in native resolution then don't store window width and height in the persistent settings, the reason
-    // is that if an application is rendering in native resolution then we want it to keep rendering in native resolution in
-    // subsequent runs, even if the computer's native resolution changes for some reason. This behavior means that unless there
-    // is intervention of some kind the default behavior is to always be rendering at native resolution, which is the desired
-    // outcome. However, if a non-native resolution is chosen then that resolution will always be persisted to the next run of
-    // the application.
+    // If we are currently in native resolution then don't store window width and height in the persistent settings, the
+    // reason is that if an application is rendering in native resolution then we want it to keep rendering in native
+    // resolution in subsequent runs, even if the computer's native resolution changes for some reason. This behavior
+    // means that unless there is intervention of some kind the default behavior is to always be rendering at native
+    // resolution, which is the desired outcome. However, if a non-native resolution is chosen then that resolution will
+    // always be persisted to the next run of the application.
 
     if (currentResolution_ == nativeResolution_ && windowMode_ == Fullscreen)
     {
@@ -455,8 +456,8 @@ void PlatformInterface::sendRepeatingKeyDownEvents()
     auto initialRepeatDelay = TimeValue(0.5f);
     auto repeatDelay = TimeValue(1.0f / 33.0f);
 
-    // Loop over all keys and send repeating KeyDownEvents for those that are currently pressed and the appropriate amount of
-    // time has elapsed since the previous KeyDownEvent
+    // Loop over all keys and send repeating KeyDownEvents for those that are currently pressed and the appropriate
+    // amount of time has elapsed since the previous KeyDownEvent
     for (auto i = 0U; i < keyState_.size(); i++)
     {
         auto& keyState = keyState_[i];

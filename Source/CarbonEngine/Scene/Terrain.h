@@ -34,8 +34,8 @@ public:
                                float persistence = 0.3f, float zoom = 0.01f);
 
     /**
-     * Creates this terrain from a texture image. The name of the texture should be given as it would be specified in a material
-     * file, i.e. without an extension. The given texture must be 2D. Returns success flag.
+     * Creates this terrain from a texture image. The name of the texture should be given as it would be specified in a
+     * material file, i.e. without an extension. The given texture must be 2D. Returns success flag.
      */
     bool createFromTexture(const String& name);
 
@@ -50,14 +50,14 @@ public:
     unsigned int getHeightmapHeight() const { return heightmapHeight_; }
 
     /**
-     * Returns the height value at the given position in the internal heightmap. Returns zero if the given position is out of
-     * range.
+     * Returns the height value at the given position in the internal heightmap. Returns zero if the given position is
+     * out of range.
      */
     float getHeight(unsigned int x, unsigned int y) const;
 
     /**
-     * Sets the height value at the given position in the internal heightmap. Returns false if the given position is out of
-     * range.
+     * Sets the height value at the given position in the internal heightmap. Returns false if the given position is out
+     * of range.
      */
     bool setHeight(unsigned int x, unsigned int y, float height);
 
@@ -82,8 +82,8 @@ public:
     void setHeightScale(float heightScale);
 
     /**
-     * Returns the current texture scale value, this determines how much the texture coordinate increases for each world unit of
-     * geometry. Defaults to 0.01f.
+     * Returns the current texture scale value, this determines how much the texture coordinate increases for each world
+     * unit of geometry. Defaults to 0.01f.
      */
     float getTextureScale() const { return textureScale_; }
 
@@ -98,22 +98,22 @@ public:
     const String& getMaterial() const { return material_; }
 
     /**
-     * Sets the material to use when rendering the terrain. If the material uses the InternalGeometryClipmapping effect and the
-     * hardware supports that rendering algorithm then it will be used when rendering the terrain. If the hardware doesn't
-     * support it then false will be returned. Materials than use any other effects will result in brute force terrain rendering
-     * being used. Returns success flag.
+     * Sets the material to use when rendering the terrain. If the material uses the InternalGeometryClipmapping effect
+     * and the hardware supports that rendering algorithm then it will be used when rendering the terrain. If the
+     * hardware doesn't support it then false will be returned. Materials than use any other effects will result in
+     * brute force terrain rendering being used. Returns success flag.
      */
     bool setMaterial(const String& material);
 
     /**
-     * Raises each heightmap value to the given exponent. This can be used to accentuate peaks and troughs in the heightmap
-     * data.
+     * Raises each heightmap value to the given exponent. This can be used to accentuate peaks and troughs in the
+     * heightmap data.
      */
     void accentuate(float exponent);
 
     /**
-     * Applys a simple weighted 3x3 smoothing filter to the heightmap data. \a repeats specifies the number of times to run the
-     * smooth operation.
+     * Applys a simple weighted 3x3 smoothing filter to the heightmap data. \a repeats specifies the number of times to
+     * run the smooth operation.
      */
     void smooth(unsigned int repeats = 1);
 
@@ -123,8 +123,8 @@ public:
     void scale(float scale);
 
     /**
-     * Replaces every height value as follows: height = 1.0 - sharpness ^ ((height - cutoff) * exponentScale). Heights below the
-     * cutoff will be zeroed.
+     * Replaces every height value as follows: height = 1.0 - sharpness ^ ((height - cutoff) * exponentScale). Heights
+     * below the cutoff will be zeroed.
      */
     void exponentiate(float cutoff, float sharpness, float exponentScale);
 
@@ -154,8 +154,8 @@ private:
     // Normalizes all heights into the 0.0 - 1.0 range
     void normalize();
 
-    // The heightmap dirty flag is set whenever the primary heightmap data is altered or any of the scaling constants are
-    // changed. Once the changes have been dealt with the flag is reset.
+    // The heightmap dirty flag is set whenever the primary heightmap data is altered or any of the scaling constants
+    // are changed. Once the changes have been dealt with the flag is reset.
     bool isHeightmapDirty_ = false;
 
     Vec3 getTerrainPoint(unsigned int x, unsigned int y) const;

@@ -13,8 +13,8 @@ NDK_PATH = os.environ.get('CARBON_ANDROID_NDK_PATH', '')
 vars = Variables()
 vars.AddVariables(
     ('architecture', 'Sets the target build architecture, must be either ARMv7, ARM64, x86 or x64.', 'ARMv7'),
-    ('ndk', 'Specifies the path to the Android NDK that should be used to do the Android build. The default is to read the '
-            'Android NDK path from the CARBON_ANDROID_NDK_PATH environment variable.', NDK_PATH)
+    ('ndk', 'Specifies the path to the Android NDK that should be used to do the Android build. The default is to read '
+            'the Android NDK path from the CARBON_ANDROID_NDK_PATH environment variable.', NDK_PATH)
 )
 Help(vars.GenerateHelpText(Environment()))
 
@@ -57,7 +57,8 @@ NDK = {
 }
 for name, path in NDK.items():
     if not os.path.isdir(path):
-        print('Error: an expected NDK path is missing, check the Android NDK installation at "%s" is up to date' % NDK_PATH)
+        print('Error: an expected NDK path is missing, check the Android NDK installation at "%s" is up to date'
+              % NDK_PATH)
         Exit(1)
 
 

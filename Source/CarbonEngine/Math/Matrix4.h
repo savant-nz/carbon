@@ -28,16 +28,16 @@ public:
      * Initializes the inner 3x3 portion of this matrix from the given 3x3 matrix.
      */
     Matrix4(const Matrix3& other)
-        : m_{{other[0], other[1], other[2], 0.0f, other[3], other[4], other[5], 0.0f, other[6], other[7], other[8], 0.0f, 0.0f,
-              0.0f, 0.0f, 1.0f}}
+        : m_{{other[0], other[1], other[2], 0.0f, other[3], other[4], other[5], 0.0f, other[6], other[7], other[8],
+              0.0f, 0.0f, 0.0f, 0.0f, 1.0f}}
     {
     }
 
     /**
      * Component constructor.
      */
-    Matrix4(float m0, float m1, float m2, float m3, float m4, float m5, float m6, float m7, float m8, float m9, float m10,
-            float m11, float m12, float m13, float m14, float m15)
+    Matrix4(float m0, float m1, float m2, float m3, float m4, float m5, float m6, float m7, float m8, float m9,
+            float m10, float m11, float m12, float m13, float m14, float m15)
         : m_{{m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15}}
     {
     }
@@ -123,15 +123,16 @@ public:
     void transpose();
 
     /**
-     * Modifies this projection matrix so that the near plane coincides with a given arbitrary plane. The far plane is adjusted
-     * so that the resulting view frustum has the best shape possible. This method assumes that this matrix is a perspective
-     * projection and that \a clipPlane is in view space.
+     * Modifies this projection matrix so that the near plane coincides with a given arbitrary plane. The far plane is
+     * adjusted so that the resulting view frustum has the best shape possible. This method assumes that this matrix is
+     * a perspective projection and that \a clipPlane is in view space.
      */
     void modifyProjectionMatrix(const Plane& clipPlane);
 
     /**
-     * Assuming that this is a projection matrix, this method returns the rectangle around the given view space sphere that can
-     * be used as a scissor rectangle in rendering. The returned rect is in normalized device coordinates (from -1 to 1).
+     * Assuming that this is a projection matrix, this method returns the rectangle around the given view space sphere
+     * that can be used as a scissor rectangle in rendering. The returned rect is in normalized device coordinates (from
+     * -1 to 1).
      */
     Rect getProjectedSphereBounds(const Vec3& viewSpacePosition, float radius, float nearPlaneDistance) const;
 
@@ -267,8 +268,8 @@ public:
     static const Matrix4 Identity;
 
     /**
-     * This matrix has an 0.5 xyz scale and an xyz translation of 0.5. This is used to map from -1 - 1 to 0 - 1 when doing
-     * projective texturing.
+     * This matrix has an 0.5 xyz scale and an xyz translation of 0.5. This is used to map from -1 - 1 to 0 - 1 when
+     * doing projective texturing.
      */
     static const Matrix4 Half;
 
@@ -320,10 +321,11 @@ public:
                                             float farPlaneDistance);
 
     /**
-     * Transforms a 2D point in screen space into world space using the given view transform, projection matrix and viewport.
-     * The \a p.z value should be the desired z depth of the returned point and must be in the range 0 - 1.
+     * Transforms a 2D point in screen space into world space using the given view transform, projection matrix and
+     * viewport. The \a p.z value should be the desired z depth of the returned point and must be in the range 0 - 1.
      */
-    static Vec3 unproject(const Vec3& p, const SimpleTransform& viewTransform, const Matrix4& projection, const Rect& viewport);
+    static Vec3 unproject(const Vec3& p, const SimpleTransform& viewTransform, const Matrix4& projection,
+                          const Rect& viewport);
 
 private:
 

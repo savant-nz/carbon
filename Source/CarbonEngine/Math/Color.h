@@ -43,7 +43,8 @@ public:
     explicit Color(float f) : r(f), g(f), b(f), a(1.0f) {}
 
     /**
-     * Component constructor. The red, green, blue and alpha components are set to \a r, \a g, \a b and \a a respectively.
+     * Component constructor. The red, green, blue and alpha components are set to \a r, \a g, \a b and \a a
+     * respectively.
      */
     Color(float r_, float g_, float b_, float a_ = 1.0f) : r(r_), g(g_), b(b_), a(a_) {}
 
@@ -199,7 +200,8 @@ public:
     float getRGBLuminance() const { return r * 0.3f + g * 0.59f + b * 0.11f; }
 
     /**
-     * Converts this color into a single intensity value by multiplying the value of Color::getRGBLuminance() by the alpha.
+     * Converts this color into a single intensity value by multiplying the value of Color::getRGBLuminance() by the
+     * alpha.
      */
     float getIntensity() const { return getRGBLuminance() * a; }
 

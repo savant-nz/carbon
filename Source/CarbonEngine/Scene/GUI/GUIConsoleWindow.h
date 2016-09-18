@@ -21,8 +21,8 @@ public:
     ~GUIConsoleWindow() override;
 
     /**
-     * Returns whether this console window is actively accepting input, which means it is visible, has focus, and has an alpha
-     * that is greater than zero.
+     * Returns whether this console window is actively accepting input, which means it is visible, has focus, and has an
+     * alpha that is greater than zero.
      */
     bool isActive() const { return hasFocus() && isVisible(); }
 

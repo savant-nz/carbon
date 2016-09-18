@@ -313,7 +313,8 @@ CARBON_API UnicodeString fromUTF8(const byte_t* data, unsigned int size)
             if (i + 3 < size && isUTF8TrailingByte(data[i + 1]) && isUTF8TrailingByte(data[i + 2]) &&
                 isUTF8TrailingByte(data[i + 3]))
             {
-                cp = ((cp & 0x7) << 18) | ((data[i + 1] & 0x3F) << 12) | ((data[i + 2] & 0x3F) << 6) | (data[i + 3] & 0x3F);
+                cp = ((cp & 0x7) << 18) | ((data[i + 1] & 0x3F) << 12) | ((data[i + 2] & 0x3F) << 6) |
+                    (data[i + 3] & 0x3F);
                 i += 3;
             }
             else

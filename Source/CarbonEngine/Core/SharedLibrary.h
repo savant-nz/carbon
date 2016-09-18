@@ -9,8 +9,8 @@ namespace Carbon
 {
 
 /**
- * This class handles loading dynamic libraries and mapping the functions they export, supports DLLs on Windows, DyLibs on Mac
- * OS X and SOs on Linux.
+ * This class handles loading dynamic libraries and mapping the functions they export, supports DLLs on Windows, DyLibs
+ * on Mac OS X and SOs on Linux.
  */
 class CARBON_API SharedLibrary : private Noncopyable
 {
@@ -31,14 +31,14 @@ public:
     bool load(const UnicodeString& name);
 
     /**
-     * Returns the address of a function in the loaded shared library. Returns null if the given function isn't present or no
-     * library is currently loaded.
+     * Returns the address of a function in the loaded shared library. Returns null if the given function isn't present
+     * or no library is currently loaded.
      */
     VoidFunction mapFunction(const String& name) const;
 
     /**
-     * Returns the address of a function in the loaded shared library typecast to the specified function type. Returns null if
-     * the given function isn't present or no library is currently loaded.
+     * Returns the address of a function in the loaded shared library typecast to the specified function type. Returns
+     * null if the given function isn't present or no library is currently loaded.
      */
     template <typename FunctionType> FunctionType mapFunction(const String& name) const
     {

@@ -10,16 +10,17 @@
 #include "CarbonEngine/Graphics/States/States.h"
 
 // In debug builds the OpenGL error state is checked after every relevant GL call and any errors are logged
-#define CARBON_CHECK_OPENGL_ERROR(FunctionName)                                                                              \
-    do                                                                                                                       \
-    {                                                                                                                        \
-        auto glError = glGetError();                                                                                         \
-        if (glError)                                                                                                         \
-        {                                                                                                                    \
-            LOG_ERROR << "OpenGL error " << Carbon::OpenGLShared::glErrorToString(glError) << " occurred in " #FunctionName; \
-            /* assert(false && "An OpenGL error occurred"); */                                                               \
-        }                                                                                                                    \
-        graphics().incrementAPICallCount();                                                                                  \
+#define CARBON_CHECK_OPENGL_ERROR(FunctionName)                                            \
+    do                                                                                     \
+    {                                                                                      \
+        auto glError = glGetError();                                                       \
+        if (glError)                                                                       \
+        {                                                                                  \
+            LOG_ERROR << "OpenGL error " << Carbon::OpenGLShared::glErrorToString(glError) \
+                      << " occurred in " #FunctionName;                                    \
+            /* assert(false && "An OpenGL error occurred"); */                             \
+        }                                                                                  \
+        graphics().incrementAPICallCount();                                                \
     } while (false)
 
 #ifdef CARBON_DEBUG
@@ -30,7 +31,8 @@
 // Macros for declaring, defining and mapping OpenGL extension functions
 #define CARBON_OPENGL_DECLARE_EXTENSION_FUNCTION(Function) extern PFn##Function Function
 #define CARBON_OPENGL_DEFINE_EXTENSION_FUNCTION(Function) PFn##Function Function = nullptr
-#define CARBON_OPENGL_MAP_EXTENSION_FUNCTION(Function) Function = platform().getOpenGLFunctionAddress<PFn##Function>(#Function)
+#define CARBON_OPENGL_MAP_EXTENSION_FUNCTION(Function) \
+    Function = platform().getOpenGLFunctionAddress<PFn##Function>(#Function)
 
 namespace Carbon
 {
@@ -131,8 +133,8 @@ public:
 
     void setViewport(const Rect& viewport) override
     {
-        // Use a floor function on the viewport coordinates to avoid roundoff errors, this ensures that viewports right next to
-        // each other on subpixel boundaries will not have any pixel cracks between them
+        // Use a floor function on the viewport coordinates to avoid roundoff errors, this ensures that viewports right
+        // next to each other on subpixel boundaries will not have any pixel cracks between them
 
         auto left = floorf(viewport.getLeft());
         auto bottom = floorf(viewport.getBottom());
@@ -175,7 +177,8 @@ public:
         if (!isStencilBufferSupported())
             return;
 
-        glStencilFunc(glCompareFunctionEnum[function.getCompareFunction()], function.getReferenceValue(), function.getMask());
+        glStencilFunc(glCompareFunctionEnum[function.getCompareFunction()], function.getReferenceValue(),
+                      function.getMask());
         CARBON_CHECK_OPENGL_ERROR(glStencilFunc);
     }
 
@@ -233,8 +236,8 @@ public:
 #ifdef GL_TEXTURE_WIDTH
     bool downloadTexture(TextureObject texture, TextureType type, Image::PixelFormat pixelFormat, Image& image) override
     {
-        // TODO: this method is not compatible with OpenGL ES 2+, it needs to be reworked to attach the specified texture to a
-        // temporary render target and then read the contents back using glReadPixels().
+        // TODO: this method is not compatible with OpenGL ES 2+, it needs to be reworked to attach the specified
+        // texture to a temporary render target and then read the contents back using glReadPixels().
 
         image.clear();
 
@@ -256,8 +259,8 @@ public:
             if (!image.initialize(width, height, 1, pixelFormat, false, 1))
                 return false;
 
-            glGetTexImage(GL_TEXTURE_2D, 0, textureFormats_[pixelFormat].glDataFormat, textureFormats_[pixelFormat].glDataType,
-                          image.getDataForFrame(0));
+            glGetTexImage(GL_TEXTURE_2D, 0, textureFormats_[pixelFormat].glDataFormat,
+                          textureFormats_[pixelFormat].glDataType, image.getDataForFrame(0));
             CARBON_CHECK_OPENGL_ERROR(glGetTexImage);
         }
         else
@@ -269,15 +272,15 @@ public:
 
 protected:
 
-    const std::array<GLenum, 10> glBlendFactorEnum = {{GL_ZERO, GL_ONE, GL_SRC_COLOR, GL_ONE_MINUS_SRC_COLOR, GL_DST_COLOR,
-                                                       GL_ONE_MINUS_DST_COLOR, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA,
-                                                       GL_DST_ALPHA, GL_ONE_MINUS_DST_ALPHA}};
+    const std::array<GLenum, 10> glBlendFactorEnum = {{GL_ZERO, GL_ONE, GL_SRC_COLOR, GL_ONE_MINUS_SRC_COLOR,
+                                                       GL_DST_COLOR, GL_ONE_MINUS_DST_COLOR, GL_SRC_ALPHA,
+                                                       GL_ONE_MINUS_SRC_ALPHA, GL_DST_ALPHA, GL_ONE_MINUS_DST_ALPHA}};
 
     const std::array<GLenum, 8> glCompareFunctionEnum = {
         {GL_NEVER, GL_LESS, GL_LEQUAL, GL_EQUAL, GL_GREATER, GL_NOTEQUAL, GL_GEQUAL, GL_ALWAYS}};
 
-    const std::array<GLenum, 11> glDataTypeEnum = {
-        {0, GL_BYTE, GL_UNSIGNED_BYTE, GL_SHORT, GL_UNSIGNED_SHORT, GL_INT, GL_UNSIGNED_INT, 0, 0, GL_FLOAT, GL_DOUBLE}};
+    const std::array<GLenum, 11> glDataTypeEnum = {{0, GL_BYTE, GL_UNSIGNED_BYTE, GL_SHORT, GL_UNSIGNED_SHORT, GL_INT,
+                                                    GL_UNSIGNED_INT, 0, 0, GL_FLOAT, GL_DOUBLE}};
 
 // Ensure GL_INCR_WRAP and GL_DECR_WRAP are available
 #ifndef GL_INCR_WRAP
@@ -330,8 +333,8 @@ protected:
         }
     }
 
-    bool beginTextureUpload(TextureObject texture, TextureType type, Image::PixelFormat pixelFormat, GLenum& glInternalFormat,
-                            GLenum& glDataFormat, GLenum& glDataType)
+    bool beginTextureUpload(TextureObject texture, TextureType type, Image::PixelFormat pixelFormat,
+                            GLenum& glInternalFormat, GLenum& glDataFormat, GLenum& glDataType)
     {
         glInternalFormat = getTextureInternalFormat(pixelFormat, type);
         if (!glInternalFormat)
@@ -339,9 +342,8 @@ protected:
 
         if (Image::isPixelFormatUncompressed(pixelFormat))
         {
-            // If the image is not compressed we need the format and data type of the data that is going to be passed to OpenGL
-            // so that it knows how to interpret the data it gets given e.g, GL_BGRA GL_UNSIGNED_BYTE e.g, GL_LUMINANCE_ALPHA
-            // GL_FLOAT
+            // If the image is not compressed we need the format and data type of the data that is going to be passed to
+            // OpenGL so that it knows how to interpret the data it gets given
             glDataFormat = textureFormats_[pixelFormat].glDataFormat;
             glDataType = textureFormats_[pixelFormat].glDataType;
 
@@ -418,7 +420,9 @@ protected:
         TextureObject stencilTexture = nullptr;
 
         RenderTarget(GLuint glFramebuffer_, unsigned int maximumDrawBuffers_)
-            : glFramebuffer(glFramebuffer_), colorTextures(maximumDrawBuffers_), colorTextureTargets(maximumDrawBuffers_)
+            : glFramebuffer(glFramebuffer_),
+              colorTextures(maximumDrawBuffers_),
+              colorTextureTargets(maximumDrawBuffers_)
         {
         }
     };

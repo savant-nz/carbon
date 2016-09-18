@@ -23,7 +23,8 @@ public:
     ~SoundEmitter() override;
 
     /**
-     * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>(), it sets the sound shader.
+     * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>() that sets the sound
+     * shader.
      */
     void initialize(const String& soundShader) { setSoundShader(soundShader); }
 

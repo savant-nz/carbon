@@ -50,7 +50,10 @@ public:
         return Reflection;
     }
 
-    bool initialize() override { return program.setup(ShaderProgram::GLSL110, {"SFXMirror.glsl.vert", "SFXMirror.glsl.frag"}); }
+    bool initialize() override
+    {
+        return program.setup(ShaderProgram::GLSL110, {"SFXMirror.glsl.vert", "SFXMirror.glsl.frag"});
+    }
 
     void uninitialize() override { program.clear(); }
 
@@ -65,8 +68,8 @@ public:
         program.sReflectionMap->setInteger(2);
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         program.setVertexAttributeArrayConfiguration(geometryChunk);
 

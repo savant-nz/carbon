@@ -22,12 +22,13 @@
 namespace Carbon
 {
 
-// The texture load thread is responsible for background texture loading, it takes textures that are in the ImageLoadPending
-// state and does the file system read, image load/decompression, any image conversion requested by a TextureLoadedEvent
-// handler, and then passes the resulting Image instance back to TextureManager where it is matched up with the correct texture.
+// The texture load thread is responsible for background texture loading, it takes textures that are in the
+// ImageLoadPending state and does the file system read, image load/decompression, any image conversion requested by a
+// TextureLoadedEvent handler, and then passes the resulting Image instance back to TextureManager where it is matched
+// up with the correct texture.
 //
-// Applications can wait for all texture loading to be completed by waiting until TextureManager::isTextureLoadThreadActive()
-// returns false.
+// Applications can wait for all texture loading to be completed by waiting until
+// TextureManager::isTextureLoadThreadActive() returns false.
 class TextureLoadThread : public Thread
 {
 public:
@@ -58,8 +59,8 @@ public:
             auto image = Image();
             if (Texture::loadTextureImage(name, image))
             {
-                // If a texture image was loaded then send a TextureLoadedEvent, the event itself will be dispatched on the main
-                // thread, but any texture image conversion requested will be run in this texture load thread
+                // If a texture image was loaded then send a TextureLoadedEvent, the event itself will be dispatched on
+                // the main thread, but any texture image conversion requested will be run in this texture load thread
                 Texture::sendTextureLoadedEvent(name, image, type);
             }
             else
@@ -87,8 +88,8 @@ public:
 
     TextureLoadThread textureLoadThread;
 
-    // When the texture load thread finishes a job it goes into this list of completed jobs for followup processing on the main
-    // thread in TextureManager::processEvent()
+    // When the texture load thread finishes a job it goes into this list of completed jobs for followup processing on
+    // the main thread in TextureManager::processEvent()
     struct CompletedTextureLoadThreadJob
     {
         String name;
@@ -114,16 +115,16 @@ void TextureManager::setup()
     auto lock = ScopedMutexLock(m->mutex);
 
     // Setup texturing groups with default settings
-    m->groups["Font"] = TextureProperties(TextureProperties::BilinearFilter, GraphicsInterface::WrapClamp);
-    m->groups["PostProcess"] = TextureProperties(TextureProperties::BilinearFilter, GraphicsInterface::WrapClamp);
-    m->groups["Sprite"] = TextureProperties(TextureProperties::BilinearFilter, GraphicsInterface::WrapClamp);
-    m->groups["Sky"] = TextureProperties(TextureProperties::BilinearFilter, GraphicsInterface::WrapClamp);
+    m->groups["Font"] = TextureProperties(TextureProperties::BilinearFilter);
+    m->groups["PostProcess"] = TextureProperties(TextureProperties::BilinearFilter);
+    m->groups["Sprite"] = TextureProperties(TextureProperties::BilinearFilter);
+    m->groups["Sky"] = TextureProperties(TextureProperties::BilinearFilter);
     m->groups["WorldDiffuse"] = TextureProperties(TextureProperties::TrilinearFilter, GraphicsInterface::WrapRepeat);
-    m->groups["WorldEnvironmentMap"] = TextureProperties(TextureProperties::TrilinearFilter, GraphicsInterface::WrapClamp);
+    m->groups["WorldEnvironmentMap"] = TextureProperties(TextureProperties::TrilinearFilter);
     m->groups["WorldGloss"] = TextureProperties(TextureProperties::BilinearFilter, GraphicsInterface::WrapRepeat);
     m->groups["WorldNormal"] = TextureProperties(TextureProperties::BilinearFilter, GraphicsInterface::WrapRepeat);
     m->groups["WorldOpacity"] = TextureProperties(TextureProperties::BilinearFilter, GraphicsInterface::WrapRepeat);
-    m->groups["WorldLightmap"] = TextureProperties(TextureProperties::BilinearFilter, GraphicsInterface::WrapClamp);
+    m->groups["WorldLightmap"] = TextureProperties(TextureProperties::BilinearFilter);
 
     // Start the texture load thread
     m->textureLoadThread.run();
@@ -143,7 +144,8 @@ TextureManager::~TextureManager()
 
     for (auto texture : m->textures)
     {
-        LOG_WARNING << "Unreleased texture, name: " << texture->getName() << ", reference count: " << texture->referenceCount_;
+        LOG_WARNING << "Unreleased texture, name: " << texture->getName()
+                    << ", reference count: " << texture->referenceCount_;
         delete texture;
     }
 
@@ -155,7 +157,8 @@ bool TextureManager::getNextTextureLoadThreadJob(String& name, GraphicsInterface
 {
     auto lock = ScopedMutexLock(m->mutex);
 
-    // Find something for the texture load thread to do - it wants textures that are in the ImageLoadPending state and which
+    // Find something for the texture load thread to do - it wants textures that are in the ImageLoadPending state and
+    // which
     // have not already been loaded but still awaiting processing (i.e. they are done and waiting in
     // completedTextureLoadThreadJobs).
     for (auto texture : m->textures)
@@ -203,7 +206,8 @@ void TextureManager::shutdownTextureLoadThread()
 {
     if (m->textureLoadThread.isRunning())
     {
-        // Stop the texture load thread, it is important to keep dispatching queued events to avoid the texture load thread
+        // Stop the texture load thread, it is important to keep dispatching queued events to avoid the texture load
+        // thread
         // getting stuck waiting for an event to be dispatched on the main thread
         m->textureLoadThread.setExitFlag();
         m->textureLoadThread.waitWithQueuedEventDispatching();
@@ -249,12 +253,16 @@ bool TextureManager::processEvent(const Event& e)
             }
             else
             {
-                // Something happened which means the result of the texture load thread isn't usable - maybe the texture it was
-                // loading had its image data loaded JIT on the main thread, or the texture was deleted. Either way it is no
-                // longer waiting in the ImageLoadPending state, so the work done by the texture load thread can't be used.
+                // Something happened which means the result of the texture load thread isn't usable - maybe the texture
+                // it was
+                // loading had its image data loaded JIT on the main thread, or the texture was deleted. Either way it
+                // is no
+                // longer waiting in the ImageLoadPending state, so the work done by the texture load thread can't be
+                // used.
             }
 
-            // Break out if more than 100ms has been spent processing completed texture loads this time around, any remaining
+            // Break out if more than 100ms has been spent processing completed texture loads this time around, any
+            // remaining
             // items can be processed in subsequent frames, no need to get it all done now
             if (timer.getElapsedTime().toMilliseconds() > 100.0f)
                 break;
@@ -278,7 +286,8 @@ void TextureManager::onRecreateWindowEvent(const RecreateWindowEvent& rwe)
             if (texture->getState() == Texture::Ready)
                 texture->deupload();
 
-            // Textures that have a valid image but had an error uploading will get another go under the new render window
+            // Textures that have a valid image but had an error uploading will get another go under the new render
+            // window
             else if (texture->getState() == Texture::Error && texture->getImage().isValidImage())
                 texture->state_ = Texture::UploadPending;
         }
@@ -332,7 +341,8 @@ Texture* TextureManager::getTexture(const String& name)
 {
     auto lock = ScopedMutexLock(m->mutex);
 
-    return m->textures.detect([&](Texture* texture) { return areTextureNamesEquivalent(texture->getName(), name); }, nullptr);
+    return m->textures.detect([&](Texture* texture) { return areTextureNamesEquivalent(texture->getName(), name); },
+                              nullptr);
 }
 
 void TextureManager::releaseTexture(const Texture* texture)
@@ -370,7 +380,8 @@ bool TextureManager::areTextureNamesEquivalent(const String& name0, const String
     // Check whether the names match after stripping off any extensions that may be present
     if (ImageFormatRegistry::stripSupportedExtension(name0) == ImageFormatRegistry::stripSupportedExtension(name1))
     {
-        // If the base texture names match then make sure that different extensions haven't been explicitly specified on the two
+        // If the base texture names match then make sure that different extensions haven't been explicitly specified on
+        // the two
         // textures, if this checks out then the texture names are considered to be equivalent
 
         auto& extension0 = ImageFormatRegistry::getSupportedExtension(name0);
@@ -435,7 +446,8 @@ TextureProperties TextureManager::getGroupProperties(const String& group)
     return m->groups[group];
 }
 
-const Texture* TextureManager::setupTexture(GraphicsInterface::TextureType type, const String& name, const String& group)
+const Texture* TextureManager::setupTexture(GraphicsInterface::TextureType type, const String& name,
+                                            const String& group)
 {
     auto lock = ScopedMutexLock(m->mutex);
 
@@ -444,7 +456,8 @@ const Texture* TextureManager::setupTexture(GraphicsInterface::TextureType type,
     {
         if (texture->getTextureType() == type && areTextureNamesEquivalent(texture->getName(), name))
         {
-            // If this texture isn't in a group and a valid group has been passed then assign this texture into that group
+            // If this texture isn't in a group and a valid group has been passed then assign this texture into that
+            // group
             if (texture->getGroup() == String::Empty && group != String::Empty)
             {
                 texture->group_ = group;
@@ -512,7 +525,8 @@ void TextureManager::uploadTextures()
         texture->upload();
 }
 
-Texture2D* TextureManager::create2DTexture(const String& name, unsigned int width, unsigned int height, bool includeAlpha)
+Texture2D* TextureManager::create2DTexture(const String& name, unsigned int width, unsigned int height,
+                                           bool includeAlpha)
 {
     auto image = Image();
     if (!image.initialize(width, height, 1, includeAlpha ? Image::RGBA8 : Image::RGB8, false, 1))
@@ -579,7 +593,8 @@ const Texture2D* TextureManager::create2DPerlinNoiseTexture(const String& name, 
     for (auto y = 0U; y < height; y++)
     {
         for (auto x = 0U; x < width; x++)
-            *data++ = byte_t(Math::clamp01(Noise::perlin(x * zoom, y * zoom, octaves, persistence) * 0.5f + 0.5f) * 255.0f);
+            *data++ =
+                byte_t(Math::clamp01(Noise::perlin(x * zoom, y * zoom, octaves, persistence) * 0.5f + 0.5f) * 255.0f);
     }
 
     // Create a new texture from the perlin noise

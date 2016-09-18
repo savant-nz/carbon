@@ -36,7 +36,8 @@ public:
 
     MString filter() const override { return toMString("*" + Scene::SceneExtension); }
 
-    MPxFileTranslator::MFileKind identifyFile(const MFileObject& fileName, const char* buffer, short size) const override
+    MPxFileTranslator::MFileKind identifyFile(const MFileObject& fileName, const char* buffer,
+                                              short size) const override
     {
         if (MStringToString(fileName.name()).asLower().endsWith(Scene::SceneExtension))
             return kIsMyFileType;
@@ -44,7 +45,8 @@ public:
         return kNotMyFileType;
     }
 
-    MStatus writer(const MFileObject& file, const MString& optionsString, MPxFileTranslator::FileAccessMode mode) override
+    MStatus writer(const MFileObject& file, const MString& optionsString,
+                   MPxFileTranslator::FileAccessMode mode) override
     {
         onlyExportSelected = (mode == kExportActiveAccessMode);
 
@@ -52,8 +54,8 @@ public:
 
         heightmapDagPaths.clear();
 
-        auto runner =
-            SceneExportRunner(MStringToString(file.fullName()), extractAllMeshes, Helper::exportAllMaterials, exportEntites);
+        auto runner = SceneExportRunner(MStringToString(file.fullName()), extractAllMeshes, Helper::exportAllMaterials,
+                                        exportEntites);
         ProgressDialog(SceneExporterTitle).show(runner, M3dView::applicationShell());
 
         Globals::uninitializeEngine();
@@ -134,9 +136,10 @@ public:
             // Correct for the fact that the Light class points spotlights down +Z but Maya is down -Z
             light->rotate(Quaternion::createFromAxisAngle(light->getWorldOrientation().getYVector(), Math::Pi));
 
-            // The Maya light intensity is currently mapped directly to the radius. Maya lights use unbounded falloff and so
-            // there is no direct radius value on the lights. It may be better to set the distance at which the Maya light is at
-            // 5% of its maximum brightness as the exported radius, but doing that may not be very fantastic either.
+            // The Maya light intensity is currently mapped directly to the radius. Maya lights use unbounded falloff
+            // and so there is no direct radius value on the lights. It may be better to set the distance at which the
+            // Maya light is at 5% of its maximum brightness as the exported radius, but doing that may not be very
+            // fantastic either.
             light->setRadius(fnLight.intensity());
 
             // Set the light type and export any light-type specific properties

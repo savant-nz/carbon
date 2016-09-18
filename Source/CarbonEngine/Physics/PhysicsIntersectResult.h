@@ -67,8 +67,8 @@ public:
         if (!body_)
             return "No intersection";
 
-        return UnicodeString() << "Intersection at distance: " << distance_ << ", point: " << point_ << ", normal: " << normal_
-                               << ", body: " << body_;
+        return UnicodeString() << "Intersection at distance: " << distance_ << ", point: " << point_
+                               << ", normal: " << normal_ << ", body: " << body_;
     }
 
 private:
@@ -80,9 +80,9 @@ private:
 };
 
 /**
- * This stream concatenation overload is required in order to be able to directly log a PhysicsIntersectResult instance, and is
- * needed because PhysicsIntersectResult has automatic conversions to both bool and String meaning the implicit conversion to a
- * StringBase<T> is ambiguous.
+ * This stream concatenation overload is required in order to be able to directly log a PhysicsIntersectResult instance,
+ * and is needed because PhysicsIntersectResult has automatic conversions to both bool and String meaning the implicit
+ * conversion to a StringBase<T> is ambiguous.
  */
 template <typename T> StringBase<T>& operator<<(StringBase<T>& s, const PhysicsIntersectResult& result)
 {

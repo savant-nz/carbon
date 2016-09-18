@@ -40,11 +40,12 @@ bool TriangleArray::addTriangle(const Triangle& triangle)
         return false;
     }
 
-    return addTriangle(triangle.getVertexData(0), triangle.getVertexData(1), triangle.getVertexData(2), triangle.getMaterial(),
-                       triangle.getLightmap());
+    return addTriangle(triangle.getVertexData(0), triangle.getVertexData(1), triangle.getVertexData(2),
+                       triangle.getMaterial(), triangle.getLightmap());
 }
 
-bool TriangleArray::addTriangle(const void* v0, const void* v1, const void* v2, const String& material, const String& lightmap)
+bool TriangleArray::addTriangle(const void* v0, const void* v1, const void* v2, const String& material,
+                                const String& lightmap)
 {
     usedVertexCount_ += 3;
 

@@ -221,8 +221,9 @@ bool PlatformMacOSX::setup()
 
     // Read original display gammas
     auto sampleCount = 0U;
-    if (CGGetDisplayTransferByTable(CGMainDisplayID(), 256, m->originalGammaRamps[0].data(), m->originalGammaRamps[1].data(),
-                                    m->originalGammaRamps[2].data(), &sampleCount) != CGDisplayNoErr ||
+    if (CGGetDisplayTransferByTable(CGMainDisplayID(), 256, m->originalGammaRamps[0].data(),
+                                    m->originalGammaRamps[1].data(), m->originalGammaRamps[2].data(),
+                                    &sampleCount) != CGDisplayNoErr ||
         sampleCount != 256)
     {
         // Fall back to an identity gamma curve as the default
@@ -286,10 +287,11 @@ bool PlatformMacOSX::createWindow(const Resolution& resolution, WindowMode windo
                                 (nativeResolution_.getHeight() - resolution.getHeight()) / 2, resolution.getWidth(),
                                 resolution.getHeight());
 
-        m->nsWindow = [[NSWindow alloc] initWithContentRect:frame
-                                                  styleMask:NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask
-                                                    backing:NSBackingStoreBuffered
-                                                      defer:NO];
+        m->nsWindow =
+            [[NSWindow alloc] initWithContentRect:frame
+                                        styleMask:NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask
+                                          backing:NSBackingStoreBuffered
+                                            defer:NO];
         if (!m->nsWindow)
             throw Exception("Failed creating window");
 
@@ -302,13 +304,14 @@ bool PlatformMacOSX::createWindow(const Resolution& resolution, WindowMode windo
         [m->nsWindow setAcceptsMouseMovedEvents:YES];
         [m->nsWindow setBackgroundColor:[NSColor blackColor]];
         [m->nsWindow setOpaque:YES];
-        [m->nsWindow setCollectionBehavior:NSWindowCollectionBehaviorManaged | NSWindowCollectionBehaviorFullScreenPrimary];
+        [m->nsWindow
+            setCollectionBehavior:NSWindowCollectionBehaviorManaged | NSWindowCollectionBehaviorFullScreenPrimary];
 
         // Create an OpenGL rendering context
         m->nsOpenGLContext = [[NSOpenGLContext alloc] initWithFormat:pixelFormat shareContext:nil];
 
-        // When the rendering resolution is lower than the window's resolution, which happens when running fullscreen at a
-        // resolution lower than the native resolution, the rendered surface is automatically upscaled to fill the screen
+        // When the rendering resolution is lower than the window's resolution, which happens when running fullscreen at
+        // a resolution lower than the native resolution, the rendered surface is upscaled to fill the screen
         auto dimensions = std::array<GLint, 2>{{GLint(resolution.getWidth()), GLint(resolution.getHeight())}};
         [m->nsOpenGLContext setValues:dimensions.data() forParameter:NSOpenGLCPSurfaceBackingSize];
         CGLEnable(CGLContextObj([m->nsOpenGLContext CGLContextObj]), kCGLCESurfaceBackingSize);
@@ -385,8 +388,8 @@ bool PlatformMacOSX::resizeWindow(const Resolution& resolution, WindowMode windo
     if (windowMode == Windowed)
     {
         auto contentRect = NSMakeRect((nativeResolution_.getWidth() - resolution.getWidth()) / 2,
-                                      (nativeResolution_.getHeight() - resolution.getHeight()) / 2, resolution.getWidth(),
-                                      resolution.getHeight());
+                                      (nativeResolution_.getHeight() - resolution.getHeight()) / 2,
+                                      resolution.getWidth(), resolution.getHeight());
 
         [m->nsWindow setFrame:[m->nsWindow frameRectForContentRect:contentRect] display:YES];
     }
@@ -555,7 +558,8 @@ bool PlatformMacOSX::processEvent(const Event& e)
                             // Cmd+Control+F toggles fullscreen
                             else if (key == KeyF && ([NSEvent modifierFlags] & NSCommandKeyMask) &&
                                      ([NSEvent modifierFlags] & NSControlKeyMask))
-                                resizeWindow(currentResolution_, windowMode_ == Fullscreen ? Windowed : Fullscreen, fsaaMode_);
+                                resizeWindow(currentResolution_, windowMode_ == Fullscreen ? Windowed : Fullscreen,
+                                             fsaaMode_);
                         }
                         else
                             onInputUpEvent(key);
@@ -565,7 +569,7 @@ bool PlatformMacOSX::processEvent(const Event& e)
                     {
                         auto characters = UnicodeString([event characters]);
 
-                        // Get rid of non-renderable characters below U+0020 and those in the private use area U+E000 to U+F8FF
+                        // Get rid of non-renderable characters below U+0020 and any in the private use area
                         for (auto i = 0U; i < characters.length(); i++)
                         {
                             if (characters.at(i) < 0x20 || characters.at(i) == 0x7F ||
@@ -615,7 +619,8 @@ bool PlatformMacOSX::processEvent(const Event& e)
                     auto isLeftMouseButton = ([event type] == NSLeftMouseDown || [event type] == NSLeftMouseUp);
                     auto button = isLeftMouseButton ? LeftMouseButton : RightMouseButton;
 
-                    isMouseButtonPressed_[button] = ([event type] == NSLeftMouseDown || [event type] == NSRightMouseDown);
+                    isMouseButtonPressed_[button] =
+                        ([event type] == NSLeftMouseDown || [event type] == NSRightMouseDown);
 
                     if (isMouseButtonPressed_[button])
                         onInputDownEvent(button);

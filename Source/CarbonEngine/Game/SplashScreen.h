@@ -27,9 +27,10 @@ public:
     ~SplashScreen();
 
     /**
-     * Adds a logo to this splash screen. The logo size defaults to half of the maximum size the logo could be set to without
-     * being clipped. By default the logo will be aligned to the center of the screen, but this can be overridden. An offset
-     * from the aligned position can also be given and is a normalized resolution-independent value.
+     * Adds a logo to this splash screen. The logo size defaults to half of the maximum size the logo could be set to
+     * without being clipped. By default the logo will be aligned to the center of the screen, but this can be
+     * overridden. An offset from the aligned position can also be given and is a normalized resolution-independent
+     * value.
      */
     void addLogo(const String& logoTexture, Vec2 size = Vec2(0.33f),
                  GUIWindow::ScreenLocation alignment = GUIWindow::ScreenMiddle, const Vec2& offset = Vec2::Zero);
@@ -40,8 +41,8 @@ public:
     void setFade(float fadeInTime = 1.5f, float holdTime = 1.0f, float fadeOutTime = 2.0f);
 
     /**
-     * Updates the splash screen for this frame. The return value specifies whether the splash screen is still displaying, and
-     * if this is true then the splash screen scene will automatically be queued for rendering.
+     * Updates the splash screen for this frame. The return value specifies whether the splash screen is still
+     * displaying, and if this is true then the splash screen scene will automatically be queued for rendering.
      */
     bool update();
 

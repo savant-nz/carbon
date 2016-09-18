@@ -3,8 +3,8 @@
 # distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-# Methods for interacting with Amazon S3. By default the Amazon S3 Access Key ID and Secret Access Key are read out of the
-# CARBON_S3_ACCESS_KEY_ID and CARBON_S3_SECRET_ACCESS_KEY environment variables.
+# Methods for interacting with Amazon S3. By default the Amazon S3 Access Key ID and Secret Access Key are read out of
+# the CARBON_S3_ACCESS_KEY_ID and CARBON_S3_SECRET_ACCESS_KEY environment variables.
 module AmazonS3
   module_function
 

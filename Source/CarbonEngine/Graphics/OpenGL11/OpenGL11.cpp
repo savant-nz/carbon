@@ -163,10 +163,10 @@ void OpenGL11::setMultisampleEnabled(bool enabled)
 
 bool OpenGL11::isStencilBufferSupported() const
 {
-    // At present stencil is only advertised as supported if the hardware supports separate stencil modes for front and back
-    // faces as well as stencil wrapping. More hardware could be supported if these requirements were lifted but there is no
-    // need at present. Doing this would require additional hardware support methods on GraphicsInterface and users of
-    // stenciling to be updated to check for the relevant hardware support.
+    // At present stencil is only advertised as supported if the hardware supports separate stencil modes for front and
+    // back faces as well as stencil wrapping. More hardware could be supported if these requirements were lifted but
+    // there is no need at present. Doing this would require additional hardware support methods on GraphicsInterface
+    // and users of stenciling to be updated to check for the relevant hardware support.
 
     return extensions_.EXT_stencil_two_side && extensions_.EXT_stencil_wrap;
 }
@@ -289,8 +289,8 @@ bool OpenGL11::isPrimitiveTypeSupported(PrimitiveType primitiveType) const
 }
 
 void OpenGL11::drawIndexedPrimitives(PrimitiveType primitiveType, unsigned int lowestIndex, unsigned int highestIndex,
-                                     unsigned int indexCount, DataType indexDataType, DataBufferObject indexDataBufferObject,
-                                     uintptr_t indexOffset)
+                                     unsigned int indexCount, DataType indexDataType,
+                                     DataBufferObject indexDataBufferObject, uintptr_t indexOffset)
 {
     assert(indexDataBufferObject && "Index data buffer not specified");
 

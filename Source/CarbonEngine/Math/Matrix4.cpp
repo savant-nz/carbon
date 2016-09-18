@@ -12,8 +12,10 @@
 namespace Carbon
 {
 
-const Matrix4 Matrix4::Identity(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
-const Matrix4 Matrix4::Half(0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f, 0.5f, 0.5f, 0.5f, 1.0f);
+const Matrix4 Matrix4::Identity(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+                                0.0f, 1.0f);
+const Matrix4 Matrix4::Half(0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f, 0.5f, 0.5f, 0.5f,
+                            1.0f);
 
 Matrix4 Matrix4::operator*(const Matrix4& other) const
 {
@@ -244,8 +246,8 @@ void Matrix4::transpose()
 
 void Matrix4::modifyProjectionMatrix(const Plane& clipPlane)
 {
-    // Calculate the clip-space corner point opposite the clipping plane as (sgn(clipPlane.x), sgn(clipPlane.y), 1, 1) and
-    // transform it into camera space by multiplying it by the inverse of the projection matrix
+    // Calculate the clip-space corner point opposite the clipping plane as (sgn(clipPlane.x), sgn(clipPlane.y), 1, 1)
+    // and transform it into camera space by multiplying it by the inverse of the projection matrix
 
     auto q = Vec3((Math::getSign(clipPlane.getNormal().x) + m_[8]) / m_[0],
                   (Math::getSign(clipPlane.getNormal().y) + m_[9]) / m_[5], -1.0f);
@@ -304,7 +306,8 @@ Rect Matrix4::getProjectedSphereBounds(const Vec3& viewSpacePosition, float radi
         auto normalZ1 = (radius - normalX1 * viewSpacePosition.x) / viewSpacePosition.z;
 
         // Get the point of tangency, only consider points of tangency in front of the camera
-        auto pointZ0 = (lightXZ - radiusSquared) / (viewSpacePosition.z - ((normalZ0 / normalX0) * viewSpacePosition.x));
+        auto pointZ0 =
+            (lightXZ - radiusSquared) / (viewSpacePosition.z - ((normalZ0 / normalX0) * viewSpacePosition.x));
         if (pointZ0 < 0.0f)
         {
             // Project point onto near plane
@@ -321,7 +324,8 @@ Rect Matrix4::getProjectedSphereBounds(const Vec3& viewSpacePosition, float radi
                 rect.setLeft(std::max(rect.getLeft(), relX0.x));
         }
 
-        auto pointZ1 = (lightXZ - radiusSquared) / (viewSpacePosition.z - ((normalZ1 / normalX1) * viewSpacePosition.x));
+        auto pointZ1 =
+            (lightXZ - radiusSquared) / (viewSpacePosition.z - ((normalZ1 / normalX1) * viewSpacePosition.x));
         if (pointZ1 < 0.0f)
         {
             // Project point onto near plane
@@ -365,7 +369,8 @@ Rect Matrix4::getProjectedSphereBounds(const Vec3& viewSpacePosition, float radi
         auto normalZ1 = (radius - normalY1 * viewSpacePosition.y) / viewSpacePosition.z;
 
         // Get the point of tangency, only consider points of tangency in front of the camera
-        auto pointZ0 = (lightYZ - radiusSquared) / (viewSpacePosition.z - ((normalZ0 / normalY0) * viewSpacePosition.y));
+        auto pointZ0 =
+            (lightYZ - radiusSquared) / (viewSpacePosition.z - ((normalZ0 / normalY0) * viewSpacePosition.y));
         if (pointZ0 < 0)
         {
             // Project point onto near plane
@@ -382,7 +387,8 @@ Rect Matrix4::getProjectedSphereBounds(const Vec3& viewSpacePosition, float radi
                 rect.setBottom(std::max(rect.getBottom(), relY0.y));
         }
 
-        auto pointZ1 = (lightYZ - radiusSquared) / (viewSpacePosition.z - ((normalZ1 / normalY1) * viewSpacePosition.y));
+        auto pointZ1 =
+            (lightYZ - radiusSquared) / (viewSpacePosition.z - ((normalZ1 / normalY1) * viewSpacePosition.y));
         if (pointZ1 < 0)
         {
             // Project point onto near plane
@@ -457,17 +463,25 @@ Matrix4 Matrix4::getRotationZ(float radians)
 
 Matrix4 Matrix4::getReflection(const Plane& plane)
 {
-    return {-2.0f * plane.getNormal().x * plane.getNormal().x + 1.0f, -2.0f * plane.getNormal().x * plane.getNormal().y,
-            -2.0f * plane.getNormal().x * plane.getNormal().z,        0.0f,
+    return {-2.0f * plane.getNormal().x * plane.getNormal().x + 1.0f,
+            -2.0f * plane.getNormal().x * plane.getNormal().y,
+            -2.0f * plane.getNormal().x * plane.getNormal().z,
+            0.0f,
 
-            -2.0f * plane.getNormal().y * plane.getNormal().x,        -2.0f * plane.getNormal().y * plane.getNormal().y + 1.0f,
-            -2.0f * plane.getNormal().y * plane.getNormal().z,        0.0f,
+            -2.0f * plane.getNormal().y * plane.getNormal().x,
+            -2.0f * plane.getNormal().y * plane.getNormal().y + 1.0f,
+            -2.0f * plane.getNormal().y * plane.getNormal().z,
+            0.0f,
 
-            -2.0f * plane.getNormal().z * plane.getNormal().x,        -2.0f * plane.getNormal().z * plane.getNormal().y,
-            -2.0f * plane.getNormal().z * plane.getNormal().z + 1.0f, 0.0f,
+            -2.0f * plane.getNormal().z * plane.getNormal().x,
+            -2.0f * plane.getNormal().z * plane.getNormal().y,
+            -2.0f * plane.getNormal().z * plane.getNormal().z + 1.0f,
+            0.0f,
 
-            -2.0f * plane.getDistance() * plane.getNormal().x,        -2.0f * plane.getDistance() * plane.getNormal().y,
-            -2.0f * plane.getDistance() * plane.getNormal().z,        1.0f};
+            -2.0f * plane.getDistance() * plane.getNormal().x,
+            -2.0f * plane.getDistance() * plane.getNormal().y,
+            -2.0f * plane.getDistance() * plane.getNormal().z,
+            1.0f};
 }
 
 Matrix4 Matrix4::getOrthographicProjection(const Rect& rect, float nearPlaneDistance, float farPlaneDistance)
@@ -485,7 +499,8 @@ Matrix4 Matrix4::getOrthographicProjection(const Rect& rect, float nearPlaneDist
     return m;
 }
 
-Matrix4 Matrix4::getPerspectiveProjection(float fieldOfView, float aspectRatio, float nearPlaneDistance, float farPlaneDistance)
+Matrix4 Matrix4::getPerspectiveProjection(float fieldOfView, float aspectRatio, float nearPlaneDistance,
+                                          float farPlaneDistance)
 {
     auto m = Matrix4();
 
@@ -500,7 +515,8 @@ Matrix4 Matrix4::getPerspectiveProjection(float fieldOfView, float aspectRatio, 
     return m;
 }
 
-Vec3 Matrix4::unproject(const Vec3& p, const SimpleTransform& viewTransform, const Matrix4& projection, const Rect& viewport)
+Vec3 Matrix4::unproject(const Vec3& p, const SimpleTransform& viewTransform, const Matrix4& projection,
+                        const Rect& viewport)
 {
     // Calculate inverse matrix
     auto mvpInverse = Matrix4();

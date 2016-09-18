@@ -20,20 +20,15 @@ class EventManager::Members
 {
 public:
 
-    // The registered handlers for each event are managed by this helper class. Handlers registered as needing to receive an
-    // event first before other handlers go in firstHandlers_, all other handlers go in normalHandlers_.
+    // The registered handlers for each event are managed by this helper class. Handlers registered as needing to
+    // receive an event first before other handlers go in firstHandlers_, all other handlers go in normalHandlers_.
     class EventHandlerSet
     {
     public:
 
         void registerFirstHandler(EventHandler* handler) { firstHandlers_.insert(handler); }
 
-        void registerLastHandler(EventHandler* handler)
-        {
-            assert(normalHandlers_.find(handler) == normalHandlers_.end() && "Duplicate EventHandler entries not allowed");
-
-            normalHandlers_.insert(handler);
-        }
+        void registerLastHandler(EventHandler* handler) { normalHandlers_.insert(handler); }
 
         void removeHandler(EventHandler* handler)
         {
@@ -70,8 +65,8 @@ public:
         std::unordered_set<EventHandler*> normalHandlers_;
     };
 
-    // Events are referenced using a unique integer ID value that is can be looked up directly in this array to get the set of
-    // handlers for the event. The sets are created on demand.
+    // Events are referenced using a unique integer ID value that is can be looked up directly in this array to get the
+    // set of handlers for the event. The sets are created on demand.
     std::vector<std::unique_ptr<EventHandlerSet>> eventHandlerSets;
     EventHandlerSet& getEventHandlerSet(unsigned int eventTypeID)
     {
@@ -123,26 +118,28 @@ public:
         return result;
     }
 
-    // Events dispatched by worker threads are queued in this vector then dispatched on the main thread, the boolean value
-    // indicates whether the queued Event instance needs to be explicitly deleted once the event has been sent, i.e. it was
-    // added via EventManager::queueEvent()
+    // Events dispatched by worker threads are queued in this vector then dispatched on the main thread, the boolean
+    // value indicates whether the queued Event instance needs to be explicitly deleted once the event has been sent,
+    // i.e. it was added via EventManager::queueEvent()
     struct QueuedEvent
     {
         Event* event = nullptr;
         bool deleteAfterDispatch = false;
 
         QueuedEvent() {}
-        QueuedEvent(Event* event_, bool deleteAfterDispatch_) : event(event_), deleteAfterDispatch(deleteAfterDispatch_) {}
+        QueuedEvent(Event* event_, bool deleteAfterDispatch_) : event(event_), deleteAfterDispatch(deleteAfterDispatch_)
+        {
+        }
     };
     Vector<QueuedEvent> queuedEvents;
 
-    // The number of worker threads currently blocked waiting for a call to EventManager::dispatchQueuedEvents() on the main
-    // thread to occur
+    // The number of worker threads currently blocked waiting for a call to EventManager::dispatchQueuedEvents() on the
+    // main thread to occur
     unsigned int workerThreadsWaitingForDispatchCount = 0;
 
-    // When an event queued in EventManager::dispatchEvent() by a worker thread is disptched on the main thread, the return
-    // value from the call to EventManager::dispatchEvent() on the main thread is stored here for retrieval by the worker thread
-    // that is waiting for the result
+    // When an event queued in EventManager::dispatchEvent() by a worker thread is disptched on the main thread, the
+    // return value from the call to EventManager::dispatchEvent() on the main thread is stored here for retrieval by
+    // the worker thread that is waiting for the result
     std::unordered_map<Event*, bool> queuedEventDispatchResults;
 
     // This mutex is used to protect the above three members
@@ -156,8 +153,8 @@ EventManager::EventManager()
 
 EventManager::~EventManager()
 {
-    // Before shutting down, dispatch all queued events and wait for there to be no worker threads waiting on a dispatch to
-    // complete
+    // Before shutting down, dispatch all queued events and wait for there to be no worker threads waiting on a dispatch
+    // to complete
     while (true)
     {
         if (dispatchQueuedEvents() == 0)
@@ -177,14 +174,16 @@ void EventManager::addHandler(EventHandler* handler, unsigned int eventTypeID, b
     if (first)
     {
         if (m->isEventBeingDispatched(eventTypeID))
-            m->pendingHandlerChanges.emplace(Members::PendingEventHandlerChange::RegisterFirstHandler, eventTypeID, handler);
+            m->pendingHandlerChanges.emplace(Members::PendingEventHandlerChange::RegisterFirstHandler, eventTypeID,
+                                             handler);
         else if (!isRegistered(handler, eventTypeID))
             m->getEventHandlerSet(eventTypeID).registerFirstHandler(handler);
     }
     else
     {
         if (m->isEventBeingDispatched(eventTypeID))
-            m->pendingHandlerChanges.emplace(Members::PendingEventHandlerChange::RegisterLastHandler, eventTypeID, handler);
+            m->pendingHandlerChanges.emplace(Members::PendingEventHandlerChange::RegisterLastHandler, eventTypeID,
+                                             handler);
         else if (!isRegistered(handler, eventTypeID))
             m->getEventHandlerSet(eventTypeID).registerLastHandler(handler);
     }
@@ -242,8 +241,8 @@ bool EventManager::isRegistered(EventHandler* handler) const
 
 bool EventManager::dispatchEvent(Event& e)
 {
-    // Dispatches that don't come from the main thread are queued for processing on the main thread at the start of the next
-    // frame, the calling thread blocks waiting for the result of the dispatch
+    // Dispatches that don't come from the main thread are queued for processing on the main thread at the start of the
+    // next frame, the calling thread blocks waiting for the result of the dispatch
     if (!Thread::isRunningInMainThread())
     {
         auto queueEntry = Members::QueuedEvent(&e, false);
@@ -255,10 +254,10 @@ bool EventManager::dispatchEvent(Event& e)
             m->workerThreadsWaitingForDispatchCount++;
         }
 
-        // Wait until the event has been dispatched by the main thread, this is indicated by the event no longer being in
-        // m->queuedEvents TODO: the synchronization here should really use a condition variable, but those aren't part of the
-        // threading layer at present
-        bool result = false;
+        // Wait until the event has been dispatched by the main thread, this is indicated by the event no longer being
+        // in m->queuedEvents TODO: the synchronization here should really use a condition variable, but those aren't
+        // part of the threading layer at present
+        auto result = false;
         while (true)
         {
             Thread::sleep(2);
@@ -278,7 +277,7 @@ bool EventManager::dispatchEvent(Event& e)
         return result;
     }
 
-    const unsigned int eventTypeID = getEventTypeID(typeid(e));
+    const auto eventTypeID = getEventTypeID(typeid(e));
 
     // Log this event if event logging is on and the event is loggable
     if (LogEvents && e.isLoggable())
@@ -308,8 +307,9 @@ bool EventManager::dispatchEvent(Event& e)
     auto& eventHandlerSet = m->getEventHandlerSet(eventTypeID);
 
     // Call the event handlers, each one is checked that it doesn't have a removal pending before it is called
-    bool result = eventHandlerSet.each(
-        [&](EventHandler* handler) { return m->isHandlerAwaitingRemoval(handler, eventTypeID) || handler->processEvent(e); });
+    auto result = eventHandlerSet.each([&](EventHandler* handler) {
+        return m->isHandlerAwaitingRemoval(handler, eventTypeID) || handler->processEvent(e);
+    });
 
     m->currentEventStack.popBack();
 
@@ -364,14 +364,14 @@ unsigned int EventManager::dispatchQueuedEvents()
 
         if (queuedEvent.deleteAfterDispatch)
         {
-            // This event came through EventManager::queueEvent() so the result is discarded and the Event instance is deleted
-            // now that it has been dispatched
+            // This event came through EventManager::queueEvent() so the result is discarded and the Event instance is
+            // deleted now that it has been dispatched
             delete queuedEvent.event;
         }
         else
         {
-            // This event came via a call to EventManager::dispatchEvent() on a worker thread, which means there is currently a
-            // thread waiting for this dispatch to be completed, the result of the dispatch goes into
+            // This event came via a call to EventManager::dispatchEvent() on a worker thread, which means there is
+            // currently a thread waiting for this dispatch to be completed, the result of the dispatch goes into
             // m->queuedEventDispatchResults
             m->queuedEventDispatchResults[queuedEvent.event] = result;
         }

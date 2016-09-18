@@ -53,7 +53,8 @@ private:
     }
 };
 
-bool AStarTraversal::run(NavigationGraph& graph, NavigationNode& start, NavigationNode& target, Vector<NavigationNode*>& path)
+bool AStarTraversal::run(NavigationGraph& graph, NavigationNode& start, NavigationNode& target,
+                         Vector<NavigationNode*>& path)
 {
     auto details = Vector<AStarDetails>(graph.getNodeCount());
 

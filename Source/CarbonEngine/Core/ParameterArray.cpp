@@ -215,7 +215,8 @@ void ParameterArray::load(FileReader& file)
 
 ParameterArray::operator UnicodeString() const
 {
-    return String(getParameterNames().sorted().map<String>([&](const String& s) { return s + ": " + get(s).getString(); }));
+    return String(
+        getParameterNames().sorted().map<String>([&](const String& s) { return s + ": " + get(s).getString(); }));
 }
 
 }

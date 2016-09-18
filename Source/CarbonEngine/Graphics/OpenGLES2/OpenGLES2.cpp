@@ -113,8 +113,8 @@ void OpenGLES2::setShaderProgram(ShaderProgram* program)
 }
 
 void OpenGLES2::drawIndexedPrimitives(PrimitiveType primitiveType, unsigned int lowestIndex, unsigned int highestIndex,
-                                      unsigned int indexCount, DataType indexDataType, DataBufferObject indexDataBufferObject,
-                                      uintptr_t indexOffset)
+                                      unsigned int indexCount, DataType indexDataType,
+                                      DataBufferObject indexDataBufferObject, uintptr_t indexOffset)
 {
     assert(indexDataBufferObject && "Index data buffer not specified");
 

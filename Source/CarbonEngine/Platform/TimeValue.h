@@ -9,18 +9,18 @@ namespace Carbon
 {
 
 /**
- * The TimeValue class is the basis of all time and duration manipulation, and forms the basis of the SimpleTimer, ScopedTimer
- * and PeriodicTimer classes. Internally the TimeValue class uses an integer tick count, but this is an implementation detail
- * and precise timing accuracy varies between platforms, however accuracy down to at least 1ms is guaranteed and most platforms
- * provide at least 0.1ms accuracy or better. The TimeValue for 'right now' is returned by PlatformInterface::getTime().
- * PlatformInterface::getTimePassed() and PlatformInterface::getSecondsPassed() are available for querying the amount of time
- * taken for the last frame.
+ * The TimeValue class is the basis of all time and duration manipulation, and forms the basis of the SimpleTimer,
+ * ScopedTimer and PeriodicTimer classes. Internally the TimeValue class uses an integer tick count, but this is an
+ * implementation detail and precise timing accuracy varies between platforms, however accuracy down to at least 1ms is
+ * guaranteed and most platforms provide at least 0.1ms accuracy or better. The TimeValue for 'right now' is returned by
+ * PlatformInterface::getTime(). PlatformInterface::getTimePassed() and PlatformInterface::getSecondsPassed() are
+ * available for querying the amount of time taken for the last frame.
  *
- * TimeValue instances can be directly manipulated with operations such as addition, subtraction, modulo and division, and can
- * also be converted to seconds with TimeValue::toSeconds() and milliseconds with TimeValue::toMilliseconds(). In order to
- * ensure a high level of accuracy all calculations that involve TimeValue instances should only convert into seconds as a last
- * step, and should do all calculations using TimeValue instances, as well as storing long-lived timing values in a TimeValue
- * instance.
+ * TimeValue instances can be directly manipulated with operations such as addition, subtraction, modulo and division,
+ * and can also be converted to seconds with TimeValue::toSeconds() and milliseconds with TimeValue::toMilliseconds().
+ * In order to ensure a high level of accuracy all calculations that involve TimeValue instances should only convert
+ * into seconds as a last step, and should do all calculations using TimeValue instances, as well as storing long-lived
+ * timing values in a TimeValue instance.
  */
 class CARBON_API TimeValue
 {
@@ -73,7 +73,8 @@ public:
     TimeValue operator+(float seconds) const { return operator+(fromSeconds(seconds)); }
 
     /**
-     * Subtracts another time value from this time value and returns the result, this can be used to work out time value deltas.
+     * Subtracts another time value from this time value and returns the result, this can be used to work out time value
+     * deltas.
      */
     TimeValue operator-(TimeValue other) const { return TimeValue(ticks_ - other.ticks_); }
 
@@ -166,10 +167,11 @@ public:
     TimeValue operator%(TimeValue other) const { return TimeValue(ticks_ % other.ticks_); }
 
     /**
-     * Returns the normalized remainder of this time value under the given modulus in seconds, this is particularly useful in
-     * conjunction with `platform().getTime()` for getting a value in range 0-1 for a given period. For example, the value of
-     * `platform().getTime() % 2.2f` will go from 0 to 1 over a period of 2.2 seconds, and then wrap around back to zero and
-     * repeat. This operator does not lose accuracy when internal tick counts are extremely large.
+     * Returns the normalized remainder of this time value under the given modulus in seconds, this is particularly
+     * useful in conjunction with `platform().getTime()` for getting a value in range 0-1 for a given period. For
+     * example, the value of `platform().getTime() % 2.2f` will go from 0 to 1 over a period of 2.2 seconds, and then
+     * wrap around back to zero and repeat. This operator does not lose accuracy when internal tick counts are extremely
+     * large.
      */
     float operator%(float seconds) const
     {
@@ -207,15 +209,18 @@ public:
     operator UnicodeString() const { return ticks_; }
 
     /**
-     * Returns this time value as a Parameter that stores the internal tick counter, this is used to store a TimeValue in a
-     * ParameterArray.
+     * Returns this time value as a Parameter that stores the internal tick counter, this is used to store a TimeValue
+     * in a ParameterArray.
      */
     operator Parameter() const;
 
     /**
      * Converts the passed number of seconds into a time value.
      */
-    static TimeValue fromSeconds(float seconds) { return TimeValue(int64_t(double(ticksPerSecond_) * double(seconds))); }
+    static TimeValue fromSeconds(float seconds)
+    {
+        return TimeValue(int64_t(double(ticksPerSecond_) * double(seconds)));
+    }
 
     /**
      * Saves this time value to a file stream. Throws an Exception if an error occurs.

@@ -138,8 +138,8 @@ void Texture::setProperties(const TextureProperties& properties)
 {
     auto runUploadImmediately = false;
 
-    // Changes in texture quality necessitate a re-upload of this texture if it has already been uploaded to the graphics
-    // interface
+    // Changes in texture quality necessitate a re-upload of this texture if it has already been uploaded to the
+    // graphics interface
     if (properties.getQuality() != properties_.getQuality())
     {
         if (state_ == Ready)
@@ -169,9 +169,11 @@ void Texture::setProperties(const TextureProperties& properties)
         else
         {
             if (properties.getFilter() == TextureProperties::NearestFilter)
-                graphics().setTextureFilter(t, textureType, GraphicsInterface::FilterNearest, GraphicsInterface::FilterNearest);
+                graphics().setTextureFilter(t, textureType, GraphicsInterface::FilterNearest,
+                                            GraphicsInterface::FilterNearest);
             else
-                graphics().setTextureFilter(t, textureType, GraphicsInterface::FilterLinear, GraphicsInterface::FilterLinear);
+                graphics().setTextureFilter(t, textureType, GraphicsInterface::FilterLinear,
+                                            GraphicsInterface::FilterLinear);
         }
 
         graphics().setTextureWrap(t, textureType, properties.getWrap());
@@ -249,7 +251,8 @@ const Image& Texture::getUploadableImage(Image& temporaryImage) const
     if (!graphics().isPixelFormatSupported(image->getPixelFormat(), getTextureType()))
     {
         temporaryImage = *image;
-        if (!temporaryImage.setPixelFormat(graphics().getFallbackPixelFormat(getTextureType(), image->getPixelFormat())))
+        auto newPixelFormat = graphics().getFallbackPixelFormat(getTextureType(), image->getPixelFormat());
+        if (!temporaryImage.setPixelFormat(newPixelFormat))
             throw Exception() << "Failed converting image to a supported pixel format: " << *image;
 
         image = &temporaryImage;
@@ -301,8 +304,8 @@ bool Texture::doesTextureFileExist(const String& name)
 {
     auto fullName = String();
 
-    // Prefix with TextureDirectory unless the passed name starts with a forward slash indicating an absolute path, or a $ which
-    // would indicate that the $<volume name>$/ syntax is in use
+    // Prefix with TextureDirectory unless the passed name starts with a forward slash indicating an absolute path, or a
+    // $ which would indicate that the $<volume name>$/ syntax is in use
     if (name.at(0) != '/' && name.at(0) != '$')
         fullName = A(TextureDirectory) + name;
     else
@@ -320,14 +323,16 @@ bool Texture::loadTextureImage(const String& name, Image& image)
 
     auto prefixes = Vector<String>(1, String::Empty);
 
-    // A prefix of TextureDirectory is preferred unless the passed name starts with a forward slash indicating an absolute path,
-    // or a $ which would indicate that the $<volume name>$/ syntax is in use. A non-prefixed path is always tried.
+    // A prefix of TextureDirectory is preferred unless the passed name starts with a forward slash indicating an
+    // absolute path, or a $ which would indicate that the $<volume name>$/ syntax is in use. A non-prefixed path is
+    // always tried.
     if (name.at(0) != '/' && name.at(0) != '$')
         prefixes.prepend(A(TextureDirectory));
 
     for (auto& prefix : prefixes)
     {
-        // Send a BeforeTextureImageLoadEvent to get the target pixel format to pass to ImageFormatRegistry::loadImageFile()
+        // Send a BeforeTextureImageLoadEvent to get the target pixel format to pass to
+        // ImageFormatRegistry::loadImageFile()
         auto beforeTextureImageLoadEvent = BeforeTextureImageLoadEvent(prefix + name);
         events().dispatchEvent(beforeTextureImageLoadEvent);
 
@@ -336,8 +341,9 @@ bool Texture::loadTextureImage(const String& name, Image& image)
                                                beforeTextureImageLoadEvent.getTargetPixelFormat()))
             return true;
 
-        // The above load didn't work, so try loading a cubemap from 6 individual image files, one for each face of the cubemap.
-        // The first of the suffix configs below is the native format, the second config pattern is Quake 3's setup.
+        // The above load didn't work, so try loading a cubemap from 6 individual image files, one for each face of the
+        // cubemap. The first of the suffix configs below is the native format, the second config pattern is Quake 3's
+        // setup.
 
         struct SuffixConfig
         {
@@ -431,7 +437,10 @@ bool Texture::processEvent(const Event& e)
             if (image_.isCubemap())
             {
                 for (auto j = 0U; j < 6; j++)
-                    gmse->addAllocation("Texture", name_, image_.getCubemapDataForFrame(i, j), image_.getFrameDataSize());
+                {
+                    gmse->addAllocation("Texture", name_, image_.getCubemapDataForFrame(i, j),
+                                        image_.getFrameDataSize());
+                }
             }
             else
                 gmse->addAllocation("Texture", name_, image_.getDataForFrame(i), image_.getFrameDataSize());

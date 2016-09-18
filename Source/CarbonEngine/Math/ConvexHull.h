@@ -12,8 +12,8 @@ namespace Carbon
 {
 
 /**
- * Convex hull bounding volume defined by a set of outward-facing planes, at least 4 planes are required to define a closed
- * volume.
+ * Convex hull bounding volume defined by a set of outward-facing planes, at least 4 planes are required to define a
+ * closed volume.
  */
 class CARBON_API ConvexHull
 {
@@ -27,7 +27,8 @@ public:
     ConvexHull(Vector<Plane> planes) : planes_(std::move(planes)) {}
 
     /**
-     * Constructs this convex hull from the six world space frustum planes defined by the passed projection and view matrices.
+     * Constructs this convex hull from the six world space frustum planes defined by the passed projection and view
+     * matrices.
      */
     ConvexHull(const Matrix4& projectionMatrix, const Matrix4& viewMatrix);
 
@@ -77,8 +78,8 @@ public:
     bool intersect(const Vec3& point) const;
 
     /**
-     * Checks for intersection between this convex hull and the passed AABB. The AABB can optionally be transformed and scaled
-     * prior to the intersection test.
+     * Checks for intersection between this convex hull and the passed AABB. The AABB can optionally be transformed and
+     * scaled prior to the intersection test.
      */
     bool intersect(const AABB& aabb, const SimpleTransform& transform = SimpleTransform::Identity,
                    const Vec3& scale = Vec3::One) const;

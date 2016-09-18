@@ -70,8 +70,11 @@ extern Application* iOSCreateApplication();
         self.animationTimer = nil;
     }
 
-    self.animationTimer =
-        [NSTimer scheduledTimerWithTimeInterval:1.0 / 240.0 target:self selector:@selector(tick) userInfo:nil repeats:YES];
+    self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 / 240.0
+                                                           target:self
+                                                         selector:@selector(tick)
+                                                         userInfo:nil
+                                                          repeats:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication*)application

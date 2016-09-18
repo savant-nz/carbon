@@ -19,8 +19,8 @@ class CARBON_API AlphaFadeEntityController : public EntityController
 public:
 
     /**
-     * Initializes this alpha fade controller with the specified initial and target alpha values along with the length of time
-     * that fade should take in seconds.
+     * Initializes this alpha fade controller with the specified initial and target alpha values along with the length
+     * of time that fade should take in seconds.
      */
     void initialize(float initialAlpha, float targetAlpha, float transitionTime)
     {
@@ -43,7 +43,8 @@ public:
             return false;
         }
 
-        getEntity()->setAlpha(Interpolate::linear(initialAlpha_, targetAlpha_, timeElapsed_ % transitionTime_.toSeconds()));
+        getEntity()->setAlpha(
+            Interpolate::linear(initialAlpha_, targetAlpha_, timeElapsed_ % transitionTime_.toSeconds()));
 
         return true;
     }

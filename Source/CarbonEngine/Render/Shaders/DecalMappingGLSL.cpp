@@ -39,8 +39,8 @@ void DecalMapGLSL::enterShader(unsigned int textureUnit1, unsigned int textureUn
     sDecalGlossMap->setInteger(textureUnit2);
 }
 
-void DecalMapGLSL::setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, unsigned int textureUnit1,
-                                   unsigned int textureUnit2)
+void DecalMapGLSL::setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                                   unsigned int textureUnit1, unsigned int textureUnit2)
 {
     Shader::setTexture(textureUnit1, params[decalMapParameter], renderer().getErrorTexture());
 

@@ -208,17 +208,20 @@ typedef void(APIENTRY* PFnglUniform1ivARB)(GLint location, GLsizei count, const 
 typedef void(APIENTRY* PFnglUniform2ivARB)(GLint location, GLsizei count, const GLint* value);
 typedef void(APIENTRY* PFnglUniform3ivARB)(GLint location, GLsizei count, const GLint* value);
 typedef void(APIENTRY* PFnglUniform4ivARB)(GLint location, GLsizei count, const GLint* value);
-typedef void(APIENTRY* PFnglUniformMatrix2fvARB)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-typedef void(APIENTRY* PFnglUniformMatrix3fvARB)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
-typedef void(APIENTRY* PFnglUniformMatrix4fvARB)(GLint location, GLsizei count, GLboolean transpose, const GLfloat* value);
+typedef void(APIENTRY* PFnglUniformMatrix2fvARB)(GLint location, GLsizei count, GLboolean transpose,
+                                                 const GLfloat* value);
+typedef void(APIENTRY* PFnglUniformMatrix3fvARB)(GLint location, GLsizei count, GLboolean transpose,
+                                                 const GLfloat* value);
+typedef void(APIENTRY* PFnglUniformMatrix4fvARB)(GLint location, GLsizei count, GLboolean transpose,
+                                                 const GLfloat* value);
 typedef void(APIENTRY* PFnglGetObjectParameterfvARB)(GLhandleARB obj, GLenum pname, GLfloat* params);
 typedef void(APIENTRY* PFnglGetObjectParameterivARB)(GLhandleARB obj, GLenum pname, GLint* params);
 typedef void(APIENTRY* PFnglGetInfoLogARB)(GLhandleARB obj, GLsizei maxLength, GLsizei* length, GLcharARB* infoLog);
 typedef void(APIENTRY* PFnglGetAttachedObjectsARB)(GLhandleARB containerObj, GLsizei maxCount, GLsizei* count,
                                                    GLhandleARB* obj);
 typedef GLint(APIENTRY* PFnglGetUniformLocationARB)(GLhandleARB programObj, const GLcharARB* name);
-typedef void(APIENTRY* PFnglGetActiveUniformARB)(GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei* length,
-                                                 GLint* size, GLenum* type, GLcharARB* name);
+typedef void(APIENTRY* PFnglGetActiveUniformARB)(GLhandleARB programObj, GLuint index, GLsizei maxLength,
+                                                 GLsizei* length, GLint* size, GLenum* type, GLcharARB* name);
 typedef void(APIENTRY* PFnglGetUniformfvARB)(GLhandleARB programObj, GLint location, GLfloat* params);
 typedef void(APIENTRY* PFnglGetUniformivARB)(GLhandleARB programObj, GLint location, GLint* params);
 typedef void(APIENTRY* PFnglGetShaderSourceARB)(GLhandleARB obj, GLsizei maxLength, GLsizei* length, GLcharARB* source);
@@ -285,17 +288,19 @@ CARBON_OPENGL_DECLARE_EXTENSION_FUNCTION(glGetShaderSourceARB);
 typedef void(APIENTRY* PFnglCompressedTexImage1DARB)(GLenum target, GLint level, GLenum internalformat, GLsizei width,
                                                      GLint border, GLsizei imageSize, const GLvoid* data);
 typedef void(APIENTRY* PFnglCompressedTexImage2DARB)(GLenum target, GLint level, GLenum internalformat, GLsizei width,
-                                                     GLsizei height, GLint border, GLsizei imageSize, const GLvoid* data);
+                                                     GLsizei height, GLint border, GLsizei imageSize,
+                                                     const GLvoid* data);
 typedef void(APIENTRY* PFnglCompressedTexImage3DARB)(GLenum target, GLint level, GLenum internalformat, GLsizei width,
                                                      GLsizei height, GLsizei depth, GLint border, GLsizei imageSize,
                                                      const GLvoid* data);
-typedef void(APIENTRY* PFnglCompressedTexSubImage1DARB)(GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format,
-                                                        GLsizei imageSize, const GLvoid* data);
-typedef void(APIENTRY* PFnglCompressedTexSubImage2DARB)(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width,
-                                                        GLsizei height, GLenum format, GLsizei imageSize, const GLvoid* data);
-typedef void(APIENTRY* PFnglCompressedTexSubImage3DARB)(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset,
-                                                        GLsizei width, GLsizei height, GLsizei depth, GLenum format,
-                                                        GLsizei imageSize, const GLvoid* data);
+typedef void(APIENTRY* PFnglCompressedTexSubImage1DARB)(GLenum target, GLint level, GLint xoffset, GLsizei width,
+                                                        GLenum format, GLsizei imageSize, const GLvoid* data);
+typedef void(APIENTRY* PFnglCompressedTexSubImage2DARB)(GLenum target, GLint level, GLint xoffset, GLint yoffset,
+                                                        GLsizei width, GLsizei height, GLenum format, GLsizei imageSize,
+                                                        const GLvoid* data);
+typedef void(APIENTRY* PFnglCompressedTexSubImage3DARB)(GLenum target, GLint level, GLint xoffset, GLint yoffset,
+                                                        GLint zoffset, GLsizei width, GLsizei height, GLsizei depth,
+                                                        GLenum format, GLsizei imageSize, const GLvoid* data);
 typedef void(APIENTRY* PFnglGetCompressedTexImageARB)(GLenum target, GLint level, GLvoid* img);
 CARBON_OPENGL_DECLARE_EXTENSION_FUNCTION(glCompressedTexImage1DARB);
 CARBON_OPENGL_DECLARE_EXTENSION_FUNCTION(glCompressedTexImage2DARB);
@@ -418,7 +423,8 @@ typedef void(APIENTRY* PFnglDeleteBuffersARB)(GLsizei n, const GLuint* buffers);
 typedef void(APIENTRY* PFnglGenBuffersARB)(GLsizei n, GLuint* buffers);
 typedef GLboolean(APIENTRY* PFnglIsBufferARB)(GLuint buffer);
 typedef void(APIENTRY* PFnglBufferDataARB)(GLenum target, GLsizeiptrARB size, const GLvoid* data, GLenum usage);
-typedef void(APIENTRY* PFnglBufferSubDataARB)(GLenum target, GLintptrARB offset, GLsizeiptrARB size, const GLvoid* data);
+typedef void(APIENTRY* PFnglBufferSubDataARB)(GLenum target, GLintptrARB offset, GLsizeiptrARB size,
+                                              const GLvoid* data);
 typedef void(APIENTRY* PFnglGetBufferSubDataARB)(GLenum target, GLintptrARB offset, GLsizeiptrARB size, GLvoid* data);
 typedef GLvoid*(APIENTRY* PFnglMapBufferARB)(GLenum target, GLenum access);
 typedef GLboolean(APIENTRY* PFnglUnmapBufferARB)(GLenum target);
@@ -462,13 +468,13 @@ CARBON_OPENGL_DECLARE_EXTENSION_FUNCTION(glGetBufferPointervARB);
 #define GL_FLOAT_MAT2_ARB 0x8B5A
 #define GL_FLOAT_MAT3_ARB 0x8B5B
 #define GL_FLOAT_MAT4_ARB 0x8B5C
-typedef void(APIENTRY* PFnglVertexAttribPointerARB)(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride,
-                                                    const GLvoid* pointer);
+typedef void(APIENTRY* PFnglVertexAttribPointerARB)(GLuint index, GLint size, GLenum type, GLboolean normalized,
+                                                    GLsizei stride, const GLvoid* pointer);
 typedef void(APIENTRY* PFnglEnableVertexAttribArrayARB)(GLuint index);
 typedef void(APIENTRY* PFnglDisableVertexAttribArrayARB)(GLuint index);
 typedef void(APIENTRY* PFnglBindAttribLocationARB)(GLhandleARB programObj, GLuint index, const GLcharARB* name);
-typedef void(APIENTRY* PFnglGetActiveAttribARB)(GLhandleARB programObj, GLuint index, GLsizei maxLength, GLsizei* length,
-                                                GLint* size, GLenum* type, GLcharARB* name);
+typedef void(APIENTRY* PFnglGetActiveAttribARB)(GLhandleARB programObj, GLuint index, GLsizei maxLength,
+                                                GLsizei* length, GLint* size, GLenum* type, GLcharARB* name);
 typedef GLint(APIENTRY* PFnglGetAttribLocationARB)(GLhandleARB programObj, const GLcharARB* name);
 typedef void(APIENTRY* PFnglGetVertexAttribdvARB)(GLuint index, GLenum pname, GLdouble* params);
 typedef void(APIENTRY* PFnglGetVertexAttribfvARB)(GLuint index, GLenum pname, GLfloat* params);
@@ -552,7 +558,8 @@ typedef GLboolean(APIENTRY* PFnglIsRenderbufferEXT)(GLuint renderbuffer);
 typedef void(APIENTRY* PFnglBindRenderbufferEXT)(GLenum target, GLuint renderbuffer);
 typedef void(APIENTRY* PFnglDeleteRenderbuffersEXT)(GLsizei n, const GLuint* renderbuffers);
 typedef void(APIENTRY* PFnglGenRenderbuffersEXT)(GLsizei n, GLuint* renderbuffers);
-typedef void(APIENTRY* PFnglRenderbufferStorageEXT)(GLenum target, GLenum internalformat, GLsizei width, GLsizei height);
+typedef void(APIENTRY* PFnglRenderbufferStorageEXT)(GLenum target, GLenum internalformat, GLsizei width,
+                                                    GLsizei height);
 typedef void(APIENTRY* PFnglGetRenderbufferParameterivEXT)(GLenum target, GLenum pname, GLint* params);
 typedef GLboolean(APIENTRY* PFnglIsFramebufferEXT)(GLuint framebuffer);
 typedef void(APIENTRY* PFnglBindFramebufferEXT)(GLenum target, GLuint framebuffer);
@@ -632,8 +639,9 @@ CARBON_OPENGL_DECLARE_EXTENSION_FUNCTION(glActiveStencilFaceEXT);
 #define GL_TEXTURE_DEPTH_EXT 0x8071
 #define GL_TEXTURE_WRAP_R_EXT 0x8072
 #define GL_MAX_3D_TEXTURE_SIZE_EXT 0x8073
-typedef void(APIENTRY* PFnglTexImage3DEXT)(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height,
-                                           GLsizei depth, GLint border, GLenum format, GLenum type, const GLvoid* pixels);
+typedef void(APIENTRY* PFnglTexImage3DEXT)(GLenum target, GLint level, GLenum internalformat, GLsizei width,
+                                           GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type,
+                                           const GLvoid* pixels);
 typedef void(APIENTRY* PFnglTexSubImage3DEXT)(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset,
                                               GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type,
                                               const GLvoid* pixels);

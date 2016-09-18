@@ -61,7 +61,8 @@ public:
 
     bool hasHardwareSupport() const override
     {
-        return graphics().isPixelFormatSupported(Image::RGB16f, GraphicsInterface::Texture2D) && Shader::hasHardwareSupport();
+        return graphics().isPixelFormatSupported(Image::RGB16f, GraphicsInterface::Texture2D) &&
+            Shader::hasHardwareSupport();
     }
 
     bool initialize() override
@@ -71,11 +72,12 @@ public:
                                                  "PostProcessToneMappingAverageSceneLuminance.glsl.frag"}))
             return false;
 
-        if (!toneMappingProgram.setup(ShaderProgram::GLSL110, {"UnitRectangle.glsl.vert", "PostProcessToneMapping.glsl.frag"}))
+        if (!toneMappingProgram.setup(ShaderProgram::GLSL110,
+                                      {"UnitRectangle.glsl.vert", "PostProcessToneMapping.glsl.frag"}))
             return false;
 
-        // Create the two intermediate textures used to store the previous frame's luminance and the current frame's luminance,
-        // these are combined in order to get smooth transitions when the scene's luminance changes
+        // Create the two intermediate textures used to store the previous frame's luminance and the current frame's
+        // luminance, these are combined in order to get smooth transitions when the scene's luminance changes
         for (auto i = 0U; i < 2; i++)
         {
             averageSceneLuminanceTextures[i] = textures().create2DTexture();
@@ -105,15 +107,18 @@ public:
 
     void enterShader() override { States::StateCacher::push(); }
 
-    unsigned int getPassCount(const ParameterArray& params, const ParameterArray& internalParams) const override { return 2; }
+    unsigned int getPassCount(const ParameterArray& params, const ParameterArray& internalParams) const override
+    {
+        return 2;
+    }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (pass == 0)
         {
-            // Pass 1: Calculate the average luminance of the scene texture, weighted against the luminance used in the previous
-            // frame, and put the result into a 1x1 texture.
+            // Pass 1: Calculate the average luminance of the scene texture, weighted against the luminance used in the
+            // previous frame, and put the result into a 1x1 texture.
 
             averageSceneLuminanceProgram.activate();
 
@@ -122,8 +127,8 @@ public:
             averageSceneLuminanceProgram.sInputTexture->setInteger(0);
             averageSceneLuminanceProgram.sPreviousAverageSceneLuminanceTexture->setInteger(1);
 
-            // Calculate the weighting to give to the scene's actual luminance based on the specified easing value and the
-            // current frame rate
+            // Calculate the weighting to give to the scene's actual luminance based on the specified easing value and
+            // the current frame rate
             averageSceneLuminanceProgram.weighting->setFloat(
                 1.0f - powf(Math::clamp01(params[Parameter::easing].getFloat()), platform().getSecondsPassed()));
 
@@ -149,8 +154,8 @@ public:
             setTexture(0, internalParams[Parameter::inputTexture]);
             setTexture(1, averageSceneLuminanceTextures[1]);
 
-            // Switch the two average scene luminance textures so that averaging based on the previous frame's luminance can be
-            // done next frame
+            // Switch the two average scene luminance textures so that averaging based on the previous frame's luminance
+            // can be done next frame
             auto t = averageSceneLuminanceTextures[0];
             averageSceneLuminanceTextures[0] = averageSceneLuminanceTextures[1];
             averageSceneLuminanceTextures[1] = t;

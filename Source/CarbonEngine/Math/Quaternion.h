@@ -50,12 +50,18 @@ public:
     /**
      * Quaternion component equality.
      */
-    bool operator==(const Quaternion& other) const { return x == other.x && y == other.y && z == other.z && w == other.w; }
+    bool operator==(const Quaternion& other) const
+    {
+        return x == other.x && y == other.y && z == other.z && w == other.w;
+    }
 
     /**
      * Quaternion component inequality.
      */
-    bool operator!=(const Quaternion& other) const { return x != other.x || y != other.y || z != other.z || w != other.w; }
+    bool operator!=(const Quaternion& other) const
+    {
+        return x != other.x || y != other.y || z != other.z || w != other.w;
+    }
 
     /**
      * Quaternion multiplication. This is used to combine rotations.
@@ -65,8 +71,10 @@ public:
         if (*this == Identity)
             return other;
 
-        return {w * other.x + x * other.w + y * other.z - z * other.y, w * other.y - x * other.z + y * other.w + z * other.x,
-                w * other.z + x * other.y - y * other.x + z * other.w, w * other.w - x * other.x - y * other.y - z * other.z};
+        return {w * other.x + x * other.w + y * other.z - z * other.y,
+                w * other.y - x * other.z + y * other.w + z * other.x,
+                w * other.z + x * other.y - y * other.x + z * other.w,
+                w * other.w - x * other.x - y * other.y - z * other.z};
     }
 
     /**
@@ -102,7 +110,8 @@ public:
     }
 
     /**
-     * Calculates the inverse of this quaternion, i.e. a rotation that reverses the rotation performed by this quaternion.
+     * Calculates the inverse of this quaternion, i.e. a rotation that reverses the rotation performed by this
+     * quaternion.
      */
     Quaternion getInverse() const { return {-x, -y, -z, w}; }
 
@@ -150,8 +159,8 @@ public:
     void convertToAxisAngle(Vec3& axis, float& angle) const;
 
     /**
-     * Spherically interpolates between two rotations. A \a t value of zero will return this quaternion, and a value of one will
-     * return \a q.
+     * Spherically interpolates between two rotations. A \a t value of zero will return this quaternion, and a value of
+     * one will return \a q.
      */
     Quaternion slerp(const Quaternion& q, float t) const;
 
@@ -212,8 +221,8 @@ public:
     static Quaternion createFromRotationMatrix(const Matrix3& m);
 
     /**
-     * Creates a quaternion rotation that rotates one vector onto another along the shortest arc, the passed vectors do not need
-     * to be normalized.
+     * Creates a quaternion rotation that rotates one vector onto another along the shortest arc, the passed vectors do
+     * not need to be normalized.
      */
     static Quaternion createFromVectorToVector(const Vec3& from, const Vec3& to);
 

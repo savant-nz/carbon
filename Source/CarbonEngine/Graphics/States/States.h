@@ -46,14 +46,15 @@ DECLARE_SIMPLE_CACHED_STATE(StencilOperationsForFrontFaces, StencilOperations, c
 DECLARE_SIMPLE_CACHED_STATE(StencilTestEnabled, bool, bool);
 DECLARE_SIMPLE_CACHED_STATE(StencilTestFunction, StencilTestSetup, const StencilTestSetup&);
 DECLARE_SIMPLE_CACHED_STATE(StencilWriteEnabled, bool, bool);
-DECLARE_SIMPLE_CACHED_STATE(VertexAttributeArrayConfiguration, GraphicsInterface::VertexAttributeArrayConfigurationObject,
+DECLARE_SIMPLE_CACHED_STATE(VertexAttributeArrayConfiguration,
+                            GraphicsInterface::VertexAttributeArrayConfigurationObject,
                             GraphicsInterface::VertexAttributeArrayConfigurationObject);
 DECLARE_SIMPLE_CACHED_STATE(Viewport, Rect, const Rect&);
 
 DECLARE_INDEXED_CACHED_STATE(Texture, GraphicsInterface::TextureObject, GraphicsInterface::TextureObject);
 DECLARE_INDEXED_CACHED_STATE(VertexAttributeArrayEnabled, bool, bool);
-DECLARE_INDEXED_CACHED_STATE(VertexAttributeArraySource, GraphicsInterface::ArraySource, const GraphicsInterface::ArraySource&);
-
+DECLARE_INDEXED_CACHED_STATE(VertexAttributeArraySource, GraphicsInterface::ArraySource,
+                             const GraphicsInterface::ArraySource&);
 }
 
 }

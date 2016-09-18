@@ -9,9 +9,9 @@ namespace Carbon
 {
 
 /**
- * This class contains helper methods for converting data between big and little endian formats. All binary file formats have
- * their data persisted in little endian format automatically by the FileReader and FileWriter classes, and this class is used
- * to perform any endianness conversions needed.
+ * This class contains helper methods for converting data between big and little endian formats. All binary file formats
+ * have their data persisted in little endian format automatically by the FileReader and FileWriter classes, and this
+ * class is used to perform any endianness conversions needed.
  */
 class CARBON_API Endian
 {

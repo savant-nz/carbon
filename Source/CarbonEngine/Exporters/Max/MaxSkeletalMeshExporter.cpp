@@ -49,9 +49,9 @@ public:
             return false;
         }
 
-        // If the number of vertices in the skin does not equal the number of vertices in the node's triobject then tell the
-        // user to check that there aren't any geometry modifiers after the skinning modifier on the stack TODO: can this be
-        // made to work regardless of post-skinning geometry modifiers?
+        // If the number of vertices in the skin does not equal the number of vertices in the node's triobject then tell
+        // the user to check that there aren't any geometry modifiers after the skinning modifier on the stack
+        // TODO: can this be made to work regardless of post-skinning geometry modifiers?
         if (uint(os.obj->NumPoints()) != skinnedVertexCount)
         {
             LOG_WARNING_WITHOUT_CALLER << "Skipping '" << node->GetName() << "' because vertex count doesn't match up";
@@ -66,8 +66,8 @@ public:
     // Exports the vertex and triangle data in a physique as well as any bones it references.
     bool exportPhysique(INode* node, IPhysiqueExport* phy, IPhyContextExport* mcExport, bool doExport) override
     {
-        // Read the bone bind poses on this physique, bind poses are retrieved even from physiques that aren't being exported to
-        // ensure that we get bind poses for all relevant bones
+        // Read the bone bind poses on this physique, bind poses are retrieved even from physiques that aren't being
+        // exported to ensure that we get bind poses for all relevant bones
         for (auto i = 0U; i < uint(mcExport->GetNumberVertices()); i++)
         {
             auto exportVertex = mcExport->GetVertexInterface(i);
@@ -174,8 +174,8 @@ public:
     // Exports the vertex and triangle data in a skin.
     bool exportSkin(INode* node, ISkin* skin, ISkinContextData* skinContext, bool doExport) override
     {
-        // Read the bone bind poses on this skin, bind poses are retrieved even from skins that aren't being exported to ensure
-        // that we get bind poses for all relevant bones
+        // Read the bone bind poses on this skin, bind poses are retrieved even from skins that aren't being exported to
+        // ensure that we get bind poses for all relevant bones
         for (auto i = 0U; i < uint(skin->GetNumBones()); i++)
         {
             auto tm = ::Matrix3();
@@ -283,8 +283,8 @@ public:
         for (auto i = 0U; i < uint(mesh->getNumVerts()); i++)
             vertices[i] = maxPoint3ToVec3(transform * mesh->verts[i]);
 
-        // Work out the winding order to use. A mirroring transform on the node will flip the winding order and so we need to
-        // compensate
+        // Work out the winding order to use. A mirroring transform on the node will flip the winding order and so we
+        // need to compensate
         auto winding = std::array<unsigned int, 3>{{0, 1, 2}};
         if (DotProd(CrossProd(transform.GetRow(0), transform.GetRow(1)), transform.GetRow(2)) < 0.0)
         {
@@ -371,8 +371,8 @@ public:
                 currentOffset += 8;
             }
 
-            // If there was a multi-material assigned to this mesh then we need to get the actual submaterial being used on this
-            // face
+            // If there was a multi-material assigned to this mesh then we need to get the actual submaterial being used
+            // on this face
             auto materialName = String();
             if (isMultiMaterial)
             {
@@ -395,14 +395,15 @@ public:
             if (!triangles->getMaterials().has(materialName))
                 LOG_INFO << "New material: " << materialName;
 
-            if (!triangles->addTriangle(newTriangleVertices[0], newTriangleVertices[1], newTriangleVertices[2], materialName))
+            if (!triangles->addTriangle(newTriangleVertices[0], newTriangleVertices[1], newTriangleVertices[2],
+                                        materialName))
                 return false;
 
             setTaskProgress(i + 1, mesh->getNumFaces());
         }
 
-        LOG_INFO << "Exported skinned mesh: '" << node->GetName() << "' with " << os.obj->NumPoints() << " vertices and "
-                 << mesh->getNumFaces() << " triangles";
+        LOG_INFO << "Exported skinned mesh: '" << node->GetName() << "' with " << os.obj->NumPoints()
+                 << " vertices and " << mesh->getNumFaces() << " triangles";
 
         // Delete triobject if it was allocated specifically for us
         if (os.obj != triObject)
@@ -432,7 +433,7 @@ public:
             parentTM.IdentityMatrix();
             if (bones_[i].parent != -1)
             {
-                // Use the bind pose for the parent bone if there is one, if not then the frame 0 transform is used instead
+                // Use the bind pose for the parent bone if there is one, otherwise use the frame 0 transform
                 auto parent = boneNodes_[bones_[i].parent];
                 if (boneBindPoses.find(parent) != boneBindPoses.end())
                     parentTM = boneBindPoses[parent];

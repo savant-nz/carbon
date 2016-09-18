@@ -174,9 +174,9 @@ public:
     void prepend(const T& value) { insert(0, value); }
 
     /**
-     * Resizes this vector, if the size is increased then the value to initialize new items to is given by \a newValue. If the
-     * vector size is being increased and an internal allocation fails then `std::bad_alloc` is thrown. If the vector size is
-     * being reduced then this method will never fail.
+     * Resizes this vector, if the size is increased then the value to initialize new items to is given by \a newValue.
+     * If the vector size is being increased and an internal allocation fails then `std::bad_alloc` is thrown. If the
+     * vector size is being reduced then this method will never fail.
      */
     void resize(unsigned int newSize, const T& newValue = T())
     {
@@ -205,8 +205,8 @@ public:
 
             size_ = newSize;
 
-            // If the allocated size is enough for more than twice the number of items in this vector then reduce it to reclaim
-            // memory. Space for at least 16 items is kept to reduce reallocations in smaller vectors.
+            // If the allocated size is enough for more than twice the number of items in this vector then reduce it to
+            // reclaim memory. Space for at least 16 items is kept to reduce reallocations in smaller vectors.
             if (size() < capacity_ / 2 && size() > 16)
             {
                 try
@@ -221,8 +221,8 @@ public:
                 }
                 catch (...)
                 {
-                    // Something went wrong while reducing this vector's memory usage so stick with the current allocation
-                    // rather than moving to a smaller one.
+                    // Something went wrong while reducing this vector's memory usage so stick with the current
+                    // allocation rather than moving to a smaller one.
                 }
             }
         }
@@ -242,8 +242,8 @@ public:
     void enlarge(unsigned int amount, const T& newValue = T()) { resize(size() + amount, newValue); }
 
     /**
-     * Ensures that this vector has allocated space internally for at least the given number of items. Throws an exception if
-     * an error occurs.
+     * Ensures that this vector has allocated space internally for at least the given number of items. Throws an
+     * exception if an error occurs.
      */
     void reserve(unsigned int newCapacity)
     {
@@ -261,7 +261,8 @@ public:
 
         newVector.data_ = MemoryInterceptor::allocate<T>(newCapacity);
 
-        // Use move constructors if they are non-throwing, otherwise fall back to copy constructors that potentially throw
+        // Use move constructors if they are non-throwing, otherwise fall back to copy constructors that potentially
+        // throw
         if (std::is_nothrow_move_constructible<T>::value)
         {
             for (auto i = 0U; i < size(); i++)
@@ -403,8 +404,8 @@ public:
     }
 
     /**
-     * Calls \a predicate for each item in this vector and returns the first one that the predicate returns true for. If true
-     * is never returned then \a fallback is returned.
+     * Calls \a predicate for each item in this vector and returns the first one that the predicate returns true for. If
+     * true is never returned then \a fallback is returned.
      */
     const T& detect(const std::function<bool(const T& item)>& predicate, const T& fallback) const
     {
@@ -434,8 +435,8 @@ public:
     }
 
     /**
-     * Calls \a predicate for each item in this vector and returns the first one that the predicate returns true for. If true
-     * is never returned then \a fallback is returned.
+     * Calls \a predicate for each item in this vector and returns the first one that the predicate returns true for. If
+     * true is never returned then \a fallback is returned.
      */
     T& detect(const std::function<bool(const T& item)>& predicate, T& fallback)
     {
@@ -449,8 +450,8 @@ public:
     }
 
     /**
-     * Returns a copy of the portion of this vector starting at \a index and with the specified length. If \a length is -1 then
-     * all items including and following \a index are returned.
+     * Returns a copy of the portion of this vector starting at \a index and with the specified length. If \a length is
+     * -1 then all items including and following \a index are returned.
      */
     Vector<T> slice(unsigned int index, int length = -1) const
     {
@@ -550,8 +551,9 @@ public:
     }
 
     /**
-     * Overwrites the item at the specified index with the item at the end of the vector and then decreases the size of the
-     * vector by one. This is faster than Vector::erase() but can only be used when the ordering of items is not important.
+     * Overwrites the item at the specified index with the item at the end of the vector and then decreases the size of
+     * the vector by one. This is faster than Vector::erase() but can only be used when the ordering of items is not
+     * important.
      */
     void unorderedErase(unsigned int index)
     {
@@ -564,8 +566,8 @@ public:
     }
 
     /**
-     * Removes the first item in this vector that has the given value, the return value indicates whether an item was removed
-     * from this vector.
+     * Removes the first item in this vector that has the given value, the return value indicates whether an item was
+     * removed from this vector.
      */
     bool eraseValue(const T& value)
     {
@@ -579,8 +581,8 @@ public:
     }
 
     /**
-     * Removes the first item in this vector that has the given value using Vector::unorderedErase() method, the return value
-     * indicates whether an item was removed from this vector.
+     * Removes the first item in this vector that has the given value using Vector::unorderedErase() method, the return
+     * value indicates whether an item was removed from this vector.
      */
     bool unorderedEraseValue(const T& value)
     {
@@ -594,8 +596,8 @@ public:
     }
 
     /**
-     * Removes all the items in this vector that return true from the given predicate. Returns the number of items that were
-     * removed.
+     * Removes all the items in this vector that return true from the given predicate. Returns the number of items that
+     * were removed.
      */
     unsigned int eraseIf(const std::function<bool(const T& item)>& predicate)
     {
@@ -614,7 +616,8 @@ public:
     }
 
     /**
-     * Returns the index of the first item in this vector that returns true from the callback function, otherwise returns -1.
+     * Returns the index of the first item in this vector that returns true from the callback function, otherwise
+     * returns -1.
      */
     int findBy(const std::function<bool(const T& item)>& predicate) const
     {
@@ -661,15 +664,16 @@ public:
     }
 
 #ifdef _MSC_VER
-    // When T can be constructed from const char* the Visual Studio 2015 compiler can't decide between the two has() overloads
-    // above. This appears to be a bug in that toolchain where it matches one of the std::function() constructors more liberally
-    // than the C++11 specification allows. The following extra has() overload works around the issue.
+    // When T can be constructed from const char* the Visual Studio 2015 compiler can't decide between the two has()
+    // overloads above. This appears to be a bug in that toolchain where it matches one of the std::function()
+    // constructors more liberally than the C++11 specification allows. The following extra has() overload works around
+    // the issue.
     bool has(const char* value) const { return has(T(value)); }
 #endif
 
     /**
-     * Replaces all instances of the specified \a value in this vector with the specified \a replacement, the return value is
-     * the number of replacements that were made.
+     * Replaces all instances of the specified \a value in this vector with the specified \a replacement, the return
+     * value is the number of replacements that were made.
      */
     unsigned int replace(const T& value, const T& replacement)
     {
@@ -712,10 +716,10 @@ public:
     }
 
     /**
-     * Assumes this vector is sorted in ascending order and does a binary search on it for an item value. Returns the index if
-     * found, or a negative value if not found. If the item is not found the return value indicates where the item should be
-     * inserted into the vector in order to maintain the right ordering, get this index by negating the return value and
-     * subtracting one.
+     * Assumes this vector is sorted in ascending order and does a binary search on it for an item value. Returns the
+     * index if found, or a negative value if not found. If the item is not found the return value indicates where the
+     * item should be inserted into the vector in order to maintain the right ordering, get this index by negating the
+     * return value and subtracting one.
      */
     template <typename CompareType = T> int binarySearch(const CompareType& value) const
     {
@@ -723,8 +727,8 @@ public:
     }
 
     /**
-     * Does a binary search the same as Vector::binarySearch() except item values used in the search are found by calling the
-     * specified evaluator function that returns the value to compare for that item in the binary search.
+     * Does a binary search the same as Vector::binarySearch() except item values used in the search are found by
+     * calling the specified evaluator function that returns the value to compare for that item in the binary search.
      */
     template <typename CompareType>
     int binarySearch(const CompareType& value, const std::function<CompareType(const T& item)>& fnEvaluate) const
@@ -767,8 +771,8 @@ public:
     }
 
     /**
-     * Returns the average of all the items in this vector, this requires that the template type implement the division by float
-     * and in-place addition operators.
+     * Returns the average of all the items in this vector, this requires that the template type implement the division
+     * by float and in-place addition operators.
      */
     T getAverage() const
     {
@@ -822,8 +826,8 @@ public:
     T* getData() { return data_; }
 
     /**
-     * Returns the number of bytes of data currently stored in this vector, the total amount of allocated memory may be larger
-     * than this value.
+     * Returns the number of bytes of data currently stored in this vector, the total amount of allocated memory may be
+     * larger than this value.
      */
     unsigned int getDataSize() const { return size() * sizeof(T); }
 

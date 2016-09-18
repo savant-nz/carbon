@@ -18,8 +18,8 @@ class CARBON_API Region : public Entity
 public:
 
     /**
-     * This is the material prefix that causes the scene geometry it's applied to to be converted into a region entity in the
-     * scene compiler.
+     * This is the material prefix that causes the scene geometry it's applied to to be converted into a region entity
+     * in the scene compiler.
      */
     static const String RegionMaterialPrefix;
 

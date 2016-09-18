@@ -11,9 +11,9 @@ namespace Carbon
 {
 
 /**
- * Implementation of ShaderConstant for OpenGL and GLSL that assumes core OpenGL functions are available for use. This class is
- * used by OpenGLShaderProgramCoreShared and so gets used by both the OpenGLES2ShaderProgram class and OpenGL41ShaderProgram
- * class.
+ * Implementation of ShaderConstant for OpenGL and GLSL that assumes core OpenGL functions are available for use. This
+ * class is used by OpenGLShaderProgramCoreShared and so gets used by both the OpenGLES2ShaderProgram class and
+ * OpenGL41ShaderProgram class.
  */
 class OpenGLShaderConstantCoreShared : public ShaderConstant
 {

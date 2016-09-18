@@ -16,10 +16,7 @@ EventHandler::~EventHandler()
 #ifdef CARBON_DEBUG
     // Check that this event handler isn't still registered for events, if it is then assert to flag a bug
     if (Globals::isEngineInitialized())
-    {
-        if (events().isRegistered(this))
-            assert(false && "The event handler being destructed is still registered for events, this is undefined behavior");
-    }
+        assert(!events().isRegistered(this) && "The event handler being destructed is still registered for events");
 #endif
 }
 

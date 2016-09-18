@@ -91,8 +91,8 @@ void EffectManager::onRecreateWindowEvent(const RecreateWindowEvent& rwe)
     }
     else if (rwe.getWindowEventType() == RecreateWindowEvent::NewWindow)
     {
-        // Note: shaders are not currently reinitialized after a window recreation, they will be done JIT, which may lead to
-        // stuttering
+        // Note: shaders are not currently reinitialized after a window recreation, they will be done JIT, which may
+        // lead to stuttering
         for (auto effect : effects_)
             effect->updateActiveShader(effect->getQuality());
     }

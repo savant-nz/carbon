@@ -22,8 +22,8 @@ public:
     ~GUICombobox() override;
 
     /**
-     * Item select event dispatcher for this combobox, this can be used as an instance-specific alternative to handling for
-     * GUIComboboxItemSelectEvent globally.
+     * Item select event dispatcher for this combobox, this can be used as an instance-specific alternative to handling
+     * for GUIComboboxItemSelectEvent globally.
      */
     EventDispatcher<GUICombobox, const GUIComboboxItemSelectEvent&> onItemSelectEvent;
 
@@ -34,8 +34,8 @@ public:
     }
 
     /**
-     * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>(), it sets the width, height,
-     * position and items of this GUICombobox.
+     * Initializer method intended for use by Scene::addEntity<>() and ComplexEntity::addChild<>(), it sets the width,
+     * height, position and items of this GUICombobox.
      */
     virtual void initialize(float width, float height, const Vec2& position, const Vector<UnicodeString>& items)
     {
@@ -83,14 +83,15 @@ public:
     int getSelectedItem() const { return selectedItem_; }
 
     /**
-     * Sets the selected item in this combobox by index. An index of -1 means there is no selection. Returns success flag. If
-     * this method changes the current selection then GUIComboboxSelectEvent will be sent, unless \a fireEvent is false.
+     * Sets the selected item in this combobox by index. An index of -1 means there is no selection. Returns success
+     * flag. If this method changes the current selection then GUIComboboxSelectEvent will be sent, unless \a fireEvent
+     * is false.
      */
     bool setSelectedItem(int index, bool fireEvent = true);
 
     /**
-     * This sets the text of the combobox as long as the given string is already an item in the combobox. If this method changes
-     * the current selection then GUIComboboxSelectEvent will be sent, unless \a fireEvent is false.
+     * This sets the text of the combobox as long as the given string is already an item in the combobox. If this method
+     * changes the current selection then GUIComboboxSelectEvent will be sent, unless \a fireEvent is false.
      */
     virtual void setText(const UnicodeString& text, bool fireEvent);
 

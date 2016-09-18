@@ -89,7 +89,8 @@ bool Material::setParameter(const ParameterArray::Lookup& lookup, const Paramete
         return false;
     }
 
-    // When updating texture parameters we need to make sure the texture references held by this material are updated correctly
+    // When updating texture parameters we need to make sure the texture references held by this material are updated
+    // correctly
 
     auto wereTexturesLoaded = isTextureParameter && areTexturesLoaded_;
 
@@ -99,7 +100,8 @@ bool Material::setParameter(const ParameterArray::Lookup& lookup, const Paramete
         unloadTextures();
     }
 
-    auto isRemoveOperation = (&parameter == &Parameter::Empty) || (isTextureParameter && !parameter.getString().length());
+    auto isRemoveOperation =
+        (&parameter == &Parameter::Empty) || (isTextureParameter && !parameter.getString().length());
 
     // Set the new parameter value
     if (isRemoveOperation)
@@ -148,8 +150,8 @@ bool Material::setAnimatedTextureFPS(const String& name, unsigned int fps)
         }
     }
 
-    // Search for a texture parameter for this material that isn't currently animated. If one is found then add it to the list
-    // of textures to animate on this material
+    // Search for a texture parameter for this material that isn't currently animated. If one is found then add it to
+    // the list of textures to animate on this material
     for (auto& effectParameter : effect_->getParameters())
     {
         if (effectParameter.isTexture() && effectParameter.name == name)
@@ -233,7 +235,8 @@ bool Material::save(const UnicodeString& name) const
                 parameterNames.erase(i--);
 
             // Don't write out white diffuse colors as this is the default
-            else if (parameterNames[i] == "diffuseColor" && parameters_.get(parameterNames[i]).getColor() == Color::White &&
+            else if (parameterNames[i] == "diffuseColor" &&
+                     parameters_.get(parameterNames[i]).getColor() == Color::White &&
                      effect_->getName() != "BaseColored")
                 parameterNames.erase(i--);
         }
@@ -334,7 +337,8 @@ bool Material::load(const UnicodeString& name)
 
         // Read this material file's contents
         auto lineTokens = Vector<Vector<String>>();
-        if (!fileSystem().readTextFile(FileSystem::getResourceFilename(name, MaterialDirectory, MaterialExtension), lineTokens))
+        if (!fileSystem().readTextFile(FileSystem::getResourceFilename(name, MaterialDirectory, MaterialExtension),
+                                       lineTokens))
             throw Exception("Failed opening file");
 
         // Read material definition

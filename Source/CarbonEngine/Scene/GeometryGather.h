@@ -13,8 +13,9 @@ namespace Carbon
 {
 
 /**
- * Used by Scene::gatherGeometry() and Scene::gatherShadowGeometry() to create an EffectQueueArray that contains everything that
- * needs to be drawn for a single scene, or shadow geometry that needs to be drawn for a single light source.
+ * Used by Scene::gatherGeometry() and Scene::gatherShadowGeometry() to create an EffectQueueArray that contains
+ * everything that needs to be drawn for a single scene, or shadow geometry that needs to be drawn for a single light
+ * source.
  */
 class CARBON_API GeometryGather : private Noncopyable
 {
@@ -26,7 +27,8 @@ public:
     GeometryGather(const GeometryGather& other);
 
     /**
-     * Initializes this geometry gather with the given details. The \a queues instance will receive the output of this gather.
+     * Initializes this geometry gather with the given details. The \a queues instance will receive the output of this
+     * gather.
      */
     GeometryGather(const Vec3& cameraPosition, const ConvexHull& frustum, bool isShadowGeometryGather,
                    EffectQueueArray& queues);
@@ -49,13 +51,16 @@ public:
     bool isShadowGeometryGather() const { return isShadowGeometryGather_; }
 
     /**
-     * Gathers of shadow casting geometry have the option of specifying arbitrary world-space boundings that the renderer will
-     * then treat as having important shadow generating content, this is in addition to the bounds around any geometry chunks
-     * added to the gather. This is needed in order to inform the renderer of correct bounds around animated geometry such as
-     * skeletal meshes, without this it has no way of knowing the extents of such shadow casting geometry and may clip it off
-     * causing shadowing artifacts when rendering.
+     * Gathers of shadow casting geometry have the option of specifying arbitrary world-space boundings that the
+     * renderer will then treat as having important shadow generating content, this is in addition to the bounds around
+     * any geometry chunks added to the gather. This is needed in order to inform the renderer of correct bounds around
+     * animated geometry such as skeletal meshes, without this it has no way of knowing the extents of such shadow
+     * casting geometry and may clip it off causing shadowing artifacts when rendering.
      */
-    void enlargeExtraWorldSpaceShadowCasterExtents(const AABB& aabb) { extraWorldSpaceShadowCasterExtents_.merge(aabb); }
+    void enlargeExtraWorldSpaceShadowCasterExtents(const AABB& aabb)
+    {
+        extraWorldSpaceShadowCasterExtents_.merge(aabb);
+    }
 
     /**
      * When this is a shadow geometry gather this method returns the extra world space shadow caster extents, see
@@ -64,22 +69,24 @@ public:
     const AABB& getExtraWorldSpaceShadowCasterExtents() const { return extraWorldSpaceShadowCasterExtents_; }
 
     /**
-     * Changes the priority that geometry is being given. Geometry of lower priority is drawn before geometry of higher priority
-     * This is used to allow scene-level control of render order where needed. The default priority is zero. The draw order of
-     * geometry at the same priority level is undefined.
+     * Changes the priority that geometry is being given. Geometry of lower priority is drawn before geometry of higher
+     * priority This is used to allow scene-level control of render order where needed. The default priority is zero.
+     * The draw order of geometry at the same priority level is undefined.
      */
     void changePriority(int priority) { currentPriority_ = priority; }
 
     /**
-     * Changes the active material, a material must be active before queuing anything for rendering (with the exception of
-     * text).
+     * Changes the active material, a material must be active before queuing anything for rendering (with the exception
+     * of text).
      */
-    void changeMaterial(const String& material, const ParameterArray& materialOverrideParameters = ParameterArray::Empty);
+    void changeMaterial(const String& material,
+                        const ParameterArray& materialOverrideParameters = ParameterArray::Empty);
 
     /**
-     * Similar to GeometryGather::changeMaterial() however this should only be used when the Material pointer is known and the
-     * caller is certain that the specified material has not been used before in this gather. If these conditions are met then
-     * this method can be used to improve gather performance as it will be faster than calling GeometryGather::changeMaterial().
+     * Similar to GeometryGather::changeMaterial() however this should only be used when the Material pointer is known
+     * and the caller is certain that the specified material has not been used before in this gather. If these
+     * conditions are met then this method can be used to improve gather performance as it will be faster than calling
+     * GeometryGather::changeMaterial().
      */
     void newMaterial(Material* material, const ParameterArray& materialOverrideParameters = ParameterArray::Empty,
                      const ParameterArray& internalParams = ParameterArray::Empty);
@@ -111,8 +118,8 @@ public:
     void addGeometryChunk(const GeometryChunk& geometryChunk, int drawItemIndex = -1);
 
     /**
-     * Adds a rectangle of the given size that will be rendered with the current material and transformation. The rectangle is
-     * double-sided and lies in the XY plane.
+     * Adds a rectangle of the given size that will be rendered with the current material and transformation. The
+     * rectangle is double-sided and lies in the XY plane.
      */
     void addRectangle(float width, float height);
 
@@ -122,15 +129,16 @@ public:
     void addText(const Font* font, float fontSize, const UnicodeString& text, const Color& color = Color::White);
 
     /**
-     * Adds an immediate triangles queue item, following this call the requested number of triangles should be queued using
-     * calls to GeometryGather::addImmediateTriangle() in order to specify the triangle vertices. Internally the immediate
-     * triangles are rendered using the "ImmediateGeometry" material.
+     * Adds an immediate triangles queue item, following this call the requested number of triangles should be queued
+     * using calls to GeometryGather::addImmediateTriangle() in order to specify the triangle vertices. Internally the
+     * immediate triangles are rendered using the "ImmediateGeometry" material.
      */
     void addImmediateTriangles(unsigned int triangleCount);
 
     /**
      * Specifies a single immediate triangle which should have been allocated prior through a call to
-     * GeometryGather::addImmediateTriangles(). This is mainly used for rendering GUI elements that don't use custom materials.
+     * GeometryGather::addImmediateTriangles(). This is mainly used for rendering GUI elements that don't use custom
+     * materials.
      */
     void addImmediateTriangle(const Vec3& v0, const Vec3& v1, const Vec3& v2, const Color& color);
 

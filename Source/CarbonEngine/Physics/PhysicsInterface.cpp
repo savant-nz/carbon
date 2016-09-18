@@ -162,9 +162,9 @@ bool PhysicsInterface::convertImageAlphaTo2DPolygons(const Image& image, Vector<
     {
         for (auto x = 0; x < bitmap.width; x++)
         {
-            if (bitmap.get(x, y) &&
-                (!bitmap.get(x - 1, y - 1) || !bitmap.get(x - 1, y) || !bitmap.get(x - 1, y + 1) || !bitmap.get(x, y - 1) ||
-                 !bitmap.get(x, y + 1) || !bitmap.get(x + 1, y - 1) || !bitmap.get(x + 1, y) || !bitmap.get(x + 1, y + 1)))
+            if (bitmap.get(x, y) && (!bitmap.get(x - 1, y - 1) || !bitmap.get(x - 1, y) || !bitmap.get(x - 1, y + 1) ||
+                                     !bitmap.get(x, y - 1) || !bitmap.get(x, y + 1) || !bitmap.get(x + 1, y - 1) ||
+                                     !bitmap.get(x + 1, y) || !bitmap.get(x + 1, y + 1)))
                 edgePixels.emplace(x, y);
         }
     }
@@ -174,8 +174,8 @@ bool PhysicsInterface::convertImageAlphaTo2DPolygons(const Image& image, Vector<
         // Start the next polygon at an unused edge pixel
         auto polygon = Vector<PolygonVertex>(1, edgePixels.popBack());
 
-        // Each pixel that is put onto polygon can be backtracked if it leads to a dead end, this fixes problems with pointy
-        // angles that can cause the edge walking to get stuck.
+        // Each pixel that is put onto polygon can be backtracked if it leads to a dead end, this fixes problems with
+        // pointy angles that can cause the edge walking to get stuck.
         auto hasBacktracked = false;
 
         while (true)
@@ -188,7 +188,8 @@ bool PhysicsInterface::convertImageAlphaTo2DPolygons(const Image& image, Vector<
                     break;
             }
 
-            // If there was no adjacent edge pixel then this polygon is malformed, so skip it and keep trying to build more
+            // If there was no adjacent edge pixel then this polygon is malformed, so skip it and keep trying to build
+            // more
             if (adjacentPixel == edgePixels.size())
             {
                 if (!hasBacktracked)
@@ -228,8 +229,8 @@ bool PhysicsInterface::convertImageAlphaTo2DPolygons(const Image& image, Vector<
                     polygon.erase((i-- + 1) % polygon.size());
             }
 
-            // Identify horizontal and vertical edges that are on the outside edge of the bitmap and mark their vertices as
-            // important
+            // Identify horizontal and vertical edges that are on the outside edge of the bitmap and mark their vertices
+            // as important
             for (auto i = 0U; i < polygon.size(); i++)
             {
                 auto& a = polygon[i];
@@ -254,9 +255,9 @@ bool PhysicsInterface::convertImageAlphaTo2DPolygons(const Image& image, Vector<
             }
 
             // The ends of straight edges that are not part of a right angle shape are pulled inwards by inserting new
-            // vertices one pixel apart, this allows the ends of straight edges to undergo subsequent simplification. The
-            // 'body' of the straight edge is then flagged as important to avoid any further simplification, which will
-            // preserve the straight edge in the final result.
+            // vertices one pixel apart, this allows the ends of straight edges to undergo subsequent simplification.
+            // The 'body' of the straight edge is then flagged as important to avoid any further simplification, which
+            // will preserve the straight edge in the final result.
             const auto straightEdgePullBackSize = straightEdgeLength / 3;
             for (auto i = 0U; i < polygon.size(); i++)
             {
@@ -288,8 +289,8 @@ bool PhysicsInterface::convertImageAlphaTo2DPolygons(const Image& image, Vector<
                 }
             }
 
-            // This is the main simplification loop, it works by trying to do progressively larger and larger simplifcations
-            // on the polygon
+            // This is the main simplification loop, it works by trying to do progressively larger and larger
+            // simplifcations on the polygon
             auto simplificationThreshold = 1.5f;
             while (polygon.size() > 3)
             {
@@ -347,7 +348,8 @@ bool PhysicsInterface::convertImageAlphaTo2DPolygons(const Image& image, Vector<
     return !outPolygons.empty();
 }
 
-void PhysicsInterface::convert2DPolygonsToCollisionGeometry(const Vector<Vector<Vec2>>& polygons, Vector<Vec3>& vertices,
+void PhysicsInterface::convert2DPolygonsToCollisionGeometry(const Vector<Vector<Vec2>>& polygons,
+                                                            Vector<Vec3>& vertices,
                                                             Vector<RawIndexedTriangle>& triangles, float zScale)
 {
     for (auto& polygon : polygons)
@@ -359,16 +361,17 @@ void PhysicsInterface::convert2DPolygonsToCollisionGeometry(const Vector<Vector<
             vertices.emplace(polygon[j].x, polygon[j].y, -zScale);
             vertices.emplace(polygon[j].x, polygon[j].y, zScale);
 
-            triangles.emplace(indexOffset + j * 2, indexOffset + j * 2 + 1, indexOffset + ((j + 1) % polygon.size()) * 2);
+            triangles.emplace(indexOffset + j * 2, indexOffset + j * 2 + 1,
+                              indexOffset + ((j + 1) % polygon.size()) * 2);
             triangles.emplace(indexOffset + j * 2 + 1, indexOffset + ((j + 1) % polygon.size()) * 2 + 1,
                               indexOffset + ((j + 1) % polygon.size()) * 2);
         }
     }
 }
 
-PhysicsInterface::BodyObject PhysicsInterface::createGeometryBodyFrom2DLineStrip(const Vector<Vec2>& points, float mass,
-                                                                                 bool fixed, const Entity* entity,
-                                                                                 const SimpleTransform& initialTransform)
+PhysicsInterface::BodyObject
+    PhysicsInterface::createGeometryBodyFrom2DLineStrip(const Vector<Vec2>& points, float mass, bool fixed,
+                                                        const Entity* entity, const SimpleTransform& initialTransform)
 {
     auto vertices = Vector<Vec3>();
     auto triangles = Vector<RawIndexedTriangle>();
@@ -383,8 +386,9 @@ PhysicsInterface::BodyObject PhysicsInterface::createGeometryBodyFrom2DLineStrip
         triangles.emplace(i * 2 + 1, ((i + 1) % points.size()) * 2 + 1, ((i + 1) % points.size()) * 2 + 0);
     }
 
-    return physics().createGeometryBodyFromTemplate(physics().createBodyTemplateFromGeometry(vertices, triangles, true, 0.5f),
-                                                    mass, fixed, nullptr, initialTransform);
+    return physics().createGeometryBodyFromTemplate(
+        physics().createBodyTemplateFromGeometry(vertices, triangles, true, 0.5f), mass, fixed, nullptr,
+        initialTransform);
 }
 
 }

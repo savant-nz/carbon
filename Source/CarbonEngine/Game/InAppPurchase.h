@@ -23,10 +23,10 @@ public:
     ~InAppPurchase();
 
     /**
-     * Holds details on an in-app purchase transaction, this includes the identifier of an in-app purchase product and the
-     * current state of the transaction. After a call to InAppPurchase::purchase() the InAppPurchase::onTransactionUpdated event
-     * will fire with details on the in-progress transaction, applications must handle this event in order to respond to in-app
-     * purchases made by the user.
+     * Holds details on an in-app purchase transaction, this includes the identifier of an in-app purchase product and
+     * the current state of the transaction. After a call to InAppPurchase::purchase() the
+     * InAppPurchase::onTransactionUpdated event will fire with details on the in-progress transaction, applications
+     * must handle this event in order to respond to in-app purchases made by the user.
      */
     class TransactionDetails
     {
@@ -53,8 +53,9 @@ public:
             Failed,
 
             /**
-             * The in-app purchase transaction was restored, i.e. the product has been purchased previously by the current user.
-             * Previously purchased products are restored automatically as part of in-app purchase initialization.
+             * The in-app purchase transaction was restored, i.e. the product has been purchased previously by the
+             * current user. Previously purchased products are restored automatically as part of in-app purchase
+             * initialization.
              */
             Restored
         };
@@ -84,20 +85,21 @@ public:
     };
 
     /**
-     * This event is fired when an in-app purchase transaction changes state, the details of the new transaction state are
-     * specified by the passed InAppPurchase::TransactionDetails instance. When the state is \a Purchased or \a Restored the
-     * application should make the corresponding content available to the user.
+     * This event is fired when an in-app purchase transaction changes state, the details of the new transaction state
+     * are specified by the passed InAppPurchase::TransactionDetails instance. When the state is \a Purchased or
+     * \a Restored the application should make the corresponding content available to the user.
      */
     EventDispatcher<InAppPurchase, const TransactionDetails&> onTransactionUpdated;
 
     /**
-     * Initializes this in-app purchase instance for use with the specified product identifiers, initialization itself is
-     * asynchronous and the result can be checked using InAppPurchase::isInitialized().
+     * Initializes this in-app purchase instance for use with the specified product identifiers, initialization itself
+     * is asynchronous and the result can be checked using InAppPurchase::isInitialized().
      */
     void initialize(const Vector<String>& productIdentifiers);
 
     /**
-     * Returns whether or not in-app purchase has initialized successfully following a call to InAppPurchase::initialize().
+     * Returns whether or not in-app purchase has initialized successfully following a call to
+     * InAppPurchase::initialize().
      */
     bool isInitialized() const;
 
@@ -122,8 +124,8 @@ public:
     UnicodeString getProductPrice(const String& productIdentifier) const;
 
     /**
-     * Initiates a purchase of the specified product, the result is returned through the InAppPurchase::onTransactionUpdated
-     * event delegate. If the product identifier is unknown then this method returns false.
+     * Initiates a purchase of the specified product, the result is returned through the
+     * InAppPurchase::onTransactionUpdated event. If the product identifier is unknown then this method returns false.
      */
     bool purchase(const String& productIdentifier);
 

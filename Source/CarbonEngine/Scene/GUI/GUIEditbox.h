@@ -12,8 +12,8 @@ namespace Carbon
 {
 
 /**
- * Editbox GUI item. A GUIEditbox's text highlights when the mouse is over it and when it has input focus. Text alignment
- * defaults to Font::AlignCenterLeft.
+ * Editbox GUI item. A GUIEditbox's text highlights when the mouse is over it and when it has input focus. Text
+ * alignment defaults to Font::AlignCenterLeft.
  */
 class CARBON_API GUIEditbox : public GUIWindow
 {
@@ -28,14 +28,14 @@ public:
     static const UnicodeString PasswordCharacter;
 
     /**
-     * Sets the characters that are allowed to be typed into this editbox. By default this is an empty string meaning all
-     * characters are allowed.
+     * Sets the characters that are allowed to be typed into this editbox. By default this is an empty string meaning
+     * all characters are allowed.
      */
     void setAllowedCharacters(const UnicodeString& characters);
 
     /**
-     * Returns whether this editbox is for password entry, password editboxes display '*' characters instead of their full text,
-     * the GUIEditbox::getText() and GUIEditbox::setText() methods are not affected. Defaults to false.
+     * Returns whether this editbox is for password entry, password editboxes display '*' characters instead of their
+     * full text, the GUIEditbox::getText() and GUIEditbox::setText() methods are not affected. Defaults to false.
      */
     bool isPasswordEditbox() const { return isPasswordEditbox_; }
 

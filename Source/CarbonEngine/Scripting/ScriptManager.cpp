@@ -45,7 +45,10 @@ public:
         TimeValue wakeTime;
 
         ActiveScript() {}
-        ActiveScript(String moduleName_, asIScriptContext* context_) : moduleName(std::move(moduleName_)), context(context_) {}
+        ActiveScript(String moduleName_, asIScriptContext* context_)
+            : moduleName(std::move(moduleName_)), context(context_)
+        {
+        }
 
         void release()
         {
@@ -213,7 +216,8 @@ void ScriptManager::Members::registerStringType()
     registerStringMethod("uint length() const", asMETHOD(String, length), asCALL_THISCALL);
 }
 
-void ScriptManager::Members::registerStringBehavior(asEBehaviours behavior, const char* declaration, const asSFuncPtr& function)
+void ScriptManager::Members::registerStringBehavior(asEBehaviours behavior, const char* declaration,
+                                                    const asSFuncPtr& function)
 {
     engine->RegisterObjectBehaviour("String", behavior, declaration, function, asCALL_CDECL_OBJLAST);
 }
@@ -369,7 +373,8 @@ bool ScriptManager::suspend(ScriptInstance script, float seconds)
         return false;
 
     // Suspend only makes sense if the script is currently active or currently suspended
-    if (activeScript->context->GetState() != asEXECUTION_ACTIVE && activeScript->context->GetState() != asEXECUTION_SUSPENDED)
+    if (activeScript->context->GetState() != asEXECUTION_ACTIVE &&
+        activeScript->context->GetState() != asEXECUTION_SUSPENDED)
         return false;
 
     // Suspend the script

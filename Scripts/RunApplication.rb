@@ -5,8 +5,9 @@
 #
 
 #
-# This script can be used to build and run the sample applications as well as simple external third party applications that
-# don't have their own build scripts. Can be used for development and testing instead of the Visual Studio or Xcode projects.
+# This script can be used to build and run the sample applications as well as simple external third party applications
+# that don't have their own build scripts. Can be used for development and testing instead of the Visual Studio or Xcode
+# projects.
 #
 # To build and run a sample application:
 #
@@ -44,7 +45,9 @@ class CarbonApplication
   end
 
   def run_application
-    run @executable.quoted, echo: echo || verbose, echo_prefix: 'Running ... ', working_directory: working_directory do |line|
+    run_options = { echo: echo || verbose, echo_prefix: 'Running ... ', working_directory: working_directory }
+
+    run @executable.quoted, run_options do |line|
       if windows?
         print line
       else
@@ -124,7 +127,7 @@ options = OptionParser.new do |parser|
     application.jobs = jobs.to_i
   end
 
-  parser.on '-r', '--source-root PATH', 'Sets the path to the application\'s source to build. Defaults to ../<app>' do |root|
+  parser.on '-r', '--source-root PATH', 'Sets the path to the application\'s source. Defaults to ../<app>' do |root|
     application.source_root = root
   end
 
@@ -132,7 +135,7 @@ options = OptionParser.new do |parser|
     application.strict = true
   end
 
-  parser.on '-t', '--build-type TYPE', [:debug, :release], 'Sets the build type, either debug or release' do |build_type|
+  parser.on '-t', '--build-type TYPE', [:debug, :release], 'Sets the build type (debug or release)' do |build_type|
     application.build_type = build_type
   end
 

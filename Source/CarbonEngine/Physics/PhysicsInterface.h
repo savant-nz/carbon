@@ -45,8 +45,8 @@ public:
     static const Vec3 DefaultGravityVector;
 
     /**
-     * The default world limits: (-5000, -5000, -5000) to (5000, 5000, 5000). See PhysicsInterface::setWorldLimits() for more
-     * information.
+     * The default world limits: (-5000, -5000, -5000) to (5000, 5000, 5000). See PhysicsInterface::setWorldLimits() for
+     * more information.
      */
     static const AABB DefaultWorldLimits;
 
@@ -75,7 +75,8 @@ public:
     virtual ~PhysicsInterface() {}
 
     /**
-     * Returns whether the physics manager implementation is available for use on the current system, for internal use only.
+     * Returns whether the physics manager implementation is available for use on the current system, for internal use
+     * only.
      */
     virtual bool isAvailable() const { return true; }
 
@@ -105,17 +106,17 @@ public:
     virtual String getEngineName() const { return "None"; }
 
     /**
-     * Sets the size of the world that the physics simulation will act inside. This area should encompass the whole area where
-     * objects are needed to be simulated, once objects are outside this area the simulation is undefined. The default world
-     * limits used are given by the DefaultWorldLimits constant.
+     * Sets the size of the world that the physics simulation will act inside. This area should encompass the whole area
+     * where objects are needed to be simulated, once objects are outside this area the simulation is undefined. The
+     * default world limits used are given by the DefaultWorldLimits constant.
      */
     virtual void setWorldLimits(const AABB& aabb) {}
 
     /**
-     * Creates and returns a new rigid body. The rigid body is described by an AABB and a mass value in kilograms. If \a fixed
-     * is true then the body's mass is ignored and it is fixed statically in the scene. The entity that owns the new rigid body
-     * is stored with the rigid body in the physics manager and is used to quickly match a body to an entity. An initial
-     * transform for the body can be specified.
+     * Creates and returns a new rigid body. The rigid body is described by an AABB and a mass value in kilograms. If \a
+     * fixed is true then the body's mass is ignored and it is fixed statically in the scene. The entity that owns the
+     * new rigid body is stored with the rigid body in the physics manager and is used to quickly match a body to an
+     * entity. An initial transform for the body can be specified.
      */
     virtual BodyObject createBoundingBoxBody(const AABB& aabb, float mass, bool fixed, const Entity* entity,
                                              const SimpleTransform& initialTransform = SimpleTransform::Identity)
@@ -134,20 +135,22 @@ public:
     }
 
     /**
-     * Creates and returns a new rigid body template from the given geometry. The template can then be used to create an actual
-     * rigid body that uses the template, which assists with reuse of physics data. Returns null on failure.
+     * Creates and returns a new rigid body template from the given geometry. The template can then be used to create an
+     * actual rigid body that uses the template, which assists with reuse of physics data. Returns null on failure.
      */
     virtual BodyTemplateObject createBodyTemplateFromGeometry(const Vector<Vec3>& vertices,
                                                               const Vector<RawIndexedTriangle>& triangles,
-                                                              bool deleteOnceUnused = false, float customCollisionMargin = 0.0f)
+                                                              bool deleteOnceUnused = false,
+                                                              float customCollisionMargin = 0.0f)
     {
         return nullptr;
     }
 
     /**
-     * Takes a set of geometry and preprocesses it into a binary blob that can then be used to create a rigid body template. The
-     * binary blob will load significantly faster than the geometry itself, which allows the geometry processing to be done in
-     * an offline step to reduce wait times when loading lots of geometry into the physics layer. Returns success flag.
+     * Takes a set of geometry and preprocesses it into a binary blob that can then be used to create a rigid body
+     * template. The binary blob will load significantly faster than the geometry itself, which allows the geometry
+     * processing to be done in an offline step to reduce wait times when loading lots of geometry into the physics
+     * layer. Returns success flag.
      */
     virtual bool preProcessGeometry(const Vector<Vec3>& vertices, const Vector<RawIndexedTriangle>& triangles,
                                     Vector<byte_t>& output)
@@ -156,8 +159,9 @@ public:
     }
 
     /**
-     * Creates and returns a new rigid body template from the given preprocessed geometry. The template can then be used to
-     * create an actual rigid body that uses the template, which assists with reuse of physics data. Returns null on failure.
+     * Creates and returns a new rigid body template from the given preprocessed geometry. The template can then be used
+     * to create an actual rigid body that uses the template, which assists with reuse of physics data. Returns null on
+     * failure.
      */
     virtual BodyTemplateObject createBodyTemplateFromPreProcessedGeometry(const Vector<byte_t>& data,
                                                                           bool deleteOnceUnused = false)
@@ -166,41 +170,45 @@ public:
     }
 
     /**
-     * Creates a rigid body template from the given heightmap data. See PhysicsInterface::createBodyTemplateFromGeometry() for
-     * more details.
+     * Creates a rigid body template from the given heightmap data. See
+     * PhysicsInterface::createBodyTemplateFromGeometry() for more details.
      */
-    virtual BodyTemplateObject createBodyTemplateFromHeightmap(unsigned int heightmapWidth, unsigned int heightmapHeight,
-                                                               const Vector<float>& heightmap, bool deleteOnceUnused = false)
+    virtual BodyTemplateObject createBodyTemplateFromHeightmap(unsigned int heightmapWidth,
+                                                               unsigned int heightmapHeight,
+                                                               const Vector<float>& heightmap,
+                                                               bool deleteOnceUnused = false)
     {
         return nullptr;
     }
 
     /**
-     * Deletes a body template. Body templates can only be deleted when not in use use by any rigid bodies. Returns success
-     * flag.
+     * Deletes a body template. Body templates can only be deleted when not in use use by any rigid bodies. Returns
+     * success flag.
      */
     virtual bool deleteBodyTemplate(BodyTemplateObject bodyTemplateObject) { return false; }
 
     /**
      * Creates and returns a new rigid body object based off the given template created with
-     * PhysicsInterface::createBodyTemplateFromGeometry(). See PhysicsInterface::createBoundingBoxBody() for details on the
-     * parameters.
+     * PhysicsInterface::createBodyTemplateFromGeometry(). See PhysicsInterface::createBoundingBoxBody() for details on
+     * the parameters.
      */
-    virtual BodyObject createGeometryBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float mass, bool fixed,
-                                                      const Entity* entity,
-                                                      const SimpleTransform& initialTransform = SimpleTransform::Identity)
+    virtual BodyObject
+        createGeometryBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float mass, bool fixed,
+                                       const Entity* entity,
+                                       const SimpleTransform& initialTransform = SimpleTransform::Identity)
     {
         return nullptr;
     }
 
     /**
      * Creates and returns a new rigid body based off the given template created with
-     * PhysicsInterface::createBodyTemplateFromHeightmap(). See PhysicsInterface::createBoundingBoxBody() for details on the
-     * parameters.
+     * PhysicsInterface::createBodyTemplateFromHeightmap(). See PhysicsInterface::createBoundingBoxBody() for details on
+     * the parameters.
      */
-    virtual BodyObject createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float heightScale,
-                                                       float terrainScale, float mass, bool fixed, const Entity* entity,
-                                                       const SimpleTransform& initialTransform = SimpleTransform::Identity)
+    virtual BodyObject
+        createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float heightScale, float terrainScale,
+                                        float mass, bool fixed, const Entity* entity,
+                                        const SimpleTransform& initialTransform = SimpleTransform::Identity)
     {
         return nullptr;
     }
@@ -212,20 +220,21 @@ public:
     virtual bool deleteBody(BodyObject bodyObject) { return false; }
 
     /**
-     * Returns the entity associated with the given physics body. This will be the value of the \a entity parameter passed to
-     * the PhysicsInterface::create*Body() method when the body was created.
+     * Returns the entity associated with the given physics body. This will be the value of the \a entity parameter
+     * passed to the PhysicsInterface::create*Body() method when the body was created.
      */
     virtual const Entity* getBodyEntity(BodyObject bodyObject) const { return nullptr; }
 
     /**
-     * Returns the current transform of a rigid body. This can be used to extract the new rigid body positions If the transform
-     * on this body has changed since the last time it was requested then true is returned, otherwise false is returned.
+     * Returns the current transform of a rigid body. This can be used to extract the new rigid body positions If the
+     * transform on this body has changed since the last time it was requested then true is returned, otherwise false is
+     * returned.
      */
     virtual bool getBodyTransform(BodyObject bodyObject, SimpleTransform& transform) { return false; }
 
     /**
-     * Sets the current transform of a rigid body. Can be used to setup or reposition bodies before or during simulation. Care
-     * must be taken to ensure bodies are not set to be intersecting. Returns success flag.
+     * Sets the current transform of a rigid body. Can be used to setup or reposition bodies before or during
+     * simulation. Care must be taken to ensure bodies are not set to be intersecting. Returns success flag.
      */
     virtual bool setBodyTransform(BodyObject bodyObject, const SimpleTransform& transform) { return false; }
 
@@ -260,23 +269,24 @@ public:
     virtual void applyTorqueToBody(BodyObject bodyObject, const Vec3& torque, ForceMode mode) {}
 
     /**
-     * Constrains the given body so that it can only ever move in the XY plane, i.e. it's Z position will always be zero and it
-     * will only ever rotate around the Z axis (X and Y axis rotations will are not allowed). This method is intended to be used
-     * when doing 2D physical simulation. Returns success flag.
+     * Constrains the given body so that it can only ever move in the XY plane, i.e. it's Z position will always be zero
+     * and it will only ever rotate around the Z axis (X and Y axis rotations will are not allowed). This method is
+     * intended to be used when doing 2D physical simulation. Returns success flag.
      */
     virtual bool constrainBodyToXYPlane(BodyObject bodyObject) { return false; }
 
     /**
      * Creates a hinge joint connecting two bodies. Returns the id of the new joint or zero if an error occurred.
      */
-    virtual JointObject createHingeJoint(BodyObject firstBodyObject, BodyObject secondBodyObject, const Vec3& globalAnchor,
-                                         const Vec3& globalAxis)
+    virtual JointObject createHingeJoint(BodyObject firstBodyObject, BodyObject secondBodyObject,
+                                         const Vec3& globalAnchor, const Vec3& globalAxis)
     {
         return nullptr;
     }
 
     /**
-     * Creates a ball and socket joint connecting two bodies. Returns the id of the new joint or zero if an error occurred.
+     * Creates a ball and socket joint connecting two bodies. Returns the id of the new joint or zero if an error
+     * occurred.
      */
     virtual JointObject createBallAndSocketJoint(BodyObject firstBodyObject, BodyObject secondBodyObject,
                                                  const Vec3& globalAnchor, const Vec3& angularLimits = Vec3::Zero)
@@ -296,7 +306,8 @@ public:
 
     /**
      * Creates and returns a new character controller with the given dimensions. The entity that owns the new character
-     * controller is stored with it in the physics manager and is used to quickly match a character controller to an entity.
+     * controller is stored with it in the physics manager and is used to quickly match a character controller to an
+     * entity.
      */
     virtual CharacterControllerObject createCharacterController(float height, float radius, const Entity* entity)
     {
@@ -328,10 +339,10 @@ public:
     virtual void moveCharacterController(CharacterControllerObject controllerObject, const Vec3& move, float dt) {}
 
     /**
-     * For the specified character controller, this method returns whether or not it has hit a surface directly above it. If it
-     * has then the return value will be true and the normal of the hit surface will be returned in \a collisionNormal. This is
-     * mainly used to detect when a character controller has jumped into a ceiling or other object in order to terminate the
-     * jump.
+     * For the specified character controller, this method returns whether or not it has hit a surface directly above
+     * it. If it has then the return value will be true and the normal of the hit surface will be returned in \a
+     * collisionNormal. This is mainly used to detect when a character controller has jumped into a ceiling or other
+     * object in order to terminate the jump.
      */
     virtual bool getCharacterControllerUpAxisCollision(CharacterControllerObject characterControllerObject,
                                                        Vec3& collisionNormal) const
@@ -340,9 +351,10 @@ public:
     }
 
     /**
-     * For the specified character controller, this method returns whether or not it has hit a surface directly below it. If it
-     * has then the return value will be true and the normal of the hit surface will be returned in \a collisionNormal. This is
-     * mainly used to detect when a character controller has hit the ground after jumping or falling.
+     * For the specified character controller, this method returns whether or not it has hit a surface directly below
+     * it. If it has then the return value will be true and the normal of the hit surface will be returned in \a
+     * collisionNormal. This is mainly used to detect when a character controller has hit the ground after jumping or
+     * falling.
      */
     virtual bool getCharacterControllerDownAxisCollision(CharacterControllerObject characterControllerObject,
                                                          Vec3& collisionNormal) const
@@ -351,15 +363,15 @@ public:
     }
 
     /**
-     * Returns the length in seconds of the substeps used in PhysicsInterface::update(). This is a constant value chosen by the
-     * physics engine. Common values are in the range from 1/60th of a second to 1/100th of a second.
+     * Returns the length in seconds of the substeps used in PhysicsInterface::update(). This is a constant value chosen
+     * by the physics engine. Common values are in the range from 1/60th of a second to 1/100th of a second.
      */
     virtual TimeValue getSubstepSize() const { return {}; }
 
     /**
      * Advances the physics simulation by the given time amount in seconds. Fixed-length substeps are used to update the
-     * simulation robustly. The size of these substeps is given by PhysicsInterface::getSubstepSize(), and partial substeps are
-     * accumulated across calls to PhysicsInterface::update().
+     * simulation robustly. The size of these substeps is given by PhysicsInterface::getSubstepSize(), and partial
+     * substeps are accumulated across calls to PhysicsInterface::update().
      */
     virtual void update(TimeValue time) {}
 
@@ -374,23 +386,24 @@ public:
     virtual void setGravityVector(const Vec3& gravity) {}
 
     /**
-     * Casts a ray into the physics simulation and returns whether it hit a body, details on the intersection are returned in \a
-     * result if an intersection was found.
+     * Casts a ray into the physics simulation and returns whether it hit a body, details on the intersection are
+     * returned in \a result if an intersection was found.
      */
     virtual bool raycast(const Ray& ray, PhysicsIntersectResult& result) const { return false; }
 
     /**
      * Takes the alpha channel of the passed image and converts to to a single bit-per-pixel image that indicates
-     * solid/non-solid which is then analysed to generate a set of 2D polygons that surround solid areas and can be used as the
-     * basis for a collision hull. This method is used to convert 2D collision map textures to collidable geometry when doing 2D
-     * physics simulation. The returned polygon geometry is normalized into the range 0-1. Returns success flag.
+     * solid/non-solid which is then analysed to generate a set of 2D polygons that surround solid areas and can be used
+     * as the basis for a collision hull. This method is used to convert 2D collision map textures to collidable
+     * geometry when doing 2D physics simulation. The returned polygon geometry is normalized into the range 0-1.
+     * Returns success flag.
      */
     static bool convertImageAlphaTo2DPolygons(const Image& image, Vector<Vector<Vec2>>& outPolygons,
                                               bool flipHorizontally = false, bool flipVertically = false);
 
     /**
-     * Takes a set of 2D polygons and converts them to 3D geometry usable as collidable geometry. The size in the Z dimension is
-     * controlled using \a zScale.
+     * Takes a set of 2D polygons and converts them to 3D geometry usable as collidable geometry. The size in the Z
+     * dimension is controlled using \a zScale.
      */
     static void convert2DPolygonsToCollisionGeometry(const Vector<Vector<Vec2>>& polygons, Vector<Vec3>& vertices,
                                                      Vector<RawIndexedTriangle>& triangles, float zScale = 50.0f);

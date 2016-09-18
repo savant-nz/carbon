@@ -114,8 +114,8 @@ LRESULT ProgressDialog::dialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARA
 
         case WM_DESTROY:
         {
-            // The worker thread should be finished by now assuming everything worked correctly. However, it is important to
-            // check it is finished, as odd behavior or crashes could result from lurking worker threads
+            // The worker thread should be finished by now assuming everything worked correctly. However, it is
+            // important to check it is finished, as odd behavior or crashes could result from lurking worker threads.
             auto workerThreadExitCode = DWORD();
             GetExitCodeThread(workerThread_, &workerThreadExitCode);
             if (workerThreadExitCode == STILL_ACTIVE)
@@ -211,7 +211,10 @@ LRESULT ProgressDialog::dialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARA
 
                     // Update progress bar position
                     if (runnable_->isPercentageDirty())
-                        PostMessage(GetDlgItem(hDlg, IDC_PROGRESS), PBM_SETPOS, int(runnable_->getPercentage() * 10.0f), 0);
+                    {
+                        auto position = runnable_->getPercentage() * 10.0f;
+                        PostMessage(GetDlgItem(hDlg, IDC_PROGRESS), PBM_SETPOS, int(position), 0);
+                    }
                 }
             }
 
@@ -286,7 +289,8 @@ void ProgressDialog::show(Runnable& r, HWND hWndParent)
     runnable_ = &r;
 
     // Show dialog box
-    if (DialogBoxParam(Globals::getHInstance(), LPCTSTR(IDD_PROGRESS), hWndParent, DLGPROC(staticDialogProc), LPARAM(this)) < 1)
+    if (DialogBoxParam(Globals::getHInstance(), LPCTSTR(IDD_PROGRESS), hWndParent, DLGPROC(staticDialogProc),
+                       LPARAM(this)) < 1)
     {
         LOG_ERROR << "Failed showing progress dialog";
         MessageBoxA(hWndParent, "Error: Failed showing progress dialog", Globals::getClientName().cStr(), MB_ICONERROR);

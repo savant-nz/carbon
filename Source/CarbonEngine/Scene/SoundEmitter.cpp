@@ -96,7 +96,7 @@ void SoundEmitter::load(FileReader& file)
         setVolume(volume_);
         setPitch(pitch_);
 
-        // TODO: restore state correctly, to do this properly would involve also saving the current play position (if any)
+        // TODO: restore state correctly, to do this properly would involve also saving any current play position
     }
     catch (const Exception&)
     {

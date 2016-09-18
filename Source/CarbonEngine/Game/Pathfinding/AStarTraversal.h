@@ -16,10 +16,11 @@ class CARBON_API AStarTraversal
 public:
 
     /**
-     * Runs the A* algorithm on the passed graph with passed start and target nodes. The calculated path is returned in \a path.
-     * The return value indicates whether a path between the two nodes was found.
+     * Runs the A* algorithm on the passed graph with passed start and target nodes. The calculated path is returned in
+     * \a path. The return value indicates whether a path between the two nodes was found.
      */
-    static bool run(NavigationGraph& graph, NavigationNode& start, NavigationNode& target, Vector<NavigationNode*>& path);
+    static bool run(NavigationGraph& graph, NavigationNode& start, NavigationNode& target,
+                    Vector<NavigationNode*>& path);
 };
 
 }

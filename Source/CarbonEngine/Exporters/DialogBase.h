@@ -32,8 +32,8 @@ public:
     const UnicodeString& getTitle() const { return title_; }
 
     /**
-     * Sets the title of the dialog. This should be called prior to DialogBase::show() as it has no effect on currently visible
-     * dialogs.
+     * Sets the title of the dialog. This should be called prior to DialogBase::show() as it has no effect on currently
+     * visible dialogs.
      */
     void setTitle(const UnicodeString& title) { title_ = title; }
 
@@ -70,8 +70,8 @@ protected:
 
     /**
      * This is an incomplete dialog procedure that is used to control the background color of a dialog. The main dialog
-     * procedure must call this for every message it receives, and if the return value is true then it should return the value
-     * in the returnValue parameter.
+     * procedure must call this for every message it receives, and if the return value is true then it should return the
+     * value in the returnValue parameter.
      */
     virtual bool backgroundColorDialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam, LRESULT& returnValue);
 

@@ -15,7 +15,8 @@ namespace Carbon
 
 Vec3 Triangle::getNormal() const
 {
-    return ((getVertexPosition(2) - getVertexPosition(0)).cross(getVertexPosition(1) - getVertexPosition(0))).normalized();
+    return ((getVertexPosition(2) - getVertexPosition(0)).cross(getVertexPosition(1) - getVertexPosition(0)))
+        .normalized();
 }
 
 void Triangle::split(const Plane& plane, TriangleArray& frontPieces, TriangleArray& backPieces) const
@@ -23,8 +24,9 @@ void Triangle::split(const Plane& plane, TriangleArray& frontPieces, TriangleArr
     // This algorithm works for splitting any convex polygon by a plane
 
     // Classify the vertices against the plane
-    auto vertClassify = std::array<Plane::ClassifyResult, 3>{
-        {plane.classify(getVertexPosition(0)), plane.classify(getVertexPosition(1)), plane.classify(getVertexPosition(2))}};
+    auto vertClassify = std::array<Plane::ClassifyResult, 3>{{plane.classify(getVertexPosition(0)),
+                                                              plane.classify(getVertexPosition(1)),
+                                                              plane.classify(getVertexPosition(2))}};
 
     // The front and back pieces after splitting
     auto front = Vector<Vector<byte_t>>();

@@ -72,9 +72,9 @@ class WindowsSDKBuilder < SDKBuilderBase
                           target_without_extension: 'SDK/ProjectTemplates/VisualStudio/Templates/1033/Application'
   end
 
-  # Creates the Visual Studio project files for the sample applications. This is done by taking the XML project files for the
-  # samples in Source/ and making a few chnages so that they build against the SDK rather than the local repository. See the
-  # SampleApplicationProjectFile class below for details
+  # Creates the Visual Studio project files for the sample applications. This is done by taking the XML project files
+  # for the samples in Source/ and making a few chnages so that they build against the SDK rather than the local
+  # repository. See the SampleApplicationProjectFile class below for details
   def create_sample_application_visual_studio_project_files
     @sample_application_visual_studio_project_files = sample_applications.map do |sample|
       project_file = SampleApplicationProjectFile.new "Source/#{sample}/#{sample}.vcxproj"
@@ -91,8 +91,8 @@ class WindowsSDKBuilder < SDKBuilderBase
     FileUtils.rm_f @sample_application_visual_studio_project_files if @sample_application_visual_studio_project_files
   end
 
-  # This class takes an XML Visual Studio project file and exposes methods to alter parts of it and then write it out as a new
-  # project file.
+  # This class takes an XML Visual Studio project file and exposes methods to alter parts of it and then write it out as
+  # a new project file.
   class SampleApplicationProjectFile
     def initialize(filename)
       @document = REXML::Document.new File.read(filename)

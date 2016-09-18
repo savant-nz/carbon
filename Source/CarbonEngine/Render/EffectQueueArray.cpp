@@ -37,7 +37,8 @@ void EffectQueueArray::debugTrace() const
     {
         auto queue = queues_[i];
 
-        LOG_DEBUG << "Primary render queue " << (i + 1) << "/" << queues_.size() << ", priority: " << queue->getPriority()
+        LOG_DEBUG << "Primary render queue " << (i + 1) << "/" << queues_.size()
+                  << ", priority: " << queue->getPriority()
                   << ", effect: " << (queue->getEffect() ? queue->getEffect()->getName() : "null")
                   << ", items: " << queue->getItems().size();
 

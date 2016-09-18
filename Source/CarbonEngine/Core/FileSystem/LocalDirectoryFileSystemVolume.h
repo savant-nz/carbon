@@ -13,17 +13,17 @@ namespace Carbon
 {
 
 /**
- * This is a subclass of FileSystemVolume that passes all its file I/O off to a local file system directory, this effectively
- * means that the root of the file system volume is equivalent to the local file system directory which is passed to the
- * constructor.
+ * This is a subclass of FileSystemVolume that passes all its file I/O off to a local file system directory, this
+ * effectively means that the root of the file system volume is equivalent to the local file system directory which is
+ * passed to the constructor.
  */
 class CARBON_API LocalDirectoryFileSystemVolume : public FileSystemVolume
 {
 public:
 
     /**
-     * Initializes this local directory file system volume with the given name and the directory on the local file system that
-     * it should use as its root.
+     * Initializes this local directory file system volume with the given name and the directory on the local file
+     * system that it should use as its root.
      */
     LocalDirectoryFileSystemVolume(const UnicodeString& name, const UnicodeString& localDirectory)
         : FileSystemVolume(name), localDirectory_(FileSystem::joinPaths(localDirectory, UnicodeString::Empty))

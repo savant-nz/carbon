@@ -48,7 +48,8 @@ void OpenGLES2::deleteRenderTarget(RenderTargetObject renderTargetObject)
     renderTarget = nullptr;
 }
 
-bool OpenGLES2::setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject, const Vector<TextureObject>& textures,
+bool OpenGLES2::setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject,
+                                                   const Vector<TextureObject>& textures,
                                                    const Vector<int>& cubemapFaces)
 {
     if (!renderTargetObject)

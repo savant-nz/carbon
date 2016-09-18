@@ -203,8 +203,9 @@ String OpenAL::getNextSoundLoadThreadJob() const
 {
     auto lock = ScopedMutexLock(mutex_);
 
-    // Find something for the sound load thread to do - it wants buffers that are in the LoadPending state and which have not
-    // already been loaded but are still awaiting processing (i.e. they are done and waiting in completedSoundLoadThreadJobs_).
+    // Find something for the sound load thread to do - it wants buffers that are in the LoadPending state and which
+    // have not already been loaded but are still awaiting processing (i.e. they are done and waiting in
+    // completedSoundLoadThreadJobs_).
     for (auto buffer : buffers_)
     {
         if (buffer->state == Buffer::LoadPending &&
@@ -250,9 +251,10 @@ bool OpenAL::processEvent(const Event& e)
                 }
                 else
                 {
-                    // Something happened which means the result of the sound load thread isn't usable - maybe the sound it was
-                    // loading had its data loaded JIT on the main thread, or the sound was deleted. Either way it is no longer
-                    // waiting in the LoadPending state, so throw out the work done by the sound load thread.
+                    // Something happened which means the result of the sound load thread isn't usable - maybe the sound
+                    // it was loading had its data loaded JIT on the main thread, or the sound was deleted. Either way
+                    // it is no longer waiting in the LoadPending state, so throw out the work done by the sound load
+                    // thread.
 
                     alDeleteBuffers(1, &alID);
                 }
@@ -521,8 +523,8 @@ bool OpenAL::setSourceSoundShader(SourceObject sourceObject, const String& shade
     // Handle the case when the load of this buffer has not yet occurred
     if (buffer->state == Buffer::LoadPending)
     {
-        // If the sound shader does not want its sound file loaded on the main thread then flag it as currently waiting for its
-        // buffer to be loaded, this state is checked every frame in OpenAL::processEvent()
+        // If the sound shader does not want its sound file loaded on the main thread then flag it as currently waiting
+        // for its buffer to be loaded, this state is checked every frame in OpenAL::processEvent()
         if (source->soundShader->isBackgroundLoadRequired())
         {
             source->isWaitingForBufferLoad = true;

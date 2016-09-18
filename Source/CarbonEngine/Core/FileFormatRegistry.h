@@ -12,12 +12,13 @@ namespace Carbon
 {
 
 /**
- * This class contains shared functionality for managing multiple different file formats that load into the same resource type,
- * for example image files such as PNG, JPEG and DDS all get loaded into the Image class. This class handles format
- * registration, format lookup, automatic filename extension determination, and all related FileSystem interaction. Each
- * supported format is identified by a unique file extension (e.g. bmp, png, or jpg for images). This class is subclassed by
- * classes that adapt it for specific use cases, see ImageFormatRegistry, SoundFormatRegistry and MeshFormatRegistry for
- * details. The CARBON_REGISTER_FILE_FORMAT() macro is used to automatically register a file format on startup.
+ * This class contains shared functionality for managing multiple different file formats that load into the same
+ * resource type, for example image files such as PNG, JPEG and DDS all get loaded into the Image class. This class
+ * handles format registration, format lookup, automatic filename extension determination, and all related FileSystem
+ * interaction. Each supported format is identified by a unique file extension (e.g. bmp, png, or jpg for images). This
+ * class is subclassed by classes that adapt it for specific use cases, see ImageFormatRegistry, SoundFormatRegistry and
+ * MeshFormatRegistry for details. The CARBON_REGISTER_FILE_FORMAT() macro is used to automatically register a file
+ * format on startup.
  */
 template <typename ReadFileFormatFunction, typename WriteFileFormatFunction>
 class CARBON_API FileFormatRegistry : private Noncopyable
@@ -25,11 +26,12 @@ class CARBON_API FileFormatRegistry : private Noncopyable
 public:
 
     /**
-     * Registers reader and writer functions for the file format that uses the given extension. Both the \a reader and \a writer
-     * parameters are allowed to be null. Usually the CARBON_REGISTER_FILE_FORMAT() macro is used instead of calling this method
-     * directly.
+     * Registers reader and writer functions for the file format that uses the given extension. Both the \a reader and
+     * \a writer parameters are allowed to be null. Usually the CARBON_REGISTER_FILE_FORMAT() macro is used instead of
+     * calling this method directly.
      */
-    static void registerFormat(const UnicodeString& extension, ReadFileFormatFunction reader, WriteFileFormatFunction writer)
+    static void registerFormat(const UnicodeString& extension, ReadFileFormatFunction reader,
+                               WriteFileFormatFunction writer)
     {
         auto format = findFormat(extension);
 
@@ -66,8 +68,8 @@ public:
     }
 
     /**
-     * Takes a filename and returns the extension if one is present and is recognized as a known file format extension. If no
-     * known file format extension is present then an empty string is returned.
+     * Takes a filename and returns the extension if one is present and is recognized as a known file format extension.
+     * If no known file format extension is present then an empty string is returned.
      */
     static const UnicodeString& getSupportedExtension(const UnicodeString& filename)
     {
@@ -97,10 +99,10 @@ public:
     }
 
     /**
-     * If the passed filename ends with a supported file format extension then the return value is whether or not the passed
-     * filename exists, but if no known file format extension is present on the passed filename then each of the registered file
-     * format extensions are appended to the filename to see if a file of that format exists, and if one is found then true is
-     * returned. If no matching filename can be found then false is returned
+     * If the passed filename ends with a supported file format extension then the return value is whether or not the
+     * passed filename exists, but if no known file format extension is present on the passed filename then each of the
+     * registered file format extensions are appended to the filename to see if a file of that format exists, and if one
+     * is found then true is returned. If no matching filename can be found then false is returned.
      */
     static bool doesFileExist(const UnicodeString& filename)
     {
@@ -125,11 +127,11 @@ public:
 protected:
 
     /**
-     * Takes a filename and tries to open the relevant file, if the name ends with a supported file extension then that format
-     * will be assumed, otherwise the filename will be assumed to lack an extension and the filesystem will be searched for
-     * possible matches based on all the registered file formats and their extensions. If this process finds a file then the \a
-     * ReadFileFormatFunction for the matching format is returned and the opened file is returned by the \a file parameter. Null
-     * is returned on failure.
+     * Takes a filename and tries to open the relevant file, if the name ends with a supported file extension then that
+     * format will be assumed, otherwise the filename will be assumed to lack an extension and the filesystem will be
+     * searched for possible matches based on all the registered file formats and their extensions. If this process
+     * finds a file then the \a ReadFileFormatFunction for the matching format is returned and the opened file is
+     * returned by the \a file parameter. Returns null on failure.
      */
     static ReadFileFormatFunction loadFile(const UnicodeString& filename, FileReader& file)
     {
@@ -173,8 +175,8 @@ protected:
     }
 
     /**
-     * If the passed filename ends with an extension that has an associated writer function then this method will open the file
-     * for writing and return the relevant WriteFileFormatFunction for the format. Returns null on failure.
+     * If the passed filename ends with an extension that has an associated writer function then this method will open
+     * the file for writing and return the relevant WriteFileFormatFunction for the format. Returns null on failure.
      */
     static WriteFileFormatFunction saveFile(const UnicodeString& filename, FileWriter& file)
     {
@@ -216,7 +218,8 @@ private:
         WriteFileFormatFunction fnWriter = nullptr;
 
         SupportedFileFormat() {}
-        SupportedFileFormat(UnicodeString extension_, ReadFileFormatFunction fnReader_, WriteFileFormatFunction fnWriter_)
+        SupportedFileFormat(UnicodeString extension_, ReadFileFormatFunction fnReader_,
+                            WriteFileFormatFunction fnWriter_)
             : extension(std::move(extension_)), fnReader(fnReader_), fnWriter(fnWriter_)
         {
         }
@@ -250,7 +253,8 @@ private:
 /**
  * Registers reading and writing functions for the given extension with the specified file format registry, both \a
  * ReaderFunction and \a WriterFunction are allowed to be null. Usually one of CARBON_REGISTER_IMAGE_FILE_FORMAT(),
- * CARBON_REGISTER_SOUND_FILE_FORMAT() or CARBON_REGISTER_MESH_FILE_FORMAT() is used instead of using this macro directly.
+ * CARBON_REGISTER_SOUND_FILE_FORMAT() or CARBON_REGISTER_MESH_FILE_FORMAT() is used instead of using this macro
+ * directly.
  */
 #define CARBON_REGISTER_FILE_FORMAT(Registry, Extension, ReaderFunction, WriterFunction)                           \
     CARBON_UNIQUE_NAMESPACE                                                                                        \

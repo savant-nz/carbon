@@ -9,8 +9,8 @@ namespace Carbon
 {
 
 /**
- * Describes a single edge in a navigation graph, each connects two navigation nodes together and has an associated traversal
- * cost that is used when doing pathfinding.
+ * Describes a single edge in a navigation graph, each connects two navigation nodes together and has an associated
+ * traversal cost that is used when doing pathfinding.
  */
 class CARBON_API NavigationEdge
 {
@@ -49,14 +49,14 @@ public:
     }
 
     /**
-     * Returns whether this edge is traversable by pathfinding algorithms, i.e. whether this edge can be used when constructing
-     * a path through its graph.
+     * Returns whether this edge is traversable by pathfinding algorithms, i.e. whether this edge can be used when
+     * constructing a path through its graph.
      */
     bool isTraversable() const { return isTraversable_; }
 
     /**
-     * Sets whether this edge is traversable by pathfinding algorithms, i.e. whether this edge can be used when constructing a
-     * path through its graph.
+     * Sets whether this edge is traversable by pathfinding algorithms, i.e. whether this edge can be used when
+     * constructing a path through its graph.
      */
     void setTraversable(bool traversable) { isTraversable_ = traversable; }
 
@@ -71,9 +71,9 @@ public:
     void setCostToTraverse(float cost) { costToTraverse_ = cost; }
 
     /**
-     * Returns whether this edge is orphaned, an orphaned edge is one where one of both of the nodes it connects are marked as
-     * not being traversable, which effectively means this edge isn't currently a useful part of the graph structure in terms of
-     * connectivity. This property is orthogonal to the traversability of an edge.
+     * Returns whether this edge is orphaned, an orphaned edge is one where one of both of the nodes it connects are
+     * marked as not being traversable, which effectively means this edge isn't currently a useful part of the graph
+     * structure in terms of connectivity. This property is orthogonal to the traversability of an edge.
      */
     bool isOrphaned() const;
 

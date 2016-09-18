@@ -76,8 +76,8 @@ bool Shader::prepareParameters(ParameterArray& parameters, Vector<const Texture*
         {
             auto& textureName = parameter.getValue().getString();
 
-            // Load/reference this texture. The built-in textures are special cased here, and there is no need to reference them
-            // as they are owned by the renderer.
+            // Load/reference this texture. The built-in textures are special cased here, and there is no need to
+            // reference them as they are owned by the renderer.
 
             auto lowerTextureName = textureName.asLower();
 
@@ -95,19 +95,21 @@ bool Shader::prepareParameters(ParameterArray& parameters, Vector<const Texture*
                 texture = renderer().getFlatNormalMap();
             else
             {
-                texture = textures().setupTexture(effectParameter.textureType, textureName, effectParameter.textureGroup);
+                texture =
+                    textures().setupTexture(effectParameter.textureType, textureName, effectParameter.textureGroup);
 
                 // Record that we have a reference to this texture
                 textureReferences.append(texture);
             }
 
-            // Put the texture parameter's corresponding texture pointer into the parameters, the Shader then uses this to
-            // access the texture
+            // Put the texture parameter's corresponding texture pointer into the parameters, the Shader then uses this
+            // to access the texture
             parameters.set(Parameter::getHiddenParameterName(effectParameter.name), texture);
         }
         else
         {
-            // Convert blending factors from the text representation to a enum value and store the result in a hidden parameter
+            // Convert blending factors from the text representation to a enum value and store the result in a hidden
+            // parameter
 
             static const auto blendSourceFactorParameter = ParameterArray::Lookup("blendSourceFactor");
             static const auto blendDestinationFactorParameter = ParameterArray::Lookup("blendDestinationFactor");
@@ -213,7 +215,8 @@ bool Shader::ManagedShaderProgram::mapVertexAttributes()
     return true;
 }
 
-void Shader::setVertexAttributeArray(const GeometryChunk& geometryChunk, unsigned int attributeIndex, unsigned int streamType)
+void Shader::setVertexAttributeArray(const GeometryChunk& geometryChunk, unsigned int attributeIndex,
+                                     unsigned int streamType)
 {
     auto source = geometryChunk.getArraySourceForVertexStream(streamType);
 
@@ -230,8 +233,10 @@ void Shader::ManagedShaderProgram::setVertexAttributeArrayConfiguration(const Ge
     GraphicsInterface::VertexAttributeArrayConfigurationObject configuration = nullptr;
 
     // Look for a vertex attribute array configuration for this shader program on the geometry chunk
-    auto index = geometryChunk.shaderProgramVertexAttributeArrayConfigurations_.findBy([=](
-        const GeometryChunk::ShaderProgramVertexAttributeArrayConfiguration& config) { return config.program == program_; });
+    auto index = geometryChunk.shaderProgramVertexAttributeArrayConfigurations_.findBy(
+        [=](const GeometryChunk::ShaderProgramVertexAttributeArrayConfiguration& config) {
+            return config.program == program_;
+        });
 
     if (index != -1)
         configuration = geometryChunk.shaderProgramVertexAttributeArrayConfigurations_[index].configuration;
@@ -274,8 +279,8 @@ void Shader::setTexture(unsigned int unit, const Texture* texture, const Texture
             return;
     }
 
-    // If the image load or texture upload for this texture are still pending then run them right now, this is where all JIT
-    // texture loading occurs
+    // If the image load or texture upload for this texture are still pending then run them right now, this is where all
+    // JIT texture loading occurs
     if (texture->getState() != Texture::Ready)
     {
         if (texture->getState() == Texture::ImageLoadPending)

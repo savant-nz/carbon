@@ -78,7 +78,8 @@ String Bullet::getEngineName() const
     return String() + "Bullet " + (btGetVersion() / 100) + "." + (btGetVersion() % 100);
 }
 
-PhysicsInterface::BodyObject Bullet::createBoundingBoxBody(const AABB& aabb, float mass, bool fixed, const Entity* entity,
+PhysicsInterface::BodyObject Bullet::createBoundingBoxBody(const AABB& aabb, float mass, bool fixed,
+                                                           const Entity* entity,
                                                            const SimpleTransform& initialTransform)
 {
     auto collisionShape = new btBoxShape(toBullet((aabb.getMaximum() - aabb.getMinimum()) * 0.5f));
@@ -114,8 +115,8 @@ PhysicsInterface::BodyObject Bullet::createBoundingBoxBody(const AABB& aabb, flo
     return body;
 }
 
-PhysicsInterface::BodyObject Bullet::createCapsuleBody(float height, float radius, float mass, bool fixed, const Entity* entity,
-                                                       const SimpleTransform& initialTransform)
+PhysicsInterface::BodyObject Bullet::createCapsuleBody(float height, float radius, float mass, bool fixed,
+                                                       const Entity* entity, const SimpleTransform& initialTransform)
 {
     auto collisionShape = new btCapsuleShape(radius, height);
 
@@ -164,7 +165,8 @@ bool Bullet::constrainBodyToXYPlane(BodyObject bodyObject)
 
 PhysicsInterface::BodyTemplateObject Bullet::createBodyTemplateFromGeometry(const Vector<Vec3>& vertices,
                                                                             const Vector<RawIndexedTriangle>& triangles,
-                                                                            bool deleteOnceUnused, float customCollisionMargin)
+                                                                            bool deleteOnceUnused,
+                                                                            float customCollisionMargin)
 {
     if (vertices.empty() || triangles.empty())
         return nullptr;
@@ -282,8 +284,8 @@ PhysicsInterface::BodyObject Bullet::createGeometryBodyFromTemplate(BodyTemplate
         bodyTemplate->collisionShape->calculateLocalInertia(mass, localInertia);
 
     // Motion state for this body
-    auto motionState =
-        new btDefaultMotionState(toBullet(initialTransform), btTransform(btQuaternion::getIdentity(), toBullet(Vec3::Zero)));
+    auto motionState = new btDefaultMotionState(toBullet(initialTransform),
+                                                btTransform(btQuaternion::getIdentity(), toBullet(Vec3::Zero)));
 
     // Create Bullet rigid body
     auto bulletBody = new btRigidBody(
@@ -306,9 +308,9 @@ PhysicsInterface::BodyObject Bullet::createGeometryBodyFromTemplate(BodyTemplate
     return body;
 }
 
-PhysicsInterface::BodyObject Bullet::createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject, float heightScale,
-                                                                     float terrainScale, float mass, bool fixed,
-                                                                     const Entity* entity,
+PhysicsInterface::BodyObject Bullet::createHeightmapBodyFromTemplate(BodyTemplateObject bodyTemplateObject,
+                                                                     float heightScale, float terrainScale, float mass,
+                                                                     bool fixed, const Entity* entity,
                                                                      const SimpleTransform& initialTransform)
 {
     auto bodyTemplate = reinterpret_cast<BodyTemplate*>(bodyTemplateObject);
@@ -332,8 +334,8 @@ PhysicsInterface::BodyObject Bullet::createHeightmapBodyFromTemplate(BodyTemplat
     {
         for (auto x = 0U; x < heightmapWidth; x++)
         {
-            vertices[y * heightmapWidth + x].setXYZ(float(x) * terrainScale, heightmap[y * heightmapWidth + x] * heightScale,
-                                                    float(y) * terrainScale);
+            vertices[y * heightmapWidth + x].setXYZ(
+                float(x) * terrainScale, heightmap[y * heightmapWidth + x] * heightScale, float(y) * terrainScale);
         }
     }
 
@@ -355,7 +357,8 @@ PhysicsInterface::BodyObject Bullet::createHeightmapBodyFromTemplate(BodyTemplat
         }
     }
 
-    // Create a temporary geometry body for the heightmap geometry and then create the final heightmap body from that template
+    // Create a temporary geometry body for the heightmap geometry and then create the final heightmap body from that
+    // template
     auto temporaryBodyTemplate = createBodyTemplateFromGeometry(vertices, triangles, true);
     if (!temporaryBodyTemplate)
     {
@@ -373,8 +376,8 @@ bool Bullet::deleteBody(BodyObject bodyObject)
 
     auto body = reinterpret_cast<Body*>(bodyObject);
 
-    // Any joints using this body are automatically removed from the simulation and any pointers to the body to be deleted are
-    // nulled, but the Bullet::Joint instance lives on until an actual call to PhysX::deleteJoint()
+    // Any joints using this body are automatically removed from the simulation and any pointers to the body to be
+    // deleted are nulled, but the Bullet::Joint instance lives on until an actual call to PhysX::deleteJoint()
     for (auto joint : joints_)
     {
         if (joint->firstBody == body || joint->secondBody == body)
@@ -394,8 +397,8 @@ bool Bullet::deleteBody(BodyObject bodyObject)
     delete body->bulletBody;
     body->bulletBody = nullptr;
 
-    // Destroy this body's template if it is flagged to be destroyed when the last user of that template is destroyed and this
-    // body is that last user
+    // Destroy this body's template if it is flagged to be destroyed when the last user of that template is destroyed
+    // and this body is that last user
     auto bodyTemplate = body->bodyTemplate;
     if (bodyTemplate && bodyTemplate->deleteOnceUnused && getBodyTemplateBodyCount(bodyTemplate) == 1)
     {
@@ -555,10 +558,11 @@ PhysicsInterface::JointObject Bullet::createHingeJoint(BodyObject firstBodyObjec
     firstBody->bulletBody->getMotionState()->getWorldTransform(firstBodyTransform);
     secondBody->bulletBody->getMotionState()->getWorldTransform(secondBodyTransform);
 
-    auto btConstraint = new btHingeConstraint(
-        *firstBody->bulletBody, *secondBody->bulletBody, firstBodyTransform.inverse() * toBullet(globalAnchor),
-        secondBodyTransform.inverse() * toBullet(globalAnchor), firstBodyTransform.getBasis().inverse() * toBullet(globalAxis),
-        secondBodyTransform.getBasis().inverse() * toBullet(globalAxis));
+    auto btConstraint = new btHingeConstraint(*firstBody->bulletBody, *secondBody->bulletBody,
+                                              firstBodyTransform.inverse() * toBullet(globalAnchor),
+                                              secondBodyTransform.inverse() * toBullet(globalAnchor),
+                                              firstBodyTransform.getBasis().inverse() * toBullet(globalAxis),
+                                              secondBodyTransform.getBasis().inverse() * toBullet(globalAxis));
 
     joints_.append(new Joint(firstBody, secondBody, btConstraint));
 
@@ -584,11 +588,13 @@ PhysicsInterface::JointObject Bullet::createBallAndSocketJoint(BodyObject firstB
     firstBody->bulletBody->getMotionState()->getWorldTransform(firstBodyTransform);
     secondBody->bulletBody->getMotionState()->getWorldTransform(secondBodyTransform);
 
-    auto firstLocalAnchor = btTransform(btQuaternion::getIdentity(), firstBodyTransform.inverse() * toBullet(globalAnchor));
-    auto secondLocalAnchor = btTransform(btQuaternion::getIdentity(), secondBodyTransform.inverse() * toBullet(globalAnchor));
+    auto firstLocalAnchor =
+        btTransform(btQuaternion::getIdentity(), firstBodyTransform.inverse() * toBullet(globalAnchor));
+    auto secondLocalAnchor =
+        btTransform(btQuaternion::getIdentity(), secondBodyTransform.inverse() * toBullet(globalAnchor));
 
-    auto btConstraint =
-        new btGeneric6DofConstraint(*firstBody->bulletBody, *secondBody->bulletBody, firstLocalAnchor, secondLocalAnchor, true);
+    auto btConstraint = new btGeneric6DofConstraint(*firstBody->bulletBody, *secondBody->bulletBody, firstLocalAnchor,
+                                                    secondLocalAnchor, true);
 
     if (angularLimits != Vec3::Zero)
     {
@@ -640,14 +646,16 @@ bool Bullet::getBodyJoints(BodyObject bodyObject, Vector<JointObject>& joints) c
 
     for (auto joint : joints_)
     {
-        if (joint->firstBody == reinterpret_cast<Body*>(bodyObject) || joint->secondBody == reinterpret_cast<Body*>(bodyObject))
+        if (joint->firstBody == reinterpret_cast<Body*>(bodyObject) ||
+            joint->secondBody == reinterpret_cast<Body*>(bodyObject))
             joints.append(joint);
     }
 
     return true;
 }
 
-PhysicsInterface::CharacterControllerObject Bullet::createCharacterController(float height, float radius, const Entity* entity)
+PhysicsInterface::CharacterControllerObject Bullet::createCharacterController(float height, float radius,
+                                                                              const Entity* entity)
 {
     auto ghostObject = new btPairCachingGhostObject;
 
@@ -715,7 +723,8 @@ void Bullet::moveCharacterController(CharacterControllerObject characterControll
     characterController->bulletController->setVelocityForTimeInterval(toBullet(move / time), time);
 }
 
-bool Bullet::getCharacterControllerUpAxisCollision(CharacterControllerObject controllerObject, Vec3& collisionNormal) const
+bool Bullet::getCharacterControllerUpAxisCollision(CharacterControllerObject controllerObject,
+                                                   Vec3& collisionNormal) const
 {
     if (!controllerObject)
         return false;
@@ -731,7 +740,8 @@ bool Bullet::getCharacterControllerUpAxisCollision(CharacterControllerObject con
     return true;
 }
 
-bool Bullet::getCharacterControllerDownAxisCollision(CharacterControllerObject controllerObject, Vec3& collisionNormal) const
+bool Bullet::getCharacterControllerDownAxisCollision(CharacterControllerObject controllerObject,
+                                                     Vec3& collisionNormal) const
 {
     if (!controllerObject)
         return false;
@@ -787,8 +797,9 @@ public:
     {
         auto bodyObject = result.m_collisionObject->getUserPointer();
 
-        auto normal = normalInWorldSpace ? result.m_hitNormalLocal :
-                                           result.m_collisionObject->getWorldTransform().getBasis() * result.m_hitNormalLocal;
+        auto normal = normalInWorldSpace ?
+            result.m_hitNormalLocal :
+            result.m_collisionObject->getWorldTransform().getBasis() * result.m_hitNormalLocal;
 
         results_.emplace(result.m_hitFraction * MaxRayDistance, ray_.getPoint(result.m_hitFraction * MaxRayDistance),
                          Bullet::toCarbon(normal), bodyObject);

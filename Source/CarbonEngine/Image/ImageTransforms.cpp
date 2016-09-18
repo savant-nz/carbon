@@ -116,7 +116,8 @@ bool Image::rawFlipHorizontal(unsigned int w, unsigned int h, unsigned int d, Pi
                 {
                     // Swap blocks
                     memcpy(block.data(), &data[(offset + x) * blockSize], blockSize);
-                    memcpy(&data[(offset + x) * blockSize], &data[(offset + xBlockCount - x - 1) * blockSize], blockSize);
+                    memcpy(&data[(offset + x) * blockSize], &data[(offset + xBlockCount - x - 1) * blockSize],
+                           blockSize);
                     memcpy(&data[(offset + xBlockCount - x - 1) * blockSize], block.data(), blockSize);
                 }
 
@@ -299,8 +300,8 @@ bool Image::rawFlipVertical(unsigned int w, unsigned int h, unsigned int d, Pixe
                     }
                     else if (pf == DXT5)
                     {
-                        // Take a copy of the original DXT5 alpha values for each row, shifted appropriately ready for the
-                        // vertical flip
+                        // Take a copy of the original DXT5 alpha values for each row, shifted appropriately ready for
+                        // the vertical flip
                         auto alpha0 = ptr[3] >> 4 | ptr[4] << 4;
                         auto alpha1 = ptr[2] << 12 | ptr[3] << 20;
                         auto alpha2 = ptr[6] >> 4 | ptr[7] << 4;
@@ -398,8 +399,8 @@ bool Image::rawRotateCCW(unsigned int w, unsigned int h, unsigned int d, PixelFo
             auto totalBlockCount = d * xBlockCount * yBlockCount;
             for (auto i = 0U; i < totalBlockCount; i++)
             {
-                // A number of situations involving blocks with dimensions less than 4 need to be special cased, though a couple
-                // still work with the standard block rotation code.
+                // A number of situations involving blocks with dimensions less than 4 need to be special cased, though
+                // a couple still work with the standard block rotation code.
 
                 if (w == 2 && h == 1)
                 {

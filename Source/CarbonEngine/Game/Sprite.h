@@ -33,8 +33,8 @@ public:
     static const UnicodeString SpriteExtension;
 
     /**
-     * Sets the texture to use on this sprite. If sprite animation is being used then the frame count along each direction
-     * should be specified. Returns success flag.
+     * Sets the texture to use on this sprite. If sprite animation is being used then the frame count along each
+     * direction should be specified. Returns success flag.
      */
     bool setSpriteTexture(const String& spriteTexture, unsigned int frameCountX = 1, unsigned int frameCountY = 1);
 
@@ -44,16 +44,17 @@ public:
     const String& getSpriteTexture() const;
 
     /**
-     * Returns the dimensions of the sprite texture currently applied to this sprite, or a zero vector if an error occurs. Note
-     * that this method will trigger a texture load on the main thread if this sprite's texture has not yet been loaded.
-     * Applications that need to avoid that scenario should either wait for the texture load thread to be idle before calling
-     * this method (by checking that TextureManager::isTextureLoadThreadActive() returns false), or change their logic so as not
-     * to use this method.
+     * Returns the dimensions of the sprite texture currently applied to this sprite, or a zero vector if an error
+     * occurs. Note that this method will trigger a texture load on the main thread if this sprite's texture has not yet
+     * been loaded. Applications that need to avoid that scenario should either wait for the texture load thread to be
+     * idle before calling this method (by checking that TextureManager::isTextureLoadThreadActive() returns false), or
+     * change their logic so as not to use this method.
      */
     Vec2 getSpriteTextureDimensions() const;
 
     /**
-     * Sets the normal map to use on this sprite, this will be used when rendering the scene if the scene has lights in it.
+     * Sets the normal map to use on this sprite, this will be used when rendering the scene if the scene has lights in
+     * it.
      */
     void setSpriteNormalMap(const String& normalMap);
 
@@ -63,22 +64,22 @@ public:
     const String& getSpriteNormalMap() const;
 
     /**
-     * Returns the collision map for this sprite, which is the same as the diffuse map unless Sprite::setSpriteCollisionMap()
-     * has been called to specify a custom collision map.
+     * Returns the collision map for this sprite, which is the same as the diffuse map unless
+     * Sprite::setSpriteCollisionMap() has been called to specify a custom collision map.
      */
     const String& getSpriteCollisionMap() const { return collisionMap_.length() ? collisionMap_ : getSpriteTexture(); }
 
     /**
-     * Sets the collision map to use on this sprite when calling Sprite::makePhysical() with the \a fixed parameter set to true.
-     * If this is not set then the alpha of this sprite's diffuse map will be used instead. The collision map is also used when
-     * doing per-pixel sprite/sprite intersection
+     * Sets the collision map to use on this sprite when calling Sprite::makePhysical() with the \a fixed parameter set
+     * to true. If this is not set then the alpha of this sprite's diffuse map will be used instead. The collision map
+     * is also used when doing per-pixel sprite/sprite intersection
      */
     void setSpriteCollisionMap(const String& collisionMap);
 
     /**
-     * Returns the current diffuse color being used on this sprite. This can be changed to apply arbitrary colors and alphas to
-     * this sprite. Note that the final diffuse alpha used to render this sprite is the alpha component of this diffuse color
-     * multiplied by the alpha value returned by Entity::getFinalAlpha().
+     * Returns the current diffuse color being used on this sprite. This can be changed to apply arbitrary colors and
+     * alphas to this sprite. Note that the final diffuse alpha used to render this sprite is the alpha component of
+     * this diffuse color multiplied by the alpha value returned by Entity::getFinalAlpha().
      */
     const Color& getSpriteDiffuseColor() const { return spriteDiffuseColor_; }
 
@@ -88,14 +89,14 @@ public:
     virtual void setSpriteDiffuseColor(const Color& color);
 
     /**
-     * Returns whether or not sprite lighting will be done on this sprite if there are light entities in its scene, this can be
-     * disallowed in order to prevent sprites from being lit. Defaults to true.
+     * Returns whether or not sprite lighting will be done on this sprite if there are light entities in its scene, this
+     * can be disallowed in order to prevent sprites from being lit. Defaults to true.
      */
     bool isSpriteLightingAllowed() const;
 
     /**
-     * Sets whether or not sprite lighting will be done on this sprite if there are light entities in its scene, this can be
-     * disallowed in order to prevent sprites from being lit. Defaults to true.
+     * Sets whether or not sprite lighting will be done on this sprite if there are light entities in its scene, this
+     * can be disallowed in order to prevent sprites from being lit. Defaults to true.
      */
     void setSpriteLightingAllowed(bool allowed);
 
@@ -140,9 +141,9 @@ public:
     void setReflectedHorizontally(bool reflected);
 
     /**
-     * Starts the sprite animation at the given initial frame, the animation can play in reverse and loop automatically if
-     * desired. If \a removeFromSceneOnFinish is true and the animation is not looping then when the animation finishes
-     * playing the sprite will automatically call its Entity::removeFromScene() method.
+     * Starts the sprite animation at the given initial frame, the animation can play in reverse and loop automatically
+     * if desired. If \a removeFromSceneOnFinish is true and the animation is not looping then when the animation
+     * finishes playing the sprite will automatically call its Entity::removeFromScene() method.
      */
     void startAnimation(bool looping = false, bool reverse = false, unsigned int initialFrame = 0,
                         bool removeFromSceneOnFinish = false);
@@ -163,8 +164,8 @@ public:
     void setCurrentFrame(unsigned int frame);
 
     /**
-     * Returns whether or not this sprite is currently animating, i.e. animation has been started with Sprite::startAnimation()
-     * and has not been paused with Sprite::setPaused().
+     * Returns whether or not this sprite is currently animating, i.e. animation has been started with
+     * Sprite::startAnimation() and has not been paused with Sprite::setPaused().
      */
     bool isAnimationPlaying() const { return isAnimating_ && !isPaused_; }
 
@@ -179,12 +180,12 @@ public:
     virtual void onAnimationFinished() {}
 
     /**
-     * Sets the region of the sprite texture, or of each animation frame in the sprite texture when using sprite animation, that
-     * should be used to texture the sprite. By default the entire area will be used, which is equivalent to a region rectangle
-     * of 0, 0, 1, 1. This region can be adjusted manually using this method if desired. Note that if any of the specified
-     * values are outside the 0 - 1 range then they will all be assumed to refer to a texel offset in the current sprite texture
-     * rather than a normalized offset. Note that if the texture region extends outside the bounds of the sprite texture it will
-     * be clamped.
+     * Sets the region of the sprite texture, or of each animation frame in the sprite texture when using sprite
+     * animation, that should be used to texture the sprite. By default the entire area will be used, which is
+     * equivalent to a region rectangle of 0, 0, 1, 1. This region can be adjusted manually using this method if
+     * desired. Note that if any of the specified values are outside the 0 - 1 range then they will all be assumed to
+     * refer to a texel offset in the current sprite texture rather than a normalized offset. Note that if the texture
+     * region extends outside the bounds of the sprite texture it will be clamped.
      */
     void setTextureRegion(float left, float bottom, float right, float top);
 
@@ -203,17 +204,17 @@ public:
     const Rect& getTextureRegion() const { return textureRegion_; }
 
     /**
-     * Returns the current sprite blending factors being used in the passed parameters. See Sprite::setSpriteBlendingFactors()
-     * for details.
+     * Returns the current sprite blending factors being used in the passed parameters. See
+     * Sprite::setSpriteBlendingFactors() for details.
      */
     void getSpriteBlendingFactors(States::BlendFactor& sourceFactor, States::BlendFactor& destinationFactor) const;
 
     /**
-     * Sets the blending factors to use when rendering this sprite. The standard alpha blending equation applies, i.e. the final
-     * color is the sum of the incoming sprite color multiplied by the chosen \a sourceFactor and the current framebuffer color
-     * multiplied by the chosen \a destinationFactor. The default source and destination blending factors are \a
-     * States::SourceAlpha and \a States::OneMinusSourceAlpha respectively. To disable sprite blending set to \a States::One and
-     * \a States::Zero.
+     * Sets the blending factors to use when rendering this sprite. The standard alpha blending equation applies, i.e.
+     * the final color is the sum of the incoming sprite color multiplied by the chosen \a sourceFactor and the current
+     * framebuffer color multiplied by the chosen \a destinationFactor. The default source and destination blending
+     * factors are \a States::SourceAlpha and \a States::OneMinusSourceAlpha respectively. To disable sprite blending
+     * set to \a States::One and \a States::Zero.
      */
     void setSpriteBlendingFactors(States::BlendFactor sourceFactor, States::BlendFactor destinationFactor);
 
@@ -263,7 +264,8 @@ public:
 protected:
 
     /**
-     * Extends the default physical behavior to use a collision map if present, the bounding box is still used as a fallback.
+     * Extends the default physical behavior to use a collision map if present, the bounding box is still used as a
+     * fallback.
      */
     PhysicsInterface::BodyObject createInternalRigidBody(float mass, bool fixed) override;
 

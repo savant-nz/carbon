@@ -16,9 +16,9 @@ namespace Carbon
 {
 
 #if defined(CARBON_INCLUDE_LOGGING) && defined(CARBON_INCLUDE_LOCAL_FILESYSTEM_ACCESS)
-bool Logfile::Enabled = true;
+    bool Logfile::Enabled = true;
 #else
-bool Logfile::Enabled = false;
+    bool Logfile::Enabled = false;
 #endif
 
 bool Logfile::AssertOnWarnings = false;
@@ -69,8 +69,8 @@ const char* Logfile::LogfileHeader =
 
 const char* Logfile::LogfileFooter = "</body></html>";
 
-// This queue and associated mutex are used to queue logfile output sink calls when doing logfile writes from worker threads
-// The flushOutputSinkCallQueue() function is responsible for clearing this queue every frame.
+// This queue and associated mutex are used to queue logfile output sink calls when doing logfile writes from worker
+// threads. The flushOutputSinkCallQueue() function is responsible for clearing this queue every frame.
 struct QueuedOutputSinkCall
 {
     Logfile::OutputSink* sink = nullptr;
@@ -242,9 +242,9 @@ void Logfile::writeLine(const String& caller, const UnicodeString& lineContent, 
 
     if (caller.length())
     {
-        // Format the result of CARBON_CURRENT_FUNCTION in a consistent way across all platforms. CARBON_CURRENT_FUNCTION uses
-        // either __FUNCTION__ or __PRETTY_FUNCTION__ depending on the compiler. Aim for a string in the format Class::Method()
-        // regardless of which macro the name originated from.
+        // Format the result of CARBON_CURRENT_FUNCTION in a consistent way across all platforms.
+        // CARBON_CURRENT_FUNCTION uses either __FUNCTION__ or __PRETTY_FUNCTION__ depending on the compiler. Aim for a
+        // string in the format Class::Method() regardless of which macro the name originated from.
 
         auto formattedCaller = caller;
 
@@ -254,8 +254,8 @@ void Logfile::writeLine(const String& caller, const UnicodeString& lineContent, 
         {
             formattedCaller = formattedCaller.substr(0, index + 1);
 
-            // Cut out all the parameter type information. Parentheses need to be counted to determine where the parameter type
-            // information stops because function pointer parameters will have parentheses in them.
+            // Cut out all the parameter type information. Parentheses need to be counted to determine where the
+            // parameter type information stops because function pointer parameters will have parentheses in them.
             auto parenthesisCount = 0;
             for (auto i = int(formattedCaller.length()) - 1; i >= 0; i--)
             {
@@ -330,8 +330,8 @@ Logfile& Logfile::write(const UnicodeString& data)
         m->file.flush();
     }
 
-    // If Logfile::Enabled is set to false then the logfile output is automatically sent through Globals::debugLog() as well as
-    // through any output sinks that have been registered
+    // If Logfile::Enabled is set to false then the logfile output is automatically sent through Globals::debugLog() as
+    // well as through any output sinks that have been registered
     auto echoLogfileOutputThroughGlobalsDebugLog = !Enabled;
 
     if (m->isHookingEnabled && (m->outputSinks.size() || echoLogfileOutputThroughGlobalsDebugLog))
@@ -371,8 +371,8 @@ void Logfile::writeLines(const Vector<String>& lines, OutputType type)
         writeLine(String::Empty, line, type);
 }
 
-void Logfile::writeCollapsibleSection(const UnicodeString& title, const Vector<UnicodeString>& contents, OutputType type,
-                                      bool writeLineNumbers)
+void Logfile::writeCollapsibleSection(const UnicodeString& title, const Vector<UnicodeString>& contents,
+                                      OutputType type, bool writeLineNumbers)
 {
     // Collapsible sections are done with an <a> tag that toggles the display style on a div holding the contents of the
     // section. The toggleDivVisibility() JavaScript function used here is defined in Logfile::LogfileHeader.
@@ -383,7 +383,8 @@ void Logfile::writeCollapsibleSection(const UnicodeString& title, const Vector<U
 
     m->writeRaw(UnicodeString() + "<div class='info'>[" + FileSystem::getShortDateTime() + "] " +
                 "<a href='javascript:;' onmousedown='toggleDivVisibility(\"" + divID + "\");'>" + title + "</a></div>" +
-                "<div id='" + divID + "' style='display: none; padding-left: 5em; padding-top: 1em; padding-bottom: 1em;'>");
+                "<div id='" + divID +
+                "' style='display: none; padding-left: 5em; padding-top: 1em; padding-bottom: 1em;'>");
 
     for (auto i = 0U; i < contents.size(); i++)
     {
@@ -402,9 +403,9 @@ Logfile& Logfile::get()
     return logfile;
 }
 
-// Flush the contents of the output sink call queue every frame in response to UpdateEvent. Logfile writes from other threads
-// cannot call the output sinks directly and so the required calls are queued and then flushed every frame here on the main
-// thread.
+// Flush the contents of the output sink call queue every frame in response to UpdateEvent. Logfile writes from other
+// threads cannot call the output sinks directly and so the required calls are queued and then flushed every frame here
+// on the main thread.
 static bool flushOutputSinkCallQueue(const UpdateEvent& e)
 {
     auto lock = ScopedMutexLock(queuedOutputSinkCallsMutex);

@@ -135,8 +135,8 @@ public:
         return true;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (!updateCurrentProgram(sortKey))
             return;
@@ -153,8 +153,8 @@ public:
             setTexture(1, params[Parameter::depthTexture]);
 
             // Set the matrix that transforms from projection space to world space
-            currentProgram->inverseViewProjectionMatrix->setMatrix4Inverse(renderer().getCamera().getProjectionMatrix() *
-                                                                           renderer().getCamera().getViewMatrix());
+            currentProgram->inverseViewProjectionMatrix->setMatrix4Inverse(
+                renderer().getCamera().getProjectionMatrix() * renderer().getCamera().getViewMatrix());
         }
 
         if (currentProgram->doSpecular)

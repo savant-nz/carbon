@@ -13,9 +13,9 @@ namespace Carbon
 {
 
 /**
- * This class is what scenes populate when they are queried for visible geometry by the renderer during rendering, and it just
- * maintains a list of EffectQueue instances ordered by priority, see the EffectQueue class for details of the structure of each
- * queue.
+ * This class is what scenes populate when they are queried for visible geometry by the renderer during rendering, and
+ * it just maintains a list of EffectQueue instances ordered by priority, see the EffectQueue class for details of the
+ * structure of each queue.
  */
 class EffectQueueArray : private Noncopyable
 {
@@ -41,8 +41,8 @@ public:
     EffectQueue* create(int priority, Effect* effect, const ParameterArray& internalParams = ParameterArray::Empty);
 
     /**
-     * Returns the vector of effect queues that have been created through EffectQueueArray::create(), this list is sorted by
-     * priority.
+     * Returns the vector of effect queues that have been created through EffectQueueArray::create(), this list is
+     * sorted by priority.
      */
     Vector<EffectQueue*>& getQueues() { return queues_; }
 

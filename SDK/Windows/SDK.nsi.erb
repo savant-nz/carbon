@@ -85,8 +85,8 @@ Section "Carbon Runtime Files" SectionRuntimeFiles
     WriteRegDWORD HKLM "${UNINSTALLER_REGKEY}" "NoModify" 1
     WriteRegDWORD HKLM "${UNINSTALLER_REGKEY}" "NoRepair" 1
 
-    # Use WindowsSDKAssistant.exe to add the Bin\ directory to the user's PATH environment variable so all the binaries are
-    # accessible. This also sets a few environment variables.
+    # Use WindowsSDKAssistant.exe to add the Bin\ directory to the user's PATH environment variable so all the binaries
+    # are accessible. This also sets a few environment variables.
     ExecWait "$INSTDIR\Bin\WindowsSDKAssistant.exe /environment"
 SectionEnd
 
@@ -155,7 +155,8 @@ Section "Exporter Plugins" SectionExporterPlugins
     File "Build\Windows\x64\<%= compiler %>\Release\CarbonExporterMaya2014.mll"
 
     # Create exporter installer Start Menu item
-    CreateShortcut "${START_MENU_PATH}\Exporter Installer.lnk" "$INSTDIR\Bin\WindowsSDKAssistant.exe" "/exporterinstallerdialog"
+    CreateShortcut "${START_MENU_PATH}\Exporter Installer.lnk" "$INSTDIR\Bin\WindowsSDKAssistant.exe" \
+                   "/exporterinstallerdialog"
 
     # Install the exporters
     ExecWait "$INSTDIR\Bin\WindowsSDKAssistant.exe /exporters"
@@ -180,8 +181,8 @@ Section "Sample Applications" SectionSampleApplications
         File "SDK\Windows\<%= sample %>.vcxproj"
     <% end %>
 
-    # Relax permissions on the the Samples directory so the code and data can be edited and will run correctly when opened in
-    # Visual Studio
+    # Relax permissions on the the Samples directory so the code and data can be edited and will run correctly when
+    # opened in Visual Studio
     nsExec::ExecToLog 'cacls "$INSTDIR\Samples" /E /T /C /G "BUILTIN\Users":F'
 
     # Add Start Menu items
@@ -201,13 +202,15 @@ SectionEnd
 
 # Installer section descriptions
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-    !insertmacro MUI_DESCRIPTION_TEXT ${SectionRuntimeFiles} "Installs the core executables needed to run Carbon applications."
-    !insertmacro MUI_DESCRIPTION_TEXT ${SectionDevelopmentFiles} "Installs the headers, libraries, documentation, and project \
-                                                                  templates needed to write applications that use Carbon."
+    !insertmacro MUI_DESCRIPTION_TEXT ${SectionRuntimeFiles} "Installs the core executables needed to run Carbon \
+                                                              applications."
+    !insertmacro MUI_DESCRIPTION_TEXT ${SectionDevelopmentFiles} "Installs the headers, libraries, documentation, and \
+                                                                  project templates needed to write applications that \
+                                                                  use Carbon."
     !insertmacro MUI_DESCRIPTION_TEXT ${SectionExporterPlugins} "Installs Carbon exporter plugins for 3D Studio Max 8, \
-                                                                 Maya 2009 (32 and 64-bit), and Maya 2014 if those programs \
-                                                                 are found on this computer."
-    !insertmacro MUI_DESCRIPTION_TEXT ${SectionSampleApplications} "Installs the sample applications with full source code."
+                                                                 Maya 2009 (32 and 64-bit), and Maya 2014 if those \
+                                                                 programs are found on this computer."
+    !insertmacro MUI_DESCRIPTION_TEXT ${SectionSampleApplications} "Installs the sample applications with full source."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 Section "Uninstall"
@@ -222,7 +225,6 @@ Section "Uninstall"
 
     # Remove Start Menu entries
     RmDir /r "${START_MENU_PATH}"
-    DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder\Start Menu\Programs\${PRODUCT_NAME}"
 
     # Remove from Windows' list of installed programs
     DeleteRegKey HKLM "${UNINSTALLER_REGKEY}"
@@ -246,7 +248,8 @@ Function PageUninstall
     Pop $0
     ${NSD_CreateLabel} 15u 20u 100% 10u "$R0 $R1"
     Pop $0
-    ${NSD_CreateLabel} 0 40u 100% 100% "This version must be uninstalled first. Click Next to uninstall or Cancel to exit."
+    ${NSD_CreateLabel} 0 40u 100% 100% "This version must be uninstalled first. Click Next to uninstall or Cancel to \
+                                        exit."
     Pop $0
 
     nsDialogs::Show

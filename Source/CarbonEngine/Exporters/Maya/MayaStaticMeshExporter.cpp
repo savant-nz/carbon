@@ -32,7 +32,8 @@ public:
 
     MString filter() const override { return toMString("*" + Mesh::MeshExtension); }
 
-    MPxFileTranslator::MFileKind identifyFile(const MFileObject& fileName, const char* buffer, short size) const override
+    MPxFileTranslator::MFileKind identifyFile(const MFileObject& fileName, const char* buffer,
+                                              short size) const override
     {
         if (MStringToString(fileName.name()).asLower().endsWith(Mesh::MeshExtension))
             return kIsMyFileType;
@@ -40,13 +41,15 @@ public:
         return kNotMyFileType;
     }
 
-    MStatus writer(const MFileObject& file, const MString& optionsString, MPxFileTranslator::FileAccessMode mode) override
+    MStatus writer(const MFileObject& file, const MString& optionsString,
+                   MPxFileTranslator::FileAccessMode mode) override
     {
         onlyExportSelected = (mode == kExportActiveAccessMode);
 
         Globals::initializeEngine(getMayaClientName());
 
-        auto runner = MeshExportRunner(fromUTF8(file.fullName().asChar()), extractAllMeshes, Helper::exportAllMaterials);
+        auto runner =
+            MeshExportRunner(fromUTF8(file.fullName().asChar()), extractAllMeshes, Helper::exportAllMaterials);
 
         ProgressDialog(StaticMeshExporterTitle).show(runner, M3dView::applicationShell());
 

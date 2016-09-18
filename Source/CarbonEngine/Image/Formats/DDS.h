@@ -7,8 +7,8 @@ namespace Carbon
 {
 
 /**
- * This class adds support for loading DDS images. It supports uncompressed images and images compressed with DXT1, DXT3 or DXT5
- * compression. Supports mipmapped and non-mipmapped 2D, 3D and cubemap images.
+ * This class adds support for loading DDS images. It supports uncompressed images and images compressed with DXT1, DXT3
+ * or DXT5 compression. Supports mipmapped and non-mipmapped 2D, 3D and cubemap images.
  *
  * \note The DDS format is documented in the DirectX SDK. DDS image data is stored with an upper left origin, so an
  * Image::flipVertical() call is required to convert to the lower left origin used by the Image class.
@@ -93,21 +93,23 @@ public:
 
             // Read header
             auto header = DDSHeader();
-            file.read(header.dwMagic, header.ddsd.dwSize, header.ddsd.dwFlags, header.ddsd.dwHeight, header.ddsd.dwWidth);
-            file.read(header.ddsd.dwPitchOrLinearSize, header.ddsd.dwDepth, header.ddsd.dwMipmapCount);
+            file.read(header.dwMagic, header.ddsd.dwSize, header.ddsd.dwFlags, header.ddsd.dwHeight,
+                      header.ddsd.dwWidth, header.ddsd.dwPitchOrLinearSize, header.ddsd.dwDepth,
+                      header.ddsd.dwMipmapCount);
             file.skip(44);
-            file.read(header.ddsd.ddpfPixelFormat.dwSize, header.ddsd.ddpfPixelFormat.dwFlags);
-            file.read(header.ddsd.ddpfPixelFormat.dwFourCC, header.ddsd.ddpfPixelFormat.dwRGBBitCount);
-            file.read(header.ddsd.ddpfPixelFormat.dwRBitMask, header.ddsd.ddpfPixelFormat.dwGBitMask);
-            file.read(header.ddsd.ddpfPixelFormat.dwBBitMask, header.ddsd.ddpfPixelFormat.dwRGBAlphaBitMask);
-            file.read(header.ddsd.ddsCaps.dwCaps1, header.ddsd.ddsCaps.dwCaps2);
+            file.read(header.ddsd.ddpfPixelFormat.dwSize, header.ddsd.ddpfPixelFormat.dwFlags,
+                      header.ddsd.ddpfPixelFormat.dwFourCC, header.ddsd.ddpfPixelFormat.dwRGBBitCount,
+                      header.ddsd.ddpfPixelFormat.dwRBitMask, header.ddsd.ddpfPixelFormat.dwGBitMask,
+                      header.ddsd.ddpfPixelFormat.dwBBitMask, header.ddsd.ddpfPixelFormat.dwRGBAlphaBitMask,
+                      header.ddsd.ddsCaps.dwCaps1, header.ddsd.ddsCaps.dwCaps2);
             file.skip(12);
 
             // Check header
             if (header.dwMagic != FileSystem::makeFourCC("DDS "))
                 throw Exception("Not a DDS file");
 
-            if (header.ddsd.dwSize != sizeof(DDSURFACEDESC2) || header.ddsd.ddpfPixelFormat.dwSize != sizeof(DDPIXELFORMAT))
+            if (header.ddsd.dwSize != sizeof(DDSURFACEDESC2) ||
+                header.ddsd.ddpfPixelFormat.dwSize != sizeof(DDPIXELFORMAT))
                 throw Exception("Invalid header");
 
             auto flags = header.ddsd.dwFlags;
@@ -230,8 +232,8 @@ private:
             }
 
             // 8-bit luminance alpha format
-            else if (header.ddsd.ddpfPixelFormat.dwRGBBitCount == 16 && redMask == 0xFF && greenMask == 0 && blueMask == 0 &&
-                     alphaMask == 0xFF00)
+            else if (header.ddsd.ddpfPixelFormat.dwRGBBitCount == 16 && redMask == 0xFF && greenMask == 0 &&
+                     blueMask == 0 && alphaMask == 0xFF00)
                 return Image::LuminanceAlpha8;
         }
 
@@ -252,7 +254,8 @@ private:
             (header.ddsd.ddsCaps.dwCaps2 & DDSCAPS2_VOLUME))
             depth = header.ddsd.dwDepth;
 
-        if (!image.initialize(header.ddsd.dwWidth, header.ddsd.dwHeight, depth, getPixelFormat(header), hasMipmaps(header), 1))
+        if (!image.initialize(header.ddsd.dwWidth, header.ddsd.dwHeight, depth, getPixelFormat(header),
+                              hasMipmaps(header), 1))
             return false;
 
         file.readBytes(image.getDataForFrame(0), image.getFrameDataSize());

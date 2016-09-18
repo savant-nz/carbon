@@ -17,11 +17,12 @@ namespace Carbon
 {
 
 /**
- * Base class for Carbon applications that streamlines common engine setup work and provides a base application structure for
- * updating, responding to events, and other common tasks. Applications should not inherit from this class directly but rather
- * they should inherit from the class defined by the CARBON_APPLICATION_CLASS macro, which is Carbon::Application by default.
- * This is because external platform modules may add extra functionality specific to that platform into a Carbon::Application
- * subclass and then redefine the CARBON_APPLICATION_CLASS macro to point to that new class.
+ * Base class for Carbon applications that streamlines common engine setup work and provides a base application
+ * structure for updating, responding to events, and other common tasks. Applications should not inherit from this class
+ * directly but rather they should inherit from the class defined by the CARBON_APPLICATION_CLASS macro, which is
+ * Carbon::Application by default. This is because external platform modules may add extra functionality specific to
+ * that platform into a Carbon::Application subclass and then redefine the CARBON_APPLICATION_CLASS macro to point to
+ * that new class.
  */
 class CARBON_API Application : public EventHandler, private Noncopyable
 {
@@ -31,10 +32,10 @@ public:
     ~Application() override;
 
     /**
-     * This method is called on application startup following engine initialization with Globals::initializeEngine() and before
-     * any other code is run. It can be used by applications to alter engine parameters prior to the creation of rendering
-     * windows and other core startup procedures that will occur following base initialization. If the return value is false
-     * then application startup will be aborted and Application::onInitializationFailed() will be called.
+     * This method is called on application startup following engine initialization with Globals::initializeEngine() and
+     * before any other code is run. It can be used by applications to alter engine parameters prior to the creation of
+     * rendering windows and other core startup procedures that will occur following base initialization. If the return
+     * value is false then application startup will be aborted and Application::onInitializationFailed() will be called.
      */
     virtual bool startup() { return true; }
 
@@ -68,8 +69,8 @@ public:
 
     /**
      * The list of reasons for application or engine initialization failure, if such a failure occurs then
-     * Application::onInitializationFailed() is called and passed one of the following reasons. The values in this enumeration
-     * appear in the same order as they are executed during initialization.
+     * Application::onInitializationFailed() is called and passed one of the following reasons. The values in this
+     * enumeration appear in the same order as they are executed during initialization.
      */
     enum InitializationFailureReason
     {
@@ -83,25 +84,27 @@ public:
     };
 
     /**
-     * This method is called when application or engine startup fails, the reason for the failure is given by \a reason. The
-     * default implementation of this method will report the error using a message box and offer to open the logfile if one was
-     * created. Applications can override this method to customize the handling of application or engine startup errors.
+     * This method is called when application or engine startup fails, the reason for the failure is given by \a reason.
+     * The default implementation of this method will report the error using a message box and offer to open the logfile
+     * if one was created. Applications can override this method to customize the handling of application or engine
+     * startup errors.
      */
     virtual void onInitializationFailed(InitializationFailureReason reason);
 
     /**
-     * Entry point where execution control is passed to the application class, see the Carbon::main() function that is defined
-     * by EntryPoint.h for details. By default this method will not return until the application has finished running, i.e. the
-     * main loop will be run inside this method. However, if \a doMainLoop is set to false then the main loop will not be run by
-     * this method, and the user of this class is then responsible for calling Application::mainLoop() at regular intervals to
-     * keep the appliation active and responsive. This separation allows main loops to be run based on external timers which can
-     * then do things such as run the main loop 30 times a second and allow the hardware to sleep in between.
+     * Entry point where execution control is passed to the application class, see the Carbon::main() function that is
+     * defined by EntryPoint.h for details. By default this method will not return until the application has finished
+     * running, i.e. the main loop will be run inside this method. However, if \a doMainLoop is set to false then the
+     * main loop will not be run by this method, and the user of this class is then responsible for calling
+     * Application::mainLoop() at regular intervals to keep the appliation active and responsive. This separation allows
+     * main loops to be run based on external timers which can then do things such as run the main loop 30 times a
+     * second and allow the hardware to sleep in between.
      */
     bool run(bool doMainLoop = true);
 
     /**
-     * Runs a single tick of the main application/game loop. Returns whether or not execution should continue or whether the
-     * application should now exit. This method should only ever be called when the \a doMainLoop parameter to
+     * Runs a single tick of the main application/game loop. Returns whether or not execution should continue or whether
+     * the application should now exit. This method should only ever be called when the \a doMainLoop parameter to
      * Application::run() was set to false.
      */
     bool mainLoop();
@@ -112,8 +115,8 @@ public:
     bool isInitialized() const { return isInitialized_; }
 
     /**
-     * Returns whether the application's internal exit flag is set which will cause it to break out of the main loop as soon as
-     * possible and end the application.
+     * Returns whether the application's internal exit flag is set which will cause it to break out of the main loop as
+     * soon as possible and end the application.
      */
     virtual bool isExiting() const { return isExiting_; }
 
@@ -365,9 +368,9 @@ protected:
     bool processEvent(const Event& e) override;
 
     /**
-     * This method is called at the start of every frame in order to validate the main heap, however it is only active when the
-     * memory interceptor is included in the build and so does nothing in release builds. Applications can override this method
-     * to alter or eliminate the automatic per-frame heap validation.
+     * This method is called at the start of every frame in order to validate the main heap, however it is only active
+     * when the memory interceptor is included in the build and so does nothing in release builds. Applications can
+     * override this method to alter or eliminate the automatic per-frame heap validation.
      */
     virtual void validateHeap();
 
@@ -382,9 +385,10 @@ private:
 };
 
 /**
- * An application's main class should inherit from the class defined by this macro rather than from Carbon::Application, this is
- * because external platform implementations are then able to add platform-specific additions into a Carbon::Application
- * subclass, redefine this macro, and have all applications automatically use their new customized application base class.
+ * An application's main class should inherit from the class defined by this macro rather than from Carbon::Application,
+ * this is because external platform implementations are then able to add platform-specific additions into a
+ * Carbon::Application subclass, redefine this macro, and have all applications automatically use their new customized
+ * application base class.
  */
 #define CARBON_APPLICATION_CLASS Carbon::Application
 

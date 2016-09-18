@@ -167,8 +167,8 @@ public:
                 throw Exception("Failed converting image to RGBA8");
 
             // Create FreeImage bitmap
-            bitmap = FreeImage_Allocate(image.getWidth(), image.getHeight(), saveAlpha ? 32 : 24, 0x000000FF, 0x0000FF00,
-                                        0x00FF0000);
+            bitmap = FreeImage_Allocate(image.getWidth(), image.getHeight(), saveAlpha ? 32 : 24, 0x000000FF,
+                                        0x0000FF00, 0x00FF0000);
             if (!bitmap)
                 throw Exception("Failed allocating bitmap");
             if (saveAlpha)
@@ -354,7 +354,7 @@ CARBON_REGISTER_IMAGE_FILE_FORMAT(mng, FreeImage<FIF_MNG>::load, FreeImage<FIF_M
 CARBON_REGISTER_IMAGE_FILE_FORMAT(psd, FreeImage<FIF_PSD>::load, FreeImage<FIF_PSD>::save)
 CARBON_REGISTER_IMAGE_FILE_FORMAT(tga, FreeImage<FIF_TARGA>::load, FreeImage<FIF_TARGA>::save)
 
-// Prefer the native LibJPEG and LibPNG image loaders, they are faster and more memory efficient than going through FreeImage
+// Prefer the native LibJPEG and LibPNG image loaders, they are faster and use less memory than FreeImage
 CARBON_REGISTER_IMAGE_FILE_FORMAT(jpg, nullptr, FreeImage<FIF_JPEG>::save)
 CARBON_REGISTER_IMAGE_FILE_FORMAT(jpeg, nullptr, FreeImage<FIF_JPEG>::save)
 CARBON_REGISTER_IMAGE_FILE_FORMAT(png, nullptr, FreeImage<FIF_PNG>::save)

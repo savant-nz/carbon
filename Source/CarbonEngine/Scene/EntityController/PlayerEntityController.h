@@ -15,9 +15,9 @@ namespace Carbon
 {
 
 /**
- * This entity controller allows an entity to be moved using standard FPS-style or free-camera movement, using either mouse look
- * or touch look. Using a player entity controller on an entity that has a physics character controller will result in a
- * controllable entity (often a camera) that collides with the scene's physical simulation.
+ * This entity controller allows an entity to be moved using standard FPS-style or free-camera movement, using either
+ * mouse look or touch look. Using a player entity controller on an entity that has a physics character controller will
+ * result in a controllable entity (often a camera) that collides with the scene's physical simulation.
  */
 class CARBON_API PlayerEntityController : public EntityController, public EventHandler
 {
@@ -43,7 +43,8 @@ public:
     bool isMovementEnabled() const { return isMovementEnabled_; }
 
     /**
-     * Sets whether movement is enabled on this player controller, see PlayerEntityController::isMovementEnabled() for details.
+     * Sets whether movement is enabled on this player controller, see PlayerEntityController::isMovementEnabled() for
+     * details.
      */
     void setMovementEnabled(bool enabled) { isMovementEnabled_ = enabled; }
 
@@ -58,9 +59,9 @@ public:
     void setMovementAcceleration(float acceleration) { movementAcceleration_ = acceleration; }
 
     /**
-     * Returns the current horizontal friction being applied to this player controller while not in mid-air. Defaults to 0.999.
-     * The friction value specifies what fraction of the current velocity will be lost per second, and so is clamped between
-     * zero and one where zero is no friction at all and one will prohibit any movement.
+     * Returns the current horizontal friction being applied to this player controller while not in mid-air. Defaults to
+     * 0.999. The friction value specifies what fraction of the current velocity will be lost per second, and so is
+     * clamped between zero and one where zero is no friction at all and one will prohibit any movement.
      */
     float getHorizontalFriction() const { return horizontalFriction_; }
 
@@ -71,9 +72,9 @@ public:
     void setHorizontalFriction(float friction) { horizontalFriction_ = friction; }
 
     /**
-     * Returns the current horizontal friction being applied to this player controller while in mid-air when mid-air movement is
-     * not enabled (see PlayerEntityController::isMidAirMovementEnabled() for details). Defaults to 0.01. See
-     * PlayerEntityController::getHorizontalFriction() for a description of the friction value.
+     * Returns the current horizontal friction being applied to this player controller while in mid-air when mid-air
+     * movement is not enabled (see PlayerEntityController::isMidAirMovementEnabled() for details). Defaults to 0.01.
+     * See PlayerEntityController::getHorizontalFriction() for a description of the friction value.
      */
     float getMidAirHorizontalFriction() const { return midAirHorizontalFriction_; }
 
@@ -84,8 +85,8 @@ public:
     void setMidAirHorizontalFriction(float friction) { midAirHorizontalFriction_ = friction; }
 
     /**
-     * Returns the current vertical friction being applied to this player controller while not in mid-air. Defaults to 0.999.
-     * See PlayerEntityController::getHorizontalFriction() for a description of the friction value.
+     * Returns the current vertical friction being applied to this player controller while not in mid-air. Defaults to
+     * 0.999. See PlayerEntityController::getHorizontalFriction() for a description of the friction value.
      */
     float getVerticalFriction() const { return verticalFriction_; }
 
@@ -96,8 +97,8 @@ public:
     void setVerticalFriction(float friction) { verticalFriction_ = friction; }
 
     /**
-     * Returns the current vertical friction being applied to this player controller while in mid-air. Defaults to 0.01. See
-     * PlayerEntityController::getHorizontalFriction() for a description of the friction value.
+     * Returns the current vertical friction being applied to this player controller while in mid-air. Defaults to 0.01.
+     * See PlayerEntityController::getHorizontalFriction() for a description of the friction value.
      */
     float getMidAirVerticalFriction() const { return midAirVerticalFriction_; }
 
@@ -119,21 +120,21 @@ public:
 
     /**
      * Sets the keys to use to move this controller forward, backward, left and right. The set keys are used in the
-     * PlayerEntityController::updateMovement() method. The default values are KeyW, KeyS, KeyA, and KeyD respectively (WSAD
-     * movement).
+     * PlayerEntityController::updateMovement() method. The default values are KeyW, KeyS, KeyA, and KeyD respectively
+     * (WSAD movement).
      */
     void setMovementKeys(KeyConstant forward, KeyConstant back, KeyConstant left, KeyConstant right);
 
     /**
      * Returns whether mouse look is enabled on this player controller, mouse look behavior can be controlled using
-     * PlayerEntityController::InvertMouse and PlayerEntityController::setMouseLookSensitivity(). Mouse look is enabled by
-     * default.
+     * PlayerEntityController::InvertMouse and PlayerEntityController::setMouseLookSensitivity(). Mouse look is enabled
+     * by default.
      */
     bool isMouseLookEnabled() const { return isMouseLookEnabled_; }
 
     /**
-     * Sets whether mouse look is enabled on this player controller, see PlayerEntityController::isMouseLookEnabled() for
-     * details.
+     * Sets whether mouse look is enabled on this player controller, see PlayerEntityController::isMouseLookEnabled()
+     * for details.
      */
     void setMouseLookEnabled(bool enabled) { isMouseLookEnabled_ = enabled; }
 
@@ -154,8 +155,8 @@ public:
     bool isTouchLookEnabled() const { return isTouchLookEnabled_; }
 
     /**
-     * Sets whether touch look is enabled on this player controller, see PlayerEntityController::isTouchLookEnabled() for
-     * details.
+     * Sets whether touch look is enabled on this player controller, see PlayerEntityController::isTouchLookEnabled()
+     * for details.
      */
     void setTouchLookEnabled(bool enabled)
     {
@@ -189,9 +190,9 @@ public:
     void setHeaviness(float mass) { heaviness_ = mass; }
 
     /**
-     * Returns whether this player controller will allow movement control while the player is in mid-air. If this is false then
-     * the player will be unable to alter their velocity until they next touch the ground. If this is true then the player will
-     * be able to change direction in mid-air. Defaults to true.
+     * Returns whether this player controller will allow movement control while the player is in mid-air. If this is
+     * false then the player will be unable to alter their velocity until they next touch the ground. If this is true
+     * then the player will be able to change direction in mid-air. Defaults to true.
      */
     bool isMidAirMovementEnabled() const { return isMidAirMovementEnabled_; }
 

@@ -25,8 +25,8 @@ public:
     void clear();
 
     /**
-     * Creates a new render target, this will only succeed if the GraphicsInterface supports render targets. Returns success
-     * flag.
+     * Creates a new render target, this will only succeed if the GraphicsInterface supports render targets. Returns
+     * success flag.
      */
     bool create();
 
@@ -49,13 +49,13 @@ public:
     }
 
     /**
-     * Sets the color textures for this render target to render into. If the list is empty then this render target will not
-     * render to a color buffer, i.e. standard color buffer rendering will be disabled for this render target.
-     * RenderTarget::removeColorTextures() provides a shortcut for doing this. Some graphics hardware supports more than one
-     * output texture which enables shaders to output data into various different textures, to use this feature pass the
-     * textures to use into this method. The maximum number of simultaneous textures that can be rendered into is given by
-     * GraphicsInterface::getMaximumRenderTargetColorTextures(). If one of the specified textures is a cubemap then the cubemap
-     * face index to render into must be specified in \a cubemapFaces. Returns success flag.
+     * Sets the color textures for this render target to render into. If the list is empty then this render target will
+     * not render to a color buffer, i.e. standard color buffer rendering will be disabled for this render target.
+     * RenderTarget::removeColorTextures() provides a shortcut for doing this. Some graphics hardware supports more than
+     * one output texture which enables shaders to output data into various different textures, to use this feature pass
+     * the textures to use into this method. The maximum number of simultaneous textures that can be rendered into is
+     * given by GraphicsInterface::getMaximumRenderTargetColorTextures(). If one of the specified textures is a cubemap
+     * then the cubemap face index to render into must be specified in \a cubemapFaces. Returns success flag.
      */
     bool setColorTextures(const Vector<const Texture*>& textures, const Vector<int>& cubemapFaces);
 
@@ -65,8 +65,8 @@ public:
     bool setColorTexture(const Texture* texture) { return setColorTextures({texture}, {}); }
 
     /**
-     * Clears all color output textures from this render target, this is equivalent to calling RenderTarget::setColorTextures()
-     * with an empty vector.
+     * Clears all color output textures from this render target, this is equivalent to calling
+     * RenderTarget::setColorTextures() with an empty vector.
      */
     bool removeColorTextures() { return setColorTextures({}, {}); }
 
@@ -76,40 +76,42 @@ public:
     const Texture* getDepthTexture() const { return depthTexture_; }
 
     /**
-     * Sets the depth texture for this render target to render into. The texture must have the pixel format Image::Depth or
-     * Image::Depth24Stencil8. Passing a null texture indicates this render target should not render to a depth buffer, and so
-     * standard depth buffer rendering will be disabled for this render target (this includes both depth testing and depth
-     * writing). Returns success flag.
+     * Sets the depth texture for this render target to render into. The texture must have the pixel format Image::Depth
+     * or Image::Depth24Stencil8. Passing a null texture indicates this render target should not render to a depth
+     * buffer, and so standard depth buffer rendering will be disabled for this render target (this includes both depth
+     * testing and depth writing). Returns success flag.
      */
     bool setDepthTexture(const Texture* texture);
 
     /**
-     * Returns the current stencil texture being used by this render target, or null if no stencil texture is being used.
+     * Returns the current stencil texture being used by this render target, or null if no stencil texture is being
+     * used.
      */
     const Texture* getStencilTexture() const { return stencilTexture_; }
 
     /**
      * Sets the stencil texture for this render target to render into. The texture must have the pixel format
-     * Image::Depth24Stencil8. Passing a null texture indicates this render target should not render to a depth buffer, and so
-     * stencil buffer rendering will be disabled for this render target. If stencil buffering is not supported then this method
-     * does nothing and returns true. Returns success flag.
+     * Image::Depth24Stencil8. Passing a null texture indicates this render target should not render to a depth buffer,
+     * and so stencil buffer rendering will be disabled for this render target. If stencil buffering is not supported
+     * then this method does nothing and returns true. Returns success flag.
      */
     bool setStencilTexture(const Texture* texture);
 
     /**
-     * Enables a single color output texture for this render target into a single 2D texture, along with a depth texture and
-     * stencil texture. Internally this just calls RenderTarget::setColorTextures(), RenderTarget::setDepthTexture() and
-     * RenderTarget::setStencilTexture(). Returns success flag.
+     * Enables a single color output texture for this render target into a single 2D texture, along with a depth texture
+     * and stencil texture. Internally this just calls RenderTarget::setColorTextures(), RenderTarget::setDepthTexture()
+     * and RenderTarget::setStencilTexture(). Returns success flag.
      */
     bool setTextures(const Texture* colorTexture, const Texture* depthTexture, const Texture* stencilTexture)
     {
-        return setColorTextures({colorTexture}, {}) && setDepthTexture(depthTexture) && setStencilTexture(stencilTexture);
+        return setColorTextures({colorTexture}, {}) && setDepthTexture(depthTexture) &&
+            setStencilTexture(stencilTexture);
     }
 
     /**
-     * Enables a single color output texture for this render target into a single face of a cubemap, along with a depth texture
-     * and stencil texture. Internally this just calls RenderTarget::setColorTextures(), RenderTarget::setDepthTexture() and
-     * RenderTarget::setStencilTexture(). Returns success flag.
+     * Enables a single color output texture for this render target into a single face of a cubemap, along with a depth
+     * texture and stencil texture. Internally this just calls RenderTarget::setColorTextures(),
+     * RenderTarget::setDepthTexture() and RenderTarget::setStencilTexture(). Returns success flag.
      */
     bool setTextures(const Texture* colorTexture, unsigned int cubemapFace, const Texture* depthTexture,
                      const Texture* stencilTexture)

@@ -12,10 +12,12 @@
 /**
  * \page acknowledgments Acknowledgments
  *
- * All dependencies and libraries are used under the terms of their respective licenses, copies of these licenses are included
- * with the SDK.
+ * All dependencies and libraries are used under the terms of their respective licenses, copies of these licenses are
+ * included with the SDK.
  *
- * The Carbon development team would like to thank all contributors to the following open source and free software projects:
+ * The Carbon development team would like to thank all contributors to the following open source and free software
+ * projects:
+ *
  *  - [AngelScript](http://www.angelcode.com/angelscript)
  *  - [Bullet Physics](http://bulletphysics.org)
  *  - [Clang](http://clang.llvm.org)

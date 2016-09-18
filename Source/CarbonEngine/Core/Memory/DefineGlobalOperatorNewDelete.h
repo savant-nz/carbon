@@ -3,8 +3,8 @@
  * distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-// Including this header defines global operator new and delete that pass directly off to MemoryInterceptor, it is not intended
-// to be used a standard #include.
+// Including this header defines global operator new and delete that pass directly off to MemoryInterceptor, it is not
+// intended to be used a standard #include.
 
 #ifdef CARBON_INCLUDE_MEMORY_INTERCEPTOR
 

@@ -28,7 +28,8 @@ public:
     /**
      * Constructs this plane from three points.
      */
-    Plane(const Vec3& p0, const Vec3& p1, const Vec3& p2) : normal_(normalFromPoints(p0, p1, p2)), distance_(-normal_.dot(p0))
+    Plane(const Vec3& p0, const Vec3& p1, const Vec3& p2)
+        : normal_(normalFromPoints(p0, p1, p2)), distance_(-normal_.dot(p0))
     {
     }
 
@@ -55,7 +56,10 @@ public:
     /**
      * Equality operator.
      */
-    bool operator==(const Plane& other) const { return normal_ == other.getNormal() && distance_ == other.getDistance(); }
+    bool operator==(const Plane& other) const
+    {
+        return normal_ == other.getNormal() && distance_ == other.getDistance();
+    }
 
     /**
      * Returns the signed distance from a point to this plane.
@@ -118,32 +122,32 @@ public:
     }
 
     /**
-     * Returns whether this plane intersects with the ray, if there is an intersection then the distance to the intersection
-     * point is returned in \a t.
+     * Returns whether this plane intersects with the ray, if there is an intersection then the distance to the
+     * intersection point is returned in \a t.
      */
     bool intersect(const Ray& ray, float& t) const;
 
     /**
-     * Returns whether this plane intersects with the ray, if there is an intersection then the intersection point is returned
-     * in \a p.
+     * Returns whether this plane intersects with the ray, if there is an intersection then the intersection point is
+     * returned in \a p.
      */
     bool intersect(const Ray& ray, Vec3& p) const;
 
     /**
-     * Returns whether this plane intersects with the passed line, if there is an intersection then the fraction along the line
-     * that the intersection occurred is returned in \a t.
+     * Returns whether this plane intersects with the passed line, if there is an intersection then the fraction along
+     * the line that the intersection occurred is returned in \a t.
      */
     bool intersect(const Line& line, float& t) const;
 
     /**
-     * Returns whether this plane intersects with the passed line, if there is an intersection then the intersection point is
-     * returned in \a p.
+     * Returns whether this plane intersects with the passed line, if there is an intersection then the intersection
+     * point is returned in \a p.
      */
     bool intersect(const Line& line, Vec3& p) const;
 
     /**
-     * Clips away all parts of the passed planar polygon that lie on the front of this plane. If the return value is false then
-     * there was nothing left of the original polygon after clipping.
+     * Clips away all parts of the passed planar polygon that lie on the front of this plane. If the return value is
+     * false then there was nothing left of the original polygon after clipping.
      */
     bool clipConvexPolygon(Vector<Vec3>& vertices) const;
 

@@ -14,8 +14,8 @@ namespace Carbon
 
 /**
  * This class holds specifies an Effect, a set of parameters to render that effect with, and a RenderQueueItemArray that
- * specifies what should be rendered. This class is the basis of the EffectQueueArray class which is what scenes populate when
- * they are queried for visible geometry during rendering.
+ * specifies what should be rendered. This class is the basis of the EffectQueueArray class which is what scenes
+ * populate when they are queried for visible geometry during rendering.
  */
 class CARBON_API EffectQueue : private Noncopyable
 {
@@ -66,14 +66,14 @@ public:
     RenderQueueItemArray& getItems() { return items_; }
 
     /**
-     * Tells this effect queue to use the specified ParameterArray for its main parameters, the caller is responsible for
-     * ensuring that the passed \a params instance stays valid until this effect queue instance destructs.
+     * Tells this effect queue to use the specified ParameterArray for its main parameters, the caller is responsible
+     * for ensuring that the passed \a params instance stays valid until this effect queue instance destructs.
      */
     void useParams(const ParameterArray& params) { params_ = &params; }
 
     /**
-     * Sets the value of a custom parameter on this queue's parameters, this will overwrite any existing parameter of the same
-     * name or lookup.
+     * Sets the value of a custom parameter on this queue's parameters, this will overwrite any existing parameter of
+     * the same name or lookup.
      */
     void setCustomParameter(const ParameterArray::Lookup& lookup, const Parameter& value)
     {
@@ -88,7 +88,8 @@ public:
     }
 
     /**
-     * Returns whether this queue's parameters are a custom temporary set that will be deallocated when this queue destructs.
+     * Returns whether this queue's parameters are a custom temporary set that will be deallocated when this queue
+     * destructs.
      */
     bool hasCustomParams() const { return hasCustomParams_; }
 
@@ -98,8 +99,8 @@ public:
     const ParameterArray& getInternalParams() const { return internalParams_; }
 
     /**
-     * Returns the render sort key for this queue. Used by the renderer to sort queues with the same effect by their parameters,
-     * see Shader::getSortKey() for details
+     * Returns the render sort key for this queue. Used by the renderer to sort queues with the same effect by their
+     * parameters, see Shader::getSortKey() for details
      */
     unsigned int getSortKey() const { return sortKey_; }
 

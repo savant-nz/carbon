@@ -9,16 +9,16 @@ namespace Carbon
 {
 
 /**
- * Holds information about the origins of an exported resource. The information recorded is currently the program the resource
- * was exported from and the version of the engine the export was done by.
+ * Holds information about the origins of an exported resource. The information recorded is currently the program the
+ * resource was exported from and the version of the engine the export was done by.
  */
 class CARBON_API ExportInfo
 {
 public:
 
     /**
-     * This ExportInfo instance is used as a default parameter to a couple of routines that have an optional 'ExportInfo&'
-     * parameter to output export info in.
+     * This ExportInfo instance is used as a default parameter to a couple of routines that have an optional
+     * `ExportInfo&` parameter to output export info in.
      */
     static ExportInfo TempExportInfo;
 

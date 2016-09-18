@@ -18,14 +18,15 @@ namespace Carbon
 
 bool Renderer::isDeferredLightingSupported() const
 {
-    // Deferred lighting requires NPOT support, render target support, and successful setup of the deferred lighting effects
+    // Deferred lighting requires NPOT support, render target support, and successful setup of the deferred lighting
+    // effects
 
-    return graphics().isNonPowerOfTwoTextureSupported(GraphicsInterface::Texture2D) && graphics().isRenderTargetSupported() &&
-        deferredLightingRenderTarget_ && shadowMapRenderTarget_ && deferredLightingSetupEffect_ &&
-        deferredLightingSetupEffect_->isActiveShaderReady() && deferredLightingDirectionalLightEffect_ &&
-        deferredLightingDirectionalLightEffect_->isActiveShaderReady() && deferredLightingPointLightEffect_ &&
-        deferredLightingPointLightEffect_->isActiveShaderReady() && deferredLightingSurfaceEffect_ &&
-        deferredLightingSurfaceEffect_->isActiveShaderReady();
+    return graphics().isNonPowerOfTwoTextureSupported(GraphicsInterface::Texture2D) &&
+        graphics().isRenderTargetSupported() && deferredLightingRenderTarget_ && shadowMapRenderTarget_ &&
+        deferredLightingSetupEffect_ && deferredLightingSetupEffect_->isActiveShaderReady() &&
+        deferredLightingDirectionalLightEffect_ && deferredLightingDirectionalLightEffect_->isActiveShaderReady() &&
+        deferredLightingPointLightEffect_ && deferredLightingPointLightEffect_->isActiveShaderReady() &&
+        deferredLightingSurfaceEffect_ && deferredLightingSurfaceEffect_->isActiveShaderReady();
 }
 
 bool Renderer::renderDeferredLightingTexture(Scene* scene, const ConvexHull& frustum,
@@ -35,10 +36,10 @@ bool Renderer::renderDeferredLightingTexture(Scene* scene, const ConvexHull& fru
     if (!scene->isDeferredLightingEnabled() || !isDeferredLightingSupported())
         return false;
 
-    // The algorithm currently requires 3 offscreen render targets, two color and one depth. One color texture is used for world
-    // space normals, and the other is used to accumulate lighting information. The first pass lays down the world space normals
-    // and a depth buffer. The second pass accumulates lighting information for each light into a lighting texture which is then
-    // used by the final surface shaders as an input to the final surface color.
+    // The algorithm currently requires 3 offscreen render targets, two color and one depth. One color texture is used
+    // for world space normals, and the other is used to accumulate lighting information. The first pass lays down the
+    // world space normals and a depth buffer. The second pass accumulates lighting information for each light into a
+    // lighting texture which is then used by the final surface shaders as an input to the final surface color.
 
     // Request the temporary textures that are required for deferred lighting
     auto normalsTexture = requestTemporaryTexture(getCamera().getViewport(), Image::RGBA8);
@@ -72,9 +73,9 @@ bool Renderer::renderDeferredLightingTexture(Scene* scene, const ConvexHull& fru
     graphics().clearBuffers(true, true, true);
     drawEffectQueues(normalGeometry, SkipBlendedGeometry, deferredLightingSetupEffect_);
 
-    // Second pass: use the textures created in the first pass to accumulate lighting information into the lighting texture At
-    // the moment each light is drawn via a fullscreen quad, drawing point lights and spot lights as geometry would be more
-    // fill-rate efficient
+    // Second pass: use the textures created in the first pass to accumulate lighting information into the lighting
+    // texture At the moment each light is drawn via a fullscreen quad, drawing point lights and spot lights as geometry
+    // would be more fill-rate efficient
 
     // Setup for rendering into the light texture
     deferredLightingRenderTarget_.setColorTexture(lightTexture);
@@ -108,8 +109,8 @@ bool Renderer::renderDeferredLightingTexture(Scene* scene, const ConvexHull& fru
 
         params[Parameter::isSpecularEnabled].setBoolean(light->isSpecularEnabled());
 
-        // The specular intensity used for rendering is the light's specular intensity multiplied by the square of the luminance
-        // of the light color
+        // The specular intensity used for rendering is the light's specular intensity multiplied by the square of the
+        // luminance of the light color
         if (light->isSpecularEnabled())
         {
             params[Parameter::specularIntensity].setFloat(light->getSpecularIntensity() *
@@ -120,7 +121,8 @@ bool Renderer::renderDeferredLightingTexture(Scene* scene, const ConvexHull& fru
 
         if (light->isPointLight() || light->isSpotLight())
         {
-            // Set a light scissor rectangle around the light sphere to reduce fill rate consumption by the full-screen quad
+            // Set a light scissor rectangle around the light sphere to reduce fill rate consumption by the full-screen
+            // quad
             auto rect = getCamera().getProjectionMatrix().getProjectedSphereBounds(
                 getCamera().getViewMatrix() * light->getLightTransform().getPosition(), light->getRadius(),
                 getCamera().getNearPlaneDistance());
@@ -135,7 +137,8 @@ bool Renderer::renderDeferredLightingTexture(Scene* scene, const ConvexHull& fru
                 params[Parameter::minimumConeAngle].setFloat(light->getMinimumConeAngle());
 
                 // Calculate the spot light's view-projection matrix
-                lightViewProjectionMatrix = light->getProjectionMatrix() * light->getLightTransform().getInverse().getMatrix();
+                lightViewProjectionMatrix =
+                    light->getProjectionMatrix() * light->getLightTransform().getInverse().getMatrix();
             }
             else
                 params.remove(Parameter::minimumConeAngle);
@@ -227,16 +230,18 @@ bool Renderer::areShadowMapsSupported() const
         baseShadowMappingEffect_->isActiveShaderReady();
 }
 
-const Texture* Renderer::renderDirectionalShadowMap(Scene* scene, const Light* light, Matrix4& lightViewProjectionMatrix)
+const Texture* Renderer::renderDirectionalShadowMap(Scene* scene, const Light* light,
+                                                    Matrix4& lightViewProjectionMatrix)
 {
-    // TODO: compute a smarter culling convex hull when gathering geometry for directional lights, it should be formed from
-    //       the camera frustum extruded along the light direction
+    // TODO: compute a smarter culling convex hull when gathering geometry for directional lights, it should be formed
+    // from the camera frustum extruded along the light direction
     auto convexHull = AABB::Max.getConvexHull();
 
     // Query the scene for all geometry within the light's area
     auto queues = EffectQueueArray();
     auto extraShadowCasterExtents = AABB();
-    scene->gatherShadowGeometry(light->getLightTransform().getDirection(), convexHull, queues, &extraShadowCasterExtents);
+    scene->gatherShadowGeometry(light->getLightTransform().getDirection(), convexHull, queues,
+                                &extraShadowCasterExtents);
 
     // Sort the gathered geometry
     auto normalGeometry = Vector<EffectQueue*>();
@@ -281,9 +286,10 @@ const Texture* Renderer::renderDirectionalShadowMap(Scene* scene, const Light* l
 
     // Create an orthographic camera for rendering the shadow map
     auto shadowMapCamera = Camera(
-        {light->getLightTransform() * lightSpaceShadowCasterAABB.getCenter(), light->getLightTransform().getOrientation()},
-        shadowMap->getRect(), Matrix4::getOrthographicProjection({-size.x, -size.y, size.x, size.y}, -size.z, size.z), -size.z,
-        size.z);
+        {light->getLightTransform() * lightSpaceShadowCasterAABB.getCenter(),
+         light->getLightTransform().getOrientation()},
+        shadowMap->getRect(), Matrix4::getOrthographicProjection({-size.x, -size.y, size.x, size.y}, -size.z, size.z),
+        -size.z, size.z);
 
     States::StateCacher::push();
     pushCamera(shadowMapCamera);
@@ -316,7 +322,8 @@ const Texture* Renderer::renderSpotShadowMap(Scene* scene, const Light* light, c
 {
     // Query the scene for all geometry within the light's area
     auto queues = EffectQueueArray();
-    scene->gatherShadowGeometry(light->getLightTransform().getPosition(), ConvexHull(lightViewProjectionMatrix), queues);
+    scene->gatherShadowGeometry(light->getLightTransform().getPosition(), ConvexHull(lightViewProjectionMatrix),
+                                queues);
 
     // Sort the gathered geometry
     auto normalGeometry = Vector<EffectQueue*>();
@@ -332,8 +339,8 @@ const Texture* Renderer::renderSpotShadowMap(Scene* scene, const Light* light, c
         return nullptr;
 
     // Create a perspective camera for rendering the shadow map
-    auto shadowMapCamera =
-        Camera(light->getLightTransform(), shadowMap->getRect(), light->getProjectionMatrix(), 0.25f, light->getRadius());
+    auto shadowMapCamera = Camera(light->getLightTransform(), shadowMap->getRect(), light->getProjectionMatrix(), 0.25f,
+                                  light->getRadius());
 
     States::StateCacher::push();
     pushCamera(shadowMapCamera);

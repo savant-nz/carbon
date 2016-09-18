@@ -28,8 +28,8 @@ namespace Carbon
 {
 
 /**
- * Graphics interface backend that targets OpenGL 1.1 plus a number of extensions that are used to expose more modern hardware
- * functionality such as shaders, vertex buffer objects, cube maps, render targets, and so on.
+ * Graphics interface backend that targets OpenGL 1.1 plus a number of extensions that are used to expose more modern
+ * hardware functionality such as shaders, vertex buffer objects, cube maps, render targets, and so on.
  */
 class CARBON_API OpenGL11 : public OpenGLShared
 {
@@ -56,7 +56,8 @@ public:
     void deleteTexture(TextureObject texture) override;
     bool uploadTexture(TextureObject texture, TextureType type, Image::PixelFormat pixelFormat,
                        const Vector<TextureData>& data) override;
-    void setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter, TextureFilter magFilter) override;
+    void setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter,
+                          TextureFilter magFilter) override;
     void setTextureWrap(TextureObject texture, TextureType type, TextureWrap wrap) override;
     void setTextureAnisotropy(TextureObject texture, TextureType type, unsigned int anisotropy) override;
     void setTextureBaseAndMaximumMipmapLevels(TextureObject texture, TextureType type, unsigned int baseLevel,
@@ -106,7 +107,8 @@ public:
     bool isRenderTargetSupported() const override;
     RenderTargetObject createRenderTarget() override;
     void deleteRenderTarget(RenderTargetObject renderTargetObject) override;
-    bool setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject, const Vector<TextureObject>& textures,
+    bool setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject,
+                                            const Vector<TextureObject>& textures,
                                             const Vector<int>& cubemapFaces) override;
     unsigned int getMaximumRenderTargetColorTextures() const override;
     bool setRenderTargetDepthBufferTexture(RenderTargetObject renderTargetObject, TextureObject texture) override;

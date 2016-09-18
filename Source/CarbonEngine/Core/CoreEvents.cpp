@@ -28,8 +28,8 @@ void GatherMemorySummaryEvent::report()
     auto collated = std::map<String, size_t>();
     for (auto& allocation : gmse.getAllocations())
     {
-        collated[allocation.getType() + (allocation.getDetails().length() ? " (" + allocation.getDetails() + ")" : "")] +=
-            allocation.getSize();
+        auto details = allocation.getDetails().length() ? " (" + allocation.getDetails() + ")" : "";
+        collated[allocation.getType() + details] += allocation.getSize();
 
         totalSize += allocation.getSize();
     }

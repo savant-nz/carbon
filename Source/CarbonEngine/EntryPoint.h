@@ -7,8 +7,8 @@
  * \file
  *
  * This is a special header file that defines the application entry point for the current platform. It requires that the
- * `CARBON_ENTRY_POINT_CLASS` macro is set to the application's primary class and it must be included in exactly one of the
- * application's source files.
+ * `CARBON_ENTRY_POINT_CLASS` macro is set to the application's primary class and it must be included in exactly one of
+ * the application's source files.
  */
 
 #ifndef DOXYGEN
@@ -22,8 +22,8 @@
 namespace Carbon
 {
 
-// This is the bulk of the entry point function on all platforms except iOS, it calls core engine setup and passes control to
-// the specified application-defined class.
+// This is the bulk of the entry point function on all platforms except iOS, it calls core engine setup and passes
+// control to the specified application-defined class.
 static int main()
 {
     if (!Globals::initializeEngine(CARBON_QUOTE_MACRO_VALUE(CARBON_ENTRY_POINT_CLASS)))

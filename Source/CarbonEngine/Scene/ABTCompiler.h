@@ -39,8 +39,8 @@ public:
     static const auto DefaultMaxOvergrowth = 10U;
 
     /**
-     * Returns the current triangle recursion threshold. This value is used to determine when to stop the building of the ABT.
-     * Defaults to 5000.
+     * Returns the current triangle recursion threshold. This value is used to determine when to stop the building of
+     * the ABT. Defaults to 5000.
      */
     static unsigned int getTriangleRecursionThreshold() { return triangleRecursionThreshold_; }
 

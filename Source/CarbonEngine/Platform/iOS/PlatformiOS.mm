@@ -14,8 +14,8 @@
 #include "CarbonEngine/Platform/iOS/PlatformiOS.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 
-// This UIView subclass wraps the CAEAGLLayer from Core Animation. The view content is an EAGL context that an OpenGL ES scene
-// can be rendered into. Input events on the view are passed through to PlatformiOS.
+// This UIView subclass wraps the CAEAGLLayer from Core Animation. The view content is an EAGL context that an OpenGL ES
+// scene can be rendered into. Input events on the view are passed through to PlatformiOS.
 @interface EAGLView : UIView
 - (Carbon::PlatformiOS&)platform;
 @end
@@ -153,7 +153,8 @@ bool PlatformiOS::setup()
     PlatformInterface::setup();
 
     // Check that the supported interface orientations do not include both portrait and landscape modes
-    NSArray* supportedOrientations = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UISupportedInterfaceOrientations"];
+    NSArray* supportedOrientations =
+        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UISupportedInterfaceOrientations"];
     if (!isOrientationsArrayValid(supportedOrientations))
     {
         LOG_ERROR << "Info.plist must specify either landscape or portrait orientations";
@@ -387,8 +388,8 @@ void PlatformiOS::hideOnscreenKeyboard()
 
 bool PlatformiOS::openWithDefaultApplication(const UnicodeString& resource) const
 {
-    auto escaped =
-        [resource.toNSString() stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    auto escaped = [resource.toNSString()
+        stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     // Open as a URL
     return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
@@ -529,7 +530,8 @@ void PlatformiOS::setTouchEventEnabled(unsigned int eventTypeID, bool enabled)
         // Pinch
         if (pinchGesture_ == nil && enabled)
         {
-            pinchGesture_ = [[UIPinchGestureRecognizer alloc] initWithTarget:view_ action:@selector(onGestureRecognized:)];
+            pinchGesture_ =
+                [[UIPinchGestureRecognizer alloc] initWithTarget:view_ action:@selector(onGestureRecognized:)];
 
             [view_ addGestureRecognizer:pinchGesture_];
         }
@@ -564,7 +566,8 @@ void PlatformiOS::setTouchEventEnabled(unsigned int eventTypeID, bool enabled)
             {
                 for (auto j = 0U; j < 4; j++)
                 {
-                    auto swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:view_ action:@selector(onGestureRecognized:)];
+                    auto swipe =
+                        [[UISwipeGestureRecognizer alloc] initWithTarget:view_ action:@selector(onGestureRecognized:)];
                     swipe.direction = UISwipeGestureRecognizerDirection(1 << i);
                     swipe.numberOfTouchesRequired = 4 - j;
 
@@ -602,7 +605,8 @@ void PlatformiOS::setTouchEventEnabled(unsigned int eventTypeID, bool enabled)
 
 Vector<Vec2> PlatformiOS::getTouches() const
 {
-    return touches_.map<Vec2>([&](const UITouch* touch) { return convertScreenPosition([touch locationInView:view_]); });
+    return touches_.map<Vec2>(
+        [&](const UITouch* touch) { return convertScreenPosition([touch locationInView:view_]); });
 }
 
 void PlatformiOS::onGestureRecognized(UIGestureRecognizer* gestureRecognizer)
@@ -611,8 +615,8 @@ void PlatformiOS::onGestureRecognized(UIGestureRecognizer* gestureRecognizer)
     {
         auto tap = static_cast<UITapGestureRecognizer*>(gestureRecognizer);
 
-        events().dispatchEvent(TouchTapEvent(convertScreenPosition([tap locationInView:view_]), uint(tap.numberOfTapsRequired),
-                                             uint(tap.numberOfTouchesRequired)));
+        events().dispatchEvent(TouchTapEvent(convertScreenPosition([tap locationInView:view_]),
+                                             uint(tap.numberOfTapsRequired), uint(tap.numberOfTouchesRequired)));
     }
     else if ([gestureRecognizer isKindOfClass:[UIPinchGestureRecognizer class]])
     {

@@ -14,10 +14,11 @@ namespace Shaders
 {
 
 /**
- * Implementation of skeletal animation for GLSL. This is a vertex shader component that is used by other shaders so that they
- * support skeletal animation.
+ * Implementation of skeletal animation for GLSL. This is a vertex shader component that is used by other shaders so
+ * that they support skeletal animation.
  */
-template <unsigned int MinimumWeightsPerVertex, unsigned int MaximumWeightsPerVertex> class CARBON_API SkeletalAnimationGLSL
+template <unsigned int MinimumWeightsPerVertex, unsigned int MaximumWeightsPerVertex>
+class CARBON_API SkeletalAnimationGLSL
 {
 public:
 
@@ -42,7 +43,8 @@ public:
     /**
      * Updates the shader state ready for skeletal animation rendering using the given geometry chunk and params.
      */
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams)
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams)
     {
         auto boneCount = uint(internalParams[Parameter::boneCount].getInteger());
         auto data = internalParams[Parameter::boneTransforms].getPointer<float>();

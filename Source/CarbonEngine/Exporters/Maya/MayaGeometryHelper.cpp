@@ -81,11 +81,13 @@ bool GeometryHelper::exportMeshAtPath(const MDagPath& dagPath, TriangleArraySet&
     return exportMFnMesh(dagPath, fnMesh, MObject::kNullObj, triangleSet, nullptr, r);
 }
 
-bool GeometryHelper::getConnectedShaders(const MDagPath& dagPath, MFnMesh& fnMesh, MObjectArray& shaders, MIntArray& indices)
+bool GeometryHelper::getConnectedShaders(const MDagPath& dagPath, MFnMesh& fnMesh, MObjectArray& shaders,
+                                         MIntArray& indices)
 {
     if (fnMesh.getConnectedShaders(dagPath.instanceNumber(), shaders, indices) != MS::kSuccess)
     {
-        LOG_WARNING_WITHOUT_CALLER << "Failed getting shaders connected to mesh '" << MStringToString(fnMesh.partialPathName())
+        LOG_WARNING_WITHOUT_CALLER << "Failed getting shaders connected to mesh '"
+                                   << MStringToString(fnMesh.partialPathName())
                                    << "', no materials will be exported for it";
         return false;
     }
@@ -93,7 +95,8 @@ bool GeometryHelper::getConnectedShaders(const MDagPath& dagPath, MFnMesh& fnMes
     return true;
 }
 
-bool GeometryHelper::exportMFnMesh(const MDagPath& dagPath, MFnMesh& fnMesh, MObject shadersMesh, TriangleArraySet& triangleSet,
+bool GeometryHelper::exportMFnMesh(const MDagPath& dagPath, MFnMesh& fnMesh, MObject shadersMesh,
+                                   TriangleArraySet& triangleSet,
                                    const Vector<Vector<SkeletalMesh::VertexWeight>>* skeletalVertices, Runnable& r)
 {
     auto isSkeletal = (skeletalVertices != nullptr);
@@ -279,8 +282,8 @@ bool GeometryHelper::extractAllMeshes(TriangleArraySet& triangleSet, Runnable& r
     return true;
 }
 
-bool GeometryHelper::exportMFnMeshRaw(const MDagPath& dagPath, Vector<Vec3>& vertices, Vector<RawIndexedTriangle>& triangles,
-                                      MSpace::Space space)
+bool GeometryHelper::exportMFnMeshRaw(const MDagPath& dagPath, Vector<Vec3>& vertices,
+                                      Vector<RawIndexedTriangle>& triangles, MSpace::Space space)
 {
     if (!dagPath.hasFn(MFn::kMesh))
         return false;

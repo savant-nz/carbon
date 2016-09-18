@@ -26,11 +26,11 @@ env['CCFLAGS'] += flags + ['-fobjc-arc']
 env['LINKFLAGS'] += flags + ['-Wl,-syslibroot,' + macOSXSDKPath]
 
 
-# The SetupForLinkingCarbon() method sets up the environment for linking Carbon as a dynamic library or linking Carbon as a
-# static library into a final application
+# The SetupForLinkingCarbon() method sets up the environment for linking Carbon as a dynamic library or linking Carbon
+# as a static library into a final application
 def SetupForLinkingCarbon(self, **keywords):
-    defaultDependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'PhysX', 'Vorbis', 'ZLib']
-
+    defaultDependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'PhysX', 'Vorbis',
+                           'ZLib']
     dependencies = keywords.get('dependencies', defaultDependencies)
 
     self['LIBPATH'] += GetDependencyLIBPATH(*dependencies)

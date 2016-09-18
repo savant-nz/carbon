@@ -14,8 +14,8 @@ namespace Shaders
 {
 
 /**
- * Implementation of decal mapping for GLSL. This is a shader component that is used by other shaders in order to support decal
- * mapping.
+ * Implementation of decal mapping for GLSL. This is a shader component that is used by other shaders in order to
+ * support decal mapping.
  */
 class CARBON_API DecalMapGLSL
 {

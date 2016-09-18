@@ -87,12 +87,13 @@ void Thread::setName()
 void Thread::setPriority()
 {
 #ifdef WINDOWS
-    SetThreadPriority(GetCurrentThread(), Interpolate::linear(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL, priority_));
+    SetThreadPriority(GetCurrentThread(),
+                      Interpolate::linear(THREAD_PRIORITY_IDLE, THREAD_PRIORITY_TIME_CRITICAL, priority_));
 #else
     auto policy = SCHED_FIFO;
-
     auto param = sched_param();
-    param.sched_priority = Interpolate::linear(sched_get_priority_min(policy), sched_get_priority_max(policy), priority_);
+    param.sched_priority =
+        Interpolate::linear(sched_get_priority_min(policy), sched_get_priority_max(policy), priority_);
     pthread_setschedparam(thread_->native_handle(), policy, &param);
 #endif
 }
@@ -119,7 +120,8 @@ void Thread::start()
 
 void Thread::waitWithQueuedEventDispatching(unsigned int sleepTime)
 {
-    assert(isRunningInMainThread() && "Thread::waitWithQueuedEventDispatching() can only be called from the main thread");
+    assert(isRunningInMainThread() &&
+           "Thread::waitWithQueuedEventDispatching() can only be called from the main thread");
 
     while (isRunning())
     {

@@ -12,10 +12,10 @@ namespace Carbon
 {
 
 /**
- * This is the primary class for reading file data and is generally used in conjunction with the FileSystem class and the
- * FileSystem::open() method. This class provides methods for standard file input tasks, reading common data types, and
- * automatically handles any endian conversions that are needed (all data is stored in little endian format). Files can be read
- * either from the local file system or to a memory buffer.
+ * This is the primary class for reading file data and is generally used in conjunction with the FileSystem class and
+ * the FileSystem::open() method. This class provides methods for standard file input tasks, reading common data types,
+ * and automatically handles any endian conversions that are needed (all data is stored in little endian format). Files
+ * can be read either from the local file system or to a memory buffer.
  */
 class CARBON_API FileReader : private Noncopyable
 {
@@ -37,14 +37,14 @@ public:
 
     /**
      * Methods performed on the FileSystem class typically return a simple success flag, however if more detailed error
-     * information is required then it can be retrieved either by using this method directly on the relevant FileReader or by
-     * handling FileSystemErrorEvent.
+     * information is required then it can be retrieved either by using this method directly on the relevant FileReader
+     * or by handling FileSystemErrorEvent.
      */
     FileSystemError getLastError() const;
 
     /**
-     * Sets the error that will be returned by FileReader::getLastError(). If \a error is not NoFileSystemError then this
-     * method will also queue a FileSystemErrorEvent using EventManager::queueEvent().
+     * Sets the error that will be returned by FileReader::getLastError(). If \a error is not NoFileSystemError then
+     * this method will also queue a FileSystemErrorEvent using EventManager::queueEvent().
      */
     void setLastError(FileSystemError error) const;
 
@@ -61,10 +61,10 @@ public:
 #endif
 
     /**
-     * Opens this file as an in-memory file which will read from the passed data. This is used when file data reside somewhere
-     * in memory instead of on the local file system. This FileReader instance steals the contents the passed data for itself
-     * and leaves \a data empty. Calls to this method should usually be accompanied by a call to FileReader::setName() so that
-     * the in-memory file can be identified in logs and error reports.
+     * Opens this file as an in-memory file which will read from the passed data. This is used when file data reside
+     * somewhere in memory instead of on the local file system. This FileReader instance steals the contents the passed
+     * data for itself and leaves \a data empty. Calls to this method should usually be accompanied by a call to
+     * FileReader::setName() so that the in-memory file can be identified in logs and error reports.
      */
     bool openMemoryFile(Vector<byte_t>& data);
 
@@ -74,7 +74,8 @@ public:
     bool isOpen() const;
 
     /**
-     * Returns the name of this file that was passed to FileReader::openLocalFile() or set by a call to FileReader::setName().
+     * Returns the name of this file that was passed to FileReader::openLocalFile() or set by a call to
+     * FileReader::setName().
      */
     const UnicodeString& getName() const;
 
@@ -89,11 +90,11 @@ public:
     unsigned int getSize() const;
 
     /**
-     * Returns a pointer to a buffer that contains all the data in this file. In many cases this method can return a pointer to
-     * an already existing buffer in which case no extra memory will be allocated by this method. However, in the cases where
-     * memory does need to be allocated it will be allocated in the passed \a fileDataStorage Vector and a pointer to the first
-     * element in that vector will then be returned. In order to cover this case the caller needs to supply this vector, even
-     * though it is only needed in some instances. Throws an Exception if an error occurs.
+     * Returns a pointer to a buffer that contains all the data in this file. In many cases this method can return a
+     * pointer to an already existing buffer in which case no extra memory will be allocated by this method. However, in
+     * the cases where memory does need to be allocated it will be allocated in the passed \a fileDataStorage Vector and
+     * a pointer to the first element in that vector will then be returned. In order to cover this case the caller needs
+     * to supply this vector, even though it is only needed in some instances. Throws an Exception if an error occurs.
      */
     byte_t* getData(Vector<byte_t>& fileDataStorage);
 
@@ -108,7 +109,8 @@ public:
     void setPosition(unsigned int position);
 
     /**
-     * Returns whether all the data in this file has been read and the current read position is right at the end of the file.
+     * Returns whether all the data in this file has been read and the current read position is right at the end of the
+     * file.
      */
     bool isEOF() const;
 
@@ -118,9 +120,9 @@ public:
     void skip(unsigned int amount);
 
     /**
-     * Reads \a count raw bytes from the file into the specified buffer. When \a bytesRead is not null the integer it points to
-     * will be set to the number of bytes that were actually read from the file. Throws an Exception if an error occurs or if
-     * the specified number of bytes could not be read.
+     * Reads \a count raw bytes from the file into the specified buffer. When \a bytesRead is not null the integer it
+     * points to will be set to the number of bytes that were actually read from the file. Throws an Exception if an
+     * error occurs or if the specified number of bytes could not be read.
      */
     void readBytes(void* buffer, unsigned int count, unsigned int* bytesRead = nullptr);
 
@@ -197,8 +199,8 @@ public:
         auto type = int();
         read(type);
 
-        // For backwards compatibility the following values are also recognized as data types (these are the OpenGL data type
-        // constants)
+        // For backwards compatibility the following values are also recognized as data types (these are the OpenGL data
+        // type constants)
         if (type == 0x1400)
             type = TypeInt8;
         else if (type == 0x1401)
@@ -233,8 +235,8 @@ public:
     }
 
     /**
-     * Reads from the file any class that defines a method in the form `load(FileReader& file)`. Throws an Exception if an error
-     * occurs.
+     * Reads from the file any class that defines a method in the form `load(FileReader& file)`. Throws an Exception if
+     * an error occurs.
      */
     template <typename T> void read(T& t) { t.load(*this); }
 
@@ -253,9 +255,9 @@ public:
     template <typename T> void readEnum(T& t) { read(reinterpret_cast<int&>(t)); }
 
     /**
-     * Reads an enum value from the file as a signed integer. \a enumSize is used to check that the read enumeration value is
-     * valid and should be set to the lowest possible invalid value, any read values that are equal to or greater than \a
-     * enumSize will cause an Exception to be thrown. Throws an Exception if an error occurs.
+     * Reads an enum value from the file as a signed integer. \a enumSize is used to check that the read enumeration
+     * value is valid and should be set to the lowest possible invalid value, any read values that are equal to or
+     * greater than \a enumSize will cause an Exception to be thrown. Throws an Exception if an error occurs.
      */
     template <typename EnumType> void readEnum(EnumType& t, EnumType enumSize)
     {
@@ -269,8 +271,8 @@ public:
     }
 
     /**
-     * Reads the specified number of bytes, parses them as UTF8, and returns the resulting UnicodeString. Throws an Exception if
-     * an error occurs.
+     * Reads the specified number of bytes, parses them as UTF8, and returns the resulting UnicodeString. Throws an
+     * Exception if an error occurs.
      */
     UnicodeString readUTF8Data(unsigned int byteCount);
 
@@ -361,12 +363,14 @@ public:
     bool getDataAsString(UnicodeString& string);
 
     /**
-     * Reads all of this file's data as UTF-8 then converts it to ASCII and puts the result into \a data. Returns success flag.
+     * Reads all of this file's data as UTF-8 then converts it to ASCII and puts the result into \a data. Returns
+     * success flag.
      */
     bool getDataAsString(String& string);
 
     /**
-     * Reads all of this file's data as a string, splits it into lines, and returns the lines in \a lines. Returns success flag.
+     * Reads all of this file's data as a string, splits it into lines, and returns the lines in \a lines. Returns
+     * success flag.
      */
     template <typename StringType> bool getLines(Vector<StringType>& lines, bool keepEmptyLines = true)
     {
@@ -381,37 +385,37 @@ public:
 
     /**
      * Parses this file as UTF-8, splits it into lines, then divides each line into a Vector of tokens using
-     * UnicodeString::getTokens() and puts the result into \a lineTokens. Empty lines and any '#' style comments are ignored.
-     * Returns success flag.
+     * UnicodeString::getTokens() and puts the result into \a lineTokens. Empty lines and any '#' style comments are
+     * ignored. Returns success flag.
      */
     bool getLineTokens(Vector<Vector<UnicodeString>>& lineTokens);
 
     /**
-     * Identical to the Unicode version of this method but converts the read UTF-8 file to prior to returning the result in \a
-     * lineTokens.
+     * Identical to the Unicode version of this method but converts the read UTF-8 file to prior to returning the result
+     * in \a lineTokens.
      */
     bool getLineTokens(Vector<Vector<String>>& lineTokens);
 
     /**
-     * Begins reading a versioned section, these are the system by which features can be added to binary file formats while
-     * maintaining a high level of both backward and forward compatibility. The return value indicates the major and minor
-     * of the versioned section. There must be a corresponding call to FileReader::endVersionedSection(). This method checks
-     * that the read major version is not greater than the major version in the passed \a versionInfo parameter, other version
-     * checking must be done by the caller. Throws an Exception if an error occurs.
+     * Begins reading a versioned section, these are the system by which features can be added to binary file formats
+     * while maintaining a high level of both backward and forward compatibility. The return value indicates the major
+     * and minor of the versioned section. There must be a corresponding call to FileReader::endVersionedSection(). This
+     * method checks that the read major version is not greater than the major version in the passed \a versionInfo
+     * parameter, other version checking must be done by the caller. Throws an Exception if an error occurs.
      */
     VersionInfo beginVersionedSection(const VersionInfo& versionInfo);
 
     /**
-     * Ends reading the most recently begun versioned section started with FileReader::beginVersionedSection(). This method
-     * makes sure that the file read position is put at the end of the versioned section, so any data in the section that has
-     * not been read will be skipped over. Throws an Exception if an error occurs.
+     * Ends reading the most recently begun versioned section started with FileReader::beginVersionedSection(). This
+     * method makes sure that the file read position is put at the end of the versioned section, so any data in the
+     * section that has not been read will be skipped over. Throws an Exception if an error occurs.
      */
     void endVersionedSection();
 
     /**
-     * Searches the currently active versioned sections looking the most recent entry that used the specified \a versionInfo and
-     * returns the same value as from its originating call to FileReader::beginVersionedSection(). Throws an Exception if the
-     * specified version info is not found.
+     * Searches the currently active versioned sections looking the most recent entry that used the specified \a
+     * versionInfo and returns the same value as from its originating call to FileReader::beginVersionedSection().
+     * Throws an Exception if the specified version info is not found.
      */
     VersionInfo findVersionedSection(const VersionInfo& versionInfo) const;
 

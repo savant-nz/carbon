@@ -62,7 +62,8 @@ public:
         if (normalInWorldSpace)
             hitNormalWorld = convexResult.m_hitNormalLocal;
         else
-            hitNormalWorld = convexResult.m_hitCollisionObject->getWorldTransform().getBasis() * convexResult.m_hitNormalLocal;
+            hitNormalWorld =
+                convexResult.m_hitCollisionObject->getWorldTransform().getBasis() * convexResult.m_hitNormalLocal;
 
         if (up_.dot(hitNormalWorld) < minSlopeDot_)
             return 1.0;
@@ -77,8 +78,8 @@ private:
     btScalar minSlopeDot_ = 0.0;
 };
 
-KinematicCharacterController::KinematicCharacterController(btPairCachingGhostObject* ghostObject, btConvexShape* convexShape,
-                                                           btScalar stepHeight)
+KinematicCharacterController::KinematicCharacterController(btPairCachingGhostObject* ghostObject,
+                                                           btConvexShape* convexShape, btScalar stepHeight)
     : ghostObject_(ghostObject), convexShape_(convexShape), stepHeight_(stepHeight)
 {
     setVelocityForTimeInterval(btVector3(0.0, 0.0, 0.0), 0.0);
@@ -117,7 +118,8 @@ bool KinematicCharacterController::recoverFromPenetration(btCollisionWorld* worl
 
                 auto distance = pt.getDistance();
 
-                // If this is a penetration then the distance will be negative, otherwise the two bodies are just touching
+                // If this is a penetration then the distance will be negative, otherwise the two bodies are just
+                // touching
                 if (distance < 0.0f)
                 {
                     if (distance < maxPenetration)
@@ -225,7 +227,8 @@ void KinematicCharacterController::stepForwardAndStrafe(btCollisionWorld* world,
         start.setOrigin(currentPosition_);
         end.setOrigin(targetPosition_);
 
-        ghostObject_->convexSweepTest(convexShape_, start, end, callback, world->getDispatchInfo().m_allowedCcdPenetration);
+        ghostObject_->convexSweepTest(convexShape_, start, end, callback,
+                                      world->getDispatchInfo().m_allowedCcdPenetration);
 
         convexShape_->setMargin(originalMargin);
 
@@ -235,8 +238,8 @@ void KinematicCharacterController::stepForwardAndStrafe(btCollisionWorld* world,
         {
             updateTargetPositionBasedOnCollision(callback.m_hitNormalWorld);
 
-            // Don't slide if the the walk direction and the normal of the hit surface are opposed by less than ~11 degrees,
-            // this prevents sliding down shallow slopes
+            // Don't slide if the the walk direction and the normal of the hit surface are opposed by less than ~11
+            // degrees, this prevents sliding down shallow slopes
             if (callback.m_hitNormalWorld.dot(normalizedWalkVelocity_) < btScalar(-0.98))
                 break;
             else
@@ -342,7 +345,8 @@ void KinematicCharacterController::setVelocityForTimeInterval(const btVector3& v
     velocityTimeRemaining_ += time;
     walkVelocity_ /= velocityTimeRemaining_;
 
-    normalizedWalkVelocity_ = walkVelocity_.length() < SIMD_EPSILON ? btVector3(0.0, 0.0, 0.0) : walkVelocity_.normalized();
+    normalizedWalkVelocity_ =
+        walkVelocity_.length() < SIMD_EPSILON ? btVector3(0.0, 0.0, 0.0) : walkVelocity_.normalized();
 }
 
 void KinematicCharacterController::setWorldPosition(const btVector3& origin)

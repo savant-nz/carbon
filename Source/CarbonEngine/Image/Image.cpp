@@ -214,8 +214,8 @@ void Image::clear()
     frames_.clear();
 }
 
-bool Image::initialize(unsigned int width, unsigned int height, unsigned int depth, PixelFormat pixelFormat, bool hasMipmaps,
-                       unsigned int frameCount)
+bool Image::initialize(unsigned int width, unsigned int height, unsigned int depth, PixelFormat pixelFormat,
+                       bool hasMipmaps, unsigned int frameCount)
 {
     clear();
 
@@ -253,9 +253,9 @@ bool Image::initializeCubemap(std::array<Image, 6>& faces)
     // Check faces are all valid and identical
     for (auto& face : faces)
     {
-        if (!face.isValid2DImage() || face.getWidth() != faces[0].getWidth() || face.getHeight() != faces[0].getHeight() ||
-            face.hasMipmaps() != faces[0].hasMipmaps() || face.getFrameCount() != faces[0].getFrameCount() ||
-            face.getPixelFormat() != faces[0].getPixelFormat())
+        if (!face.isValid2DImage() || face.getWidth() != faces[0].getWidth() ||
+            face.getHeight() != faces[0].getHeight() || face.hasMipmaps() != faces[0].hasMipmaps() ||
+            face.getFrameCount() != faces[0].getFrameCount() || face.getPixelFormat() != faces[0].getPixelFormat())
             return false;
     }
 
@@ -303,7 +303,8 @@ bool Image::isValidImage() const
 
 bool Image::isNPOT() const
 {
-    return isValidImage() && (!Math::isPowerOfTwo(width_) || !Math::isPowerOfTwo(height_) || !Math::isPowerOfTwo(depth_));
+    return isValidImage() &&
+        (!Math::isPowerOfTwo(width_) || !Math::isPowerOfTwo(height_) || !Math::isPowerOfTwo(depth_));
 }
 
 unsigned int Image::getFrameDataSize() const
@@ -363,7 +364,8 @@ bool Image::setFrameCount(unsigned int frameCount)
 bool Image::append(Image& image)
 {
     if (getWidth() != image.getWidth() || getHeight() != image.getHeight() || getDepth() != image.getDepth() ||
-        getPixelFormat() != image.getPixelFormat() || hasMipmaps() != image.hasMipmaps() || isCubemap() != image.isCubemap())
+        getPixelFormat() != image.getPixelFormat() || hasMipmaps() != image.hasMipmaps() ||
+        isCubemap() != image.isCubemap())
     {
         LOG_ERROR << "Unable to append images with incompatible definitions";
         return false;
@@ -619,9 +621,9 @@ bool Image::generateMipmaps()
         return true;
 
     // Mipmap generation is only supported for uncompressed 8-bit per component linear textures
-    if (getPixelFormat() != RGB8 && getPixelFormat() != RGBA8 && getPixelFormat() != BGR8 && getPixelFormat() != BGRA8 &&
-        getPixelFormat() != ABGR8 && getPixelFormat() != Alpha8 && getPixelFormat() != Luminance8 &&
-        getPixelFormat() != LuminanceAlpha8)
+    if (getPixelFormat() != RGB8 && getPixelFormat() != RGBA8 && getPixelFormat() != BGR8 &&
+        getPixelFormat() != BGRA8 && getPixelFormat() != ABGR8 && getPixelFormat() != Alpha8 &&
+        getPixelFormat() != Luminance8 && getPixelFormat() != LuminanceAlpha8)
     {
         LOG_ERROR << "Unsupported pixel format: " << getPixelFormatString(getPixelFormat());
         return false;
@@ -746,8 +748,8 @@ void Image::getNextMipmapSize(unsigned int& width, unsigned int& height, unsigne
     depth = std::max(depth / 2, 1U);
 }
 
-unsigned int Image::getImageDataSize(unsigned int width, unsigned int height, unsigned int depth, PixelFormat pixelFormat,
-                                     bool hasMipmaps)
+unsigned int Image::getImageDataSize(unsigned int width, unsigned int height, unsigned int depth,
+                                     PixelFormat pixelFormat, bool hasMipmaps)
 {
     auto dataSize = 0U;
 
@@ -801,8 +803,8 @@ Image::PixelFormat Image::getPixelFormatFromString(const String& pixelFormatName
 
 byte_t Image::extendToByte(unsigned int bits, unsigned int size)
 {
-    // Given a value that uses fewer than 8 bits and a size in bits of that value this method extends the value to an 8-bit
-    // value by duplicating the original bits into the lower portion
+    // Given a value that uses fewer than 8 bits and a size in bits of that value this method extends the value to an
+    // 8-bit value by duplicating the original bits into the lower portion
 
     bits &= (1 << size) - 1;
 

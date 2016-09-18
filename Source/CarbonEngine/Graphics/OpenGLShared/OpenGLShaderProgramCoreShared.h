@@ -13,8 +13,8 @@ namespace Carbon
 
 /**
  * This is an almost complete implementation of ShaderProgram for OpenGL and GLSL that assumes core OpenGL functions are
- * available for use. This class is subclassed by the OpenGLES2ShaderProgram and OpenGL41ShaderProgram classes which each make
- * only a few small alterations.
+ * available for use. This class is subclassed by the OpenGLES2ShaderProgram and OpenGL41ShaderProgram classes which
+ * each make only a few small alterations.
  */
 class OpenGLShaderProgramCoreShared : public OpenGLShaderProgramShared
 {

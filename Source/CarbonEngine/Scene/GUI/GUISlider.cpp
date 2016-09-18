@@ -69,16 +69,20 @@ bool GUISlider::gatherGeometry(GeometryGather& gather)
             gather.addRectangle(getWidth(), sliderBarHeight_ * getHeight());
         }
         else
-            queueWindow(gather, getWidth(), sliderBarHeight_ * getHeight(), getBorderSize(), getFillColor(), getBorderColor());
+        {
+            queueWindow(gather, getWidth(), sliderBarHeight_ * getHeight(), getBorderSize(), getFillColor(),
+                        getBorderColor());
+        }
 
         // Draw notches
         for (const auto& notch : notches_)
         {
             auto notchFraction = (notch.getPosition() - rangeMinValue_) / (rangeMaxValue_ - rangeMinValue_);
 
-            gather.changeTransformation(localToWorld(Vec3(handleWidth_ * 0.5f + (getWidth() - handleWidth_) * notchFraction,
-                                                          (getHeight() - notchHeight_) * 0.5f)),
-                                        getWorldOrientation());
+            gather.changeTransformation(
+                localToWorld(Vec3(handleWidth_ * 0.5f + (getWidth() - handleWidth_) * notchFraction,
+                                  (getHeight() - notchHeight_) * 0.5f)),
+                getWorldOrientation());
 
             if (material_.length())
             {
@@ -104,7 +108,10 @@ bool GUISlider::gatherGeometry(GeometryGather& gather)
             gather.addRectangle(getWidth() * handleWidth_, getHeight());
         }
         else
-            queueWindow(gather, getWidth() * handleWidth_, getHeight(), getBorderSize(), getFillColor(), getBorderColor());
+        {
+            queueWindow(gather, getWidth() * handleWidth_, getHeight(), getBorderSize(), getFillColor(),
+                        getBorderColor());
+        }
     }
 
     return true;
@@ -121,8 +128,8 @@ bool GUISlider::processEvent(const Event& e)
         {
             if (hasFocus())
             {
-                // Slider keyboard input: left and down arrows move left, right and up arrows move right, the home key jumps to
-                // zero and the end key jumps to one.
+                // Slider keyboard input: left and down arrows move left, right and up arrows move right, the home key
+                // jumps to zero and the end key jumps to one.
                 switch (kde->getKey())
                 {
                     case KeyLeftArrow:
@@ -168,8 +175,8 @@ bool GUISlider::processEvent(const Event& e)
                 {
                     setValue(getValueFromWorldPosition(screenToWorld(mbde->getPosition())));
 
-                    // Clicking on a slider widget tries to snap the slider position to all notches on the slider that are
-                    // defined as being snappable.
+                    // Clicking on a slider widget tries to snap the slider position to all notches on the slider that
+                    // are defined as being snappable.
 
                     // Work out snap range
                     auto snapFraction = notchSnapDistance_ / (getWidth() - handleWidth_);
@@ -187,7 +194,8 @@ bool GUISlider::processEvent(const Event& e)
                         // See if the mouse was clicked within snapping distance of this notch
                         if (distanceToNotch < snapDistance)
                         {
-                            if (closestSnapNotch && distanceToNotch > fabsf(getValue() - closestSnapNotch->getPosition()))
+                            if (closestSnapNotch &&
+                                distanceToNotch > fabsf(getValue() - closestSnapNotch->getPosition()))
                                 continue;
 
                             closestSnapNotch = &notch;
@@ -288,7 +296,8 @@ bool GUISlider::setRange(float minValue, float maxValue)
     rangeMaxValue_ = maxValue;
 
     // Check if any notches are now out of range and if so then delete them
-    notches_.eraseIf([&](const Notch& notch) { return notch.getPosition() < minValue || notch.getPosition() > maxValue; });
+    notches_.eraseIf(
+        [&](const Notch& notch) { return notch.getPosition() < minValue || notch.getPosition() > maxValue; });
 
     return true;
 }

@@ -109,7 +109,8 @@ CARBON_EXPORTER_API MStatus initializePlugin(MObject obj)
         plugin.registerFileTranslator(SceneExporterFileType.cStr(), icon.data(), Maya::createSceneExporter) &&
         plugin.registerFileTranslator(SkeletalAnimationExporterFileType.cStr(), icon.data(),
                                       Maya::createSkeletalAnimationExporter) &&
-        plugin.registerFileTranslator(SkeletalMeshExporterFileType.cStr(), icon.data(), Maya::createSkeletalMeshExporter))
+        plugin.registerFileTranslator(SkeletalMeshExporterFileType.cStr(), icon.data(),
+                                      Maya::createSkeletalMeshExporter))
         return MS::kSuccess;
     else
         return MS::kFailure;

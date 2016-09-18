@@ -78,7 +78,10 @@ const Texture* Light::getProjectionCubemapTexture() const
         return nullptr;
 
     if (!projectionCubemapTexture_)
-        projectionCubemapTexture_ = textures().setupTexture(GraphicsInterface::TextureCubemap, projectionCubemapName_, "Sky");
+    {
+        projectionCubemapTexture_ =
+            textures().setupTexture(GraphicsInterface::TextureCubemap, projectionCubemapName_, "Sky");
+    }
 
     return projectionCubemapTexture_;
 }

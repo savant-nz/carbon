@@ -18,10 +18,11 @@ public:
     virtual ~EventHandler();
 
     /**
-     * This method is called by the EventManager when an event that this class has registered for is sent. The return value from
-     * this method controls propagation of the event to subsequent handlers that have registered to receive the same event. A
-     * value of true will allow the event to proceed, and a value of false will 'swallow' the event. Returning false will also
-     * result in the return value of the original EventManager::dispatchEvent() call that sent out the event being false.
+     * This method is called by the EventManager when an event that this class has registered for is sent. The return
+     * value from this method controls propagation of the event to subsequent handlers that have registered to receive
+     * the same event. A value of true will allow the event to proceed, and a value of false will 'swallow' the event.
+     * Returning false will also result in the return value of the original EventManager::dispatchEvent() call that sent
+     * out the event being false.
      */
     virtual bool processEvent(const Event& e) = 0;
 };

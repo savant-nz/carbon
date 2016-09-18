@@ -10,8 +10,8 @@ Import('*')
 
 env = baseEnv.Clone()
 env['CCFLAGS'] += baseEnv['SHCCFLAGS'][1:]
-env['CPPDEFINES'] += ['AL_ALEXT_PROTOTYPES', 'AL_LIBTYPE_STATIC', 'HAVE_FLOAT_H', 'HAVE_STDINT_H', 'HAVE_GCC_DESTRUCTOR',
-                      'HAVE_GUIDDEF_H', 'HAVE_MALLOC_H']
+env['CPPDEFINES'] += ['AL_ALEXT_PROTOTYPES', 'AL_LIBTYPE_STATIC', 'HAVE_FLOAT_H', 'HAVE_STDINT_H',
+                      'HAVE_GCC_DESTRUCTOR', 'HAVE_GUIDDEF_H', 'HAVE_MALLOC_H']
 env['CPPPATH'] += ['#/Source', '#/Source/Alc', '#/Source/include', '#/Source/OpenAL32/include']
 
 if platform == 'Windows':

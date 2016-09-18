@@ -31,14 +31,14 @@ public:
     void setFraction(float fraction) { fraction_ = Math::clamp01(fraction); }
 
     /**
-     * Sets the range of values for this progress bar. The GUIProgressBar::getValue() and GUIProgressBar::setValue() methods
-     * work within this range. The default range is 0.0 to 1.0. Returns success flag.
+     * Sets the range of values for this progress bar. The GUIProgressBar::getValue() and GUIProgressBar::setValue()
+     * methods work within this range. The default range is 0.0 to 1.0. Returns success flag.
      */
     bool setRange(float minValue, float maxValue);
 
     /**
-     * Returns the current value on this progress bar by taking the current fraction and converting it into a value in the
-     * progress bar range set by GUIProgressBar::setRange().
+     * Returns the current value on this progress bar by taking the current fraction and converting it into a value in
+     * the progress bar range set by GUIProgressBar::setRange().
      */
     float getValue() const;
 

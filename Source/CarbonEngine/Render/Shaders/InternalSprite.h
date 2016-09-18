@@ -109,7 +109,8 @@ public:
 
     bool updateCurrentProgram(unsigned int lightCount, unsigned int spotLightCount)
     {
-        if (currentProgram && lightCount == currentProgram->lightCount && spotLightCount != currentProgram->spotLightCount)
+        if (currentProgram && lightCount == currentProgram->lightCount &&
+            spotLightCount != currentProgram->spotLightCount)
             return true;
 
         auto lightConfiguration = std::make_pair(lightCount, spotLightCount);
@@ -136,13 +137,14 @@ public:
         return true;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         auto lights = Vector<const Renderer::Light*>();
         auto lightAmbient = Color();
 
-        if (params[Parameter::isLightingAllowed].getBoolean() && renderer().gatherLights(geometryChunk.getAABB(), lights))
+        if (params[Parameter::isLightingAllowed].getBoolean() &&
+            renderer().gatherLights(geometryChunk.getAABB(), lights))
             lightAmbient = renderer().getAmbientLightColor();
         else
             lightAmbient = Color::White;
@@ -164,11 +166,13 @@ public:
         currentProgram->diffuseColor->setFloat4(params[Parameter::diffuseColor].getColor());
 
         auto scaleAndOffset = params[Parameter::scaleAndOffset].getFloat4();
-        currentProgram->scaleAndOffset->setFloat4(scaleAndOffset[0], scaleAndOffset[1], scaleAndOffset[2], scaleAndOffset[3]);
+        currentProgram->scaleAndOffset->setFloat4(scaleAndOffset[0], scaleAndOffset[1], scaleAndOffset[2],
+                                                  scaleAndOffset[3]);
         if (currentProgram->currentScale)
         {
             currentProgram->currentScale->setFloat3(
-                renderer().getCurrentScale() * Vec3(Math::getSign(scaleAndOffset[0]), Math::getSign(scaleAndOffset[1]), 1.0f));
+                renderer().getCurrentScale() *
+                Vec3(Math::getSign(scaleAndOffset[0]), Math::getSign(scaleAndOffset[1]), 1.0f));
         }
 
         // Loop over lights and set their corresponding shader constants
@@ -298,9 +302,9 @@ public:
             if (lightCount - i <= spotLightCount)
             {
                 fp << "    nDotL = 1.0;\n";
-                fp << "    attenuation *= clamp(1.0 - (dot(lightDirection" << (lightCount - i - 1) << ".xy, lightVector" << i
-                   << ".xy / distance) - spotConstants" << (lightCount - i - 1) << ".x) * spotConstants" << (lightCount - i - 1)
-                   << ".y, 0.0, 1.0);\n";
+                fp << "    attenuation *= clamp(1.0 - (dot(lightDirection" << (lightCount - i - 1) << ".xy, lightVector"
+                   << i << ".xy / distance) - spotConstants" << (lightCount - i - 1) << ".x) * spotConstants"
+                   << (lightCount - i - 1) << ".y, 0.0, 1.0);\n";
             }
             else
                 fp << "    nDotL = max(dot(normal, lightVector" << i << " / distance), 0.0);\n";

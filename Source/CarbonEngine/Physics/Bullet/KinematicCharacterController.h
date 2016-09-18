@@ -15,9 +15,9 @@ namespace Carbon
 {
 
 /**
- * This is a customized version of btKinematicCharacterController that supports a sliding motion in a world. It uses a ghost
- * object and convex sweep test to test for upcoming collisions, combined with discrete collision detection to recover from
- * penetrations.
+ * This is a customized version of btKinematicCharacterController that supports a sliding motion in a world. It uses a
+ * ghost object and convex sweep test to test for upcoming collisions, combined with discrete collision detection to
+ * recover from penetrations.
  */
 class KinematicCharacterController : public btActionInterface
 {
@@ -25,7 +25,8 @@ public:
 
     static const btVector3 UpAxis;
 
-    KinematicCharacterController(btPairCachingGhostObject* ghostObject, btConvexShape* convexShape, btScalar stepHeight);
+    KinematicCharacterController(btPairCachingGhostObject* ghostObject, btConvexShape* convexShape,
+                                 btScalar stepHeight);
     ~KinematicCharacterController() override {}
 
     /**
@@ -34,8 +35,8 @@ public:
     void setWorldPosition(const btVector3& origin);
 
     /**
-     * Sets the velocity of this character controller as well as the time period that it should move at that velocity for.
-     * Multiple calls to this method accumulate any leftover movement from previous calls.
+     * Sets the velocity of this character controller as well as the time period that it should move at that velocity
+     * for. Multiple calls to this method accumulate any leftover movement from previous calls.
      */
     void setVelocityForTimeInterval(const btVector3& velocity, btScalar time);
 
@@ -112,8 +113,9 @@ private:
 public:
 
 #ifdef _MSC_VER
-    // MSVC requires operator new and delete be overloaded in order to guarantee 16-byte alignment when this class is allocated
-    // on the heap. MemoryInterceptor.h is re-included below in order to redefine its operator new interception macro.
+    // MSVC requires operator new and delete be overloaded in order to guarantee 16-byte alignment when this class is
+    // allocated on the heap. MemoryInterceptor.h is re-included below in order to redefine its operator new
+    // interception macro.
     static void* operator new(size_t size) { return _aligned_malloc(size, 16); }
     static void operator delete(void* memory) { _aligned_free(memory); }
 #endif

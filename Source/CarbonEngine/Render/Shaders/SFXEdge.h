@@ -19,7 +19,8 @@ public:
     {
     public:
 
-        SFXEdgeProgram(const std::array<bool, PreprocessorDefineCount>& enabledDefines) : doSkeletalAnimation(enabledDefines[0])
+        SFXEdgeProgram(const std::array<bool, PreprocessorDefineCount>& enabledDefines)
+            : doSkeletalAnimation(enabledDefines[0])
         {
         }
 
@@ -84,7 +85,8 @@ public:
 
     SFXEdgeProgram* getProgram(unsigned int programIndex)
     {
-        static const auto preprocessorDefines = std::array<String, PreprocessorDefineCount>{{"#define SKELETAL_ANIMATION"}};
+        static const auto preprocessorDefines =
+            std::array<String, PreprocessorDefineCount>{{"#define SKELETAL_ANIMATION"}};
 
         return setupProgramCombination<SFXEdgeProgram>(programIndex, programs, preprocessorDefines, "SFXEdge.glsl.vert",
                                                        "SFXEdge.glsl.frag");
@@ -109,8 +111,8 @@ public:
         return true;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (!updateCurrentProgram(sortKey))
             return;

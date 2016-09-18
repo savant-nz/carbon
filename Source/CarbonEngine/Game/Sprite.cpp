@@ -316,7 +316,10 @@ void Sprite::updateScaleAndOffset() const
     auto currentFrame = currentFrame_;
 
     if (isReflectedHorizontally_)
-        currentFrame = (currentFrame / frameCountX_) * frameCountX_ + (frameCountX_ - 1 - (currentFrame % frameCountX_));
+    {
+        currentFrame =
+            (currentFrame / frameCountX_) * frameCountX_ + (frameCountX_ - 1 - (currentFrame % frameCountX_));
+    }
     if (isReflectedVertically_)
         currentFrame = (frameCountY_ - 1 - currentFrame / frameCountX_) * frameCountX_ + (currentFrame % frameCountX_);
 
@@ -447,7 +450,8 @@ void Sprite::setTextureRegion(float left, float bottom, float right, float top)
 void Sprite::getSpriteBlendingFactors(States::BlendFactor& sourceFactor, States::BlendFactor& destinationFactor) const
 {
     sourceFactor = States::BlendFactor(spriteMaterial_->getParameter(Parameter::blendSourceFactor).getInteger());
-    destinationFactor = States::BlendFactor(spriteMaterial_->getParameter(Parameter::blendDestinationFactor).getInteger());
+    destinationFactor =
+        States::BlendFactor(spriteMaterial_->getParameter(Parameter::blendDestinationFactor).getInteger());
 }
 
 void Sprite::setSpriteBlendingFactors(States::BlendFactor sourceFactor, States::BlendFactor destinationFactor)
@@ -536,7 +540,8 @@ PhysicsInterface::BodyObject Sprite::createInternalRigidBody(float mass, bool fi
         {
             // Convert the alpha to 2D polygons
             auto polygons = Vector<Vector<Vec2>>();
-            if (physics().convertImageAlphaTo2DPolygons(image, polygons, isReflectedHorizontally(), isReflectedVertically()))
+            if (physics().convertImageAlphaTo2DPolygons(image, polygons, isReflectedHorizontally(),
+                                                        isReflectedVertically()))
             {
                 // Convert polygons to collision geometry
                 auto vertices = Vector<Vec3>();
@@ -670,10 +675,12 @@ bool Sprite::load(const String& name)
             }
             else if (line[0].asLower() == "diffusecolor")
             {
-                if (line.size() != 5 || !line[1].isFloat() || !line[2].isFloat() || !line[3].isFloat() || !line[4].isFloat())
+                if (line.size() != 5 || !line[1].isFloat() || !line[2].isFloat() || !line[3].isFloat() ||
+                    !line[4].isFloat())
                     throw Exception("Invalid diffuse color");
 
-                setSpriteDiffuseColor(Color(line[1].asFloat(), line[2].asFloat(), line[3].asFloat(), line[4].asFloat()));
+                setSpriteDiffuseColor(
+                    Color(line[1].asFloat(), line[2].asFloat(), line[3].asFloat(), line[4].asFloat()));
             }
             else if (line[0].asLower() == "flipvertical")
             {
@@ -729,10 +736,11 @@ bool Sprite::intersect(const Entity* entity) const
         auto thisSpriteToOtherSprite = sprite->getWorldTransform().getInverse() * getWorldTransform();
 
         // Get the bounding planes of the other sprite's rect in the local space of this sprite
-        auto planes = std::array<Plane, 4>{{otherSpriteToThisSprite * Plane(sprite->getLocalAABB().getMinimum(), -Vec3::UnitX),
-                                            otherSpriteToThisSprite * Plane(sprite->getLocalAABB().getMinimum(), -Vec3::UnitY),
-                                            otherSpriteToThisSprite * Plane(sprite->getLocalAABB().getMaximum(), Vec3::UnitX),
-                                            otherSpriteToThisSprite * Plane(sprite->getLocalAABB().getMaximum(), Vec3::UnitY)}};
+        auto planes =
+            std::array<Plane, 4>{{otherSpriteToThisSprite * Plane(sprite->getLocalAABB().getMinimum(), -Vec3::UnitX),
+                                  otherSpriteToThisSprite * Plane(sprite->getLocalAABB().getMinimum(), -Vec3::UnitY),
+                                  otherSpriteToThisSprite * Plane(sprite->getLocalAABB().getMaximum(), Vec3::UnitX),
+                                  otherSpriteToThisSprite * Plane(sprite->getLocalAABB().getMaximum(), Vec3::UnitY)}};
 
         // Get the corner vertices of this sprite's rect in local space
         auto corners = std::array<Vec3, 4>();
@@ -753,7 +761,7 @@ bool Sprite::intersect(const Entity* entity) const
         if (!collisionMap.isValid2DImage() || !collisionMap2.isValid2DImage())
             return true;
 
-        // Texture matrices for both sprites, these are needed in order to know which areas of the sprite textures to use
+        // Texture matrices for both sprites, needed in order to know which areas of the sprite textures to use
         auto textureMatrix = getTextureMatrix();
         auto textureMatrix2 = sprite->getTextureMatrix();
 

@@ -14,8 +14,8 @@ namespace Carbon
 using namespace OpenGL11Extensions;
 
 /**
- * Implementation of ShaderConstant for GLSL under OpenGL 1.1 that supports all types of constants including floats, integers,
- * arrays and matrices.
+ * Implementation of ShaderConstant for GLSL under OpenGL 1.1 that supports all types of constants including floats,
+ * integers, arrays and matrices.
  */
 class OpenGL11ShaderConstant : public ShaderConstant
 {

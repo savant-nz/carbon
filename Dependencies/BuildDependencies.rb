@@ -5,9 +5,9 @@
 #
 
 #
-# Use this script to run builds of all the dependencies. In order to do this the build environment must be setup, instructions
-# doing this are in BUILDING.md. The dependency builds are all done through the SCons build system and don't rely on any build
-# system or tool each individual dependency may use internally.
+# Use this script to run builds of all the dependencies. In order to do this the build environment must be setup,
+# instructions doing this are in BUILDING.md. The dependency builds are all done through the SCons build system and
+# don't rely on any build system or tool each individual dependency may use internally.
 #
 # If this script is run with no options then all dependencies for the current platform will be built. An alternate
 # platform to build for can be specified with the --platform option, e.g.

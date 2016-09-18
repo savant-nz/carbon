@@ -156,7 +156,8 @@ public:
      */
     SimpleTransform interpolate(const SimpleTransform& transform, float t) const
     {
-        return {position_ * (1.0f - t) + transform.getPosition() * t, orientation_.slerp(transform.getOrientation(), t)};
+        return {position_ * (1.0f - t) + transform.getPosition() * t,
+                orientation_.slerp(transform.getOrientation(), t)};
     }
 
     /**
@@ -172,7 +173,10 @@ public:
     /**
      * Converts this simple transform to a human-readable string.
      */
-    operator UnicodeString() const { return UnicodeString() << "position: " << position_ << ", orientation: " << orientation_; }
+    operator UnicodeString() const
+    {
+        return UnicodeString() << "position: " << position_ << ", orientation: " << orientation_;
+    }
 
 private:
 

@@ -110,20 +110,22 @@ public:
         bool isPaused = false;
         float currentFrame = 0.0f;
 
-        // When blendFromInitialBoneTransforms is true the first frame of this animation becomes an interpolation from the bone
-        // transforms at the time the animation was applied to the first frame of the animation itself. The initial bone
-        // transforms are stored in this vector so that the animation code knows what initial transform to interpolate from.
+        // When blendFromInitialBoneTransforms is true the first frame of this animation becomes an interpolation from
+        // the bone transforms at the time the animation was applied to the first frame of the animation itself. The
+        // initial bone transforms are stored in this vector so that the animation code knows what initial transform to
+        // interpolate from.
         Vector<SimpleTransform> initialBoneTransforms;
 
-        // The SkeletalAnimation class stores bone names explicitly as strings, but converting each name to a bone index for
-        // this skeletal mesh every frame would be wasteful so the bone indices for this mesh are computed once and stored in
-        // the boneIndices[] array. An index of -1 means there is no bone with that name in this mesh and so the animation
-        // frames for that bone are ignored when animating.
+        // The SkeletalAnimation class stores bone names explicitly as strings, but converting each name to a bone index
+        // for this skeletal mesh every frame would be wasteful so the bone indices for this mesh are computed once and
+        // stored in the boneIndices[] array. An index of -1 means there is no bone with that name in this mesh and so
+        // the animation frames for that bone are ignored when animating.
         Vector<int> boneIndices;
         void calculateBoneIndices(const Vector<Bone>& skeletalMeshBones)
         {
-            // Map the bone names in the Animation class to bone indices for this skeletal mesh and store it in the boneIndices
-            // vector on the ActiveAnimation instance, this saves having to work out these indices every frame
+            // Map the bone names in the Animation class to bone indices for this skeletal mesh and store it in the
+            // boneIndices vector on the ActiveAnimation instance, this saves having to work out these indices every
+            // frame
             boneIndices = Vector<int>(animation->getBoneAnimations().size(), -1);
             for (auto i = 0U; i < animation->getBoneAnimations().size(); i++)
             {
@@ -173,19 +175,21 @@ public:
         bool isShadowCaster = false;
 
         // This chunk is where CPU skinning results are put. CPU skinning is done on-demand in order to get accurate
-        // intersection testing against skeletal meshes. If GPU skinning is disabled then full skinning is done by the CPU
-        // directly into this chunk and it is then used for rendering.
+        // intersection testing against skeletal meshes. If GPU skinning is disabled then full skinning is done by the
+        // CPU directly into this chunk and it is then used for rendering.
         GeometryChunk animationGeometryChunk;
 
-        // The current maximum weight count used by a vertex in this submesh. The maximum allowed value is 4 weights per vertex,
-        // but some animation data will use fewer weights per vertex than this, and this information can be used by the renderer
-        // to improve efficiency by reducing the amount of per-vertex math.
+        // The current maximum weight count used by a vertex in this submesh. The maximum allowed value is 4 weights per
+        // vertex, but some animation data will use fewer weights per vertex than this, and this information can be used
+        // by the renderer to improve efficiency by reducing the amount of per-vertex math.
         unsigned int weightsPerVertex = 4;
 
-        // Works out the correct value for SubMesh::weightsPerVertex based on the contents of this submesh's geometry chunk
+        // Works out the correct value for SubMesh::weightsPerVertex based on the contents of this submesh's geometry
+        // chunk
         void calculateWeightsPerVertex();
 
-        // The bone indices in this submesh index into this vector, which maps to an absolute bone index in the main bones array
+        // The bone indices in this submesh index into this vector, which maps to an absolute bone index in the main
+        // bones array
         Vector<unsigned int> localBoneIndexToAbsoluteBoneIndex;
 
         Matrix4x3 gpuBoneTransforms[MaximumMaterialBoneCount];
@@ -214,17 +218,17 @@ public:
                 calculateWeightsPerVertex();
         }
 
-        // The name of the original skeletal mesh component which this submesh was loaded from. This is set in addSkeletalMesh()
-        // and is used in removeSkeletalMesh() to be able to remove the submeshes associated with a specific skeletal mesh
-        // component
+        // The name of the original skeletal mesh component which this submesh was loaded from. This is set in
+        // addSkeletalMesh() and is used in removeSkeletalMesh() to be able to remove the submeshes associated with a
+        // specific skeletal mesh component
         String skeletalMeshComponent;
 
-        // Creates the localBoneIndexToAbsoluteBoneIndex array and updates all the bone indices in the reference pose data
-        // appropriately so they index this array rather than the master bones array
+        // Creates the localBoneIndexToAbsoluteBoneIndex array and updates all the bone indices in the reference pose
+        // data appropriately so they index this array rather than the master bones array
         bool createLocalBoneIndexMap();
 
-        // When bones are removed the indices stored in the submesh geometry chunks need to be updated to reflect any change to
-        // bone indices
+        // When bones are removed the indices stored in the submesh geometry chunks need to be updated to reflect any
+        // change to bone indices
         void updateBoneIndices(const Vector<unsigned int>& boneIndexMap);
     };
     Vector<SubMesh*> submeshes;
@@ -232,7 +236,8 @@ public:
     unsigned int maximumAllowedWeightsPerVertex = 4;
 
     // Adds a set of submeshes and bones that are part of a new skeletal component
-    bool addSkeletalMeshComponent(const Vector<Bone>& newBones, Vector<SubMesh*>& newSubmeshes, const String& component);
+    bool addSkeletalMeshComponent(const Vector<Bone>& newBones, Vector<SubMesh*>& newSubmeshes,
+                                  const String& component);
 
     // Removes all submeshes that are part of the specified skeletal mesh component
     bool removeSkeletalMeshComponent(const String& component);
@@ -314,10 +319,12 @@ void SkeletalMesh::Members::calculateBoneRagdollReferenceOrientationAbsoluteInve
 
     for (auto& bone : bones)
     {
-        // Construct a basis for this bone in parent space that is used to orient ragdoll bodies to the skeleton. The Y axis is
-        // made to point along the bone because the capsules created in the physical layer use Y as their major axis.
+        // Construct a basis for this bone in parent space that is used to orient ragdoll bodies to the skeleton. The Y
+        // axis is made to point along the bone because the capsules created in the physical layer use Y as their major
+        // axis.
 
-        auto& parentAbsolutePosition = (bone.parent == -1) ? Vec3::Zero : bones[bone.parent].currentAbsolute.getPosition();
+        auto& parentAbsolutePosition =
+            (bone.parent == -1) ? Vec3::Zero : bones[bone.parent].currentAbsolute.getPosition();
         auto target = bone.currentAbsolute.getPosition() - parentAbsolutePosition;
 
         auto referenceOrientationAbsolute = Quaternion::createFromVectorToVector(Vec3::UnitY, target);
@@ -368,8 +375,8 @@ bool SkeletalMesh::Members::addSkeletalMeshComponent(const Vector<Bone>& newBone
 {
     if (bones.size())
     {
-        // Append new bones onto the existing bones list and create a mapping from the newBones[] index to the new index in
-        // bones[]. Bones in newBones[] that match an already existing bone in bones[] will be mapped to that bone.
+        // Append new bones onto the existing bones list and create a mapping from the newBones[] index to the new index
+        // in bones[]. Bones in newBones[] that match an already existing bone in bones[] will be mapped to that bone.
         auto boneIndexMap = Vector<unsigned int>();
         for (const auto& newBone : newBones)
         {
@@ -380,10 +387,12 @@ bool SkeletalMesh::Members::addSkeletalMeshComponent(const Vector<Bone>& newBone
                     continue;
 
                 // Check that the bones have the same reference relative transform
-                if (bones[j].referenceRelative.getPosition().distance(newBone.referenceRelative.getPosition()) > Math::Epsilon)
+                if (bones[j].referenceRelative.getPosition().distance(newBone.referenceRelative.getPosition()) >
+                    Math::Epsilon)
                 {
-                    LOG_WARNING << "Bone '" << bones[j].name << "': the reference poses do not match, this may result in "
-                                                                "incorrect rendering of one or more skeletal mesh components";
+                    LOG_WARNING << "Bone '" << bones[j].name
+                                << "': the reference poses do not match, this may result in "
+                                   "incorrect rendering of one or more skeletal mesh components";
                 }
 
                 index = j;
@@ -397,7 +406,7 @@ bool SkeletalMesh::Members::addSkeletalMeshComponent(const Vector<Bone>& newBone
                 // New bone
                 bones.append(newBone);
                 bones.back().parent = newBone.parent == -1 ? -1 : int(boneIndexMap[newBone.parent]);
-                bones.back().currentRelative = bones.back().referenceRelative;    // Start new bones in the reference pose
+                bones.back().currentRelative = bones.back().referenceRelative;    // Start in the reference pose
                 boneIndexMap.append(bones.size() - 1);
             }
         }
@@ -485,8 +494,8 @@ bool SkeletalMesh::Members::removeSkeletalMeshComponent(const String& component)
 
 void SkeletalMesh::Members::removeUnreferencedBones()
 {
-    // For each bone determine whether it is directly referenced by any submesh, that is, there is a submesh containing a vertex
-    // that is weighted at least partially to the bone
+    // For each bone determine whether it is directly referenced by any submesh, that is, there is a submesh containing
+    // a vertex that is weighted at least partially to the bone
     auto isBoneReferenced = Vector<bool>(bones.size());
     for (auto submesh : submeshes)
     {
@@ -501,8 +510,8 @@ void SkeletalMesh::Members::removeUnreferencedBones()
         }
     }
 
-    // Make sure all parent bones of referenced bones are also flagged as referenced. Going backwards through the array ensures
-    // no bones get missed out because parent bones always precede their child bones in the list
+    // Make sure all parent bones of referenced bones are also flagged as referenced. Going backwards through the array
+    // ensures no bones get missed out because parent bones always precede their child bones in the list
     for (auto i = int(isBoneReferenced.size()) - 1; i >= 0; i--)
     {
         if (isBoneReferenced[i] && bones[i].parent != -1)
@@ -516,8 +525,9 @@ void SkeletalMesh::Members::removeUnreferencedBones()
     if (!isBoneReferenced.has(false))
         return;
 
-    // Construct a new bone list that excludes the now unreferenced bones, as well as a mapping from old bone indices to the
-    // corresponding index in the new bones list, this mapping is then used to update the bone indices in the submeshes
+    // Construct a new bone list that excludes the now unreferenced bones, as well as a mapping from old bone indices to
+    // the corresponding index in the new bones list, this mapping is then used to update the bone indices in the
+    // submeshes
     auto newBones = Vector<Bone>();
     auto boneIndexMap = Vector<unsigned int>(bones.size());
     for (auto i = 0U; i < bones.size(); i++)
@@ -626,7 +636,8 @@ void SkeletalMesh::Members::skinVertices()
         submesh->animationGeometryChunk.lockVertexData();
         auto itAnimatedPosition = submesh->animationGeometryChunk.getVertexStreamIterator<Vec3>(VertexStream::Position);
         auto itAnimatedTangent = submesh->animationGeometryChunk.getVertexStreamIterator<Vec3>(VertexStream::Tangent);
-        auto itAnimatedBitangent = submesh->animationGeometryChunk.getVertexStreamIterator<Vec3>(VertexStream::Bitangent);
+        auto itAnimatedBitangent =
+            submesh->animationGeometryChunk.getVertexStreamIterator<Vec3>(VertexStream::Bitangent);
         auto itAnimatedNormal = submesh->animationGeometryChunk.getVertexStreamIterator<Vec3>(VertexStream::Normal);
 
         // Animate each vertex
@@ -685,8 +696,8 @@ void SkeletalMesh::Members::skinVertexPositions()
 
     // This method is identical to the one above except it only skins the vertex positions. Normals and tangents are not
     // touched. This is used to skin the model for CPU calculation of intersections when GPU skinning is being used for
-    // rendering, so only the vertex positions need to be known. When doing all skinning on the CPU this method will never be
-    // called.
+    // rendering, so only the vertex positions need to be known. When doing all skinning on the CPU this method will
+    // never be called.
 
     for (auto submesh : submeshes)
     {
@@ -806,7 +817,10 @@ void SkeletalMesh::Members::calculateBoneAABBs()
             for (auto k = 0U; k < 4; k++)
             {
                 if (itReferenceWeights[k] > 0.05f)
-                    bones[submesh->localBoneIndexToAbsoluteBoneIndex[itReferenceBones[k]]].aabb.addPoint(*itReferencePosition);
+                {
+                    bones[submesh->localBoneIndexToAbsoluteBoneIndex[itReferenceBones[k]]].aabb.addPoint(
+                        *itReferencePosition);
+                }
             }
 
             itReferencePosition++;
@@ -860,8 +874,8 @@ bool SkeletalMesh::Members::createRagdoll(float boneMass, bool fixed)
             ragdollBodies[i] = physics().createBoundingBoxBody(
                 AABB(Vec3(-size), Vec3(size)), boneMass, fixed, nullptr,
                 parent->localToWorld(
-                    {bone.currentAbsolute.getPosition(),
-                     bone.ragdollReferenceOrientationAbsoluteInverse.getInverse() * bone.currentAbsolute.getOrientation()}));
+                    {bone.currentAbsolute.getPosition(), bone.ragdollReferenceOrientationAbsoluteInverse.getInverse() *
+                         bone.currentAbsolute.getOrientation()}));
         }
         else
         {
@@ -873,11 +887,11 @@ bool SkeletalMesh::Members::createRagdoll(float boneMass, bool fixed)
             auto physicalLength = std::max(bone.length - size * 3.0f, 0.2f);
 
             // Create a ragdoll body for this bone
-            ragdollBodies[i] =
-                physics().createCapsuleBody(physicalLength, size, boneMass, false, nullptr,
-                                            parent->localToWorld({bone.currentAbsolute.getPosition(),
-                                                                  bone.ragdollReferenceOrientationAbsoluteInverse.getInverse() *
-                                                                      bone.currentAbsolute.getOrientation()}));
+            ragdollBodies[i] = physics().createCapsuleBody(
+                physicalLength, size, boneMass, false, nullptr,
+                parent->localToWorld(
+                    {bone.currentAbsolute.getPosition(), bone.ragdollReferenceOrientationAbsoluteInverse.getInverse() *
+                         bone.currentAbsolute.getOrientation()}));
 
             if (ragdollBodies[i])
             {
@@ -1046,8 +1060,9 @@ bool SkeletalMesh::addAnimation(const String& name, bool loop, bool blendFromIni
 
         if (fabsf(skeletonBoneLength - animationBoneLength) > 0.05f)
         {
-            LOG_WARNING << "Length of bone '" << m->bones[boneIndex].name << "' in animation '" << name << "' doesn't match "
-                        << "the length in the skeleton, got " << animationBoneLength << " but expected " << skeletonBoneLength;
+            LOG_WARNING
+                << "Length of bone '" << m->bones[boneIndex].name << "' in animation '" << name << "' doesn't match "
+                << "the length in the skeleton, got " << animationBoneLength << " but expected " << skeletonBoneLength;
         }
     }
 
@@ -1251,8 +1266,8 @@ bool SkeletalMesh::addSkeletalMesh(const String& name)
         {
             submesh->isShadowCaster = getDefaultGeometryShadowCasterValue();
 
-            // Take a copy of the reference pose geometry chunks needed for doing CPU skeletal animation and for per-triangle
-            // hit detection on the skeletal mesh
+            // Take a copy of the reference pose geometry chunks needed for doing CPU skeletal animation and for
+            // per-triangle hit detection on the skeletal mesh
             submesh->animationGeometryChunk = submesh->geometryChunk;
             submesh->animationGeometryChunk.deleteVertexStream(VertexStream::Bones);
             submesh->animationGeometryChunk.deleteVertexStream(VertexStream::Weights);
@@ -1283,8 +1298,8 @@ bool SkeletalMesh::addSkeletalMesh(const String& name)
         m->calculateBoneAABBs();
         onLocalAABBChanged();
 
-        LOG_INFO << "Added skeletal mesh '" << name << "' - bones: " << newBones.size() << ", submeshes: " << submeshCount
-                 << ", export info: " << exportInfo;
+        LOG_INFO << "Added skeletal mesh '" << name << "' - bones: " << newBones.size()
+                 << ", submeshes: " << submeshCount << ", export info: " << exportInfo;
 
         return true;
     }
@@ -1331,7 +1346,8 @@ bool SkeletalMesh::setup(const Vector<Bone>& bones, TriangleArraySet& triangleSe
     {
         m->clear();
 
-        LOG_INFO << "Creating skeletal mesh, bones: " << bones.size() << ", triangles: " << triangleSet.getTriangleCount();
+        LOG_INFO << "Creating skeletal mesh, bones: " << bones.size()
+                 << ", triangles: " << triangleSet.getTriangleCount();
 
         r.beginTask("Checking data integrity", 5);
 
@@ -1378,8 +1394,10 @@ bool SkeletalMesh::setup(const Vector<Bone>& bones, TriangleArraySet& triangleSe
                 throw Exception() << "Invalid triangle set, missing a required skeletal vertex stream";
 
             // Fill the geometry chunk with vertex data
-            auto itBones = triangles->getVertexDataGeometryChunk().getVertexStreamConstIterator<uint8_t>(VertexStream::Bones);
-            auto itWeights = triangles->getVertexDataGeometryChunk().getVertexStreamConstIterator<float>(VertexStream::Weights);
+            auto itBones =
+                triangles->getVertexDataGeometryChunk().getVertexStreamConstIterator<uint8_t>(VertexStream::Bones);
+            auto itWeights =
+                triangles->getVertexDataGeometryChunk().getVertexStreamConstIterator<float>(VertexStream::Weights);
 
             for (auto i = 0U; i < triangles->getVertexDataGeometryChunk().getVertexCount(); i++)
             {
@@ -1539,10 +1557,10 @@ void SkeletalMesh::intersectRay(const Ray& ray, Vector<IntersectionResult>& inte
     // Transform the ray into local space
     auto localRay = getWorldTransform().getInverse() * ray;
 
-    // Check ray against all the submeshes. Note that this checks against the 'animationGeometryChunk' member of each submesh
-    // which contains the CPU skinned version of the mesh needed for this type of intersection test. Because of this it is
-    // necessary to first ensure that the local CPU skinned geometry is current and then update it if required. Only vertex
-    // positions need to be current for intersection tests.
+    // Check ray against all the submeshes. Note that this checks against the 'animationGeometryChunk' member of each
+    // submesh which contains the CPU skinned version of the mesh needed for this type of intersection test. Because of
+    // this it is necessary to first ensure that the local CPU skinned geometry is current and then update it if
+    // required. Only vertex positions need to be current for intersection tests.
     m->skinVertexPositions();
     for (auto submesh : m->submeshes)
     {
@@ -1609,8 +1627,8 @@ bool SkeletalMesh::gatherGeometry(GeometryGather& gather)
                     m->skinVertices();
             }
 
-            // When gathering shadow extents tell the renderer the extents of the current animated geometry, the extents of the
-            // static geometry stored in the geometry chunks is insufficient
+            // When gathering shadow extents tell the renderer the extents of the current animated geometry, the extents
+            // of the static geometry stored in the geometry chunks is insufficient
             if (gather.isShadowGeometryGather())
                 gather.enlargeExtraWorldSpaceShadowCasterExtents(getWorldAABB());
 
@@ -1646,15 +1664,16 @@ bool SkeletalMesh::gatherGeometry(GeometryGather& gather)
 
                     if (m->isGPUSkinningEnabled)
                     {
-                        // Shaders that support GPU skinning look for "boneCount", "boneTransforms" and "weightsPerVertex"
-                        // parameters that contain the data needed for doing GPU skinning
+                        // Shaders that support GPU skinning look for "boneCount", "boneTransforms" and
+                        // "weightsPerVertex" parameters that contain the data needed for doing GPU skinning
 
                         submesh->internalParams[Parameter::boneCount].setInteger(
                             submesh->localBoneIndexToAbsoluteBoneIndex.size());
                         submesh->internalParams[Parameter::boneTransforms].setPointer(submesh->gpuBoneTransforms);
                         submesh->internalParams[Parameter::weightsPerVertex].setInteger(submesh->weightsPerVertex);
 
-                        gather.newMaterial(&materials().getMaterial(material), overrideParameters, submesh->internalParams);
+                        gather.newMaterial(&materials().getMaterial(material), overrideParameters,
+                                           submesh->internalParams);
                         gather.addGeometryChunk(submesh->geometryChunk);
                     }
                     else
@@ -1742,8 +1761,8 @@ void SkeletalMesh::update()
             auto frame = uint(activeAnimation.currentFrame);
             auto nextFrame = (frame + 1) % activeAnimation.animation->getFrameCount();
 
-            // Detect when blending from the initial bone transforms to the first frame of the animation has been completed, and
-            // revert back to standard animation.
+            // Detect when blending from the initial bone transforms to the first frame of the animation has been
+            // completed, and revert back to standard animation.
             if (activeAnimation.blendFromInitialBoneTransforms && frame >= 1)
             {
                 activeAnimation.blendFromInitialBoneTransforms = false;
@@ -1824,8 +1843,8 @@ void SkeletalMesh::setGPUSkinningEnabled(bool enabled)
 
     m->isGPUSkinningEnabled = enabled;
 
-    // Register and deregister the appropriate chunks with the renderer. When doing GPU skinning the reference pose chunk needs
-    // to be registered, and when doing CPU skinning the animated geometry chunk needs to be registered.
+    // Register and deregister the appropriate chunks with the renderer. When doing GPU skinning the reference pose
+    // chunk needs to be registered, and when doing CPU skinning the animated geometry chunk needs to be registered.
     if (!m->isGPUSkinningEnabled)
     {
         for (auto submesh : m->submeshes)
@@ -1853,7 +1872,8 @@ bool SkeletalMesh::setMaterials(const Vector<String>& materials)
 {
     if (materials.size() != m->submeshes.size())
     {
-        LOG_ERROR << "Incorrect number of materials, expected " << m->submeshes.size() << " but received " << materials.size();
+        LOG_ERROR << "Incorrect number of materials, expected " << m->submeshes.size() << " but received "
+                  << materials.size();
         return false;
     }
 
@@ -2105,7 +2125,10 @@ bool SkeletalMesh::setMaximumAllowedWeightsPerVertex(unsigned int maximumAllowed
     }
 
     if (chunks.size())
-        LOG_INFO << "Reduced weights per vertex to " << maximumAllowedWeightsPerVertex << " on skeletal mesh: " << getName();
+    {
+        LOG_INFO << "Reduced weights per vertex to " << maximumAllowedWeightsPerVertex
+                 << " on skeletal mesh: " << getName();
+    }
 
     m->maximumAllowedWeightsPerVertex = maximumAllowedWeightsPerVertex;
 

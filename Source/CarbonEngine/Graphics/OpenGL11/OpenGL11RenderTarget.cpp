@@ -54,7 +54,8 @@ void OpenGL11::deleteRenderTarget(RenderTargetObject renderTargetObject)
     renderTarget = nullptr;
 }
 
-bool OpenGL11::setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject, const Vector<TextureObject>& textures,
+bool OpenGL11::setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject,
+                                                  const Vector<TextureObject>& textures,
                                                   const Vector<int>& cubemapFaces)
 {
     if (!extensions_.EXT_framebuffer_object || !renderTargetObject)
@@ -109,8 +110,8 @@ bool OpenGL11::setRenderTargetColorBufferTextures(RenderTargetObject renderTarge
         CARBON_CHECK_OPENGL_ERROR(glDrawBuffer);
     }
 
-    // Set the read buffer to the first color attachment (i.e. first texture) if it is specified, otherwise there is no read
-    // buffer
+    // Set the read buffer to the first color attachment (i.e. first texture) if it is specified, otherwise there is no
+    // read buffer
     glReadBuffer(textures.size() ? GL_COLOR_ATTACHMENT0_EXT : GL_NONE);
     CARBON_CHECK_OPENGL_ERROR(glReadBuffer);
 
@@ -133,7 +134,8 @@ bool OpenGL11::setRenderTargetDepthBufferTexture(RenderTargetObject renderTarget
     {
         States::RenderTarget.pushSetFlushPop(renderTargetObject);
 
-        glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, getOpenGLTexture(texture), 0);
+        glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, getOpenGLTexture(texture),
+                                  0);
         CARBON_CHECK_OPENGL_ERROR(glFramebufferTexture2DEXT);
 
         renderTarget->depthTexture = texture;
@@ -153,7 +155,8 @@ bool OpenGL11::setRenderTargetStencilBufferTexture(RenderTargetObject renderTarg
     {
         States::RenderTarget.pushSetFlushPop(renderTargetObject);
 
-        glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_STENCIL_ATTACHMENT_EXT, GL_TEXTURE_2D, getOpenGLTexture(texture), 0);
+        glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_STENCIL_ATTACHMENT_EXT, GL_TEXTURE_2D,
+                                  getOpenGLTexture(texture), 0);
         CARBON_CHECK_OPENGL_ERROR(glFramebufferTexture2DEXT);
 
         renderTarget->stencilTexture = texture;
@@ -228,8 +231,8 @@ GraphicsInterface::RenderTargetObject OpenGL11::getOutputDestinationRenderTarget
 
             if (!OVR_SUCCESS(result))
             {
-                LOG_ERROR << "Failed creating Oculus Rift swap texture set with dimensions " << viewport.getWidth() << "x"
-                          << viewport.getHeight();
+                LOG_ERROR << "Failed creating Oculus Rift swap texture set with dimensions " << viewport.getWidth()
+                          << "x" << viewport.getHeight();
                 continue;
             }
             else
@@ -269,9 +272,9 @@ GraphicsInterface::RenderTargetObject OpenGL11::getOutputDestinationRenderTarget
     {
         auto& eye = oculusRiftEyes_[destination == OutputOculusRiftLeftEye ? ovrEye_Left : ovrEye_Right];
 
-        auto texture =
-            Texture(reinterpret_cast<ovrGLTexture*>(&eye.swapTextureSet->Textures[eye.swapTextureSet->CurrentIndex])->OGL.TexId,
-                    GraphicsInterface::Texture2D);
+        auto texture = Texture(
+            reinterpret_cast<ovrGLTexture*>(&eye.swapTextureSet->Textures[eye.swapTextureSet->CurrentIndex])->OGL.TexId,
+            GraphicsInterface::Texture2D);
 
         setRenderTargetColorBufferTextures(eye.renderTarget, {&texture}, {});
 

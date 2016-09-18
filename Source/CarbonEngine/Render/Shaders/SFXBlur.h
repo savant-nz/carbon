@@ -19,7 +19,8 @@ public:
     {
     public:
 
-        SFXBlurProgram(const std::array<bool, PreprocessorDefineCount>& enabledDefines) : doSkeletalAnimation(enabledDefines[0])
+        SFXBlurProgram(const std::array<bool, PreprocessorDefineCount>& enabledDefines)
+            : doSkeletalAnimation(enabledDefines[0])
         {
         }
 
@@ -87,7 +88,8 @@ public:
 
     SFXBlurProgram* getProgram(unsigned int programIndex)
     {
-        static const auto preprocessorDefines = std::array<String, PreprocessorDefineCount>{{"#define SKELETAL_ANIMATION"}};
+        static const auto preprocessorDefines =
+            std::array<String, PreprocessorDefineCount>{{"#define SKELETAL_ANIMATION"}};
 
         return setupProgramCombination<SFXBlurProgram>(programIndex, programs, preprocessorDefines, "SFXBlur.glsl.vert",
                                                        "SFXBlur.glsl.frag");
@@ -109,8 +111,8 @@ public:
         return true;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (!updateCurrentProgram(sortKey))
             return;
@@ -126,8 +128,8 @@ public:
 
         auto scale = params[Parameter::scale].getFloat() / 512.0f;
         auto textureOffsets = std::array<float, 12>{{
-            -1.0f * scale, 1.0f * scale, 0.3f * scale, 0.5f * scale, -0.6f * scale, 0.2f * scale, 1.0f * scale, -0.2f * scale,
-            -0.3f * scale, -0.7f * scale, 0.7f * scale, -1.0f * scale,
+            -1.0f * scale, 1.0f * scale, 0.3f * scale, 0.5f * scale, -0.6f * scale, 0.2f * scale, 1.0f * scale,
+            -0.2f * scale, -0.3f * scale, -0.7f * scale, 0.7f * scale, -1.0f * scale,
         }};
         currentProgram->textureOffsets->setArray(2, 6, textureOffsets.data());
 

@@ -25,9 +25,9 @@ class CARBON_API Renderer : public EventHandler, private Noncopyable
 public:
 
     /**
-     * This class describes a camera to the renderer and is used when queuing a scene for rendering and when rendering a scene
-     * into a texture. It includes information about the camera position, orientation, projection matrix, viewport and near and
-     * far plane distances.
+     * This class describes a camera to the renderer and is used when queuing a scene for rendering and when rendering a
+     * scene into a texture. It includes information about the camera position, orientation, projection matrix, viewport
+     * and near and far plane distances.
      */
     class CARBON_API Camera
     {
@@ -38,8 +38,8 @@ public:
         /**
          * Sets up this camera description with the given values, the view matrix is calculated from \a transform.
          */
-        Camera(const SimpleTransform& transform, const Rect& viewport, const Matrix4& projectionMatrix, float nearPlaneDistance,
-               float farPlaneDistance)
+        Camera(const SimpleTransform& transform, const Rect& viewport, const Matrix4& projectionMatrix,
+               float nearPlaneDistance, float farPlaneDistance)
             : position_(transform.getPosition()),
               orientation_(transform.getOrientation().getMatrix3()),
               projectionMatrix_(projectionMatrix),
@@ -230,12 +230,14 @@ public:
         /**
          * Gathers visible geometry from this scene.
          */
-        virtual void gatherGeometry(const Vec3& cameraPosition, const ConvexHull& frustum, EffectQueueArray& queues) = 0;
+        virtual void gatherGeometry(const Vec3& cameraPosition, const ConvexHull& frustum,
+                                    EffectQueueArray& queues) = 0;
 
         /**
          * Gathers shadow-casting geometry from this scene.
          */
-        virtual void gatherShadowGeometry(const Vec3& cameraPosition, const ConvexHull& frustum, EffectQueueArray& queues,
+        virtual void gatherShadowGeometry(const Vec3& cameraPosition, const ConvexHull& frustum,
+                                          EffectQueueArray& queues,
                                           AABB* extraWorldSpaceShadowCasterExtents = nullptr) = 0;
 
         /**
@@ -249,14 +251,14 @@ public:
         virtual const EffectQueueArray& getPostProcessEffects() const = 0;
 
         /**
-         * Returns whether post-process pass-through is enabled for this scene, when this is enabled the render output of this
-         * scene is combined with the render output of other scenes with post-processing enabled that are rendered after it,
-         * i.e. they are all written to the same temporary offscreen target. Then, when a subsequent scene with active
-         * post-process effects is rendered, its post-process effects will be applied to the combined output from all scene that
-         * have been passed through up to that point. This system enables one set of post-process effects to be applied to the
-         * combined rendering result of multiple scenes. If post-process pass-through is enabled on this scene and no
-         * subsequently rendered scene has any post-process effects set on it then the output of this scene will be lost.
-         * Post-process pass-through is disabled by default.
+         * Returns whether post-process pass-through is enabled for this scene, when this is enabled the render output
+         * of this scene is combined with the render output of other scenes with post-processing enabled that are
+         * rendered after it, i.e. they are all written to the same temporary offscreen target. Then, when a subsequent
+         * scene with active post-process effects is rendered, its post-process effects will be applied to the combined
+         * output from all scene that have been passed through up to that point. This system enables one set of
+         * post-process effects to be applied to the combined rendering result of multiple scenes. If post-process
+         * pass-through is enabled on this scene and no subsequently rendered scene has any post-process effects set on
+         * it then the output of this scene will be lost. Post-process pass-through is disabled by default.
          */
         virtual bool isPostProcessPassThroughEnabled() const = 0;
     };
@@ -267,39 +269,40 @@ public:
     bool setup();
 
     /**
-     * Returns the 2D diffuse texture that is used a placeholder when other textures fail to load. This is a texture with the
-     * words "Texture error" in white on an orange background and is loaded from the built-in "TextureError.png" file.
+     * Returns the 2D diffuse texture that is used a placeholder when other textures fail to load. This is a texture
+     * with the words "Texture error" in white on an orange background and is loaded from the built-in
+     * "TextureError.png" file.
      */
     const Texture* getErrorTexture() const;
 
     /**
-     * Returns the 2D normal map that is used when normal maps fail to load or a placeholder normal map is needed. This is a 1x1
-     * normal map texture with a unit normal in Z, i.e. RGB(0.5 0.5 1.0) and is loaded from the built-in "FlatNormalMap.png"
-     * file.
+     * Returns the 2D normal map that is used when normal maps fail to load or a placeholder normal map is needed. This
+     * is a 1x1 normal map texture with a unit normal in Z, i.e. RGB(0.5 0.5 1.0) and is loaded from the built-in
+     * "FlatNormalMap.png" file.
      */
     const Texture* getFlatNormalMap() const;
 
     /**
-     * Returns the built-in 1x1 2D "White" texture. This is used in shaders as a fallback texture, and materials can access it
-     * by specifying "White" as the texture name.
+     * Returns the built-in 1x1 2D "White" texture. This is used in shaders as a fallback texture, and materials can
+     * access it by specifying "White" as the texture name.
      */
     const Texture* getWhiteTexture() const;
 
     /**
-     * Returns the built-in 1x1 2D "Black" texture. This is used in shaders as a fallback texture, and materials can access it
-     * by specifying "Black" as the texture name.
+     * Returns the built-in 1x1 2D "Black" texture. This is used in shaders as a fallback texture, and materials can
+     * access it by specifying "Black" as the texture name.
      */
     const Texture* getBlackTexture() const;
 
     /**
-     * Returns the built-in 1x1 cubemap "WhiteCube" texture. This is used in shaders as a fallback texture and materials can
-     * access it by specifying "WhiteCube" as the texture name.
+     * Returns the built-in 1x1 cubemap "WhiteCube" texture. This is used in shaders as a fallback texture and materials
+     * can access it by specifying "WhiteCube" as the texture name.
      */
     const Texture* getWhiteCubemapTexture() const;
 
     /**
-     * Returns the built-in 1x1 cubemap "BlackCube" texture. This is used in shaders as a fallback texture and materials can
-     * access it by specifying "BlackCube" as the texture name.
+     * Returns the built-in 1x1 cubemap "BlackCube" texture. This is used in shaders as a fallback texture and materials
+     * can access it by specifying "BlackCube" as the texture name.
      */
     const Texture* getBlackCubemapTexture() const;
 
@@ -319,19 +322,20 @@ public:
     const Vec3& getCurrentScale() const { return currentScale_; }
 
     /**
-     * Returns the 3x3 matrix that is the inverse of the current orientation returned in Renderer::getCurrentTransform(). For
-     * use in shaders.
+     * Returns the 3x3 matrix that is the inverse of the current orientation returned in
+     * Renderer::getCurrentTransform(). For use in shaders.
      */
     const Matrix3& getCurrentOrientationInverseMatrix() const;
 
     /**
-     * Returns the 4x4 matrix that is the inverse of the current transform returned by Renderer::getCurrentTransform() and the
-     * scale returned by Renderer::getCurrentScale(). For use in shaders.
+     * Returns the 4x4 matrix that is the inverse of the current transform returned by Renderer::getCurrentTransform()
+     * and the scale returned by Renderer::getCurrentScale(). For use in shaders.
      */
     const Matrix4& getCurrentTransformInverseMatrix() const;
 
     /**
-     * Returns the position of the camera in the local space of the geometry chunk currently being drawn. For use in shaders.
+     * Returns the position of the camera in the local space of the geometry chunk currently being drawn. For use in
+     * shaders.
      */
     const Vec3& getLocalSpaceCameraPosition() const;
 
@@ -366,14 +370,14 @@ public:
     const Color& getDirectionalLightColor() const { return directionalLightColor_; }
 
     /**
-     * For use by shaders, returns a vector of all the lights that intersect with the passed AABB in local model space. The
-     * return value indicates whether lighting is enabled for the scene currently being rendered.
+     * For use by shaders, returns a vector of all the lights that intersect with the passed AABB in local model space.
+     * The return value indicates whether lighting is enabled for the scene currently being rendered.
      */
     bool gatherLights(const AABB& localAABB, Vector<const Light*>& lights);
 
     /**
-     * Queues a scene for rendering. Normally client applications will use Scene::queueForRendering() rather than calling this
-     * method directly.
+     * Queues a scene for rendering. Normally client applications will use Scene::queueForRendering() rather than
+     * calling this method directly.
      */
     void queueForRendering(Scene* scene, const Camera& camera, int priority,
                            GraphicsInterface::OutputDestination outputDestination);
@@ -395,44 +399,45 @@ public:
     bool renderIntoTexture(Scene* scene, const Vector<Camera>& cameras, TextureCubemap* texture);
 
     /**
-     * Returns the 2D refraction texture for use by shaders. This will return a correct texture when called from inside a shader
-     * that has specified itself as needing a refraction texture as an input, otherwise the content of this texture is
-     * undefined.
+     * Returns the 2D refraction texture for use by shaders. This will return a correct texture when called from inside
+     * a shader that has specified itself as needing a refraction texture as an input, otherwise the content of this
+     * texture is undefined.
      */
     const Texture* getRefractionTexture() const { return refractionTexture_; }
 
     /**
-     * Returns the 2D reflection texture for use by shaders. This will return a correct texture when called from inside a shader
-     * that has specified itself as needing a reflection texture as an input, otherwise the content of this texture is
-     * undefined.
+     * Returns the 2D reflection texture for use by shaders. This will return a correct texture when called from inside
+     * a shader that has specified itself as needing a reflection texture as an input, otherwise the content of this
+     * texture is undefined.
      */
     const Texture* getReflectionTexture() const { return reflectionTexture_; }
 
     /**
-     * Returns the 2D texture that contains deferred lighting information. This is only for use in shaders that are doing
-     * deferred lighting.
+     * Returns the 2D texture that contains deferred lighting information. This is only for use in shaders that are
+     * doing deferred lighting.
      */
     const Texture* getDeferredLightingTexture() const { return deferredLightingTexture_; }
 
     /**
-     * This method is for use by multipass post-process shaders only and it sets the texture to render the output of the current
-     * shader pass to. This allows the use of arbitrary intermediate textures by post processing shaders to run algorithms such
-     * as separable blurs. This method also sets the States::Viewport state to the rectangle of the passed texture.
+     * This method is for use by multipass post-process shaders only and it sets the texture to render the output of the
+     * current shader pass to. This allows the use of arbitrary intermediate textures by post processing shaders to run
+     * algorithms such as separable blurs. This method also sets the States::Viewport state to the rectangle of the
+     * passed texture.
      */
     bool setPostProcessIntermediateTargetTexture(const Texture* texture);
 
     /**
-     * Requests a temporary texture with the given dimensions and pixel format, this should only be used for temporary textures
-     * that are needed as part of a single frame, they should not generally be held across multiple frames, and should always be
-     * released as soon as possible to maximize texture reuse. This method will return null if the requested temporary texture
-     * can't be supplied.
+     * Requests a temporary texture with the given dimensions and pixel format, this should only be used for temporary
+     * textures that are needed as part of a single frame, they should not generally be held across multiple frames, and
+     * should always be released as soon as possible to maximize texture reuse. This method will return null if the
+     * requested temporary texture can't be supplied.
      */
     const Texture* requestTemporaryTexture(unsigned int width, unsigned int height, Image::PixelFormat pixelFormat,
                                            TextureProperties::TextureFilter filter = TextureProperties::NearestFilter);
 
     /**
-     * This method is a convenience overload for Renderer::requestTemporaryTexture() that uses the width and height of the given
-     * Rect. See Renderer::requestTemporaryTexture() for more details.
+     * This method is a convenience overload for Renderer::requestTemporaryTexture() that uses the width and height of
+     * the given Rect. See Renderer::requestTemporaryTexture() for more details.
      */
     const Texture* requestTemporaryTexture(const Rect& rect, Image::PixelFormat pixelFormat,
                                            TextureProperties::TextureFilter filter = TextureProperties::NearestFilter)
@@ -441,20 +446,20 @@ public:
     }
 
     /**
-     * Requests a temporary texture with the given dimensions, this should only be used for temporary textures that are needed
-     * as part of a single frame, they should not generally be held across multiple frames, and should always be released as
-     * soon as possible to maximize texture reuse. This method will return either an RGB or RGBA temporary texture depending on
-     * whether \a includeAlpha is true. If \a forceHDR is true then a floating point format will be returned even if HDR
-     * rendering isn't enabled on th renderer, otherwise if \a forceHDR is false the returned texture will only be floating
-     * point if HDR is enabled on the renderer. This method will return null if the requested temporary texture can't be
-     * supplied.
+     * Requests a temporary texture with the given dimensions, this should only be used for temporary textures that are
+     * needed as part of a single frame, they should not generally be held across multiple frames, and should always be
+     * released as soon as possible to maximize texture reuse. This method will return either an RGB or RGBA temporary
+     * texture depending on whether \a includeAlpha is true. If \a forceHDR is true then a floating point format will be
+     * returned even if HDR rendering isn't enabled on th renderer, otherwise if \a forceHDR is false the returned
+     * texture will only be floating point if HDR is enabled on the renderer. This method will return null if the
+     * requested temporary texture can't be supplied.
      */
     const Texture* requestTemporaryTexture(unsigned int width, unsigned int height, bool includeAlpha, bool forceHDR,
                                            TextureProperties::TextureFilter filter = TextureProperties::NearestFilter);
 
     /**
-     * This method is a convenience overload for Renderer::requestTemporaryTexture() that uses the width and height of the given
-     * Rect. See Renderer::requestTemporaryTexture() for more details.
+     * This method is a convenience overload for Renderer::requestTemporaryTexture() that uses the width and height of
+     * the given Rect. See Renderer::requestTemporaryTexture() for more details.
      */
     const Texture* requestTemporaryTexture(const Rect& rect, bool includeAlpha, bool forceHDR,
                                            TextureProperties::TextureFilter filter = TextureProperties::NearestFilter)
@@ -469,15 +474,16 @@ public:
     void releaseTemporaryTexture(const Texture* texture);
 
     /**
-     * This is called during rendering when an offscreen render target is required, such as when rendering a reflection. If such
-     * a render target is available then it will be returned for use, otherwise null will be returned. Render targets allocated
-     * by this method should be released as soon as they are no longer needed so that they can be reused.
+     * This is called during rendering when an offscreen render target is required, such as when rendering a reflection.
+     * If such a render target is available then it will be returned for use, otherwise null will be returned. Render
+     * targets allocated by this method should be released as soon as they are no longer needed so that they can be
+     * reused.
      */
     const RenderTarget* requestTemporaryRenderTarget(unsigned int width, unsigned int height);
 
     /**
-     * This is a convenience overload for Renderer::requestTemporaryRenderTarget() that gets the width and height from the
-     * passed \a rect parameter.
+     * This is a convenience overload for Renderer::requestTemporaryRenderTarget() that gets the width and height from
+     * the passed \a rect parameter.
      */
     const RenderTarget* requestTemporaryRenderTarget(const Rect& rect)
     {
@@ -491,18 +497,22 @@ public:
     void releaseTemporaryRenderTarget(const RenderTarget* target);
 
     /**
-     * Returns the scale factor to use on the dimensions of the off-screen render targets used when doing fullscreen effects
-     * such as post-processing and deferred lighting, this can be used to cause these effects to be done with textures that are
-     * larger than the main framebuffer. The higher resolution offscreen buffers will then be downsampled when rendering the
-     * final framebuffer output. This is useful when using post-processing effects that distort the final image in such a way
-     * that subsampling would become apparent unless higher resolution initial renders are used. Defaults to 1.0.
+     * Returns the scale factor to use on the dimensions of the off-screen render targets used when doing fullscreen
+     * effects such as post-processing and deferred lighting, this can be used to cause these effects to be done with
+     * textures that are larger than the main framebuffer. The higher resolution offscreen buffers will then be
+     * downsampled when rendering the final framebuffer output. This is useful when using post-processing effects that
+     * distort the final image in such a way that subsampling would become apparent unless higher resolution initial
+     * renders are used. Defaults to 1.0.
      */
-    float getFullscreenRenderTargetDimensionsScaleFactor() const { return fullscreenRenderTargetDimensionsScaleFactor_; }
+    float getFullscreenRenderTargetDimensionsScaleFactor() const
+    {
+        return fullscreenRenderTargetDimensionsScaleFactor_;
+    }
 
     /**
-     * Sets the scale factor to use on the dimensions of the off-screen render targets used when doing fullscreen effects such
-     * as post-processing and deferred lighting. The passed value is clamped in the range 0.1 - 10.0. Defaults to 1.0. See
-     * Renderer::getFullscreenRenderTargetDimensionsScaleFactor() for more details.
+     * Sets the scale factor to use on the dimensions of the off-screen render targets used when doing fullscreen
+     * effects such as post-processing and deferred lighting. The passed value is clamped in the range 0.1 - 10.0.
+     * Defaults to 1.0. See Renderer::getFullscreenRenderTargetDimensionsScaleFactor() for more details.
      */
     void setFullscreenRenderTargetDimensionsScaleFactor(float scale)
     {
@@ -575,13 +585,14 @@ public:
     unsigned int getShadowMapSize() const { return shadowMapSize_; }
 
     /**
-     * Sets the size of the shadow map that will be used when doing directional light shadow maps, must be a power of two.
+     * Sets the size of the shadow map that will be used when doing directional light shadow maps, must be a power of
+     * two.
      */
     bool setShadowMapSize(unsigned int size);
 
     /**
-     * Adds a string to be rendered in the debugging info. Typically the easiest way to add a renderer debug string is with the
-     * CARBON_RENDER_INFO() and CARBON_RENDER_VALUE() macros.
+     * Adds a string to be rendered in the debugging info. Typically the easiest way to add a renderer debug string is
+     * with the CARBON_RENDER_INFO() and CARBON_RENDER_VALUE() macros.
      */
     void addDebugString(const UnicodeString& s);
 
@@ -591,15 +602,15 @@ public:
     void printRenderQueues() { printRenderQueues_ = true; }
 
     /**
-     * Sets the texture to render as a debug overlay, this is useful for inspecting the contents of textures at runtime during
-     * development and debugging. To disable texture debugging pass an empty string for \a name.
+     * Sets the texture to render as a debug overlay, this is useful for inspecting the contents of textures at runtime
+     * during development and debugging. To disable texture debugging pass an empty string for \a name.
      */
     void setDebugTexture(const String& name, unsigned int frame = 0, unsigned int mipmap = 0, bool renderAlpha = false,
                          float scale = 1.0f);
 
     /**
-     * Internal helper class used by the \ref CARBON_RENDER_INFO macro, it houses a temporary UnicodeString instance that is
-     * added as a renderer debug string on destruction.
+     * Internal helper class used by the \ref CARBON_RENDER_INFO macro, it houses a temporary UnicodeString instance
+     * that is added as a renderer debug string on destruction.
      */
     class DebugStringWriter : private Noncopyable
     {
@@ -649,8 +660,8 @@ private:
     mutable const Texture* whiteCubemapTexture_ = nullptr;
     mutable const Texture* blackCubemapTexture_ = nullptr;
 
-    // Rectangle geometry chunk with unit texture coordinates, this is used when rendering rectangle render queue items and
-    // whenever a simple textured quad is needed
+    // Rectangle geometry chunk with unit texture coordinates, this is used when rendering rectangle render queue items
+    // and whenever a simple textured quad is needed
     GeometryChunk unitRectangleGeometry_;
     void createUnitRectangleGeometry();
     void drawUnitRectangle();
@@ -673,7 +684,8 @@ private:
     };
     Vector<QueuedScene> queuedScenes_;
 
-    // The camera stack, the current camera is the last one in the vector and one will always be available when rendering
+    // The camera stack, the current camera is the last one in the vector and one will always be available when
+    // rendering
     Vector<const Camera*> cameras_;
     void pushCamera(const Camera& camera);
     void popCamera() { cameras_.popBack(); }
@@ -691,8 +703,8 @@ private:
     Vec3 currentScale_;
     Matrix4 modelViewMatrix_;
 
-    // Various transforms involving the above transforms and the projection matrix are used by shaders, these are calculated JIT
-    // and are cached here
+    // Various transforms involving the above transforms and the projection matrix are used by shaders, these are
+    // calculated JIT and are cached here
     mutable Matrix3 currentOrientationInverseMatrix_;
     mutable bool isCurrentOrientationInverseMatrixCached_ = false;
     mutable Matrix4 currentTransformInverseMatrix_;
@@ -730,12 +742,12 @@ private:
 
     bool processEvent(const Event& e) override;
 
-    // Temporary textures are any textures that are needed by the renderer during the course of processing a frame, usually for
-    // doing things such as off-screen rendering, refractions, reflections, post processing, and so on. These textures are
-    // cached by the renderer and handed out on as-needed basis. Once the texture is finished being used then it is released
-    // back so that it can be given out in a subsequent request. The same texture can potentially be re-used many times
-    // throughout the life of a single frame. Temporary textures are used both internally by the renderer as well as by shaders
-    // that need intermediate textures.
+    // Temporary textures are any textures that are needed by the renderer during the course of processing a frame,
+    // usually for doing things such as off-screen rendering, refractions, reflections, post processing, and so on.
+    // These textures are cached by the renderer and handed out on as-needed basis. Once the texture is finished being
+    // used then it is released back so that it can be given out in a subsequent request. The same texture can
+    // potentially be re-used many times throughout the life of a single frame. Temporary textures are used both
+    // internally by the renderer as well as by shaders that need intermediate textures.
 
     struct TemporaryTexture
     {
@@ -758,10 +770,10 @@ private:
     const Texture* reflectionTexture_ = nullptr;
     const Texture* refractionTexture_ = nullptr;
 
-    // The primary entry point for drawing is the draw() method, this method renders the passed scene using the passed camera
-    // into the currently active render target. Internally it may recurse in order to render reflections or do various offscreen
-    // renders as part of other effects. It relies on a number of additional methods to sort lists of geometry, for deferred
-    // lighting, to do the actual rendering, and for post-processing.
+    // The primary entry point for drawing is the draw() method, this method renders the passed scene using the passed
+    // camera into the currently active render target. Internally it may recurse in order to render reflections or do
+    // various offscreen renders as part of other effects. It relies on a number of additional methods to sort lists of
+    // geometry, for deferred lighting, to do the actual rendering, and for post-processing.
 
     void draw(Scene* scene, const Camera& camera, bool clearColorBuffer, bool clearDepthStencilBuffer,
               bool allowPostProcessPassThrough = false, unsigned int recursionDepth = 0);
@@ -769,7 +781,8 @@ private:
     void sortEffectQueues(EffectQueueArray& queues, const Camera& camera, Vector<EffectQueue*>& normalGeometry,
                           Vector<EffectQueue*>& refractiveGeometry, Vector<Plane>& reflectionPlanes);
 
-    int getReflectionPlaneIndex(const RenderQueueItemArray& items, const Camera& camera, Vector<Plane>& reflectionPlanes) const;
+    int getReflectionPlaneIndex(const RenderQueueItemArray& items, const Camera& camera,
+                                Vector<Plane>& reflectionPlanes) const;
 
     // These methods are where a set of render queue items actually gets drawn, implemented in RendererDraw.cpp
     enum BlendedGeometrySetting
@@ -786,14 +799,15 @@ private:
     void executeRenderQueueItem(const DrawRectangleRenderQueueItem& item, Shader* shader, const ParameterArray& params,
                                 const ParameterArray& internalParams, unsigned int sortKey);
     void executeRenderQueueItem(const DrawGeometryChunkRenderQueueItem& item, Effect* effect, Shader* shader,
-                                const ParameterArray& params, const ParameterArray& internalParams, unsigned int sortKey);
+                                const ParameterArray& params, const ParameterArray& internalParams,
+                                unsigned int sortKey);
 
     // Post processing
     RenderTarget scenePostProcessRenderTarget_;
     RenderTarget globalPostProcessRenderTarget_;
     EffectQueueArray globalPostProcessEffects_;
-    bool setupForPostProcessing(RenderTarget& renderTarget, const EffectQueueArray& postProcessEffects, const Rect& viewport,
-                                bool* clearColorBuffer = nullptr);
+    bool setupForPostProcessing(RenderTarget& renderTarget, const EffectQueueArray& postProcessEffects,
+                                const Rect& viewport, bool* clearColorBuffer = nullptr);
     void drawPostProcess(RenderTarget& renderTarget, const EffectQueueArray& postProcessEffects,
                          GraphicsInterface::RenderTargetObject finalRenderTargetObject, const Rect& finalViewport,
                          bool isPostProcessPassThroughActive = false);
@@ -804,7 +818,8 @@ private:
     // RendererDeferredLighting.cpp
     RenderTarget deferredLightingRenderTarget_;
     const Texture* deferredLightingTexture_ = nullptr;
-    bool renderDeferredLightingTexture(Scene* scene, const ConvexHull& frustum, const Vector<EffectQueue*>& normalGeometry,
+    bool renderDeferredLightingTexture(Scene* scene, const ConvexHull& frustum,
+                                       const Vector<EffectQueue*>& normalGeometry,
                                        Vector<const Texture*>& allocatedTemporaryTextures);
 
     // Shadows
@@ -830,7 +845,8 @@ private:
     } debugTexture_;
     void drawDebugTexture(EffectQueueArray& queues);
     void drawDebugTextureSurface(const Texture* texture, float scale);
-    void drawDebugTextureSurfaceGeometry(const Texture* texture, float scale, Shader* shader, const ParameterArray& params);
+    void drawDebugTextureSurfaceGeometry(const Texture* texture, float scale, Shader* shader,
+                                         const ParameterArray& params);
 
     // The frame timers graph uses two geometry chunks
     bool frameTimerRenderingEnabled_ = false;
@@ -848,14 +864,14 @@ private:
  */
 
 /**
- * Macro that adds a renderer debug string in the same fashion as writing to the logfile. This is more convenient than calling
- * Renderer::addDebugString() directly.
+ * Macro that adds a renderer debug string in the same fashion as writing to the logfile. This is more convenient than
+ * calling Renderer::addDebugString() directly.
  */
 #define CARBON_RENDER_INFO Renderer::DebugStringWriter()
 
 /**
- * Macro that adds a renderer debug string based on the evalaution of the specified \a Data. The format used to display is
- * `<name>: <value>`, so for example `CARBON_RENDER_VALUE(myInteger);` would show a debug string of `myInteger: 42`.
+ * Macro that adds a renderer debug string based on the evalaution of the specified \a Data. The format used to display
+ * is `<name>: <value>`, so for example `CARBON_RENDER_VALUE(myInteger);` would show a debug string of `myInteger: 42`.
  */
 #define CARBON_RENDER_VALUE(Data) CARBON_RENDER_INFO << #Data ": " << Data
 

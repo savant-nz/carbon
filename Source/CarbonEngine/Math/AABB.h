@@ -40,7 +40,8 @@ public:
     AABB(const Vec3& minimum, const Vec3& maximum) : minimum_(minimum), maximum_(maximum) {}
 
     /**
-     * Constructor that initializes this AABB to enclose the given AABB after it has undergone the passed transformation.
+     * Constructor that initializes this AABB to enclose the given AABB after it has undergone the passed
+     * transformation.
      */
     AABB(const AABB& aabb, const SimpleTransform& transform);
 
@@ -151,10 +152,11 @@ public:
     Vec3 clipPoint(const Vec3& p) const;
 
     /**
-     * Enlarges this AABB as necessary in order to completely enclose the given AABB. The passed AABB can have a transform
-     * applied to it prior to merging if desired.
+     * Enlarges this AABB as necessary in order to completely enclose the given AABB. The passed AABB can have a
+     * transform applied to it prior to merging if desired.
      */
-    void merge(const AABB& aabb, const SimpleTransform& transform = SimpleTransform::Identity, const Vec3& scale = Vec3::One);
+    void merge(const AABB& aabb, const SimpleTransform& transform = SimpleTransform::Identity,
+               const Vec3& scale = Vec3::One);
 
     /**
      * Returns a convex hull for this AABB.
@@ -166,8 +168,9 @@ public:
      */
     bool intersect(const AABB& aabb) const
     {
-        return minimum_.x <= aabb.getMaximum().x && maximum_.x >= aabb.getMinimum().x && minimum_.y <= aabb.getMaximum().y &&
-            maximum_.y >= aabb.getMinimum().y && minimum_.z <= aabb.getMaximum().z && maximum_.z >= aabb.getMinimum().z;
+        return minimum_.x <= aabb.getMaximum().x && maximum_.x >= aabb.getMinimum().x &&
+            minimum_.y <= aabb.getMaximum().y && maximum_.y >= aabb.getMinimum().y &&
+            minimum_.z <= aabb.getMaximum().z && maximum_.z >= aabb.getMinimum().z;
     }
 
     /**
@@ -192,8 +195,8 @@ public:
     }
 
     /**
-     * Returns whether there is an intersection between this AABB and the passed ray, and if there is then the intersection
-     * distance along the ray is returned in \a t
+     * Returns whether there is an intersection between this AABB and the passed ray, and if there is then the
+     * intersection distance along the ray is returned in \a t.
      */
     bool intersect(const Ray& ray, float* t = nullptr) const;
 
@@ -203,8 +206,8 @@ public:
     bool intersect(const Vec3& v0, const Vec3& v1, const Vec3& v2) const;
 
     /**
-     * Checks intersection between two AABBs after each one has been transformed. This implementation uses a separating axis
-     * algorithm and does not return any false positives.
+     * Checks intersection between two AABBs after each one has been transformed. This implementation uses a separating
+     * axis algorithm and does not return any false positives.
      */
     bool orientedIntersect(const SimpleTransform& aabb0Transform, const AABB& aabb1,
                            const SimpleTransform& aabb1Transform) const;
@@ -220,8 +223,8 @@ public:
     void load(FileReader& file) { file.read(minimum_, maximum_); }
 
     /**
-     * Returns a string containing the min and max points that define this AABB, the format is "(min.x min.y, min.z) (max.x
-     * max.y max.z)".
+     * Returns a string containing the min and max points that define this AABB, the format is "(min.x min.y, min.z)
+     * (max.x max.y max.z)".
      */
     operator UnicodeString() const { return UnicodeString() << "(" << minimum_ << ") (" << maximum_ << ")"; }
 

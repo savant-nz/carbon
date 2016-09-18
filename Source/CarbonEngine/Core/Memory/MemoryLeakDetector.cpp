@@ -38,7 +38,8 @@ void MemoryLeakDetector::setupMutex()
     mutex_ = placement_new<Mutex>(MemoryInterceptor::untrackedAllocate(sizeof(Mutex), 0, true));
 }
 
-void MemoryLeakDetector::addAllocation(const void* address, size_t size, const char* file, unsigned int line, uint64_t index)
+void MemoryLeakDetector::addAllocation(const void* address, size_t size, const char* file, unsigned int line,
+                                       uint64_t index)
 {
     if (!isEnabled_)
         return;
@@ -117,7 +118,8 @@ bool MemoryLeakDetector::removeAllocation(const void* address)
 
     if (!allocation)
     {
-        MemoryValidator::reportError("Allocation at %p is unknown to the memory leak detector, possible double free", address);
+        MemoryValidator::reportError("Allocation at %p is unknown to the memory leak detector, possible double free",
+                                     address);
         return false;
     }
 
@@ -140,8 +142,8 @@ bool MemoryLeakDetector::removeAllocation(const void* address)
     allocation->next = allocationInfoReservoir_;
     allocationInfoReservoir_ = allocation;
 
-    // If there are now no allocations being tracked then free up the reservoir of AllocationInfo instances, without this they
-    // would be leaked on shutdown
+    // If there are now no allocations being tracked then free up the reservoir of AllocationInfo instances, without
+    // this they would be leaked on shutdown
     if (--activeAllocationCount_ == 0)
         freeReservoir();
 
@@ -308,18 +310,17 @@ unsigned int MemoryLeakDetector::buildMemoryLeaksReportHTMLContent(bool includeS
     // If there are resource leaks then report their details and don't log any detected memory leaks
     if (Globals::getLeakedResourceCount())
     {
-        fnPrintf(
-            "<div class='info'>%i resource leak%s detected. These are listed near the end of the application logfile.<br/><br/>"
-            "Resource leaks must be fixed before memory leaks can be accurately logged.</div>",
-            Globals::getLeakedResourceCount(), Globals::getLeakedResourceCount() == 1 ? "" : "s");
+        fnPrintf("<div class='info'>%i resource leak%s detected. These are listed near the end of the application "
+                 "logfile.<br/><br/>Resource leaks must be fixed before memory leaks can be accurately logged.</div>",
+                 Globals::getLeakedResourceCount(), Globals::getLeakedResourceCount() == 1 ? "" : "s");
 
         memoryLeakCount = Globals::getLeakedResourceCount();
     }
     else
 #endif
     {
-        // Write a placeholder line that will state the number of memory leaks found, this is filled in at the end by a little
-        // piece of JavaScript
+        // Write a placeholder line that will state the number of memory leaks found, this is filled in at the end by a
+        // little piece of JavaScript
         fnPrintf("<div><br/></div><div class='info' id='summary'></div><div><br/><br/></div>");
 
         memoryLeakCount = enumerateMemoryLeaks(
@@ -356,8 +357,8 @@ unsigned int MemoryLeakDetector::buildMemoryLeaksReportHTMLContent(bool includeS
 
 #ifdef CARBON_INCLUDE_LOCAL_FILESYSTEM_ACCESS
 
-// Printf-style callback function used when writing the HTML memory leaks file on platforms that support local filesystem
-// access.
+// Printf-style callback function used when writing the HTML memory leaks file on platforms that support local
+// filesystem access.
 static FILE* memoryLeaksReportFile;
 static int filePrintf(const char* format, ...)
 {
@@ -378,7 +379,8 @@ void MemoryLeakDetector::writeMemoryLeaksReportFile()
 
 #ifdef WINDOWS
     auto utf16 = std::array<wchar_t, MAX_PATH>();
-    MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<LPCSTR>(getMemoryLeaksReportFilename()), -1, utf16.data(), utf16.size());
+    MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<LPCSTR>(getMemoryLeaksReportFilename()), -1, utf16.data(),
+                        utf16.size());
     memoryLeaksReportFile = _wfopen(utf16.data(), L"wb");
 #else
     memoryLeaksReportFile = fopen(reinterpret_cast<const char*>(getMemoryLeaksReportFilename()), "wb");

@@ -31,7 +31,8 @@ static void writeProjectTemplateVSZFile(const std::wstring& outputVSZFile, const
     }
 }
 
-static void setupProjectTemplate(const std::string& version, const std::wstring& key, const std::wstring& projectsDirectory)
+static void setupProjectTemplate(const std::string& version, const std::wstring& key,
+                                 const std::wstring& projectsDirectory)
 {
     auto fullKey = std::wstring(L"Software\\Microsoft\\") + key + L"\\" + std::wstring(version.begin(), version.end());
     auto installDir = getRegistryString(fullKey, L"InstallDir", HKEY_LOCAL_MACHINE);

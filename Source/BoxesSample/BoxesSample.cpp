@@ -121,7 +121,8 @@ void BoxesSample::createBoxStack()
 
 void BoxesSample::createHangingBoxes()
 {
-    auto hangingBoxPositions = Vector<Vec3>{{18.0f, 0.0f, 3.0f}, {16.0f, 0.0f, 5.0f}, {20.0f, 0.0f, 5.0f}, {18.0f, 0.0f, 7.0f}};
+    auto hangingBoxPositions =
+        Vector<Vec3>{{18.0f, 0.0f, 3.0f}, {16.0f, 0.0f, 5.0f}, {20.0f, 0.0f, 5.0f}, {18.0f, 0.0f, 7.0f}};
 
     for (auto& hangingBoxPosition : hangingBoxPositions)
     {

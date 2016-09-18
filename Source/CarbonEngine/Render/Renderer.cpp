@@ -124,10 +124,10 @@ bool Renderer::processEvent(const Event& e)
 {
     if (e.as<ResizeEvent>())
     {
-        // On a resize all render targets and temporary textures are destroyed, they will be recreated on demand as required.
-        // This is because these resources often have dimensions that are based on the dimensions of the rendering window, and
-        // letting these resources accumulate in the background across resizes would lead to slowly increasing resource usage
-        // when lots of resolution switching occurs
+        // On a resize all render targets and temporary textures are destroyed, they will be recreated on demand as
+        // required. This is because these resources often have dimensions that are based on the dimensions of the
+        // rendering window, and letting them accumulate in the background across resizes would lead to slowly
+        // increasing resource usage when lots of resolution switching occurs.
 
         clearTemporaryRenderTargets();
         clearTemporaryTextures();
@@ -210,11 +210,11 @@ bool Renderer::setShadowMapSize(unsigned int size)
 void Renderer::createUnitRectangleGeometry()
 {
     // Layout: x, y, z, s, t, nx, ny, nz
-    auto vertexData = std::array<float, 8 * 8>{{0.0f,  0.0f, 0.0f, 0.0f,  0.0f, 0.0f, 0.0f, 1.0f, 1.0f,  0.0f, 0.0f, 1.0f, 0.0f,
-                                                0.0f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f, 0.0f, 1.0f, 0.0f,  0.0f, 1.0f, 1.0f, 1.0f,
-                                                0.0f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f, 1.0f, 0.0f, 0.0f,  0.0f, 0.0f, 0.0f, 0.0f,
-                                                -1.0f, 0.0f, 0.0f, 0.0f,  1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
-                                                1.0f,  0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,  0.0f, 0.0f, -1.0f}};
+    auto vertexData = std::array<float, 8 * 8>{
+        {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f,  1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+         0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+         1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f,
+         1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f}};
 
     auto indices = Vector<unsigned int>{0, 1, 2, 1, 3, 2, 4, 5, 6, 5, 7, 6};
 
@@ -409,8 +409,9 @@ void Renderer::render()
         auto outputViewport = graphics().getOutputDestinationViewport(outputDestination);
 
         // Set up for global post-processing
-        auto isGlobalPostProcessingOn = setupForPostProcessing(globalPostProcessRenderTarget_, globalPostProcessEffects_,
-                                                               outputViewport * fullscreenRenderTargetDimensionsScaleFactor_);
+        auto isGlobalPostProcessingOn =
+            setupForPostProcessing(globalPostProcessRenderTarget_, globalPostProcessEffects_,
+                                   outputViewport * fullscreenRenderTargetDimensionsScaleFactor_);
 
         if (!isGlobalPostProcessingOn)
         {
@@ -427,8 +428,8 @@ void Renderer::render()
             if (isGlobalPostProcessingOn)
                 camera.setViewport(camera.getViewport() * fullscreenRenderTargetDimensionsScaleFactor_);
 
-            draw(queuedScene->scene, camera, clearColorBuffer, clearColorBuffer || queuedScene->scene->isDepthClearEnabled(),
-                 true);
+            draw(queuedScene->scene, camera, clearColorBuffer,
+                 clearColorBuffer || queuedScene->scene->isDepthClearEnabled(), true);
 
             clearColorBuffer = false;
         }
@@ -438,7 +439,10 @@ void Renderer::render()
 
         // Apply global post-processing if present
         if (isGlobalPostProcessingOn)
-            drawPostProcess(globalPostProcessRenderTarget_, globalPostProcessEffects_, outputRenderTarget, outputViewport);
+        {
+            drawPostProcess(globalPostProcessRenderTarget_, globalPostProcessEffects_, outputRenderTarget,
+                            outputViewport);
+        }
 
         // The contents of the depth and stencil buffers can now be discarded
         graphics().discardRenderTargetBuffers(false, true, true);
@@ -524,7 +528,8 @@ bool Renderer::renderIntoTexture(Scene* scene, const Vector<Camera>& cameras, Te
     if (!scene || !texture || !cameras.size() || !renderToTextureRenderTarget_)
         return false;
 
-    // These are the camera orientations needed to render each of the six cubemap faces, the order is +X, -X, +Y, -Y, +Z, -Z
+    // These are the camera orientations needed to render each of the six cubemap faces, the order is +X, -X, +Y, -Y,
+    // +Z, -Z
     static const auto cubemapFaceOrientations = std::array<Matrix3, 6>{
         {Matrix3::getRotationZ(Math::Pi) * Matrix3::getRotationY(Math::HalfPi),
          Matrix3::getRotationZ(Math::Pi) * Matrix3::getRotationY(-Math::HalfPi), Matrix3::getRotationX(Math::HalfPi),
@@ -598,7 +603,8 @@ void Renderer::draw(Scene* scene, const Camera& camera, bool clearColorBuffer, b
         queues.debugTrace();
     }
 
-    // Sort the gathered geometry and split it into different groups, the required reflection planes are put into a vector
+    // Sort the gathered geometry and split it into different groups, the required reflection planes are put into a
+    // vector
     auto normalGeometry = Vector<EffectQueue*>();
     auto refractiveGeometry = Vector<EffectQueue*>();
     auto reflectionPlanes = Vector<Plane>();
@@ -669,7 +675,8 @@ void Renderer::draw(Scene* scene, const Camera& camera, bool clearColorBuffer, b
     }
 
     // Render deferred lighting texture if required
-    auto isDeferredLightingOn = renderDeferredLightingTexture(scene, frustum, normalGeometry, allocatedTemporaryTextures);
+    auto isDeferredLightingOn =
+        renderDeferredLightingTexture(scene, frustum, normalGeometry, allocatedTemporaryTextures);
 
     // Setup for post-processing if required, post-processing is disabled when rendering reflections
     auto postProcessFinalRenderTargetObject = States::RenderTarget.get();
@@ -687,8 +694,8 @@ void Renderer::draw(Scene* scene, const Camera& camera, bool clearColorBuffer, b
         drawEffectQueues(normalGeometry);
     else
     {
-        // When doing deferred lighting blended geometry is drawn in a separate forward rendering pass with deferred lighting
-        // turned off
+        // When doing deferred lighting blended geometry is drawn in a separate forward rendering pass with deferred
+        // lighting turned off
 
         drawEffectQueues(normalGeometry, SkipBlendedGeometry);
 
@@ -698,8 +705,8 @@ void Renderer::draw(Scene* scene, const Camera& camera, bool clearColorBuffer, b
         deferredLightingTexture_ = oldDeferredLightingTexture;
     }
 
-    // If there is any geometry that requires a refraction texture then copy the backbuffer into a temporary texture and use
-    // that as the refraction texture
+    // If there is any geometry that requires a refraction texture then copy the backbuffer into a temporary texture and
+    // use that as the refraction texture
     if (refractiveGeometry.size())
     {
         const auto& textureRect = States::Viewport.get();
@@ -724,8 +731,9 @@ void Renderer::draw(Scene* scene, const Camera& camera, bool clearColorBuffer, b
     // If this scene is using post-processing then pass off to drawPostProcess()
     if (isPostProcessingOn)
     {
-        drawPostProcess(scenePostProcessRenderTarget_, scene->getPostProcessEffects(), postProcessFinalRenderTargetObject,
-                        postProcessFinalViewport, allowPostProcessPassThrough && scene->isPostProcessPassThroughEnabled());
+        drawPostProcess(scenePostProcessRenderTarget_, scene->getPostProcessEffects(),
+                        postProcessFinalRenderTargetObject, postProcessFinalViewport,
+                        allowPostProcessPassThrough && scene->isPostProcessPassThroughEnabled());
     }
 
     if (isDeferredLightingOn)
@@ -753,18 +761,18 @@ void Renderer::sortEffectQueues(EffectQueueArray& queues, const Camera& camera, 
 
     auto currentPriority = queues[0]->getPriority();
 
-    // When the priority changes the unblended and blended queues are put onto the end of the normalGeometry queue, however
-    // while the priority isn't changing they need to be gathered in separate lists so that blended geometry can be put after
-    // the unblended geometry in the final queue. Priority ordering therefore overrides the unblended/blended sorting that
-    // occurs with queues that are of the same priority.
+    // When the priority changes the unblended and blended queues are put onto the end of the normalGeometry queue,
+    // however while the priority isn't changing they need to be gathered in separate lists so that blended geometry can
+    // be put after the unblended geometry in the final queue. Priority ordering therefore overrides the
+    // unblended/blended sorting that occurs with queues that are of the same priority.
 
     auto unblendedQueues = Vector<EffectQueue*>();
     auto blendedQueues = Vector<EffectQueue*>();
 
     for (auto i = 0U; i <= queues.size(); i++)
     {
-        // If the priority is changing or this is the end of the queues vector then append the unblended and blended queues to
-        // the end of the normalGeometry queue
+        // If the priority is changing or this is the end of the queues vector then append the unblended and blended
+        // queues to the end of the normalGeometry queue
         if (i == queues.size() || queues[i]->getPriority() != currentPriority)
         {
             normalGeometry.append(unblendedQueues);
@@ -796,8 +804,8 @@ void Renderer::sortEffectQueues(EffectQueueArray& queues, const Camera& camera, 
         else
             queue->setSortKey(0);
 
-        // This queue needs to be put into a sensible place in one of the queue vectors. The queue vector to insert into is
-        // chosen based on the shader type (e.g. blended, refractive, etc...)
+        // This queue needs to be put into a sensible place in one of the queue vectors. The queue vector to insert into
+        // is chosen based on the shader type (e.g. blended, refractive, etc...)
 
         auto queueVector = pointer_to<Vector<EffectQueue*>>::type();
 
@@ -822,8 +830,8 @@ void Renderer::sortEffectQueues(EffectQueueArray& queues, const Camera& camera, 
                     if (!queueVector)
                         queueVector = &refractiveGeometry;
 
-                    // This shader requires a reflection texture, so work out the required reflection plane for it and put it
-                    // into the reflectionPlanes vector
+                    // This shader requires a reflection texture, so work out the required reflection plane for it and
+                    // put it into the reflectionPlanes vector
                     getReflectionPlaneIndex(queue->getItems(), camera, reflectionPlanes);
 
                     break;
@@ -834,17 +842,18 @@ void Renderer::sortEffectQueues(EffectQueueArray& queues, const Camera& camera, 
             }
         }
 
-        // Now that the queue vector to put this queue into has been chosen the queue needs to actually be inserted. In order to
-        // reduce the number of effect changes when rendering, the queue is inserted next to others that use the same effect.
-        // Each queue's sortKey value is used to do more fine grained sorting of the queues, this sorting is based entirely on
-        // the return value from Shader::getSortKey().
+        // Now that the queue vector to put this queue into has been chosen the queue needs to actually be inserted. In
+        // order to reduce the number of effect changes when rendering, the queue is inserted next to others that use
+        // the same effect.
+        // Each queue's sortKey value is used to do more fine grained sorting of the queues, this sorting is based
+        // entirely on the return value from Shader::getSortKey().
 
         for (auto j = 0U; j < queueVector->size(); j++)
         {
             if (queueVector->at(j)->getEffect() == queue->getEffect())
             {
-                // This queue's effect is already used by a queue in this queue vector, insert it into the optimal place based
-                // on the sortKey values
+                // This queue's effect is already used by a queue in this queue vector, insert it into the optimal place
+                // based on the sortKey values
                 for (auto k = j; k < queueVector->size(); k++)
                 {
                     if (queueVector->at(k)->getEffect() != queue->getEffect() ||
@@ -862,8 +871,8 @@ void Renderer::sortEffectQueues(EffectQueueArray& queues, const Camera& camera, 
             }
         }
 
-        // If queueVector is still set then the queue wasn't inserted by the above loop, this will only happen if its effect
-        // isn't currently used by an existing queue. In this case just append the queue to the queue vector.
+        // If queueVector is still set then the queue wasn't inserted by the above loop, this will only happen if its
+        // effect isn't currently used by an existing queue. In this case just append the queue to the queue vector.
         if (queueVector)
             queueVector->append(queue);
     }
@@ -872,11 +881,12 @@ void Renderer::sortEffectQueues(EffectQueueArray& queues, const Camera& camera, 
 int Renderer::getReflectionPlaneIndex(const RenderQueueItemArray& items, const Camera& camera,
                                       Vector<Plane>& reflectionPlanes) const
 {
-    // The reflection plane is found by looking at the first chunk in the given queue and calling GeometryChunk::getPlane() on
-    // it. This means that only one reflection plane can be used per geometry chunk, but this limitation isn't currently an
-    // issue.
+    // The reflection plane is found by looking at the first chunk in the given queue and calling
+    // GeometryChunk::getPlane() on it. This means that only one reflection plane can be used per geometry chunk, but
+    // this limitation isn't currently an issue.
 
-    // The world space plane is found by transforming the geometry chunk's plane by the most recent ChangeTransform queue item.
+    // The world space plane is found by transforming the geometry chunk's plane by the most recent ChangeTransform
+    // queue item.
 
     auto lastTransform = pointer_to<const ChangeTransformRenderQueueItem>::type();
 
@@ -892,11 +902,12 @@ int Renderer::getReflectionPlaneIndex(const RenderQueueItemArray& items, const C
             // Compute this chunk's world space plane
             auto plane = matrix * drawChunkItem->getGeometryChunk().getPlane();
 
-            // Check the camera is in front of the plane as there's no point in doing the reflection if it's behind the plane
+            // Check the camera is in front of the plane as there's no point in doing the reflection if it's behind the
+            // plane
             if (plane.classify(camera.getPosition()) == Plane::Front)
             {
-                // See if this plane or one very similar to it is already in the reflectionPlanes vector and if so then just use
-                // that one
+                // See if this plane or one very similar to it is already in the reflectionPlanes vector and if so then
+                // just use that one
                 for (auto i = 0U; i < reflectionPlanes.size(); i++)
                 {
                     if (reflectionPlanes[i].getNormal().dot(plane.getNormal()) + Math::Epsilon > 1.0f &&
@@ -925,8 +936,8 @@ void Renderer::Camera::reflectInPlane(const Plane& plane)
 
     updateViewMatrix();
 
-    // Modify the projection matrix so that the near clip plane lies on the reflection plane, this clips off everything that
-    // lies behind the reflection plane
+    // Modify the projection matrix so that the near clip plane lies on the reflection plane, this clips off everything
+    // that lies behind the reflection plane
     projectionMatrix_.modifyProjectionMatrix(viewMatrix_ * plane);
 }
 
@@ -973,7 +984,8 @@ bool Renderer::setPostProcessIntermediateTargetTexture(const Texture* texture)
 bool Renderer::isHDRSupported() const
 {
     return graphics().isPixelFormatSupported(Image::RGBA16f, GraphicsInterface::Texture2D) &&
-        graphics().isNonPowerOfTwoTextureSupported(GraphicsInterface::Texture2D) && graphics().isRenderTargetSupported();
+        graphics().isNonPowerOfTwoTextureSupported(GraphicsInterface::Texture2D) &&
+        graphics().isRenderTargetSupported();
 }
 
 bool Renderer::setHDREnabled(bool enabled)
@@ -1003,7 +1015,8 @@ void Renderer::addDebugString(const UnicodeString& s)
         debugStrings_.append(s);
 }
 
-void Renderer::setDebugTexture(const String& name, unsigned int frame, unsigned int mipmap, bool renderAlpha, float scale)
+void Renderer::setDebugTexture(const String& name, unsigned int frame, unsigned int mipmap, bool renderAlpha,
+                               float scale)
 {
     debugTexture_.name.clear();
     debugTexture_.frame = 0;
@@ -1052,7 +1065,8 @@ void Renderer::clearTemporaryTextures(bool depthTexturesOnly)
     }
 }
 
-const Texture* Renderer::requestTemporaryTexture(unsigned int width, unsigned int height, Image::PixelFormat pixelFormat,
+const Texture* Renderer::requestTemporaryTexture(unsigned int width, unsigned int height,
+                                                 Image::PixelFormat pixelFormat,
                                                  TextureProperties::TextureFilter filter)
 {
     assert(width && height && "Requested a temporary texture with zero area");
@@ -1066,7 +1080,8 @@ const Texture* Renderer::requestTemporaryTexture(unsigned int width, unsigned in
         pixelFormat = Image::Depth;
 
     // Force nearest filtering on HDR and depth images at this stage
-    if (pixelFormat == Image::Depth || pixelFormat == Image::Depth24Stencil8 || Image::isPixelFormatFloatingPoint(pixelFormat))
+    if (pixelFormat == Image::Depth || pixelFormat == Image::Depth24Stencil8 ||
+        Image::isPixelFormatFloatingPoint(pixelFormat))
         filter = TextureProperties::NearestFilter;
 
     // Find a temporary texture to use
@@ -1087,7 +1102,8 @@ const Texture* Renderer::requestTemporaryTexture(unsigned int width, unsigned in
 
     auto image = Image();
     if (!image.initialize(width, height, 1, pixelFormat, false, 1) ||
-        !temporaryTexture->load(String() + ".Renderer" + (Image::isPixelFormatDepthAware(pixelFormat) ? "Depth" : "Color") +
+        !temporaryTexture->load(String() + ".Renderer" +
+                                    (Image::isPixelFormatDepthAware(pixelFormat) ? "Depth" : "Color") +
                                     temporaryTextures_.size(),
                                 std::move(image)) ||
         !temporaryTexture->upload())
@@ -1101,14 +1117,15 @@ const Texture* Renderer::requestTemporaryTexture(unsigned int width, unsigned in
 
     temporaryTextures_.emplace(temporaryTexture, true);
 
-    LOG_INFO << "Created temporary texture '" << temporaryTexture->getName() << "': " << temporaryTexture->getWidth() << "x"
-             << temporaryTexture->getHeight() << " " << Image::getPixelFormatString(temporaryTexture->getPixelFormat());
+    LOG_INFO << "Created temporary texture '" << temporaryTexture->getName() << "': " << temporaryTexture->getWidth()
+             << "x" << temporaryTexture->getHeight() << " "
+             << Image::getPixelFormatString(temporaryTexture->getPixelFormat());
 
     return temporaryTexture;
 }
 
-const Texture* Renderer::requestTemporaryTexture(unsigned int width, unsigned int height, bool includeAlpha, bool forceHDR,
-                                                 TextureProperties::TextureFilter filter)
+const Texture* Renderer::requestTemporaryTexture(unsigned int width, unsigned int height, bool includeAlpha,
+                                                 bool forceHDR, TextureProperties::TextureFilter filter)
 {
     // Choose the pixel format
     auto pixelFormat = Image::PixelFormat();
@@ -1183,12 +1200,15 @@ const RenderTarget* Renderer::requestTemporaryRenderTarget(unsigned int width, u
             throw Exception("Failed creating depth texture");
 
         // Nearest filtering on HDR images, otherwise bilinear
-        colorTexture->setProperties(isHDREnabled_ ? TextureProperties::NearestFilter : TextureProperties::BilinearFilter);
+        colorTexture->setProperties(isHDREnabled_ ? TextureProperties::NearestFilter :
+                                                    TextureProperties::BilinearFilter);
 
-        // Create a depth/stencil texture for this render target, stencil is only included if the graphics backend supports it
+        // Create a depth/stencil texture for this render target, stencil is only included if the graphics backend
+        // supports it
         auto depthStencilTextureImage = Image();
         if (!depthStencilTextureImage.initialize(
-                width, height, 1, graphics().isStencilBufferSupported() ? Image::Depth24Stencil8 : Image::Depth, false, 1))
+                width, height, 1, graphics().isStencilBufferSupported() ? Image::Depth24Stencil8 : Image::Depth, false,
+                1))
             throw Exception("Failed initializing depth texture image");
 
         depthStencilTexture = textures().create2DTexture();

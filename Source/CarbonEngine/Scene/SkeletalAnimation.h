@@ -11,8 +11,8 @@ namespace Carbon
 {
 
 /**
- * SkeletalAnimation holds a list of named bones and animation keyframes which is is applied to a skeletal mesh at runtime, and
- * can be used simultaneously on any number of meshes.
+ * SkeletalAnimation holds a list of named bones and animation keyframes which is is applied to a skeletal mesh at
+ * runtime, and can be used simultaneously on any number of meshes.
  */
 class CARBON_API SkeletalAnimation
 {
@@ -94,15 +94,16 @@ public:
     const Vector<BoneAnimation>& getBoneAnimations() const { return boneAnimations_; }
 
     /**
-     * Sets the bone animations for this animation. Returns success flag. For this method to succeed the following conditions
-     * must be met: There must be at least one bone being animated, each bone must have a unique name, and all bones must have
-     * the same number of frames.
+     * Sets the bone animations for this animation. Returns success flag. For this method to succeed the following
+     * conditions must be met: There must be at least one bone being animated, each bone must have a unique name, and
+     * all bones must have the same number of frames.
      */
     bool setBoneAnimations(const Vector<BoneAnimation>& boneAnimations);
 
     /**
-     * Returns the list of bone transforms for a single bone in this animation, the number of items in the returned vector will
-     * be equal to SkeletalAnimation::getFrameCount(). If the requested bone doesn't exist then an empty vector is returned.
+     * Returns the list of bone transforms for a single bone in this animation, the number of items in the returned
+     * vector will be equal to SkeletalAnimation::getFrameCount(). If the requested bone doesn't exist then an empty
+     * vector is returned.
      */
     const Vector<SimpleTransform>& getAnimationFramesForBone(const String& bone) const;
 
@@ -122,9 +123,9 @@ public:
     bool isLoaded() const { return isLoaded_; }
 
     /**
-     * Loads and returns the skeletal animation with the given name. Each skeletal animation will only ever be loaded once. To
-     * check whether the load succeeded look at the SkeletalAnimation::isLoaded() value of the returned instance. The return
-     * value will never be null.
+     * Loads and returns the skeletal animation with the given name. Each skeletal animation will only ever be loaded
+     * once. To check whether the load succeeded look at the SkeletalAnimation::isLoaded() value of the returned
+     * instance. The return value will never be null.
      */
     static const SkeletalAnimation* get(const String& name);
 

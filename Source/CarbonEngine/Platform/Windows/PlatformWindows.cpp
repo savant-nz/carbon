@@ -37,8 +37,8 @@ PlatformWindows::PlatformWindows()
 {
     events().addHandler<UpdateEvent>(this, true);
 
-    // Force the main thread to always run on the same CPU, this is required to make QueryPerformanceCounter() work reliably on
-    // multi-CPU systems
+    // Force the main thread to always run on the same CPU, this is required to make QueryPerformanceCounter() work
+    // reliably on multi-CPU systems
     SetThreadAffinityMask(GetCurrentThread(), 1);
 
     // Initialize timing
@@ -245,7 +245,8 @@ bool PlatformWindows::changeScreenResolution(const Resolution& resolution) const
         return false;
     }
 
-    LOG_INFO << "Changed resolution to " << uint(dmScreenSettings.dmPelsWidth) << "x" << uint(dmScreenSettings.dmPelsHeight);
+    LOG_INFO << "Changed resolution to " << uint(dmScreenSettings.dmPelsWidth) << "x"
+             << uint(dmScreenSettings.dmPelsHeight);
 
     return true;
 }
@@ -272,8 +273,8 @@ bool PlatformWindows::registerWindowClass() const
 
 void PlatformWindows::centerWindowOnScreen() const
 {
-    // Query monitor's current rect, this tells us both the resolution and its position in the situation when there are multiple
-    // monitors
+    // Query monitor's current rect, this tells us both the resolution and its position in the situation when there are
+    // multiple monitors
     auto info = MONITORINFOEX();
     info.cbSize = sizeof(info);
     if (!GetMonitorInfo(MonitorFromPoint({0, 0}, MONITOR_DEFAULTTOPRIMARY), &info))
@@ -355,7 +356,8 @@ void PlatformWindows::createGLWindow(const RECT& rect, WindowMode windowMode, FS
 {
     createRawWindow(rect, windowMode);
 
-    auto flags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER | PFD_SWAP_EXCHANGE | PFD_SUPPORT_COMPOSITION;
+    auto flags =
+        PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER | PFD_SWAP_EXCHANGE | PFD_SUPPORT_COMPOSITION;
 
     // Setup pixel format
     auto pixelFormatDescriptor = PIXELFORMATDESCRIPTOR();
@@ -377,9 +379,9 @@ void PlatformWindows::createGLWindow(const RECT& rect, WindowMode windowMode, FS
 
         try
         {
-            // For FSAA we check for a pixel format that supports the requested number of samples. If one is found then we
-            // recreate the main window and set it to use the new pixel format, otherwise we iterate down the AA levels starting
-            // at the one requested till we find a supported FSAA mode
+            // For FSAA we check for a pixel format that supports the requested number of samples. If one is found then
+            // we recreate the main window and set it to use the new pixel format, otherwise we iterate down the AA
+            // levels starting at the one requested till we find a supported FSAA mode
 
             auto wglChoosePixelFormatARB =
                 PlatformInterface::getOpenGLFunctionAddress<PFnwglChoosePixelFormatARB>("wglChoosePixelFormatARB");
@@ -533,7 +535,8 @@ bool PlatformWindows::createWindow(const Resolution& resolution, WindowMode wind
 
         sendResizeEvent();
 
-        LOG_INFO << "Window created for the " << InterfaceRegistry<GraphicsInterface>::getActiveImplementation()->getName()
+        LOG_INFO << "Window created for the "
+                 << InterfaceRegistry<GraphicsInterface>::getActiveImplementation()->getName()
                  << " graphics backend, resolution: " << resolution << " with " << int(fsaaMode_) << "xAA";
 
         return true;
@@ -774,7 +777,8 @@ BOOL CALLBACK PlatformWindows::enumGameControllersCallback(LPCDIDEVICEINSTANCE l
     auto device = LPDIRECTINPUTDEVICE8(nullptr);
 
     // Attempt to obtain an interface to the enumerated device
-    if (!FAILED(static_cast<PlatformWindows&>(platform()).DI_->CreateDevice(lpddi->guidInstance, &device, nullptr)) && device)
+    if (!FAILED(static_cast<PlatformWindows&>(platform()).DI_->CreateDevice(lpddi->guidInstance, &device, nullptr)) &&
+        device)
         static_cast<PlatformWindows&>(platform()).gameControllers_.emplace(device);
 
     return DIENUM_CONTINUE;
@@ -990,7 +994,8 @@ bool PlatformWindows::setVerticalSyncEnabled(bool enabled)
 #ifdef CARBON_INCLUDE_OPENGL11
     if (isOpenGLWindow())
     {
-        auto wglSwapIntervalEXT = PlatformInterface::getOpenGLFunctionAddress<PFnwglSwapIntervalEXT>("wglSwapIntervalEXT");
+        auto wglSwapIntervalEXT =
+            PlatformInterface::getOpenGLFunctionAddress<PFnwglSwapIntervalEXT>("wglSwapIntervalEXT");
         if (!wglSwapIntervalEXT)
             return false;
 
@@ -1212,7 +1217,8 @@ uint64_t PlatformWindows::getCPUFrequency() const
 {
     auto hKey = HKEY();
 
-    auto result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_READ, &hKey);
+    auto result =
+        RegOpenKeyEx(HKEY_LOCAL_MACHINE, L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0", 0, KEY_READ, &hKey);
     if (result != ERROR_SUCCESS)
         return 0;
 
@@ -1313,8 +1319,9 @@ LRESULT PlatformWindows::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM 
         {
             events().dispatchEvent(ShutdownRequestEvent());
 
-            // Eat the WM_CLOSE because the client app is responsible for actually invoking appropriate shutdown procedures, and
-            // if we let this slip through then the default handler would unhelpfully kill the main window
+            // Eat the WM_CLOSE because the client app is responsible for actually invoking appropriate shutdown
+            // procedures, and if we let this slip through then the default handler would unhelpfully kill the main
+            // window
             return 0;
         }
 
@@ -1417,7 +1424,8 @@ TimeValue PlatformWindows::getTime() const
 
 bool PlatformWindows::openWithDefaultApplication(const UnicodeString& resource) const
 {
-    return ShellExecuteW(nullptr, L"open", resource.toUTF16().as<wchar_t>(), nullptr, nullptr, SW_SHOWNORMAL) > HINSTANCE(32);
+    return ShellExecuteW(nullptr, L"open", resource.toUTF16().as<wchar_t>(), nullptr, nullptr, SW_SHOWNORMAL) >
+        HINSTANCE(32);
 }
 
 bool PlatformWindows::showMessageBox(const UnicodeString& text, const UnicodeString& title, MessageBoxButtons buttons,

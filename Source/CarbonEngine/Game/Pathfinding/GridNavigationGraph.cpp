@@ -12,7 +12,8 @@
 namespace Carbon
 {
 
-GridNavigationGraph::GridNavigationGraph(unsigned int width, unsigned int height, unsigned int depth, bool linkDiagonals)
+GridNavigationGraph::GridNavigationGraph(unsigned int width, unsigned int height, unsigned int depth,
+                                         bool linkDiagonals)
     : width_(width), height_(height), depth_(depth)
 {
     // Add all the nodes
@@ -60,7 +61,8 @@ GridNavigationGraph::GridNavigationGraph(unsigned int width, unsigned int height
     }
 }
 
-void GridNavigationGraph::setTraversable(unsigned int x, unsigned int y, unsigned int z, bool traversable, bool cutCorners)
+void GridNavigationGraph::setTraversable(unsigned int x, unsigned int y, unsigned int z, bool traversable,
+                                         bool cutCorners)
 {
     auto& node = getNode(x, y, z);
 

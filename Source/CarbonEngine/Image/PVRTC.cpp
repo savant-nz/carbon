@@ -60,7 +60,10 @@ struct Pixel128S
         return *this;
     }
 
-    Pixel128S operator-(const Pixel128S& p) const { return {red - p.red, green - p.green, blue - p.blue, alpha - p.alpha}; }
+    Pixel128S operator-(const Pixel128S& p) const
+    {
+        return {red - p.red, green - p.green, blue - p.blue, alpha - p.alpha};
+    }
 
     operator RGBA8() const { return {byte_t(red), byte_t(green), byte_t(blue), byte_t(alpha)}; }
 };
@@ -108,8 +111,8 @@ static RGBA8 unpackColor(unsigned int colorData, unsigned int index)
             byte_t((colorData & 0x70000000) >> 27)};                                      // 3->4 bits
 }
 
-// Takes four low bit-rate color values for each PVRTCBlock and outputs a bilinear upscale from 2x2 pixels to 4x4/8x4 pixels
-// depending on PVRTC bpp mode.
+// Takes four low bit-rate color values for each PVRTCBlock and outputs a bilinear upscale from 2x2 pixels to 4x4/8x4
+// pixels depending on PVRTC bpp mode.
 static void interpolateColors(const RGBA8& p, const RGBA8& q, const RGBA8& r, const RGBA8& s, Pixel128S* output,
                               unsigned int bpp)
 {
@@ -196,8 +199,8 @@ static void unpackModulations(const PVRTCBlock& block, int offsetX, int offsetY,
             // If this is the either the H-only or V-only interpolation mode...
             if (modulationData & 1)
             {
-                // look at the LSB for the centre texel, it is now used to indicate whether it's the horizontal only mode or
-                // vertical only mode
+                // look at the LSB for the centre texel, it is now used to indicate whether it's the horizontal only
+                // mode or vertical only mode
 
                 // The centre texel data is the at (x == 4, y == 2) and so its LSB is at bit 20
                 if (modulationData & (1 << 20))
@@ -205,8 +208,8 @@ static void unpackModulations(const PVRTCBlock& block, int offsetX, int offsetY,
                 else
                     modulationMode = 2;    // This is the H-only mode
 
-                // Create an extra bit for the centre pixel so that it looks like we have 2 actual bits for this texel, this
-                // makes later coding much easier
+                // Create an extra bit for the centre pixel so that it looks like we have 2 actual bits for this texel,
+                // this makes later coding much easier
                 if (modulationData & (1 << 21))
                     modulationData |= 1 << 20;    // Set it to produce code for 1.0
                 else
@@ -218,8 +221,8 @@ static void unpackModulations(const PVRTCBlock& block, int offsetX, int offsetY,
             else
                 modulationData &= ~1;    // Clear it
 
-            // Run through all the pixels in the block. Note we can now treat all the "stored" values as if they have 2 bits
-            // (even when they didn't!)
+            // Run through all the pixels in the block. Note we can now treat all the "stored" values as if they have 2
+            // bits (even when they didn't!)
             for (auto y = 0; y < 4; y++)
             {
                 for (auto x = 0; x < 8; x++)
@@ -263,7 +266,10 @@ static void unpackModulations(const PVRTCBlock& block, int offsetX, int offsetY,
                     if (modulationValues[y + offsetY][x + offsetX] == 1)
                         modulationValues[y + offsetY][x + offsetX] = 4;
                     else if (modulationValues[y + offsetY][x + offsetX] == 2)
-                        modulationValues[y + offsetY][x + offsetX] = 14;    // +10 tells the decompressor to punch through alpha
+                    {
+                        // +10 tells the decompressor to punch through alpha
+                        modulationValues[y + offsetY][x + offsetX] = 14;
+                    }
                     else if (modulationValues[y + offsetY][x + offsetX] == 3)
                         modulationValues[y + offsetY][x + offsetX] = 8;
 
@@ -311,25 +317,26 @@ static int getPixelModulationValue(const std::array<std::array<int, 8>, 16>& mod
             else
             {
                 // Otherwise average from the neighbors
+                auto sum = 0;
 
                 // Horizontal and vertical interpolation
                 if (modulationModes[xPos][yPos] == 1)
                 {
-                    auto sum = 0;
+                    sum = values[modulationValues[xPos][yPos - 1]] + values[modulationValues[xPos][yPos + 1]] +
+                        values[modulationValues[xPos - 1][yPos]] + values[modulationValues[xPos + 1][yPos]];
 
-                    sum += values[modulationValues[xPos][yPos - 1]] + values[modulationValues[xPos][yPos + 1]];
-                    sum += values[modulationValues[xPos - 1][yPos]] + values[modulationValues[xPos + 1][yPos]];
-                    sum += 2;
-
-                    return sum / 4;
+                    return (sum + 2) / 4;
                 }
+                else
+                {
+                    // Horizontal or vertical interpolation only
+                    if (modulationModes[xPos][yPos] == 2)
+                        sum = values[modulationValues[xPos - 1][yPos]] + values[modulationValues[xPos + 1][yPos]];
+                    else
+                        sum = values[modulationValues[xPos][yPos - 1]] + values[modulationValues[xPos][yPos + 1]];
 
-                // Horizontal interpolation only
-                if (modulationModes[xPos][yPos] == 2)
-                    return (values[modulationValues[xPos - 1][yPos]] + values[modulationValues[xPos + 1][yPos]] + 1) / 2;
-
-                // Vertical interpolation only
-                return (values[modulationValues[xPos][yPos - 1]] + values[modulationValues[xPos][yPos + 1]] + 1) / 2;
+                    return (sum + 1) / 2;
+                }
             }
         }
     }
@@ -338,7 +345,8 @@ static int getPixelModulationValue(const std::array<std::array<int, 8>, 16>& mod
 }
 
 // Takes the four blocks in the current decompression area and outputs final decompressed pixels.
-static void getDecompressedPixels(PVRTCBlock p, PVRTCBlock q, PVRTCBlock r, PVRTCBlock s, RGBA8* output, unsigned int bpp)
+static void getDecompressedPixels(PVRTCBlock p, PVRTCBlock q, PVRTCBlock r, PVRTCBlock s, RGBA8* output,
+                                  unsigned int bpp)
 {
 #ifdef CARBON_BIG_ENDIAN
     Endian::convert(p.modulationData);
@@ -378,7 +386,8 @@ static void getDecompressedPixels(PVRTCBlock p, PVRTCBlock q, PVRTCBlock r, PVRT
     {
         for (auto x = 0U; x < blockWidth; x++)
         {
-            auto mod = getPixelModulationValue(modulationValues, modulationModes, x + blockWidth / 2, y + blockHeight / 2, bpp);
+            auto mod = getPixelModulationValue(modulationValues, modulationModes, x + blockWidth / 2,
+                                               y + blockHeight / 2, bpp);
             auto punchthroughAlpha = mod > 10;
             if (punchthroughAlpha)
                 mod -= 10;
@@ -403,9 +412,9 @@ static void getDecompressedPixels(PVRTCBlock p, PVRTCBlock q, PVRTCBlock r, PVRT
     }
 }
 
-// Returns the twiddled offset of the specified pixel. Given the block (or pixel) coordinates and the dimension of the texture
-// in blocks (or pixels) this returns the twiddled offset of the block (or pixel) from the start of the map. The dimensions of
-// the texture must be a power of 2.
+// Returns the twiddled offset of the specified pixel. Given the block (or pixel) coordinates and the dimension of the
+// texture in blocks (or pixels) this returns the twiddled offset of the block (or pixel) from the start of the map. The
+// dimensions of the texture must be a power of 2.
 static unsigned int twiddleUV(unsigned int xSize, unsigned int ySize, unsigned int xPos, unsigned int yPos)
 {
     // Initially assume X is the larger size
@@ -454,8 +463,8 @@ static unsigned int wrapIndex(unsigned int size, int index)
 }
 
 // Takes a PVRTC image and decompresses a single pixel in it
-static RGBA8 decompressSinglePVRTCPixel(const byte_t* compressedData, unsigned int width, unsigned int height, unsigned int bpp,
-                                        unsigned int x, unsigned int y)
+static RGBA8 decompressSinglePVRTCPixel(const byte_t* compressedData, unsigned int width, unsigned int height,
+                                        unsigned int bpp, unsigned int x, unsigned int y)
 {
     auto blockWidth = (bpp == 2) ? 8U : 4U;
     auto blockHeight = 4U;
@@ -474,10 +483,10 @@ static RGBA8 decompressSinglePVRTCPixel(const byte_t* compressedData, unsigned i
     xBlock = xBlock < 0 ? -1 : (xBlock / blockWidth);
     yBlock = yBlock < 0 ? -1 : (yBlock / blockHeight);
 
-    auto indices = std::array<unsigned int, 8>{{wrapIndex(xBlockCount, xBlock), wrapIndex(yBlockCount, yBlock),
-                                                wrapIndex(xBlockCount, xBlock + 1), wrapIndex(yBlockCount, yBlock),
-                                                wrapIndex(xBlockCount, xBlock), wrapIndex(yBlockCount, yBlock + 1),
-                                                wrapIndex(xBlockCount, xBlock + 1), wrapIndex(yBlockCount, yBlock + 1)}};
+    auto indices = std::array<unsigned int, 8>{
+        {wrapIndex(xBlockCount, xBlock), wrapIndex(yBlockCount, yBlock), wrapIndex(xBlockCount, xBlock + 1),
+         wrapIndex(yBlockCount, yBlock), wrapIndex(xBlockCount, xBlock), wrapIndex(yBlockCount, yBlock + 1),
+         wrapIndex(xBlockCount, xBlock + 1), wrapIndex(yBlockCount, yBlock + 1)}};
 
     auto& p = blocks[twiddleUV(xBlockCount, yBlockCount, indices[0], indices[1])];
     auto& q = blocks[twiddleUV(xBlockCount, yBlockCount, indices[2], indices[3])];

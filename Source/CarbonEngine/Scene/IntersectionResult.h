@@ -84,9 +84,10 @@ public:
     bool hasSurfaceColor() const { return hasSurfaceColor_; }
 
     /**
-     * Returns the surface color at the intersection point. This is found by looking up the surface's primary texture at the
-     * point of intersection, and is only set in some intersections. The return value from IntersectionResult::hasSurfaceColor()
-     * indicates whether this intersection result knows the surface color at the intersection point or not.
+     * Returns the surface color at the intersection point. This is found by looking up the surface's primary texture at
+     * the point of intersection, and is only set in some intersections. The return value from
+     * IntersectionResult::hasSurfaceColor() indicates whether this intersection result knows the surface color at the
+     * intersection point or not.
      */
     const Color& getSurfaceColor() const { return surfaceColor_; }
 
@@ -98,8 +99,9 @@ public:
         if (!entity_)
             return "No intersection";
 
-        return UnicodeString() << "Intersection at distance: " << distance_ << ", point: " << point_ << ", normal: " << normal_
-                               << (material_.length() ? (", material: " + material_) : "") << ", entity: " << entity_
+        return UnicodeString() << "Intersection at distance: " << distance_ << ", point: " << point_
+                               << ", normal: " << normal_ << (material_.length() ? (", material: " + material_) : "")
+                               << ", entity: " << entity_
                                << (hasSurfaceColor_ ? (", surface color: " + UnicodeString(surfaceColor_)) : "");
     }
 
@@ -116,9 +118,9 @@ private:
 };
 
 /**
- * This stream concatenation overload is required in order to be able to directly log an IntersectionResult instance, and is
- * needed because IntersectionResult has automatic conversions to both bool and UnicodeString meaning the implicit conversion to
- * a StringBase<T> is ambiguous.
+ * This stream concatenation overload is required in order to be able to directly log an IntersectionResult instance,
+ * and is needed because IntersectionResult has automatic conversions to both bool and UnicodeString meaning the
+ * implicit conversion to a StringBase<T> is ambiguous.
  */
 template <typename T> StringBase<T>& operator<<(StringBase<T>& s, const IntersectionResult& result)
 {

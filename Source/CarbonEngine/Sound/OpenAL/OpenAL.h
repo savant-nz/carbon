@@ -114,9 +114,10 @@ private:
         // Distance attenuation
         if (!source->temporary && source->soundShader)
         {
-            gain *= powf(1.0f - Math::clamp01(source->transform.getPosition().distance(listenerTransform_.getPosition()) /
-                                              source->soundShader->getRadius()),
-                         2.0f);
+            gain *=
+                powf(1.0f - Math::clamp01(source->transform.getPosition().distance(listenerTransform_.getPosition()) /
+                                          source->soundShader->getRadius()),
+                     2.0f);
         }
 
         alSourcef(source->alID, AL_GAIN, gain);
@@ -161,8 +162,9 @@ private:
     Vector<ALuint> alBufferDeleteQueue_;
     void clearALDeleteQueues();
 
-    // Sound load thread, this just continuously polls getNextSoundLoadThreadJob() and then runs Buffer::createOpenALBuffer() on
-    // any jobs it finds, then returns the OpenAL buffer ID using setSoundLoadThreadJobResult()
+    // Sound load thread, this just continuously polls getNextSoundLoadThreadJob() and then runs
+    // Buffer::createOpenALBuffer() on any jobs it finds, then returns the OpenAL buffer ID using
+    // setSoundLoadThreadJobResult()
     class SoundLoadThread : public Thread
     {
     public:
@@ -174,8 +176,8 @@ private:
         void main() override;
     } soundLoadThread_;
 
-    // When the sound load thread finishes a job it goes into this list of completed jobs for followup processing on the main
-    // thread in OpenAL::processEvent()
+    // When the sound load thread finishes a job it goes into this list of completed jobs for followup processing on the
+    // main thread in OpenAL::processEvent()
     mutable Mutex mutex_;
     std::unordered_map<String, ALuint> completedSoundLoadThreadJobs_;
     String getNextSoundLoadThreadJob() const;

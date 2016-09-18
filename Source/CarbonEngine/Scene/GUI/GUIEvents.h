@@ -302,7 +302,8 @@ public:
     /**
      * Constructs this GUI window pressed event with the given window and local position values.
      */
-    GUIWindowPressedEvent(GUIWindow* window, const Vec2& localPosition) : GUIEventDetails(window), localPosition_(localPosition)
+    GUIWindowPressedEvent(GUIWindow* window, const Vec2& localPosition)
+        : GUIEventDetails(window), localPosition_(localPosition)
     {
     }
 

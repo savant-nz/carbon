@@ -45,7 +45,8 @@ public:
     void deleteTexture(TextureObject texture) override;
     bool uploadTexture(TextureObject texture, TextureType type, Image::PixelFormat pixelFormat,
                        const Vector<TextureData>& data) override;
-    void setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter, TextureFilter magFilter) override;
+    void setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter,
+                          TextureFilter magFilter) override;
     void setTextureWrap(TextureObject texture, TextureType type, TextureWrap wrap) override;
 
     DataBufferObject createDataBuffer() override;

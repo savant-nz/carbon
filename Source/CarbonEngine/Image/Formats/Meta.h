@@ -7,14 +7,14 @@ namespace Carbon
 {
 
 /**
- * This class implements the .meta image format which is a text based image format that loads data from other images and passes
- * it through the set of transforms defined in a .meta file and makes the result available as its final image. The .meta format
- * allows #-style comments and is made up of a series of commands, one command per line, which are executed in the order they
- * appear. The following commands are available:
+ * This class implements the .meta image format which is a text based image format that loads data from other images and
+ * passes it through the set of transforms defined in a .meta file and makes the result available as its final image.
+ * The .meta format allows #-style comments and is made up of a series of commands, one command per line, which are
+ * executed in the order they appear. The following commands are available:
  *
- *  - `LoadImage <image name>`. This command must appear exactly once in every .meta file and must be the first command to
- *    appear. It takes one parameter which is the name of the image to load, relative to the .meta file. Any valid image can be
- *    passed here, including other .meta files.
+ *  - `LoadImage <image name>`. This command must appear exactly once in every .meta file and must be the first command
+ *    to appear. It takes one parameter which is the name of the image to load, relative to the .meta file. Any valid
+ *    image can be passed here, including other .meta files.
  *
  *  - `SetPixelFormat <pixel format>`. Changes the image to the specified pixel format. The pixel format given must be a
  *    recognized pixel format string, e.g. RGBA8.
@@ -33,8 +33,8 @@ public:
 
     static bool load(FileReader& file, Image& image, unsigned int imageIndex, Image::PixelFormat targetPixelFormat)
     {
-        // Because .meta files execute their own image loads it is necessary to track the list of in-progress .meta files in
-        // order to avoid possible infinite recursion
+        // Because .meta files execute their own image loads it is necessary to track the list of in-progress .meta
+        // files in order to avoid possible infinite recursion
         static auto currentlyLoadingMetaFiles = Vector<UnicodeString>();
         if (currentlyLoadingMetaFiles.has(file.getName().asLower()))
         {
@@ -64,7 +64,8 @@ public:
                         throw Exception("Invalid load image command");
 
                     auto sourceImageName = String(tokens, " ", 1);
-                    auto sourceFilename = FileSystem::joinPaths(FileSystem::getDirectory(file.getName()), sourceImageName);
+                    auto sourceFilename =
+                        FileSystem::joinPaths(FileSystem::getDirectory(file.getName()), sourceImageName);
 
                     if (!ImageFormatRegistry::loadImageFile(sourceFilename, image, targetPixelFormat))
                         throw Exception() << "Failed loading meta source image: " << sourceImageName;

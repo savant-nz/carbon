@@ -28,8 +28,8 @@ bool MeshFormatRegistry::saveMeshFile(const UnicodeString& filename, const Mesh&
     return fnWriter && fnWriter(file, mesh);
 }
 
-// This class hooks the native Mesh class save and load up to the MeshFormatRegistry mechanism so that .mesh files save and load
-// like all other supported mesh formats.
+// This class hooks the native Mesh class save and load up to the MeshFormatRegistry mechanism so that .mesh files save
+// and load like all other supported mesh formats.
 class NativeMesh
 {
 public:

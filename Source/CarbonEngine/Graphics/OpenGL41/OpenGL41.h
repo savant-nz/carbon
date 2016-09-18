@@ -20,8 +20,8 @@ namespace Carbon
 {
 
 /**
- * Graphics interface backend that targets the OpenGL 4.1 Core Profile with a few optional extensions. The supported shader
- * languages are GLSL 1.1 and GLSL 4.1.
+ * Graphics interface backend that targets the OpenGL 4.1 Core Profile with a few optional extensions. The supported
+ * shader languages are GLSL 1.1 and GLSL 4.1.
  */
 class CARBON_API OpenGL41 : public OpenGLShared
 {
@@ -48,7 +48,8 @@ public:
     void deleteTexture(TextureObject texture) override;
     bool uploadTexture(TextureObject texture, TextureType type, Image::PixelFormat pixelFormat,
                        const Vector<TextureData>& data) override;
-    void setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter, TextureFilter magFilter) override;
+    void setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter,
+                          TextureFilter magFilter) override;
     void setTextureWrap(TextureObject texture, TextureType type, TextureWrap wrap) override;
     void setTextureAnisotropy(TextureObject texture, TextureType type, unsigned int anisotropy) override;
     void setTextureBaseAndMaximumMipmapLevels(TextureObject texture, TextureType type, unsigned int baseLevel,
@@ -92,7 +93,8 @@ public:
     bool isRenderTargetSupported() const override;
     RenderTargetObject createRenderTarget() override;
     void deleteRenderTarget(RenderTargetObject renderTargetObject) override;
-    bool setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject, const Vector<TextureObject>& textures,
+    bool setRenderTargetColorBufferTextures(RenderTargetObject renderTargetObject,
+                                            const Vector<TextureObject>& textures,
                                             const Vector<int>& cubemapFaces) override;
     unsigned int getMaximumRenderTargetColorTextures() const override;
     bool setRenderTargetDepthBufferTexture(RenderTargetObject renderTargetObject, TextureObject texture) override;
@@ -104,8 +106,9 @@ private:
 
     const std::array<GLenum, 3> glBufferTypeEnum = {{0, GL_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER}};
 
-    const std::array<GLenum, 8> glPrimitiveType = {{GL_POINTS, GL_LINES, 0, GL_LINE_STRIP, GL_TRIANGLES, GL_TRIANGLE_STRIP,
-                                                    GL_TRIANGLES_ADJACENCY, GL_TRIANGLE_STRIP_ADJACENCY}};
+    const std::array<GLenum, 8> glPrimitiveType = {{GL_POINTS, GL_LINES, 0, GL_LINE_STRIP, GL_TRIANGLES,
+                                                    GL_TRIANGLE_STRIP, GL_TRIANGLES_ADJACENCY,
+                                                    GL_TRIANGLE_STRIP_ADJACENCY}};
 
     const std::array<GLenum, 4> glTextureTypeEnum = {{0, GL_TEXTURE_2D, GL_TEXTURE_3D, GL_TEXTURE_CUBE_MAP}};
 

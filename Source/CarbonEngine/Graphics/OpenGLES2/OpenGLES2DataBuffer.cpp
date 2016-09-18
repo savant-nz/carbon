@@ -81,7 +81,8 @@ bool OpenGLES2::updateDataBuffer(DataBufferObject dataBufferObject, DataBufferTy
         setIndexDataBuffer(dataBuffer);
 
     // Put in the new data, replacing the whole buffer is generally faster than using glBufferSubData() or glMapBuffer()
-    glBufferData(glBufferTypeEnum[type], dataBuffer->size, data, dataBuffer->isDynamic ? GL_STREAM_DRAW : GL_STATIC_DRAW);
+    glBufferData(glBufferTypeEnum[type], dataBuffer->size, data,
+                 dataBuffer->isDynamic ? GL_STREAM_DRAW : GL_STATIC_DRAW);
     CARBON_CHECK_OPENGL_ERROR(glBufferData);
 
     return true;
@@ -100,13 +101,15 @@ void OpenGLES2::setVertexDataBuffer(const DataBuffer* dataBuffer)
 
 void OpenGLES2::setIndexDataBuffer(const DataBuffer* dataBuffer)
 {
-    if (activeIndexDataBuffer_[States::VertexAttributeArrayConfiguration.getCurrentGraphicsInterfaceValue()] == dataBuffer)
+    auto configuration = States::VertexAttributeArrayConfiguration.getCurrentGraphicsInterfaceValue();
+
+    if (activeIndexDataBuffer_[configuration] == dataBuffer)
         return;
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, dataBuffer ? dataBuffer->glBuffer : 0);
     CARBON_CHECK_OPENGL_ERROR(glBindBuffer);
 
-    activeIndexDataBuffer_[States::VertexAttributeArrayConfiguration.getCurrentGraphicsInterfaceValue()] = dataBuffer;
+    activeIndexDataBuffer_[configuration] = dataBuffer;
 }
 
 unsigned int OpenGLES2::getVertexAttributeArrayCount() const
@@ -148,7 +151,8 @@ bool OpenGLES2::setVertexAttributeArraySource(unsigned int attributeIndex, const
     setVertexDataBuffer(reinterpret_cast<DataBuffer*>(source.getDataBufferObject()));
 
     glVertexAttribPointer(attributeIndex, source.getComponentCount(), glDataTypeEnum[source.getDataType()],
-                          source.getNormalizeFixedPoint(), source.getStride(), reinterpret_cast<void*>(source.getOffset()));
+                          source.getNormalizeFixedPoint(), source.getStride(),
+                          reinterpret_cast<void*>(source.getOffset()));
     CARBON_CHECK_OPENGL_ERROR(glVertexAttribPointer);
 
     return true;
@@ -189,7 +193,8 @@ GraphicsInterface::VertexAttributeArrayConfigurationObject
         CARBON_CHECK_OPENGL_ERROR(glEnableVertexAttribArray);
 
         glVertexAttribPointer(i, source.getComponentCount(), glDataTypeEnum[source.getDataType()],
-                              source.getNormalizeFixedPoint(), source.getStride(), reinterpret_cast<void*>(source.getOffset()));
+                              source.getNormalizeFixedPoint(), source.getStride(),
+                              reinterpret_cast<void*>(source.getOffset()));
         CARBON_CHECK_OPENGL_ERROR(glVertexAttribPointer);
     }
 

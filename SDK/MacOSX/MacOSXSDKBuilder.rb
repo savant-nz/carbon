@@ -104,8 +104,9 @@ class MacOSXSDKBuilder < SDKBuilderBase
   end
 
   def create_sample_application(sample)
-    create_installer application: sample, executable: "Build/MacOSX/x64/#{compiler}/Release/#{sample}", create_dmg: false,
-                     assets: 'Assets/Samples', icon: 'Source/CarbonEngine/Carbon.icns', output_path: "#{@package_root}/Samples"
+    create_installer application: sample, executable: "Build/MacOSX/x64/#{compiler}/Release/#{sample}",
+                     create_dmg: false, assets: 'Assets/Samples', icon: 'Source/CarbonEngine/Carbon.icns',
+                     output_path: "#{@package_root}/Samples"
 
     # Include the sample application source code as well
     ["#{sample}.cpp", "#{sample}.h", 'Info.plist', 'Info-iOS.plist'].each do |file|
@@ -121,7 +122,9 @@ class MacOSXSDKBuilder < SDKBuilderBase
   end
 
   def copy_licenses
-    dependency_licenses { |license, dependency| cp license, "#{@package_root}/Licenses/#{dependency}#{File.basename license}" }
+    dependency_licenses do |license, dependency|
+      cp license, "#{@package_root}/Licenses/#{dependency}#{File.basename license}"
+    end
   end
 
   def sdk_filename
@@ -129,8 +132,8 @@ class MacOSXSDKBuilder < SDKBuilderBase
   end
 
   def create_final_sdk_package
-    command = "xcrun pkgbuild --quiet --root #{@package_root} --identifier com.carbon.CarbonSDK --scripts SDK/MacOSX/Scripts " \
-              "--install-location \"/Applications/Carbon SDK\" #{sdk_filename.quoted}"
+    command = "xcrun pkgbuild --quiet --root #{@package_root} --identifier com.carbon.CarbonSDK " \
+              "--scripts SDK/MacOSX/Scripts --install-location \"/Applications/Carbon SDK\" #{sdk_filename.quoted}"
 
     run command, echo: 'Creating SDK package ...', error: 'Failed creating SDK package'
   end

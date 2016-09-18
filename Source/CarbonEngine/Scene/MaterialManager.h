@@ -18,8 +18,8 @@ class CARBON_API MaterialManager : public EventHandler, private Noncopyable
 public:
 
     /**
-     * This is the material used by exporters as a fallback for when the mesh being exported doesn't have any material set. This
-     * is currently set to "nomaterial".
+     * This is the material used by exporters as a fallback for when the mesh being exported doesn't have any material
+     * set. This is currently set to "nomaterial".
      */
     static const String ExporterNoMaterialFallback;
 
@@ -34,8 +34,8 @@ public:
     void reloadMaterials();
 
     /**
-     * Returns the specified material. If the material is not loaded then it will be loaded and returned. If the specified
-     * material is invalid or failed to load then the fallback material will be returned.
+     * Returns the specified material. If the material is not loaded then it will be loaded and returned. If the
+     * specified material is invalid or failed to load then the fallback material will be returned.
      */
     Material& getMaterial(const String& name, bool requireLoadedMaterial = true);
 
@@ -74,7 +74,10 @@ private:
 
     std::array<Vector<Material*>, 511> materials_;
 
-    const Vector<Material*>& getHashLine(const String& name) const { return materials_[name.hash() % materials_.size()]; }
+    const Vector<Material*>& getHashLine(const String& name) const
+    {
+        return materials_[name.hash() % materials_.size()];
+    }
     Vector<Material*>& getHashLine(const String& name) { return materials_[name.hash() % materials_.size()]; }
 
     Material* fallbackMaterial_ = nullptr;

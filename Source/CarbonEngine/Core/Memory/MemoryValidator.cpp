@@ -45,8 +45,8 @@ byte_t* MemoryValidator::afterAllocation(byte_t* block, size_t size, uint64_t in
     if (!block)
         return nullptr;
 
-    // Fill the suffix and prefix with the unique byte values that will be used to check for overrun and underrun when this
-    // block is freed
+    // Fill the suffix and prefix with the unique byte values that will be used to check for overrun and underrun when
+    // this block is freed
     memset(block, PrefixAreaValue, PrefixAreaSize);
     memset(block + size - SuffixAreaSize, SuffixAreaValue, SuffixAreaSize);
 
@@ -81,8 +81,8 @@ void* MemoryValidator::beforeFree(byte_t* block, size_t& size, bool isArray, boo
     // Adjust returned address to the true address of the allocation
     block -= PrefixAreaSize;
 
-    // Check that the isArray flag matches up. This is only done for allocations that have a known origin because catching all
-    // of these errors seems to expose bugs in system libraries on some platforms.
+    // Check that the isArray flag matches up. This is only done for allocations that have a known origin because
+    // catching all of these errors seems to expose bugs in system libraries on some platforms.
     if (verifyIsArray && *(reinterpret_cast<bool*>(block + sizeof(size_t) + sizeof(uint64_t))) != isArray)
         reportError("Mismatched array new/delete on allocation at %p", block + PrefixAreaSize);
 
@@ -110,9 +110,9 @@ size_t MemoryValidator::validateAllocation(const byte_t* block)
     {
         if (block[i] != PrefixAreaValue)
         {
-            reportError(
-                "Allocation at %p of size %llu has a corrupted prefix area of size %u bytes, possibly caused by an underrun",
-                reportedAddress, uint64_t(reportedSize), PrefixAreaSize - i);
+            reportError("Allocation at %p of size %llu has a corrupted prefix area of size %u bytes, possibly caused "
+                        "by an underrun",
+                        reportedAddress, uint64_t(reportedSize), PrefixAreaSize - i);
             break;
         }
     }
@@ -124,9 +124,9 @@ size_t MemoryValidator::validateAllocation(const byte_t* block)
         auto index = SuffixAreaSize - i - 1;
         if (block[suffixAreaOffset + index] != SuffixAreaValue)
         {
-            reportError(
-                "Allocation at %p of size %llu has a corrupted suffix area of size %u bytes, possibly caused by an overrun",
-                reportedAddress, uint64_t(reportedSize), index + 1);
+            reportError("Allocation at %p of size %llu has a corrupted suffix area of size %u bytes, possibly caused "
+                        "by an overrun",
+                        reportedAddress, uint64_t(reportedSize), index + 1);
             break;
         }
     }

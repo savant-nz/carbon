@@ -68,8 +68,8 @@ void ScrollingLayer::createVisibleTiles()
     auto indices = Vector<unsigned int>();
     auto drawItems = Vector<DrawItem>();
 
-    // Create the geometry for all the tiles, each tile is put into the chunk four times to cover all possible configurations of
-    // vertical and horizontal flips
+    // Create the geometry for all the tiles, each tile is put into the chunk four times to cover all possible
+    // combinations of vertical and horizontal flips
     for (auto y = 0U; y < visibleTilesY_; y++)
     {
         for (auto x = 0U; x < visibleTilesX_; x++)
@@ -187,8 +187,8 @@ bool ScrollingLayer::isValidTileIndex(unsigned int x, unsigned int y, const Stri
     if (x < tileCountX_ && y < tileCountY_)
         return true;
 
-    CARBON_LOG(Error, function) << "Tile index [" << x << ", " << y << "] is out of bounds, layer size is " << tileCountX_
-                                << "x" << tileCountY_;
+    CARBON_LOG(Error, function) << "Tile index [" << x << ", " << y << "] is out of bounds, layer size is "
+                                << tileCountX_ << "x" << tileCountY_;
 
     return false;
 }
@@ -354,10 +354,10 @@ void ScrollingLayer::setTileNormalMap(unsigned int x, unsigned int y, const Stri
     tile.normalMapToUse = normalMap;
     tile.material = nullptr;
 
-    // The cached normal map is needed to avoid using normal maps that don't exist which would result in missing texture errors.
-    // The tile's default normal map is taken from the tile's texture with "_normal" appended, but is only used if such a
-    // texture actually exists, if it doesn't exist then a flat normal map provided by the renderer will be used instead so that
-    // no error occurs.
+    // The cached normal map is needed to avoid using normal maps that don't exist which would result in missing texture
+    // errors. The tile's default normal map is taken from the tile's texture with "_normal" appended, but is only used
+    // if such a texture actually exists, if it doesn't exist then a flat normal map provided by the renderer will be
+    // used instead so that no error occurs.
     if (!normalMap.length())
     {
         tile.normalMapToUse = A(ImageFormatRegistry::stripSupportedExtension(getTileTexture(x, y))) + "_normal";
@@ -441,7 +441,8 @@ bool ScrollingLayer::gatherGeometry(GeometryGather& gather)
                     auto mx = int(x) + xOffset;
                     auto my = int(y) + yOffset;
 
-                    if (((my >= 0 && my < int(tileCountY_)) || repeatY_) && ((mx >= 0 && mx < int(tileCountX_)) || repeatX_))
+                    if (((my >= 0 && my < int(tileCountY_)) || repeatY_) &&
+                        ((mx >= 0 && mx < int(tileCountX_)) || repeatX_))
                     {
                         auto& tile = tiles_[Math::positiveModulus(my, tileCountY_) * tileCountX_ +
                                             Math::positiveModulus(mx, tileCountX_)];
@@ -452,7 +453,8 @@ bool ScrollingLayer::gatherGeometry(GeometryGather& gather)
                         if (!tile.material)
                             tile.material = getMaterialForTile(tile);
 
-                        tilesToRender[tile.material].append((visibleTilesX_ * y + x) * 4 + (tile.isFlippedVertically ? 2 : 0) +
+                        tilesToRender[tile.material].append((visibleTilesX_ * y + x) * 4 +
+                                                            (tile.isFlippedVertically ? 2 : 0) +
                                                             (tile.isFlippedHorizontally ? 1 : 0));
                     }
                 }
@@ -487,8 +489,8 @@ bool ScrollingLayer::gatherGeometry(GeometryGather& gather)
                     movement.x += ceilf((cameraExtents.getLeft() - aabb.getMaximum().x) / layerSize.x);
                 else if (aabb.getMinimum().x > cameraExtents.getLeft() + lastOrthographicSize_.x)
                 {
-                    movement.x -=
-                        ceilf((aabb.getMinimum().x - (cameraExtents.getLeft() + lastOrthographicSize_.x)) / layerSize.x);
+                    movement.x -= ceilf((aabb.getMinimum().x - (cameraExtents.getLeft() + lastOrthographicSize_.x)) /
+                                        layerSize.x);
                 }
             }
             if (repeatY_)
@@ -497,8 +499,8 @@ bool ScrollingLayer::gatherGeometry(GeometryGather& gather)
                     movement.y += ceilf((cameraExtents.getBottom() - aabb.getMaximum().y) / layerSize.y);
                 else if (aabb.getMinimum().y > cameraExtents.getBottom() + lastOrthographicSize_.y)
                 {
-                    movement.y -=
-                        ceilf((aabb.getMinimum().y - (cameraExtents.getBottom() + lastOrthographicSize_.y)) / layerSize.y);
+                    movement.y -= ceilf((aabb.getMinimum().y - (cameraExtents.getBottom() + lastOrthographicSize_.y)) /
+                                        layerSize.y);
                 }
             }
 
@@ -628,8 +630,8 @@ PhysicsInterface::BodyObject ScrollingLayer::createInternalRigidBody(float mass,
                 }
             }
 
-            // Take the polygons for this collision map, offset and scale them for this tile, and add it to the list of polygons
-            // being created
+            // Take the polygons for this collision map, offset and scale them for this tile, and add it to the list of
+            // polygons being created
 
             auto xFlip = isTileFlippedHorizontally(x, y);
             auto yFlip = isTileFlippedVertically(x, y);
@@ -658,9 +660,9 @@ PhysicsInterface::BodyObject ScrollingLayer::createInternalRigidBody(float mass,
         }
     }
 
-    // Merge edges where possible to make larger polygons. This is mainly to get rid of seams and ridges on adjacent collision
-    // maps that are more or less flush with each other, it doesn't do the more complicated merges that potentially could be
-    // done here.
+    // Merge edges where possible to make larger polygons. This is mainly to get rid of seams and ridges on adjacent
+    // collision maps that are more or less flush with each other, it doesn't do the more complicated merges that
+    // potentially could be done here.
     const auto mergeThreshold = 2.0f;
     for (auto i = 0U; i < finalPolygons.size(); i++)
     {
@@ -707,8 +709,8 @@ PhysicsInterface::BodyObject ScrollingLayer::createInternalRigidBody(float mass,
         {
             for (auto j = 0U; j < finalPolygon.size(); j++)
             {
-                getScene()->addImmediateGeometry(finalPolygon[j], finalPolygon[(j + 1) % finalPolygon.size()], Color::Red,
-                                                 Color::Green);
+                getScene()->addImmediateGeometry(finalPolygon[j], finalPolygon[(j + 1) % finalPolygon.size()],
+                                                 Color::Red, Color::Green);
             }
         }
     }
@@ -721,8 +723,8 @@ PhysicsInterface::BodyObject ScrollingLayer::createInternalRigidBody(float mass,
     LOG_INFO << "Layer '" << getName() << "' is physical, polygon count: " << finalPolygons.size();
 
     // Create final physics body
-    return physics().createGeometryBodyFromTemplate(physics().createBodyTemplateFromGeometry(vertices, triangles, true, 0.5f),
-                                                    mass, fixed, this);
+    return physics().createGeometryBodyFromTemplate(
+        physics().createBodyTemplateFromGeometry(vertices, triangles, true, 0.5f), mass, fixed, this);
 }
 
 bool ScrollingLayer::addRepeatingEntity(Entity* entity)
@@ -773,7 +775,8 @@ void ScrollingLayer::save(FileWriter& file) const
         {
             auto& tile = tiles_[y * tileCountX_ + x];
 
-            file.write(tile.texture, tile.normalMap, tile.collisionMap, tile.isFlippedHorizontally, tile.isFlippedVertically);
+            file.write(tile.texture, tile.normalMap, tile.collisionMap, tile.isFlippedHorizontally,
+                       tile.isFlippedVertically);
         }
     }
 
@@ -856,7 +859,8 @@ bool ScrollingLayer::save(const String& name) const
                 if (tileTexture.length() && tileTexture != defaultTileTexture_)
                 {
                     file.writeText(UnicodeString() + "TileTexture         " + x + " " + y + " " +
-                                   tileTexture.quoteIfHasSpaces() + (isTileFlippedHorizontally(x, y) ? " FlipHorizontal" : "") +
+                                   tileTexture.quoteIfHasSpaces() +
+                                   (isTileFlippedHorizontally(x, y) ? " FlipHorizontal" : "") +
                                    (isTileFlippedVertically(x, y) ? " FlipVertical" : ""));
                 }
 
@@ -865,7 +869,8 @@ bool ScrollingLayer::save(const String& name) const
 
                 const auto& normalMap = tiles_[y * tileCountX_ + x].normalMap;
                 if (normalMap.length())
-                    file.writeText(UnicodeString() + "TileNormalMap       " + x + " " + y + " " + normalMap.quoteIfHasSpaces());
+                    file.writeText(UnicodeString() + "TileNormalMap       " + x + " " + y + " " +
+                                   normalMap.quoteIfHasSpaces());
 
                 const auto& collisionMap = tiles_[y * tileCountX_ + x].collisionMap;
                 if (collisionMap.length())

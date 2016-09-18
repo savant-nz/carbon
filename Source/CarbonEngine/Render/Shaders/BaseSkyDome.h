@@ -49,8 +49,8 @@ public:
         States::DepthTestEnabled = false;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         States::DepthWriteEnabled = params.get(Parameter::depthWrite, true).getBoolean();
 

@@ -7,8 +7,8 @@ namespace Carbon
 {
 
 /**
- * Loads a VTF (Valve Texture Format) file. The texture thumbnail is ignored. Animations, cubemaps, mipmaps, and all common
- * pixel formats are supported.
+ * Loads a VTF (Valve Texture Format) file. The texture thumbnail is ignored. Animations, cubemaps, mipmaps, and all
+ * common pixel formats are supported.
  */
 class VTF
 {
@@ -104,9 +104,9 @@ public:
                     throw Exception("Failed initializing image");
             }
 
-            // The VTF file stores the mipmaps from smallest to largest, but we need them from largest to smallest in the output
-            // image. Animation frames are stored consecutively at each mipmap level. For cubemap images, each mipmap level for
-            // each face is stored consecutively. The overall VTF on-disk layout is therefore:
+            // The VTF file stores the mipmaps from smallest to largest, but we need them from largest to smallest in
+            // the output image. Animation frames are stored consecutively at each mipmap level. For cubemap images,
+            // each mipmap level for each face is stored consecutively. The overall VTF on-disk layout is therefore:
             //
             //      Loop through mipmap levels (smallest to largest)
             //          Loop through animation frames
@@ -118,8 +118,8 @@ public:
                 auto mipmapWidth = image.getWidth();
                 auto mipmapHeight = image.getHeight();
 
-                // Because VTFs store their mipmaps from smallest to largest we need to work out where to read the next chunk of
-                // data to, as the Image class expects them from largest to smallest
+                // Because VTFs store their mipmaps from smallest to largest we need to work out where to read the next
+                // chunk of data to, as the Image class expects them from largest to smallest
                 auto offset = 0U;
                 auto trueMipmapLevel = mipmapCount - i - 1;
                 while (trueMipmapLevel--)
@@ -137,8 +137,9 @@ public:
                             // Swap y and z faces
                             static const auto faceMapping = std::array<unsigned int, 6>{{0, 1, 4, 5, 2, 3}};
 
-                            file.readBytes(&image.getCubemapDataForFrame(j, faceMapping[k])[offset],
-                                           Image::getImageDataSize(mipmapWidth, mipmapHeight, 1, image.getPixelFormat()));
+                            file.readBytes(
+                                &image.getCubemapDataForFrame(j, faceMapping[k])[offset],
+                                Image::getImageDataSize(mipmapWidth, mipmapHeight, 1, image.getPixelFormat()));
                         }
                     }
                     else
@@ -161,17 +162,21 @@ public:
                         if (j == 0)
                         {
                             Image::rawRotateCCW(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(), data);
-                            Image::rawFlipHorizontal(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(), data);
+                            Image::rawFlipHorizontal(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(),
+                                                     data);
                         }
                         else if (j == 1)
                         {
                             Image::rawRotateCCW(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(), data);
-                            Image::rawFlipVertical(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(), data);
+                            Image::rawFlipVertical(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(),
+                                                   data);
                         }
                         else if (j == 2 || j == 4)
-                            Image::rawFlipVertical(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(), data);
+                            Image::rawFlipVertical(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(),
+                                                   data);
                         else if (j == 3 || j == 5)
-                            Image::rawFlipHorizontal(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(), data);
+                            Image::rawFlipHorizontal(image.getWidth(), image.getHeight(), 1, image.getPixelFormat(),
+                                                     data);
                     }
                 }
             }

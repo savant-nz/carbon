@@ -79,7 +79,8 @@ bool OpenGL11::updateDataBuffer(DataBufferObject dataBufferObject, DataBufferTyp
     else if (type == IndexDataBuffer)
         setIndexDataBuffer(dataBuffer);
 
-    // Put in the new data, replacing the whole buffer is generally faster than using glBufferSubDataARB() or glMapBufferARB()
+    // Put in the new data, replacing the whole buffer is generally faster than using glBufferSubDataARB() or
+    // glMapBufferARB()
     glBufferDataARB(glBufferTypeEnum[type], dataBuffer->size, data,
                     dataBuffer->isDynamic ? GL_STREAM_DRAW_ARB : GL_STATIC_DRAW_ARB);
     CARBON_CHECK_OPENGL_ERROR(glBufferDataARB);
@@ -100,7 +101,8 @@ void OpenGL11::setVertexDataBuffer(const DataBuffer* dataBuffer)
 
 void OpenGL11::setIndexDataBuffer(const DataBuffer* dataBuffer)
 {
-    if (activeIndexDataBuffer_[States::VertexAttributeArrayConfiguration.getCurrentGraphicsInterfaceValue()] == dataBuffer)
+    if (activeIndexDataBuffer_[States::VertexAttributeArrayConfiguration.getCurrentGraphicsInterfaceValue()] ==
+        dataBuffer)
         return;
 
     glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, dataBuffer ? dataBuffer->glBuffer : 0);
@@ -148,7 +150,8 @@ bool OpenGL11::setVertexAttributeArraySource(unsigned int attributeIndex, const 
     setVertexDataBuffer(reinterpret_cast<DataBuffer*>(source.getDataBufferObject()));
 
     glVertexAttribPointerARB(attributeIndex, source.getComponentCount(), glDataTypeEnum[source.getDataType()],
-                             source.getNormalizeFixedPoint(), source.getStride(), reinterpret_cast<void*>(source.getOffset()));
+                             source.getNormalizeFixedPoint(), source.getStride(),
+                             reinterpret_cast<void*>(source.getOffset()));
     CARBON_CHECK_OPENGL_ERROR(glVertexAttribPointerARB);
 
     return true;

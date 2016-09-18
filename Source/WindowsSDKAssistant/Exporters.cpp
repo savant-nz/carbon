@@ -41,8 +41,8 @@ bool copyFile(const std::wstring& source, const std::wstring& dest, const std::w
     // Try copying the file, show an error dialog if the copy fails
     while (!CopyFile(source.c_str(), dest.c_str(), FALSE))
     {
-        if (!showErrorDialog(std::wstring(L"Failed installing the ") + appName + L" exporter plugin.\n\nCheck that " + appName +
-                             L" is not currently running."))
+        if (!showErrorDialog(std::wstring(L"Failed installing the ") + appName + L" exporter plugin.\n\nCheck that " +
+                             appName + L" is not currently running."))
             return false;
     }
 
@@ -61,8 +61,8 @@ bool deleteFile(const std::wstring& name, const std::wstring& appName)
     // Try deleting the file, show an error dialog if the delete fails
     while (!DeleteFile(name.c_str()))
     {
-        if (!showErrorDialog(std::wstring(L"Failed removing the ") + appName + L" exporter plugin.\n\nCheck that " + appName +
-                             L" is not currently running."))
+        if (!showErrorDialog(std::wstring(L"Failed removing the ") + appName + L" exporter plugin.\n\nCheck that " +
+                             appName + L" is not currently running."))
             return false;
     }
 
@@ -74,8 +74,8 @@ bool installMax8Exporter()
     if (!max8Dir.length())
         return false;
 
-    return copyFile(sdkPath + L"\\Exporters\\" + Max8ExporterFilename, max8Dir + MaxPluginDirectory + Max8ExporterFilename,
-                    L"3D Studio Max 8");
+    return copyFile(sdkPath + L"\\Exporters\\" + Max8ExporterFilename,
+                    max8Dir + MaxPluginDirectory + Max8ExporterFilename, L"3D Studio Max 8");
 }
 
 bool uninstallMax8Exporter()
@@ -185,7 +185,8 @@ LRESULT CALLBACK dialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
                 SetWindowText(GetDlgItem(hDlg, IDC_MAYA2009_64BIT_INSTALL_DIRECTORY), maya200964BitDir.c_str());
             else
             {
-                SetWindowText(GetDlgItem(hDlg, IDC_MAYA2009_64BIT_INSTALL_DIRECTORY), L"Maya 2009 64-bit is not installed");
+                SetWindowText(GetDlgItem(hDlg, IDC_MAYA2009_64BIT_INSTALL_DIRECTORY),
+                              L"Maya 2009 64-bit is not installed");
                 EnableWindow(GetDlgItem(hDlg, IDC_INSTALL_MAYA2009_64BIT_EXPORTER), FALSE);
             }
 

@@ -9,8 +9,8 @@ namespace Carbon
 {
 
 /**
- * Classes that don't permit copying can inherit from this class in order to cause compilation errors if any code tries to use
- * their assignment operator or copy constructor.
+ * Classes that don't permit copying can inherit from this class in order to cause compilation errors if any code tries
+ * to use their assignment operator or copy constructor.
  */
 class CARBON_API Noncopyable
 {

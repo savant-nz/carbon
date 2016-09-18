@@ -89,8 +89,8 @@ void GUIEditbox::clear()
 
 void GUIEditbox::updateLines()
 {
-    // Draw the contents of the editbox as one line, no multiline editing is supported. Calculate and use the character offset
-    // to know which character to start on, then add as many as will fit inside the margins.
+    // Draw the contents of the editbox as one line, no multiline editing is supported. Calculate and use the character
+    // offset to know which character to start on, then add as many as will fit inside the margins.
 
     auto font = getFontToUse();
     auto fontSize = getFontSizeToUse(font);
@@ -141,9 +141,9 @@ bool GUIEditbox::gatherGeometry(GeometryGather& gather)
 
 void GUIEditbox::calculateCharacterOffset()
 {
-    // The editbox scrolls horizontally when its content does not all fit in. This method works out the correct character offset
-    // to use for the scrolling based on the cursor position. The character offset is the index of the first character of the
-    // text_ string to be drawn when rendering the editbox.
+    // The editbox scrolls horizontally when its content does not all fit in. This method works out the correct
+    // character offset to use for the scrolling based on the cursor position. The character offset is the index of the
+    // first character of the text_ string to be drawn when rendering the editbox.
 
     auto font = getFontToUse();
     auto fontSize = getFontSizeToUse(font);
@@ -155,8 +155,8 @@ void GUIEditbox::calculateCharacterOffset()
         characterOffset_ = textInput_.getCursorPosition();
 
         // The standard behavior of an editbox when moving the cursor off the left is to jump back a certain number of
-        // characters. So this code jumps back either by 8 characters or roughly half the width of the editbox, whichever is
-        // smaller.
+        // characters. So this code jumps back either by 8 characters or roughly half the width of the editbox,
+        // whichever is smaller.
         auto jump = uint((maxWidth * 0.5f) / font->getMaximumCharacterWidth(fontSize));
         if (jump > 8)
             jump = 8;
@@ -174,7 +174,8 @@ void GUIEditbox::calculateCharacterOffset()
     {
         if (isPasswordEditbox_)
         {
-            if (font->getWidth(PasswordCharacter, fontSize) * (textInput_.getCursorPosition() - characterOffset_) <= maxWidth)
+            if (font->getWidth(PasswordCharacter, fontSize) * (textInput_.getCursorPosition() - characterOffset_) <=
+                maxWidth)
                 break;
         }
         else

@@ -16,18 +16,18 @@ class CARBON_API Globals
 public:
 
     /**
-     * Does core engine initialization. This should be called prior to any other use of the engine. Once the global objects have
-     * been created, all the functions registered with the CARBON_REGISTER_STARTUP_FUNCTION() macro are called. This function
-     * immediately returns true if the engine is already initialized. If false is returned then there was an error on startup.
-     * The \a clientName parameter identifies the current client application and is used to save and restore settings and other
-     * client-local data.
+     * Does core engine initialization. This should be called prior to any other use of the engine. Once the global
+     * objects have been created, all the functions registered with the CARBON_REGISTER_STARTUP_FUNCTION() macro are
+     * called. This function immediately returns true if the engine is already initialized. If false is returned then
+     * there was an error on startup. The \a clientName parameter identifies the current client application and is used
+     * to save and restore settings and other client-local data.
      */
     static bool initializeEngine(const String& clientName);
 
     /**
-     * Does engine shutdown. This should be called at the end of the program. After this is executed, the engine should not be
-     * used until after Globals::initializeEngine() is called again. Before the global objects are deleted, all the functions
-     * registered with the CARBON_REGISTER_SHUTDOWN_FUNCTION() macro are called.
+     * Does engine shutdown. This should be called at the end of the program. After this is executed, the engine should
+     * not be used until after Globals::initializeEngine() is called again. Before the global objects are deleted, all
+     * the functions registered with the CARBON_REGISTER_SHUTDOWN_FUNCTION() macro are called.
      */
     static void uninitializeEngine();
 
@@ -37,8 +37,8 @@ public:
     static bool isEngineInitialized() { return isInitialized_; }
 
     /**
-     * Returns true when the process is in the middle of static initialization. Once the application's \a main() routine has
-     * been entered this method will return false.
+     * Returns true when the process is in the middle of static initialization. Once the application's \a main() routine
+     * has been entered this method will return false.
      */
     static bool isInStaticInitialization() { return inStaticInitialization_; }
 
@@ -65,24 +65,24 @@ public:
     static String getEngineName() { return "Carbon"; }
 
     /**
-     * Returns the client name that was passed to Globals::initializeEngine(). The client name will be at most 127 characters
-     * long.
+     * Returns the client name that was passed to Globals::initializeEngine(). The client name will be at most 127
+     * characters long.
      */
     static const String& getClientName();
 
     /**
-     * This is the same as Globals::getClientName() however the returned client name is stored in a static buffer and so this
-     * method can be safely used after engine shutdown, e.g. during static deinitialization.
+     * This is the same as Globals::getClientName() however the returned client name is stored in a static buffer and so
+     * this method can be safely used after engine shutdown, e.g. during static deinitialization.
      */
     static const char* getClientNameBuffer() { return clientNameBuffer_.data(); }
 
 #ifdef CARBON_INCLUDE_LOGGING
     /**
      * This is a logging function that takes printf-style arguments and writes the result to the stdout stream, this is
-     * particularly useful when wanting to print messages inside MemoryInterceptor or MemoryValidator callbacks, or in other
-     * places where logging must not trigger memory allocations or frees. On Windows the logged string is also output as a debug
-     * string. No memory is allocated on the heap to write the output and this method is thread-safe. A newline is automatically
-     * added.
+     * particularly useful when wanting to print messages inside MemoryInterceptor or MemoryValidator callbacks, or in
+     * other places where logging must not trigger memory allocations or frees. On Windows the logged string is also
+     * output as a debug string. No memory is allocated on the heap to write the output and this method is thread-safe.
+     * A newline is automatically added.
      */
     static void debugLog(const char* format, ...);
 #else
@@ -90,9 +90,9 @@ public:
 #endif
 
     /**
-     * Adds a startup function that will be run by Globals::initializeEngine() following engine initialization. Higher priority
-     * functions are run before lower priority functions. The CARBON_REGISTER_STARTUP_FUNCTION() macro provides an easy way to
-     * automatically add a startup function.
+     * Adds a startup function that will be run by Globals::initializeEngine() following engine initialization. Higher
+     * priority functions are run before lower priority functions. The CARBON_REGISTER_STARTUP_FUNCTION() macro provides
+     * an easy way to automatically add a startup function.
      */
     static void addStartupFunction(VoidFunction fn, int priority);
 
@@ -102,9 +102,9 @@ public:
     static void removeStartupFunction(VoidFunction fn);
 
     /**
-     * Adds a shutdown function that will be run by Globals::uninitializeEngine() prior to engine shutdown. Higher priority
-     * functions are run before lower priority functions. The CARBON_REGISTER_SHUTDOWN_FUNCTION() macro provides an easy way to
-     * automatically add a shutdown function.
+     * Adds a shutdown function that will be run by Globals::uninitializeEngine() prior to engine shutdown. Higher
+     * priority functions are run before lower priority functions. The CARBON_REGISTER_SHUTDOWN_FUNCTION() macro
+     * provides an easy way to automatically add a shutdown function.
      */
     static void addShutdownFunction(VoidFunction fn, int priority);
 
@@ -114,27 +114,30 @@ public:
     static void removeShutdownFunction(VoidFunction fn);
 
     /**
-     * For use following engine shutdown, this returns whether or not any resources such as scenes or entities were leaked by
-     * the application.
+     * For use following engine shutdown, this returns whether or not any resources such as scenes or entities were
+     * leaked by the application.
      */
     static unsigned int getLeakedResourceCount() { return leakedResourceCount_; }
 
     /**
-     * For use during engine shutdown, this increases the leaked resource count by the given amount. The total leaked resource
-     * count can be retrieved using Globals::getLeakedResourceCount().
+     * For use during engine shutdown, this increases the leaked resource count by the given amount. The total leaked
+     * resource count can be retrieved using Globals::getLeakedResourceCount().
      */
     static void increaseLeakedResourceCount(unsigned int count) { leakedResourceCount_ += count; }
 
     /**
-     * Returns the command line parameters as set by the last call to Globals::setCommandLineParameters(). The command line
-     * parameters are set automatically if the built-in application entry points are used.
+     * Returns the command line parameters as set by the last call to Globals::setCommandLineParameters(). The command
+     * line parameters are set automatically if the built-in application entry points are used.
      */
     static const Vector<UnicodeString>& getCommandLineParameters() { return commandLineParameters_; }
 
     /**
      * Sets the command line parameters based on the given command line string.
      */
-    static void setCommandLineParameters(const UnicodeString& commandLine) { commandLineParameters_ = commandLine.getTokens(); }
+    static void setCommandLineParameters(const UnicodeString& commandLine)
+    {
+        commandLineParameters_ = commandLine.getTokens();
+    }
 
     /**
      * Sets the command line parameters based on the given argc and argv values.
@@ -142,9 +145,9 @@ public:
     static void setCommandLineParameters(int argc, const char**);
 
     /**
-     * Returns the exit code that will be returned by the application's `main()` routine when the application shuts down. By
-     * default the exit code is zero when the application ran successfully, and one if there were any initialization failures.
-     * The exit code can be set using Globals::setExitCode().
+     * Returns the exit code that will be returned by the application's `main()` routine when the application shuts
+     * down. By default the exit code is zero when the application ran successfully, and one if there were any
+     * initialization failures. The exit code can be set using Globals::setExitCode().
      */
     static int getExitCode() { return exitCode_; }
 
@@ -160,8 +163,8 @@ public:
     static const UnicodeString& getExecutableName();
 
     /**
-     * Destroys the current graphics interface and recreates it using InterfaceRegistry<GraphicsInterface>::create(). For
-     * internal use only.
+     * Destroys the current graphics interface and recreates it using InterfaceRegistry<GraphicsInterface>::create().
+     * For internal use only.
      */
     static void recreateGraphicsInterface();
 

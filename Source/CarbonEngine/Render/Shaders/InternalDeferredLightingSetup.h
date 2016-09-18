@@ -95,9 +95,9 @@ public:
         static const auto preprocessorDefines =
             std::array<String, PreprocessorDefineCount>{{"#define SKELETAL_ANIMATION", "#define PARALLAX_MAPPING"}};
 
-        return setupProgramCombination<InternalDeferredLightingSetupProgram>(programIndex, programs, preprocessorDefines,
-                                                                             "InternalDeferredLightingSetup.glsl.vert",
-                                                                             "InternalDeferredLightingSetup.glsl.frag");
+        return setupProgramCombination<InternalDeferredLightingSetupProgram>(
+            programIndex, programs, preprocessorDefines, "InternalDeferredLightingSetup.glsl.vert",
+            "InternalDeferredLightingSetup.glsl.frag");
     }
 
     bool updateCurrentProgram(unsigned int sortKey)
@@ -118,8 +118,8 @@ public:
         return true;
     }
 
-    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params, const ParameterArray& internalParams,
-                         unsigned int pass, unsigned int sortKey) override
+    void setShaderParams(const GeometryChunk& geometryChunk, const ParameterArray& params,
+                         const ParameterArray& internalParams, unsigned int pass, unsigned int sortKey) override
     {
         if (!updateCurrentProgram(sortKey))
             return;

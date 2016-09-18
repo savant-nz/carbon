@@ -13,9 +13,10 @@ namespace Carbon
 {
 
 /**
- * Provides an interface over an underlying graphics API such as OpenGL. This is what allows graphics API independence, as all
- * setup and drawing commands issued by the renderer go through this layer. Implementations of this interface are registered for
- * use by the CARBON_REGISTER_INTERFACE_IMPLEMENTATION() macro, see the InterfaceRegistry class for details.
+ * Provides an interface over an underlying graphics API such as OpenGL. This is what allows graphics API independence,
+ * as all setup and drawing commands issued by the renderer go through this layer. Implementations of this interface are
+ * registered for use by the CARBON_REGISTER_INTERFACE_IMPLEMENTATION() macro, see the InterfaceRegistry class for
+ * details.
  */
 class CARBON_API GraphicsInterface
 {
@@ -86,9 +87,9 @@ public:
     virtual bool setup();
 
     /**
-     * This is called automatically during graphics interface setup and can be used by graphics interface implementations to
-     * call States::StateCacher::disable() on any states that they don't support in order to avoid the overhead of the state
-     * cacher having to manage them.
+     * This is called automatically during graphics interface setup and can be used by graphics interface
+     * implementations to call States::StateCacher::disable() on any states that they don't support in order to avoid
+     * the overhead of the state cacher having to manage them.
      */
     virtual void disableUnusedCachedStates() {}
 
@@ -120,8 +121,8 @@ public:
     virtual ShaderProgram* createShaderProgram(ShaderProgram::ShaderLanguage language) { return nullptr; }
 
     /**
-     * Deletes a shader program created with GraphicsInterface::createShaderProgram(). Deleting a null shader program is a
-     * no-op.
+     * Deletes a shader program created with GraphicsInterface::createShaderProgram(). Deleting a null shader program is
+     * a no-op.
      */
     virtual void deleteShaderProgram(ShaderProgram* program) {}
 
@@ -141,14 +142,15 @@ public:
     virtual unsigned int getMaximumTextureAnisotropy(TextureType type) const { return 0; }
 
     /**
-     * Returns the number of texture units that are available, this is the maximum number of textures that can be used by a
-     * shader or draw call.
+     * Returns the number of texture units that are available, this is the maximum number of textures that can be used
+     * by a shader or draw call.
      */
     virtual unsigned int getTextureUnitCount() const { return 0; }
 
     /**
-     * Returns whether the hardware supports using the given image as a source for the given texture type. Internally this will
-     * check hardware limitations such as maximum texture sizes, NPOT support, pixel format support, and so on.
+     * Returns whether the hardware supports using the given image as a source for the given texture type. Internally
+     * this will check hardware limitations such as maximum texture sizes, NPOT support, pixel format support, and so
+     * on.
      */
     virtual bool isTextureSupported(TextureType type, const Image& image) const { return false; }
 
@@ -158,11 +160,11 @@ public:
     virtual bool isPixelFormatSupported(Image::PixelFormat pixelFormat, TextureType type) const { return false; }
 
     /**
-     * If the given pixel format isn't supported by this graphics interface then this method returns a recommendation of an
-     * alternative pixel format to use instead. If the specified pixel format is supported (i.e.
-     * GraphicsInterface::isPixelFormatSupported() returns true) then it is returned unchanged. The default implementation of
-     * this method falls back to RGBA8 or RGB8 depending on whether the original pixel format contains an alpha channel,
-     * subclasses should alter this as needed.
+     * If the given pixel format isn't supported by this graphics interface then this method returns a recommendation of
+     * an alternative pixel format to use instead. If the specified pixel format is supported (i.e.
+     * GraphicsInterface::isPixelFormatSupported() returns true) then it is returned unchanged. The default
+     * implementation of this method falls back to RGBA8 or RGB8 depending on whether the original pixel format contains
+     * an alpha channel, subclasses should alter this as needed.
      */
     virtual Image::PixelFormat getFallbackPixelFormat(TextureType type, Image::PixelFormat pixelFormat) const
     {
@@ -198,7 +200,8 @@ public:
     virtual TextureObject createTexture() { return nullptr; }
 
     /**
-     * Deletes a texture object created with GraphicsInterface::createTexture(). Deleting a null texture object is a no-op.
+     * Deletes a texture object created with GraphicsInterface::createTexture(). Deleting a null texture object is a
+     * no-op.
      */
     virtual void deleteTexture(TextureObject texture) {}
 
@@ -212,8 +215,8 @@ public:
         /**
          * Constructs this texture data with the passed values.
          */
-        TextureData(unsigned int width = 0, unsigned int height = 0, unsigned int depth = 0, const byte_t* data = nullptr,
-                    unsigned int dataSize = 0)
+        TextureData(unsigned int width = 0, unsigned int height = 0, unsigned int depth = 0,
+                    const byte_t* data = nullptr, unsigned int dataSize = 0)
             : width_(width), height_(height), depth_(depth), data_(data), dataSize_(dataSize)
         {
         }
@@ -253,10 +256,10 @@ public:
     };
 
     /**
-     * Uploads the image data to use for the specified texture object. The \a data parameter holds all the individual mipmaps
-     * with the base level at index 0. For cubemap textures the number of entries in \a data must be a multiple of 6 and consist
-     * of the complete mipmap chain for each cubemap face in the order: positive X, negative X, positive Y, negative Y, positive
-     * Z, negative Z. Returns success flag.
+     * Uploads the image data to use for the specified texture object. The \a data parameter holds all the individual
+     * mipmaps with the base level at index 0. For cubemap textures the number of entries in \a data must be a multiple
+     * of 6 and consist of the complete mipmap chain for each cubemap face in the order: positive X, negative X,
+     * positive Y, negative Y, positive Z, negative Z. Returns success flag.
      */
     virtual bool uploadTexture(TextureObject texture, TextureType type, Image::PixelFormat pixelFormat,
                                const Vector<TextureData>& data)
@@ -265,19 +268,24 @@ public:
     }
 
     /**
-     * Downloads the current image data for the specified texture object and returns it in \a image. This can be used to read
-     * back the result of render to texture effects. Returns success flag.
+     * Downloads the current image data for the specified texture object and returns it in \a image. This can be used to
+     * read back the result of render to texture effects. Returns success flag.
      */
-    virtual bool downloadTexture(TextureObject texture, TextureType type, Image::PixelFormat targetPixelFormat, Image& image)
+    virtual bool downloadTexture(TextureObject texture, TextureType type, Image::PixelFormat targetPixelFormat,
+                                 Image& image)
     {
         return false;
     }
 
     /**
-     * Sets the minification and magnification filters to use on the given texture object. The magnification filter can only be
-     * FilterNearest or FilterLinear. The minification filter can be any of the TextureFilter enumeration values.
+     * Sets the minification and magnification filters to use on the given texture object. The magnification filter can
+     * only be FilterNearest or FilterLinear. The minification filter can be any of the TextureFilter enumeration
+     * values.
      */
-    virtual void setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter, TextureFilter magFilter) {}
+    virtual void setTextureFilter(TextureObject texture, TextureType type, TextureFilter minFilter,
+                                  TextureFilter magFilter)
+    {
+    }
 
     /**
      * Sets the wrap mode to use on the given texture object.
@@ -299,20 +307,21 @@ public:
     }
 
     /**
-     * Sets whether the given texture is a shadow map texture and should have hardware accelerated depth comparisons enabled on
-     * it. The texture should be 2D and have been uploaded with a pixel format of Image::Depth or Image::Depth24Stencil8.
+     * Sets whether the given texture is a shadow map texture and should have hardware accelerated depth comparisons
+     * enabled on it. The texture should be 2D and have been uploaded with a pixel format of Image::Depth or
+     * Image::Depth24Stencil8.
      */
     virtual void setTextureIsShadowMap(TextureObject texture, bool isShadowMap) {}
 
     /**
-     * Creates a new data buffer object, these are used to store vertex and index data for use in rendering. Returns null on
-     * failure.
+     * Creates a new data buffer object, these are used to store vertex and index data for use in rendering. Returns
+     * null on failure.
      */
     virtual DataBufferObject createDataBuffer() { return nullptr; }
 
     /**
-     * Deletes a data buffer object created with GraphicsInterface::createDataBuffer(). Deleting a null data buffer object is a
-     * no-op.
+     * Deletes a data buffer object created with GraphicsInterface::createDataBuffer(). Deleting a null data buffer
+     * object is a no-op.
      */
     virtual void deleteDataBuffer(DataBufferObject dataBufferObject) {}
 
@@ -327,8 +336,8 @@ public:
     }
 
     /**
-     * Uploads data into a data buffer, the data will be optimized for dynamic rendering, i.e. it will be assumed to be changing
-     * frequently. Returns success flag.
+     * Uploads data into a data buffer, the data will be optimized for dynamic rendering, i.e. it will be assumed to be
+     * changing frequently. Returns success flag.
      */
     virtual bool uploadDynamicDataBuffer(DataBufferObject dataBufferObject, DataBufferType type, unsigned int size,
                                          const byte_t* data)
@@ -337,11 +346,14 @@ public:
     }
 
     /**
-     * Updates the data in an existing data buffer, for performance reasons this should only be used on dynamic data buffers,
-     * but will work for static buffers. The size should be the same as the full size of the buffer when it was created. Returns
-     * success flag.
+     * Updates the data in an existing data buffer, for performance reasons this should only be used on dynamic data
+     * buffers, but will work for static buffers. The size should be the same as the full size of the buffer when it was
+     * created. Returns success flag.
      */
-    virtual bool updateDataBuffer(DataBufferObject dataBufferObject, DataBufferType type, const byte_t* data) { return false; }
+    virtual bool updateDataBuffer(DataBufferObject dataBufferObject, DataBufferType type, const byte_t* data)
+    {
+        return false;
+    }
 
     /**
      * Sets the color that the backbuffer is cleared to by GraphicsInterface::clearBuffers().
@@ -394,8 +406,8 @@ public:
     virtual void setScissorEnabled(bool enabled) {}
 
     /**
-     * Sets the current scissor rectangle to use, when scissoring is enabled pixels outside this rectangle will not be affected
-     * by rendering.
+     * Sets the current scissor rectangle to use, when scissoring is enabled pixels outside this rectangle will not be
+     * affected by rendering.
      */
     virtual void setScissorRectangle(const Rect& scissor) {}
 
@@ -410,8 +422,8 @@ public:
     virtual bool setTexture(unsigned int textureUnit, TextureObject texture) { return false; }
 
     /**
-     * Sets whether multisampling is enabled. Note that enabling multisampling will only have an effect when the backbuffer has
-     * been set up with multisample support.
+     * Sets whether multisampling is enabled. Note that enabling multisampling will only have an effect when the
+     * backbuffer has been set up with multisample support.
      */
     virtual void setMultisampleEnabled(bool enabled) {}
 
@@ -431,22 +443,22 @@ public:
     virtual void setStencilTestFunction(const States::StencilTestSetup& function) {}
 
     /**
-     * Sets whether or not the stencil buffer is allowed to be updated when rendering geometry. When enabled, the updates that
-     * are done will be determined by the current stencil compare function and the current stencil operations. When disabled,
-     * fragments will still be culled based on the stencil compare function when stenciling is enabled, however there will be no
-     * alterations to the stencil buffer.
+     * Sets whether or not the stencil buffer is allowed to be updated when rendering geometry. When enabled, the
+     * updates that are done will be determined by the current stencil compare function and the current stencil
+     * operations. When disabled, fragments will still be culled based on the stencil compare function when stenciling
+     * is enabled, however there will be no alterations to the stencil buffer.
      */
     virtual void setStencilWriteEnabled(bool enabled) {}
 
     /**
-     * When stencil testing and stencil write is enabled this specifies what operations should be carried out on the stencil
-     * buffer when the stencil test fails, when the depth test fails, and when both of them pass.
+     * When stencil testing and stencil write is enabled this specifies what operations should be carried out on the
+     * stencil buffer when the stencil test fails, when the depth test fails, and when both of them pass.
      */
     virtual void setStencilOperationsForFrontFaces(const States::StencilOperations& operations) {}
 
     /**
-     * When stencil testing and stencil write is enabled this specifies what operations should be carried out on the stencil
-     * buffer when the stencil test fails, when the depth test fails, and when both of them pass.
+     * When stencil testing and stencil write is enabled this specifies what operations should be carried out on the
+     * stencil buffer when the stencil test fails, when the depth test fails, and when both of them pass.
      */
     virtual void setStencilOperationsForBackFaces(const States::StencilOperations& operations) {}
 
@@ -456,8 +468,8 @@ public:
     virtual void setStencilClearValue(unsigned int clearValue) {}
 
     /**
-     * Returns whether this graphics interface supports depth clamping. Depth clamping clamps the z/w term of fragments to the
-     * 0-1 range which effectively disables near and far plane clipping.
+     * Returns whether this graphics interface supports depth clamping. Depth clamping clamps the z/w term of fragments
+     * to the 0-1 range which effectively disables near and far plane clipping.
      */
     virtual bool isDepthClampSupported() const { return false; }
 
@@ -468,10 +480,10 @@ public:
     virtual void setDepthClampEnabled(bool enabled) {}
 
     /**
-     * Helper class that describes a vertex array source, this is made up of the data buffer object to read data from, an offset
-     * into that buffer, as well as a stride, a component count and the data type that is to be read. There is also a flag
-     * controlling normalization of fixed point integer data types which must be disabled in order to pass integers through
-     * unchanged.
+     * Helper class that describes a vertex array source, this is made up of the data buffer object to read data from,
+     * an offset into that buffer, as well as a stride, a component count and the data type that is to be read. There is
+     * also a flag controlling normalization of fixed point integer data types which must be disabled in order to pass
+     * integers through unchanged.
      */
     class ArraySource
     {
@@ -492,7 +504,8 @@ public:
         }
 
         /**
-         * Returns the data buffer object for this array source, if this is null then this source is invalid or not yet setup.
+         * Returns the data buffer object for this array source, if this is null then this source is invalid or not yet
+         * setup.
          */
         DataBufferObject getDataBufferObject() const { return dataBufferObject_; }
 
@@ -543,7 +556,8 @@ public:
         {
             return UnicodeString() << "Data buffer: " << dataBufferObject_ << ", offset: " << uint64_t(offset_)
                                    << ", stride: " << stride_ << ", component count: " << componentCount_
-                                   << ", data type: " << dataType_ << ", normalize fixed point: " << normalizeFixedPoint_;
+                                   << ", data type: " << dataType_
+                                   << ", normalize fixed point: " << normalizeFixedPoint_;
         }
 
     private:
@@ -557,9 +571,9 @@ public:
     };
 
     /**
-     * Returns the number of vertex attribute arrays supported by this graphics interface. Vertex attribute arrays are used to
-     * provide per-vertex attributes into the graphics hardware, e.g. position, texture coordinates, normals, or any other
-     * per-vertex data that is required.
+     * Returns the number of vertex attribute arrays supported by this graphics interface. Vertex attribute arrays are
+     * used to provide per-vertex attributes into the graphics hardware, e.g. position, texture coordinates, normals, or
+     * any other per-vertex data that is required.
      */
     virtual unsigned int getVertexAttributeArrayCount() const { return 0; }
 
@@ -572,34 +586,36 @@ public:
     virtual bool setVertexAttributeArrayEnabled(unsigned int attributeIndex, bool enabled) { return true; }
 
     /**
-     * Sets the data source for the specified vertex attribute array. The upper limit for \a attributeIndex is returned by
-     * GraphicsInterface::getVertexAttributeArrayCount(). This source is only used if the vertex attribute array has been
-     * enabled using GraphicsInterface::setVertexAttributeArrayEnabled(). Note that this state is ignored when vertex attribute
-     * array configurations are supported as they should be used instead.
+     * Sets the data source for the specified vertex attribute array. The upper limit for \a attributeIndex is returned
+     * by GraphicsInterface::getVertexAttributeArrayCount(). This source is only used if the vertex attribute array has
+     * been enabled using GraphicsInterface::setVertexAttributeArrayEnabled(). Note that this state is ignored when
+     * vertex attribute array configurations are supported as they should be used instead.
      */
     virtual bool setVertexAttributeArraySource(unsigned int attributeIndex, const ArraySource& source) { return true; }
 
     /**
-     * Opaque vertex attribute array configuration object, this is used to store a configuration of predefined vertex attribute
-     * array sources that can then be activated in one call to GraphicsInterface::setVertexAttributeArrayConfiguration().
+     * Opaque vertex attribute array configuration object, this is used to store a configuration of predefined vertex
+     * attribute array sources that can then be activated in one call to
+     * GraphicsInterface::setVertexAttributeArrayConfiguration().
      */
     typedef void* VertexAttributeArrayConfigurationObject;
 
     /**
-     * Returns whether vertex attribute array configuration objects are supported by this graphics interface, when this is false
-     * all calls to GraphicsInterface::createVertexAttributeArrayConfiguration() will return null.
+     * Returns whether vertex attribute array configuration objects are supported by this graphics interface, when this
+     * is false all calls to GraphicsInterface::createVertexAttributeArrayConfiguration() will return null.
      */
     virtual bool isVertexAttribtuteArrayConfigurationSupported() const { return false; }
 
     /**
-     * Creates a new vertex attribute array configuration object from the specified sources. Using vertex attribute array
-     * configuration objects is preferred to individually setting up each attribute array through calls to
-     * GraphicsInterface::setVertexAttributeArrayEnabled() and GraphicsInterface::setVertexAttributeArraySource() as it reduces
-     * CPU and graphics driver load. When a vertex attribute configuration is active all state setup by manual calls to
-     * GraphicsInterface::setVertexAttributeArrayEnabled() and GraphicsInterface::setVertexAttributeArraySource() is ignored.
-     * Returns null if an error occurs.
+     * Creates a new vertex attribute array configuration object from the specified sources. Using vertex attribute
+     * array configuration objects is preferred to individually setting up each attribute array through calls to
+     * GraphicsInterface::setVertexAttributeArrayEnabled() and GraphicsInterface::setVertexAttributeArraySource() as it
+     * reduces CPU and graphics driver load. When a vertex attribute configuration is active all state setup by manual
+     * calls to GraphicsInterface::setVertexAttributeArrayEnabled() and
+     * GraphicsInterface::setVertexAttributeArraySource() is ignored. Returns null if an error occurs.
      */
-    virtual VertexAttributeArrayConfigurationObject createVertexAttributeArrayConfiguration(const Vector<ArraySource>& sources)
+    virtual VertexAttributeArrayConfigurationObject
+        createVertexAttributeArrayConfiguration(const Vector<ArraySource>& sources)
     {
         return nullptr;
     }
@@ -616,17 +632,17 @@ public:
     virtual void setVertexAttributeArrayConfiguration(VertexAttributeArrayConfigurationObject configuration) {}
 
     /**
-     * Clears the color buffer, depth buffer, and stencil buffers of the currently active render target. If no render target is
-     * currently active then the buffers for the primary display surface will be cleared. There are individual flags that
-     * control which buffers should be cleared.
+     * Clears the color buffer, depth buffer, and stencil buffers of the currently active render target. If no render
+     * target is currently active then the buffers for the primary display surface will be cleared. There are individual
+     * flags that control which buffers should be cleared.
      */
     virtual void clearBuffers(bool colorBuffer, bool depthBuffer, bool stencilBuffer) {}
 
     /**
-     * The list of primitive types that can be drawn by GraphicsInterface::drawIndexedPrimitives(). Whether or not the given
-     * primitive type is supported by the active graphics interface can be checked using
-     * GraphicsInterface::isPrimitiveTypeSupported(). Note that these enum values are allowed to be persisted and so their
-     * integer values should not be altered.
+     * The list of primitive types that can be drawn by GraphicsInterface::drawIndexedPrimitives(). Whether or not the
+     * given primitive type is supported by the active graphics interface can be checked using
+     * GraphicsInterface::isPrimitiveTypeSupported(). Note that these enum values are allowed to be persisted and so
+     * their integer values should not be altered.
      */
     enum PrimitiveType
     {
@@ -646,13 +662,13 @@ public:
 
     /**
      * Draws primitive data from the currently active vertex attribute arrays and the specified index data buffer. \a
-     * indexDataType must one of TypeUInt16 or TypeUInt32. The base class implementation of this method gathers statistics on
-     * draw calls and number of triangles rendered, so subclasses should only invoke the base implementation if they were able
-     * to execute the passed draw command.
+     * indexDataType must one of TypeUInt16 or TypeUInt32. The base class implementation of this method gathers
+     * statistics on draw calls and number of triangles rendered, so subclasses should only invoke the base
+     * implementation if they were able to execute the passed draw command.
      */
     virtual void drawIndexedPrimitives(PrimitiveType primitiveType, unsigned int lowestIndex, unsigned int highestIndex,
-                                       unsigned int indexCount, DataType indexDataType, DataBufferObject indexDataBufferObject,
-                                       uintptr_t indexOffset)
+                                       unsigned int indexCount, DataType indexDataType,
+                                       DataBufferObject indexDataBufferObject, uintptr_t indexOffset)
     {
         drawCallCount_++;
 
@@ -676,14 +692,15 @@ public:
     }
 
     /**
-     * Copies the contents of the backbuffer of the current render target into the specified mipmap of a 2D texture. The width
-     * and height of the rectangle should not exceed the width and height of the texture. The rectangle can be offset from the
-     * origin in order to copy a specific region of the backbuffer.
+     * Copies the contents of the backbuffer of the current render target into the specified mipmap of a 2D texture. The
+     * width and height of the rectangle should not exceed the width and height of the texture. The rectangle can be
+     * offset from the origin in order to copy a specific region of the backbuffer.
      */
     virtual void copyBackbufferTo2DTexture(TextureObject texture, unsigned int mipmapLevel, const Rect& rect) {}
 
     /**
-     * Opaque render target object. Null is reserved for 'no render target'. Render targets are used for off-screen rendering.
+     * Opaque render target object. Null is reserved for 'no render target'. Render targets are used for off-screen
+     * rendering.
      */
     typedef void* RenderTargetObject;
 
@@ -698,69 +715,80 @@ public:
     virtual RenderTargetObject createRenderTarget() { return nullptr; }
 
     /**
-     * Deletes a render target object created with GraphicsInterface::createRenderTarget(). Deleting a null render target object
-     * is a no-op.
+     * Deletes a render target object created with GraphicsInterface::createRenderTarget(). Deleting a null render
+     * target object is a no-op.
      */
     virtual void deleteRenderTarget(RenderTargetObject renderTarget) {}
 
     /**
-     * Sets the texture(s) to use as the color output(s) for the given render target object. The number of simultaneous output
-     * buffers is subject to hardware limitations (see GraphicsInterface::getMaximumRenderTargetColorTextures()). If an empty
-     * vector is passed then no color will be output when using the render target but depth data can still be generated if a
-     * depth texture is active (see GraphicsInterface::setRenderTargetDepthBufferTexture()). Cubemap faces can be used as render
-     * targets by passing a cubemap TextureObject in \a textures and then specifying the cubemap face index to render into using
-     * the \a cubemapFaces vector, cubemap indices must be between zero and five. Returns success flag.
+     * Sets the texture(s) to use as the color output(s) for the given render target object. The number of simultaneous
+     * output buffers is subject to hardware limitations (see GraphicsInterface::getMaximumRenderTargetColorTextures()).
+     * If an empty vector is passed then no color will be output when using the render target but depth data can still
+     * be generated if a depth texture is active (see GraphicsInterface::setRenderTargetDepthBufferTexture()). Cubemap
+     * faces can be used as render targets by passing a cubemap TextureObject in \a textures and then specifying the
+     * cubemap face index to render into using the \a cubemapFaces vector, cubemap indices must be between zero and
+     * five. Returns success flag.
      */
-    virtual bool setRenderTargetColorBufferTextures(RenderTargetObject renderTarget, const Vector<TextureObject>& textures,
+    virtual bool setRenderTargetColorBufferTextures(RenderTargetObject renderTarget,
+                                                    const Vector<TextureObject>& textures,
                                                     const Vector<int>& cubemapFaces)
     {
         return false;
     }
 
     /**
-     * Returns the maximum number of color textures that can be set on a render target in order to output to multiple textures
-     * from a single shader. This will be zero if render targets are not supported, and will be at least one when render targets
-     * are supported.
+     * Returns the maximum number of color textures that can be set on a render target in order to output to multiple
+     * textures from a single shader. This will be zero if render targets are not supported, and will be at least one
+     * when render targets are supported.
      */
     virtual unsigned int getMaximumRenderTargetColorTextures() const { return 0; }
 
     /**
      * Sets the texture to use as the depth buffer for the given render target object. Returns success flag.
      */
-    virtual bool setRenderTargetDepthBufferTexture(RenderTargetObject renderTarget, TextureObject texture) { return false; }
+    virtual bool setRenderTargetDepthBufferTexture(RenderTargetObject renderTarget, TextureObject texture)
+    {
+        return false;
+    }
 
     /**
      * Sets the texture to use as the stencil buffer for the given render target object. Returns success flag.
      */
-    virtual bool setRenderTargetStencilBufferTexture(RenderTargetObject renderTarget, TextureObject texture) { return false; }
+    virtual bool setRenderTargetStencilBufferTexture(RenderTargetObject renderTarget, TextureObject texture)
+    {
+        return false;
+    }
 
     /**
-     * Returns whether the given render target object is set up in such as a way that it is ready to be used as a target for
-     * rendering.
+     * Returns whether the given render target object is set up in such as a way that it is ready to be used as a target
+     * for rendering.
      */
     virtual bool isRenderTargetValid(RenderTargetObject renderTarget) const { return false; }
 
     /**
-     * Sets the render target to direct all rendering into. Setting this to null directs all rendering into the backbuffer.
+     * Sets the render target to direct all rendering into. Setting this to null directs all rendering into the
+     * backbuffer.
      */
     virtual void setRenderTarget(RenderTargetObject renderTarget) {}
 
     /**
-     * Tells the graphics interface that the contents of the specified buffers currently attached to the active render target
-     * are not needed anymore. This information can be used on some platforms to avoid costly buffer writebacks to system
-     * memory, particularly on tile-based deferred renderers.
+     * Tells the graphics interface that the contents of the specified buffers currently attached to the active render
+     * target are not needed anymore. This information can be used on some platforms to avoid costly buffer writebacks
+     * to system memory, particularly on tile-based deferred renderers.
      */
     virtual void discardRenderTargetBuffers(bool colorBuffer, bool depthBuffer, bool stencilBuffer) {}
 
     /**
-     * The output destinations for final rendering that is ready for display, each of these can sbe checked for hardware support
-     * using GraphicsInterface::isOutputDestinationSupported(). The render target and viewport for each output destination are
-     * returned by GraphicsInterface::getOutputDestinationRenderTarget() and GraphicsInterface::getOutputDestinationViewport().
+     * The output destinations for final rendering that is ready for display, each of these can sbe checked for hardware
+     * support using GraphicsInterface::isOutputDestinationSupported(). The render target and viewport for each output
+     * destination are returned by GraphicsInterface::getOutputDestinationRenderTarget() and
+     * GraphicsInterface::getOutputDestinationViewport().
      */
     enum OutputDestination
     {
         /**
-         * The default output destination, this is always supported and results in rendering to the system's primary display.
+         * The default output destination, this is always supported and results in rendering to the system's primary
+         * display.
          */
         OutputDefault,
 
@@ -779,17 +807,20 @@ public:
      * Returns whether the spcecified output destination is supported by this graphics interface. The `OutputDefault`
      * destination is always supported.
      */
-    virtual bool isOutputDestinationSupported(OutputDestination destination) const { return destination == OutputDefault; }
+    virtual bool isOutputDestinationSupported(OutputDestination destination) const
+    {
+        return destination == OutputDefault;
+    }
 
     /**
-     * Returns the render target object to use for rendering into the specified output destination. This will always be null for
-     * the default output.
+     * Returns the render target object to use for rendering into the specified output destination. This will always be
+     * null for the default output.
      */
     virtual RenderTargetObject getOutputDestinationRenderTarget(OutputDestination destination) { return nullptr; }
 
     /**
-     * Returns the viewport rectangle for the specified output destination. For the default output destination this method will
-     * always return PlatformInterface::getWindowRect().
+     * Returns the viewport rectangle for the specified output destination. For the default output destination this
+     * method will always return PlatformInterface::getWindowRect().
      */
     virtual Rect getOutputDestinationViewport(OutputDestination destination) const;
 
@@ -809,8 +840,8 @@ public:
     uint64_t getTriangleCount() const { return triangleCount_; }
 
     /**
-     * Returns the number of graphics API calls that have been made since this graphics interface was initialized, this is the
-     * number of calls made into the underlying graphics API (e.g. OpenGL).
+     * Returns the number of graphics API calls that have been made since this graphics interface was initialized, this
+     * is the number of calls made into the underlying graphics API (e.g. OpenGL).
      */
     uint64_t getAPICallCount() const { return apiCallCount_; }
 

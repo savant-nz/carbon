@@ -9,9 +9,9 @@ REPOSITORY_ROOT = File.expand_path File.join(File.dirname(__FILE__), '..')
 require "#{REPOSITORY_ROOT}/Scripts/Shared.rb"
 require "#{REPOSITORY_ROOT}/Scripts/Git.rb"
 
-# This class uses clang-format in order to automatically format the source code under this directory according to the rules
-# specified in the .clang-format file. Requires that clang-format is installed. Some additional custom formatting is done as
-# well. Note that current versions of clang-format do not preserve preprocessor indentation.
+# This class uses clang-format in order to automatically format the source code under this directory according to the
+# rules specified in the .clang-format file. Requires that clang-format is installed. Some additional custom formatting
+# is done as well. Note that current versions of clang-format do not preserve preprocessor indentation.
 class SourceCodeFormatter
   def format_source_code
     source_files.each do |file|
@@ -25,7 +25,8 @@ class SourceCodeFormatter
   private
 
   def source_files
-    excluded_files = %w(Source/CarbonEngine/EngineAssets.h Source/CarbonEngine/Resource.h Source/WindowsSDKAssistant/Resource.h)
+    excluded_files = %w(Source/CarbonEngine/EngineAssets.h Source/CarbonEngine/Resource.h
+                        Source/WindowsSDKAssistant/Resource.h)
 
     Git.list_files(REPOSITORY_ROOT).select do |file|
       file =~ %r{^Source\/.*\.(h|cpp|mm)$} && !excluded_files.include?(file)
@@ -56,7 +57,9 @@ class SourceCodeFormatter
   def custom_format_lines(lines)
     lines.each_with_object([]) do |line, new_lines|
       # Add newline before left-aligned closing brace when the previous line was not indented
-      new_lines << '' if line == '}' && new_lines.last[0] != ' ' && new_lines.last != '{' && new_lines.last.strip != '#endif'
+      if line == '}' && new_lines.last[0] != ' ' && new_lines.last != '{' && new_lines.last.strip != '#endif'
+        new_lines << ''
+      end
 
       new_lines << line
 

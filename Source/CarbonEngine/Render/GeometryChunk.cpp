@@ -98,7 +98,8 @@ GeometryChunk::GeometryChunk(GeometryChunk&& other) noexcept
       parameters_(std::move(other.parameters_)),
       effectSetupResults_(std::move(other.effectSetupResults_)),
       textureReferences_(std::move(other.textureReferences_)),
-      shaderProgramVertexAttributeArrayConfigurations_(std::move(other.shaderProgramVertexAttributeArrayConfigurations_))
+      shaderProgramVertexAttributeArrayConfigurations_(
+          std::move(other.shaderProgramVertexAttributeArrayConfigurations_))
 {
     if (Globals::isEngineInitialized())
         events().addHandler<GatherMemorySummaryEvent>(this);
@@ -142,7 +143,8 @@ void swap(GeometryChunk& first, GeometryChunk& second)
     swap(first.parameters_, second.parameters_);
     swap(first.effectSetupResults_, second.effectSetupResults_);
     swap(first.textureReferences_, second.textureReferences_);
-    swap(first.shaderProgramVertexAttributeArrayConfigurations_, second.shaderProgramVertexAttributeArrayConfigurations_);
+    swap(first.shaderProgramVertexAttributeArrayConfigurations_,
+         second.shaderProgramVertexAttributeArrayConfigurations_);
 }
 
 bool GeometryChunk::processEvent(const Event& e)
@@ -216,7 +218,7 @@ bool GeometryChunk::setDynamic(bool dynamic)
 {
     if (isRegisteredWithRenderer())
     {
-        LOG_ERROR << "Can't alter vertex count once the chunk has been registered with the renderer, must unregister first";
+        LOG_ERROR << "Can't alter vertex count once the chunk has been registered with the renderer";
         return false;
     }
 
@@ -276,7 +278,7 @@ bool GeometryChunk::setIndexValue(unsigned int index, unsigned int value)
 {
     if (indexAllocation_)
     {
-        LOG_ERROR << "Can't alter index data once the chunk has been registered with the renderer, must unregister first";
+        LOG_ERROR << "Can't alter index data once the chunk has been registered with the renderer";
         return false;
     }
 
@@ -308,7 +310,7 @@ bool GeometryChunk::addVertexStream(const VertexStream& vertexStream)
 {
     if (isRegisteredWithRenderer())
     {
-        LOG_ERROR << "Can't alter vertex streams once the chunk has been registered with the renderer, must unregister first";
+        LOG_ERROR << "Can't alter vertex streams once the chunk has been registered with the renderer";
         return false;
     }
 
@@ -368,7 +370,7 @@ bool GeometryChunk::deleteVertexStream(unsigned int streamType)
 {
     if (isRegisteredWithRenderer())
     {
-        LOG_ERROR << "Can't alter vertex streams once the chunk has been registered with the renderer, must unregister first";
+        LOG_ERROR << "Can't alter vertex streams once the chunk has been registered with the renderer";
         return false;
     }
 
@@ -408,8 +410,8 @@ bool GeometryChunk::deleteVertexStream(unsigned int streamType)
         for (auto i = 0U; i < vertexCount_; i++)
         {
             memcpy(&vertexData_[i * vertexSize_], &vertexData_[i * oldVertexSize], offsetToStream);
-            memcpy(&vertexData_[i * vertexSize_ + offsetToStream], &vertexData_[i * oldVertexSize + offsetToStream + entrySize],
-                   dataSizeAfterDeletedStream);
+            memcpy(&vertexData_[i * vertexSize_ + offsetToStream],
+                   &vertexData_[i * oldVertexSize + offsetToStream + entrySize], dataSizeAfterDeletedStream);
         }
     }
 
@@ -437,7 +439,7 @@ bool GeometryChunk::compactIndexData()
 {
     if (indexAllocation_)
     {
-        LOG_ERROR << "Can't alter index data once the chunk has been registered with the renderer, must unregister first";
+        LOG_ERROR << "Can't alter index data once the chunk has been registered with the renderer";
         return false;
     }
 
@@ -479,7 +481,8 @@ bool GeometryChunk::setIndexDataStraight()
     for (auto i = 0U; i < newIndices.size(); i++)
         newIndices[i] = i;
 
-    return setupIndexData(Vector<DrawItem>(1, DrawItem(GraphicsInterface::TriangleList, newIndices.size(), 0)), newIndices);
+    return setupIndexData(Vector<DrawItem>(1, DrawItem(GraphicsInterface::TriangleList, newIndices.size(), 0)),
+                          newIndices);
 }
 
 bool GeometryChunk::generateTriangleStrips(Runnable& r)
@@ -492,8 +495,8 @@ bool GeometryChunk::generateTriangleStrips(Runnable& r)
     auto triangleIndices = Vector<unsigned int>();
     auto nonTriangleDrawItems = Vector<const DrawItem*>();
 
-    // To construct the triangle indices we need to concatenate all the lists and strips Drawitems that are points or lines
-    // can't be stripped
+    // To construct the triangle indices we need to concatenate all the lists and strips Drawitems that are points or
+    // lines can't be stripped
     for (auto& drawItem : drawItems_)
     {
         if (drawItem.getPrimitiveType() == GraphicsInterface::TriangleList)
@@ -597,8 +600,8 @@ bool GeometryChunk::registerWithRenderer()
 
     if (!vertexAllocation_)
     {
-        vertexAllocation_ =
-            dataBuffers().allocate(GraphicsInterface::VertexDataBuffer, getVertexDataSize(), vertexData_.getData(), isDynamic_);
+        vertexAllocation_ = dataBuffers().allocate(GraphicsInterface::VertexDataBuffer, getVertexDataSize(),
+                                                   vertexData_.getData(), isDynamic_);
 
         if (!vertexAllocation_)
         {
@@ -622,8 +625,8 @@ bool GeometryChunk::registerWithRenderer()
         }
     }
 
-    // The cached VertexAttributeArrayConfiguration objects stored on this chunk are deleted when the main window is recreated,
-    // they are tied to the active graphics interface
+    // The cached VertexAttributeArrayConfiguration objects stored on this chunk are deleted when the main window is
+    // recreated, they are tied to the active graphics interface
     events().addHandler<RecreateWindowEvent>(this, true);
 
     return true;
@@ -739,8 +742,8 @@ void GeometryChunk::load(FileReader& file)
             file.read(vertexData_);
 
 #ifdef CARBON_BIG_ENDIAN
-            // Change the endianness of the vertex data by going through each stream component of each vertex individually and
-            // converting it
+            // Change the endianness of the vertex data by going through each stream component of each vertex
+            // individually and converting it
             auto vertexData = vertexData_.getData();
 
             for (auto i = 0U; i < vertexCount_; i++)
@@ -804,8 +807,8 @@ void GeometryChunk::load(FileReader& file)
 
         file.endVersionedSection();
 
-        // If there are tangent and normal vertex streams but no bitangent stream then add one now, newer meshes will have a
-        // bitangent stream already but older meshes may not
+        // If there are tangent and normal vertex streams but no bitangent stream then add one now, newer meshes will
+        // have a bitangent stream already but older meshes may not
         if (!hasVertexStream(VertexStream::Bitangent) && hasVertexStream(VertexStream::Tangent) &&
             hasVertexStream(VertexStream::Normal))
             calculateTangentBases();
@@ -887,8 +890,8 @@ const Sphere& GeometryChunk::getSphere() const
 {
     if (isSphereDirty_)
     {
-        // TODO: This algorithm is much too simple and results in larger bounding spheres than necessary. It should be replaced
-        // with a bona fide minimum bounding sphere algorithm
+        // TODO: This algorithm is much too simple and results in larger bounding spheres than necessary. It should be
+        // replaced with a bona fide minimum bounding sphere algorithm
 
         isSphereDirty_ = false;
         sphere_ = Sphere();
@@ -947,10 +950,10 @@ bool GeometryChunk::setupForEffect(const Effect* effect) const
             return effectSetupResult.result == EffectSetupResult::Success;
     }
 
-    // Setup for new effect, this basically just involves loading textures for internal parameters that are stored on this
-    // chunk. For example, if this chunk is to be drawn with lightmapping, the lightmap texture name is not stored in the
-    // material but is stored in the chunk's parameters, which is where the shader will read it from. Texture parameters have to
-    // be setup by Shader::prepareParameters().
+    // Setup for new effect, this basically just involves loading textures for internal parameters that are stored on
+    // this chunk. For example, if this chunk is to be drawn with lightmapping, the lightmap texture name is not stored
+    // in the material but is stored in the chunk's parameters, which is where the shader will read it from. Texture
+    // parameters have to be setup by Shader::prepareParameters().
     auto shader = effect->getActiveShader();
     if (!shader)
         return false;
@@ -962,7 +965,8 @@ bool GeometryChunk::setupForEffect(const Effect* effect) const
     {
         if (!hasVertexStream(vertexStream.getType()))
         {
-            LOG_ERROR << "Can't draw with " << effect->getName() << ", missing vertex stream: " << vertexStream.getName();
+            LOG_ERROR << "Can't draw with " << effect->getName()
+                      << ", missing vertex stream: " << vertexStream.getName();
 
             effectSetupResults_.emplace(effect->getName(), EffectSetupResult::MissingVertexStream);
             return false;
@@ -1084,12 +1088,16 @@ bool GeometryChunk::setVertexCount(unsigned int newVertexCount, bool preserveDat
         }
         catch (const std::bad_alloc&)
         {
-            throw Exception() << "Vertex allocation failed, size " << FileSystem::formatByteSize(newVertexCount * vertexSize_);
+            throw Exception() << "Vertex allocation failed, size "
+                              << FileSystem::formatByteSize(newVertexCount * vertexSize_);
         }
 
         // Copy old data into new array if that is requested
         if (preserveData)
-            memcpy(newVertexData.getData(), vertexData_.getData(), std::min(vertexCount_, newVertexCount) * vertexSize_);
+        {
+            memcpy(newVertexData.getData(), vertexData_.getData(),
+                   std::min(vertexCount_, newVertexCount) * vertexSize_);
+        }
 
         // Update the vertex data pointer
         swap(vertexData_, newVertexData);
@@ -1229,7 +1237,8 @@ bool GeometryChunk::calculateTangentBases()
 
     // Check we have the expected position and diffuse texture coordinate streams
     if (getVertexStream(VertexStream::Position) != VertexStream(VertexStream::Position, 3) ||
-        getVertexStream(VertexStream::DiffuseTextureCoordinate) != VertexStream(VertexStream::DiffuseTextureCoordinate, 2))
+        getVertexStream(VertexStream::DiffuseTextureCoordinate) !=
+            VertexStream(VertexStream::DiffuseTextureCoordinate, 2))
         return false;
 
     // Make sure that there are vertex streams for the tangent and bitangent data
@@ -1364,8 +1373,10 @@ unsigned int GeometryChunk::intersect(const Ray& ray, Vector<IntersectionResult>
             {
                 auto vertices = std::array<const Vec3*, 3>{
                     {getVertexDataAt<Vec3>(getIndexValue(drawItem.getIndexOffset() + j), positionOffset),
-                     getVertexDataAt<Vec3>(getIndexValue(drawItem.getIndexOffset() + j + ((j & 1) ? 2 : 1)), positionOffset),
-                     getVertexDataAt<Vec3>(getIndexValue(drawItem.getIndexOffset() + j + ((j & 1) ? 1 : 2)), positionOffset)}};
+                     getVertexDataAt<Vec3>(getIndexValue(drawItem.getIndexOffset() + j + ((j & 1) ? 2 : 1)),
+                                           positionOffset),
+                     getVertexDataAt<Vec3>(getIndexValue(drawItem.getIndexOffset() + j + ((j & 1) ? 1 : 2)),
+                                           positionOffset)}};
 
                 auto t = 0.0f;
                 if (ray.intersect(*vertices[0], *vertices[1], *vertices[2], &t))

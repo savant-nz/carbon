@@ -21,7 +21,10 @@ public:
     /**
      * Linear interpolation between two values.
      */
-    template <typename T> static T linear(const T& start, const T& end, float t) { return T(start * (1.0f - t) + end * t); }
+    template <typename T> static T linear(const T& start, const T& end, float t)
+    {
+        return T(start * (1.0f - t) + end * t);
+    }
 
     /**
      * Cosine interpolation between two values.
@@ -44,8 +47,8 @@ public:
 
     /**
      * Does smooth cubic interpolation between the specified set of points. Note that control points are automatically
-     * calculated to ensure that the returned path will pass through each point. The passed \a t value should be in the range
-     * 0-1.
+     * calculated to ensure that the returned path will pass through each point. The passed \a t value should be in the
+     * range 0-1.
      */
     static Vec3 cubic(const Vector<Vec3>& points, float t)
     {
@@ -56,16 +59,17 @@ public:
 
         // Get the 4 points that define this segment of the curve
         auto index = int(t * float(points.size()));
-        auto p = std::array<Vec3, 4>{{points[(index + points.size() - 1) % points.size()], points[index % points.size()],
-                                      points[(index + 1) % points.size()], points[(index + 2) % points.size()]}};
+        auto p =
+            std::array<Vec3, 4>{{points[(index + points.size() - 1) % points.size()], points[index % points.size()],
+                                 points[(index + 1) % points.size()], points[(index + 2) % points.size()]}};
 
         // Calculate midpoints
         auto m = std::array<Vec3, 3>{{(p[0] + p[1]) * 0.5f, (p[1] + p[2]) * 0.5f, (p[2] + p[3]) * 0.5f}};
 
         // Calculate control points
-        auto c =
-            std::array<Vec3, 2>{{p[1] + (m[1] - m[0]) * (p[1].distance(p[2]) / (p[0].distance(p[1]) + p[1].distance(p[2]))),
-                                 p[2] - (m[2] - m[1]) * (p[2].distance(p[3]) / (p[1].distance(p[2]) + p[2].distance(p[3])))}};
+        auto c = std::array<Vec3, 2>{
+            {p[1] + (m[1] - m[0]) * (p[1].distance(p[2]) / (p[0].distance(p[1]) + p[1].distance(p[2]))),
+             p[2] - (m[2] - m[1]) * (p[2].distance(p[3]) / (p[1].distance(p[2]) + p[2].distance(p[3])))}};
 
         // Get interpolation fraction
         t = t * float(points.size()) - float(index);
