@@ -15,7 +15,7 @@ CARBON_SHARED_SCRIPT_START_TIME = Time.now unless defined? CARBON_SHARED_SCRIPT_
 
 CARBON_DEPENDENCIES = {
   AngelScript:     '2.31.1',
-  Bullet:          '2.83.7',
+  Bullet:          '2.85.1',
   FreeImage:       '3.17.0',
   FreeType:        '2.7',
   OpenALSoft:      '1.17.2',

@@ -59,7 +59,7 @@ Export('GetDependenciesPath')
 # can be specified as a keyword, which is required in the case of Max and Maya.
 def GetDependencyPath(dependency, *paths, **keywords):
     defaultVersions = {
-        'AngelScript': '2.31.1', 'Bullet': '2.83.7', 'FreeImage': '3.17.0', 'FreeType': '2.7', 'Max': '', 'Maya': '',
+        'AngelScript': '2.31.1', 'Bullet': '2.85.1', 'FreeImage': '3.17.0', 'FreeType': '2.7', 'Max': '', 'Maya': '',
         'OculusRift': '0.8', 'Ogg': '1.3.2', 'OpenALSoft': '1.17.2', 'OpenAssetImport': '3.2', 'PhysX': '3.3.2',
         'Vorbis': '1.3.5', 'ZLib': '1.2.8'
     }
