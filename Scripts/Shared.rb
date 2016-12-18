@@ -19,7 +19,7 @@ CARBON_DEPENDENCIES = {
   FreeImage:       '3.17.0',
   FreeType:        '2.7',
   OpenALSoft:      '1.17.2',
-  OpenAssetImport: '3.2',
+  OpenAssetImport: '3.3.1',
   OculusRift:      '0.8',
   PhysX:           '3.3.2',
   Vorbis:          '1.3.5',
