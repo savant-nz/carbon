@@ -430,8 +430,8 @@ bool PlatformSDL::processEvent(const Event& e)
                         {
                             onInputDownEvent(key);
 
-#ifdef MACOSX
-                            // Cmd+Q quits the application on Mac OS X
+#ifdef MACOS
+                            // Cmd+Q quits the application on macOS
                             if (key == KeyQ && (sdlEvent.key.keysym.mod & (KMOD_LGUI | KMOD_RGUI)))
                                 events().dispatchEvent(ShutdownRequestEvent());
 #endif

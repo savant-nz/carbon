@@ -793,7 +793,7 @@ UnicodeString FileSystem::getUserDataLocalDirectory()
 #elif defined(APPLE)
     directory = joinPaths(getUserLibraryDirectory(), "Preferences/");
 
-#ifndef MACOSX
+#ifndef MACOS
     scopeToApplication = false;
 #endif
 

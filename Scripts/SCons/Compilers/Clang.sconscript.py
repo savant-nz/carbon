@@ -24,7 +24,7 @@ if 'TERM' in os.environ:
     env['ENV']['TERM'] = os.environ['TERM']
     env['CCFLAGS'] += ['-fcolor-diagnostics']
 
-# Access the toolchain through xcrun when building on OS X
+# Access the toolchain through xcrun when building on macOS
 if sys.platform == 'darwin':
     for key in ['CC', 'CXX', 'LINK', 'AR', 'AS', 'RANLIB']:
         env[key] = 'xcrun ' + env[key]

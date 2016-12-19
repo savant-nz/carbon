@@ -5,7 +5,7 @@
 
 #pragma once
 
-#ifdef CARBON_INCLUDE_PLATFORM_MACOSX
+#ifdef CARBON_INCLUDE_PLATFORM_MACOS
 
 #include "CarbonEngine/Platform/PlatformInterface.h"
 
@@ -13,14 +13,14 @@ namespace Carbon
 {
 
 /**
- * Mac OS X platform implementation.
+ * macOS platform implementation.
  */
-class PlatformMacOSX : public PlatformInterface
+class PlatformMacOS : public PlatformInterface
 {
 public:
 
-    PlatformMacOSX();
-    ~PlatformMacOSX() override;
+    PlatformMacOS();
+    ~PlatformMacOS() override;
 
     bool setup() override;
     bool createWindow(const Resolution& resolution, WindowMode windowMode, FSAAMode fsaa) override;

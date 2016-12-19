@@ -362,7 +362,7 @@ bool Font::loadFromSystemFont(const UnicodeString& name, unsigned int size, cons
         auto systemFontPath = std::array<wchar_t, MAX_PATH>();
         SHGetFolderPathW(nullptr, CSIDL_FONTS, nullptr, SHGFP_TYPE_CURRENT, &systemFontPath[0]);
         auto systemFontPaths = std::array<UnicodeString, 1>{{fromUTF16(&systemFontPath[0])}};
-#elif defined(MACOSX)
+#elif defined(MACOS)
         auto systemFontPaths =
             std::array<UnicodeString, 3>{{"/Library/Fonts", "/Library/Fonts/Microsoft", "/System/Library/Fonts"}};
 #else

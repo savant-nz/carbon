@@ -1,0 +1,12 @@
+#!/usr/bin/ruby
+#
+# This script is run during the install of the Carbon SDK on macOS and is responsible for deleting any currently
+# installed SDK.
+#
+
+require 'fileutils'
+
+XCODE_PROJECT_TEMPLATES = "#{ENV['HOME']}/Library/Developer/Xcode/Templates/Project Templates/Mac/Application".freeze
+
+FileUtils.rm_rf '/Applications/Carbon SDK'
+FileUtils.rm_rf "#{XCODE_PROJECT_TEMPLATES}/CarbonEngine Application"

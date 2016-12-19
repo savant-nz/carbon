@@ -249,7 +249,7 @@ public:
     bool isReadyForUse() const { return texture_ && geometryChunk_.getVertexCount(); }
 
     /**
-     * On Windows and Mac OS X this method loads a system font into this font object, sampled at the specified size.
+     * On Windows and macOS this method loads a system font into this font object, sampled at the specified size.
      * Returns success flag.
      *
      * The \a codePoints parameter specifies which Unicode code points will be included in the created font. If this is

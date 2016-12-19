@@ -147,7 +147,7 @@ public:
 
 #ifdef __OBJC__
     /**
-     * On Mac OS X and iOS, constructs this string from the contents of the specified NSString.
+     * On macOS and iOS, constructs this string from the contents of the specified NSString.
      */
     StringBase(const NSString* nsString);
 #endif
@@ -1399,7 +1399,7 @@ public:
 
 #ifdef __OBJC__
     /**
-     * On Mac OS X and iOS, converts this string to an NSString.
+     * On macOS and iOS, converts this string to an NSString.
      */
     NSString* toNSString() const
     {

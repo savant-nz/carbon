@@ -76,9 +76,9 @@ DEFINE_GLOBAL(ThemeManager, themeManager_, theme)
 
 #ifndef CONSOLE
 // This logfile output sink is active for the duration of the engine's execution on all non-console platforms. On
-// Windows, Mac OS X and Linux it logs all warnings, errors and debug output to stderr, and on iOS all log output is
-// sent straight to stdout. On Windows all output is also sent to the debugger output. Console platforms handle their
-// own log display.
+// Windows, macOS and Linux it logs all warnings, errors and debug output to stderr, and on iOS all log output is sent
+// straight to stdout. On Windows all output is also sent to the debugger output. Console platforms handle their own
+// log display.
 static class LogfileOutputPrinter : public Logfile::OutputSink
 {
 public:
@@ -387,9 +387,9 @@ void Globals::setCommandLineParameters(int argc, const char** argv)
     for (auto i = 1; i < argc; i++)
         commandLineParameters_.append(argv[i]);
 
-#ifdef MACOSX
-    // Remove the process serial number that Mac OS X passes on the command line when an application is run from the
-    // Finder or Dock
+#ifdef MACOS
+    // Remove the process serial number that macOS passes on the command line when an application is run from the Finder
+    // or Dock
     commandLineParameters_.eraseIf([](const UnicodeString& s) { return s.startsWith("-psn_"); });
 #endif
 }

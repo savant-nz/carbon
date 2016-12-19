@@ -140,7 +140,7 @@ elif 'platform' in ARGUMENTS:
 elif os.name == 'nt':
     platformScriptFile = 'Windows.sconscript.py'
 elif sys.platform == 'darwin':
-    platformScriptFile = 'MacOSX.sconscript.py'
+    platformScriptFile = 'macOS.sconscript.py'
 elif sys.platform == 'linux2':
     platformScriptFile = 'Linux.sconscript.py'
 
@@ -173,7 +173,7 @@ Export('Is64Bit')
 # Add a method for determining whether the main engine library is being linked statically. The default is to link
 # statically except when running `scons install` on a POSIX platform.
 def IsCarbonEngineStatic(self):
-    if (platform == 'Linux' or platform == 'MacOSX') and 'install' in COMMAND_LINE_TARGETS:
+    if (platform == 'Linux' or platform == 'macOS') and 'install' in COMMAND_LINE_TARGETS:
         if ARGUMENTS.get('static', '') == 'true':
             print('Error: the \'install\' target should not be used when building with static=true')
             Exit(1)
@@ -199,7 +199,7 @@ Export('carbonEngineLibraryName')
 # relevant to the current platform. Optional keywords are 'recursive' (which defaults to False).
 def GlobDirectories(self, *directories, **keywords):
     sourceFileExtensions = ['c', 'cpp', 'cc', 'cxx']
-    if platform == 'MacOSX' or platform == 'iOS':
+    if platform == 'macOS' or platform == 'iOS':
         sourceFileExtensions += ['mm']
 
     # Convert to array
@@ -246,7 +246,7 @@ baseEnv.AddMethod(GetDependentHeaders)
 
 
 # Add a ChMod action on POSIX platforms
-if platform == 'Linux' or platform == 'MacOSX':
+if platform == 'Linux' or platform == 'macOS':
     ChMod = SCons.Action.ActionFactory(os.chmod, lambda dest, mode: 'ChMod("%s", 0%o)' % (dest, mode))
     Export('ChMod')
 

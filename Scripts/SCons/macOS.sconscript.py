@@ -10,20 +10,20 @@ Import('*')
 
 env = SConscript('Compilers/Clang.sconscript.py')
 
-# Find the latest Mac OS X SDK
+# Find the latest macOS SDK
 sdkPrefix = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.'
 paths = glob.glob(sdkPrefix + '*')
 if paths:
     paths = sorted(paths, key=lambda path: int(path[len(sdkPrefix):-4]))
-    macOSXSDKPath = paths[-1]
+    macOSSDKPath = paths[-1]
 else:
-    print('Error: failed finding Mac OS X SDK, check that Xcode is installed')
+    print('Error: failed finding macOS SDK, check that Xcode is installed')
     Exit(1)
 
 # Setup environment for the selected SDK
-flags = ['-arch', 'x86_64', '-mmacosx-version-min=10.9', '-isysroot', macOSXSDKPath]
+flags = ['-arch', 'x86_64', '-mmacosx-version-min=10.9', '-isysroot', macOSSDKPath]
 env['CCFLAGS'] += flags + ['-fobjc-arc']
-env['LINKFLAGS'] += flags + ['-Wl,-syslibroot,' + macOSXSDKPath]
+env['LINKFLAGS'] += flags + ['-Wl,-syslibroot,' + macOSSDKPath]
 
 
 # The SetupForLinkingCarbon() method sets up the environment for linking Carbon as a dynamic library or linking Carbon
@@ -49,7 +49,7 @@ def Carbonize(self, **keywords):
 
     if 'carbonroot' in ARGUMENTS:
         self['CPPPATH'] += [os.path.join(ARGUMENTS['carbonroot'], 'Source')]
-        self['LIBPATH'] += [os.path.join(ARGUMENTS['carbonroot'], 'Build', 'MacOSX', 'x64', 'Clang', buildType)]
+        self['LIBPATH'] += [os.path.join(ARGUMENTS['carbonroot'], 'Build', 'macOS', 'x64', 'Clang', buildType)]
 
         if self.IsCarbonEngineStatic():
             self.SetupForLinkingCarbon()
@@ -66,5 +66,5 @@ def Carbonize(self, **keywords):
 env.AddMethod(Carbonize)
 
 # Return the build details
-details = {'platform': 'MacOSX', 'architecture': 'x64', 'compiler': 'Clang', 'env': env}
+details = {'platform': 'macOS', 'architecture': 'x64', 'compiler': 'Clang', 'env': env}
 Return('details')

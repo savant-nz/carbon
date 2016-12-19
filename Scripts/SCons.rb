@@ -44,7 +44,7 @@ module SCons
       Android: { architecture: :ARMv7,             compiler: :GCC },
       iOS:     { architecture: :ARMv7,             compiler: :Clang },
       Linux:   { architecture: linux_architecture, compiler: :GCC },
-      MacOSX:  { architecture: :x64,               compiler: :Clang },
+      macOS:   { architecture: :x64,               compiler: :Clang },
       Windows: { architecture: :x86,               compiler: :VisualStudio2015 }
     }.fetch(platform).merge(
       platform: platform, type: :Release, strict: false

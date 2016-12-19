@@ -66,12 +66,12 @@ int main(int argc, const char* argv[])
     return Carbon::main();
 }
 
-#elif defined(MACOSX)
+#elif defined(MACOS)
 
 namespace Carbon
 {
 
-extern CARBON_API int runMacOSXApplication(const std::function<int()>& fnMain, const UnicodeString& applicationName);
+extern CARBON_API int runMacOSApplication(const std::function<int()>& fnMain, const UnicodeString& applicationName);
 
 }
 
@@ -79,7 +79,7 @@ int main(int argc, const char* argv[])
 {
     Carbon::Globals::setInStaticInitialization(false);
     Carbon::Globals::setCommandLineParameters(argc, argv);
-    return Carbon::runMacOSXApplication(Carbon::main, CARBON_QUOTE_MACRO_VALUE(CARBON_ENTRY_POINT_CLASS));
+    return Carbon::runMacOSApplication(Carbon::main, CARBON_QUOTE_MACRO_VALUE(CARBON_ENTRY_POINT_CLASS));
 }
 
 #elif defined(iOS)

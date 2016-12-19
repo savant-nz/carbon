@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 #
-# This script is run following the install of the Carbon SDK for Mac OS X and iOS and is responsible for the following:
+# This script is run following the install of the Carbon SDK on macOS and is responsible for the following:
 #
 #   - Creating the required environment variables in ~/.profile
 #   - Installing the Xcode project template

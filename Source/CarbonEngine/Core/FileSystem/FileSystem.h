@@ -35,7 +35,7 @@ namespace Carbon
  * filenames, the same way as for any file system volume. The $SAVE$ file system volume will always map to a proper
  * location for the storage of this kind of persistent per-user data on the active platform. The engine will never alter
  * the contents of $SAVE$, and the application is expected to manage any files and folders that it chooses to create
- * inside the volume. On Windows $SAVE$/ maps to "%APPDATA%/<application name>/Save", on Mac OS X $SAVE$/ maps to
+ * inside the volume. On Windows $SAVE$/ maps to "%APPDATA%/<application name>/Save", on macOS $SAVE$/ maps to
  * "~/Library/Preferences/<application name>/Save", and on Linux $SAVE$/ maps to "~/.<application name>/Save".
  *
  * File system access is thread-safe, and there is support for asynchromous loading of files through
@@ -259,14 +259,14 @@ public:
 
     /**
      * On case-insensitive platforms this returns the correct case for the specified file or directory as stored on the
-     * local file system. On Mac OS X and iOS this method also expands any symlinks in the path. On Linux this method
+     * local file system. On macOS and iOS this method also expands any symlinks in the path. On Linux this method
      * returns \a path unchanged.
      */
     static UnicodeString getCanonicalPath(const UnicodeString& path);
 
 #ifdef POSIX
     /**
-     * On Linux and Mac OS X this returns the current user's home directory as an absolute path.
+     * On Linux and macOS this returns the current user's home directory as an absolute path.
      */
     static UnicodeString getHomeDirectory();
 #endif

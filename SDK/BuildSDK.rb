@@ -6,12 +6,12 @@
 
 #
 # This script builds and packages the engine into a redistributable SDK for the current platform. There are SDKs for
-# Windows and Mac OS X / iOS. To use this script the build environment must be setup, instructions for this can be found
-# in BUILDING.md.
+# Windows and Apple (macOS & iOS). To use this script the build environment must be setup, instructions for this can be
+# found in BUILDING.md.
 #
 # On Windows, "Carbon SDK <version>.exe" is created.
 #
-# On Mac OS X, "Carbon SDK <version>.dmg" is created.
+# On macOS, "Carbon SDK <version>.dmg" is created.
 #
 
 REPOSITORY_ROOT = File.expand_path File.join(File.dirname(__FILE__), '..')
@@ -119,10 +119,10 @@ class SDKBuilderBase
   end
 end
 
-require "#{REPOSITORY_ROOT}/SDK/MacOSX/MacOSXSDKBuilder.rb"
+require "#{REPOSITORY_ROOT}/SDK/Apple/AppleSDKBuilder.rb"
 require "#{REPOSITORY_ROOT}/SDK/Windows/WindowsSDKBuilder.rb"
 
-builder_class = { Windows: WindowsSDKBuilder, MacOSX: MacOSXSDKBuilder }[platform]
+builder_class = { Windows: WindowsSDKBuilder, macOS: AppleSDKBuilder }[platform]
 
 error 'SDK build not supported on this platform' unless builder_class
 

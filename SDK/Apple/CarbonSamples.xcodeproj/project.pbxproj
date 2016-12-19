@@ -542,7 +542,7 @@
 		79F6CB2117AFF58600020481 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				79F6CB2317AFF59E00020481 /* MacOSX */,
+				79F6CB2317AFF59E00020481 /* macOS */,
 				79F6CB2217AFF58D00020481 /* iOS */,
 			);
 			name = Frameworks;
@@ -563,7 +563,7 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		79F6CB2317AFF59E00020481 /* MacOSX */ = {
+		79F6CB2317AFF59E00020481 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				79F6CAC417AFF2AC00020481 /* Cocoa.framework */,
@@ -573,7 +573,7 @@
 				79F6CAC917AFF2BB00020481 /* OpenGL.framework */,
 				79F6CACC17AFF2C100020481 /* StoreKit.framework */,
 			);
-			name = MacOSX;
+			name = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

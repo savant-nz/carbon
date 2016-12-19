@@ -7,7 +7,7 @@
 
 #ifdef CARBON_INCLUDE_OPENGL11
 
-#ifndef MACOSX
+#ifndef MACOS
     #include <GL/gl.h>
 #else
     #include <OpenGL/gl.h>

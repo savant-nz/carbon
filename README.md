@@ -8,8 +8,8 @@ The project's website is at [http://savant-nz.github.io/carbon](http://savant-nz
 ## Features
 
 - Written in modern C++11
-- Broad platform support: Windows, Mac OS X, Linux, and iOS devices (iPhone/iPad)
-- Prebuilt SDKs for Windows, Mac OS X and iOS containing samples and project wizards to help you get started
+- Broad platform support: Windows, macOS, Linux, and iOS devices (iPhone/iPad)
+- Prebuilt SDKs for Windows, macOS and iOS containing samples and project wizards to help you get started
 - Graphics API independent, choose from OpenGL 1.1, OpenGL 4.1 and OpenGL ES 2
 - Deferred per-pixel lighting and shadowing with support for many concurrent lights
 - Materials-based rendering system with support for parallax mapping, ambient occlusion, reflections, refractions,

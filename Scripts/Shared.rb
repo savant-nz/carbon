@@ -13,18 +13,20 @@ require 'rbconfig'
 
 CARBON_SHARED_SCRIPT_START_TIME = Time.now unless defined? CARBON_SHARED_SCRIPT_START_TIME
 
-CARBON_DEPENDENCIES = {
-  AngelScript:     '2.31.1',
-  Bullet:          '2.85.1',
-  FreeImage:       '3.17.0',
-  FreeType:        '2.7',
-  OpenALSoft:      '1.17.2',
-  OpenAssetImport: '3.3.1',
-  OculusRift:      '0.8',
-  PhysX:           '3.3.2',
-  Vorbis:          '1.3.5',
-  ZLib:            '1.2.8'
-}.freeze unless defined? CARBON_DEPENDENCIES
+unless defined? CARBON_DEPENDENCIES
+  CARBON_DEPENDENCIES = {
+    AngelScript:     '2.31.1',
+    Bullet:          '2.85.1',
+    FreeImage:       '3.17.0',
+    FreeType:        '2.7',
+    OpenALSoft:      '1.17.2',
+    OpenAssetImport: '3.3.1',
+    OculusRift:      '0.8',
+    PhysX:           '3.3.2',
+    Vorbis:          '1.3.5',
+    ZLib:            '1.2.8'
+  }.freeze
+end
 
 # Returns whether the rbconfig identifier for this platform contains the passed identifier.
 def host_os?(identifier)
@@ -36,8 +38,8 @@ def windows?
   host_os?('mswin') || host_os?('mingw')
 end
 
-# Returns whether this script is running on Mac OS X.
-def macosx?
+# Returns whether this script is running on macOS.
+def macos?
   host_os? 'darwin'
 end
 
@@ -46,17 +48,17 @@ def linux?
   host_os? 'linux'
 end
 
-# Returns the name of the current platform as a symbol, will return :Windows, :MacOSX, :Linux or nil.
+# Returns the name of the current platform as a symbol, will return :Windows, :macOS, :Linux or nil.
 def platform
   return :Windows if windows?
-  return :MacOSX if macosx?
+  return :macOS if macos?
   return :Linux if linux?
   nil
 end
 
 # Returns an array of the supported platforms.
 def supported_platforms
-  [:Android, :iOS, :Linux, :MacOSX, :Windows]
+  [:Android, :iOS, :Linux, :macOS, :Windows]
 end
 
 # Returns the supported build architectures on iOS, the values indicate the corresponding toolchain architecture.
@@ -104,7 +106,7 @@ end
 def cpu_count
   if windows?
     ENV['NUMBER_OF_PROCESSORS'].to_i
-  elsif macosx?
+  elsif macos?
     IO.popen('sysctl -n hw.ncpu').readline.to_i
   elsif linux?
     IO.popen('grep -c ^processor /proc/cpuinfo').readline.to_i
@@ -188,8 +190,8 @@ class String
   end
 end
 
-# On Mac OS X, creates a .dmg disk image from the specified options
-def create_macosx_dmg(options)
+# On macOS, creates a .dmg disk image from the specified options
+def create_macos_dmg(options)
   source_folder = options.fetch :source_folder
   volume_name = options.fetch :volume_name
   target = options.fetch :target
@@ -208,7 +210,7 @@ def open_file_with_default_application(file)
 
   if windows?
     command = "start #{file.split('/').map(&:quoted).join('\\')}"
-  elsif macosx?
+  elsif macos?
     command = "open #{file.quoted}"
   elsif linux?
     command = "xdg-open \"file://#{file}\""
@@ -231,15 +233,15 @@ def wait_on_threads(*threads)
   end
 end
 
-# For use on Mac OS X and iOS, this method merges the passed static libraries into a single output static library.
+# For use on macOS and iOS, this method merges the passed static libraries into a single output static library.
 def merge_static_libraries(inputs, output, options = {})
   inputs = Array(inputs).select { |input| File.file? input }
 
   FileUtils.mkpath File.dirname(output)
 
-  options[:sdk] ||= :macosx
+  sdk = options.fetch :sdk, :macosx
 
-  command = "xcrun -sdk #{options[:sdk]} libtool -static -o #{output.quoted} #{inputs.map(&:quoted).join ' '}"
+  command = "xcrun -sdk #{sdk} libtool -static -o #{output.quoted} #{inputs.map(&:quoted).join ' '}"
 
   run command, { echo: false, error: 'Failed merging static libraries' }.merge(options) do |line|
     print line unless line =~ /has no symbols/

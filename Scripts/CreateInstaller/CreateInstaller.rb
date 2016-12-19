@@ -5,8 +5,8 @@
 
 #
 # This script provides a standard interface for Carbon applications to easily package themselves for redistribution on
-# both the Windows and Mac OS X platforms. On Windows a .exe installer will be created and on Mac OS X a .dmg disk image
-# will be created.
+# both the Windows and macOS platforms. On Windows a .exe installer will be created and on macOS a .dmg disk image will
+# be created.
 #
 # Users of this script should access it through the `CARBON_CREATE_INSTALLER_SCRIPT` environment variable:
 #
@@ -31,7 +31,7 @@
 #
 #                     build: { root: '.', target: 'MyApplication', arguments: { architecture: :x64, strict: true } }
 #
-#   :icon           The installer icon. On Windows this is an ICO file and on Mac OS X it is an ICNS file. Optional.
+#   :icon           The installer icon. On Windows this is an ICO file and on macOS it is an ICNS file. Optional.
 #
 #                     icon: 'MyApplication.ico',
 #
@@ -78,7 +78,7 @@ require "#{THIS_DIRECTORY}/../Shared.rb"
 require "#{THIS_DIRECTORY}/../NSIS.rb"
 require "#{THIS_DIRECTORY}/../SCons.rb"
 
-# This class contains shared functionality for creating installers, it is subclassed separately for Windows and Mac OS X
+# This class contains shared functionality for creating installers, it is subclassed separately for Windows and macOS
 class InstallerCreatorBase
   attr_accessor :application, :version, :executable, :build, :assets, :icon, :output_path
 
@@ -133,7 +133,7 @@ class InstallerCreatorBase
     error 'Build configuration is missing' unless build
 
     build[:arguments] ||= {}
-    build[:arguments][:static] = true if macosx?
+    build[:arguments][:static] = true if macos?
 
     SCons.scons(scons_options).first
   end
@@ -235,8 +235,8 @@ class WindowsInstallerCreator < InstallerCreatorBase
   end
 end
 
-# Class for creating installers for Mac OS X
-class MacOSXInstallerCreator < InstallerCreatorBase
+# Class for creating installers for macOS
+class MacOSInstallerCreator < InstallerCreatorBase
   attr_accessor :create_dmg
 
   def initialize
@@ -308,7 +308,7 @@ class MacOSXInstallerCreator < InstallerCreatorBase
       FileUtils.mv app_bundle_path, dir
       File.symlink '/Applications', "#{dir}/Applications"
 
-      create_macosx_dmg source_folder: dir, target: dmg_name, volume_name: application
+      create_macos_dmg source_folder: dir, target: dmg_name, volume_name: application
     end
   end
 end
@@ -316,8 +316,8 @@ end
 def create_installer(options)
   if windows?
     klass = WindowsInstallerCreator
-  elsif macosx?
-    klass = MacOSXInstallerCreator
+  elsif macos?
+    klass = MacOSInstallerCreator
   else
     error 'Not supported on this platform'
   end

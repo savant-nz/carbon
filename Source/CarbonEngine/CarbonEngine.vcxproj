@@ -1000,7 +1000,7 @@
     <ClInclude Include="Platform\GameControllerState.h" />
     <ClInclude Include="Platform\iOS\PlatformiOS.h" />
     <ClInclude Include="Platform\KeyConstant.h" />
-    <ClInclude Include="Platform\MacOSX\PlatformMacOSX.h" />
+    <ClInclude Include="Platform\macOS\PlatformMacOS.h" />
     <ClInclude Include="Platform\MouseButton.h" />
     <ClInclude Include="Platform\PeriodicTimer.h" />
     <ClInclude Include="Platform\PlatformEvents.h" />
@@ -1132,11 +1132,11 @@
     <None Include="Core\Threads\Thread.mm" />
     <None Include="Defines.md" />
     <None Include="EntryPointiOS.mm" />
-    <None Include="EntryPointMacOSX.mm" />
+    <None Include="EntryPointMacOS.mm" />
     <None Include="Game\GameCenter.mm" />
     <None Include="Game\InAppPurchase.mm" />
     <None Include="Platform\iOS\PlatformiOS.mm" />
-    <None Include="Platform\MacOSX\PlatformMacOSX.mm" />
+    <None Include="Platform\macOS\PlatformMacOS.mm" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CarbonEngine.rc" />

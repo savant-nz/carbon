@@ -5,14 +5,14 @@
 
 #include "CarbonEngine/Common.h"
 
-#ifdef MACOSX
+#ifdef MACOS
 
 #include "CarbonEngine/Core/CoreEvents.h"
 #include "CarbonEngine/Core/EventManager.h"
 #include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 
-// On Mac OS X a Cocoa NSApplication subclass is used to run the application
+// On macOS a Cocoa NSApplication subclass is used to run the application
 
 #undef new
 #include <Cocoa/Cocoa.h>
@@ -24,10 +24,10 @@ static auto fnApplicationMain = std::function<int()>();
 static auto exitCode = int();
 
 // Define an NSApplication subclass to use
-@interface CarbonApplicationMacOSX : NSApplication
+@interface CarbonApplicationMacOS : NSApplication
 @end
 
-@implementation CarbonApplicationMacOSX
+@implementation CarbonApplicationMacOS
 
 // Call the application's main routine once the application has launched
 - (void)applicationDidFinishLaunching:(NSNotification*)note
@@ -94,12 +94,12 @@ static void createMenus(const UnicodeString& applicationName)
     [[NSApp mainMenu] addItem:item];
 }
 
-CARBON_API int runMacOSXApplication(const std::function<int()>& fnMain, const UnicodeString& applicationName)
+CARBON_API int runMacOSApplication(const std::function<int()>& fnMain, const UnicodeString& applicationName)
 {
     @autoreleasepool
     {
         // Initialize and activate the main application object
-        [CarbonApplicationMacOSX sharedApplication];
+        [CarbonApplicationMacOS sharedApplication];
         [static_cast<NSApplication*>(NSApp) setDelegate:NSApp];
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
         [NSApp activateIgnoringOtherApps:YES];

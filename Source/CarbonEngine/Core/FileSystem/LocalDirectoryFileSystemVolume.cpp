@@ -21,7 +21,7 @@ FileSystemError LocalDirectoryFileSystemVolume::open(const UnicodeString& filena
     {
         auto correctFullPath = FileSystem::getCanonicalPath(fullPath);
 
-        // Report incorrect case in paths on Windows and Mac OS X, helps catch errors only seen on case-sensitive
+        // Report incorrect case in paths on Windows and macOS, helps catch errors only seen on case-sensitive
         // platforms
         if (fullPath != correctFullPath)
         {

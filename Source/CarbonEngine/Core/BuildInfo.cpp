@@ -21,8 +21,8 @@ Vector<String> BuildInfo::getBuildInfo()
     result.append("Platform:           Linux");
 #elif defined(iOS)
     result.append("Platform:           iOS");
-#elif defined(MACOSX)
-    result.append("Platform:           Mac OS X");
+#elif defined(MACOS)
+    result.append("Platform:           macOS");
 #elif defined(CONSOLE)
     result.append("Platform:           Console");
 #else
@@ -182,10 +182,10 @@ Vector<String> BuildInfo::getBuildInfo()
 #else
     excludedDefines.append("CARBON_INCLUDE_PHYSX");
 #endif
-#ifdef CARBON_INCLUDE_PLATFORM_MACOSX
-    includedDefines.append("CARBON_INCLUDE_PLATFORM_MACOSX");
+#ifdef CARBON_INCLUDE_PLATFORM_MACOS
+    includedDefines.append("CARBON_INCLUDE_PLATFORM_MACOS");
 #else
-    excludedDefines.append("CARBON_INCLUDE_PLATFORM_MACOSX");
+    excludedDefines.append("CARBON_INCLUDE_PLATFORM_MACOS");
 #endif
 #ifdef CARBON_INCLUDE_PLATFORM_SDL
     includedDefines.append("CARBON_INCLUDE_PLATFORM_SDL");

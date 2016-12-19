@@ -13,7 +13,7 @@ namespace Carbon
 {
 
 /**
- * Wrapper class for integrating in-app purchase functionality on iOS and Mac OS X.
+ * Wrapper class for integrating in-app purchase functionality on iOS and macOS.
  */
 class CARBON_API InAppPurchase : private Noncopyable
 {

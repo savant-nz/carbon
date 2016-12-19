@@ -16,7 +16,7 @@ On Windows:
 - Install [Git](https://git-scm.com/download/win).
     - Ensure that '*Use Git from the Windows Command Prompt*' is selected when installing.
 
-On Mac OS X:
+On macOS:
 - Install [Xcode](https://itunes.apple.com/app/xcode/id497799835) through the Mac App Store.
 - Install [Homebrew](http://brew.sh).
 - Install [SCons](http://www.scons.org) using Homebrew: `brew install scons`
@@ -29,7 +29,7 @@ Once this setup is complete build the engine's dependencies:
 
     ruby Dependencies/BuildDependencies.rb
 
-If you are using Mac OS X and want to develop or test on iOS then build the dependencies for that platform also:
+If you are using macOS and want to develop or test on iOS then build the dependencies for that platform also:
 
     ruby Dependencies/BuildDependencies.rb --platform iOS
 
@@ -50,7 +50,7 @@ On Windows:
 - Install [Doxygen](http://www.stack.nl/~dimitri/doxygen/download.html).
 - Install [NSIS](http://nsis.sourceforge.net/), version 3.0 or later is required.
 
-On Mac OS X:
+On macOS:
 - Install [Doxygen](http://www.stack.nl/~dimitri/doxygen) using Homebrew: `brew install doxygen`
 
 Then build the SDK by running:

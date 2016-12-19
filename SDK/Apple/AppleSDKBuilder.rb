@@ -5,8 +5,8 @@
 
 require 'tmpdir'
 
-# Subclass of SDKBuilderBase that creates the Mac OS X SDK package.
-class MacOSXSDKBuilder < SDKBuilderBase
+# Subclass of SDKBuilderBase that creates the SDK package for macOS & iOS.
+class AppleSDKBuilder < SDKBuilderBase
   BUILD_LOCATION = '/tmp/CarbonSDK'.freeze
 
   def initialize
@@ -41,7 +41,7 @@ class MacOSXSDKBuilder < SDKBuilderBase
   end
 
   def build_targets
-    [:MacOSX, :iOS].each { |target_platform| build_dependencies target_platform: target_platform }
+    [:macOS, :iOS].each { |target_platform| build_dependencies target_platform: target_platform }
 
     scons targets: [], arguments: scons_arguments
     scons targets: :CarbonEngine, arguments: scons_arguments(type: :Debug)
@@ -51,7 +51,7 @@ class MacOSXSDKBuilder < SDKBuilderBase
     end
 
     [:Debug, :Release].each do |build_type|
-      create_static_library_for_macosx build_type
+      create_static_library_for_macos build_type
       create_static_library_for_ios build_type
     end
   end
@@ -74,8 +74,8 @@ class MacOSXSDKBuilder < SDKBuilderBase
     end
   end
 
-  def create_static_library_for_macosx(build_type)
-    inputs = [engine_library(:MacOSX, :x64, build_type), *dependency_libraries(:MacOSX, :x64)]
+  def create_static_library_for_macos(build_type)
+    inputs = [engine_library(:macOS, :x64, build_type), *dependency_libraries(:macOS, :x64)]
 
     merge_static_libraries inputs, "#{@package_root}/Library/#{engine_library_name build_type}"
   end
@@ -104,7 +104,7 @@ class MacOSXSDKBuilder < SDKBuilderBase
   end
 
   def create_sample_application(sample)
-    create_installer application: sample, executable: "Build/MacOSX/x64/#{compiler}/Release/#{sample}",
+    create_installer application: sample, executable: "Build/macOS/x64/#{compiler}/Release/#{sample}",
                      create_dmg: false, assets: 'Assets/Samples', icon: 'Source/CarbonEngine/Carbon.icns',
                      output_path: "#{@package_root}/Samples"
 
@@ -115,7 +115,7 @@ class MacOSXSDKBuilder < SDKBuilderBase
   end
 
   def copy_sample_applications_xcode_project
-    cp 'SDK/MacOSX/CarbonSamples.xcodeproj/project.pbxproj',
+    cp 'SDK/Apple/CarbonSamples.xcodeproj/project.pbxproj',
        "#{@package_root}/Samples/Source/CarbonSamples.xcodeproj/project.pbxproj"
 
     FileUtils.cp_r 'Assets/Samples', "#{@package_root}/Samples/Source/Assets"
@@ -133,7 +133,7 @@ class MacOSXSDKBuilder < SDKBuilderBase
 
   def create_final_sdk_package
     command = "xcrun pkgbuild --quiet --root #{@package_root} --identifier com.carbon.CarbonSDK " \
-              "--scripts SDK/MacOSX/Scripts --install-location \"/Applications/Carbon SDK\" #{sdk_filename.quoted}"
+              "--scripts SDK/Apple/Scripts --install-location \"/Applications/Carbon SDK\" #{sdk_filename.quoted}"
 
     run command, echo: 'Creating SDK package ...', error: 'Failed creating SDK package'
   end

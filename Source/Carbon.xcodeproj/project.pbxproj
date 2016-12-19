@@ -100,8 +100,8 @@
 		794DD11E15BD4A700087F19B /* DeferredLightingSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79DB073D14E9DE93009E84B1 /* DeferredLightingSample.cpp */; };
 		79513F0F165259C200E4EBD2 /* ImageConversions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79513F0D165259C200E4EBD2 /* ImageConversions.cpp */; };
 		79513F14165259C200E4EBD2 /* ImageTransforms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79513F0E165259C200E4EBD2 /* ImageTransforms.cpp */; };
-		795CE5541644C2160010A8E0 /* PlatformMacOSX.h in Headers */ = {isa = PBXBuildFile; fileRef = 795CE5521644C2160010A8E0 /* PlatformMacOSX.h */; };
-		795CE5551644C2160010A8E0 /* PlatformMacOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 795CE5531644C2160010A8E0 /* PlatformMacOSX.mm */; };
+		795CE5541644C2160010A8E0 /* PlatformMacOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 795CE5521644C2160010A8E0 /* PlatformMacOS.h */; };
+		795CE5551644C2160010A8E0 /* PlatformMacOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 795CE5531644C2160010A8E0 /* PlatformMacOS.mm */; };
 		7969CB1F151299A20067BCA0 /* GUIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7969CB0B151299A20067BCA0 /* GUIButton.cpp */; };
 		7969CB20151299A20067BCA0 /* GUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 7969CB0C151299A20067BCA0 /* GUIButton.h */; };
 		7969CB21151299A20067BCA0 /* GUICombobox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7969CB0D151299A20067BCA0 /* GUICombobox.cpp */; };
@@ -225,8 +225,8 @@
 		7997A2C51BD1F33500C60B84 /* EntryPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 7997A2C21BD1F33500C60B84 /* EntryPoint.h */; };
 		7997A2C61BD1F33500C60B84 /* EntryPointiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7997A2C31BD1F33500C60B84 /* EntryPointiOS.mm */; };
 		7997A2C71BD1F33500C60B84 /* EntryPointiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7997A2C31BD1F33500C60B84 /* EntryPointiOS.mm */; };
-		7997A2C81BD1F33500C60B84 /* EntryPointMacOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7997A2C41BD1F33500C60B84 /* EntryPointMacOSX.mm */; };
-		7997A2C91BD1F33500C60B84 /* EntryPointMacOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7997A2C41BD1F33500C60B84 /* EntryPointMacOSX.mm */; };
+		7997A2C81BD1F33500C60B84 /* EntryPointMacOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7997A2C41BD1F33500C60B84 /* EntryPointMacOS.mm */; };
+		7997A2C91BD1F33500C60B84 /* EntryPointMacOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7997A2C41BD1F33500C60B84 /* EntryPointMacOS.mm */; };
 		799CD50A150EF94A001D286B /* SubclassRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 799CD509150EF94A001D286B /* SubclassRegistry.h */; };
 		799CD514150EF982001D286B /* AlphaFadeEntityController.h in Headers */ = {isa = PBXBuildFile; fileRef = 799CD50D150EF982001D286B /* AlphaFadeEntityController.h */; };
 		799CD515150EF982001D286B /* EntityController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 799CD50E150EF982001D286B /* EntityController.cpp */; };
@@ -724,7 +724,7 @@
 		79FF96081BAFB1010003666F /* PhysicsInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79DB041414E9DD1D009E84B1 /* PhysicsInterface.cpp */; };
 		79FF960B1BAFB1010003666F /* PlatformAndroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7982CB7E15A8C17A00500625 /* PlatformAndroid.cpp */; };
 		79FF960E1BAFB1010003666F /* PlatformiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 79DB042814E9DD1D009E84B1 /* PlatformiOS.mm */; };
-		79FF96101BAFB1010003666F /* PlatformMacOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 795CE5531644C2160010A8E0 /* PlatformMacOSX.mm */; };
+		79FF96101BAFB1010003666F /* PlatformMacOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 795CE5531644C2160010A8E0 /* PlatformMacOS.mm */; };
 		79FF96111BAFB1010003666F /* PlatformSDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79DB043714E9DD1D009E84B1 /* PlatformSDL.cpp */; };
 		79FF96131BAFB1010003666F /* PlatformWindows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79DB044114E9DD1D009E84B1 /* PlatformWindows.cpp */; };
 		79FF96151BAFB1010003666F /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 79DB041E14E9DD1D009E84B1 /* Console.cpp */; };
@@ -1003,8 +1003,8 @@
 		79513F0D165259C200E4EBD2 /* ImageConversions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageConversions.cpp; sourceTree = "<group>"; };
 		79513F0E165259C200E4EBD2 /* ImageTransforms.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageTransforms.cpp; sourceTree = "<group>"; };
 		79581B721651A5BC000BE1E1 /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
-		795CE5521644C2160010A8E0 /* PlatformMacOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatformMacOSX.h; path = MacOSX/PlatformMacOSX.h; sourceTree = "<group>"; };
-		795CE5531644C2160010A8E0 /* PlatformMacOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PlatformMacOSX.mm; path = MacOSX/PlatformMacOSX.mm; sourceTree = "<group>"; };
+		795CE5521644C2160010A8E0 /* PlatformMacOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatformMacOS.h; path = macOS/PlatformMacOS.h; sourceTree = "<group>"; };
+		795CE5531644C2160010A8E0 /* PlatformMacOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PlatformMacOS.mm; path = macOS/PlatformMacOS.mm; sourceTree = "<group>"; };
 		7965D87515C0781000162B29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = CarbonEngine/Info.plist; sourceTree = "<group>"; };
 		7969CB0B151299A20067BCA0 /* GUIButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUIButton.cpp; sourceTree = "<group>"; };
 		7969CB0C151299A20067BCA0 /* GUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIButton.h; sourceTree = "<group>"; };
@@ -1110,7 +1110,7 @@
 		7994F18C1BCF03CE00FF9A4F /* OculusRiftIncludeWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OculusRiftIncludeWrapper.h; sourceTree = "<group>"; };
 		7997A2C21BD1F33500C60B84 /* EntryPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntryPoint.h; path = CarbonEngine/EntryPoint.h; sourceTree = "<group>"; };
 		7997A2C31BD1F33500C60B84 /* EntryPointiOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = EntryPointiOS.mm; path = CarbonEngine/EntryPointiOS.mm; sourceTree = "<group>"; };
-		7997A2C41BD1F33500C60B84 /* EntryPointMacOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = EntryPointMacOSX.mm; path = CarbonEngine/EntryPointMacOSX.mm; sourceTree = "<group>"; };
+		7997A2C41BD1F33500C60B84 /* EntryPointMacOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = EntryPointMacOS.mm; path = CarbonEngine/EntryPointMacOS.mm; sourceTree = "<group>"; };
 		799CD509150EF94A001D286B /* SubclassRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubclassRegistry.h; sourceTree = "<group>"; };
 		799CD50D150EF982001D286B /* AlphaFadeEntityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlphaFadeEntityController.h; path = EntityController/AlphaFadeEntityController.h; sourceTree = "<group>"; };
 		799CD50E150EF982001D286B /* EntityController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntityController.cpp; path = EntityController/EntityController.cpp; sourceTree = "<group>"; };
@@ -1727,7 +1727,7 @@
 				79DB02D814E9DD1D009E84B1 /* EngineAssets.h */,
 				7997A2C21BD1F33500C60B84 /* EntryPoint.h */,
 				7997A2C31BD1F33500C60B84 /* EntryPointiOS.mm */,
-				7997A2C41BD1F33500C60B84 /* EntryPointMacOSX.mm */,
+				7997A2C41BD1F33500C60B84 /* EntryPointMacOS.mm */,
 				79DB038814E9DD1D009E84B1 /* Globals.cpp */,
 				79DB038914E9DD1D009E84B1 /* Globals.h */,
 				7965D87515C0781000162B29 /* Info.plist */,
@@ -1739,7 +1739,7 @@
 			isa = PBXGroup;
 			children = (
 				79DB1A0615BC288D003CAB9A /* iOS */,
-				7968F481166A6BE000B4B437 /* Mac OS X */,
+				7968F481166A6BE000B4B437 /* macOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1794,16 +1794,16 @@
 			name = Formats;
 			sourceTree = "<group>";
 		};
-		795CE5501644C1FA0010A8E0 /* MacOSX */ = {
+		795CE5501644C1FA0010A8E0 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				795CE5521644C2160010A8E0 /* PlatformMacOSX.h */,
-				795CE5531644C2160010A8E0 /* PlatformMacOSX.mm */,
+				795CE5521644C2160010A8E0 /* PlatformMacOS.h */,
+				795CE5531644C2160010A8E0 /* PlatformMacOS.mm */,
 			);
-			name = MacOSX;
+			name = macOS;
 			sourceTree = "<group>";
 		};
-		7968F481166A6BE000B4B437 /* Mac OS X */ = {
+		7968F481166A6BE000B4B437 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
 				79707388178F22EE00DB113B /* libiconv.dylib */,
@@ -1814,7 +1814,7 @@
 				658EAA5B0FFE0C9B005FEFC9 /* OpenGL.framework */,
 				79D550251676276C008B1F30 /* StoreKit.framework */,
 			);
-			name = "Mac OS X";
+			name = "macOS";
 			sourceTree = "<group>";
 		};
 		7969CB0A151299A20067BCA0 /* GUI */ = {
@@ -2389,7 +2389,7 @@
 			children = (
 				7982CB7C15A8C15C00500625 /* Android */,
 				79DB042614E9DD1D009E84B1 /* iOS */,
-				795CE5501644C1FA0010A8E0 /* MacOSX */,
+				795CE5501644C1FA0010A8E0 /* macOS */,
 				79DB043614E9DD1D009E84B1 /* SDL */,
 				79DB044014E9DD1D009E84B1 /* Windows */,
 				79DB041E14E9DD1D009E84B1 /* Console.cpp */,
@@ -2889,7 +2889,7 @@
 				79414781160DB8290071320D /* TargetPositionEntityController.h in Headers */,
 				798B5238160746F100C32877 /* TriangleStripper.h in Headers */,
 				79761EFA161FC0F4003F76D6 /* GameCenter.h in Headers */,
-				795CE5541644C2160010A8E0 /* PlatformMacOSX.h in Headers */,
+				795CE5541644C2160010A8E0 /* PlatformMacOS.h in Headers */,
 				791F4E301655CCA50024E3BD /* TimeValue.h in Headers */,
 				798A8C671657A80E00EBFAB5 /* Mesh.h in Headers */,
 				798A8C6D1657A80E00EBFAB5 /* MeshFormatRegistry.h in Headers */,
@@ -3434,7 +3434,7 @@
 				79DB055614E9DD1E009E84B1 /* Runnable.cpp in Sources */,
 				7994F18D1BCF03CE00FF9A4F /* OculusRift.cpp in Sources */,
 				79DB055814E9DD1E009E84B1 /* SettingsManager.cpp in Sources */,
-				7997A2C81BD1F33500C60B84 /* EntryPointMacOSX.mm in Sources */,
+				7997A2C81BD1F33500C60B84 /* EntryPointMacOS.mm in Sources */,
 				79DB055A14E9DD1E009E84B1 /* SharedLibrary.cpp in Sources */,
 				79DB055C14E9DD1E009E84B1 /* StringBase.cpp in Sources */,
 				79DB056D14E9DD1E009E84B1 /* DialogBase.cpp in Sources */,
@@ -3571,7 +3571,7 @@
 				7982CB8015A8C17A00500625 /* PlatformAndroid.cpp in Sources */,
 				79761EFB161FC0F4003F76D6 /* GameCenter.mm in Sources */,
 				797F2CCD1632DAAF001F163E /* PVRTC.cpp in Sources */,
-				795CE5551644C2160010A8E0 /* PlatformMacOSX.mm in Sources */,
+				795CE5551644C2160010A8E0 /* PlatformMacOS.mm in Sources */,
 				79513F0F165259C200E4EBD2 /* ImageConversions.cpp in Sources */,
 				79513F14165259C200E4EBD2 /* ImageTransforms.cpp in Sources */,
 				791F4E2B1655CCA50024E3BD /* TimeValue.cpp in Sources */,
@@ -3737,7 +3737,7 @@
 				79FF956E1BAFB1000003666F /* ProgressDialog.cpp in Sources */,
 				79FF957F1BAFB1000003666F /* AStarTraversal.cpp in Sources */,
 				79FF95811BAFB1000003666F /* GridNavigationGraph.cpp in Sources */,
-				7997A2C91BD1F33500C60B84 /* EntryPointMacOSX.mm in Sources */,
+				7997A2C91BD1F33500C60B84 /* EntryPointMacOS.mm in Sources */,
 				79FF95831BAFB1000003666F /* HexagonalNavigationGraph.cpp in Sources */,
 				79FF95851BAFB1000003666F /* NavigationEdge.cpp in Sources */,
 				79FF95871BAFB1000003666F /* NavigationGraph.cpp in Sources */,
@@ -3798,7 +3798,7 @@
 				79FF96081BAFB1010003666F /* PhysicsInterface.cpp in Sources */,
 				79FF960B1BAFB1010003666F /* PlatformAndroid.cpp in Sources */,
 				79FF960E1BAFB1010003666F /* PlatformiOS.mm in Sources */,
-				79FF96101BAFB1010003666F /* PlatformMacOSX.mm in Sources */,
+				79FF96101BAFB1010003666F /* PlatformMacOS.mm in Sources */,
 				79FF96111BAFB1010003666F /* PlatformSDL.cpp in Sources */,
 				79FF96131BAFB1010003666F /* PlatformWindows.cpp in Sources */,
 				79FF96151BAFB1010003666F /* Console.cpp in Sources */,
@@ -4036,7 +4036,7 @@
 					CARBON_INCLUDE_OPENGL11,
 					CARBON_INCLUDE_OPENGL41,
 					CARBON_INCLUDE_OPENAL,
-					CARBON_INCLUDE_PLATFORM_MACOSX,
+					CARBON_INCLUDE_PLATFORM_MACOS,
 					CARBON_INCLUDE_VORBIS,
 					CARBON_INCLUDE_ZLIB,
 				);
@@ -4053,13 +4053,13 @@
 				INFOPLIST_FILE = CarbonEngine/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/FreeType-2.7/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/ZLib-1.2.8/Library/MacOSX/x64\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/FreeType-2.7/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/ZLib-1.2.8/Library/macOS/x64\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lAngelScript",
@@ -4093,7 +4093,7 @@
 					CARBON_INCLUDE_OPENGL11,
 					CARBON_INCLUDE_OPENGL41,
 					CARBON_INCLUDE_OPENAL,
-					CARBON_INCLUDE_PLATFORM_MACOSX,
+					CARBON_INCLUDE_PLATFORM_MACOS,
 					CARBON_INCLUDE_VORBIS,
 					CARBON_INCLUDE_ZLIB,
 				);
@@ -4110,13 +4110,13 @@
 				INFOPLIST_FILE = CarbonEngine/Info.plist;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/FreeType-2.7/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/MacOSX/x64\"",
-					"\"$(SRCROOT)/../Dependencies/ZLib-1.2.8/Library/MacOSX/x64\"",
+					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/FreeType-2.7/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/ZLib-1.2.8/Library/macOS/x64\"",
 				);
 				OTHER_LDFLAGS = (
 					"-lAngelScript",

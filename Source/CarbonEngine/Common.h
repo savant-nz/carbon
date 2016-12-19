@@ -8,7 +8,7 @@
 
 #ifndef DOXYGEN
 
-// Determine what platform is being targeted. Either WINDOWS, LINUX, MACOSX, iOS, ANDROID or CONSOLE will be defined,
+// Determine what platform is being targeted. Either WINDOWS, LINUX, MACOS, iOS, ANDROID or CONSOLE will be defined,
 // and these defines should be used when conditional compilation for a specific platform is required. APPLE is defined
 // on all Apple platforms. Android is a Linux platform and so both LINUX and ANDROID will be defined when building for
 // Android.
@@ -118,12 +118,12 @@
         #define CARBON_INCLUDE_VORBIS
         #define CARBON_INCLUDE_ZLIB
     #else
-        #ifndef MACOSX
-            #define MACOSX 1
+        #ifndef MACOS
+            #define MACOS 1
         #endif
 
         #if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_9
-            #error The minimum required Mac OS X version should be set to at least 10.9
+            #error The minimum required macOS version should be set to at least 10.9
         #endif
     #endif
 

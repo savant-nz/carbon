@@ -198,7 +198,7 @@ UnicodeString Logfile::getFilename(const UnicodeString& logfileName)
     // Put logfiles under ~/Library/Logs
     logsDirectory = FileSystem::joinPaths(FileSystem::getUserLibraryDirectory(), "Logs");
 
-#ifdef MACOSX
+#ifdef MACOS
     logsDirectory = FileSystem::joinPaths(logsDirectory, Globals::getClientName());
 #endif
 

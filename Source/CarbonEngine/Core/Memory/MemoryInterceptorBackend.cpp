@@ -16,8 +16,8 @@
 
 #ifdef CARBON_INCLUDE_DEFAULT_MEMORY_INTERCEPTOR_BACKEND
 
-// Current versions of iOS and Mac OS X do not support the C++11 thread_local storage class specifier. Mac OS X does
-// support __thread but this is a non-standard extension. Use pthreads for TLS on both platforms.
+// Current versions of iOS and macOS do not support the C++11 thread_local storage class specifier. macOS does support
+// __thread but this is a non-standard extension. Use pthreads for TLS on both platforms.
 #ifdef APPLE
     #define USE_PTHREADS_FOR_TLS
 #endif

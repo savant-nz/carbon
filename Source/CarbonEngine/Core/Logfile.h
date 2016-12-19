@@ -14,7 +14,7 @@ namespace Carbon
  *
  * - On Windows the logfile is in the `%APPDATA%/Roaming/<application name>` directory.
  * - On Linux the logfile is in the `~/.\<application name\>` directory.
- * - On Mac OS X the logfile is in the `~/Library/Logs/\<application name\>` directory
+ * - On macOS the logfile is in the `~/Library/Logs/\<application name\>` directory
  * - On iOS the logfile is in the `Library/Logs` directory inside the application's sandbox.
  *
  * The supplied `OpenLogfile.rb` script can be used to open the most recently written logfile in the default browser,

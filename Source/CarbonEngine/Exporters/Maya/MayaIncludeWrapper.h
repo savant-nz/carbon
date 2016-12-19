@@ -12,7 +12,7 @@
 #ifdef WINDOWS
     #define NT_PLUGIN
     #define MNoPluginEntry
-#elif defined(MACOSX)
+#elif defined(MACOS)
     #define OSMac_
     #define OSMac_MachO_
     #define MAC_PLUGIN

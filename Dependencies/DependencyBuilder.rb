@@ -11,7 +11,7 @@ SUPPORTED_DEPENDENCIES = {
   Android: [:AngelScript, :Bullet, :FreeImage, :OpenALSoft, :OpenAssetImport, :Vorbis, :ZLib],
   iOS:     [:AngelScript, :Bullet, :FreeImage, :OpenAssetImport, :Vorbis, :ZLib],
   Linux:   [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenAssetImport, :Vorbis, :ZLib],
-  MacOSX:  [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenAssetImport, :Vorbis, :ZLib],
+  macOS:   [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenAssetImport, :Vorbis, :ZLib],
   Windows: [:AngelScript, :Bullet, :FreeImage, :FreeType, :OculusRift, :OpenALSoft, :OpenAssetImport, :PhysX, :Vorbis,
             :ZLib]
 }.freeze
@@ -86,9 +86,9 @@ class DependencyBuilder
     output = []
 
     options[:error] = proc do
-      print output.join
+      print output.join if silent
       error 'Dependency build failed'
-    end if silent
+    end
 
     SCons.scons options do |line|
       output << line
@@ -122,7 +122,7 @@ class DependencyBuilder
     end
   end
 
-  def build_macosx_dependencies
+  def build_macos_dependencies
     dependencies.each do |dependency|
       build dependency
     end

@@ -27,14 +27,14 @@
 
 @interface GameCenterDelegate : NSObject <GKGameCenterControllerDelegate>
 @property (atomic) bool* isUIShowing;
-#ifdef MACOSX
+#ifdef MACOS
 @property (atomic) GKDialogController* gkDialogController;
 #endif
 @end
 
 @implementation GameCenterDelegate
 @synthesize isUIShowing;
-#ifdef MACOSX
+#ifdef MACOS
 @synthesize gkDialogController;
 #endif
 
@@ -46,7 +46,7 @@
 
 #ifdef iOS
     [[[UIApplication sharedApplication] keyWindow].rootViewController dismissViewControllerAnimated:YES completion:nil];
-#elif defined(MACOSX)
+#elif defined(MACOS)
     [self.gkDialogController dismiss:self];
 
     // Grab input lock and allow input events again
@@ -75,7 +75,7 @@ public:
 
     bool isUIShowing = false;
 
-#ifdef MACOSX
+#ifdef MACOS
     GKDialogController* gkDialogController = nil;
 #endif
 };
@@ -87,7 +87,7 @@ GameCenter::GameCenter() : onPlayerChanged(this), onAchievementsLoaded(this), on
     m->gkDelegate = [[GameCenterDelegate alloc] init];
     m->gkDelegate.isUIShowing = &m->isUIShowing;
 
-#ifdef MACOSX
+#ifdef MACOS
     m->gkDialogController = [[GKDialogController alloc] init];
     m->gkDelegate.gkDialogController = m->gkDialogController;
 
@@ -97,7 +97,7 @@ GameCenter::GameCenter() : onPlayerChanged(this), onAchievementsLoaded(this), on
 
 GameCenter::~GameCenter()
 {
-#ifdef MACOSX
+#ifdef MACOS
     [m->gkDialogController dismiss:m->gkDelegate];
     m->gkDialogController = nil;
 #endif
@@ -125,7 +125,7 @@ void GameCenter::enable(const Vector<String>& leaderboards)
 
 #ifdef iOS
     localPlayer.authenticateHandler = ^(UIViewController* viewController, NSError* authenticationError)
-#elif defined(MACOSX)
+#elif defined(MACOS)
     localPlayer.authenticateHandler = ^(NSViewController* viewController, NSError* authenticationError)
 #endif
     {
@@ -188,8 +188,8 @@ void GameCenter::enable(const Vector<String>& leaderboards)
 #ifdef iOS
                 auto rootViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
                 [rootViewController presentViewController:viewController animated:YES completion:nil];
-#elif defined(MACOSX)
-                // TODO: work out how to show this view controller, is this path ever even used on Mac OS X?
+#elif defined(MACOS)
+                // TODO: work out how to show this view controller, is this path ever even used on macOS?
                 LOG_ERROR_WITHOUT_CALLER << "Got a view controller from game center that should be shown";
 #endif
             }
@@ -279,7 +279,7 @@ void GameCenter::showUI(GameCenterUI ui)
 #ifdef iOS
     auto rootViewController = [[UIApplication sharedApplication] keyWindow].rootViewController;
     [rootViewController presentViewController:m->gkViewController animated:YES completion:nil];
-#elif defined(MACOSX)
+#elif defined(MACOS)
     // Set the parent window every time as it can change as a result of fullscreen or resolution switching
     m->gkDialogController.parentWindow = [NSApp mainWindow];
     [m->gkDialogController presentViewController:m->gkViewController];

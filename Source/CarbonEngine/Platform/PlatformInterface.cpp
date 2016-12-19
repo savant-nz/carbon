@@ -11,7 +11,7 @@
 #include "CarbonEngine/Core/SettingsManager.h"
 #include "CarbonEngine/Math/MathCommon.h"
 #include "CarbonEngine/Platform/Android/PlatformAndroid.h"
-#include "CarbonEngine/Platform/MacOSX/PlatformMacOSX.h"
+#include "CarbonEngine/Platform/macOS/PlatformMacOS.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 #include "CarbonEngine/Platform/PlatformInterface.h"
 #include "CarbonEngine/Platform/SDL/PlatformSDL.h"
@@ -31,8 +31,8 @@ CARBON_REGISTER_INTERFACE_IMPLEMENTATION(PlatformInterface, NullInterface, 0)
 #ifdef ANDROID
     CARBON_REGISTER_INTERFACE_IMPLEMENTATION(PlatformInterface, PlatformAndroid, 100)
 #endif
-#ifdef CARBON_INCLUDE_PLATFORM_MACOSX
-    CARBON_REGISTER_INTERFACE_IMPLEMENTATION(PlatformInterface, PlatformMacOSX, 100)
+#ifdef CARBON_INCLUDE_PLATFORM_MACOS
+    CARBON_REGISTER_INTERFACE_IMPLEMENTATION(PlatformInterface, PlatformMacOS, 100)
 #endif
 #ifdef CARBON_INCLUDE_PLATFORM_SDL
     CARBON_REGISTER_INTERFACE_IMPLEMENTATION(PlatformInterface, PlatformSDL, 50)

@@ -75,7 +75,7 @@ if platform == 'Windows':
 
     baseEnv.AddMethod(CarbonClientProgram)
 
-elif platform == 'Linux' or platform == 'MacOSX':
+elif platform == 'Linux' or platform == 'macOS':
 
     dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'PhysX', 'Vorbis', 'ZLib']
 
@@ -86,15 +86,15 @@ elif platform == 'Linux' or platform == 'MacOSX':
 
     if platform == 'Linux':
         engineEnv['CPPDEFINES'] += ['CARBON_INCLUDE_PLATFORM_SDL']
-    elif platform == 'MacOSX':
-        engineEnv['CPPDEFINES'] += ['CARBON_INCLUDE_PLATFORM_MACOSX'] + GetDependencyCPPDEFINES('OpenGL41')
+    elif platform == 'macOS':
+        engineEnv['CPPDEFINES'] += ['CARBON_INCLUDE_PLATFORM_MACOS'] + GetDependencyCPPDEFINES('OpenGL41')
 
-    # Set a sensible install name for dynamic libraries on Mac OS X
-    if platform == 'MacOSX' and not engineEnv.IsCarbonEngineStatic():
+    # Set a sensible install name for dynamic libraries on macOS
+    if platform == 'macOS' and not engineEnv.IsCarbonEngineStatic():
         engineEnv['LINKFLAGS'] += ['-install_name', '@rpath/lib%s.dylib' % carbonEngineLibraryName]
 
-    # Environment for the Maya exporters on Mac OS X
-    if platform == 'MacOSX':
+    # Environment for the Maya exporters on macOS
+    if platform == 'macOS':
         mayaVersions = ['2014']
     else:
         mayaVersions = []
@@ -107,7 +107,7 @@ elif platform == 'Linux' or platform == 'MacOSX':
         env['LIBPATH'] += GetDependencyLIBPATH('Maya', version=version)
         env['LIBS'] += ['OpenMaya', 'OpenMayaAnim', 'Foundation', 'OpenMayaUI']
 
-        if platform == 'MacOSX':
+        if platform == 'macOS':
             env['FRAMEWORKS'] += ['Cocoa', 'IOKit', 'GameKit', 'StoreKit']
 
         mayaExporterEnvs.append({'version': version, 'env': env})
@@ -184,7 +184,7 @@ Alias('CarbonEngine', Install(installDir, carbonEngineBuildResult))
 SetCarbonEngineBuildResult(carbonEngineBuildResult)
 
 # Provide an 'install' target for POSIX platforms that installs the engine's headers and library files
-if platform == 'Linux' or platform == 'MacOSX':
+if platform == 'Linux' or platform == 'macOS':
     vars = Variables()
     vars.AddVariables(
         ('prefix', 'The prefix to install headers and libraries to when building the \'install\' target.', '/usr/local')
@@ -215,7 +215,7 @@ if not engineEnv.IsCarbonEngineStatic():
 
     for e in mayaExporterEnvs:
         target = 'CarbonExporterMaya' + e['version']
-        extensions = {'Windows': '.mll', 'MacOSX': '.bundle', 'Linux': '.so'}
+        extensions = {'Windows': '.mll', 'macOS': '.bundle', 'Linux': '.so'}
         Export({'env': e['env'], 'target': target})
         result = CarbonSConscript('CarbonEngine/SConscript', variant_dir=target + '/CarbonEngine')
         Alias(target, InstallAs(source=result[0], target=os.path.join(installDir, target + extensions[platform])))

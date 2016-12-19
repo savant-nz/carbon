@@ -5,7 +5,7 @@
 
 #include "CarbonEngine/Common.h"
 
-#ifdef CARBON_INCLUDE_PLATFORM_MACOSX
+#ifdef CARBON_INCLUDE_PLATFORM_MACOS
 
 #include <mach/mach_time.h>
 #include <OpenGL/gl.h>
@@ -20,7 +20,7 @@
 #include "CarbonEngine/Core/SharedLibrary.h"
 #include "CarbonEngine/Globals.h"
 #include "CarbonEngine/Math/MathCommon.h"
-#include "CarbonEngine/Platform/MacOSX/PlatformMacOSX.h"
+#include "CarbonEngine/Platform/macOS/PlatformMacOS.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
 #include "CarbonEngine/Platform/PlatformInterface.h"
 
@@ -39,19 +39,19 @@
 
 - (void)windowDidEnterFullScreen:(NSNotification*)notification
 {
-    static_cast<Carbon::PlatformMacOSX&>(Carbon::platform()).windowDidEnterFullScreen();
+    static_cast<Carbon::PlatformMacOS&>(Carbon::platform()).windowDidEnterFullScreen();
 }
 
 - (void)windowDidExitFullScreen:(NSNotification*)notification
 {
-    static_cast<Carbon::PlatformMacOSX&>(Carbon::platform()).windowDidExitFullScreen();
+    static_cast<Carbon::PlatformMacOS&>(Carbon::platform()).windowDidExitFullScreen();
 }
 @end
 
 namespace Carbon
 {
 
-class PlatformMacOSX::Members
+class PlatformMacOS::Members
 {
 public:
 
@@ -73,7 +73,7 @@ public:
     std::array<std::array<float, 256>, 3> originalGammaRamps = {};
 };
 
-PlatformMacOSX::PlatformMacOSX()
+PlatformMacOS::PlatformMacOS()
 {
     m = new Members;
 
@@ -183,7 +183,7 @@ PlatformMacOSX::PlatformMacOSX()
     m->keyMappings[0x7E] = KeyUpArrow;
 }
 
-PlatformMacOSX::~PlatformMacOSX()
+PlatformMacOS::~PlatformMacOS()
 {
     destroyWindow();
 
@@ -191,7 +191,7 @@ PlatformMacOSX::~PlatformMacOSX()
     m = nullptr;
 }
 
-bool PlatformMacOSX::setup()
+bool PlatformMacOS::setup()
 {
     PlatformInterface::setup();
 
@@ -237,7 +237,7 @@ bool PlatformMacOSX::setup()
     return true;
 }
 
-bool PlatformMacOSX::createWindow(const Resolution& resolution, WindowMode windowMode, FSAAMode fsaa)
+bool PlatformMacOS::createWindow(const Resolution& resolution, WindowMode windowMode, FSAAMode fsaa)
 {
     try
     {
@@ -365,7 +365,7 @@ bool PlatformMacOSX::createWindow(const Resolution& resolution, WindowMode windo
     }
 }
 
-bool PlatformMacOSX::resizeWindow(const Resolution& resolution, WindowMode windowMode, FSAAMode fsaa)
+bool PlatformMacOS::resizeWindow(const Resolution& resolution, WindowMode windowMode, FSAAMode fsaa)
 {
     if (!resolutions_.has(resolution))
         return false;
@@ -407,7 +407,7 @@ bool PlatformMacOSX::resizeWindow(const Resolution& resolution, WindowMode windo
     return true;
 }
 
-void PlatformMacOSX::destroyWindow()
+void PlatformMacOS::destroyWindow()
 {
     releaseInputLock();
 
@@ -434,7 +434,7 @@ void PlatformMacOSX::destroyWindow()
     LOG_INFO << "Window destroyed";
 }
 
-bool PlatformMacOSX::setWindowTitle(const UnicodeString& title)
+bool PlatformMacOS::setWindowTitle(const UnicodeString& title)
 {
     windowTitle_ = title;
 
@@ -444,18 +444,18 @@ bool PlatformMacOSX::setWindowTitle(const UnicodeString& title)
     return true;
 }
 
-VoidFunction PlatformMacOSX::getOpenGLFunctionAddress(const String& function) const
+VoidFunction PlatformMacOS::getOpenGLFunctionAddress(const String& function) const
 {
     return m->openGLFramework.mapFunction(function.cStr());
 }
 
-void PlatformMacOSX::swap()
+void PlatformMacOS::swap()
 {
     if (m->nsOpenGLContext)
         [m->nsOpenGLContext flushBuffer];
 }
 
-bool PlatformMacOSX::setVerticalSyncEnabled(bool enabled)
+bool PlatformMacOS::setVerticalSyncEnabled(bool enabled)
 {
     auto sync = enabled ? 1 : 0;
     if (CGLSetParameter(CGLContextObj([m->nsOpenGLContext CGLContextObj]), kCGLCPSwapInterval, &sync) != 0)
@@ -470,17 +470,17 @@ bool PlatformMacOSX::setVerticalSyncEnabled(bool enabled)
     return true;
 }
 
-float PlatformMacOSX::getFinalDisplayAspectRatio() const
+float PlatformMacOS::getFinalDisplayAspectRatio() const
 {
     return float(m->nsWindow.contentView.frame.size.width) / float(m->nsWindow.contentView.frame.size.height);
 }
 
-bool PlatformMacOSX::releaseInputLock()
+bool PlatformMacOS::releaseInputLock()
 {
     if (!m->isCursorVisible)
     {
         CGDisplayShowCursor(kCGNullDirectDisplay);
-        LOG_INFO << "Showing the Mac OS X cursor";
+        LOG_INFO << "Showing the macOS cursor";
         m->isCursorVisible = true;
     }
 
@@ -491,19 +491,19 @@ bool PlatformMacOSX::releaseInputLock()
     return true;
 }
 
-void PlatformMacOSX::hideCursor()
+void PlatformMacOS::hideCursor()
 {
     if (m->isCursorVisible)
     {
         CGDisplayHideCursor(kCGNullDirectDisplay);
-        LOG_INFO << "Hiding the Mac OS X cursor";
+        LOG_INFO << "Hiding the macOS cursor";
         m->isCursorVisible = false;
     }
 
     CGAssociateMouseAndMouseCursorPosition(NO);
 }
 
-bool PlatformMacOSX::processEvent(const Event& e)
+bool PlatformMacOS::processEvent(const Event& e)
 {
     if (!PlatformInterface::processEvent(e))
         return false;
@@ -683,12 +683,12 @@ bool PlatformMacOSX::processEvent(const Event& e)
     return true;
 }
 
-TimeValue PlatformMacOSX::getTime() const
+TimeValue PlatformMacOS::getTime() const
 {
     return TimeValue(int64_t((mach_absolute_time() * m->timebaseInfo.numer) / (int64_t(1000) * m->timebaseInfo.denom)));
 }
 
-uint64_t PlatformMacOSX::getSysctl(const char* name) const
+uint64_t PlatformMacOS::getSysctl(const char* name) const
 {
     auto result = uint64_t();
     auto size = sizeof(result);
@@ -698,32 +698,32 @@ uint64_t PlatformMacOSX::getSysctl(const char* name) const
     return result;
 }
 
-String PlatformMacOSX::getOperatingSystemName() const
+String PlatformMacOS::getOperatingSystemName() const
 {
-    return String() << "OS X " << [[NSProcessInfo processInfo] operatingSystemVersionString];
+    return String() << "macOS " << [[NSProcessInfo processInfo] operatingSystemVersionString];
 }
 
-unsigned int PlatformMacOSX::getCPUCount() const
+unsigned int PlatformMacOS::getCPUCount() const
 {
     return uint(getSysctl("hw.ncpu"));
 }
 
-uint64_t PlatformMacOSX::getCPUFrequency() const
+uint64_t PlatformMacOS::getCPUFrequency() const
 {
     return getSysctl("hw.cpufrequency");
 }
 
-uint64_t PlatformMacOSX::getSystemMemorySize() const
+uint64_t PlatformMacOS::getSystemMemorySize() const
 {
     return getSysctl("hw.memsize");
 }
 
-bool PlatformMacOSX::openWithDefaultApplication(const UnicodeString& resource) const
+bool PlatformMacOS::openWithDefaultApplication(const UnicodeString& resource) const
 {
     return system(("open \"" + resource + "\"").toUTF8().as<char>()) != -1;
 }
 
-bool PlatformMacOSX::showMessageBox(const UnicodeString& text, const UnicodeString& title, MessageBoxButtons buttons,
+bool PlatformMacOS::showMessageBox(const UnicodeString& text, const UnicodeString& title, MessageBoxButtons buttons,
                                     MessageBoxIcon icon)
 {
     auto alert = [[NSAlert alloc] init];
@@ -752,7 +752,7 @@ bool PlatformMacOSX::showMessageBox(const UnicodeString& text, const UnicodeStri
     return [alert runModal] == NSAlertFirstButtonReturn;
 }
 
-bool PlatformMacOSX::setGamma(const Color& gammas)
+bool PlatformMacOS::setGamma(const Color& gammas)
 {
     const auto minimumGamma = 0.25f;
     const auto maximumGamma = 4.4f;
@@ -780,13 +780,13 @@ bool PlatformMacOSX::setGamma(const Color& gammas)
     return true;
 }
 
-void PlatformMacOSX::windowDidEnterFullScreen()
+void PlatformMacOS::windowDidEnterFullScreen()
 {
     windowMode_ = Fullscreen;
     updatePersistentSettings();
 }
 
-void PlatformMacOSX::windowDidExitFullScreen()
+void PlatformMacOS::windowDidExitFullScreen()
 {
     windowMode_ = Windowed;
     updatePersistentSettings();

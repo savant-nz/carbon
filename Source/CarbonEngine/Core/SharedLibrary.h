@@ -10,7 +10,7 @@ namespace Carbon
 
 /**
  * This class handles loading dynamic libraries and mapping the functions they export, supports DLLs on Windows, DyLibs
- * on Mac OS X and SOs on Linux.
+ * on macOS and SOs on Linux.
  */
 class CARBON_API SharedLibrary : private Noncopyable
 {

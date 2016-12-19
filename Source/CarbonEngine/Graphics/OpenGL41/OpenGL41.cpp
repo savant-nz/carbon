@@ -13,7 +13,7 @@
 #include "CarbonEngine/Graphics/States/States.h"
 #include "CarbonEngine/Math/MathCommon.h"
 
-#ifdef MACOSX
+#ifdef MACOS
     #include <OpenGL/OpenGL.h>
 #endif
 
@@ -22,7 +22,7 @@ namespace Carbon
 
 bool OpenGL41::isSupported() const
 {
-#ifdef MACOSX
+#ifdef MACOS
     // Check whether this OpenGL context was created with an OpenGL 4.1 core profile
     auto attributes = std::array<int, 14>{{kCGLPFAMinimumPolicy, kCGLPFAAccelerated, kCGLPFADoubleBuffer,
                                            kCGLPFAColorSize, 24, kCGLPFAAlphaSize, 8, kCGLPFADepthSize, 24,

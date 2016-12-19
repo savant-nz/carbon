@@ -12,7 +12,7 @@ require "#{File.expand_path File.dirname(__FILE__)}/Shared.rb"
 def logfile_output_prefix
   if windows?
     ENV['APPDATA'].tr('\\', '/') + '/'
-  elsif macosx?
+  elsif macos?
     "#{ENV['HOME']}/Library/Logs/"
   elsif linux?
     "#{ENV['HOME']}/."

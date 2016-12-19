@@ -14,7 +14,7 @@ namespace Carbon
 {
 
 /**
- * Wrapper class for integrating Game Center functionality on iOS and Mac OS X, currently exposes leaderboards and
+ * Wrapper class for integrating Game Center functionality on iOS and macOS, currently exposes leaderboards and
  * achievements.
  */
 class CARBON_API GameCenter : public EventHandler, private Noncopyable

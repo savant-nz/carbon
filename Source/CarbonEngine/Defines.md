@@ -101,12 +101,12 @@ Enables support for Oculus Rift devices.
 
 Enables the use of the OpenGL 1.1 graphics interface backend, this interface requires OpenGL 1.1 plus a number of
 additional OpenGL extensions in order to operate. The supported GLSL version is 1.10. This is the default interface used
-on Windows, Linux and Mac OS X.
+on Windows, Linux and macOS.
 
 #### `CARBON_INCLUDE_OPENGL41`
 
 Enables the use of the OpenGL 4.1 Core Profile graphics interface backend. The supported GLSL versions are 1.10 and
-4.10. This graphics interface is currently only supported on Mac OS X 10.9 and later.
+4.10. This graphics interface is currently only supported on macOS 10.9 and later.
 
 #### `CARBON_INCLUDE_OPENGLES2`
 
@@ -118,9 +118,9 @@ Enables physical simulation of objects through the NVIDIA PhysX libraries. The P
 runtime, which means that including PhysX support does not result in PhysX having to be installed on target machines.
 PhysX will only be available at runtime if it is installed on the target machine.
 
-#### `CARBON_INCLUDE_PLATFORM_MACOSX`
+#### `CARBON_INCLUDE_PLATFORM_MACOS`
 
-Enables the engine to run on the Mac OS X Cocoa API. This is preferred on Mac OS X over the SDL platform implementation.
+Enables the engine to run on the macOS Cocoa API. This is preferred on macOS over the SDL platform implementation.
 
 #### `CARBON_INCLUDE_PLATFORM_SDL`
 

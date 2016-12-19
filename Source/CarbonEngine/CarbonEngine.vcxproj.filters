@@ -106,7 +106,7 @@
     <Filter Include="Scene\GUI">
       <UniqueIdentifier>{d6385b97-09bc-44e1-a6b2-943f5a786efb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\MacOSX">
+    <Filter Include="Platform\macOS">
       <UniqueIdentifier>{f6288045-7717-4f6f-ba6b-0ece9dcfaa93}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Android">
@@ -1280,8 +1280,8 @@
     <ClInclude Include="Scene\EntityController\TargetPositionEntityController.h">
       <Filter>Scene\EntityController</Filter>
     </ClInclude>
-    <ClInclude Include="Platform\MacOSX\PlatformMacOSX.h">
-      <Filter>Platform\MacOSX</Filter>
+    <ClInclude Include="Platform\macOS\PlatformMacOS.h">
+      <Filter>Platform\macOS</Filter>
     </ClInclude>
     <ClInclude Include="Platform\Android\PlatformAndroid.h">
       <Filter>Platform\Android</Filter>
@@ -1475,7 +1475,7 @@
     <None Include="Carbon.ico" />
     <None Include="Defines.md" />
     <None Include="EntryPointiOS.mm" />
-    <None Include="EntryPointMacOSX.mm" />
+    <None Include="EntryPointMacOS.mm" />
     <None Include="Core\FileSystem\FileSystem.mm">
       <Filter>Core\FileSystem</Filter>
     </None>
@@ -1488,8 +1488,8 @@
     <None Include="Platform\iOS\PlatformiOS.mm">
       <Filter>Platform\iOS</Filter>
     </None>
-    <None Include="Platform\MacOSX\PlatformMacOSX.mm">
-      <Filter>Platform\MacOSX</Filter>
+    <None Include="Platform\macOS\PlatformMacOS.mm">
+      <Filter>Platform\macOS</Filter>
     </None>
     <None Include="Game\GameCenter.mm">
       <Filter>Game</Filter>

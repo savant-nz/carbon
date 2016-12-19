@@ -29,7 +29,7 @@ module Git
   def executable
     return @executable if @executable
 
-    @executable = macosx? ? 'xcrun git' : 'git'
+    @executable = macos? ? 'xcrun git' : 'git'
 
     error 'Git is not installed' unless popen "#{@executable} --version"
 

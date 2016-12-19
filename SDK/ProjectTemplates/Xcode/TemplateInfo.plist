@@ -9,7 +9,7 @@
     <key>Concrete</key>
     <true/>
     <key>Description</key>
-    <string>This template creates a Carbon application with support for Mac OS X and iOS.</string>
+    <string>This template creates a Carbon application with support for macOS and iOS.</string>
     <key>SortOrder</key>
     <integer>1</integer>
 
@@ -26,7 +26,7 @@
 
     <key>Targets</key>
     <array>
-        <!-- Mac OS X target -->
+        <!-- macOS target -->
         <dict>
             <key>Name</key>
             <string>___PACKAGENAME___</string>
