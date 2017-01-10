@@ -22,6 +22,8 @@
             #error This version of Visual Studio is not supported, please upgrade
         #elif _MSC_VER == 1900
             #define CARBON_MSVC_VERSION "2015"
+        #elif _MSC_VER == 1910
+            #define CARBON_MSVC_VERSION "2017"
         #else
             #define CARBON_MSVC_VERSION "Unknown"
         #endif
