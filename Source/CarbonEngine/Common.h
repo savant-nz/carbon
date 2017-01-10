@@ -153,10 +153,10 @@
         #define UNICODE
     #endif
 
-    // Build against the Windows Vista APIs
-    #define WINVER 0x0600
-    #define _WIN32_WINNT  0x0600
-    #define NTDDI_VERSION NTDDI_VISTA
+    // Build against the Windows 7 APIs
+    #define WINVER 0x0601
+    #define _WIN32_WINNT  0x0601
+    #define NTDDI_VERSION NTDDI_WIN7
 
     #define ISOLATION_AWARE_ENABLED 1
 
