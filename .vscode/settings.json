@@ -1,0 +1,29 @@
+{
+    "C_Cpp.clang_format_style": "file",
+
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.rulers": [120],
+
+    "files.exclude": {
+        "/.git": true,
+        "/.scons": true,
+        "/.vs": true,
+        "/.vsbuild": true,
+        "**/.DS_Store": true,
+        "**/*.aps": true,
+        "**/*.idb": true,
+        "**/*.ilk": true,
+        "**/*.opensdf": true,
+        "**/*.pyc": true,
+        "**/*.sdf": true,
+        "**/*.suo": true,
+        "**/*.vcxproj.user": true,
+        "**/*~": true,
+        ".sconsign.dblite": true,
+        "ipch": true,
+        "/Source/x64": true,
+        "/Source/Debug": true,
+        "/Source/Release": true
+    }
+}
