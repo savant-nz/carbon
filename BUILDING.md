@@ -21,8 +21,8 @@ On macOS:
 - Install [Homebrew](http://brew.sh).
 - Install [SCons](http://www.scons.org) using Homebrew: `brew install scons`
 
-On Ubuntu Linux:
-- Install required packages using the following command: `apt-get install g++ git libopenal-dev libgl1-mesa-dev
+On Ubuntu Linux 16.04 and later:
+- Install required packages using the following command: `sudo apt install g++ git libopenal-dev libgl1-mesa-dev
   libsdl2-dev libudev-dev libxinerama-dev ruby scons`
 
 Once this setup is complete build the engine's dependencies:

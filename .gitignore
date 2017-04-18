@@ -7,9 +7,6 @@
 .sconsign.dblite
 .sconsign.tmp
 
-# Sublime Text
-*.sublime-workspace
-
 # Visual Studio
 *.aps
 *.opensdf
