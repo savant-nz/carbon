@@ -16,7 +16,7 @@ env['CC'] = 'clang'
 env['CXX'] = 'clang++'
 env['LINK'] = 'clang++'
 
-env['CCFLAGS'] += ['-stdlib=libc++']
+env['CCFLAGS'] += ['-stdlib=libc++', '-Wno-undefined-func-template', '-Wno-undefined-var-template']
 env['LINKFLAGS'] += ['-stdlib=libc++']
 
 # Make color diagnostics work when piping Clang output through SCons
