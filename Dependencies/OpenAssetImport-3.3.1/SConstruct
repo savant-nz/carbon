@@ -15,7 +15,7 @@ env['CPPPATH'] += ['#/Source', '#/Source/include', '#/Source/contrib/openddlpars
 env['CPPDEFINES'] += ['ASSIMP_BUILD_NO_BLEND_IMPORTER', 'ASSIMP_BUILD_NO_COB_IMPORTER', 'ASSIMP_BUILD_NO_C4D_IMPORTER',
                       'ASSIMP_BUILD_NO_COLLADA_IMPORTER', 'ASSIMP_BUILD_NO_DAE_IMPORTER',
                       'ASSIMP_BUILD_NO_DXF_IMPORTER', 'ASSIMP_BUILD_NO_FBX_IMPORTER', 'ASSIMP_BUILD_NO_IFC_IMPORTER',
-                      'ASSIMP_BUILD_NO_OWN_ZLIB']
+                      'ASSIMP_BUILD_NO_OWN_ZLIB', 'OPENDDL_STATIC_LIBARY']
 
 target = 'OpenAssetImport'
 if compiler.startswith('VisualStudio'):
