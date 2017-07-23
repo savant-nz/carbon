@@ -236,7 +236,7 @@ Vec3 Camera::screenToWorld(const Vec3& p) const
     // Calculate clip space point, clamping inside the viewport
     auto clipSpace = Vec3();
 
-    clipSpace.x = Math::clamp01((p.x - viewport.getLeft()) / viewport.getWidth()),
+    clipSpace.x = Math::clamp01((p.x - viewport.getLeft()) / viewport.getWidth());
     clipSpace.y = Math::clamp01((p.y - viewport.getBottom()) / viewport.getHeight());
     clipSpace.z = Math::clamp01(p.z);
 
