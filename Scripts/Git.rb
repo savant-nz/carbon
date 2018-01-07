@@ -75,7 +75,7 @@ module Git
       size += ((File.stat(file).size + 4095) / 4096) * 4096
     end
 
-    size / (1024 * 1024)
+    size / 1024
   end
 
   def compact_repository(repository)
@@ -93,7 +93,7 @@ module Git
     repositories_in_directory(directory).each do |repository|
       space_reclaimed = compact_repository repository
 
-      puts "Reduced size of #{dir} by #{space_reclaimed}MB\n\n"
+      puts "Reduced size of #{repository} by #{space_reclaimed}kB\n\n"
       total_space_reclaimed += space_reclaimed
     end
 
