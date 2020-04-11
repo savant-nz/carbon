@@ -4078,7 +4078,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Source/include\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Source\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeType-2.7/Include\"",
 					"\"$(SRCROOT)/../Dependencies/Ogg-1.3.2/Include\"",
@@ -4090,7 +4090,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/macOS/x64\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/macOS/x64\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/macOS/x64\"",
 					"\"$(SRCROOT)/../Dependencies/FreeType-2.7/Library/macOS/x64\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/macOS/x64\"",
@@ -4135,7 +4135,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Source/include\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Source\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeType-2.7/Include\"",
 					"\"$(SRCROOT)/../Dependencies/Ogg-1.3.2/Include\"",
@@ -4147,7 +4147,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/macOS/x64\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/macOS/x64\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/macOS/x64\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/macOS/x64\"",
 					"\"$(SRCROOT)/../Dependencies/FreeType-2.7/Library/macOS/x64\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/macOS/x64\"",
@@ -4196,7 +4196,7 @@
 				INFOPLIST_FILE = "SkeletalAnimationSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4226,7 +4226,7 @@
 				INFOPLIST_FILE = "SkeletalAnimationSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4257,7 +4257,7 @@
 				INFOPLIST_FILE = "DeferredLightingSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4287,7 +4287,7 @@
 				INFOPLIST_FILE = "DeferredLightingSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4336,7 +4336,7 @@
 				INFOPLIST_FILE = "TerrainSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4366,7 +4366,7 @@
 				INFOPLIST_FILE = "TerrainSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4451,7 +4451,7 @@
 				INFOPLIST_FILE = "ImpostersSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4481,7 +4481,7 @@
 				INFOPLIST_FILE = "ImpostersSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4526,7 +4526,7 @@
 				INFOPLIST_FILE = "BoxesSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4556,7 +4556,7 @@
 				INFOPLIST_FILE = "BoxesSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4587,7 +4587,7 @@
 				INFOPLIST_FILE = "PostProcessSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4617,7 +4617,7 @@
 				INFOPLIST_FILE = "PostProcessSample/Info-iOS.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Library/iOS\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Library/iOS\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Library/iOS\"",
 					"\"$(SRCROOT)/../Dependencies/Vorbis-1.3.5/Library/iOS\"",
@@ -4669,7 +4669,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Source/include\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Source\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Source\"",
 					"\"$(SRCROOT)/../Dependencies/Ogg-1.3.2/Include\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Source/include\"",
@@ -4694,7 +4694,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../Dependencies/AngelScript-2.31.1/Source/include\"",
-					"\"$(SRCROOT)/../Dependencies/Bullet-2.85.1/Source\"",
+					"\"$(SRCROOT)/../Dependencies/Bullet-2.89/Source\"",
 					"\"$(SRCROOT)/../Dependencies/FreeImage-3.17.0/Source\"",
 					"\"$(SRCROOT)/../Dependencies/Ogg-1.3.2/Include\"",
 					"\"$(SRCROOT)/../Dependencies/OpenAssetImport-3.3.1/Source/include\"",
