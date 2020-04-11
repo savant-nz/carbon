@@ -106,7 +106,7 @@ on Windows, Linux and macOS.
 #### `CARBON_INCLUDE_OPENGL41`
 
 Enables the use of the OpenGL 4.1 Core Profile graphics interface backend. The supported GLSL versions are 1.10 and
-4.10. This graphics interface is currently only supported on macOS 10.9 and later.
+4.10. This graphics interface is currently only supported on macOS.
 
 #### `CARBON_INCLUDE_OPENGLES2`
 

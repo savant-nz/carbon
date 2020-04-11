@@ -7,6 +7,7 @@
 
 #include "CarbonEngine/Core/EventHandler.h"
 #include "CarbonEngine/Core/EventManager.h"
+#include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Math/Color.h"
 #include "CarbonEngine/Math/Matrix4.h"
 #include "CarbonEngine/Math/SimpleTransform.h"
@@ -814,5 +815,7 @@ protected:
 
 #endif
 };
+
+CARBON_DECLARE_INTERFACE_REGISTRY(PlatformInterface);
 
 }

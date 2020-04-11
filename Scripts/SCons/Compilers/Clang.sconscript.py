@@ -36,7 +36,8 @@ if isStrictBuild:
                        '-Wno-format-nonliteral', '-Wno-global-constructors', '-Wno-header-hygiene',
                        '-Wno-implicit-fallthrough', '-Wno-keyword-macro', '-Wno-missing-noreturn',
                        '-Wno-missing-prototypes', '-Wno-nullable-to-nonnull-conversion', '-Wno-over-aligned',
-                       '-Wno-padded', '-Wno-sign-conversion', '-Wno-switch-enum', '-Wno-weak-vtables']
+                       '-Wno-padded', '-Wno-sign-conversion', '-Wno-switch-enum', '-Wno-unused-template',
+                       '-Wno-weak-vtables']
 
 
 # Alter GCC's precompiled header support to pass a -include-pch through to Clang

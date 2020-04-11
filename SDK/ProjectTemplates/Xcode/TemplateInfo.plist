@@ -41,7 +41,7 @@
                 <key>VALID_ARCHS</key>
                 <string>x86_64</string>
                 <key>MACOSX_DEPLOYMENT_TARGET</key>
-                <string>10.9</string>
+                <string>10.14</string>
                 <key>CLANG_CXX_LANGUAGE_STANDARD</key>
                 <string>c++0x</string>
                 <key>CLANG_CXX_LIBRARY</key>
@@ -131,7 +131,7 @@
                 <key>CLANG_ENABLE_OBJC_ARC</key>
                 <string>YES</string>
                 <key>IPHONEOS_DEPLOYMENT_TARGET</key>
-                <string>8.0</string>
+                <string>12.0</string>
                 <key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
                 <string>iPhone Developer</string>
                 <key>PRODUCT_NAME</key>

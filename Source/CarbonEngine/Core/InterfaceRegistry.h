@@ -229,6 +229,15 @@ private:
  */
 
 /**
+ * This macro declares the static members of an InterfaceRegistry for the given \a Interface class.
+ */
+#define CARBON_DECLARE_INTERFACE_REGISTRY(InterfaceClass)                                                                                                   \
+    template <> Carbon::Vector<Carbon::InterfaceRegistry<InterfaceClass>::Implementation*>* Carbon::InterfaceRegistry<InterfaceClass>::implementations_;    \
+    template <> Carbon::InterfaceRegistry<InterfaceClass>::Implementation* Carbon::InterfaceRegistry<InterfaceClass>::activeImplementation_;                \
+    template <> InterfaceClass* Carbon::InterfaceRegistry<InterfaceClass>::activeInstance_;                                                                 \
+    template <> char Carbon::InterfaceRegistry<InterfaceClass>::OverrideImplementationName[256]
+
+/**
  * This macro instantiates an InterfaceRegistry for the given \a Interface class, the static members it needs are
  * defined so that they can be linked against. The macro should be followed immediately by the definition of the
  * InterfaceRegistry::setup() method that is specialized for the given \a Interface class.
@@ -256,7 +265,7 @@ private:
             {                                                                                   \
                 RegistryClass::registerImplementation(this);                                    \
             }                                                                                   \
-            ~Factory() { RegistryClass::unregisterImplementation(this); }                       \
+            ~Factory() override { RegistryClass::unregisterImplementation(this); }              \
             InterfaceClass* create() override { return new ImplementationClass; }               \
             void destroy(InterfaceClass* i) override { delete i; }                              \
         } implementation;                                                                       \

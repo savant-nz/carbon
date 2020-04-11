@@ -244,6 +244,12 @@ private:
  */
 
 /**
+ * Declares a FileFormatRegistry by declaring the static \a formats_ member that it requires.
+ */
+#define CARBON_DECLARE_FILE_FORMAT_REGISTRY(ReadFileFormatFunction, WriteFileFormatFunction) \
+    template <> Vector<FileFormatRegistry<ReadFileFormatFunction, WriteFileFormatFunction>::SupportedFileFormat> FileFormatRegistry<ReadFileFormatFunction, WriteFileFormatFunction>::formats_
+
+/**
  * Defines a FileFormatRegistry by instantiating the static \a formats_ member that it requires.
  */
 #define CARBON_DEFINE_FILE_FORMAT_REGISTRY(ReadFileFormatFunction, WriteFileFormatFunction) \

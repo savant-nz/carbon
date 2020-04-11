@@ -107,7 +107,7 @@ private:
 
     // A small cache of free blocks is kept to improve allocation speed
     const unsigned int freeBlockCacheSize_ = 0;
-    unsigned int* const freeBlockCache_ = 0;
+    unsigned int* const freeBlockCache_ = nullptr;
     unsigned int freeBlockCacheEntryCount_ = 0;
 
     // If the free block cache is empty it is refilled by BlockAllocator::allocate() using this method

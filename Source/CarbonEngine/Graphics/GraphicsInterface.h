@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Graphics/ShaderProgram.h"
 #include "CarbonEngine/Graphics/States/StateTypes.h"
 #include "CarbonEngine/Image/Image.h"
@@ -856,5 +857,7 @@ private:
     uint64_t triangleCount_ = 0;
     uint64_t apiCallCount_ = 0;
 };
+
+CARBON_DECLARE_INTERFACE_REGISTRY(GraphicsInterface);
 
 }

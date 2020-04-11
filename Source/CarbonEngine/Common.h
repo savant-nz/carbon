@@ -101,8 +101,8 @@
             #define iOS 1
         #endif
 
-        #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
-            #error The minimum required iOS version should be set to at least 8.0
+        #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_12_0
+            #error The minimum required iOS version should be set to at least 12.0
         #endif
 
         // iOS builds always use a static library
@@ -124,8 +124,8 @@
             #define MACOS 1
         #endif
 
-        #if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_9
-            #error The minimum required macOS version should be set to at least 10.9
+        #if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_14
+            #error The minimum required macOS version should be set to at least 10.14
         #endif
     #endif
 

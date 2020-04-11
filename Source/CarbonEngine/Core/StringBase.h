@@ -1469,6 +1469,20 @@ typedef StringBase<char> String;
  */
 typedef StringBase<UnicodeCharacter> UnicodeString;
 
+// Explicitly declare static members, these are defined in StringBase.cpp
+template <> const String String::Empty;
+template <> const String String::Space;
+template <> const String String::Period;
+template <> const String String::Newline;
+template <> const String String::CarriageReturn;
+template <> const String String::TrimCharacters;
+template <> const UnicodeString UnicodeString::Empty;
+template <> const UnicodeString UnicodeString::Space;
+template <> const UnicodeString UnicodeString::Period;
+template <> const UnicodeString UnicodeString::Newline;
+template <> const UnicodeString UnicodeString::CarriageReturn;
+template <> const UnicodeString UnicodeString::TrimCharacters;
+
 /**
  * Enable `const char *` to be added directly to a StringBase.
  */

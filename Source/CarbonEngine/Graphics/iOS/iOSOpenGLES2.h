@@ -23,7 +23,7 @@ class CARBON_API iOSOpenGLES2 : public OpenGLES2, EventHandler
 public:
 
     iOSOpenGLES2() : OpenGLES2() { events().addHandler<ApplicationLoseFocusEvent>(this); }
-    ~iOSOpenGLES2() { events().removeHandler(this); }
+    ~iOSOpenGLES2() override { events().removeHandler(this); }
 
     // Run glFinish() when the application loses focus so that no pending OpenGL calls are executed while the
     // application is backgrounded. iOS terminates backgrounded applications that try to use the GPU.

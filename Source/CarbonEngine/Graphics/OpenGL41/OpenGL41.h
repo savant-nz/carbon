@@ -9,6 +9,7 @@
 
 #ifdef MACOS
     #define GL_DO_NOT_WARN_IF_MULTI_GL_VERSION_HEADERS_INCLUDED
+    #define GL_SILENCE_DEPRECATION
     #include <OpenGL/gl3.h>
 #else
     #error The location of the OpenGL 4.1 headers is not known on this platform

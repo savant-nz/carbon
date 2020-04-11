@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Math/MathCommon.h"
 
 namespace Carbon
@@ -249,5 +250,7 @@ protected:
      */
     bool isMuted_ = false;
 };
+
+CARBON_DECLARE_INTERFACE_REGISTRY(SoundInterface);
 
 }

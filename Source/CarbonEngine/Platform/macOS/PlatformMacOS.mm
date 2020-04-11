@@ -7,6 +7,8 @@
 
 #ifdef CARBON_INCLUDE_PLATFORM_MACOS
 
+#define GL_SILENCE_DEPRECATION
+
 #include <mach/mach_time.h>
 #include <OpenGL/gl.h>
 
@@ -19,6 +21,7 @@
 #include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Core/SharedLibrary.h"
 #include "CarbonEngine/Globals.h"
+#include "CarbonEngine/Graphics/GraphicsInterface.h"
 #include "CarbonEngine/Math/MathCommon.h"
 #include "CarbonEngine/Platform/macOS/PlatformMacOS.h"
 #include "CarbonEngine/Platform/PlatformEvents.h"
@@ -61,6 +64,7 @@ public:
 
     NSWindow* nsWindow = nil;
     WindowDelegate* windowDelegate = nil;
+    NSOpenGLView* nsOpenGLView = nil;
     NSOpenGLContext* nsOpenGLContext = nil;
 
     bool isCursorVisible = true;
@@ -289,7 +293,7 @@ bool PlatformMacOS::createWindow(const Resolution& resolution, WindowMode window
 
         m->nsWindow =
             [[NSWindow alloc] initWithContentRect:frame
-                                        styleMask:NSTitledWindowMask | NSClosableWindowMask | NSResizableWindowMask
+                                        styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskResizable
                                           backing:NSBackingStoreBuffered
                                             defer:NO];
         if (!m->nsWindow)
@@ -307,17 +311,18 @@ bool PlatformMacOS::createWindow(const Resolution& resolution, WindowMode window
         [m->nsWindow
             setCollectionBehavior:NSWindowCollectionBehaviorManaged | NSWindowCollectionBehaviorFullScreenPrimary];
 
-        // Create an OpenGL rendering context
-        m->nsOpenGLContext = [[NSOpenGLContext alloc] initWithFormat:pixelFormat shareContext:nil];
+        // Create an OpenGL view which contains the rendering context
+        m->nsOpenGLView = [[NSOpenGLView alloc] initWithFrame:frame pixelFormat:pixelFormat];
+        m->nsOpenGLContext = m->nsOpenGLView.openGLContext;
+        m->nsWindow.contentView = m->nsOpenGLView;
 
         // When the rendering resolution is lower than the window's resolution, which happens when running fullscreen at
         // a resolution lower than the native resolution, the rendered surface is upscaled to fill the screen
         auto dimensions = std::array<GLint, 2>{{GLint(resolution.getWidth()), GLint(resolution.getHeight())}};
-        [m->nsOpenGLContext setValues:dimensions.data() forParameter:NSOpenGLCPSurfaceBackingSize];
+        [m->nsOpenGLContext setValues:dimensions.data() forParameter:NSOpenGLContextParameterSurfaceBackingSize];
         CGLEnable(CGLContextObj([m->nsOpenGLContext CGLContextObj]), kCGLCESurfaceBackingSize);
 
         // Activate the OpenGL rendering context
-        [m->nsOpenGLContext setView:[m->nsWindow contentView]];
         [m->nsOpenGLContext update];
         [m->nsOpenGLContext makeCurrentContext];
 
@@ -382,7 +387,7 @@ bool PlatformMacOS::resizeWindow(const Resolution& resolution, WindowMode window
 
     // Update the size of the GL backing surface
     auto dimensions = std::array<GLint, 2>{{GLint(resolution.getWidth()), GLint(resolution.getHeight())}};
-    [m->nsOpenGLContext setValues:dimensions.data() forParameter:NSOpenGLCPSurfaceBackingSize];
+    [m->nsOpenGLContext setValues:dimensions.data() forParameter:NSOpenGLContextParameterSurfaceBackingSize];
 
     // Center the window on resize
     if (windowMode == Windowed)
@@ -395,7 +400,7 @@ bool PlatformMacOS::resizeWindow(const Resolution& resolution, WindowMode window
     }
 
     // Tell the OpenGL context its view has been altered
-    [m->nsOpenGLContext update];
+    [m->nsOpenGLView update];
 
     currentResolution_ = resolution;
     windowMode_ = windowMode;
@@ -411,12 +416,12 @@ void PlatformMacOS::destroyWindow()
 {
     releaseInputLock();
 
-    [NSOpenGLContext clearCurrentContext];
+    m->nsOpenGLContext = nil;
 
-    if (m->nsOpenGLContext)
+    if (m->nsOpenGLView)
     {
-        [m->nsOpenGLContext clearDrawable];
-        m->nsOpenGLContext = nil;
+        [m->nsOpenGLView clearGLContext];
+        m->nsOpenGLView = nil;
     }
 
     if (m->nsWindow)
@@ -515,7 +520,7 @@ bool PlatformMacOS::processEvent(const Event& e)
         // Pass on window events
         while (true)
         {
-            auto event = [NSApp nextEventMatchingMask:NSAnyEventMask
+            auto event = [NSApp nextEventMatchingMask:NSEventMaskAny
                                             untilDate:[NSDate distantPast]
                                                inMode:NSDefaultRunLoopMode
                                               dequeue:YES];
@@ -524,10 +529,10 @@ bool PlatformMacOS::processEvent(const Event& e)
 
             switch ([event type])
             {
-                case NSKeyDown:
-                case NSKeyUp:
+                case NSEventTypeKeyDown:
+                case NSEventTypeKeyUp:
                 {
-                    auto isKeyDownEvent = ([event type] == NSKeyDown);
+                    auto isKeyDownEvent = ([event type] == NSEventTypeKeyDown);
 
                     // Convert key code to a KeyConstant enum value
                     auto keyCode = [event keyCode];
@@ -543,21 +548,21 @@ bool PlatformMacOS::processEvent(const Event& e)
                             onInputDownEvent(key);
 
                             // Cmd+Q quits the application
-                            if (key == KeyQ && ([NSEvent modifierFlags] & NSCommandKeyMask))
+                            if (key == KeyQ && ([NSEvent modifierFlags] & NSEventModifierFlagCommand))
                                 events().dispatchEvent(ShutdownRequestEvent());
 
                             // Cmd+H hides the application
-                            else if (key == KeyH && ([NSEvent modifierFlags] & NSCommandKeyMask))
+                            else if (key == KeyH && ([NSEvent modifierFlags] & NSEventModifierFlagCommand))
                                 [NSApp hide:nil];
 
                             // Cmd+Option+H hides other applications
-                            else if (key == KeyH && ([NSEvent modifierFlags] & NSCommandKeyMask) &&
-                                     ([NSEvent modifierFlags] & NSAlternateKeyMask))
+                            else if (key == KeyH && ([NSEvent modifierFlags] & NSEventModifierFlagCommand) &&
+                                     ([NSEvent modifierFlags] & NSEventModifierFlagOption))
                                 [NSApp hideOtherApplications:nil];
 
                             // Cmd+Control+F toggles fullscreen
-                            else if (key == KeyF && ([NSEvent modifierFlags] & NSCommandKeyMask) &&
-                                     ([NSEvent modifierFlags] & NSControlKeyMask))
+                            else if (key == KeyF && ([NSEvent modifierFlags] & NSEventModifierFlagCommand) &&
+                                     ([NSEvent modifierFlags] & NSEventModifierFlagControl))
                                 resizeWindow(currentResolution_, windowMode_ == Fullscreen ? Windowed : Fullscreen,
                                              fsaaMode_);
                         }
@@ -584,15 +589,15 @@ bool PlatformMacOS::processEvent(const Event& e)
                     continue;
                 }
 
-                case NSFlagsChanged:
+                case NSEventTypeFlagsChanged:
                 {
                     auto modifiers = [event modifierFlags];
 
                     static const auto keyModifierMappings = std::unordered_map<NSUInteger, KeyConstant>{
-                        {NSControlKeyMask | 0x0001, KeyLeftControl}, {NSControlKeyMask | 0x2000, KeyRightControl},
-                        {NSShiftKeyMask | 0x0002, KeyLeftShift},     {NSShiftKeyMask | 0x0004, KeyRightShift},
-                        {NSAlternateKeyMask | 0x0020, KeyLeftAlt},   {NSAlternateKeyMask | 0x0040, KeyRightAlt},
-                        {NSCommandKeyMask | 0x0008, KeyLeftMeta},    {NSCommandKeyMask | 0x0010, KeyRightMeta}};
+                        {NSEventModifierFlagControl | 0x0001, KeyLeftControl}, {NSEventModifierFlagControl | 0x2000, KeyRightControl},
+                        {NSEventModifierFlagShift | 0x0002, KeyLeftShift},     {NSEventModifierFlagShift | 0x0004, KeyRightShift},
+                        {NSEventModifierFlagOption | 0x0020, KeyLeftAlt},   {NSEventModifierFlagOption | 0x0040, KeyRightAlt},
+                        {NSEventModifierFlagCommand | 0x0008, KeyLeftMeta}, {NSEventModifierFlagCommand | 0x0010, KeyRightMeta}};
 
                     for (auto mapping : keyModifierMappings)
                     {
@@ -611,16 +616,16 @@ bool PlatformMacOS::processEvent(const Event& e)
                     break;
                 }
 
-                case NSLeftMouseDown:
-                case NSLeftMouseUp:
-                case NSRightMouseDown:
-                case NSRightMouseUp:
+                case NSEventTypeLeftMouseDown:
+                case NSEventTypeLeftMouseUp:
+                case NSEventTypeRightMouseDown:
+                case NSEventTypeRightMouseUp:
                 {
-                    auto isLeftMouseButton = ([event type] == NSLeftMouseDown || [event type] == NSLeftMouseUp);
+                    auto isLeftMouseButton = ([event type] == NSEventTypeLeftMouseDown || [event type] == NSEventTypeLeftMouseUp);
                     auto button = isLeftMouseButton ? LeftMouseButton : RightMouseButton;
 
                     isMouseButtonPressed_[button] =
-                        ([event type] == NSLeftMouseDown || [event type] == NSRightMouseDown);
+                        ([event type] == NSEventTypeLeftMouseDown || [event type] == NSEventTypeRightMouseDown);
 
                     if (isMouseButtonPressed_[button])
                         onInputDownEvent(button);
@@ -630,7 +635,7 @@ bool PlatformMacOS::processEvent(const Event& e)
                     break;
                 }
 
-                case NSScrollWheel:
+                case NSEventTypeScrollWheel:
                 {
                     if ([event scrollingDeltaY] < 0.0)
                         events().dispatchEvent(MouseWheelEvent(MouseWheelEvent::AwayFromUser, getMousePosition()));
@@ -640,9 +645,9 @@ bool PlatformMacOS::processEvent(const Event& e)
                     break;
                 }
 
-                case NSMouseMoved:
-                case NSLeftMouseDragged:
-                case NSRightMouseDragged:
+                case NSEventTypeMouseMoved:
+                case NSEventTypeLeftMouseDragged:
+                case NSEventTypeRightMouseDragged:
                 {
                     if (events().isEventAllowed<MouseMoveEvent>())
                         mouseRelative_ += Vec2(float([event deltaX]), -float([event deltaY]));
@@ -745,9 +750,9 @@ bool PlatformMacOS::showMessageBox(const UnicodeString& text, const UnicodeStrin
     }
 
     if (icon == ErrorIcon)
-        alert.alertStyle = NSCriticalAlertStyle;
+        alert.alertStyle = NSAlertStyleCritical;
     else
-        alert.alertStyle = NSInformationalAlertStyle;
+        alert.alertStyle = NSAlertStyleInformational;
 
     return [alert runModal] == NSAlertFirstButtonReturn;
 }

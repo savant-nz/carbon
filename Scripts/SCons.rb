@@ -42,7 +42,7 @@ module SCons
   def default_arguments(platform)
     {
       Android: { architecture: :ARMv7,             compiler: :GCC },
-      iOS:     { architecture: :ARMv7,             compiler: :Clang },
+      iOS:     { architecture: :ARM64,             compiler: :Clang },
       Linux:   { architecture: linux_architecture, compiler: :GCC },
       macOS:   { architecture: :x64,               compiler: :Clang },
       Windows: { architecture: :x86,               compiler: :VisualStudio2015 }

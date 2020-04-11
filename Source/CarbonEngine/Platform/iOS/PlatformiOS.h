@@ -9,6 +9,8 @@
 
 #undef new
 
+#define GLES_SILENCE_DEPRECATION
+
 #include <CoreFoundation/CFDate.h>
 #include <OpenGLES/EAGL.h>
 #include <OpenGLES/EAGLDrawable.h>

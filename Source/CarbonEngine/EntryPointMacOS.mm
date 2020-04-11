@@ -78,15 +78,15 @@ static void createMenus(const UnicodeString& applicationName)
     // Add 'Hide' and 'Hide Others' menu items
     auto title = [@"Hide " stringByAppendingString:appName];
     auto item = [menu addItemWithTitle:title action:@selector(hide:) keyEquivalent:@"h"];
-    [item setKeyEquivalentModifierMask:(NSCommandKeyMask)];
+    [item setKeyEquivalentModifierMask:(NSEventModifierFlagCommand)];
 
     item = [menu addItemWithTitle:@"Hide Others" action:@selector(hideOtherApplications:) keyEquivalent:@"h"];
-    [item setKeyEquivalentModifierMask:(NSAlternateKeyMask | NSCommandKeyMask)];
+    [item setKeyEquivalentModifierMask:(NSEventModifierFlagOption | NSEventModifierFlagCommand)];
 
     // Add 'Quit' menu item
     title = [@"Quit " stringByAppendingString:appName];
     [menu addItemWithTitle:title action:@selector(terminateApplication:) keyEquivalent:@"q"];
-    [item setKeyEquivalentModifierMask:(NSCommandKeyMask)];
+    [item setKeyEquivalentModifierMask:(NSEventModifierFlagCommand)];
 
     // Put the menu into the menubar and tell the application that it is the application menu
     item = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];

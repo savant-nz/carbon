@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "CarbonEngine/Core/InterfaceRegistry.h"
 #include "CarbonEngine/Math/AABB.h"
 #include "CarbonEngine/Geometry/Triangle.h"
 #include "CarbonEngine/Platform/TimeValue.h"
@@ -419,5 +420,7 @@ private:
 
     bool isUpdating_ = true;
 };
+
+CARBON_DECLARE_INTERFACE_REGISTRY(PhysicsInterface);
 
 }

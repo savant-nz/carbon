@@ -11,21 +11,21 @@ Import('*')
 
 vars = Variables()
 vars.AddVariables(
-    ('architecture', 'Sets the target build architecture, must be ARMv7, ARM64, x86 or x64. This controls whether the '
-                     'build targets iOS devices (ARMv7 and ARM64) or the iOS simulator (x86 and x64).', 'ARMv7')
+    ('architecture', 'Sets the target build architecture, must be ARM64 or x64. This controls whether the '
+                     'build targets iOS devices (ARM64) or the iOS simulator (x64).', 'ARM64')
 )
 Help(vars.GenerateHelpText(Environment()))
 
 # Get target architecture
-architecture = ARGUMENTS.get('architecture', 'ARMv7')
-if architecture not in ['ARMv7', 'ARM64', 'x86', 'x64']:
+architecture = ARGUMENTS.get('architecture', 'ARM64')
+if architecture not in ['ARM64', 'x64']:
     print('Error: invalid build architecture')
     Exit(1)
 
 xcodePath = '/Applications/Xcode.app/Contents/Developer'
 
 # Get path to the SDK and associated flags
-if architecture.startswith('ARM'):
+if architecture == 'ARM64':
     sdkPath = xcodePath + '/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk'
     versionMinFlag = '-mios-version-min='
 else:
@@ -36,13 +36,13 @@ if not os.path.exists(sdkPath):
     print('Error: could not the iOS SDK, check that Xcode is installed and up to date')
     Exit(1)
 
-# Require iOS 8.0 as the minimum version
-versionMinFlag += '8.0'
+# Require iOS 12.0 as the minimum version
+versionMinFlag += '12.0'
 
 # Create build environment
 env = SConscript('Compilers/Clang.sconscript.py')
 
-sharedFlags = ['-arch', {'x86': 'i386', 'x64': 'x86_64', 'ARMv7': 'armv7', 'ARM64': 'arm64'}[architecture],
+sharedFlags = ['-arch', {'x64': 'x86_64', 'ARM64': 'arm64'}[architecture],
                '-isysroot', sdkPath, versionMinFlag]
 
 env['ASFLAGS'] = sharedFlags

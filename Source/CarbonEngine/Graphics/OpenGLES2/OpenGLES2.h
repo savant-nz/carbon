@@ -8,6 +8,8 @@
 #ifdef CARBON_INCLUDE_OPENGLES2
 
 #ifdef APPLE
+    #define GLES_SILENCE_DEPRECATION
+
     #include <OpenGLES/ES2/gl.h>
     #include <OpenGLES/ES2/glext.h>
 #elif defined(LINUX)

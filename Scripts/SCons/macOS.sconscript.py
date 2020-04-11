@@ -21,7 +21,7 @@ else:
     Exit(1)
 
 # Setup environment for the selected SDK
-flags = ['-arch', 'x86_64', '-mmacosx-version-min=10.9', '-isysroot', macOSSDKPath]
+flags = ['-arch', 'x86_64', '-mmacosx-version-min=10.14', '-isysroot', macOSSDKPath]
 env['CCFLAGS'] += flags + ['-fobjc-arc']
 env['LINKFLAGS'] += flags + ['-Wl,-syslibroot,' + macOSSDKPath]
 

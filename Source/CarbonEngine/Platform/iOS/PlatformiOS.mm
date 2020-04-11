@@ -392,7 +392,9 @@ bool PlatformiOS::openWithDefaultApplication(const UnicodeString& resource) cons
         stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     // Open as a URL
-    return [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped] options:@{} completionHandler:nil];
+
+    return true;
 }
 
 bool PlatformiOS::showMessageBox(const UnicodeString& text, const UnicodeString& title, MessageBoxButtons buttons,

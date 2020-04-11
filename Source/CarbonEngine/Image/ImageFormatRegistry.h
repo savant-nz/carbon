@@ -74,6 +74,8 @@ private:
     static unsigned int detectImageIndex(UnicodeString& imageName);
 };
 
+CARBON_DECLARE_FILE_FORMAT_REGISTRY(ReadImageFormatFunction, WriteImageFormatFunction);
+
 /**
  * \file
  */

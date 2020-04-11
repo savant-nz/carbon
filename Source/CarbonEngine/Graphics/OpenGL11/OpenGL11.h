@@ -10,6 +10,7 @@
 #ifndef MACOS
     #include <GL/gl.h>
 #else
+    #define GL_SILENCE_DEPRECATION
     #include <OpenGL/gl.h>
 #endif
 
@@ -35,7 +36,7 @@ class CARBON_API OpenGL11 : public OpenGLShared
 {
 public:
 
-    ~OpenGL11() { shutdown(); }
+    ~OpenGL11() override { shutdown(); }
 
     bool setup() override;
     void shutdown() override;
