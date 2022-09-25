@@ -11,14 +11,16 @@ Import('*')
 env = SConscript('Compilers/Clang.sconscript.py')
 
 # Find the latest macOS SDK
-sdkPrefix = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.'
-paths = glob.glob(sdkPrefix + '*')
-if paths:
-    paths = sorted(paths, key=lambda path: int(path[len(sdkPrefix):-4]))
-    macOSSDKPath = paths[-1]
-else:
-    print('Error: failed finding macOS SDK, check that Xcode is installed')
-    Exit(1)
+macOSSDKPath = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk'
+if not os.path.isdir(macOSSDKPath):
+    oldSDKPrefix = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.'
+    paths = glob.glob(oldSDKPrefix + '*')
+    if paths:
+        paths = sorted(paths, key=lambda path: int(path[len(oldSDKPrefix):-4]))
+        macOSSDKPath = paths[-1]
+    else:
+        print('Error: failed finding macOS SDK, check that Xcode is installed')
+        Exit(1)
 
 # Setup environment for the selected SDK
 flags = ['-arch', 'x86_64', '-mmacosx-version-min=10.14', '-isysroot', macOSSDKPath]
