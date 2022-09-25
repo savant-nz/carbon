@@ -34,7 +34,7 @@ public:
      */
     void add(const IndexType& index, const ValueType& value)
     {
-        auto entryIndex = entries_.binarySearch(LookupEntry(index));
+        auto entryIndex = findEntryIndex(index);
 
         if (entryIndex >= 0)
             entries_[entryIndex].second = value;
@@ -55,7 +55,7 @@ public:
         if (entries_.empty())
             return {};
 
-        auto entryIndex = entries_.binarySearch(LookupEntry(index, ValueType()));
+        auto entryIndex = findEntryIndex(index);
         if (entryIndex <= 0)
             entryIndex = -entryIndex - 1;
 
@@ -83,6 +83,12 @@ public:
 private:
 
     typedef std::pair<IndexType, ValueType> LookupEntry;
+
+    int findEntryIndex(const IndexType& index) const
+    {
+        return entries_.template binarySearch<const IndexType&>(index,
+                                                                [&](const LookupEntry& item) { return item.first; });
+    }
 
     const LookupEntry& getValue(int index) const { return entries_[Math::clamp<int>(index, 0, entries_.size() - 1)]; }
 
