@@ -12,11 +12,11 @@ require "#{REPOSITORY_ROOT}/Scripts/Git.rb"
 def sdk_version
   version = File.read("#{REPOSITORY_ROOT}/VERSION").lines.first.strip
 
-  # Include the branch name if not on the master branch
+  # Include the branch name if not on the main branch
   branch = Git.active_branch(REPOSITORY_ROOT)
-  branch = nil if branch == 'master' || branch == 'HEAD'
+  branch = nil if branch == 'main' || branch == 'HEAD'
 
-  # Include the short commit hash if not building an official release from master
+  # Include the short commit hash if not building an official release from main
   commit_hash = Git.short_head_commit_hash(REPOSITORY_ROOT) if version.include?('-') || branch
 
   [version, branch, commit_hash].compact.join '-'
