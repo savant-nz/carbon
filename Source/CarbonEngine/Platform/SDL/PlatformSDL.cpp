@@ -153,7 +153,7 @@ bool PlatformSDL::setup()
 
     // Log SDL versions
     auto version = SDL_version();
-    SDL_GetVersion(&linked);
+    SDL_GetVersion(&version);
 
     LOG_INFO << "Initialized SDL " << version.major << "." << version.minor << "." << version.patch;
 
