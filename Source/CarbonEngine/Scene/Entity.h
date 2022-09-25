@@ -1024,7 +1024,11 @@ private:
     bool wasCreatedThroughSubclassRegistry_ = false;
 };
 
+#ifndef DOXYGEN
+
 CARBON_DECLARE_SUBCLASS_REGISTRY(Entity);
+
+#endif
 
 /**
  * \file

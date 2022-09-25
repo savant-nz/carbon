@@ -48,7 +48,11 @@ public:
     static bool saveMeshFile(const UnicodeString& filename, const Mesh& mesh);
 };
 
+#ifndef DOXYGEN
+
 CARBON_DECLARE_FILE_FORMAT_REGISTRY(ReadMeshFormatFunction, WriteMeshFormatFunction);
+
+#endif
 
 /**
  * \file

@@ -50,7 +50,11 @@ public:
                               unsigned int channelCount, unsigned int frequency, const Vector<byte_t>& data);
 };
 
+#ifndef DOXYGEN
+
 CARBON_DECLARE_FILE_FORMAT_REGISTRY(ReadSoundFormatFunction, WriteSoundFormatFunction);
+
+#endif
 
 /**
  * \file

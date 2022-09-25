@@ -1469,6 +1469,8 @@ typedef StringBase<char> String;
  */
 typedef StringBase<UnicodeCharacter> UnicodeString;
 
+#ifndef DOXYGEN
+
 // Explicitly declare static members, these are defined in StringBase.cpp
 template <> const String String::Empty;
 template <> const String String::Space;
@@ -1482,6 +1484,8 @@ template <> const UnicodeString UnicodeString::Period;
 template <> const UnicodeString UnicodeString::Newline;
 template <> const UnicodeString UnicodeString::CarriageReturn;
 template <> const UnicodeString UnicodeString::TrimCharacters;
+
+#endif
 
 /**
  * Enable `const char *` to be added directly to a StringBase.

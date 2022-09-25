@@ -74,7 +74,11 @@ private:
     static unsigned int detectImageIndex(UnicodeString& imageName);
 };
 
+#ifndef DOXYGEN
+
 CARBON_DECLARE_FILE_FORMAT_REGISTRY(ReadImageFormatFunction, WriteImageFormatFunction);
+
+#endif
 
 /**
  * \file
