@@ -42,7 +42,7 @@ env.UsePrecompiledHeader('Common.h', pathToHeaderRoot='..', includeText='CarbonE
 carbonCustomFileDefines = platformScript.get('carbonCustomFileDefines', [])
 
 # Set CARBON_VERSION appropriately when building Core/BuildInfo.cpp
-versionScript = string.replace(str(File('#/SDK/Version.rb').srcnode()), '\\', '/')
+versionScript = str(File('#/SDK/Version.rb').srcnode()).replace('\\', '/')
 rubyCode = 'require "' + versionScript + '"; puts sdk_version'
 version = subprocess.check_output(['ruby', '-e', rubyCode]).strip()
 carbonCustomFileDefines.append({

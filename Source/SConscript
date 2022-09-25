@@ -196,7 +196,7 @@ if platform == 'Linux' or platform == 'macOS':
     # Install library file and set executable permission
     for target in carbonEngineBuildResult:
         installedTarget = Install(os.path.join(installPrefix, 'lib'), target)[0]
-        AddPostAction(installedTarget, ChMod(str(installedTarget), 0755))
+        AddPostAction(installedTarget, ChMod(str(installedTarget), 0o755))
         Alias('install', installedTarget)
 
     # Install public headers
