@@ -34,7 +34,7 @@ public:
      */
     void add(const IndexType& index, const ValueType& value)
     {
-        auto entryIndex = entries_.binarySearch(LookupEntry(index));
+        auto entryIndex = entries_.binarySearch(LookupEntry(index, value));
 
         if (entryIndex >= 0)
             entries_[entryIndex].second = value;
