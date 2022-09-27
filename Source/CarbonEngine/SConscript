@@ -3,10 +3,8 @@
 # distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-import os
 import subprocess
 import re
-import string
 
 Import('*')
 
@@ -44,7 +42,7 @@ carbonCustomFileDefines = platformScript.get('carbonCustomFileDefines', [])
 # Set CARBON_VERSION appropriately when building Core/BuildInfo.cpp
 versionScript = str(File('#/SDK/Version.rb').srcnode()).replace('\\', '/')
 rubyCode = 'require "' + versionScript + '"; puts sdk_version'
-version = subprocess.check_output(['ruby', '-e', rubyCode]).strip()
+version = subprocess.check_output(['ruby', '-e', rubyCode]).decode("utf-8").strip()
 carbonCustomFileDefines.append({
     'name': 'Core/BuildInfo.cpp',
     'defines': [{'CARBON_VERSION': version}]

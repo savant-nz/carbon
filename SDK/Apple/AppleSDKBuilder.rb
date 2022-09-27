@@ -41,18 +41,23 @@ class AppleSDKBuilder < SDKBuilderBase
   end
 
   def build_targets
-    [:macOS, :iOS].each { |target_platform| build_dependencies target_platform: target_platform }
+    [:macOS, :iOS, :iOSSimulator].each { |target_platform| build_dependencies target_platform: target_platform }
 
     scons targets: [], arguments: scons_arguments
     scons targets: :CarbonEngine, arguments: scons_arguments(type: :Debug)
 
-    [:Debug, :Release].product(ios_architectures.keys).each do |build_type, architecture|
-      scons arguments: scons_arguments(platform: :iOS, type: build_type, architecture: architecture)
-    end
+    scons targets: :CarbonEngine, arguments: scons_arguments(platform: :iOS, type: :Debug, architecture: :ARM64)
+    scons targets: :CarbonEngine, arguments: scons_arguments(platform: :iOS, type: :Release, architecture: :ARM64)
+
+    scons targets: :CarbonEngine, arguments: scons_arguments(platform: :iOSSimulator, type: :Debug, architecture: :ARM64)
+    scons targets: :CarbonEngine, arguments: scons_arguments(platform: :iOSSimulator, type: :Debug, architecture: :x64)
+    scons targets: :CarbonEngine, arguments: scons_arguments(platform: :iOSSimulator, type: :Release, architecture: :ARM64)
+    scons targets: :CarbonEngine, arguments: scons_arguments(platform: :iOSSimulator, type: :Release, architecture: :x64)
 
     [:Debug, :Release].each do |build_type|
       create_static_library_for_macos build_type
       create_static_library_for_ios build_type
+      create_static_library_for_ios_simulator build_type
     end
   end
 
@@ -81,9 +86,15 @@ class AppleSDKBuilder < SDKBuilderBase
   end
 
   def create_static_library_for_ios(build_type)
-    inputs = ios_architectures.keys.map { |arch| engine_library :iOS, arch, build_type } + dependency_libraries(:iOS)
+    inputs = [engine_library(:iOS, :ARM64, build_type)] + dependency_libraries(:iOS)
 
     merge_static_libraries inputs, "#{@package_root}/Library/#{engine_library_name build_type, 'iOS'}", sdk: :iphoneos
+  end
+
+  def create_static_library_for_ios_simulator(build_type)
+    inputs = ios_simulator_architectures.keys.map { |arch| engine_library :iOSSimulator, arch, build_type } + dependency_libraries(:iOSSimulator)
+
+    merge_static_libraries inputs, "#{@package_root}/Library/#{engine_library_name build_type, 'iOSSimulator'}", sdk: :iphoneos
   end
 
   def move_documentation

@@ -62,7 +62,7 @@ def supported_platforms
 end
 
 # Returns the supported build architectures on iOS, the values indicate the corresponding toolchain architecture.
-def ios_architectures
+def ios_simulator_architectures
   { ARM64: :arm64, x64: :x86_64 }
 end
 

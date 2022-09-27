@@ -104,7 +104,7 @@ Export('GetDependencyCPPPATH')
 
 # Returns the list of LIBPATH entries needed to include the specified dependencies in a build
 def GetDependencyLIBPATH(*dependencies, **keywords):
-    if platform == 'iOS':
+    if platform == 'iOSSimulator':
         return [GetDependencyPath(d, 'Library', platform, **keywords) for d in dependencies]
     else:
         return [GetDependencyPath(d, 'Library', platform, architecture, **keywords) for d in dependencies]
@@ -199,7 +199,7 @@ Export('carbonEngineLibraryName')
 # relevant to the current platform. Optional keywords are 'recursive' (which defaults to False).
 def GlobDirectories(self, *directories, **keywords):
     sourceFileExtensions = ['c', 'cpp', 'cc', 'cxx']
-    if platform == 'macOS' or platform == 'iOS':
+    if platform == 'macOS' or platform == 'iOS' or platform == 'iOSSimulator':
         sourceFileExtensions += ['mm']
 
     # Convert to array

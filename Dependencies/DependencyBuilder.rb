@@ -8,12 +8,13 @@ require "#{REPOSITORY_ROOT}/Scripts/SCons.rb"
 
 # The dependencies supported by each platform
 SUPPORTED_DEPENDENCIES = {
-  Android: [:AngelScript, :Bullet, :FreeImage, :OpenALSoft, :OpenAssetImport, :Vorbis, :ZLib],
-  iOS:     [:AngelScript, :Bullet, :FreeImage, :OpenAssetImport, :Vorbis, :ZLib],
-  Linux:   [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenAssetImport, :Vorbis, :ZLib],
-  macOS:   [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenAssetImport, :Vorbis, :ZLib],
-  Windows: [:AngelScript, :Bullet, :FreeImage, :FreeType, :OculusRift, :OpenALSoft, :OpenAssetImport, :PhysX, :Vorbis,
-            :ZLib]
+  Android:      [:AngelScript, :Bullet, :FreeImage, :OpenALSoft, :OpenAssetImport, :Vorbis, :ZLib],
+  iOS:          [:AngelScript, :Bullet, :FreeImage, :OpenAssetImport, :Vorbis, :ZLib],
+  iOSSimulator: [:AngelScript, :Bullet, :FreeImage, :OpenAssetImport, :Vorbis, :ZLib],
+  Linux:        [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenAssetImport, :Vorbis, :ZLib],
+  macOS:        [:AngelScript, :Bullet, :FreeImage, :FreeType, :OpenAssetImport, :Vorbis, :ZLib],
+  Windows:      [:AngelScript, :Bullet, :FreeImage, :FreeType, :OculusRift, :OpenALSoft, :OpenAssetImport, :PhysX,
+                 :Vorbis, :ZLib]
 }.freeze
 
 # This class is the backend for BuildDependencies.rb
@@ -40,7 +41,7 @@ class DependencyBuilder
   end
 
   def build_dependencies
-    puts 'Building dependencies ...'
+    puts "Building #{target_platform} dependencies ..."
 
     send "build_#{target_platform.to_s.downcase}_dependencies"
   end
@@ -48,6 +49,7 @@ class DependencyBuilder
   def clean_dependencies
     dependencies.each do |dependency|
       puts "Cleaning dependency #{dependency} ..."
+
       FileUtils.rm_rf File.join(dependency_root(dependency), '.scons')
       FileUtils.rm_f File.join(dependency_root(dependency), '.sconsign.dblite')
     end
@@ -104,13 +106,19 @@ class DependencyBuilder
 
   def build_ios_dependencies
     dependencies.each do |dependency|
-      libraries = ios_architectures.keys.map do |architecture|
+      build dependency
+    end
+  end
+
+  def build_iossimulator_dependencies
+    dependencies.each do |dependency|
+      libraries = ios_simulator_architectures.keys.map do |architecture|
         build dependency, arguments: { architecture: architecture }
 
-        "#{dependency_root dependency}/Library/iOS/#{architecture}/lib#{dependency}.a"
+        "#{dependency_root dependency}/Library/iOSSimulator/#{architecture}/lib#{dependency}.a"
       end
 
-      merge_static_libraries libraries, "#{dependency_root dependency}/Library/iOS/lib#{dependency}.a", sdk: :iphoneos
+      merge_static_libraries libraries, "#{dependency_root dependency}/Library/iOSSimulator/lib#{dependency}.a", sdk: :iphoneos
 
       FileUtils.rm libraries
     end

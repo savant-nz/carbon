@@ -74,7 +74,6 @@
                 <string>IOKit</string>
                 <string>OpenAL</string>
                 <string>OpenGL</string>
-                <string>StoreKit</string>
             </array>
 
             <key>Configurations</key>
@@ -124,7 +123,6 @@
                 <key>VALID_ARCHS</key>
                 <array>
                     <string>arm64</string>
-                    <string>armv7</string>
                 </array>
                 <key>CLANG_CXX_LIBRARY</key>
                 <string>libc++</string>
@@ -164,16 +162,20 @@
             <dict>
                 <key>Debug</key>
                 <dict>
-                    <key>OTHER_LDFLAGS</key>
+                    <key>OTHER_LDFLAGS[sdk=iphoneos*]</key>
                     <string>-lCarbonEngineiOSDebug</string>
+                    <key>OTHER_LDFLAGS[sdk=iphonesimulator*]</key>
+                    <string>-lCarbonEngineiOSSimulatorDebug</string>
                 </dict>
 
                 <key>Release</key>
                 <dict>
                     <key>VALIDATE_PRODUCT</key>
                     <string>YES</string>
-                    <key>OTHER_LDFLAGS</key>
+                    <key>OTHER_LDFLAGS[sdk=iphoneos*]</key>
                     <string>-lCarbonEngineiOS</string>
+                    <key>OTHER_LDFLAGS[sdk=iphonesimulator*]</key>
+                    <string>-lCarbonEngineiOSSimulator</string>
                 </dict>
             </dict>
 

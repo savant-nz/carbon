@@ -6,8 +6,14 @@
 #ifndef CARBONENGINE_CORE_MEMORY_MEMORYINTERCEPTOR_H
 #define CARBONENGINE_CORE_MEMORY_MEMORYINTERCEPTOR_H
 
+// The memory interceptor has worked on iOS and the iOS Simulator in the past, but currently on those platforms it runs
+// into an issue inside OpenAL::isAvailable(). This needs further investigation in order to use it on iOS again.
+#if defined(iOS) && !defined(CARBON_DISABLE_MEMORY_INTERCEPTOR)
+    #define CARBON_DISABLE_MEMORY_INTERCEPTOR
+#endif
+
 #if defined(CARBON_DEBUG) && !defined(CARBON_DISABLE_MEMORY_INTERCEPTOR) && !defined(CARBON_INCLUDE_MEMORY_INTERCEPTOR)
-#define CARBON_INCLUDE_MEMORY_INTERCEPTOR
+    #define CARBON_INCLUDE_MEMORY_INTERCEPTOR
 #endif
 
 namespace Carbon

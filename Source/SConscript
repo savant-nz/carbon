@@ -5,8 +5,6 @@
 
 import glob
 import os
-import re
-import shutil
 
 Import('*')
 
@@ -126,7 +124,7 @@ elif platform == 'Linux' or platform == 'macOS':
 
     baseEnv.AddMethod(CarbonClientProgram)
 
-elif platform == 'iOS':
+elif platform == 'iOS' or platform == 'iOSSimulator':
 
     dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'OpenAssetImport', 'Vorbis', 'ZLib']
 

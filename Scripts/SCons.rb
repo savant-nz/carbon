@@ -41,11 +41,12 @@ module SCons
   # Returns the default arguments for the specified platform.
   def default_arguments(platform)
     {
-      Android: { architecture: :ARMv7,             compiler: :GCC },
-      iOS:     { architecture: :ARM64,             compiler: :Clang },
-      Linux:   { architecture: linux_architecture, compiler: :GCC },
-      macOS:   { architecture: :x64,               compiler: :Clang },
-      Windows: { architecture: :x86,               compiler: :VisualStudio2015 }
+      Android:      { architecture: :ARMv7,             compiler: :GCC },
+      iOS:          { architecture: :ARM64,             compiler: :Clang },
+      iOSSimulator: { architecture: :ARM64,             compiler: :Clang },
+      Linux:        { architecture: linux_architecture, compiler: :GCC },
+      macOS:        { architecture: :x64,               compiler: :Clang },
+      Windows:      { architecture: :x86,               compiler: :VisualStudio2015 }
     }.fetch(platform).merge(
       platform: platform, type: :Release, strict: false
     )
