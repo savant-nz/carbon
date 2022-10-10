@@ -123,6 +123,7 @@
                 <key>VALID_ARCHS</key>
                 <array>
                     <string>arm64</string>
+                    <string>x86_64</string>
                 </array>
                 <key>CLANG_CXX_LIBRARY</key>
                 <string>libc++</string>
