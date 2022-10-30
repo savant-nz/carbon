@@ -128,7 +128,7 @@ public:
     void writeBytes(const void* data, unsigned int size);
 
     /**
-     * Writes the passed text to the fileas UTF8. If this file is a local file opened with \a asText set to true then
+     * Writes the passed text to the file as UTF8. If this file is a local file opened with \a asText set to true then
      * this method will convert to the current system line ending style as appropriate. Throws an Exception if an error
      * occurs.
      */
