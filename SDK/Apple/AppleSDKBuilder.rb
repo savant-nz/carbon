@@ -86,7 +86,7 @@ class AppleSDKBuilder < SDKBuilderBase
   end
 
   def create_static_library_for_ios(build_type)
-    inputs = [engine_library(:iOS, :ARM64, build_type)] + dependency_libraries(:iOS)
+    inputs = [engine_library(:iOS, :ARM64, build_type)] + dependency_libraries(:iOS, :ARM64)
 
     merge_static_libraries inputs, "#{@package_root}/Library/#{engine_library_name build_type, 'iOS'}", sdk: :iphoneos
   end
