@@ -377,6 +377,9 @@ void MemoryLeakDetector::writeMemoryLeaksReportFile()
     if (!isEnabled_)
         return;
 
+    setupMutex();
+    auto lock = ScopedMutexLock(*mutex_);
+
 #ifdef WINDOWS
     auto utf16 = std::array<wchar_t, MAX_PATH>();
     MultiByteToWideChar(CP_UTF8, 0, reinterpret_cast<LPCSTR>(getMemoryLeaksReportFilename()), -1, utf16.data(),

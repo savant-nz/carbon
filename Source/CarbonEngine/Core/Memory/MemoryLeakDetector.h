@@ -39,7 +39,7 @@ public:
     /**
      * Returns whether the memory leak detector is currently enabled and active. The memory leak detector is enabled on
      * startup in builds which include the memory interceptor (i.e. those that define CARBON_INCLUDE_MEMORY_INTERCEPTOR,
-     * which happens by default in debug builds). The memory leak detector is always disabledin builds which do not
+     * which happens by default in debug builds). The memory leak detector is always disabled in builds which do not
      * include the memory interceptor. If the memory leak detector is enabled it can be switched off by calling
      * MemoryLeakDetector::disable(), however once it is off it can't be turned back on.
      */

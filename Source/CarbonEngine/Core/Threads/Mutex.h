@@ -70,7 +70,7 @@ public:
 
     /**
      * Acquires the mutex that was passed to the constructor. This can be used in combination with
-     * ScopedMutexLock::release() to gain  finer control over the mutex. An internal counter is used to make sure that
+     * ScopedMutexLock::release() to gain finer control over the mutex. An internal counter is used to make sure that
      * the correct number of mutex releases occur in the destructor.
      */
     void acquire()
