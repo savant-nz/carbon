@@ -36,6 +36,8 @@ people:
 
 # Releases to display on the Downloads page, sorted by date
 releases:
+- version: 0.1-alpha-7d35efd
+  date: 2023-01-14
 - version: 0.1-alpha-2a6a56d
   date: 2022-09-28
 - version: 0.1-alpha-e6765f1
