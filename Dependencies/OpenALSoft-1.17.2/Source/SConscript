@@ -13,7 +13,7 @@ backends = ['base', 'loopback', 'null']
 sources += ['Alc/backends/%s.c' % x for x in backends]
 
 # Cut out unwanted mixer backends
-sources = [source for source in sources if not re.search('mixer_[^c].*\.c$', str(source))]
+sources = [source for source in sources if not re.search('mixer_[^c].*\\.c$', str(source))]
 
 # Add platform-specific sources
 if platform == 'Windows':

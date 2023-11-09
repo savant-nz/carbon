@@ -37,8 +37,8 @@ class WindowsSDKBuilder < SDKBuilderBase
   def create_subst_drive
     remove_subst_drive
 
-    run "subst #{subst_drive} #{REPOSITORY_ROOT}", echo: false, error: 'Failed mapping drive with subst'
-
+    run "subst #{subst_drive} \"#{REPOSITORY_ROOT}\"", echo: false, error: 'Failed mapping drive with subst'
+ 
     Dir.chdir subst_drive
   end
 

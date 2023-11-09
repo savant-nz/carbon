@@ -1,27 +1,21 @@
 # Building Carbon
 
 On Windows:
-- Install [Visual Studio Community 2015](https://visualstudio.com).
+- Install [Visual Studio Community 2022](https://visualstudio.com).
     - Ensure that Visual C++ is selected in the installer.
-    - The Professional and Enterprise editions of Visual Studio 2015 are also supported, but not the Express editions.
-- Install [Python 2.7](http://www.python.org/downloads).
-    - Ensure that '*Add python.exe to Path*' is enabled when installing.
-    - Python 3.x is not yet supported.
-- Install [PyWin32 for Python 2.7](
-  http://sourceforge.net/projects/pywin32/files/pywin32/Build%20219/pywin32-219.win32-py2.7.exe/download).
-- Install [SCons](http://www.scons.org/download.php), version 2.4 or later is required.
-- Install [Ruby](http://rubyinstaller.org/downloads), version 2.0 or later is required.
-    - Tick '*Add Ruby executables to your PATH*' and '*Associate .rb and .rbw files with this Ruby installation*' when
-      installing.
+- Install [Python 3.6 or later](http://www.python.org/downloads).
+    - Ensure that '*Add Python to environment variables*' is ticked when installing.
+- Install [PyWin32](https://pypi.org/project/pywin32/#files).
+- Install [SCons](http://www.scons.org/) by running `pip install scons`.
+- Install [Ruby](http://rubyinstaller.org/downloads), version 3.0 or later is required.
 - Install [Git](https://git-scm.com/download/win).
-    - Ensure that '*Use Git from the Windows Command Prompt*' is selected when installing.
 
 On macOS:
 - Install [Xcode](https://itunes.apple.com/app/xcode/id497799835) through the Mac App Store.
 - Install [Homebrew](http://brew.sh).
 - Install [SCons](http://www.scons.org) using Homebrew: `brew install scons`
 
-On Ubuntu Linux 16.04 and later:
+On Ubuntu Linux 22.04 and later:
 - Install required packages using the following command: `sudo apt install g++ git libopenal-dev libgl1-mesa-dev
   libsdl2-dev libudev-dev libxinerama-dev ruby scons`
 
@@ -47,11 +41,11 @@ Using the `RunApplication.rb` script is the preferred method on Linux as there a
 To build the SDK follow the steps above, then do the following:
 
 On Windows:
-- Install [Doxygen](http://www.stack.nl/~dimitri/doxygen/download.html).
+- Install [Doxygen](https://www.doxygen.nl/download.html).
 - Install [NSIS](http://nsis.sourceforge.net/), version 3.0 or later is required.
 
 On macOS:
-- Install [Doxygen](http://www.stack.nl/~dimitri/doxygen) using Homebrew: `brew install doxygen`
+- Install [Doxygen](https://www.doxygen.nl/) using Homebrew: `brew install doxygen`
 
 Then build the SDK by running:
 

@@ -16,7 +16,7 @@ vars.AddVariables(
 Help(vars.GenerateHelpText(Environment()))
 
 # Set the compiler and architecture being targeted by this build
-compiler = 'VisualStudio2015'
+compiler = 'VisualStudio2022'
 architecture = ARGUMENTS.get('architecture', 'x86')
 if architecture not in ['x86', 'x64']:
     print('Error: invalid architecture specified')

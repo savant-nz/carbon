@@ -7,9 +7,7 @@
 
 Import('*')
 
-EnsureSConsVersion(2, 4)
-
-env = Environment(MSVC_VERSION={'VisualStudio2015': '14.0'}[compiler],
+env = Environment(MSVC_VERSION={'VisualStudio2022': '14.3'}[compiler],
                   TARGET_ARCH={'x86': 'x86', 'x64': 'x86_64'}[architecture])
 
 env['ARFLAGS'] = ['/MACHINE:' + architecture]

@@ -46,7 +46,7 @@ module SCons
       iOSSimulator: { architecture: :ARM64,             compiler: :Clang },
       Linux:        { architecture: linux_architecture, compiler: :GCC },
       macOS:        { architecture: :x64,               compiler: :Clang },
-      Windows:      { architecture: :x86,               compiler: :VisualStudio2015 }
+      Windows:      { architecture: :x86,               compiler: :VisualStudio2022 }
     }.fetch(platform).merge(
       platform: platform, type: :Release, strict: false
     )
@@ -57,7 +57,6 @@ module SCons
     return @executable if @executable
 
     @executable = 'scons'
-    @executable += '.bat' if windows?
 
     run("#{@executable} -v", echo: false, error: 'SCons is either not installed or is not on the path') {}
 

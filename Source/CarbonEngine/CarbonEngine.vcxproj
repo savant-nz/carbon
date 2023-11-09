@@ -70,72 +70,72 @@
     <ProjectGuid>{6179E7E9-E1B7-44B1-ABEB-93D76D5D8A80}</ProjectGuid>
     <RootNamespace>CarbonEngine</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2009 Exporter|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Maya 2014 Exporter|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2009 Exporter|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Maya 2014 Exporter|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Max 8 Exporter|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Max 8 Exporter|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -287,7 +287,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\AngelScript-2.31.1\Source\include;$(SolutionDir)..\Dependencies\Bullet-2.89\Source;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Source;$(SolutionDir)..\Dependencies\FreeType-2.7\Include;$(SolutionDir)..\Dependencies\OculusRift-1.6\Source\LibOVR\Include;$(SolutionDir)..\Dependencies\Ogg-1.3.2\Include;$(SolutionDir)..\Dependencies\OpenALSoft-1.17.2\Source\include;$(SolutionDir)..\Dependencies\OpenAssetImport-3.3.1\Source\include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Include;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OCULUSRIFT;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -308,7 +308,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\AngelScript-2.31.1\Source\include;$(SolutionDir)..\Dependencies\Bullet-2.89\Source;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Source;$(SolutionDir)..\Dependencies\FreeType-2.7\Include;$(SolutionDir)..\Dependencies\OculusRift-1.6\Source\LibOVR\Include;$(SolutionDir)..\Dependencies\Ogg-1.3.2\Include;$(SolutionDir)..\Dependencies\OpenALSoft-1.17.2\Source\include;$(SolutionDir)..\Dependencies\OpenAssetImport-3.3.1\Source\include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Include;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OCULUSRIFT;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -329,7 +329,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\AngelScript-2.31.1\Source\include;$(SolutionDir)..\Dependencies\Bullet-2.89\Source;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Source;$(SolutionDir)..\Dependencies\FreeType-2.7\Include;$(SolutionDir)..\Dependencies\OculusRift-1.6\Source\LibOVR\Include;$(SolutionDir)..\Dependencies\Ogg-1.3.2\Include;$(SolutionDir)..\Dependencies\OpenALSoft-1.17.2\Source\include;$(SolutionDir)..\Dependencies\OpenAssetImport-3.3.1\Source\include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Include;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OCULUSRIFT;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -353,7 +353,7 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <OmitFramePointers>true</OmitFramePointers>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\Dependencies\AngelScript-2.31.1\Source\include;$(SolutionDir)..\Dependencies\Bullet-2.89\Source;$(SolutionDir)..\Dependencies\FreeImage-3.17.0\Source;$(SolutionDir)..\Dependencies\FreeType-2.7\Include;$(SolutionDir)..\Dependencies\OculusRift-1.6\Source\LibOVR\Include;$(SolutionDir)..\Dependencies\Ogg-1.3.2\Include;$(SolutionDir)..\Dependencies\OpenALSoft-1.17.2\Source\include;$(SolutionDir)..\Dependencies\OpenAssetImport-3.3.1\Source\include;$(SolutionDir)..\Dependencies\PhysX-3.3.2\Include;$(SolutionDir)..\Dependencies\Vorbis-1.3.5\Include;$(SolutionDir)..\Dependencies\ZLib-1.2.8\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OCULUSRIFT;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CARBON_EXPORTS;CARBON_INCLUDE_ANGELSCRIPT;CARBON_INCLUDE_BULLET;CARBON_INCLUDE_FREEIMAGE;CARBON_INCLUDE_FREETYPE;CARBON_INCLUDE_OPENAL;CARBON_INCLUDE_OPENASSETIMPORT;CARBON_INCLUDE_OPENGL11;CARBON_INCLUDE_PHYSX;CARBON_INCLUDE_PLATFORM_WINDOWS;CARBON_INCLUDE_VORBIS;CARBON_INCLUDE_ZLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

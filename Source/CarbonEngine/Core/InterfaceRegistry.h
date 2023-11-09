@@ -228,14 +228,18 @@ private:
  * \file
  */
 
-/**
- * This macro declares the static members of an InterfaceRegistry for the given \a Interface class.
- */
-#define CARBON_DECLARE_INTERFACE_REGISTRY(InterfaceClass)                                                                                                   \
-    template <> Carbon::Vector<Carbon::InterfaceRegistry<InterfaceClass>::Implementation*>* Carbon::InterfaceRegistry<InterfaceClass>::implementations_;    \
-    template <> Carbon::InterfaceRegistry<InterfaceClass>::Implementation* Carbon::InterfaceRegistry<InterfaceClass>::activeImplementation_;                \
-    template <> InterfaceClass* Carbon::InterfaceRegistry<InterfaceClass>::activeInstance_;                                                                 \
-    template <> char Carbon::InterfaceRegistry<InterfaceClass>::OverrideImplementationName[256]
+#ifdef _MSC_VER
+    #define CARBON_DECLARE_INTERFACE_REGISTRY(InterfaceClass)
+#else
+    /**
+     * This macro declares the static members of an InterfaceRegistry for the given \a Interface class.
+     */
+    #define CARBON_DECLARE_INTERFACE_REGISTRY(InterfaceClass)                                                                                                   \
+        template <> Carbon::Vector<Carbon::InterfaceRegistry<InterfaceClass>::Implementation*>* Carbon::InterfaceRegistry<InterfaceClass>::implementations_;    \
+        template <> Carbon::InterfaceRegistry<InterfaceClass>::Implementation* Carbon::InterfaceRegistry<InterfaceClass>::activeImplementation_;                \
+        template <> InterfaceClass* Carbon::InterfaceRegistry<InterfaceClass>::activeInstance_;                                                                 \
+        template <> char Carbon::InterfaceRegistry<InterfaceClass>::OverrideImplementationName[256]
+#endif
 
 /**
  * This macro instantiates an InterfaceRegistry for the given \a Interface class, the static members it needs are

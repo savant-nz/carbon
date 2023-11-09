@@ -999,8 +999,10 @@ bool PlatformWindows::setVerticalSyncEnabled(bool enabled)
         if (!wglSwapIntervalEXT)
             return false;
 
+#ifdef CARBON_INCLUDE_OCULUSRIFT
         if (enabled)
             LOG_WARNING << "Vertical sync is being enabled, possible incompatibility with Oculus Rift";
+#endif
 
         if (!wglSwapIntervalEXT(enabled ? GL_TRUE : GL_FALSE))
         {
@@ -1072,11 +1074,11 @@ bool PlatformWindows::processEvent(const Event& e)
                     isMouseButtonPressed_[MiddleMouseButton] = (data.dwData & 0x80) != 0;
                     break;
 
-                case DIMOFS_X:
+                case offsetof(DIMOUSESTATE, lX):
                     mouseRelative_.x += float(int(data.dwData));
                     break;
 
-                case DIMOFS_Y:
+                case offsetof(DIMOUSESTATE, lY):
                     mouseRelative_.y -= float(int(data.dwData));
                     break;
             }

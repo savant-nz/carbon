@@ -5,6 +5,7 @@
 
 import subprocess
 import re
+from collections import deque
 
 Import('*')
 
@@ -19,7 +20,7 @@ if 'extraCarbonSConscript' in platformScript:
 
 # Common.cpp is only ever needed in static library builds on Visual Studio (due to the use of the precompiled headers)
 if not (compiler.startswith('VisualStudio') and env.IsCarbonEngineStatic()):
-    commonCppRegEx = re.compile('.*CarbonEngine.Common\.cpp$')
+    commonCppRegEx = re.compile('.*CarbonEngine.Common\\.cpp$')
     sources = [f for f in sources if not commonCppRegEx.match(str(f))]
 
 # Visual C++ has problems using precompiled headers with debug builds of static libraries. The workaround is to add an
@@ -57,7 +58,7 @@ for entry in carbonCustomFileDefines:
             # source file lies outside of this directory
             location = entry.get('location', entry['name'])
 
-            customCPPDEFINES = env['CPPDEFINES'] + entry['defines']
+            customCPPDEFINES = env['CPPDEFINES'] + deque(entry['defines'])
 
             # Rebuild the object file and replace it in the list of source files
             if env.IsCarbonEngineStatic():

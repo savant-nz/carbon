@@ -1469,7 +1469,7 @@ typedef StringBase<char> String;
  */
 typedef StringBase<UnicodeCharacter> UnicodeString;
 
-#ifndef DOXYGEN
+#if !defined(DOXYGEN) && !defined(_MSC_VER)
 
 // Explicitly declare static members, these are defined in StringBase.cpp
 template <> const String String::Empty;

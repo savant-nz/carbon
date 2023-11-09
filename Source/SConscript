@@ -13,8 +13,7 @@ mayaExporterEnvs = []
 
 if platform == 'Windows':
 
-    dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'OculusRift', 'PhysX',
-                    'Vorbis', 'ZLib']
+    dependencies = ['AngelScript', 'Bullet', 'FreeImage', 'FreeType', 'OpenAssetImport', 'PhysX', 'Vorbis', 'ZLib']
 
     # Environment for Carbon
     engineEnv = baseEnv.Clone()
@@ -32,6 +31,7 @@ if platform == 'Windows':
 
         env['CPPDEFINES'] += ['CARBON_INCLUDE_MAX_EXPORTER', 'CARBON_INCLUDE_PHYSX']
         env['CPPPATH'] += ['#/Source'] + GetDependencyCPPPATH('Max', version=version) + GetDependencyCPPPATH('PhysX')
+        env['CXXFLAGS'] += '/Wv:18'
         env['LIBPATH'] += GetDependencyLIBPATH('Max', version=version) + GetDependencyLIBPATH('PhysX')
 
         maxExporterEnvs.append({'version': version, 'env': env})

@@ -16,12 +16,7 @@ env['CPPPATH'] += ['#/Source', '#/Source/Alc', '#/Source/include', '#/Source/Ope
 
 if platform == 'Windows':
     env['CPPDEFINES'] += [{'restrict': '__restrict', 'strcasecmp': '_stricmp', 'strncasecmp': '_strnicmp'},
-                          'HAVE_DSOUND', 'HAVE_WINDOWS_H']
-
-    if compiler == 'VisualStudio2013':
-        env['CPPDEFINES'] += [{'snprintf': '_snprintf', 'inline': '__inline', 'alloca': '_malloca'}]
-    elif compiler == 'VisualStudio2015':
-        env['CPPDEFINES'] += ['_TIMESPEC_DEFINED']
+                          'HAVE_DSOUND', 'HAVE_WINDOWS_H', '_TIMESPEC_DEFINED']
 
 elif platform == 'Android':
     env['CPPDEFINES'] += ['HAVE_OPENSL']

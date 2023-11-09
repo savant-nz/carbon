@@ -18,12 +18,10 @@
         #define WINDOWS 1
     #endif
     #ifdef _MSC_VER
-        #if _MSC_VER < 1900
+        #if _MSC_VER < 1930
             #error This version of Visual Studio is not supported, please upgrade
-        #elif _MSC_VER == 1900
-            #define CARBON_MSVC_VERSION "2015"
-        #elif _MSC_VER == 1910
-            #define CARBON_MSVC_VERSION "2017"
+        #elif _MSC_VER < 1940
+            #define CARBON_MSVC_VERSION "2022"
         #else
             #define CARBON_MSVC_VERSION "Unknown"
         #endif

@@ -156,11 +156,15 @@ private:
  * \file
  */
 
-/**
- * This macro declares a SubclassRegistry for the given superclass, declaring the static member that it needs.
- */
-#define CARBON_DECLARE_SUBCLASS_REGISTRY(SuperclassType) \
-    template <> Vector<SubclassRegistry<SuperclassType>::Factory*> SubclassRegistry<SuperclassType>::factories_
+#ifdef _MSC_VER
+    #define CARBON_DECLARE_SUBCLASS_REGISTRY(SuperclassType)
+#else
+    /**
+     * This macro declares a SubclassRegistry for the given superclass, declaring the static member that it needs.
+     */
+    #define CARBON_DECLARE_SUBCLASS_REGISTRY(SuperclassType) \
+        template <> Vector<SubclassRegistry<SuperclassType>::Factory*> SubclassRegistry<SuperclassType>::factories_
+#endif
 
 /**
  * This macro defines a SubclassRegistry for the given superclass, instantiating the static member it needs so that it
