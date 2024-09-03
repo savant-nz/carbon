@@ -10,21 +10,20 @@
 #include "CarbonEngine/Graphics/States/States.h"
 
 // In debug builds the OpenGL error state is checked after every relevant GL call and any errors are logged
-#define CARBON_CHECK_OPENGL_ERROR(FunctionName)                                            \
-    do                                                                                     \
-    {                                                                                      \
-        auto glError = glGetError();                                                       \
-        if (glError)                                                                       \
-        {                                                                                  \
-            LOG_ERROR << "OpenGL error " << Carbon::OpenGLShared::glErrorToString(glError) \
-                      << " occurred in " #FunctionName;                                    \
-            /* assert(false && "An OpenGL error occurred"); */                             \
-        }                                                                                  \
-        graphics().incrementAPICallCount();                                                \
-    } while (false)
-
 #ifdef CARBON_DEBUG
-    #undef CARBON_CHECK_OPENGL_ERROR
+    #define CARBON_CHECK_OPENGL_ERROR(FunctionName)                                            \
+        do                                                                                     \
+        {                                                                                      \
+            auto glError = glGetError();                                                       \
+            if (glError)                                                                       \
+            {                                                                                  \
+                LOG_ERROR << "OpenGL error " << Carbon::OpenGLShared::glErrorToString(glError) \
+                          << " occurred in " #FunctionName;                                    \
+                /* assert(false && "An OpenGL error occurred"); */                             \
+            }                                                                                  \
+            graphics().incrementAPICallCount();                                                \
+        } while (false)
+#else
     #define CARBON_CHECK_OPENGL_ERROR(FunctionName) ((void)0)
 #endif
 

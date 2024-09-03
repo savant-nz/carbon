@@ -26,6 +26,7 @@ Once this setup is complete build the engine's dependencies:
 If you are using macOS and want to develop or test on iOS then build the dependencies for that platform also:
 
     ruby Dependencies/BuildDependencies.rb --platform iOS
+    ruby Dependencies/BuildDependencies.rb --platform iOSSimulator
 
 After the dependencies have been built open the Visual Studio or Xcode project file in the `Source/` directory and build
 and run the sample applications.

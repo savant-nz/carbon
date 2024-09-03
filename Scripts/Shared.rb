@@ -58,7 +58,7 @@ end
 
 # Returns an array of the supported platforms.
 def supported_platforms
-  [:Android, :iOS, :Linux, :macOS, :Windows]
+  [:Android, :iOS, :iOSSimulator, :Linux, :macOS, :Windows]
 end
 
 # Returns the supported build architectures on iOS, the values indicate the corresponding toolchain architecture.
