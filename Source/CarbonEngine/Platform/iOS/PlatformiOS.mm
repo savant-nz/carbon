@@ -163,7 +163,7 @@ bool PlatformiOS::setup()
 
     // Create and setup a main window
     window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [window_ setRootViewController:[[CustomViewController alloc] initWithNibName:NULL bundle:NULL]];
+    [window_ setRootViewController:[[CustomViewController alloc] initWithNibName:nullptr bundle:nullptr]];
     [window_ setUserInteractionEnabled:YES];
     [window_ setMultipleTouchEnabled:YES];
     [window_ makeKeyAndVisible];
